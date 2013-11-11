@@ -32,9 +32,10 @@ public class Product9TestCase {
 
     /**
      * Sets all the required prerequisites for the tests. Will be called before the test are run.
+     * @throws IOException 
      */
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
         serviceClient = new ProductService9Client(new WebServiceTestConfiguration());
 
         // create test products that can be used with the create and update methods
@@ -177,11 +178,7 @@ public class Product9TestCase {
         download_up.setIsExternal(false);
         download_up.setFileName("image_download.jpg");
         download_up.setPosition( new BigInteger("10") );
-        try {
-            download_up.setFileContent( readFile("../TestData/ProductImageService/cg_0100504001.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        download_up.setFileContent( readFile("TestData/ProductImageService/cg_0100504001.jpg"));
         Product_down_up.setDownloadProductMaps(new TDownload[]{download_up});
 
         // delete the test product if it exists
@@ -514,16 +511,14 @@ public class Product9TestCase {
      * @param fileName file name
      * @return binary file content
      */
-    private byte[] readFile(String FileName) throws IOException
+    private byte[] readFile(String fileName) throws IOException
     {
-        File file = new File(FileName);
-        int fileSize = (int)file.length();
-        InputStream in = new FileInputStream(file);
-        byte[] content = new byte[fileSize];
-        in.read(content, 0, fileSize);
+    	InputStream in = getClass().getClassLoader().getResourceAsStream(fileName);
+    	byte[] data = new byte[in.available()];
+        in.read(data, 0, in.available());
         in.close();
-
-        return content;
+    	
+    	return data;
     }
 
 
