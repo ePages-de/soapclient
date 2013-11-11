@@ -1,15 +1,35 @@
 package de.epages.WebServices.CustomerService;
 
-import de.epages.WebServices.WebServiceTestConfiguration;
-import de.epages.WebServices.CustomerGroupService.Stub.*;
-import de.epages.WebServices.CustomerService.Stub.*;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.*;
-import static org.junit.Assert.*;
-
-import java.util.*;
-import java.util.logging.Logger;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.logging.Logger;
+
+import junit.framework.TestSuite;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.WebServiceTestConfiguration;
+import de.epages.WebServices.CustomerGroupService.Stub.Bind_CustomerGroup_SOAPStub;
+import de.epages.WebServices.CustomerGroupService.Stub.CustomerGroupService;
+import de.epages.WebServices.CustomerGroupService.Stub.CustomerGroupServiceLocator;
+import de.epages.WebServices.CustomerGroupService.Stub.TGetList_Return;
+import de.epages.WebServices.CustomerService.Stub.TAddress;
+import de.epages.WebServices.CustomerService.Stub.TAttribute;
+import de.epages.WebServices.CustomerService.Stub.TCreate_Input;
+import de.epages.WebServices.CustomerService.Stub.TCreate_Return;
+import de.epages.WebServices.CustomerService.Stub.TDelete_Return;
+import de.epages.WebServices.CustomerService.Stub.TExists_Return;
+import de.epages.WebServices.CustomerService.Stub.TFind_Input;
+import de.epages.WebServices.CustomerService.Stub.TGetInfo_Return;
+import de.epages.WebServices.CustomerService.Stub.TUpdate_Input;
+import de.epages.WebServices.CustomerService.Stub.TUpdate_Return;
 
 /**
  * A JUnit TestSuite to test epages Customer WebServices.
@@ -43,12 +63,11 @@ public class CustomerTestCase {
     	
         try {
             CustomerGroupService serviceLocator = new CustomerGroupServiceLocator();
+            WebServiceConfiguration config = new WebServiceTestConfiguration();
             
-            java.net.URL webServiceURL = new java.net.URL(new de.epages.WebServices.WebServiceTestConfiguration().WEBSERVICE_URL);
-            
-            Bind_CustomerGroup_SOAPStub customerGroupService = new Bind_CustomerGroup_SOAPStub(webServiceURL, serviceLocator);
-            customerGroupService.setUsername(de.epages.WebServices.WebServiceTestConfiguration.WEBSERVICE_LOGIN);
-            customerGroupService.setPassword(de.epages.WebServices.WebServiceTestConfiguration.WEBSERVICE_PASSWORD);
+            Bind_CustomerGroup_SOAPStub customerGroupService = new Bind_CustomerGroup_SOAPStub(config.getWebserviceURL(), serviceLocator);
+            customerGroupService.setUsername(config.getUsername());
+            customerGroupService.setPassword(config.getPassword());
             
         	TGetList_Return[] retGroups = customerGroupService.getList();
         	customerGroups[0] = customerGroupsPath+retGroups[0].getAlias();

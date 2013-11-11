@@ -26,7 +26,7 @@ public class PageCacheTestCase extends WebServiceTestConfiguration {
         log.info("using web service Url: " + WEBSERVICE_URL);
 
         try {
-        	pageCacheService = new Bind_PageCache_SOAPStub(new java.net.URL(WEBSERVICE_URL), serviceLocator);
+        	pageCacheService = new Bind_PageCache_SOAPStub(WEBSERVICE_URL, serviceLocator);
 		}
         catch (Exception e) {
 			e.printStackTrace();

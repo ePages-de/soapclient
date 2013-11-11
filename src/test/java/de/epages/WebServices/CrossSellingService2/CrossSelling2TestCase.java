@@ -48,7 +48,7 @@ public class CrossSelling2TestCase extends WebServiceTestConfiguration {
         log.info("address specified by wsdl: " + serviceLocator.getport_CrossSellingAddress());
         log.info("using web service Url: " + WEBSERVICE_URL);
 
-        crossSellingService = new Bind_CrossSelling_SOAPStub(new java.net.URL(WEBSERVICE_URL), serviceLocator);
+        crossSellingService = new Bind_CrossSelling_SOAPStub(WEBSERVICE_URL, serviceLocator);
 
         // setting user-path and password of the shop
         crossSellingService.setUsername(WEBSERVICE_LOGIN);

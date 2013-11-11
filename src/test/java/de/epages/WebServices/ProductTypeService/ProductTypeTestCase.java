@@ -114,8 +114,8 @@ public class ProductTypeTestCase extends WebServiceTestConfiguration {
         log.info("using web service Url: " + WEBSERVICE_URL);
 
         try {
-            WebServiceTestConfiguration WSconf = new WebServiceTestConfiguration();
-            productTypeService = new Bind_ProductType_SOAPStub(new java.net.URL(WSconf.WEBSERVICE_URL), serviceLocator);
+            WebServiceTestConfiguration config = new WebServiceTestConfiguration();
+            productTypeService = new Bind_ProductType_SOAPStub(config.getWebserviceURL(), serviceLocator);
         }
         catch (Exception e) {
             e.printStackTrace();

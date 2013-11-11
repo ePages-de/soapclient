@@ -26,7 +26,7 @@ public class ShippingMethodTestCase extends WebServiceTestConfiguration {
         log.info("using web service Url: " + WEBSERVICE_URL);
 
         try {
-        	shippingMethodService = new Bind_ShippingMethod_SOAPStub(new java.net.URL(WEBSERVICE_URL), serviceLocator);
+        	shippingMethodService = new Bind_ShippingMethod_SOAPStub(WEBSERVICE_URL, serviceLocator);
 		}
         catch (Exception e) {
 			e.printStackTrace();

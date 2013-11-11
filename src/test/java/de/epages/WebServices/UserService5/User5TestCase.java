@@ -36,7 +36,7 @@ public class User5TestCase extends WebServiceTestConfiguration {
         UserService serviceLocator = new UserServiceLocator();
         log.info("address specified by wsdl: " + serviceLocator.getport_UserAddress());
         log.info("using web service Url: " + WEBSERVICE_URL);
-        userService = new Bind_User_SOAPStub(new java.net.URL(WEBSERVICE_URL), serviceLocator);
+        userService = new Bind_User_SOAPStub(WEBSERVICE_URL, serviceLocator);
         userService.setUsername(WEBSERVICE_LOGIN);
         userService.setPassword(WEBSERVICE_PASSWORD);
 

@@ -26,7 +26,7 @@ public class ProductAttribute2TestCase extends WebServiceTestConfiguration {
         log.info("address specified by wsdl: " + serviceLocator.getport_ProductAttributeAddress());
         log.info("using web service Url: " + WEBSERVICE_URL);
 
-        productAttributeService = new Bind_ProductAttribute_SOAPStub(new java.net.URL(WEBSERVICE_URL), serviceLocator);
+        productAttributeService = new Bind_ProductAttribute_SOAPStub(WEBSERVICE_URL, serviceLocator);
         productAttributeService.setUsername(WEBSERVICE_LOGIN);
         productAttributeService.setPassword(WEBSERVICE_PASSWORD);
     }

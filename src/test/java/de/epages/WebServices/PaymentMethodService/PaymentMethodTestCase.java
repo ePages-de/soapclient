@@ -26,7 +26,7 @@ public class PaymentMethodTestCase extends WebServiceTestConfiguration {
         log.info("using web service Url: " + WEBSERVICE_URL);
 
         try {
-          paymentMethodService = new Bind_PaymentMethod_SOAPStub(new java.net.URL(WEBSERVICE_URL), serviceLocator);
+          paymentMethodService = new Bind_PaymentMethod_SOAPStub(WEBSERVICE_URL, serviceLocator);
         }
         catch (Exception e) {
           e.printStackTrace();

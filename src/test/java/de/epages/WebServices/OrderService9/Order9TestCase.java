@@ -1,20 +1,40 @@
 package de.epages.WebServices.OrderService9;
 
-import de.epages.WebServices.OrderService9.Stub.*;
-import de.epages.WebServices.WebServiceTestConfiguration;
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 import java.util.GregorianCalendar;
 import java.util.logging.Logger;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.WebServiceTestConfiguration;
+import de.epages.WebServices.OrderService9.Stub.Bind_Order_SOAPStub;
+import de.epages.WebServices.OrderService9.Stub.OrderService;
+import de.epages.WebServices.OrderService9.Stub.OrderServiceLocator;
+import de.epages.WebServices.OrderService9.Stub.TAddressNamed;
+import de.epages.WebServices.OrderService9.Stub.TAttribute;
+import de.epages.WebServices.OrderService9.Stub.TBaseLineItem;
+import de.epages.WebServices.OrderService9.Stub.TCreate_Input;
+import de.epages.WebServices.OrderService9.Stub.TCreate_Return;
+import de.epages.WebServices.OrderService9.Stub.TDelete_Return;
+import de.epages.WebServices.OrderService9.Stub.TExists_Return;
+import de.epages.WebServices.OrderService9.Stub.TFind_Input;
+import de.epages.WebServices.OrderService9.Stub.TGetInfo_Return;
+import de.epages.WebServices.OrderService9.Stub.TLineItemContainerIn;
+import de.epages.WebServices.OrderService9.Stub.TProductLineItemIn;
+import de.epages.WebServices.OrderService9.Stub.TUpdate_Input;
+import de.epages.WebServices.OrderService9.Stub.TUpdate_Return;
 /* import java.math.BigInteger; */
-import java.net.MalformedURLException;
 
 /**
  * A JUnit TestSuite to test epages Order WebServices.
  */
-public class Order9TestCase extends WebServiceTestConfiguration {
+public class Order9TestCase {
     private static Logger log = Logger.getLogger(Order9TestCase.class.getName());
 
     private Bind_Order_SOAPStub orderService;
@@ -42,14 +62,15 @@ public class Order9TestCase extends WebServiceTestConfiguration {
         log.info("Order5TestCase: setUp");
 
         OrderService serviceLocator = new OrderServiceLocator();
+        WebServiceConfiguration config = new WebServiceTestConfiguration();
         log.info("address specified by wsdl: " + serviceLocator.getport_OrderAddress());
-        log.info("using web service Url: " + WEBSERVICE_URL);
+        log.info("using web service Url: " + config.getWebserviceURL());
 
-        orderService = new Bind_Order_SOAPStub(new java.net.URL(WEBSERVICE_URL), serviceLocator);
+        orderService = new Bind_Order_SOAPStub(config.getWebserviceURL(), serviceLocator);
 
         // setting user-path and password of the shop
-        orderService.setUsername(WEBSERVICE_LOGIN);
-        orderService.setPassword(WEBSERVICE_PASSWORD);
+        orderService.setUsername(config.getUsername());
+        orderService.setPassword(config.getPassword());
 
         // init input address data
         Address_in.setEMail("java_test-1@epages.de");
@@ -192,7 +213,7 @@ public class Order9TestCase extends WebServiceTestConfiguration {
             for (TBaseLineItem tBaseLineItem : AllLineItems) {
                 if ( "Products/" + tBaseLineItem.getSKU() == refLineItem.getProduct() ) {
                     assertEquals("base line item is a product", "LineItemProduct", tBaseLineItem.getClass());
-                    assertEquals("base line item quantity", (float)refLineItem.getQuantity(), (float)tBaseLineItem.getQuantity());
+                    assertEquals("base line item quantity", (float)refLineItem.getQuantity(), (float)tBaseLineItem.getQuantity(), 0.001);
                 }
             }
         }

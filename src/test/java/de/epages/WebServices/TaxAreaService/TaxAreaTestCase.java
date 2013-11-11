@@ -27,7 +27,7 @@ public class TaxAreaTestCase extends WebServiceTestConfiguration {
         log.info("using web service Url: " + WEBSERVICE_URL);
 
         try {
-        	taxAreaService = new Bind_TaxArea_SOAPStub(new java.net.URL(WEBSERVICE_URL), serviceLocator);
+        	taxAreaService = new Bind_TaxArea_SOAPStub(WEBSERVICE_URL, serviceLocator);
 		}
         catch (Exception e) {
 			e.printStackTrace();

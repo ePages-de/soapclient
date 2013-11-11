@@ -33,7 +33,7 @@ public class ProductBundleTestCase extends WebServiceTestConfiguration {
         log.info("address specified by wsdl: " + serviceLocator.getport_ProductBundleAddress());
         log.info("using web service Url: " + WEBSERVICE_URL);
 
-        productBundleService = new Bind_ProductBundle_SOAPStub(new java.net.URL(WEBSERVICE_URL), serviceLocator);
+        productBundleService = new Bind_ProductBundle_SOAPStub(WEBSERVICE_URL, serviceLocator);
 
         // setting user-path and password of the shop
         productBundleService.setUsername(WEBSERVICE_LOGIN);

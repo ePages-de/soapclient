@@ -75,7 +75,7 @@ public class OrderDocument7TestCase extends WebServiceTestConfiguration {
         log.info("address specified by wsdl: " + serviceLocator.getport_OrderDocumentAddress() );
         log.info("using web service Url: " + WEBSERVICE_URL);
 
-        orderDocService = new Bind_OrderDocument_SOAPStub(new java.net.URL(WEBSERVICE_URL), serviceLocator);
+        orderDocService = new Bind_OrderDocument_SOAPStub(WEBSERVICE_URL, serviceLocator);
 
         // setting user-path and password of the shop
         orderDocService.setUsername(WEBSERVICE_LOGIN);

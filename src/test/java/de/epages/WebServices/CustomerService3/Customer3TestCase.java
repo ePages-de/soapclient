@@ -36,7 +36,7 @@ public class Customer3TestCase extends WebServiceTestConfiguration {
         CustomerService serviceLocator = new CustomerServiceLocator();
         log.info("address specified by wsdl: " + serviceLocator.getport_CustomerAddress());
         log.info("using web service Url: " + WEBSERVICE_URL);
-        customerService = new Bind_Customer_SOAPStub(new java.net.URL(WEBSERVICE_URL), serviceLocator);
+        customerService = new Bind_Customer_SOAPStub(WEBSERVICE_URL, serviceLocator);
         customerService.setUsername(WEBSERVICE_LOGIN);
         customerService.setPassword(WEBSERVICE_PASSWORD);
         

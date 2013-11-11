@@ -64,7 +64,7 @@ public class ProductImageTestCase extends WebServiceTestConfiguration {
         log.info("address specified by wsdl: " + serviceLocator.getport_ProductImageAddress());
         log.info("using web service Url: " + WEBSERVICE_URL);
 
-        productImageService = new Bind_ProductImage_SOAPStub(new java.net.URL(WEBSERVICE_URL), serviceLocator);
+        productImageService = new Bind_ProductImage_SOAPStub(WEBSERVICE_URL, serviceLocator);
 
         // setting user-path and password of the shop
         productImageService.setUsername(WEBSERVICE_LOGIN);
@@ -72,7 +72,7 @@ public class ProductImageTestCase extends WebServiceTestConfiguration {
         
         // set up the ProductService in order to create a test product
         ProductService productServiceLocator = new ProductServiceLocator();
-        productService = new Bind_Product_SOAPStub(new java.net.URL(WEBSERVICE_URL), productServiceLocator);
+        productService = new Bind_Product_SOAPStub(WEBSERVICE_URL, productServiceLocator);
         productService.setUsername(WEBSERVICE_LOGIN);
         productService.setPassword(WEBSERVICE_PASSWORD);
 

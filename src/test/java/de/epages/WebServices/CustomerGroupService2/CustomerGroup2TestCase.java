@@ -33,7 +33,7 @@ public class CustomerGroup2TestCase extends WebServiceTestConfiguration {
         log.info("using web service Url: " + WEBSERVICE_URL);
 
         try {
-        	customerGroupService = new Bind_CustomerGroup_SOAPStub(new java.net.URL(WEBSERVICE_URL), serviceLocator);
+        	customerGroupService = new Bind_CustomerGroup_SOAPStub(WEBSERVICE_URL, serviceLocator);
 		}
         catch (Exception e) {
 			e.printStackTrace();

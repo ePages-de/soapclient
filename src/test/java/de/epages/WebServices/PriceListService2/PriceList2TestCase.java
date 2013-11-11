@@ -39,7 +39,7 @@ public class PriceList2TestCase extends WebServiceTestConfiguration {
         log.info("address specified by wsdl: " + serviceLocator.getport_PriceListAddress());
         log.info("using web service Url: " + WEBSERVICE_URL);
 
-       	priceListService = new Bind_PriceList_SOAPStub(new java.net.URL(WEBSERVICE_URL), serviceLocator);
+       	priceListService = new Bind_PriceList_SOAPStub(WEBSERVICE_URL, serviceLocator);
 
         // setting user-path and password of the shop
         priceListService.setUsername(WEBSERVICE_LOGIN);
@@ -52,7 +52,7 @@ public class PriceList2TestCase extends WebServiceTestConfiguration {
         		customerGroupsPath+"Stammkunde"
         	};
     	Bind_CustomerGroup_SOAPStub customerGroupService = new Bind_CustomerGroup_SOAPStub(
-    			new java.net.URL(WEBSERVICE_URL),
+    			WEBSERVICE_URL,
     			new CustomerGroupServiceLocator());
         customerGroupService.setUsername(WEBSERVICE_LOGIN);
         customerGroupService.setPassword(WEBSERVICE_PASSWORD);

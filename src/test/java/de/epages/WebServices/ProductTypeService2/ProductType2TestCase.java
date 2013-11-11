@@ -57,8 +57,8 @@ public class ProductType2TestCase extends ProductTypeTestCase {
         log.info("using web service Url: " + WEBSERVICE_URL);
 
         try {
-            WebServiceTestConfiguration WSconf = new WebServiceTestConfiguration();
-            productTypeService = new de.epages.WebServices.ProductTypeService2.Stub.Bind_ProductType_SOAPStub(new java.net.URL(WSconf.WEBSERVICE_URL), serviceLocator);
+            WebServiceTestConfiguration conf = new WebServiceTestConfiguration();
+            productTypeService = new de.epages.WebServices.ProductTypeService2.Stub.Bind_ProductType_SOAPStub(conf.getWebserviceURL(), serviceLocator);
         }
         catch (Exception e) {
             e.printStackTrace();
