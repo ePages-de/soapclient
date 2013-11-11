@@ -1,0 +1,25 @@
+apply plugin: "java"
+apply plugin: "eclipse"
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	axisVersion = "1.4"
+	slf4jVersion = "1.7.5"
+	junitVersion = "4.11"
+}
+
+dependencies {
+    compile "org.apache.axis:axis:${axisVersion}"
+    compile "org.apache.axis:axis-jaxrpc:${axisVersion}"
+    runtime "org.apache.axis:axis-saaj:${axisVersion}"
+	runtime "commons-discovery:commons-discovery:0.5"
+	
+	testCompile "org.slf4j:jul-to-slf4j:${slf4jVersion}"
+	testCompile "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+	testCompile "junit:junit:${junitVersion}"
+}
+
+version = '1.0'
