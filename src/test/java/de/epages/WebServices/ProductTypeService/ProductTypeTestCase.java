@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.WebServiceTestConfiguration;
 import de.epages.WebServices.ProductTypeService.Stub.Bind_ProductType_SOAPStub;
 import de.epages.WebServices.ProductTypeService.Stub.ProductTypeService;
 import de.epages.WebServices.ProductTypeService.Stub.ProductTypeServiceLocator;
@@ -58,7 +58,7 @@ import de.epages.WebServices.ProductTypeService.Stub.Type_updateProductAttribute
 /**
  * A JUnit TestSuite to test epages ProductType WebServices.
  */
-public class ProductTypeTestCase extends WebServiceConfiguration {
+public class ProductTypeTestCase extends WebServiceTestConfiguration {
     private static Logger log = Logger.getLogger(ProductTypeTestCase.class.getName());
 
     private Bind_ProductType_SOAPStub productTypeService;
@@ -114,7 +114,7 @@ public class ProductTypeTestCase extends WebServiceConfiguration {
         log.info("using web service Url: " + WEBSERVICE_URL);
 
         try {
-            WebServiceConfiguration WSconf = new WebServiceConfiguration();
+            WebServiceTestConfiguration WSconf = new WebServiceTestConfiguration();
             productTypeService = new Bind_ProductType_SOAPStub(new java.net.URL(WSconf.WEBSERVICE_URL), serviceLocator);
         }
         catch (Exception e) {

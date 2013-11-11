@@ -1,5 +1,6 @@
 package de.epages.WebServices.UserService;
 
+import de.epages.WebServices.WebServiceTestConfiguration;
 import de.epages.WebServices.UserService.Stub.*;
 
 import org.junit.*;
@@ -32,7 +33,7 @@ public class UserTestCase {
      */
     @Before
     public void setUp() {
-        serviceClient = new UserServiceClient();
+        serviceClient = new UserServiceClient(new WebServiceTestConfiguration());
 
         // create test users that can be used with the create and update methods
         user_in.setAlias(alias);

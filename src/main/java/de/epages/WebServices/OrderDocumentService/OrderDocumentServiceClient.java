@@ -1,14 +1,24 @@
 package de.epages.WebServices.OrderDocumentService;
 
-import de.epages.WebServices.OrderDocumentService.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
-
-import java.util.logging.Logger;
-import java.util.List;
-import java.util.ArrayList;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
-public class OrderDocumentServiceClient extends WebServiceConfiguration  {
+import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.OrderDocumentService.Stub.Bind_OrderDocument_SOAPStub;
+import de.epages.WebServices.OrderDocumentService.Stub.OrderDocumentService;
+import de.epages.WebServices.OrderDocumentService.Stub.OrderDocumentServiceLocator;
+import de.epages.WebServices.OrderDocumentService.Stub.TCreate_Input;
+import de.epages.WebServices.OrderDocumentService.Stub.TCreate_Return;
+import de.epages.WebServices.OrderDocumentService.Stub.TDelete_Return;
+import de.epages.WebServices.OrderDocumentService.Stub.TExists_Return;
+import de.epages.WebServices.OrderDocumentService.Stub.TGetCreditNotes_Return;
+import de.epages.WebServices.OrderDocumentService.Stub.TGetInfo_Return;
+import de.epages.WebServices.OrderDocumentService.Stub.TGetInvoices_Return;
+import de.epages.WebServices.OrderDocumentService.Stub.TGetPackingSlips_Return;
+
+public class OrderDocumentServiceClient {
     private OrderDocumentService service;
     private Bind_OrderDocument_SOAPStub stub;
     private static Logger log = Logger.getLogger(OrderDocumentServiceClient.class.getName());
@@ -16,17 +26,17 @@ public class OrderDocumentServiceClient extends WebServiceConfiguration  {
     /**
      * Class constructor
      */
-    public OrderDocumentServiceClient() {
+    public OrderDocumentServiceClient(WebServiceConfiguration config) {
         service = new OrderDocumentServiceLocator();
         log.info("address specified by wsdl: " + service.getport_OrderDocumentAddress());
-        log.info("using web service Url: " + WEBSERVICE_URL);
+        log.info("using web service Url: " + config.getWebserviceURL());
 
         try {
-            stub = new Bind_OrderDocument_SOAPStub(new java.net.URL(WEBSERVICE_URL), service);
+            stub = new Bind_OrderDocument_SOAPStub(config.getWebserviceURL(), service);
 
             // setting user-path and password of the shop
-            stub.setUsername(WEBSERVICE_LOGIN);
-            stub.setPassword(WEBSERVICE_PASSWORD);
+            stub.setUsername(config.getUsername());
+            stub.setPassword(config.getPassword());
         }
         catch (Exception e) {
             log.severe( e.toString() );
@@ -56,7 +66,7 @@ public class OrderDocumentServiceClient extends WebServiceConfiguration  {
     public List<TGetInfo_Return> getOrderDocumentInfo(String[] paths, String[] attributes, String[] languages) throws RemoteException {
         log.info("getOrderDocumentInfo called");
         TGetInfo_Return[] OrderDocuments = stub.getInfo(paths, attributes, languages);
-        List result = new ArrayList();
+        List result = new ArrayList<>();
 
         for (int i = 0; i < OrderDocuments.length; i++) {
             TGetInfo_Return OrderDocument = OrderDocuments[i];
@@ -84,7 +94,7 @@ public class OrderDocumentServiceClient extends WebServiceConfiguration  {
     public List<TGetInvoices_Return> getInvoices(String[] paths) throws RemoteException {
         log.info("getInvoices called");
         TGetInvoices_Return[] OrderDocuments = stub.getInvoices(paths);
-        List result = new ArrayList();
+        List result = new ArrayList<>();
 
         for (int i = 0; i < OrderDocuments.length; i++) {
             TGetInvoices_Return OrderDocument = OrderDocuments[i];
@@ -112,7 +122,7 @@ public class OrderDocumentServiceClient extends WebServiceConfiguration  {
     public List<TGetPackingSlips_Return> getPackingSlips(String[] paths) throws RemoteException {
         log.info("getInvoices called");
         TGetPackingSlips_Return[] OrderDocuments = stub.getPackingSlips(paths);
-        List result = new ArrayList();
+        List result = new ArrayList<>();
 
         for (int i = 0; i < OrderDocuments.length; i++) {
             TGetPackingSlips_Return OrderDocument = OrderDocuments[i];
@@ -140,7 +150,7 @@ public class OrderDocumentServiceClient extends WebServiceConfiguration  {
     public List<TGetCreditNotes_Return> getCreditNotes(String[] paths) throws RemoteException {
         log.info("getInvoices called");
         TGetCreditNotes_Return[] OrderDocuments = stub.getCreditNotes(paths);
-        List result = new ArrayList();
+        List result = new ArrayList<>();
 
         for (int i = 0; i < OrderDocuments.length; i++) {
             TGetCreditNotes_Return OrderDocument = OrderDocuments[i];
@@ -174,7 +184,7 @@ public class OrderDocumentServiceClient extends WebServiceConfiguration  {
         }
 
         TCreate_Return[] results = stub.create(input);
-        List<TCreate_Return> resultList = new ArrayList();
+        List<TCreate_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TCreate_Return result = results[i];
@@ -204,7 +214,7 @@ public class OrderDocumentServiceClient extends WebServiceConfiguration  {
         log.info("deleteOrderDocument called");
 
         TDelete_Return[] results = stub.delete(paths);
-        List<TDelete_Return> resultList = new ArrayList();
+        List<TDelete_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TDelete_Return result = results[i];
@@ -234,7 +244,7 @@ public class OrderDocumentServiceClient extends WebServiceConfiguration  {
         log.info("existsOrderDocument called");
 
         TExists_Return[] results = stub.exists(paths);
-        List<TExists_Return> resultList = new ArrayList();
+        List<TExists_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TExists_Return result = results[i];

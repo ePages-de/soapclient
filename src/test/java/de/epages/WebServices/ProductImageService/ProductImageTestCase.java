@@ -2,7 +2,7 @@ package de.epages.WebServices.ProductImageService;
 
 import de.epages.WebServices.ProductImageService.Stub.*;
 import de.epages.WebServices.ProductService.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.WebServiceTestConfiguration;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -14,7 +14,7 @@ import java.io.*;
 /**
  * A JUnit TestSuite to test epages ProductImage WebServices.
  */
-public class ProductImageTestCase extends WebServiceConfiguration {
+public class ProductImageTestCase extends WebServiceTestConfiguration {
     private static Logger log = Logger.getLogger(ProductImageTestCase.class.getName());
 
     private Bind_Product_SOAPStub productService;

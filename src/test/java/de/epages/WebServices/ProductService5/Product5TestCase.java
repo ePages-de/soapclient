@@ -1,14 +1,33 @@
 package de.epages.WebServices.ProductService5;
 
-import de.epages.WebServices.ProductService5.Stub.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.*;
-import static org.junit.Assert.*;
-
-import java.util.*;
-import java.util.logging.Logger;
 import java.math.BigInteger;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.logging.Logger;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import de.epages.WebServices.WebServiceTestConfiguration;
+import de.epages.WebServices.ProductService5.Stub.TAttribute;
+import de.epages.WebServices.ProductService5.Stub.TCreate_Input;
+import de.epages.WebServices.ProductService5.Stub.TCreate_Return;
+import de.epages.WebServices.ProductService5.Stub.TDelete_Return;
+import de.epages.WebServices.ProductService5.Stub.TDownload;
+import de.epages.WebServices.ProductService5.Stub.TExists_Return;
+import de.epages.WebServices.ProductService5.Stub.TFind_Input;
+import de.epages.WebServices.ProductService5.Stub.TGetInfo_Return;
+import de.epages.WebServices.ProductService5.Stub.TLocalizedValue;
+import de.epages.WebServices.ProductService5.Stub.TProductPrice;
+import de.epages.WebServices.ProductService5.Stub.TUpdate_Input;
+import de.epages.WebServices.ProductService5.Stub.TUpdate_Return;
 
 /**
  * A JUnit TestSuite to test epages Product WebServices.
@@ -29,7 +48,7 @@ public class Product5TestCase {
      */
     @Before
     public void setUp() {
-        serviceClient = new ProductService5Client();
+        serviceClient = new ProductService5Client(new WebServiceTestConfiguration());
 
         // create test products that can be used with the create and update methods
         Product_in.setAlias(alias);

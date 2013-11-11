@@ -1,6 +1,6 @@
 package de.epages.WebServices.PriceListService2;
 
-import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.WebServiceTestConfiguration;
 import de.epages.WebServices.CustomerGroupService.Stub.*;
 import de.epages.WebServices.PriceListService2.Stub.*;
 
@@ -16,7 +16,7 @@ import java.rmi.RemoteException;
 /**
  * A JUnit TestSuite to test epages PriceList WebServices.
  */
-public class PriceList2TestCase extends WebServiceConfiguration {
+public class PriceList2TestCase extends WebServiceTestConfiguration {
     private static Logger log = Logger.getLogger(PriceList2TestCase.class.getName());
 
     private Bind_PriceList_SOAPStub priceListService;

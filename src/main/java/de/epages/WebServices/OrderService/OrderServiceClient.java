@@ -1,14 +1,24 @@
 package de.epages.WebServices.OrderService;
 
-import de.epages.WebServices.OrderService.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
-
-import java.util.logging.Logger;
-import java.util.List;
-import java.util.ArrayList;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
-public class OrderServiceClient extends WebServiceConfiguration  {
+import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.OrderService.Stub.Bind_Order_SOAPStub;
+import de.epages.WebServices.OrderService.Stub.OrderService;
+import de.epages.WebServices.OrderService.Stub.OrderServiceLocator;
+import de.epages.WebServices.OrderService.Stub.TCreate_Input;
+import de.epages.WebServices.OrderService.Stub.TCreate_Return;
+import de.epages.WebServices.OrderService.Stub.TDelete_Return;
+import de.epages.WebServices.OrderService.Stub.TExists_Return;
+import de.epages.WebServices.OrderService.Stub.TFind_Input;
+import de.epages.WebServices.OrderService.Stub.TGetInfo_Return;
+import de.epages.WebServices.OrderService.Stub.TUpdate_Input;
+import de.epages.WebServices.OrderService.Stub.TUpdate_Return;
+
+public class OrderServiceClient {
     private OrderService service;
     private Bind_Order_SOAPStub stub;
     private static Logger log = Logger.getLogger(OrderServiceClient.class.getName());
@@ -16,17 +26,17 @@ public class OrderServiceClient extends WebServiceConfiguration  {
     /**
      * Class constructor
      */
-    public OrderServiceClient() {
+    public OrderServiceClient(WebServiceConfiguration config) {
         service = new OrderServiceLocator();
         log.info("address specified by wsdl: " + service.getport_OrderAddress());
-        log.info("using web service Url: " + WEBSERVICE_URL);
+        log.info("using web service Url: " + config.getWebserviceURL());
 
         try {
-            stub = new Bind_Order_SOAPStub(new java.net.URL(WEBSERVICE_URL), service);
+            stub = new Bind_Order_SOAPStub(config.getWebserviceURL(), service);
 
             // setting user-path and password of the shop
-            stub.setUsername(WEBSERVICE_LOGIN);
-            stub.setPassword(WEBSERVICE_PASSWORD);
+            stub.setUsername(config.getUsername());
+            stub.setPassword(config.getPassword());
         }
         catch (Exception e) {
             log.severe( e.toString() );
@@ -56,7 +66,7 @@ public class OrderServiceClient extends WebServiceConfiguration  {
     public List<TGetInfo_Return> getOrderInfo(String[] paths, String[] attributes, String[] languages) throws RemoteException {
         log.info("getOrderInfo called");
         TGetInfo_Return[] Orders = stub.getInfo(paths, attributes, languages);
-        List result = new ArrayList();
+        List result = new ArrayList<>();
 
         for (int i = 0; i < Orders.length; i++) {
             TGetInfo_Return Order = Orders[i];
@@ -90,7 +100,7 @@ public class OrderServiceClient extends WebServiceConfiguration  {
         }
 
         TCreate_Return[] results = stub.create(input);
-        List<TCreate_Return> resultList = new ArrayList();
+        List<TCreate_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TCreate_Return result = results[i];
@@ -125,7 +135,7 @@ public class OrderServiceClient extends WebServiceConfiguration  {
         }
 
         TUpdate_Return[] results = stub.update(input);
-        List<TUpdate_Return> resultList = new ArrayList();
+        List<TUpdate_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TUpdate_Return result = results[i];
@@ -155,7 +165,7 @@ public class OrderServiceClient extends WebServiceConfiguration  {
         log.info("deleteOrder called");
 
         TDelete_Return[] results = stub.delete(paths);
-        List<TDelete_Return> resultList = new ArrayList();
+        List<TDelete_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TDelete_Return result = results[i];
@@ -185,7 +195,7 @@ public class OrderServiceClient extends WebServiceConfiguration  {
         log.info("existsOrder called");
 
         TExists_Return[] results = stub.exists(paths);
-        List<TExists_Return> resultList = new ArrayList();
+        List<TExists_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TExists_Return result = results[i];

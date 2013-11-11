@@ -1,7 +1,7 @@
 package de.epages.WebServices.PageCacheService;
 
 import de.epages.WebServices.PageCacheService.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.WebServiceTestConfiguration;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 /**
  * A JUnit TestSuite to test epages PageCache WebServices.
  */
-public class PageCacheTestCase extends WebServiceConfiguration {
+public class PageCacheTestCase extends WebServiceTestConfiguration {
     private static Logger log = Logger.getLogger(PageCacheTestCase.class.getName());
 
     private Bind_PageCache_SOAPStub pageCacheService;

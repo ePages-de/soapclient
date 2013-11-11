@@ -1,7 +1,7 @@
 package de.epages.WebServices.PaymentMethodService;
 
 import de.epages.WebServices.PaymentMethodService.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.WebServiceTestConfiguration;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 /**
  * A JUnit TestSuite to test epages PaymentMethod WebServices.
  */
-public class PaymentMethodTestCase extends WebServiceConfiguration {
+public class PaymentMethodTestCase extends WebServiceTestConfiguration {
     private static Logger log = Logger.getLogger(PaymentMethodTestCase.class.getName());
 
     private Bind_PaymentMethod_SOAPStub paymentMethodService;

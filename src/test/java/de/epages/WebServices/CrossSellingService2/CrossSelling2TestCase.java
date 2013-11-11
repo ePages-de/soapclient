@@ -1,7 +1,7 @@
 package de.epages.WebServices.CrossSellingService2;
 
 import de.epages.WebServices.CrossSellingService2.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.WebServiceTestConfiguration;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -14,7 +14,7 @@ import java.net.MalformedURLException;
 /**
  * A JUnit TestSuite to test epages CrossSelling WebServices.
  */
-public class CrossSelling2TestCase extends WebServiceConfiguration {
+public class CrossSelling2TestCase extends WebServiceTestConfiguration {
     private static Logger log = Logger.getLogger(CrossSelling2TestCase.class.getName());
 
     private Bind_CrossSelling_SOAPStub crossSellingService;

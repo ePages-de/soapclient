@@ -1,14 +1,24 @@
 package de.epages.WebServices.CatalogService;
 
-import de.epages.WebServices.CatalogService.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
-
-import java.util.logging.Logger;
-import java.util.List;
-import java.util.ArrayList;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
-public class CatalogServiceClient extends WebServiceConfiguration  {
+import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.CatalogService.Stub.Bind_Catalog_SOAPStub;
+import de.epages.WebServices.CatalogService.Stub.CatalogService;
+import de.epages.WebServices.CatalogService.Stub.CatalogServiceLocator;
+import de.epages.WebServices.CatalogService.Stub.TCreate_Input;
+import de.epages.WebServices.CatalogService.Stub.TCreate_Return;
+import de.epages.WebServices.CatalogService.Stub.TDelete_Return;
+import de.epages.WebServices.CatalogService.Stub.TExists_Return;
+import de.epages.WebServices.CatalogService.Stub.TGetInfo_Return;
+import de.epages.WebServices.CatalogService.Stub.TGetRoot_Return;
+import de.epages.WebServices.CatalogService.Stub.TUpdate_Input;
+import de.epages.WebServices.CatalogService.Stub.TUpdate_Return;
+
+public class CatalogServiceClient {
     private CatalogService service;
     private Bind_Catalog_SOAPStub stub;
     private static Logger log = Logger.getLogger(CatalogServiceClient.class.getName());
@@ -16,17 +26,17 @@ public class CatalogServiceClient extends WebServiceConfiguration  {
     /**
      * Class constructor
      */
-    public CatalogServiceClient() {
+    public CatalogServiceClient(WebServiceConfiguration config) {
         service = new CatalogServiceLocator();
         log.info("address specified by wsdl: " + service.getport_CatalogAddress());
-        log.info("using web service Url: " + WEBSERVICE_URL);
+        log.info("using web service Url: " + config.getWebserviceURL());
 
         try {
-            stub = new Bind_Catalog_SOAPStub(new java.net.URL(WEBSERVICE_URL), service);
+            stub = new Bind_Catalog_SOAPStub(config.getWebserviceURL(), service);
 
             // setting user-path and password of the shop
-            stub.setUsername(WEBSERVICE_LOGIN);
-            stub.setPassword(WEBSERVICE_PASSWORD);
+            stub.setUsername(config.getUsername());
+            stub.setPassword(config.getPassword());
         }
         catch (Exception e) {
             log.severe( e.toString() );
@@ -54,7 +64,7 @@ public class CatalogServiceClient extends WebServiceConfiguration  {
     public List<TGetInfo_Return> getCatalogInfo(String[] paths, String[] attributes, String[] languages) throws RemoteException {
         log.info("getCatalogInfo called");
         TGetInfo_Return[] Catalogs = stub.getInfo(paths, attributes, languages);
-        List result = new ArrayList();
+        List result = new ArrayList<>();
 
         for (int i = 0; i < Catalogs.length; i++) {
             TGetInfo_Return Catalog = Catalogs[i];
@@ -108,7 +118,7 @@ public class CatalogServiceClient extends WebServiceConfiguration  {
         }
 
         TCreate_Return[] results = stub.create(input);
-        List<TCreate_Return> resultList = new ArrayList();
+        List<TCreate_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TCreate_Return result = results[i];
@@ -143,7 +153,7 @@ public class CatalogServiceClient extends WebServiceConfiguration  {
         }
 
         TUpdate_Return[] results = stub.update(input);
-        List<TUpdate_Return> resultList = new ArrayList();
+        List<TUpdate_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TUpdate_Return result = results[i];
@@ -173,7 +183,7 @@ public class CatalogServiceClient extends WebServiceConfiguration  {
         log.info("deleteCatalog called");
 
         TDelete_Return[] results = stub.delete(paths);
-        List<TDelete_Return> resultList = new ArrayList();
+        List<TDelete_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TDelete_Return result = results[i];
@@ -203,7 +213,7 @@ public class CatalogServiceClient extends WebServiceConfiguration  {
         log.info("existsCatalog called");
 
         TExists_Return[] results = stub.exists(paths);
-        List<TExists_Return> resultList = new ArrayList();
+        List<TExists_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TExists_Return result = results[i];

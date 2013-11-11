@@ -1,7 +1,7 @@
 package de.epages.WebServices.OrderService8;
 
 import de.epages.WebServices.OrderService8.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.WebServiceTestConfiguration;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -14,7 +14,7 @@ import java.net.MalformedURLException;
 /**
  * A JUnit TestSuite to test epages Order WebServices.
  */
-public class Order8TestCase extends WebServiceConfiguration {
+public class Order8TestCase extends WebServiceTestConfiguration {
     private static Logger log = Logger.getLogger(Order8TestCase.class.getName());
 
     private Bind_Order_SOAPStub orderService;

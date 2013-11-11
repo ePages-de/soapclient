@@ -2,6 +2,7 @@ package de.epages.WebServices.CatalogService3;
 
 import de.epages.WebServices.CatalogService3.Stub.*;
 import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.WebServiceTestConfiguration;
 
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -16,7 +17,7 @@ import java.net.MalformedURLException;
 /**
  * A JUnit TestSuite to test epages Catalog WebServices.
  */
-public class Catalog3TestCase extends WebServiceConfiguration {
+public class Catalog3TestCase extends WebServiceTestConfiguration {
     private static Logger log = Logger.getLogger(Catalog3TestCase.class.getName());
 
     private Bind_Catalog_SOAPStub catalogService;
@@ -47,11 +48,12 @@ public class Catalog3TestCase extends WebServiceConfiguration {
 
         // log and bind web service
         CatalogService serviceLocator = new CatalogServiceLocator();
+        WebServiceConfiguration config = new WebServiceTestConfiguration();
         log.info("address specified by wsdl: " + serviceLocator.getport_CatalogAddress());
-        log.info("using web service Url: " + WEBSERVICE_URL);
-        catalogService = new Bind_Catalog_SOAPStub(new java.net.URL(WEBSERVICE_URL), serviceLocator);
-        catalogService.setUsername(WEBSERVICE_LOGIN);
-        catalogService.setPassword(WEBSERVICE_PASSWORD);
+        log.info("using web service Url: " + config.getWebserviceURL());
+        catalogService = new Bind_Catalog_SOAPStub(config.getWebserviceURL(), serviceLocator);
+        catalogService.setUsername(config.getUsername());
+        catalogService.setPassword(config.getPassword());
 
         // create test Catalogs that can be used with the create and update methods
         Catalog_in.setAlias(alias);

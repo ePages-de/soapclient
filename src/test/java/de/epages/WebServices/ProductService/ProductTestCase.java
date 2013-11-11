@@ -1,5 +1,6 @@
 package de.epages.WebServices.ProductService;
 
+import de.epages.WebServices.WebServiceTestConfiguration;
 import de.epages.WebServices.ProductService.Stub.*;
 
 import org.junit.*;
@@ -34,7 +35,7 @@ public class ProductTestCase {
      */
     @Before
     public void setUp() {
-        serviceClient = new ProductServiceClient();
+        serviceClient = new ProductServiceClient(new WebServiceTestConfiguration());
 
         // create test products that can be used with the create and update methods
         Product_in.setAlias(alias);

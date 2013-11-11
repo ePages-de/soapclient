@@ -1,7 +1,7 @@
 package de.epages.WebServices.ProductBundleService;
 
 import de.epages.WebServices.ProductBundleService.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.WebServiceTestConfiguration;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -13,7 +13,7 @@ import java.net.MalformedURLException;
 /**
  * A JUnit TestSuite to test epages ProductBundle WebServices.
  */
-public class ProductBundleTestCase extends WebServiceConfiguration {
+public class ProductBundleTestCase extends WebServiceTestConfiguration {
     private static Logger log = Logger.getLogger(ProductBundleTestCase.class.getName());
 
     private Bind_ProductBundle_SOAPStub productBundleService;

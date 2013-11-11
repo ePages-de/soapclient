@@ -1,14 +1,24 @@
 package de.epages.WebServices.CustomerService;
 
-import de.epages.WebServices.CustomerService.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
-
-import java.util.logging.Logger;
-import java.util.List;
-import java.util.ArrayList;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
-public class CustomerServiceClient extends WebServiceConfiguration  {
+import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.CustomerService.Stub.Bind_Customer_SOAPStub;
+import de.epages.WebServices.CustomerService.Stub.CustomerService;
+import de.epages.WebServices.CustomerService.Stub.CustomerServiceLocator;
+import de.epages.WebServices.CustomerService.Stub.TCreate_Input;
+import de.epages.WebServices.CustomerService.Stub.TCreate_Return;
+import de.epages.WebServices.CustomerService.Stub.TDelete_Return;
+import de.epages.WebServices.CustomerService.Stub.TExists_Return;
+import de.epages.WebServices.CustomerService.Stub.TFind_Input;
+import de.epages.WebServices.CustomerService.Stub.TGetInfo_Return;
+import de.epages.WebServices.CustomerService.Stub.TUpdate_Input;
+import de.epages.WebServices.CustomerService.Stub.TUpdate_Return;
+
+public class CustomerServiceClient {
     private CustomerService service;
     private Bind_Customer_SOAPStub stub;
     private static Logger log = Logger.getLogger(CustomerServiceClient.class.getName());
@@ -16,17 +26,17 @@ public class CustomerServiceClient extends WebServiceConfiguration  {
     /**
      * Class constructor
      */
-    public CustomerServiceClient() {
+    public CustomerServiceClient(WebServiceConfiguration config) {
         service = new CustomerServiceLocator();
         log.info("address specified by wsdl: " + service.getport_CustomerAddress());
-        log.info("using web service Url: " + WEBSERVICE_URL);
+        log.info("using web service Url: " + config.getWebserviceURL());
 
         try {
-            stub = new Bind_Customer_SOAPStub(new java.net.URL(WEBSERVICE_URL), service);
+            stub = new Bind_Customer_SOAPStub(config.getWebserviceURL(), service);
 
             // setting user-path and password of the shop
-            stub.setUsername(WEBSERVICE_LOGIN);
-            stub.setPassword(WEBSERVICE_PASSWORD);
+            stub.setUsername(config.getUsername());
+            stub.setPassword(config.getPassword());
         }
         catch (Exception e) {
             log.severe( e.toString() );
@@ -62,7 +72,7 @@ public class CustomerServiceClient extends WebServiceConfiguration  {
     public List<TGetInfo_Return> getCustomerInfo(String[] paths, String[] attributes) throws RemoteException {
         log.info("getCustomerInfo called");
         TGetInfo_Return[] customers = stub.getInfo(paths, attributes);
-        List result = new ArrayList();
+        List result = new ArrayList<>();
 
         for (int i = 0; i < customers.length; i++) {
             TGetInfo_Return customer = customers[i];
@@ -96,7 +106,7 @@ public class CustomerServiceClient extends WebServiceConfiguration  {
         }
 
         TCreate_Return[] results = stub.create(input);
-        List<TCreate_Return> resultList = new ArrayList();
+        List<TCreate_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TCreate_Return result = results[i];
@@ -131,7 +141,7 @@ public class CustomerServiceClient extends WebServiceConfiguration  {
         }
 
         TUpdate_Return[] results = stub.update(input);
-        List<TUpdate_Return> resultList = new ArrayList();
+        List<TUpdate_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TUpdate_Return result = results[i];
@@ -161,7 +171,7 @@ public class CustomerServiceClient extends WebServiceConfiguration  {
         log.info("deleteCustomer called");
 
         TDelete_Return[] results = stub.delete(paths);
-        List<TDelete_Return> resultList = new ArrayList();
+        List<TDelete_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TDelete_Return result = results[i];
@@ -191,7 +201,7 @@ public class CustomerServiceClient extends WebServiceConfiguration  {
         log.info("existsCustomer called");
 
         TExists_Return[] results = stub.exists(paths);
-        List<TExists_Return> resultList = new ArrayList();
+        List<TExists_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TExists_Return result = results[i];

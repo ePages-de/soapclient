@@ -1,14 +1,24 @@
 package de.epages.WebServices.AssignmentService;
 
-import de.epages.WebServices.AssignmentService.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
-
-import java.util.logging.Logger;
-import java.util.List;
-import java.util.ArrayList;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
-public class AssignmentServiceClient extends WebServiceConfiguration {
+import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.AssignmentService.Stub.AssignmentService;
+import de.epages.WebServices.AssignmentService.Stub.AssignmentServiceLocator;
+import de.epages.WebServices.AssignmentService.Stub.Bind_Assignment_SOAPStub;
+import de.epages.WebServices.AssignmentService.Stub.TAssignProductToCatalog_Input;
+import de.epages.WebServices.AssignmentService.Stub.TAssignProductToCatalog_Return;
+import de.epages.WebServices.AssignmentService.Stub.TGetCatalogsAssignedToProduct_Return;
+import de.epages.WebServices.AssignmentService.Stub.TGetProductsAssignedToCatalog_Return;
+import de.epages.WebServices.AssignmentService.Stub.TIsProductAssignedToCatalog_Input;
+import de.epages.WebServices.AssignmentService.Stub.TIsProductAssignedToCatalog_Return;
+import de.epages.WebServices.AssignmentService.Stub.TRemoveProductFromCatalog_Input;
+import de.epages.WebServices.AssignmentService.Stub.TRemoveProductFromCatalog_Return;
+
+public class AssignmentServiceClient {
     private AssignmentService service;
     private Bind_Assignment_SOAPStub stub;
     private static Logger log = Logger.getLogger(AssignmentServiceClient.class.getName());
@@ -16,17 +26,17 @@ public class AssignmentServiceClient extends WebServiceConfiguration {
     /**
      * Class constructor
      */
-    public AssignmentServiceClient() {
+    public AssignmentServiceClient(WebServiceConfiguration config) {
         service = new AssignmentServiceLocator();
         log.info("address specified by wsdl: " + service.getport_AssignmentAddress());
-        log.info("using web service Url: " + WEBSERVICE_URL);
+        log.info("using web service Url: " + config.getWebserviceURL());
 
         try {
-            stub = new Bind_Assignment_SOAPStub(new java.net.URL(WEBSERVICE_URL), service);
+            stub = new Bind_Assignment_SOAPStub(config.getWebserviceURL(), service);
 
             // setting user-path and password of the shop
-            stub.setUsername(WEBSERVICE_LOGIN);
-            stub.setPassword(WEBSERVICE_PASSWORD);
+            stub.setUsername(config.getUsername());
+            stub.setPassword(config.getPassword());
         }
         catch (Exception e) {
             log.severe( e.toString() );

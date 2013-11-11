@@ -1,5 +1,6 @@
 package de.epages.WebServices.OrderDocumentService2;
 
+import de.epages.WebServices.WebServiceTestConfiguration;
 import de.epages.WebServices.OrderDocumentService2.Stub.*;
 
 import org.junit.*;
@@ -37,7 +38,7 @@ public class OrderDocument2TestCase {
      */
     @Before
     public void setUp() {
-        serviceClient = new OrderDocumentService2Client();
+        serviceClient = new OrderDocumentService2Client(new WebServiceTestConfiguration());
 
         // create test OrderDocuments that can be used with the create and update methods
         invoice_in.setOrder(order);

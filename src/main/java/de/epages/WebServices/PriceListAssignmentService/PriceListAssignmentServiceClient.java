@@ -1,14 +1,25 @@
 package de.epages.WebServices.PriceListAssignmentService;
 
-import de.epages.WebServices.PriceListAssignmentService.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
-
-import java.util.logging.Logger;
-import java.util.List;
-import java.util.ArrayList;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
-public class PriceListAssignmentServiceClient extends WebServiceConfiguration  {
+import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.PriceListAssignmentService.Stub.Bind_PriceListAssignment_SOAPStub;
+import de.epages.WebServices.PriceListAssignmentService.Stub.PriceListAssignmentService;
+import de.epages.WebServices.PriceListAssignmentService.Stub.PriceListAssignmentServiceLocator;
+import de.epages.WebServices.PriceListAssignmentService.Stub.TGetQuantityDiscounts_Return;
+import de.epages.WebServices.PriceListAssignmentService.Stub.TGetScalePrices_Return;
+import de.epages.WebServices.PriceListAssignmentService.Stub.TGetValueDiscounts_Return;
+import de.epages.WebServices.PriceListAssignmentService.Stub.TSetQuantityDiscounts_Input;
+import de.epages.WebServices.PriceListAssignmentService.Stub.TSetQuantityDiscounts_Return;
+import de.epages.WebServices.PriceListAssignmentService.Stub.TSetScalePrices_Input;
+import de.epages.WebServices.PriceListAssignmentService.Stub.TSetScalePrices_Return;
+import de.epages.WebServices.PriceListAssignmentService.Stub.TSetValueDiscounts_Input;
+import de.epages.WebServices.PriceListAssignmentService.Stub.TSetValueDiscounts_Return;
+
+public class PriceListAssignmentServiceClient {
     private PriceListAssignmentService service;
     private Bind_PriceListAssignment_SOAPStub stub;
     private static Logger log = Logger.getLogger(PriceListAssignmentServiceClient.class.getName());
@@ -16,17 +27,17 @@ public class PriceListAssignmentServiceClient extends WebServiceConfiguration  {
     /**
      * Class constructor
      */
-    public PriceListAssignmentServiceClient() {
+    public PriceListAssignmentServiceClient(WebServiceConfiguration config) {
         service = new PriceListAssignmentServiceLocator();
         log.info("address specified by wsdl: " + service.getport_PriceListAssignmentAddress());
-        log.info("using web service Url: " + WEBSERVICE_URL);
+        log.info("using web service Url: " + config.getWebserviceURL());
 
         try {
-            stub = new Bind_PriceListAssignment_SOAPStub(new java.net.URL(WEBSERVICE_URL), service);
+            stub = new Bind_PriceListAssignment_SOAPStub(config.getWebserviceURL(), service);
 
             // setting user-path and password of the shop
-            stub.setUsername(WEBSERVICE_LOGIN);
-            stub.setPassword(WEBSERVICE_PASSWORD);
+            stub.setUsername(config.getUsername());
+            stub.setPassword(config.getPassword());
         }
         catch (Exception e) {
             log.severe( e.toString() );
@@ -47,7 +58,7 @@ public class PriceListAssignmentServiceClient extends WebServiceConfiguration  {
     public List<TGetQuantityDiscounts_Return> getQuantityDiscounts(String[] productPaths, String[] pricelistPaths) throws RemoteException {
         log.info("getQuantityDiscounts called");
         TGetQuantityDiscounts_Return[] PriceListAssignments = stub.getQuantityDiscounts(productPaths, pricelistPaths);
-        List result = new ArrayList();
+        List result = new ArrayList<>();
 
         for (int i = 0; i < PriceListAssignments.length; i++) {
             TGetQuantityDiscounts_Return PriceListAssignment = PriceListAssignments[i];
@@ -81,7 +92,7 @@ public class PriceListAssignmentServiceClient extends WebServiceConfiguration  {
         }
 
         TSetQuantityDiscounts_Return[] results = stub.setQuantityDiscounts(input);
-        List<TSetQuantityDiscounts_Return> resultList = new ArrayList();
+        List<TSetQuantityDiscounts_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TSetQuantityDiscounts_Return result = results[i];
@@ -111,7 +122,7 @@ public class PriceListAssignmentServiceClient extends WebServiceConfiguration  {
     public List<TGetValueDiscounts_Return> getValueDiscounts(String[] productPaths, String[] pricelistPaths) throws RemoteException {
         log.info("getQuantityDiscounts called");
         TGetValueDiscounts_Return[] PriceListAssignments = stub.getValueDiscounts(productPaths, pricelistPaths);
-        List result = new ArrayList();
+        List result = new ArrayList<>();
 
         for (int i = 0; i < PriceListAssignments.length; i++) {
             TGetValueDiscounts_Return PriceListAssignment = PriceListAssignments[i];
@@ -145,7 +156,7 @@ public class PriceListAssignmentServiceClient extends WebServiceConfiguration  {
         }
 
         TSetValueDiscounts_Return[] results = stub.setValueDiscounts(input);
-        List<TSetValueDiscounts_Return> resultList = new ArrayList();
+        List<TSetValueDiscounts_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TSetValueDiscounts_Return result = results[i];
@@ -175,7 +186,7 @@ public class PriceListAssignmentServiceClient extends WebServiceConfiguration  {
     public List<TGetScalePrices_Return> getScalePrices(String[] productPaths, String[] pricelistPaths) throws RemoteException {
         log.info("getQuantityDiscounts called");
         TGetScalePrices_Return[] PriceListAssignments = stub.getScalePrices(productPaths, pricelistPaths);
-        List result = new ArrayList();
+        List result = new ArrayList<>();
 
         for (int i = 0; i < PriceListAssignments.length; i++) {
             TGetScalePrices_Return PriceListAssignment = PriceListAssignments[i];
@@ -209,7 +220,7 @@ public class PriceListAssignmentServiceClient extends WebServiceConfiguration  {
         }
 
         TSetScalePrices_Return[] results = stub.setScalePrices(input);
-        List<TSetScalePrices_Return> resultList = new ArrayList();
+        List<TSetScalePrices_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TSetScalePrices_Return result = results[i];

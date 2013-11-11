@@ -1,7 +1,7 @@
 package de.epages.WebServices.ProductAttributeService2;
 
 import de.epages.WebServices.ProductAttributeService2.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.WebServiceTestConfiguration;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 /**
  * A JUnit TestSuite to test epages ProductAttribute WebServices.
  */
-public class ProductAttribute2TestCase extends WebServiceConfiguration {
+public class ProductAttribute2TestCase extends WebServiceTestConfiguration {
     private static Logger log = Logger.getLogger(ProductAttribute2TestCase.class.getName());
 
     private Bind_ProductAttribute_SOAPStub productAttributeService;

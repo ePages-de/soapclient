@@ -1,5 +1,6 @@
 package de.epages.WebServices.CatalogService2;
 
+import de.epages.WebServices.WebServiceTestConfiguration;
 import de.epages.WebServices.CatalogService2.Stub.*;
 
 import org.junit.*;
@@ -42,7 +43,7 @@ public class Catalog2TestCase {
      */
     @Before
     public void setUp() {
-        serviceClient = new CatalogService2Client();
+        serviceClient = new CatalogService2Client(new WebServiceTestConfiguration());
 
         // create test Catalogs that can be used with the create and update methods
         Catalog_in.setAlias(alias);

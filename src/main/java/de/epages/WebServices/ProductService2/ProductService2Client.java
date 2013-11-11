@@ -1,14 +1,24 @@
 package de.epages.WebServices.ProductService2;
 
-import de.epages.WebServices.ProductService2.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
-
-import java.util.logging.Logger;
-import java.util.List;
-import java.util.ArrayList;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
-public class ProductService2Client extends WebServiceConfiguration  {
+import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.ProductService2.Stub.Bind_Product_SOAPStub;
+import de.epages.WebServices.ProductService2.Stub.ProductService;
+import de.epages.WebServices.ProductService2.Stub.ProductServiceLocator;
+import de.epages.WebServices.ProductService2.Stub.TCreate_Input;
+import de.epages.WebServices.ProductService2.Stub.TCreate_Return;
+import de.epages.WebServices.ProductService2.Stub.TDelete_Return;
+import de.epages.WebServices.ProductService2.Stub.TExists_Return;
+import de.epages.WebServices.ProductService2.Stub.TFind_Input;
+import de.epages.WebServices.ProductService2.Stub.TGetInfo_Return;
+import de.epages.WebServices.ProductService2.Stub.TUpdate_Input;
+import de.epages.WebServices.ProductService2.Stub.TUpdate_Return;
+
+public class ProductService2Client {
     private ProductService service;
     private Bind_Product_SOAPStub stub;
     private static Logger log = Logger.getLogger(ProductService2Client.class.getName());
@@ -16,17 +26,17 @@ public class ProductService2Client extends WebServiceConfiguration  {
     /**
      * Class constructor
      */
-    public ProductService2Client() {
+    public ProductService2Client(WebServiceConfiguration config) {
         service = new ProductServiceLocator();
         log.info("address specified by wsdl: " + service.getport_ProductAddress());
-        log.info("using web service Url: " + WEBSERVICE_URL);
+        log.info("using web service Url: " + config.getWebserviceURL());
 
         try {
-            stub = new Bind_Product_SOAPStub(new java.net.URL(WEBSERVICE_URL), service);
+            stub = new Bind_Product_SOAPStub(config.getWebserviceURL(), service);
 
             // setting user-path and password of the shop
-            stub.setUsername(WEBSERVICE_LOGIN);
-            stub.setPassword(WEBSERVICE_PASSWORD);
+            stub.setUsername(config.getUsername());
+            stub.setPassword(config.getPassword());
         }
         catch (Exception e) {
             log.severe( e.toString() );
@@ -54,7 +64,7 @@ public class ProductService2Client extends WebServiceConfiguration  {
     public List<TGetInfo_Return> getProductInfo(String[] paths, String[] attributes, String[] languages) throws RemoteException {
         log.info("getProductInfo called");
         TGetInfo_Return[] Products = stub.getInfo(paths, attributes, languages);
-        List result = new ArrayList();
+        List result = new ArrayList<>();
 
         for (int i = 0; i < Products.length; i++) {
             TGetInfo_Return Product = Products[i];
@@ -88,7 +98,7 @@ public class ProductService2Client extends WebServiceConfiguration  {
         }
 
         TCreate_Return[] results = stub.create(input);
-        List<TCreate_Return> resultList = new ArrayList();
+        List<TCreate_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TCreate_Return result = results[i];
@@ -123,7 +133,7 @@ public class ProductService2Client extends WebServiceConfiguration  {
         }
 
         TUpdate_Return[] results = stub.update(input);
-        List<TUpdate_Return> resultList = new ArrayList();
+        List<TUpdate_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TUpdate_Return result = results[i];
@@ -153,7 +163,7 @@ public class ProductService2Client extends WebServiceConfiguration  {
         log.info("deleteProduct called");
 
         TDelete_Return[] results = stub.delete(paths);
-        List<TDelete_Return> resultList = new ArrayList();
+        List<TDelete_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TDelete_Return result = results[i];
@@ -183,7 +193,7 @@ public class ProductService2Client extends WebServiceConfiguration  {
         log.info("existsProduct called");
 
         TExists_Return[] results = stub.exists(paths);
-        List<TExists_Return> resultList = new ArrayList();
+        List<TExists_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TExists_Return result = results[i];

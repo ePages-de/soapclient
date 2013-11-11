@@ -1,20 +1,21 @@
 package de.epages.WebServices;
 
-import java.util.*;
-import java.io.*;
+import java.io.FileInputStream;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
+import java.util.Properties;
 
 /**
  * Common configuration data for all web services
  * @author wloch@epages.de
  * $Id: WebServiceConfiguration.java,v 1.7 2011/01/28 11:32:39 agrohmann Exp $
  */
-public class WebServiceConfiguration {
+public class WebServiceTestConfiguration implements WebServiceConfiguration {
 
-	public final String WEBSERVICE_URL = getWebserviceURL();
-	  //use explicit servername and port for tracing
-	  //public final static String WEBSERVICE_URL = "http://hmoye:8080/epages/Store.soap";
 	public final static String WEBSERVICE_LOGIN = "/Shops/DemoShop/Users/admin";
 	public final static String WEBSERVICE_PASSWORD = "admin";
+	public final static String WEBSERVICE_URL = new WebServiceTestConfiguration().getWebserviceURL().toString();
 
 	private String webservice_server = "";
 
@@ -40,9 +41,23 @@ public class WebServiceConfiguration {
 		return webservice_server;
 	}
 
-	public String getWebserviceURL() {
+	public URL getWebserviceURL() {
 		String WServer = getWServer();
-		return "http://" + WServer + "/epages/Store.soap";
+		try {
+			return URI.create("http://" + WServer + "/epages/Store.soap").toURL();
+		} catch (MalformedURLException e) {
+			throw new IllegalArgumentException(e);
+		}
+	}
+
+	@Override
+	public String getUsername() {
+		return WEBSERVICE_LOGIN;
+	}
+
+	@Override
+	public String getPassword() {
+		return WEBSERVICE_PASSWORD;
 	}
 
 }

@@ -1,7 +1,7 @@
 package de.epages.WebServices.ShippingMethodService;
 
 import de.epages.WebServices.ShippingMethodService.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.WebServiceTestConfiguration;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 /**
  * A JUnit TestSuite to test epages ShippingMethod WebServices.
  */
-public class ShippingMethodTestCase extends WebServiceConfiguration {
+public class ShippingMethodTestCase extends WebServiceTestConfiguration {
     private static Logger log = Logger.getLogger(ShippingMethodTestCase.class.getName());
 
     private Bind_ShippingMethod_SOAPStub shippingMethodService;

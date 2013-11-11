@@ -1,7 +1,7 @@
 package de.epages.WebServices.TaxClassService;
 
 import de.epages.WebServices.TaxClassService.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.WebServiceTestConfiguration;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 /**
  * A JUnit TestSuite to test epages TaxClass WebServices.
  */
-public class TaxClassTestCase extends WebServiceConfiguration {
+public class TaxClassTestCase extends WebServiceTestConfiguration {
     private static Logger log = Logger.getLogger(TaxClassTestCase.class.getName());
 
     private Bind_TaxClass_SOAPStub taxClassService;

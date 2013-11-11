@@ -1,7 +1,7 @@
 package de.epages.WebServices.CustomerGroupService;
 
 import de.epages.WebServices.CustomerGroupService.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.WebServiceTestConfiguration;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 /**
  * A JUnit TestSuite to test epages CustomerGroup WebServices.
  */
-public class CustomerGroupTestCase extends WebServiceConfiguration {
+public class CustomerGroupTestCase extends WebServiceTestConfiguration {
     private static Logger log = Logger.getLogger(CustomerGroupTestCase.class.getName());
 
     private Bind_CustomerGroup_SOAPStub customerGroupService;

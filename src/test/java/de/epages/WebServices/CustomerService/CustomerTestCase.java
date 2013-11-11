@@ -1,5 +1,6 @@
 package de.epages.WebServices.CustomerService;
 
+import de.epages.WebServices.WebServiceTestConfiguration;
 import de.epages.WebServices.CustomerGroupService.Stub.*;
 import de.epages.WebServices.CustomerService.Stub.*;
 
@@ -43,11 +44,11 @@ public class CustomerTestCase {
         try {
             CustomerGroupService serviceLocator = new CustomerGroupServiceLocator();
             
-            java.net.URL webServiceURL = new java.net.URL(new de.epages.WebServices.WebServiceConfiguration().WEBSERVICE_URL);
+            java.net.URL webServiceURL = new java.net.URL(new de.epages.WebServices.WebServiceTestConfiguration().WEBSERVICE_URL);
             
             Bind_CustomerGroup_SOAPStub customerGroupService = new Bind_CustomerGroup_SOAPStub(webServiceURL, serviceLocator);
-            customerGroupService.setUsername(de.epages.WebServices.WebServiceConfiguration.WEBSERVICE_LOGIN);
-            customerGroupService.setPassword(de.epages.WebServices.WebServiceConfiguration.WEBSERVICE_PASSWORD);
+            customerGroupService.setUsername(de.epages.WebServices.WebServiceTestConfiguration.WEBSERVICE_LOGIN);
+            customerGroupService.setPassword(de.epages.WebServices.WebServiceTestConfiguration.WEBSERVICE_PASSWORD);
             
         	TGetList_Return[] retGroups = customerGroupService.getList();
         	customerGroups[0] = customerGroupsPath+retGroups[0].getAlias();
@@ -56,9 +57,7 @@ public class CustomerTestCase {
 			e.printStackTrace();
 		}
 
-
-    	
-    	serviceClient = new CustomerServiceClient();
+    	serviceClient = new CustomerServiceClient(new WebServiceTestConfiguration());
 
         // create test customers that can be used with the create and update methods
         customer_in.setAlias(alias);

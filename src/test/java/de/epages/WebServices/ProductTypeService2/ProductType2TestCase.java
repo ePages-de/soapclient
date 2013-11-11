@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.WebServiceTestConfiguration;
 import de.epages.WebServices.ProductTypeService.ProductTypeTestCase;
 import de.epages.WebServices.ProductTypeService2.Stub.TAttribute;
 import de.epages.WebServices.ProductTypeService2.Stub.TCreate_Input;
@@ -57,7 +57,7 @@ public class ProductType2TestCase extends ProductTypeTestCase {
         log.info("using web service Url: " + WEBSERVICE_URL);
 
         try {
-            WebServiceConfiguration WSconf = new WebServiceConfiguration();
+            WebServiceTestConfiguration WSconf = new WebServiceTestConfiguration();
             productTypeService = new de.epages.WebServices.ProductTypeService2.Stub.Bind_ProductType_SOAPStub(new java.net.URL(WSconf.WEBSERVICE_URL), serviceLocator);
         }
         catch (Exception e) {

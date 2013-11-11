@@ -1,7 +1,7 @@
 package de.epages.WebServices.OrderDocumentService4;
 
 import de.epages.WebServices.OrderDocumentService4.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.WebServiceTestConfiguration;
 import org.junit.*;
 
 import static org.junit.Assert.*;
@@ -14,7 +14,7 @@ import java.net.MalformedURLException;
 /**
  * A JUnit TestSuite to test epages Order WebServices.
  */
-public class OrderDocument4TestCase extends WebServiceConfiguration {
+public class OrderDocument4TestCase extends WebServiceTestConfiguration {
     private static Logger log = Logger.getLogger(OrderDocument4TestCase.class.getName());
 
     private Bind_OrderDocument_SOAPStub orderDocService;

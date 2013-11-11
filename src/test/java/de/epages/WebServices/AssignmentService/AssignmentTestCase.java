@@ -1,5 +1,6 @@
 package de.epages.WebServices.AssignmentService;
 
+import de.epages.WebServices.WebServiceTestConfiguration;
 import de.epages.WebServices.AssignmentService.Stub.*;
 
 import org.junit.*;
@@ -29,7 +30,7 @@ public class AssignmentTestCase {
      */
     @Before
     public void setUp() {
-        serviceClient = new AssignmentServiceClient();
+        serviceClient = new AssignmentServiceClient(new WebServiceTestConfiguration());
 
         // create test Assignments that can be used with the create and update methods
     }

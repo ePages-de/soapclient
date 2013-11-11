@@ -1,14 +1,30 @@
 package de.epages.WebServices.CatalogService;
 
-import de.epages.WebServices.CatalogService.Stub.*;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.*;
-import static org.junit.Assert.*;
-
-import java.text.*;
-import java.util.*;
-import java.util.logging.Logger;
 import java.rmi.RemoteException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.logging.Logger;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import de.epages.WebServices.WebServiceTestConfiguration;
+import de.epages.WebServices.CatalogService.Stub.TAttribute;
+import de.epages.WebServices.CatalogService.Stub.TCreate_Input;
+import de.epages.WebServices.CatalogService.Stub.TCreate_Return;
+import de.epages.WebServices.CatalogService.Stub.TDelete_Return;
+import de.epages.WebServices.CatalogService.Stub.TExists_Return;
+import de.epages.WebServices.CatalogService.Stub.TGetInfo_Return;
+import de.epages.WebServices.CatalogService.Stub.TLocalizedValue;
+import de.epages.WebServices.CatalogService.Stub.TUpdate_Input;
+import de.epages.WebServices.CatalogService.Stub.TUpdate_Return;
 
 /**
  * A JUnit TestSuite to test epages Catalog WebServices.
@@ -35,7 +51,7 @@ public class CatalogTestCase {
      */
     @Before
     public void setUp() {
-        serviceClient = new CatalogServiceClient();
+        serviceClient = new CatalogServiceClient(new WebServiceTestConfiguration());
 
         // create test Catalogs that can be used with the create and update methods
         Catalog_in.setAlias(alias);

@@ -1,5 +1,6 @@
 package de.epages.WebServices.PriceListAssignmentService;
 
+import de.epages.WebServices.WebServiceTestConfiguration;
 import de.epages.WebServices.PriceListAssignmentService.Stub.*;
 
 import org.junit.*;
@@ -33,7 +34,7 @@ public class PriceListAssignmentTestCase {
      */
     @Before
     public void setUp() {
-        serviceClient = new PriceListAssignmentServiceClient();
+        serviceClient = new PriceListAssignmentServiceClient(new WebServiceTestConfiguration());
 
         // create test PriceListAssignments that can be used with the create and update methods
         quantityDiscounts = new TQuantityDiscount[]{

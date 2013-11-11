@@ -1,5 +1,6 @@
 package de.epages.WebServices.OrderService2;
 
+import de.epages.WebServices.WebServiceTestConfiguration;
 import de.epages.WebServices.OrderService2.Stub.*;
 
 import org.junit.*;
@@ -26,7 +27,7 @@ public class Order2TestCase {
      */
     @Before
     public void setUp() {
-        serviceClient = new OrderService2Client();
+        serviceClient = new OrderService2Client(new WebServiceTestConfiguration());
 
         // create test Orders that can be used with the create and update methods
         Order_in.setAlias(alias);

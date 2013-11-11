@@ -1,7 +1,7 @@
 package de.epages.WebServices.UserService3;
 
 import de.epages.WebServices.UserService3.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.WebServiceTestConfiguration;
 
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -14,7 +14,7 @@ import java.rmi.RemoteException;
 /**
  * A JUnit TestSuite to test epages User WebServices.
  */
-public class User3TestCase extends WebServiceConfiguration {
+public class User3TestCase extends WebServiceTestConfiguration {
     private static Logger log = Logger.getLogger(User3TestCase.class.getName());
     private Bind_User_SOAPStub userService;
 

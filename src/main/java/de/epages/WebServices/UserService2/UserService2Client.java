@@ -1,14 +1,23 @@
 package de.epages.WebServices.UserService2;
 
-import de.epages.WebServices.UserService2.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
-
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class UserService2Client extends WebServiceConfiguration  {
+import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.UserService2.Stub.Bind_User_SOAPStub;
+import de.epages.WebServices.UserService2.Stub.TCreate_Input;
+import de.epages.WebServices.UserService2.Stub.TCreate_Return;
+import de.epages.WebServices.UserService2.Stub.TDelete_Return;
+import de.epages.WebServices.UserService2.Stub.TExists_Return;
+import de.epages.WebServices.UserService2.Stub.TGetInfo_Return;
+import de.epages.WebServices.UserService2.Stub.TUpdate_Input;
+import de.epages.WebServices.UserService2.Stub.TUpdate_Return;
+import de.epages.WebServices.UserService2.Stub.UserService;
+import de.epages.WebServices.UserService2.Stub.UserServiceLocator;
+
+public class UserService2Client {
     private UserService service;
     private Bind_User_SOAPStub stub;
     private static Logger log = Logger.getLogger(UserService2Client.class.getName());
@@ -16,17 +25,17 @@ public class UserService2Client extends WebServiceConfiguration  {
     /**
      * Class constructor
      */
-    public UserService2Client() {
+    public UserService2Client(WebServiceConfiguration config) {
         service = new UserServiceLocator();
         log.info("address specified by wsdl: " + service.getport_UserAddress());
-        log.info("using web service Url: " + WEBSERVICE_URL);
+        log.info("using web service Url: " + config.getWebserviceURL());
 
         try {
-            stub = new Bind_User_SOAPStub(new java.net.URL(WEBSERVICE_URL), service);
+            stub = new Bind_User_SOAPStub(config.getWebserviceURL(), service);
 
             // setting user-path and password of the shop
-            stub.setUsername(WEBSERVICE_LOGIN);
-            stub.setPassword(WEBSERVICE_PASSWORD);
+            stub.setUsername(config.getUsername());
+            stub.setPassword(config.getPassword());
         }
         catch (Exception e) {
             log.severe( e.toString() );
@@ -62,7 +71,7 @@ public class UserService2Client extends WebServiceConfiguration  {
     public List<TGetInfo_Return> getUserInfo(String[] paths, String[] attributes) throws RemoteException {
         log.info("getUserInfo called");
         TGetInfo_Return[] Users = stub.getInfo(paths, attributes);
-        List result = new ArrayList();
+        List result = new ArrayList<>();
 
         for (int i = 0; i < Users.length; i++) {
             TGetInfo_Return User = Users[i];
@@ -96,7 +105,7 @@ public class UserService2Client extends WebServiceConfiguration  {
         }
 
         TCreate_Return[] results = stub.create(input);
-        List<TCreate_Return> resultList = new ArrayList();
+        List<TCreate_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TCreate_Return result = results[i];
@@ -131,7 +140,7 @@ public class UserService2Client extends WebServiceConfiguration  {
         }
 
         TUpdate_Return[] results = stub.update(input);
-        List<TUpdate_Return> resultList = new ArrayList();
+        List<TUpdate_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TUpdate_Return result = results[i];
@@ -161,7 +170,7 @@ public class UserService2Client extends WebServiceConfiguration  {
         log.info("deleteUser called");
 
         TDelete_Return[] results = stub.delete(paths);
-        List<TDelete_Return> resultList = new ArrayList();
+        List<TDelete_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TDelete_Return result = results[i];
@@ -191,7 +200,7 @@ public class UserService2Client extends WebServiceConfiguration  {
         log.info("existsUser called");
 
         TExists_Return[] results = stub.exists(paths);
-        List<TExists_Return> resultList = new ArrayList();
+        List<TExists_Return> resultList = new ArrayList<>();
 
         for (int i = 0; i < results.length; i++) {
             TExists_Return result = results[i];
