@@ -48,16 +48,27 @@ public class PaymentMethodTestCase extends WebServiceConfiguration {
             int count = PaymentMethods.length;
             log.info("Total payment methods: " + count);
 
-            assertEquals( "number of payment methods", 9, count );
-            assertEquals( "first payment method","/Shops/DemoShop/PaymentMethods/CashInAdvance", PaymentMethods[0].getPath() );
-            assertEquals( "second payment method","/Shops/DemoShop/PaymentMethods/Invoice", PaymentMethods[1].getPath() );
-            assertEquals( "third payment method","/Shops/DemoShop/PaymentMethods/CashOnDelivery", PaymentMethods[2].getPath() );
-            assertEquals( "fourth payment method","/Shops/DemoShop/PaymentMethods/Cash", PaymentMethods[3].getPath() );
-            assertEquals( "fifth payment method","/Shops/DemoShop/PaymentMethods/DirectDebit", PaymentMethods[4].getPath() );
-            assertEquals( "sixth payment method","/Shops/DemoShop/PaymentMethods/ClickandBuy", PaymentMethods[5].getPath() );
-            assertEquals( "seventh payment method","/Shops/DemoShop/PaymentMethods/Moneybookers", PaymentMethods[6].getPath() );
-            assertEquals( "eight payment method","/Shops/DemoShop/PaymentMethods/WorldPay", PaymentMethods[7].getPath() );
-            assertEquals( "ninth payment method","/Shops/DemoShop/PaymentMethods/Saferpay", PaymentMethods[8].getPath() );
+            // normal demoshop
+            if (count == 9) {
+                assertEquals( "number of payment methods", 9, count );
+                assertEquals( "first payment method","/Shops/DemoShop/PaymentMethods/CashInAdvance", PaymentMethods[0].getPath() );
+                assertEquals( "second payment method","/Shops/DemoShop/PaymentMethods/Invoice", PaymentMethods[1].getPath() );
+                assertEquals( "third payment method","/Shops/DemoShop/PaymentMethods/CashOnDelivery", PaymentMethods[2].getPath() );
+                assertEquals( "fourth payment method","/Shops/DemoShop/PaymentMethods/Cash", PaymentMethods[3].getPath() );
+                assertEquals( "fifth payment method","/Shops/DemoShop/PaymentMethods/DirectDebit", PaymentMethods[4].getPath() );
+                assertEquals( "sixth payment method","/Shops/DemoShop/PaymentMethods/ClickandBuy", PaymentMethods[5].getPath() );
+                assertEquals( "seventh payment method","/Shops/DemoShop/PaymentMethods/Moneybookers", PaymentMethods[6].getPath() );
+                assertEquals( "eight payment method","/Shops/DemoShop/PaymentMethods/WorldPay", PaymentMethods[7].getPath() );
+                assertEquals( "ninth payment method","/Shops/DemoShop/PaymentMethods/Saferpay", PaymentMethods[8].getPath() );
+            //minimal demoshop
+            } else {
+                assertEquals( "number of payment methods", 5, count );
+                assertEquals( "first payment method","/Shops/DemoShop/PaymentMethods/CashInAdvance", PaymentMethods[0].getPath() );
+                assertEquals( "second payment method","/Shops/DemoShop/PaymentMethods/Invoice", PaymentMethods[1].getPath() );
+                assertEquals( "third payment method","/Shops/DemoShop/PaymentMethods/CashOnDelivery", PaymentMethods[2].getPath() );
+                assertEquals( "fourth payment method","/Shops/DemoShop/PaymentMethods/Cash", PaymentMethods[3].getPath() );
+                assertEquals( "fifth payment method","/Shops/DemoShop/PaymentMethods/DirectDebit", PaymentMethods[4].getPath() );
+            }
         }
         catch (RemoteException e) {
             e.printStackTrace();
