@@ -33,3 +33,11 @@ compileJava {
 		options.encoding = 'UTF-8'
 	}
 }
+
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			pom.artifactId = 'soapclient'
+		}
+	}
+}
