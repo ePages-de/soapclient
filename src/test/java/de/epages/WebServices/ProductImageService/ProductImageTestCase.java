@@ -29,8 +29,8 @@ public class ProductImageTestCase extends WebServiceConfiguration {
     String FName1 = "be_40401_blue.jpg";
     
     // for upload
-    String FileName  = "../TestData/ProductImageService/cg_0100504001.jpg";
-    String FileName1 = "../TestData/ProductImageService/be_40401_blue.jpg";
+    String FileName  = "TestData/ProductImageService/cg_0100504001.jpg";
+    String FileName1 = "TestData/ProductImageService/be_40401_blue.jpg";
 
     String ImagesSlideShowUpload = "cg_0100504001.jpg;be_40401_blue.jpg";
     String ImagesSlideShowScale = "be_40401_blue.jpg;be_40401_blue_m.jpg;be_40401_blue_h.jpg";
@@ -126,7 +126,7 @@ public class ProductImageTestCase extends WebServiceConfiguration {
         // read files and fill the TImageData structures
         TImageData image1 = new TImageData();
         image1.setFileName(FName);
-        image1.setContent(readFile(FileName));
+        image1.setContent(readFile(FileName)); 
 
         // read second
         TImageData image2 = new TImageData();
@@ -235,14 +235,12 @@ public class ProductImageTestCase extends WebServiceConfiguration {
      */
     private byte[] readFile(String fileName) throws IOException
     {
-        File file = new File(FileName);
-        int fileSize = (int)file.length();
-        InputStream in = new FileInputStream(file);
-        byte[] content = new byte[fileSize];
-        in.read(content, 0, fileSize);
+    	InputStream in = getClass().getClassLoader().getResourceAsStream(fileName);
+    	byte[] data = new byte[in.available()];
+        in.read(data, 0, in.available());
         in.close();
     	
-    	return content;
+    	return data;
     }
 
     /**

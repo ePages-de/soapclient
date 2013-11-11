@@ -190,7 +190,7 @@ public class Product2TestCase {
             assertEquals("updated localized Name", Product_update.getName()[0].getValue(), hashName.get(Product_update.getName()[0].getLanguageCode()));
             assertEquals("updated localized Name", Product_update.getName()[1].getValue(), hashName.get(Product_update.getName()[1].getLanguageCode()));
 
-            assertEquals("Price Value", (float)Product_update.getProductPrices()[0].getPrice(), (float)priceHash.get(Product_update.getProductPrices()[0].getCurrencyID()) );
+            assertEquals("Price Value", (float)Product_update.getProductPrices()[0].getPrice(), (float)priceHash.get(Product_update.getProductPrices()[0].getCurrencyID()), 0.001 );
             
             assertFalse("isAvailable", Product_update.getIsAvailable());
             assertEquals("updated localized AvailabilityComment", Product_update.getAvailabilityComment()[0].getValue(), hashAComment.get(Product_update.getAvailabilityComment()[0].getLanguageCode()));
@@ -202,7 +202,7 @@ public class Product2TestCase {
             assertEquals("initial localized Name", Product_in.getName()[0].getValue(), hashName.get(Product_update.getName()[0].getLanguageCode()));
             assertEquals("initial localized Name", Product_in.getName()[1].getValue(), hashName.get(Product_update.getName()[1].getLanguageCode()));
 
-            assertEquals("Price Value", (float)Product_in.getProductPrices()[0].getPrice(), (float)priceHash.get(Product_in.getProductPrices()[0].getCurrencyID()) );
+            assertEquals("Price Value", (float)Product_in.getProductPrices()[0].getPrice(), (float)priceHash.get(Product_in.getProductPrices()[0].getCurrencyID()), 0.001 );
 
             assertTrue("isAvailable", Product_in.getIsAvailable());
             assertEquals("updated localized AvailabilityComment", Product_in.getAvailabilityComment()[0].getValue(), hashAComment.get(Product_in.getAvailabilityComment()[0].getLanguageCode()));

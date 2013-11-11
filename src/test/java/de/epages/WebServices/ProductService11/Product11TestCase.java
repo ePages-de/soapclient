@@ -329,11 +329,11 @@ public class Product11TestCase {
             assertEquals("updated localized MainCharacteristic", Product_update.getMainCharacteristics()[0].getValue(), hashMainCharact.get(Product_update.getMainCharacteristics()[0].getLanguageCode()));
             assertEquals("updated localized MainCharacteristic", Product_update.getMainCharacteristics()[1].getValue(), hashMainCharact.get(Product_update.getMainCharacteristics()[1].getLanguageCode()));
 
-            assertEquals("Price Value", (float)Product_update.getProductPrices()[0].getPrice(), (float)priceHash.get(Product_update.getProductPrices()[0].getCurrencyID()) );
-            assertEquals("Manufacturer Price Value", (float)Product_update.getManufacturerPrices()[0].getPrice(), (float)priceHash2.get(Product_update.getManufacturerPrices()[0].getCurrencyID()) );
-            assertEquals("Deposit Price Value", (float)Product_update.getDepositPrices()[0].getPrice(), (float)priceHash3.get(Product_update.getDepositPrices()[0].getCurrencyID()) );
-            assertEquals("Prepayment Price Value", (float)Product_update.getPrepaymentPrices()[0].getPrice(), (float)priceHash4.get(Product_update.getPrepaymentPrices()[0].getCurrencyID()) );
-            assertEquals("EcoParticipation Price Value", (float)Product_update.getEcoParticipationPrices()[0].getPrice(), (float)priceHash5.get(Product_update.getEcoParticipationPrices()[0].getCurrencyID()) );
+            assertEquals("Price Value", (float)Product_update.getProductPrices()[0].getPrice(), (float)priceHash.get(Product_update.getProductPrices()[0].getCurrencyID()), 0.001 );
+            assertEquals("Manufacturer Price Value", (float)Product_update.getManufacturerPrices()[0].getPrice(), (float)priceHash2.get(Product_update.getManufacturerPrices()[0].getCurrencyID()), 0.001 );
+            assertEquals("Deposit Price Value", (float)Product_update.getDepositPrices()[0].getPrice(), (float)priceHash3.get(Product_update.getDepositPrices()[0].getCurrencyID()), 0.001 );
+            assertEquals("Prepayment Price Value", (float)Product_update.getPrepaymentPrices()[0].getPrice(), (float)priceHash4.get(Product_update.getPrepaymentPrices()[0].getCurrencyID()), 0.001 );
+            assertEquals("EcoParticipation Price Value", (float)Product_update.getEcoParticipationPrices()[0].getPrice(), (float)priceHash5.get(Product_update.getEcoParticipationPrices()[0].getCurrencyID()), 0.001 );
 
             assertFalse("updated isAvailable", Product_update.getIsAvailable());
             assertEquals("updated localized AvailabilityComment", Product_update.getAvailabilityComment()[0].getValue(), hashAComment.get(Product_update.getAvailabilityComment()[0].getLanguageCode()));
@@ -356,11 +356,11 @@ public class Product11TestCase {
             assertEquals("initial localized MainCharacteristic", Product_in.getMainCharacteristics()[0].getValue(), hashMainCharact.get(Product_in.getMainCharacteristics()[0].getLanguageCode()));
             assertEquals("initial localized MainCharacteristic", Product_in.getMainCharacteristics()[1].getValue(), hashMainCharact.get(Product_in.getMainCharacteristics()[1].getLanguageCode()));
 
-            assertEquals("Price Value", (float)Product_in.getProductPrices()[0].getPrice(), (float)priceHash.get(Product_in.getProductPrices()[0].getCurrencyID()) );
-            assertEquals("Manufacturer Price Value", (float)Product_in.getManufacturerPrices()[0].getPrice(), (float)priceHash2.get(Product_in.getManufacturerPrices()[0].getCurrencyID()) );
-            assertEquals("Deposit Price Value", (float)Product_in.getDepositPrices()[0].getPrice(), (float)priceHash3.get(Product_in.getDepositPrices()[0].getCurrencyID()) );
-            assertEquals("Prepayment Price Value", (float)Product_in.getPrepaymentPrices()[0].getPrice(), (float)priceHash4.get(Product_in.getPrepaymentPrices()[0].getCurrencyID()) );
-            assertEquals("EcoParticipation Price Value", (float)Product_in.getEcoParticipationPrices()[0].getPrice(), (float)priceHash5.get(Product_in.getEcoParticipationPrices()[0].getCurrencyID()) );
+            assertEquals("Price Value", (float)Product_in.getProductPrices()[0].getPrice(), (float)priceHash.get(Product_in.getProductPrices()[0].getCurrencyID()), 0.001 );
+            assertEquals("Manufacturer Price Value", (float)Product_in.getManufacturerPrices()[0].getPrice(), (float)priceHash2.get(Product_in.getManufacturerPrices()[0].getCurrencyID()), 0.001 );
+            assertEquals("Deposit Price Value", (float)Product_in.getDepositPrices()[0].getPrice(), (float)priceHash3.get(Product_in.getDepositPrices()[0].getCurrencyID()), 0.001 );
+            assertEquals("Prepayment Price Value", (float)Product_in.getPrepaymentPrices()[0].getPrice(), (float)priceHash4.get(Product_in.getPrepaymentPrices()[0].getCurrencyID()), 0.001 );
+            assertEquals("EcoParticipation Price Value", (float)Product_in.getEcoParticipationPrices()[0].getPrice(), (float)priceHash5.get(Product_in.getEcoParticipationPrices()[0].getCurrencyID()), 0.001 );
 
             assertTrue("isAvailable", Product_in.getIsAvailable());
             assertEquals("localized AvailabilityComment", Product_in.getAvailabilityComment()[0].getValue(), hashAComment.get(Product_in.getAvailabilityComment()[0].getLanguageCode()));

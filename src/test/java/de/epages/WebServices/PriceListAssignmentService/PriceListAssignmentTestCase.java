@@ -99,10 +99,10 @@ public class PriceListAssignmentTestCase {
         Assert.assertEquals("pricelist result set", 1, priceLists.length);
         Assert.assertEquals("pricelist path", pricelist, priceLists[0].getPriceList());
 
-        Assert.assertEquals("quantityDiscounts Quantity", quantityDiscounts[0].getQuantity(), priceLists[0].getQuantityDiscounts()[0].getQuantity());
-        Assert.assertEquals("quantityDiscounts Discount", quantityDiscounts[0].getDiscount(), priceLists[0].getQuantityDiscounts()[0].getDiscount());
-        Assert.assertEquals("quantityDiscounts Quantity", quantityDiscounts[1].getQuantity(), priceLists[0].getQuantityDiscounts()[1].getQuantity());
-        Assert.assertEquals("quantityDiscounts Discount", quantityDiscounts[1].getDiscount(), priceLists[0].getQuantityDiscounts()[1].getDiscount());
+        Assert.assertEquals("quantityDiscounts Quantity", quantityDiscounts[0].getQuantity(), priceLists[0].getQuantityDiscounts()[0].getQuantity(), 0.001);
+        Assert.assertEquals("quantityDiscounts Discount", quantityDiscounts[0].getDiscount(), priceLists[0].getQuantityDiscounts()[0].getDiscount(), 0.001);
+        Assert.assertEquals("quantityDiscounts Quantity", quantityDiscounts[1].getQuantity(), priceLists[0].getQuantityDiscounts()[1].getQuantity(), 0.001);
+        Assert.assertEquals("quantityDiscounts Discount", quantityDiscounts[1].getDiscount(), priceLists[0].getQuantityDiscounts()[1].getDiscount(), 0.001);
     }
 
     /**
@@ -153,10 +153,10 @@ public class PriceListAssignmentTestCase {
         Assert.assertEquals("pricelist result set", 1, priceLists.length);
         Assert.assertEquals("pricelist path", pricelist, priceLists[0].getPriceList());
 
-        Assert.assertEquals("valueDiscounts Value", valueDiscounts[0].getValue(), priceLists[0].getValueDiscounts()[0].getValue());
-        Assert.assertEquals("valueDiscounts Discount", valueDiscounts[0].getDiscount(), priceLists[0].getValueDiscounts()[0].getDiscount());
-        Assert.assertEquals("valueDiscounts Value", valueDiscounts[1].getValue(), priceLists[0].getValueDiscounts()[1].getValue());
-        Assert.assertEquals("valueDiscounts Discount", valueDiscounts[1].getDiscount(), priceLists[0].getValueDiscounts()[1].getDiscount());
+        Assert.assertEquals("valueDiscounts Value", valueDiscounts[0].getValue(), priceLists[0].getValueDiscounts()[0].getValue(), 0.001);
+        Assert.assertEquals("valueDiscounts Discount", valueDiscounts[0].getDiscount(), priceLists[0].getValueDiscounts()[0].getDiscount(), 0.001);
+        Assert.assertEquals("valueDiscounts Value", valueDiscounts[1].getValue(), priceLists[0].getValueDiscounts()[1].getValue(), 0.001);
+        Assert.assertEquals("valueDiscounts Discount", valueDiscounts[1].getDiscount(), priceLists[0].getValueDiscounts()[1].getDiscount(), 0.001);
     }
 
     /**
@@ -207,10 +207,10 @@ public class PriceListAssignmentTestCase {
         Assert.assertEquals("pricelist result set", 1, priceLists.length);
         Assert.assertEquals("pricelist path", pricelist, priceLists[0].getPriceList());
 
-        Assert.assertEquals("scalePrices Quantity", scalePrices[0].getQuantity(), priceLists[0].getScalePrices()[0].getQuantity());
-        Assert.assertEquals("scalePrices Price", scalePrices[0].getPrice(), priceLists[0].getScalePrices()[0].getPrice());
-        Assert.assertEquals("scalePrices Quantity", scalePrices[1].getQuantity(), priceLists[0].getScalePrices()[1].getQuantity());
-        Assert.assertEquals("scalePrices price", scalePrices[1].getPrice(), priceLists[0].getScalePrices()[1].getPrice());
+        Assert.assertEquals("scalePrices Quantity", scalePrices[0].getQuantity(), priceLists[0].getScalePrices()[0].getQuantity(), 0.001);
+        Assert.assertEquals("scalePrices Price", scalePrices[0].getPrice(), priceLists[0].getScalePrices()[0].getPrice(), 0.001);
+        Assert.assertEquals("scalePrices Quantity", scalePrices[1].getQuantity(), priceLists[0].getScalePrices()[1].getQuantity(), 0.001);
+        Assert.assertEquals("scalePrices price", scalePrices[1].getPrice(), priceLists[0].getScalePrices()[1].getPrice(), 0.001);
     }
 
     /**
