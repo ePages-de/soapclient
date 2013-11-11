@@ -2,7 +2,7 @@ apply plugin: "java"
 apply plugin: "eclipse"
 apply plugin: 'maven'
 
-baseName = 'soapclient'
+archivesBaseName = 'soapclient'
 group = 'de.epages'
 description = 'AXIS 1.x based SOAP client for epages6'
 version = '6.17.0'
