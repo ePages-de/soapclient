@@ -5,7 +5,7 @@ apply plugin: 'maven'
 archivesBaseName = 'soapclient'
 group = 'de.epages'
 description = 'AXIS 1.x based SOAP client for epages6'
-version = '6.17.0'
+version = '6.17.0-SNAPSHOT'
 
 repositories {
 	mavenCentral()
