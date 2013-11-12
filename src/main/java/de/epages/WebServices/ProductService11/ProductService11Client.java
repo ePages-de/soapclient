@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.apache.axis.AxisFault;
+
 import de.epages.WebServices.WebServiceConfiguration;
 import de.epages.WebServices.ProductService11.Stub.Bind_Product_SOAPStub;
 import de.epages.WebServices.ProductService11.Stub.ProductService;
@@ -33,14 +35,13 @@ public class ProductService11Client {
 
         try {
             stub = new Bind_Product_SOAPStub(config.getWebserviceURL(), service);
+        } catch (AxisFault e) {
+            throw new RuntimeException(e);
+        }
 
-            // setting user-path and password of the shop
-            stub.setUsername(config.getUsername());
-            stub.setPassword(config.getPassword());
-        }
-        catch (Exception e) {
-            log.severe( e.toString() );
-        }
+        // setting user-path and password of the shop
+        stub.setUsername(config.getUsername());
+        stub.setPassword(config.getPassword());
     }
 
     public List<TGetInfo_Return> getProductInfo(String[] paths) throws RemoteException {
@@ -63,17 +64,17 @@ public class ProductService11Client {
      */
     public List<TGetInfo_Return> getProductInfo(String[] paths, String[] attributes, String[] languages) throws RemoteException {
         log.info("getProductInfo called");
-        TGetInfo_Return[] Products = stub.getInfo(paths, attributes, languages);
-        List result = new ArrayList<>();
+        TGetInfo_Return[] products = stub.getInfo(paths, attributes, languages);
+        List<TGetInfo_Return> result = new ArrayList<>(products.length);
 
-        for (int i = 0; i < Products.length; i++) {
-            TGetInfo_Return Product = Products[i];
+        for (int i = 0; i < products.length; i++) {
+            TGetInfo_Return product = products[i];
 
-            if (Product.getError() == null) {
-                log.info("successfully retrieved Product: " + Product.getAlias());
-                result.add(Product);
+            if (product.getError() == null) {
+                log.info("successfully retrieved Product: " + product.getAlias());
+                result.add(product);
             } else {
-                log.severe("an error occured (Epages Error):\n" + Product.getError().getMessage());
+                throw new RemoteException(product.getError().getMessage());
             }
         }
         return result;
@@ -107,7 +108,7 @@ public class ProductService11Client {
                 log.info("successfully created Product: " + result.getAlias());
                 resultList.add(result);
             } else {
-                log.severe("an error occured (Epages Error):\n" + result.getError().getMessage());
+                throw new RemoteException(result.getError().getMessage());
             }
         }
 
@@ -142,7 +143,7 @@ public class ProductService11Client {
                 log.info("successfully updated Product: " + result.getPath());
                 resultList.add(result);
             } else {
-                log.severe("an error occured (Epages Error):\n" + result.getError().getMessage());
+                throw new RemoteException(result.getError().getMessage());
             }
         }
 
@@ -172,7 +173,7 @@ public class ProductService11Client {
                 log.info("successfully deleted Product: " + result.getPath());
                 resultList.add(result);
             } else {
-                log.severe("an error occured (Epages Error):\n" + result.getError().getMessage());
+                throw new RemoteException(result.getError().getMessage());
             }
         }
 
@@ -202,7 +203,7 @@ public class ProductService11Client {
                 log.info("successfully check Product existance: " + result.getPath());
                 resultList.add(result);
             } else {
-                log.severe("an error occured (Epages Error):\n" + result.getError().getMessage());
+                throw new RemoteException(result.getError().getMessage());
             }
         }
 
