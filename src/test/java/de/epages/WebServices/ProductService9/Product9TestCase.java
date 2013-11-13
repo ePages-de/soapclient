@@ -194,10 +194,10 @@ public class Product9TestCase {
      * Create a Product and check if the creation was successful
      */
     public void testCreate() {
-        List<TCreate_Input> Products_create_in = new ArrayList();
+        List<TCreate_Input> Products_create_in = new ArrayList<>();
         Products_create_in.add(Product_in);
 
-        List<TCreate_Return> Products_create_out = new ArrayList();
+        List<TCreate_Return> Products_create_out = new ArrayList<>();
 
         try {
             Products_create_out = serviceClient.createProduct(Products_create_in);
@@ -234,7 +234,7 @@ public class Product9TestCase {
      * @param isAlreadyUpdated if true check against update data, else against create data
      */
     public void testGetInfo(boolean isAlreadyUpdated) throws RemoteException {
-        List<TGetInfo_Return> Products_info_out = new ArrayList();
+        List<TGetInfo_Return> Products_info_out = new ArrayList<>();
         Products_info_out = serviceClient.getProductInfo(
             new String[]{path + alias},
             new String[]{"Manufacturer"},

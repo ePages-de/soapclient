@@ -61,12 +61,12 @@ public class OrderDocument2TestCase {
      * Create a OrderDocument and check if the creation was successful
      */
     public void testCreate() {
-        List<TCreate_Input> OrderDocuments_create_in = new ArrayList();
+        List<TCreate_Input> OrderDocuments_create_in = new ArrayList<>();
         OrderDocuments_create_in.add(invoice_in);
         OrderDocuments_create_in.add(packingslip_in);
         OrderDocuments_create_in.add(creditnote_in);
 
-        List<TCreate_Return> OrderDocuments_create_out = new ArrayList();
+        List<TCreate_Return> OrderDocuments_create_out = new ArrayList<>();
 
         try {
             OrderDocuments_create_out = serviceClient.createOrderDocument(OrderDocuments_create_in);
@@ -87,7 +87,7 @@ public class OrderDocument2TestCase {
      * the data of create call
      */
     public void testGetInfo() {
-        List<TGetInfo_Return> OrderDocuments_info_out = new ArrayList();
+        List<TGetInfo_Return> OrderDocuments_info_out = new ArrayList<>();
         try {
             OrderDocuments_info_out = serviceClient.getOrderDocumentInfo(
                 new String[]{
@@ -125,7 +125,7 @@ public class OrderDocument2TestCase {
      * the data of create or update call
      */
     public void testGetInvoices() {
-        List<TGetInvoices_Return> invoices_out = new ArrayList();
+        List<TGetInvoices_Return> invoices_out = new ArrayList<>();
         try {
             invoices_out = serviceClient.getInvoices(
                 new String[]{order}
@@ -150,7 +150,7 @@ public class OrderDocument2TestCase {
      * the data of create or update call
      */
     public void testGetPackingSlips() {
-        List<TGetPackingSlips_Return> packingslips_out = new ArrayList();
+        List<TGetPackingSlips_Return> packingslips_out = new ArrayList<>();
         try {
             packingslips_out = serviceClient.getPackingSlips(
                 new String[]{order}
@@ -175,7 +175,7 @@ public class OrderDocument2TestCase {
      * the data of create or update call
      */
     public void testGetCreditNotes() {
-        List<TGetCreditNotes_Return> creditnotes_out = new ArrayList();
+        List<TGetCreditNotes_Return> creditnotes_out = new ArrayList<>();
         try {
             creditnotes_out = serviceClient.getCreditNotes(
                 new String[]{order}
@@ -199,7 +199,7 @@ public class OrderDocument2TestCase {
      * Delete a OrderDocument and check if no error occured.
      */
     public void testDelete() {
-        List<TDelete_Return> OrderDocuments_delete_out = new ArrayList();
+        List<TDelete_Return> OrderDocuments_delete_out = new ArrayList<>();
         try {
             OrderDocuments_delete_out = serviceClient.deleteOrderDocument(new String[]{
                         invoice_path + invoice_alias,
@@ -224,7 +224,7 @@ public class OrderDocument2TestCase {
      * @param expected if false the Test will be successful if the OrderDocument does NOT exist
      */
     public void testExists(boolean expected) {
-        List<TExists_Return> OrderDocuments_exists_out = new ArrayList();
+        List<TExists_Return> OrderDocuments_exists_out = new ArrayList<>();
         try {
             OrderDocuments_exists_out = serviceClient.existsOrderDocument(new String[]{
                         invoice_path + invoice_alias,

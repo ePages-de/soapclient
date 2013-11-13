@@ -59,11 +59,11 @@ public class PriceListAssignmentTestCase {
 
         TSetQuantityDiscounts_Input PriceListAssignment_in = new TSetQuantityDiscounts_Input(product, pricelist, quantityDiscounts);
 
-        List<TSetQuantityDiscounts_Input> PriceListAssignments_in = new ArrayList();
+        List<TSetQuantityDiscounts_Input> PriceListAssignments_in = new ArrayList<>();
         PriceListAssignments_in.add(PriceListAssignment_in);
 
 
-        List<TSetQuantityDiscounts_Return> PriceListAssignments_out = new ArrayList();
+        List<TSetQuantityDiscounts_Return> PriceListAssignments_out = new ArrayList<>();
 
         try {
             PriceListAssignments_out = serviceClient.setQuantityDiscounts(PriceListAssignments_in);
@@ -82,7 +82,7 @@ public class PriceListAssignmentTestCase {
      */
     public void testGetQuantityDiscount() {
 
-        List<TGetQuantityDiscounts_Return> PriceListAssignments_out = new ArrayList();
+        List<TGetQuantityDiscounts_Return> PriceListAssignments_out = new ArrayList<>();
 
         try {
             PriceListAssignments_out = serviceClient.getQuantityDiscounts(
@@ -113,11 +113,11 @@ public class PriceListAssignmentTestCase {
 
         TSetValueDiscounts_Input PriceListAssignment_in = new TSetValueDiscounts_Input(product, pricelist, valueDiscounts);
 
-        List<TSetValueDiscounts_Input> PriceListAssignments_in = new ArrayList();
+        List<TSetValueDiscounts_Input> PriceListAssignments_in = new ArrayList<>();
         PriceListAssignments_in.add(PriceListAssignment_in);
 
 
-        List<TSetValueDiscounts_Return> PriceListAssignments_out = new ArrayList();
+        List<TSetValueDiscounts_Return> PriceListAssignments_out = new ArrayList<>();
 
         try {
             PriceListAssignments_out = serviceClient.setValueDiscounts(PriceListAssignments_in);
@@ -136,7 +136,7 @@ public class PriceListAssignmentTestCase {
      */
     public void testGetValueDiscount() {
 
-        List<TGetValueDiscounts_Return> PriceListAssignments_out = new ArrayList();
+        List<TGetValueDiscounts_Return> PriceListAssignments_out = new ArrayList<>();
 
         try {
             PriceListAssignments_out = serviceClient.getValueDiscounts(
@@ -167,11 +167,11 @@ public class PriceListAssignmentTestCase {
 
         TSetScalePrices_Input PriceListAssignment_in = new TSetScalePrices_Input(product, pricelist, scalePrices);
 
-        List<TSetScalePrices_Input> PriceListAssignments_in = new ArrayList();
+        List<TSetScalePrices_Input> PriceListAssignments_in = new ArrayList<>();
         PriceListAssignments_in.add(PriceListAssignment_in);
 
 
-        List<TSetScalePrices_Return> PriceListAssignments_out = new ArrayList();
+        List<TSetScalePrices_Return> PriceListAssignments_out = new ArrayList<>();
 
         try {
             PriceListAssignments_out = serviceClient.setScalePrices(PriceListAssignments_in);
@@ -190,7 +190,7 @@ public class PriceListAssignmentTestCase {
      */
     public void testGetScalePrices() {
 
-        List<TGetScalePrices_Return> PriceListAssignments_out = new ArrayList();
+        List<TGetScalePrices_Return> PriceListAssignments_out = new ArrayList<>();
 
         try {
             PriceListAssignments_out = serviceClient.getScalePrices(

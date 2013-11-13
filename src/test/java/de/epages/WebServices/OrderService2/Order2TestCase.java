@@ -92,10 +92,10 @@ public class Order2TestCase {
      * Create a Order and check if the creation was successful
      */
     public void testCreate() {
-        List<TCreate_Input> Orders_create_in = new ArrayList();
+        List<TCreate_Input> Orders_create_in = new ArrayList<>();
         Orders_create_in.add(Order_in);
 
-        List<TCreate_Return> Orders_create_out = new ArrayList();
+        List<TCreate_Return> Orders_create_out = new ArrayList<>();
 
         try {
             Orders_create_out = serviceClient.createOrder(Orders_create_in);
@@ -113,10 +113,10 @@ public class Order2TestCase {
      * Update a Order and check if the update was successful
      */
     public void testUpdate() {
-        List<TUpdate_Input> Orders_update_in = new ArrayList();
+        List<TUpdate_Input> Orders_update_in = new ArrayList<>();
         Orders_update_in.add(Order_update);
 
-        List<TUpdate_Return> Orders_update_out = new ArrayList();
+        List<TUpdate_Return> Orders_update_out = new ArrayList<>();
 
         try {
             Orders_update_out = serviceClient.updateOrder(Orders_update_in);
@@ -137,7 +137,7 @@ public class Order2TestCase {
      * @param isAlreadyUpdated if true check against update data, else against create data
      */
     public void testGetInfo(boolean isAlreadyUpdated) {
-        List<TGetInfo_Return> Orders_info_out = new ArrayList();
+        List<TGetInfo_Return> Orders_info_out = new ArrayList<>();
         try {
             Orders_info_out = serviceClient.getOrderInfo(
                 new String[]{path + alias},
@@ -186,7 +186,7 @@ public class Order2TestCase {
      * Delete a Order and check if no error occured.
      */
     public void testDelete() {
-        List<TDelete_Return> Orders_delete_out = new ArrayList();
+        List<TDelete_Return> Orders_delete_out = new ArrayList<>();
         try {
             Orders_delete_out = serviceClient.deleteOrder(new String[]{path + alias});
         }
@@ -204,7 +204,7 @@ public class Order2TestCase {
      * @param expected if false the Test will be successful if the Order does NOT exist
      */
     public void testExists(boolean expected) {
-        List<TExists_Return> Orders_exists_out = new ArrayList();
+        List<TExists_Return> Orders_exists_out = new ArrayList<>();
         try {
             Orders_exists_out = serviceClient.existsOrder(new String[]{path + alias});
         }

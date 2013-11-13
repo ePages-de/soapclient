@@ -186,10 +186,10 @@ public class Product7TestCase {
      * Create a Product and check if the creation was successful
      */
     public void testCreate() {
-        List<TCreate_Input> Products_create_in = new ArrayList();
+        List<TCreate_Input> Products_create_in = new ArrayList<>();
         Products_create_in.add(Product_in);
 
-        List<TCreate_Return> Products_create_out = new ArrayList();
+        List<TCreate_Return> Products_create_out = new ArrayList<>();
 
         try {
             Products_create_out = serviceClient.createProduct(Products_create_in);
@@ -207,10 +207,10 @@ public class Product7TestCase {
      * Update a Product and check if the update was successful
      */
     public void testUpdate() {
-        List<TUpdate_Input> Products_update_in = new ArrayList();
+        List<TUpdate_Input> Products_update_in = new ArrayList<>();
         Products_update_in.add(Product_update);
 
-        List<TUpdate_Return> Products_update_out = new ArrayList();
+        List<TUpdate_Return> Products_update_out = new ArrayList<>();
 
         try {
             Products_update_out = serviceClient.updateProduct(Products_update_in);
@@ -231,7 +231,7 @@ public class Product7TestCase {
      * @param isAlreadyUpdated if true check against update data, else against create data
      */
     public void testGetInfo(boolean isAlreadyUpdated) {
-        List<TGetInfo_Return> Products_info_out = new ArrayList();
+        List<TGetInfo_Return> Products_info_out = new ArrayList<>();
         try {
             Products_info_out = serviceClient.getProductInfo(
                 new String[]{path + alias},
@@ -340,7 +340,7 @@ public class Product7TestCase {
      * Delete a Product and check if no error occured.
      */
     public void testDelete() {
-        List<TDelete_Return> Products_delete_out = new ArrayList();
+        List<TDelete_Return> Products_delete_out = new ArrayList<>();
         try {
             Products_delete_out = serviceClient.deleteProduct(new String[]{path + alias});
         }
@@ -359,7 +359,7 @@ public class Product7TestCase {
      * @param expected if false the Test will be successful if the Product does NOT exist
      */
     public void testExists(boolean expected) {
-        List<TExists_Return> Products_exists_out = new ArrayList();
+        List<TExists_Return> Products_exists_out = new ArrayList<>();
         try {
             Products_exists_out = serviceClient.existsProduct(new String[]{path + alias});
         }
@@ -390,10 +390,10 @@ public class Product7TestCase {
     }
 
     public void testCreateDownload() {
-        List<TCreate_Input> Products_create_in = new ArrayList();
+        List<TCreate_Input> Products_create_in = new ArrayList<>();
         Products_create_in.add(Product_down);
 
-        List<TCreate_Return> Products_create_out = new ArrayList();
+        List<TCreate_Return> Products_create_out = new ArrayList<>();
 
         try {
             Products_create_out = serviceClient.createProduct(Products_create_in);
@@ -408,7 +408,7 @@ public class Product7TestCase {
     }
 
     public void testGetInfoDownload() {
-        List<TGetInfo_Return> Products_info_out = new ArrayList();
+        List<TGetInfo_Return> Products_info_out = new ArrayList<>();
         try {
             Products_info_out = serviceClient.getProductInfo(
                 new String[]{path + alias},
