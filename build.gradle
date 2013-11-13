@@ -7,33 +7,35 @@ group = 'de.epages'
 description = 'AXIS 1.x based SOAP client for epages6'
 version = '6.17.0-SNAPSHOT'
 
-repositories {
-	mavenCentral()
-}
+repositories { mavenCentral() }
 
 ext {
-	axisVersion = "1.4"
-	slf4jVersion = "1.7.5"
-	junitVersion = "4.11"
-	wsdl4jVersion = "1.6.3"
-	commonsDiscoveryVersion = "0.5"
+    axisVersion = "1.4"
+    slf4jVersion = "1.7.5"
+    junitVersion = "4.11"
+    wsdl4jVersion = "1.6.3"
+    commonsDiscoveryVersion = "0.5"
 }
 
 dependencies {
     compile "org.apache.axis:axis:${axisVersion}"
     compile "org.apache.axis:axis-jaxrpc:${axisVersion}"
     runtime "org.apache.axis:axis-saaj:${axisVersion}"
-	runtime "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
-	runtime "wsdl4j:wsdl4j:${wsdl4jVersion}"
+    runtime "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
+    runtime "wsdl4j:wsdl4j:${wsdl4jVersion}"
 
-	testCompile "org.slf4j:jul-to-slf4j:${slf4jVersion}"
-	testCompile "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
-	testCompile "junit:junit:${junitVersion}"
+    testCompile "org.slf4j:jul-to-slf4j:${slf4jVersion}"
+    testCompile "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+    testCompile "junit:junit:${junitVersion}"
 }
+
+project.sourceCompatibility = rootProject.hasProperty("SOURCE_COMPATIBILITY") ?: "1.7"
 
 compileJava {
-	options.with {
-		compilerArgs << "-Xlint:unchecked"
-		options.encoding = 'UTF-8'
-	}
+    options.with {
+        compilerArgs << "-Xlint:unchecked"
+        options.encoding = 'UTF-8'
+    }
 }
+
+wrapper {  gradleVersion = "1.8" }
