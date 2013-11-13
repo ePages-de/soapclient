@@ -1,6 +1,8 @@
 apply plugin: "java"
 apply plugin: "eclipse"
 apply plugin: 'maven'
+apply plugin: 'jacoco'
+apply plugin: "sonar-runner"
 
 archivesBaseName = 'soapclient'
 group = 'de.epages'
@@ -36,4 +38,43 @@ compileJava {
 		compilerArgs << "-Xlint:unchecked"
 		options.encoding = 'UTF-8'
 	}
+}
+
+task sourceJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+
+sonarRunner {
+    sonarProperties {
+        def env = System.getenv()
+        if (env.get("SONAR_URL") != null) {
+           property "sonar.host.url", env.get("SONAR_URL")
+        } else {
+            property "sonar.host.url", 'http://localhost:9000/'
+        }
+
+        if (env.get("SONAR_JDBC_URL") != null) {
+            property "sonar.jdbc.url", env.get("SONAR_JDBC_URL")
+        } else {
+            property "sonar.jdbc.url", "jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true"
+        }
+        property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"
+        property "sonar.jdbc.username", "sonar"
+        property "sonar.jdbc.password", "sonar"
+
+        property "sonar.jacoco.reportPath", "build/jacoco/test.exec"
+        property "sonar.jacoco.itReportPath", "build/jacoco/integrationTest.exec"
+        property "sonar.scm.url", "scm:git:https://github.com/ePages-de/soapclient/"
+
+        if (env.get("GIT_BRANCH") != null) {
+            // fix for new "feature" http://jira.codehaus.org/browse/SONAR-4188
+            property "sonar.branch", env.get("GIT_BRANCH").replace('/', '_')
+        }
+   }
+}
+
+artifacts {
+    archives sourceJar
 }

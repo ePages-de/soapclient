@@ -99,18 +99,13 @@ public class Catalog2TestCase {
     /**
      * Create a Catalog and check if the creation was successful
      */
-    public void testCreate() {
-        List<TCreate_Input> Catalogs_create_in = new ArrayList();
+    public void testCreate() throws RemoteException {
+        List<TCreate_Input> Catalogs_create_in = new ArrayList<>();
         Catalogs_create_in.add(Catalog_in);
 
-        List<TCreate_Return> Catalogs_create_out = new ArrayList();
+        List<TCreate_Return> Catalogs_create_out = new ArrayList<>();
 
-        try {
-            Catalogs_create_out = serviceClient.createCatalog(Catalogs_create_in);
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        Catalogs_create_out = serviceClient.createCatalog(Catalogs_create_in);
 
         // test if creation was successful
         assertEquals("create result set", 1, Catalogs_create_out.size());
@@ -282,7 +277,7 @@ public class Catalog2TestCase {
      * </ol>
      */
     @Test
-    public void testAll() {
+    public void testAll() throws RemoteException {
         testCreate();
         testExists(true);
         testGetInfo(false);

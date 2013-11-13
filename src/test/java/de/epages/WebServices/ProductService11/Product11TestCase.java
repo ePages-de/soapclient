@@ -1,26 +1,44 @@
 package de.epages.WebServices.ProductService11;
 
-import de.epages.WebServices.WebServiceTestConfiguration;
-import de.epages.WebServices.ProductService11.Stub.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.*;
-import static org.junit.Assert.*;
-
-import java.util.*;
-import java.util.logging.Logger;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import de.epages.WebServices.FileUtil;
+import de.epages.WebServices.WebServiceTestConfiguration;
+import de.epages.WebServices.ProductService11.Stub.TAttribute;
+import de.epages.WebServices.ProductService11.Stub.TCreate_Input;
+import de.epages.WebServices.ProductService11.Stub.TCreate_Return;
+import de.epages.WebServices.ProductService11.Stub.TDelete_Return;
+import de.epages.WebServices.ProductService11.Stub.TDownload;
+import de.epages.WebServices.ProductService11.Stub.TExists_Return;
+import de.epages.WebServices.ProductService11.Stub.TFind_Input;
+import de.epages.WebServices.ProductService11.Stub.TGetInfo_Return;
+import de.epages.WebServices.ProductService11.Stub.TLocalizedValue;
+import de.epages.WebServices.ProductService11.Stub.TProductPrice;
+import de.epages.WebServices.ProductService11.Stub.TShippingMethod;
+import de.epages.WebServices.ProductService11.Stub.TUpdate_Input;
+import de.epages.WebServices.ProductService11.Stub.TUpdate_Return;
 
 /**
  * A JUnit TestSuite to test epages Product WebServices.
  *
  */
 public class Product11TestCase {
-    private static Logger log = Logger.getLogger(Product11TestCase.class.getName());
     ProductService11Client serviceClient;
     TCreate_Input Product_in = new TCreate_Input();
     TUpdate_Input Product_update = new TUpdate_Input();
@@ -34,7 +52,7 @@ public class Product11TestCase {
      * Sets all the required prerequisites for the tests. Will be called before the test are run.
      */
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
         serviceClient = new ProductService11Client(new WebServiceTestConfiguration());
 
         // create test products that can be used with the create and update methods
@@ -185,41 +203,27 @@ public class Product11TestCase {
         download_up.setIsExternal(false);
         download_up.setFileName("image_download.jpg");
         download_up.setPosition( new BigInteger("10") );
-        try {
-            download_up.setFileContent( readFile("../TestData/ProductImageService/cg_0100504001.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        download_up.setFileContent( FileUtil.readFileFromClasspath("TestData/ProductImageService/cg_0100504001.jpg"));
         Product_down_up.setDownloadProductMaps(new TDownload[]{download_up});
 
         // delete the test product if it exists
         List<TExists_Return> Products_exists_out;
-        try {
-            Products_exists_out = serviceClient.existsProduct(new String[]{path + alias});
-            if( Products_exists_out.get(0).getExists() ) {
-                serviceClient.deleteProduct(new String[]{path + alias});
-            }
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
+        Products_exists_out = serviceClient.existsProduct(new String[]{path + alias});
+        if( Products_exists_out.get(0).getExists() ) {
+            serviceClient.deleteProduct(new String[]{path + alias});
         }
     }
 
     /**
      * Create a Product and check if the creation was successful
      */
-    public void testCreate() {
+    public void testCreate() throws RemoteException {
         List<TCreate_Input> Products_create_in = new ArrayList();
         Products_create_in.add(Product_in);
 
         List<TCreate_Return> Products_create_out = new ArrayList();
 
-        try {
-            Products_create_out = serviceClient.createProduct(Products_create_in);
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        Products_create_out = serviceClient.createProduct(Products_create_in);
 
         // test if creation was successful
         assertEquals("create result set", 1, Products_create_out.size());
@@ -253,18 +257,13 @@ public class Product11TestCase {
      *
      * @param isAlreadyUpdated if true check against update data, else against create data
      */
-    public void testGetInfo(boolean isAlreadyUpdated) {
+    public void testGetInfo(boolean isAlreadyUpdated) throws RemoteException {
         List<TGetInfo_Return> Products_info_out = new ArrayList();
-        try {
-            Products_info_out = serviceClient.getProductInfo(
-                new String[]{path + alias},
-                new String[]{"Manufacturer"},
-                new String[]{"de", "en"}
-            );
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        Products_info_out = serviceClient.getProductInfo(
+            new String[]{path + alias},
+            new String[]{"Manufacturer"},
+            new String[]{"de", "en"}
+        );
 
         // test if getinfo was successful and if all data are equal to input
         assertEquals("getinfo result set", 1, Products_info_out.size());
@@ -382,14 +381,9 @@ public class Product11TestCase {
     /**
      * Delete a Product and check if no error occured.
      */
-    public void testDelete() {
+    public void testDelete() throws RemoteException {
         List<TDelete_Return> Products_delete_out = new ArrayList();
-        try {
-            Products_delete_out = serviceClient.deleteProduct(new String[]{path + alias});
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        Products_delete_out = serviceClient.deleteProduct(new String[]{path + alias});
 
         // test if deletion was successful
         assertEquals("delete result set", 1, Products_delete_out.size());
@@ -401,67 +395,46 @@ public class Product11TestCase {
      *
      * @param expected if false the Test will be successful if the Product does NOT exist
      */
-    public void testExists(boolean expected) {
+    public void testExists(boolean expected) throws RemoteException {
         List<TExists_Return> Products_exists_out = new ArrayList();
-        try {
-            Products_exists_out = serviceClient.existsProduct(new String[]{path + alias});
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        Products_exists_out = serviceClient.existsProduct(new String[]{path + alias});
 
         // test if exists check was successful
         assertEquals("exists result set", 1, Products_exists_out.size());
         assertEquals("exists?", new Boolean(expected), Products_exists_out.get(0).getExists());
     }
 
-    public void testFind() {
+    public void testFind() throws RemoteException {
         TFind_Input parameters = new TFind_Input();
         parameters.setAlias(Product_in.getAlias());
 
         String[] Products_find_out = new String[]{};
-        try {
-            Products_find_out = serviceClient.findProducts(parameters);
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        Products_find_out = serviceClient.findProducts(parameters);
 
         // test if find was successful
         assertEquals("find result set", 1, Products_find_out.length);
         assertEquals("found path", path + alias, Products_find_out[0]);
     }
 
-    public void testCreateDownload() {
-        List<TCreate_Input> Products_create_in = new ArrayList();
+    public void testCreateDownload() throws RemoteException {
+        List<TCreate_Input> Products_create_in = new ArrayList<>();
         Products_create_in.add(Product_down);
 
-        List<TCreate_Return> Products_create_out = new ArrayList();
-
-        try {
-            Products_create_out = serviceClient.createProduct(Products_create_in);
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        List<TCreate_Return> Products_create_out = new ArrayList<>();
+        Products_create_out = serviceClient.createProduct(Products_create_in);
 
         // test if creation was successful
         assertEquals("create result set", 1, Products_create_out.size());
         assertEquals("created?", new Boolean(true), Products_create_out.get(0).getCreated());
     }
 
-    public void testGetInfoDownload() {
-        List<TGetInfo_Return> Products_info_out = new ArrayList();
-        try {
-            Products_info_out = serviceClient.getProductInfo(
-                new String[]{path + alias},
-                new String[]{},
-                new String[]{"de", "en"}
-            );
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+    public void testGetInfoDownload() throws RemoteException {
+        List<TGetInfo_Return> Products_info_out = new ArrayList<>();
+        Products_info_out = serviceClient.getProductInfo(
+            new String[]{path + alias},
+            new String[]{},
+            new String[]{"de", "en"}
+        );
 
         // test if getinfo was successful and if all data are equal to input
         assertEquals("getinfo result set", 1, Products_info_out.size());
@@ -479,36 +452,26 @@ public class Product11TestCase {
         assertEquals("TargetUrl", getDownload.getTargetUrl(), refDownload.getTargetUrl() );
     }
 
-    public void testCreateDownloadWithUpload() {
-        List<TCreate_Input> Products_create_in = new ArrayList();
+    public void testCreateDownloadWithUpload() throws RemoteException {
+        List<TCreate_Input> Products_create_in = new ArrayList<>();
         Products_create_in.add(Product_down_up);
 
-        List<TCreate_Return> Products_create_out = new ArrayList();
+        List<TCreate_Return> Products_create_out = new ArrayList<>();
 
-        try {
-            Products_create_out = serviceClient.createProduct(Products_create_in);
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        Products_create_out = serviceClient.createProduct(Products_create_in);
 
         // test if creation was successful
         assertEquals("create result set", 1, Products_create_out.size());
         assertEquals("created?", new Boolean(true), Products_create_out.get(0).getCreated());
     }
 
-    public void testGetInfoDownloadWithUpload() {
+    public void testGetInfoDownloadWithUpload() throws RemoteException {
         List<TGetInfo_Return> Products_info_out = new ArrayList();
-        try {
-            Products_info_out = serviceClient.getProductInfo(
-                new String[]{path + alias},
-                new String[]{},
-                new String[]{"de", "en"}
-            );
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        Products_info_out = serviceClient.getProductInfo(
+            new String[]{path + alias},
+            new String[]{},
+            new String[]{"de", "en"}
+        );
 
         // test if getinfo was successful and if all data are equal to input
         assertEquals("getinfo result set", 1, Products_info_out.size());
@@ -526,25 +489,6 @@ public class Product11TestCase {
     }
 
     /**
-     * reads a binary file
-     * @param fileName file name
-     * @return binary file content
-     */
-    private byte[] readFile(String FileName) throws IOException
-    {
-        File file = new File(FileName);
-        int fileSize = (int)file.length();
-        InputStream in = new FileInputStream(file);
-        byte[] content = new byte[fileSize];
-        in.read(content, 0, fileSize);
-        in.close();
-
-        return content;
-    }
-
-
-
-    /**
      * Runs all tests:
      * <ol>
      *   <li>create a Product</li>
@@ -558,7 +502,7 @@ public class Product11TestCase {
      * </ol>
      */
     @Test
-    public void testAll() {
+    public void testAll() throws IOException {
         testCreate();
         testExists(true);
         testFind();
