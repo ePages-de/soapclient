@@ -7,6 +7,7 @@ goto END
 :ALL
 for %%s in (
   AssignmentService
+  BasketService
   CatalogService
   CatalogService2
   CatalogService3
