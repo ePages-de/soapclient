@@ -13,8 +13,8 @@ public class WebServiceTestConfiguration implements WebServiceConfiguration {
 
     private static final WebServiceTestConfiguration _INSTANCE = new WebServiceTestConfiguration();
 
-    public final static String WEBSERVICE_LOGIN = "/Shops/DemoShop/Users/admin";
-    public final static String WEBSERVICE_PASSWORD = "admin";
+    public final static String WEBSERVICE_LOGIN = "/Users/wsadmin";
+    public final static String WEBSERVICE_PASSWORD = "wsadmin";
     public final static URL WEBSERVICE_URL = _INSTANCE._getWebserviceURL();
 
     private String webservice_server = "";
@@ -44,7 +44,7 @@ public class WebServiceTestConfiguration implements WebServiceConfiguration {
     private URL _getWebserviceURL() {
         String WServer = getWServer();
         try {
-            return URI.create("http://" + WServer + "/epages/Store.soap").toURL();
+            return URI.create("http://" + WServer + "/epages/DemoShop.soap").toURL();
         } catch (MalformedURLException e) {
             throw new IllegalArgumentException(e);
         }
