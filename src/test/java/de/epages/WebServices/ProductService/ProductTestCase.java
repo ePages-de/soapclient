@@ -1,25 +1,36 @@
 package de.epages.WebServices.ProductService;
 
-import de.epages.WebServices.WebServiceTestConfiguration;
-import de.epages.WebServices.ProductService.Stub.*;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.*;
-import static org.junit.Assert.*;
-
-import java.text.*;
-import java.util.*;
-import java.util.logging.Logger;
 import java.rmi.RemoteException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import de.epages.WebServices.WebServiceTestConfiguration;
+import de.epages.WebServices.ProductService.Stub.TAttribute;
+import de.epages.WebServices.ProductService.Stub.TCreate_Input;
+import de.epages.WebServices.ProductService.Stub.TCreate_Return;
+import de.epages.WebServices.ProductService.Stub.TDelete_Return;
+import de.epages.WebServices.ProductService.Stub.TExists_Return;
+import de.epages.WebServices.ProductService.Stub.TFind_Input;
+import de.epages.WebServices.ProductService.Stub.TGetInfo_Return;
+import de.epages.WebServices.ProductService.Stub.TLocalizedValue;
+import de.epages.WebServices.ProductService.Stub.TProductPrice;
+import de.epages.WebServices.ProductService.Stub.TUpdate_Input;
+import de.epages.WebServices.ProductService.Stub.TUpdate_Return;
 
 /**
  * A JUnit TestSuite to test epages Product WebServices.
- *
- * User: tmangner
- * Date: 08.12.2005
- * Time: 14:19:18
  */
 public class ProductTestCase {
-    private static Logger log = Logger.getLogger(ProductTestCase.class.getName());
     ProductServiceClient serviceClient;
     TCreate_Input Product_in = new TCreate_Input();
     TUpdate_Input Product_update = new TUpdate_Input();
@@ -103,18 +114,13 @@ public class ProductTestCase {
     /**
      * Create a Product and check if the creation was successful
      */
-    public void testCreate() {
-        List<TCreate_Input> Products_create_in = new ArrayList();
+    public void testCreate() throws RemoteException {
+        List<TCreate_Input> Products_create_in = new ArrayList<>();
         Products_create_in.add(Product_in);
 
-        List<TCreate_Return> Products_create_out = new ArrayList();
+        List<TCreate_Return> Products_create_out = new ArrayList<>();
 
-        try {
-            Products_create_out = serviceClient.createProduct(Products_create_in);
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        Products_create_out = serviceClient.createProduct(Products_create_in);
 
         // test if creation was successful
         assertEquals("create result set", 1, Products_create_out.size());
@@ -124,18 +130,13 @@ public class ProductTestCase {
     /**
      * Update a Product and check if the update was successful
      */
-    public void testUpdate() {
-        List<TUpdate_Input> Products_update_in = new ArrayList();
+    public void testUpdate() throws RemoteException {
+        List<TUpdate_Input> Products_update_in = new ArrayList<>();
         Products_update_in.add(Product_update);
 
-        List<TUpdate_Return> Products_update_out = new ArrayList();
+        List<TUpdate_Return> Products_update_out = new ArrayList<>();
 
-        try {
-            Products_update_out = serviceClient.updateProduct(Products_update_in);
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        Products_update_out = serviceClient.updateProduct(Products_update_in);
 
         // test if update was successful
         assertEquals("udpate result set", 1, Products_update_out.size());
@@ -148,18 +149,13 @@ public class ProductTestCase {
      *
      * @param isAlreadyUpdated if true check against update data, else against create data
      */
-    public void testGetInfo(boolean isAlreadyUpdated) {
-        List<TGetInfo_Return> Products_info_out = new ArrayList();
-        try {
-            Products_info_out = serviceClient.getProductInfo(
-                new String[]{path + alias},
-                new String[]{"AvailabilityDate"},
-                new String[]{"de", "en"}
-            );
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+    public void testGetInfo(boolean isAlreadyUpdated) throws RemoteException, ParseException {
+        List<TGetInfo_Return> Products_info_out = new ArrayList<>();
+        Products_info_out = serviceClient.getProductInfo(
+            new String[]{path + alias},
+            new String[]{"AvailabilityDate"},
+            new String[]{"de", "en"}
+        );
 
         // test if getinfo was successful and if all data are equal to input
         assertEquals("getinfo result set", 1, Products_info_out.size());
@@ -171,40 +167,25 @@ public class ProductTestCase {
         HashMap<String, String> hash = new HashMap<String, String>();
         hash.put(Product_info_out.getName()[0].getLanguageCode(), Product_info_out.getName()[0].getValue());
         hash.put(Product_info_out.getName()[1].getLanguageCode(), Product_info_out.getName()[1].getValue());
-        
+
         HashMap<String, Float> priceHash = new HashMap<String, Float>();
         priceHash.put(Product_info_out.getProductPrices()[0].getCurrencyID(), Product_info_out.getProductPrices()[0].getPrice());
         priceHash.put(Product_info_out.getProductPrices()[1].getCurrencyID(), Product_info_out.getProductPrices()[1].getPrice());
-        
 
         if (isAlreadyUpdated) {
-
-        	try {
-        		Date date_in  = sdf_in.parse(Product_update.getAttributes()[0].getValue());
-        		Date date_out = sdf_out.parse(Product_info_out.getAttributes()[0].getValue());
-                assertEquals("AvailabilityDate", date_in, date_out);
-        	} catch (ParseException e) {
-                e.printStackTrace();
-        	}
-            
+            Date date_in = sdf_in.parse(Product_update.getAttributes()[0].getValue());
+            Date date_out = sdf_out.parse(Product_info_out.getAttributes()[0].getValue());
+            assertEquals("AvailabilityDate", date_in, date_out);
             assertEquals("updated localized Name", Product_update.getName()[0].getValue(), hash.get(Product_update.getName()[0].getLanguageCode()));
             assertEquals("updated localized Name", Product_update.getName()[1].getValue(), hash.get(Product_update.getName()[1].getLanguageCode()));
-
             assertEquals("Price Value", (float)Product_update.getProductPrices()[0].getPrice(), (float)priceHash.get(Product_update.getProductPrices()[0].getCurrencyID()), 0.001 );
         }
         else {
-        	
-        	try {
-        		Date date_in  = sdf_in.parse(Product_in.getAttributes()[0].getValue());
-        		Date date_out = sdf_out.parse(Product_info_out.getAttributes()[0].getValue());
-                assertEquals("AvailabilityDate", date_in, date_out);
-        	} catch (ParseException e) {
-                e.printStackTrace();
-        	}
-            
+            Date date_in = sdf_in.parse(Product_in.getAttributes()[0].getValue());
+            Date date_out = sdf_out.parse(Product_info_out.getAttributes()[0].getValue());
+            assertEquals("AvailabilityDate", date_in, date_out);
             assertEquals("initial localized Name", Product_in.getName()[0].getValue(), hash.get(Product_update.getName()[0].getLanguageCode()));
             assertEquals("initial localized Name", Product_in.getName()[1].getValue(), hash.get(Product_update.getName()[1].getLanguageCode()));
-
             assertEquals("Price Value", (float)Product_in.getProductPrices()[0].getPrice(), (float)priceHash.get(Product_in.getProductPrices()[0].getCurrencyID()), 0.001 );
         }
 
@@ -217,14 +198,9 @@ public class ProductTestCase {
     /**
      * Delete a Product and check if no error occured.
      */
-    public void testDelete() {
-        List<TDelete_Return> Products_delete_out = new ArrayList();
-        try {
-            Products_delete_out = serviceClient.deleteProduct(new String[]{path + alias});
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+    public void testDelete() throws RemoteException {
+        List<TDelete_Return> Products_delete_out = new ArrayList<>();
+        Products_delete_out = serviceClient.deleteProduct(new String[]{path + alias});
 
         // test if deletion was successful
         assertEquals("delete result set", 1, Products_delete_out.size());
@@ -236,31 +212,21 @@ public class ProductTestCase {
      *
      * @param expected if false the Test will be successful if the Product does NOT exist
      */
-    public void testExists(boolean expected) {
-        List<TExists_Return> Products_exists_out = new ArrayList();
-        try {
-            Products_exists_out = serviceClient.existsProduct(new String[]{path + alias});
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+    public void testExists(boolean expected) throws RemoteException {
+        List<TExists_Return> Products_exists_out = new ArrayList<>();
+        Products_exists_out = serviceClient.existsProduct(new String[]{path + alias});
 
         // test if exists check was successful
         assertEquals("exists result set", 1, Products_exists_out.size());
         assertEquals("exists?", new Boolean(expected), Products_exists_out.get(0).getExists());
     }
 
-    public void testFind() {
+    public void testFind() throws RemoteException {
         TFind_Input parameters = new TFind_Input();
         parameters.setAlias(Product_in.getAlias());
 
         String[] Products_find_out = new String[]{};
-        try {
-            Products_find_out = serviceClient.findProducts(parameters);
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        Products_find_out = serviceClient.findProducts(parameters);
 
         // test if find was successful
         assertEquals("find result set", 1, Products_find_out.length);
@@ -281,7 +247,7 @@ public class ProductTestCase {
      * </ol>
      */
     @Test
-    public void testAll() {
+    public void testAll() throws RemoteException, ParseException {
         testCreate();
         testExists(true);
         testFind();

@@ -2,6 +2,7 @@ package de.epages.WebServices.ProductImageService;
 
 import de.epages.WebServices.ProductImageService.Stub.*;
 import de.epages.WebServices.ProductService.Stub.*;
+import de.epages.WebServices.FileUtil;
 import de.epages.WebServices.WebServiceTestConfiguration;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -126,12 +127,12 @@ public class ProductImageTestCase extends WebServiceTestConfiguration {
         // read files and fill the TImageData structures
         TImageData image1 = new TImageData();
         image1.setFileName(FName);
-        image1.setContent(readFile(FileName)); 
+        image1.setContent(FileUtil.readFileFromClasspath(FileName)); 
 
         // read second
         TImageData image2 = new TImageData();
         image2.setFileName(FName1);
-        image2.setContent(readFile(FileName1));
+        image2.setContent(FileUtil.readFileFromClasspath(FileName1));
     
         // add to structure
         TUpload_Input Params_in = new TUpload_Input();
@@ -161,12 +162,12 @@ public class ProductImageTestCase extends WebServiceTestConfiguration {
         // read files and fill the TImageData structures
         TImageData image1 = new TImageData();
         image1.setFileName(FName);
-        image1.setContent(readFile(FileName));
+        image1.setContent(FileUtil.readFileFromClasspath(FileName));
 
         // read second
         TImageData image2 = new TImageData();
         image2.setFileName(FName1);
-        image2.setContent(readFile(FileName1));
+        image2.setContent(FileUtil.readFileFromClasspath(FileName1));
     
         // add to structure
         TUploadScale_Input Params_in = new TUploadScale_Input();
@@ -228,20 +229,6 @@ public class ProductImageTestCase extends WebServiceTestConfiguration {
         assertEquals(FName + " exists?", expected, Exists_out);
     }
     
-    /**
-     * reads a binary file
-     * @param fileName file name
-     * @return binary file content
-     */
-    private byte[] readFile(String fileName) throws IOException
-    {
-    	InputStream in = getClass().getClassLoader().getResourceAsStream(fileName);
-    	byte[] data = new byte[in.available()];
-        in.read(data, 0, in.available());
-        in.close();
-    	
-    	return data;
-    }
 
     /**
      * test suite with all tests in correct order

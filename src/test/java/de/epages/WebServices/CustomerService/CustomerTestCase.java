@@ -128,10 +128,10 @@ public class CustomerTestCase {
      * Create a customer and check if the creation was successful
      */
     public void testCreate() {
-        List<TCreate_Input> customers_create_in = new ArrayList();
+        List<TCreate_Input> customers_create_in = new ArrayList<>();
         customers_create_in.add(customer_in);
 
-        List<TCreate_Return> customers_create_out = new ArrayList();
+        List<TCreate_Return> customers_create_out = new ArrayList<>();
 
         try {
             customers_create_out = serviceClient.createCustomer(customers_create_in);
@@ -149,10 +149,10 @@ public class CustomerTestCase {
      * Update a customer and check if the update was successful
      */
     public void testUpdate() {
-        List<TUpdate_Input> customers_update_in = new ArrayList();
+        List<TUpdate_Input> customers_update_in = new ArrayList<>();
         customers_update_in.add(customer_update);
 
-        List<TUpdate_Return> customers_update_out = new ArrayList();
+        List<TUpdate_Return> customers_update_out = new ArrayList<>();
 
         try {
             customers_update_out = serviceClient.updateCustomer(customers_update_in);
@@ -173,7 +173,7 @@ public class CustomerTestCase {
      * @param isAlreadyUpdated if true check against update data, else against create data
      */
     public void testGetInfo(boolean isAlreadyUpdated) {
-        List<TGetInfo_Return> customers_info_out = new ArrayList();
+        List<TGetInfo_Return> customers_info_out = new ArrayList<>();
         try {
             customers_info_out = serviceClient.getCustomerInfo(
                 new String[]{path + alias},
@@ -219,7 +219,7 @@ public class CustomerTestCase {
      * Delete a customer and check if no error occured.
      */
     public void testDelete() {
-        List<TDelete_Return> customers_delete_out = new ArrayList();
+        List<TDelete_Return> customers_delete_out = new ArrayList<>();
         try {
             customers_delete_out = serviceClient.deleteCustomer(new String[]{path + alias});
         }
@@ -237,7 +237,7 @@ public class CustomerTestCase {
      * @param expected if false the Test will be successful if the customer does NOT exist
      */
     public void testExists(boolean expected) {
-        List<TExists_Return> customers_exists_out = new ArrayList();
+        List<TExists_Return> customers_exists_out = new ArrayList<>();
         try {
             customers_exists_out = serviceClient.existsCustomer(new String[]{path + alias});
         }

@@ -99,18 +99,13 @@ public class Catalog2TestCase {
     /**
      * Create a Catalog and check if the creation was successful
      */
-    public void testCreate() {
-        List<TCreate_Input> Catalogs_create_in = new ArrayList();
+    public void testCreate() throws RemoteException {
+        List<TCreate_Input> Catalogs_create_in = new ArrayList<>();
         Catalogs_create_in.add(Catalog_in);
 
-        List<TCreate_Return> Catalogs_create_out = new ArrayList();
+        List<TCreate_Return> Catalogs_create_out = new ArrayList<>();
 
-        try {
-            Catalogs_create_out = serviceClient.createCatalog(Catalogs_create_in);
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        Catalogs_create_out = serviceClient.createCatalog(Catalogs_create_in);
 
         // test if creation was successful
         assertEquals("create result set", 1, Catalogs_create_out.size());
@@ -121,10 +116,10 @@ public class Catalog2TestCase {
      * Update a Catalog and check if the update was successful
      */
     public void testUpdate() {
-        List<TUpdate_Input> Catalogs_update_in = new ArrayList();
+        List<TUpdate_Input> Catalogs_update_in = new ArrayList<>();
         Catalogs_update_in.add(Catalog_update);
 
-        List<TUpdate_Return> Catalogs_update_out = new ArrayList();
+        List<TUpdate_Return> Catalogs_update_out = new ArrayList<>();
 
         try {
             Catalogs_update_out = serviceClient.updateCatalog(Catalogs_update_in);
@@ -145,7 +140,7 @@ public class Catalog2TestCase {
      * @param isAlreadyUpdated if true check against update data, else against create data
      */
     public void testGetInfo(boolean isAlreadyUpdated) {
-        List<TGetInfo_Return> Catalogs_info_out = new ArrayList();
+        List<TGetInfo_Return> Catalogs_info_out = new ArrayList<>();
         try {
             Catalogs_info_out = serviceClient.getCatalogInfo(
                 new String[]{full},
@@ -203,7 +198,7 @@ public class Catalog2TestCase {
      * Delete a Catalog and check if no error occured.
      */
     public void testDelete() {
-        List<TDelete_Return> Catalogs_delete_out = new ArrayList();
+        List<TDelete_Return> Catalogs_delete_out = new ArrayList<>();
         try {
             Catalogs_delete_out = serviceClient.deleteCatalog(new String[]{full});
         }
@@ -225,7 +220,7 @@ public class Catalog2TestCase {
      * @param expected if false the Test will be successful if the Catalog does NOT exist
      */
     public void testExists(boolean expected) {
-        List<TExists_Return> Catalogs_exists_out = new ArrayList();
+        List<TExists_Return> Catalogs_exists_out = new ArrayList<>();
         try {
             Catalogs_exists_out = serviceClient.existsCatalog(new String[]{full});
         }
@@ -245,7 +240,7 @@ public class Catalog2TestCase {
      * Sort products of a Catalog and check if the sorting was successful
      */
     public void testSort(int casenumber ) {
-        List<TSortProducts_Input> Catalogs_sort_in = new ArrayList();
+        List<TSortProducts_Input> Catalogs_sort_in = new ArrayList<>();
         if (casenumber==1) {
         	Catalogs_sort_in.add(Catalog_sort1);
         } else if (casenumber==2) {
@@ -254,7 +249,7 @@ public class Catalog2TestCase {
         	Catalogs_sort_in.add(Catalog_sort3);
         }
 
-        List<TSortProducts_Return> Catalogs_sort_out = new ArrayList();
+        List<TSortProducts_Return> Catalogs_sort_out = new ArrayList<>();
 
         try {
         	Catalogs_sort_out = serviceClient.sortProducts(Catalogs_sort_in);
@@ -282,7 +277,7 @@ public class Catalog2TestCase {
      * </ol>
      */
     @Test
-    public void testAll() {
+    public void testAll() throws RemoteException {
         testCreate();
         testExists(true);
         testGetInfo(false);

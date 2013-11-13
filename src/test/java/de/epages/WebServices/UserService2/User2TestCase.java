@@ -143,10 +143,10 @@ public class User2TestCase {
      * Create a User and check if the creation was successful
      */
     public void testCreate() {
-        List<TCreate_Input> Users_create_in = new ArrayList();
+        List<TCreate_Input> Users_create_in = new ArrayList<>();
         Users_create_in.add(user_in);
 
-        List<TCreate_Return> Users_create_out = new ArrayList();
+        List<TCreate_Return> Users_create_out = new ArrayList<>();
 
         try {
             Users_create_out = serviceClient.createUser(Users_create_in);
@@ -164,10 +164,10 @@ public class User2TestCase {
      * Update a User and check if the update was successful
      */
     public void testUpdate() {
-        List<TUpdate_Input> Users_update_in = new ArrayList();
+        List<TUpdate_Input> Users_update_in = new ArrayList<>();
         Users_update_in.add(user_update);
 
-        List<TUpdate_Return> Users_update_out = new ArrayList();
+        List<TUpdate_Return> Users_update_out = new ArrayList<>();
 
         try {
             Users_update_out = serviceClient.updateUser(Users_update_in);
@@ -188,7 +188,7 @@ public class User2TestCase {
      * @param isAlreadyUpdated if true check against update data, else against create data
      */
     public void testGetInfo(boolean isAlreadyUpdated) {
-        List<TGetInfo_Return> Users_info_out = new ArrayList();
+        List<TGetInfo_Return> Users_info_out = new ArrayList<>();
         try {
             Users_info_out = serviceClient.getUserInfo(
                 new String[]{path + alias},
@@ -251,7 +251,7 @@ public class User2TestCase {
      * Delete a User and check if no error occured.
      */
     public void testDelete() {
-        List<TDelete_Return> Users_delete_out = new ArrayList();
+        List<TDelete_Return> Users_delete_out = new ArrayList<>();
         try {
             Users_delete_out = serviceClient.deleteUser(new String[]{path + alias});
         }
@@ -270,7 +270,7 @@ public class User2TestCase {
          * @param expected if false the Test will be successful if the User does NOT exist
          */
     public void testExists(boolean expected) {
-        List<TExists_Return> Users_exists_out = new ArrayList();
+        List<TExists_Return> Users_exists_out = new ArrayList<>();
         try {
             Users_exists_out = serviceClient.existsUser(new String[]{path + alias});
         }
