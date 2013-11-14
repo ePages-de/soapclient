@@ -12,6 +12,7 @@ echo $WSDL2JAVA
 
 for WEBSERVICE in \
 AssignmentService \
+BasketService \
 CatalogService \
 CatalogService2 \
 CatalogService3 \
