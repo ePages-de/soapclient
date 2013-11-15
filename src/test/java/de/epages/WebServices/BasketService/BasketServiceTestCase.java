@@ -1,20 +1,37 @@
 package de.epages.WebServices.BasketService;
 
-import de.epages.WebServices.BasketService.Stub.*;
-import de.epages.WebServices.WebServiceConfiguration;
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
+import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 import java.util.GregorianCalendar;
 import java.util.logging.Logger;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import de.epages.WebServices.WebServiceConfiguration;
+import de.epages.WebServices.WebServiceTestConfiguration;
+import de.epages.WebServices.BasketService.Stub.BasketServiceLocator;
+import de.epages.WebServices.BasketService.Stub.Bind_Basket_SOAPStub;
+import de.epages.WebServices.BasketService.Stub.TAddressNamed;
+import de.epages.WebServices.BasketService.Stub.TAttribute;
+import de.epages.WebServices.BasketService.Stub.TCreate_Input;
+import de.epages.WebServices.BasketService.Stub.TCreate_Return;
+import de.epages.WebServices.BasketService.Stub.TDelete_Return;
+import de.epages.WebServices.BasketService.Stub.TExists_Return;
+import de.epages.WebServices.BasketService.Stub.TGetInfo_Return;
+import de.epages.WebServices.BasketService.Stub.TLineItemContainerIn;
+import de.epages.WebServices.BasketService.Stub.TProductLineItemIn;
+import de.epages.WebServices.BasketService.Stub.TUpdate_Input;
+import de.epages.WebServices.BasketService.Stub.TUpdate_Return;
 /* import java.math.BigInteger; */
-import java.net.MalformedURLException;
 
 /**
  * A JUnit TestSuite to test epages Order WebServices.
  */
-public class BasketServiceTestCase extends WebServiceConfiguration {
+public class BasketServiceTestCase {
     private static Logger log = Logger.getLogger(BasketServiceTestCase.class.getName());
 
     private Bind_Basket_SOAPStub basketService;
@@ -42,15 +59,16 @@ public class BasketServiceTestCase extends WebServiceConfiguration {
         log.info("BasketTestCase: setUp");
 
         // TODO What to use here  ? BasketServiceTestCase takes the wrong one ....
+        WebServiceConfiguration config = new WebServiceTestConfiguration();
         de.epages.WebServices.BasketService.Stub.BasketService serviceLocator = new BasketServiceLocator();
         log.info("address specified by wsdl: " + serviceLocator.getport_BasketAddress());
-        log.info("using web service Url: " + WEBSERVICE_URL);
+        log.info("using web service Url: " + config.getWebserviceURL());
 
-        basketService = new Bind_Basket_SOAPStub(new java.net.URL(WEBSERVICE_URL), serviceLocator);
+        basketService = new Bind_Basket_SOAPStub(config.getWebserviceURL(), serviceLocator);
 
         // setting user-path and password of the shop
-        basketService.setUsername(WEBSERVICE_LOGIN);
-        basketService.setPassword(WEBSERVICE_PASSWORD);
+        basketService.setUsername(config.getUsername());
+        basketService.setPassword(config.getPassword());
 
         // init input address data
         Address_in.setEMail("java_test-1@epages.de");
