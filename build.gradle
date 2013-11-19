@@ -41,6 +41,19 @@ compileJava {
     }
 }
 
+sourceSets {
+    gen {
+        java {
+            srcDir 'src/gen/java'
+        }
+        resources {
+            srcDir 'src/gen/resources'
+        }
+    }
+}
+
+compile sourceSets.gen.output
+
 task sourceJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
     from sourceSets.main.allSource
