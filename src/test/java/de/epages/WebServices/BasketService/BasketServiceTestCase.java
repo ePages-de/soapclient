@@ -11,10 +11,7 @@ import java.util.logging.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.epages.WebServices.WebServiceConfiguration;
 import de.epages.WebServices.WebServiceTestConfiguration;
-import de.epages.WebServices.BasketService.Stub.BasketServiceLocator;
-import de.epages.WebServices.BasketService.Stub.Bind_Basket_SOAPStub;
 import de.epages.WebServices.BasketService.Stub.TAddressNamed;
 import de.epages.WebServices.BasketService.Stub.TAttribute;
 import de.epages.WebServices.BasketService.Stub.TCreate_Input;
@@ -29,16 +26,16 @@ import de.epages.WebServices.BasketService.Stub.TUpdate_Return;
 /* import java.math.BigInteger; */
 
 /**
- * A JUnit TestSuite to test epages Order WebServices.
+ * A JUnit TestSuite to test epages Basket WebServices.
  */
 public class BasketServiceTestCase {
     private static Logger log = Logger.getLogger(BasketServiceTestCase.class.getName());
 
-    private Bind_Basket_SOAPStub basketService;
+    private BasketServiceClient basketService;
     TCreate_Input Basket_in = new TCreate_Input();
     TUpdate_Input Basket_up = new TUpdate_Input();
-    TAttribute BasketAttr_in = new TAttribute("IsAcceptCreditCheckOK","1",null,null);
-    TAttribute BasketAttr_up = new TAttribute("IsAcceptCreditCheckOK","0",null,null);
+    TAttribute BasketAttr_in = new TAttribute("IsAddressOK","1",null,null);
+    TAttribute BasketAttr_up = new TAttribute("IsAddressOK","0",null,null);
     TAddressNamed Address_in = new TAddressNamed();
     TAddressNamed Address_up = new TAddressNamed();
 
@@ -47,7 +44,7 @@ public class BasketServiceTestCase {
     String BasketPath;
 
     String[] Baskets;
-    String[] BasketAttributes = new String[]{"IsAcceptCreditCheckOK"};
+    String[] BasketAttributes = new String[]{"IsAddressOK"};
     String[] AddressAttributes = new String[]{"JobTitle" /*,"Salutation" */ };
     String[] ItemAttributes = new String[]{"Name"};
 
@@ -58,17 +55,7 @@ public class BasketServiceTestCase {
     public void setUp() throws RemoteException, MalformedURLException {
         log.info("BasketTestCase: setUp");
 
-        // TODO What to use here  ? BasketServiceTestCase takes the wrong one ....
-        WebServiceConfiguration config = new WebServiceTestConfiguration();
-        de.epages.WebServices.BasketService.Stub.BasketService serviceLocator = new BasketServiceLocator();
-        log.info("address specified by wsdl: " + serviceLocator.getport_BasketAddress());
-        log.info("using web service Url: " + config.getWebserviceURL());
-
-        basketService = new Bind_Basket_SOAPStub(config.getWebserviceURL(), serviceLocator);
-
-        // setting user-path and password of the shop
-        basketService.setUsername(config.getUsername());
-        basketService.setPassword(config.getPassword());
+        basketService = new BasketServiceClient(new WebServiceTestConfiguration());
 
         // init input address data
         Address_in.setEMail("java_test-1@epages.de");
@@ -126,16 +113,11 @@ public class BasketServiceTestCase {
      */
     public void testCreate() throws RemoteException {
         log.info("BasketServiceTestCase: testCreate");
-        try {
-            TCreate_Return[] Baskets_create_out = basketService.create(new TCreate_Input[]{Basket_in});
-            assertEquals("create result set", 1, Baskets_create_out.length);
-            assertEquals("created?", new Boolean(true), Baskets_create_out[0].getCreated());
-            assertNotNull("Path not null",Baskets_create_out[0].getPath());
-            BasketPath = Baskets_create_out[0].getPath();
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        TCreate_Return[] Baskets_create_out = basketService.create(new TCreate_Input[]{Basket_in});
+        assertEquals("create result set", 1, Baskets_create_out.length);
+        assertEquals("created?", new Boolean(true), Baskets_create_out[0].getCreated());
+        assertNotNull("Path not null",Baskets_create_out[0].getPath());
+        BasketPath = Baskets_create_out[0].getPath();
     }
 
     /**
@@ -144,14 +126,9 @@ public class BasketServiceTestCase {
     public void testUpdate() throws RemoteException {
         log.info("BasketServiceTestCase: testUpdate");
         Basket_up.setPath(BasketPath);
-        try {
-            TUpdate_Return[] Baskets_update_out = basketService.update(new TUpdate_Input[]{Basket_up});
-            assertEquals("update result set", 1, Baskets_update_out.length);
-            assertEquals("updated?", new Boolean(true), Baskets_update_out[0].getUpdated());
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        TUpdate_Return[] Baskets_update_out = basketService.update(new TUpdate_Input[]{Basket_up});
+        assertEquals("update result set", 1, Baskets_update_out.length);
+        assertEquals("updated?", new Boolean(true), Baskets_update_out[0].getUpdated());
     }
 
     /**
@@ -163,44 +140,39 @@ public class BasketServiceTestCase {
     public void testGetInfo(boolean isAlreadyUpdated) throws RemoteException {
         log.info("BasketServiceTestCase: testGetInfo");
         Baskets = new String[]{BasketPath};
-        try {
-            TGetInfo_Return[] Baskets_info_out = basketService.getInfo(Baskets, BasketAttributes, AddressAttributes, ItemAttributes, null);
-            assertEquals("exists result set",1, Baskets_info_out.length);
+        TGetInfo_Return[] Baskets_info_out = basketService.getInfo(Baskets, BasketAttributes, AddressAttributes, ItemAttributes, null);
+        assertEquals("exists result set",1, Baskets_info_out.length);
 
-            TGetInfo_Return Basket_info_out = Baskets_info_out[0];
-            assertEquals("Customer",        Basket_in.getCustomer()                             , Basket_info_out.getCustomer());
+        TGetInfo_Return Basket_info_out = Baskets_info_out[0];
+        assertEquals("Customer",        Basket_in.getCustomer()                             , Basket_info_out.getCustomer());
 
-            TAddressNamed Address_out = Basket_info_out.getBillingAddress();
-            assertEquals("EMail",           Address_in.getEMail()                               , Address_out.getEMail());
+        TAddressNamed Address_out = Basket_info_out.getBillingAddress();
+        assertEquals("EMail",           Address_in.getEMail()                               , Address_out.getEMail());
 
 
-            if (isAlreadyUpdated) {
-                // check updated order data
-                assertEquals("IsAcceptCreditCheckOK",     Basket_up.getAttributes()[0].getValue()             , Basket_info_out.getAttributes()[0].getValue());
+        if (isAlreadyUpdated) {
+            // check updated order data
+            assertEquals("IsAcceptCreditCheckOK",     Basket_up.getAttributes()[0].getValue()             , Basket_info_out.getAttributes()[0].getValue());
 
-                // check updated address
-                assertEquals("FirstName",   Address_up.getFirstName()                           , Address_out.getFirstName());
-                assertEquals("LastName",    Address_up.getLastName()                            , Address_out.getLastName());
-                assertEquals("Street",      Address_up.getStreet()                              , Address_out.getStreet());
-                assertEquals("Street2",     Address_up.getStreet2()                             , Address_out.getStreet2());
-            } else {
-                // check order data created without update
-                assertEquals("IsAcceptCreditCheckOK",     Basket_in.getAttributes()[0].getValue()             , Basket_info_out.getAttributes()[0].getValue());
+            // check updated address
+            assertEquals("FirstName",   Address_up.getFirstName()                           , Address_out.getFirstName());
+            assertEquals("LastName",    Address_up.getLastName()                            , Address_out.getLastName());
+            assertEquals("Street",      Address_up.getStreet()                              , Address_out.getStreet());
+            assertEquals("Street2",     Address_up.getStreet2()                             , Address_out.getStreet2());
+        } else {
+            // check order data created without update
+            assertEquals("IsAcceptCreditCheckOK",     Basket_in.getAttributes()[0].getValue()             , Basket_info_out.getAttributes()[0].getValue());
 
-                // check created address
-                assertEquals("FirstName", Address_in.getFirstName(), Address_out.getFirstName());
-                assertEquals("LastName",    Address_in.getLastName()                            , Address_out.getLastName());
-                assertEquals("Street",      Address_in.getStreet()                              , Address_out.getStreet());
-                assertEquals("Street2",     Address_in.getStreet2()                             , Address_out.getStreet2());
-            }
-
-            assertEquals("TaxArea",         Basket_in.getLineItemContainer().getTaxArea()       , Basket_info_out.getLineItemContainer().getTaxArea());
-            assertEquals("TaxModel",        Basket_in.getLineItemContainer().getTaxModel()      , Basket_info_out.getLineItemContainer().getTaxModel());
-            assertEquals("CurrencyID",      Basket_in.getLineItemContainer().getCurrencyID()    , Basket_info_out.getLineItemContainer().getCurrencyID());
+            // check created address
+            assertEquals("FirstName", Address_in.getFirstName(), Address_out.getFirstName());
+            assertEquals("LastName",    Address_in.getLastName()                            , Address_out.getLastName());
+            assertEquals("Street",      Address_in.getStreet()                              , Address_out.getStreet());
+            assertEquals("Street2",     Address_in.getStreet2()                             , Address_out.getStreet2());
         }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+
+        assertEquals("TaxArea",         Basket_in.getLineItemContainer().getTaxArea()       , Basket_info_out.getLineItemContainer().getTaxArea());
+        assertEquals("TaxModel",        Basket_in.getLineItemContainer().getTaxModel()      , Basket_info_out.getLineItemContainer().getTaxModel());
+        assertEquals("CurrencyID",      Basket_in.getLineItemContainer().getCurrencyID()    , Basket_info_out.getLineItemContainer().getCurrencyID());
     }
 
     /**
@@ -208,13 +180,8 @@ public class BasketServiceTestCase {
      */
     public void testDelete() throws RemoteException {
         log.info("BasketServiceTestCase: testDelete");
-        try {
-            TDelete_Return[] Basket_delete_out = basketService.delete(new String[]{BasketPath});
-            assertEquals("delete result set", 1, Basket_delete_out.length);
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        TDelete_Return[] Basket_delete_out = basketService.delete(new String[]{BasketPath});
+        assertEquals("delete result set", 1, Basket_delete_out.length);
     }
 
     /**
@@ -223,14 +190,9 @@ public class BasketServiceTestCase {
      */
     public void testExists(boolean expected) throws RemoteException {
         log.info("BasketServiceTestCase: testExists");
-        try {
-            TExists_Return[] Baskets_exists_out = basketService.exists(new String[]{BasketPath});
-            assertEquals("exists result set", 1, Baskets_exists_out.length);
-            assertEquals("exists?", new Boolean(expected), Baskets_exists_out[0].getExists());
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        TExists_Return[] Baskets_exists_out = basketService.exists(new String[]{BasketPath});
+        assertEquals("exists result set", 1, Baskets_exists_out.length);
+        assertEquals("exists?", new Boolean(expected), Baskets_exists_out[0].getExists());
     }
 
     /**

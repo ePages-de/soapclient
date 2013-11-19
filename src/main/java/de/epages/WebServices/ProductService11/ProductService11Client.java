@@ -74,6 +74,7 @@ public class ProductService11Client {
                 log.info("successfully retrieved Product: " + product.getAlias());
                 result.add(product);
             } else {
+                // TODO: Collect and throw MultiException?
                 throw new RemoteException(product.getError().getMessage());
             }
         }
