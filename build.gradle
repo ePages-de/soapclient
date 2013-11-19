@@ -11,36 +11,6 @@ version = '6.17.0-SNAPSHOT'
 
 repositories { mavenCentral() }
 
-ext {
-    axisVersion = "1.4"
-    slf4jVersion = "1.7.5"
-    junitVersion = "4.11"
-    wsdl4jVersion = "1.6.3"
-    commonsDiscoveryVersion = "0.5"
-}
-
-dependencies {
-    compile "org.apache.axis:axis:${axisVersion}"
-    compile "org.apache.axis:axis-jaxrpc:${axisVersion}"
-    compile "org.slf4j:slf4j-api:${slf4jVersion}"
-    runtime "org.apache.axis:axis-saaj:${axisVersion}"
-    runtime "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
-    runtime "wsdl4j:wsdl4j:${wsdl4jVersion}"
-
-    testCompile "org.slf4j:jul-to-slf4j:${slf4jVersion}"
-    testCompile "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
-    testCompile "junit:junit:${junitVersion}"
-}
-
-project.sourceCompatibility = rootProject.hasProperty("SOURCE_COMPATIBILITY") ?: "1.7"
-
-compileJava {
-    options.with {
-        compilerArgs << "-Xlint:unchecked"
-        options.encoding = 'UTF-8'
-    }
-}
-
 sourceSets {
     gen {
         java {
@@ -52,13 +22,46 @@ sourceSets {
     }
 }
 
-compile sourceSets.gen.output
+// eclipse.plusConfigurations += project.configurations.genRuntime
+
+ext {
+    axisVersion = "1.4"
+    slf4jVersion = "1.7.5"
+    junitVersion = "4.11"
+    wsdl4jVersion = "1.6.3"
+    commonsDiscoveryVersion = "0.5"
+}
+
+dependencies {
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+    genCompile "org.apache.axis:axis:${axisVersion}"
+    genCompile "org.apache.axis:axis-jaxrpc:${axisVersion}"
+    runtime "org.apache.axis:axis-saaj:${axisVersion}"
+    runtime "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
+    runtime "wsdl4j:wsdl4j:${wsdl4jVersion}"
+
+    testCompile "org.slf4j:jul-to-slf4j:${slf4jVersion}"
+    testCompile "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+    testCompile "junit:junit:${junitVersion}"
+
+    compile sourceSets.gen.output
+    compile configurations.genCompile
+    runtime configurations.genRuntime
+}
+
+project.sourceCompatibility = rootProject.hasProperty("SOURCE_COMPATIBILITY") ?: "1.7"
+
+compileJava {
+    options.with {
+        compilerArgs << "-Xlint:unchecked"
+        options.encoding = 'UTF-8'
+    }
+}
 
 task sourceJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
     from sourceSets.main.allSource
 }
-
 
 sonarRunner {
     sonarProperties {
