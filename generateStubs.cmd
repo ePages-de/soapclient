@@ -1,4 +1,4 @@
-SET WSDL2JAVA=java -classpath lib/axis.jar;lib/commons-logging-1.0.4.jar;lib/commons-discovery-0.2.jar;lib/jaxrpc.jar;lib/saaj.jar;lib/wsdl4j-1.5.1.jar org.apache.axis.wsdl.WSDL2Java -o src/main/java
+SET WSDL2JAVA=java -classpath lib/axis.jar;lib/commons-logging-1.0.4.jar;lib/commons-discovery-0.2.jar;lib/jaxrpc.jar;lib/saaj.jar;lib/wsdl4j-1.5.1.jar org.apache.axis.wsdl.WSDL2Java -o src/gen/java
 
 IF (%1)==() goto ALL
 %WSDL2JAVA% -p de.epages.WebServices.%1.Stub -v ..\wsdl\%1.wsdl
