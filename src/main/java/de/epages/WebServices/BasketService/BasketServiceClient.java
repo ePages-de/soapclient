@@ -2,6 +2,8 @@ package de.epages.WebServices.BasketService;
 
 import java.rmi.RemoteException;
 
+import de.epages.WebServices.ErrorHandler;
+import de.epages.WebServices.ThrowingErrorHandler;
 import de.epages.WebServices.WebServiceConfiguration;
 import de.epages.WebServices.BasketService.Stub.BasketService;
 import de.epages.WebServices.BasketService.Stub.BasketServiceLocator;
@@ -16,15 +18,22 @@ import de.epages.WebServices.BasketService.Stub.TUpdate_Input;
 import de.epages.WebServices.BasketService.Stub.TUpdate_Return;
 
 public class BasketServiceClient implements Port_Basket_PortType {
+
     private static final BasketService service = new BasketServiceLocator();
     private final Bind_Basket_SOAPStub stub;
-
-    public BasketServiceClient(WebServiceConfiguration config, BasketServiceStubFactory factory) {
-        stub = factory.create(config, service);
-    }
+    private final ErrorHandler errorHandler;
 
     public BasketServiceClient(final WebServiceConfiguration config) {
-        this(config, new BasketServiceStubFactoryImpl());
+        this(config, new ThrowingErrorHandler());
+    }
+
+    public BasketServiceClient(WebServiceConfiguration config, ErrorHandler errorHandler) {
+        this(config, errorHandler, new BasketServiceStubFactoryImpl());
+    }
+
+    public BasketServiceClient(WebServiceConfiguration config, ErrorHandler errorHandler, BasketServiceStubFactory factory) {
+        this.stub = factory.create(config, service);
+        this.errorHandler = errorHandler;
     }
 
     public TGetInfo_Return[] getInfo(String[] baskets) throws RemoteException {
@@ -50,7 +59,7 @@ public class BasketServiceClient implements Port_Basket_PortType {
         for (int i = 0; i < info.length; i++) {
             TGetInfo_Return element = info[i];
             if (element.getError() != null) {
-                throw new RemoteException(element.getError().getMessage());
+                errorHandler.handle(element, element.getError().getMessage());
             }
         }
         return info;
@@ -61,7 +70,7 @@ public class BasketServiceClient implements Port_Basket_PortType {
         for (int i = 0; i < exists.length; i++) {
             TExists_Return element = exists[i];
             if (element.getError() != null) {
-                throw new RemoteException(element.getError().getMessage());
+                errorHandler.handle(element, element.getError().getMessage());
             }
         }
         return exists;
@@ -73,7 +82,7 @@ public class BasketServiceClient implements Port_Basket_PortType {
         for (int i = 0; i < delete.length; i++) {
             TDelete_Return element = delete[i];
             if (element.getError() != null) {
-                throw new RemoteException(element.getError().getMessage());
+                errorHandler.handle(element, element.getError().getMessage());
             }
         }
         return delete;
@@ -85,7 +94,7 @@ public class BasketServiceClient implements Port_Basket_PortType {
         for (int i = 0; i < update.length; i++) {
             TUpdate_Return element = update[i];
             if (element.getError() != null) {
-                throw new RemoteException(element.getError().getMessage());
+                errorHandler.handle(element, element.getError().getMessage());
             }
         }
         return update;
@@ -97,7 +106,7 @@ public class BasketServiceClient implements Port_Basket_PortType {
         for (int i = 0; i < create.length; i++) {
             TCreate_Return element = create[i];
             if (element.getError() != null) {
-                throw new RemoteException(element.getError().getMessage());
+                errorHandler.handle(element, element.getError().getMessage());
             }
         }
         return create;

@@ -28,25 +28,24 @@ import de.epages.WebServices.BasketService.Stub.TUpdate_Return;
 /**
  * A JUnit TestSuite to test epages Basket WebServices.
  */
-public class BasketServiceTestCase {
-    private static Logger log = Logger.getLogger(BasketServiceTestCase.class.getName());
+public class BasketServiceTest {
+    private static final Logger log = Logger.getLogger(BasketServiceTest.class.getName());
 
     private BasketServiceClient basketService;
-    TCreate_Input Basket_in = new TCreate_Input();
-    TUpdate_Input Basket_up = new TUpdate_Input();
-    TAttribute BasketAttr_in = new TAttribute("IsAddressOK","1",null,null);
-    TAttribute BasketAttr_up = new TAttribute("IsAddressOK","0",null,null);
-    TAddressNamed Address_in = new TAddressNamed();
-    TAddressNamed Address_up = new TAddressNamed();
+    private TCreate_Input Basket_in = new TCreate_Input();
+    private TUpdate_Input Basket_up = new TUpdate_Input();
+    private TAttribute BasketAttr_in = new TAttribute("IsAddressOK","1",null,null);
+    private TAttribute BasketAttr_up = new TAttribute("IsAddressOK","0",null,null);
+    private TAddressNamed Address_in = new TAddressNamed();
+    private TAddressNamed Address_up = new TAddressNamed();
 
-    String Alias = "java_test-1";
-    String Customer = "/Shops/DemoShop/Customers/1001"; /* mmustermann */
-    String BasketPath;
+    private String Customer = "/Shops/DemoShop/Customers/1001"; /* mmustermann */
+    private String BasketPath;
 
-    String[] Baskets;
-    String[] BasketAttributes = new String[]{"IsAddressOK"};
-    String[] AddressAttributes = new String[]{"JobTitle" /*,"Salutation" */ };
-    String[] ItemAttributes = new String[]{"Name"};
+    private String[] Baskets;
+    private String[] BasketAttributes = new String[]{"IsAddressOK"};
+    private String[] AddressAttributes = new String[]{"JobTitle" /*,"Salutation" */ };
+    private String[] ItemAttributes = new String[]{"Name"};
 
     /**
      * Sets all the required prerequisites for the tests. Will be called before the test are run.
@@ -73,7 +72,7 @@ public class BasketServiceTestCase {
         Address_up.setStreet("Musterstraße 2b");
         Address_up.setStreet2("Ortsteil Oberfingeln");
 
-        // init order input data
+        // TODO: order input data - should not be possible!?
         Basket_in.setCustomer(Customer);
         Basket_in.setBillingAddress(Address_in);
 
@@ -96,15 +95,10 @@ public class BasketServiceTestCase {
         Basket_up.setAttributes(new TAttribute[]{BasketAttr_up});
 
         // delete the test order if it exists
-        try {
-            TExists_Return[] Baskets_exists_out= basketService.exists(new String[]{BasketPath});
-            if( Baskets_exists_out[0].getExists() ) {
-                TDelete_Return[] Baskets_delete_out = basketService.delete(new String[]{BasketPath});
-                assertEquals("delete result set", 1, Baskets_delete_out.length);
-            }
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
+        TExists_Return[] Baskets_exists_out= basketService.exists(new String[]{BasketPath});
+        if( Baskets_exists_out[0].getExists() ) {
+            TDelete_Return[] Baskets_delete_out = basketService.delete(new String[]{BasketPath});
+            assertEquals("delete result set", 1, Baskets_delete_out.length);
         }
     }
 
