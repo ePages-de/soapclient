@@ -22,8 +22,6 @@ sourceSets {
     }
 }
 
-// eclipse.plusConfigurations += project.configurations.genRuntime
-
 ext {
     axisVersion = "1.4"
     slf4jVersion = "1.7.5"
@@ -47,6 +45,10 @@ dependencies {
     compile sourceSets.gen.output
     compile configurations.genCompile
     runtime configurations.genRuntime
+}
+
+jar {
+    from sourceSets.gen.output
 }
 
 project.sourceCompatibility = rootProject.hasProperty("SOURCE_COMPATIBILITY") ?: "1.7"
@@ -89,6 +91,13 @@ sonarRunner {
             // fix for new "feature" http://jira.codehaus.org/browse/SONAR-4188
             property "sonar.branch", env.get("GIT_BRANCH").replace('/', '_')
         }
+        properties["sonar.sources"] = sourceSets.main.allSource.srcDirs
+        .grep({ it.exists()})
+        .collect { project.relativePath(it) }
+        .join(',')
+        properties["sonar.binaries"] = sourceSets.main.runtimeClasspath.files.join(',')
+        properties["sonar.jacoco.reportPath"] = "build/jacoco/test.exec"
+        properties["sonar.jacoco.itReportPath"] = "build/jacoco/integrationTest.exec"
    }
 }
 
