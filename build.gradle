@@ -11,16 +11,8 @@ version = '6.17.0-SNAPSHOT'
 
 repositories { mavenCentral() }
 
-sourceSets {
-    gen {
-        java {
-            srcDir 'src/gen/java'
-        }
-        resources {
-            srcDir 'src/gen/resources'
-        }
-    }
-}
+// add src/gen/java
+sourceSets.main.java.srcDirs 'src/gen/java'
 
 ext {
     axisVersion = "1.4"
@@ -31,24 +23,18 @@ ext {
 }
 
 dependencies {
+    compile "org.apache.axis:axis:${axisVersion}"
+    compile "org.apache.axis:axis-jaxrpc:${axisVersion}"
     compile "org.slf4j:slf4j-api:${slf4jVersion}"
-    genCompile "org.apache.axis:axis:${axisVersion}"
-    genCompile "org.apache.axis:axis-jaxrpc:${axisVersion}"
+
     runtime "org.apache.axis:axis-saaj:${axisVersion}"
     runtime "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
     runtime "wsdl4j:wsdl4j:${wsdl4jVersion}"
 
-    testCompile "org.slf4j:jul-to-slf4j:${slf4jVersion}"
-    testCompile "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
     testCompile "junit:junit:${junitVersion}"
 
-    compile sourceSets.gen.output
-    compile configurations.genCompile
-    runtime configurations.genRuntime
-}
-
-jar {
-    from sourceSets.gen.output
+    testRuntime "org.slf4j:jul-to-slf4j:${slf4jVersion}"
+    testRuntime "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
 }
 
 project.sourceCompatibility = rootProject.hasProperty("SOURCE_COMPATIBILITY") ?: "1.7"
