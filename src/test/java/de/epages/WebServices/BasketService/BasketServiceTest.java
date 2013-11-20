@@ -98,7 +98,7 @@ public class BasketServiceTest {
     }
 
     /**
-     * Create a Order and check if the creation was successful
+     * Create a Basket and check if the creation was successful
      */
     public void testCreate() throws RemoteException {
         log.info("BasketServiceTestCase: testCreate");
@@ -110,7 +110,19 @@ public class BasketServiceTest {
     }
 
     /**
-     * Update a Order and check if the update was successful
+     * Create a Basket without passing optional fields, and check if the creation was successful
+     */
+    public void testCreateWithDefaults() throws RemoteException {
+        log.info("BasketServiceTestCase: testCreateWithoutLIC");
+        TCreate_Input basket_in = new TCreate_Input();
+        TCreate_Return[] Baskets_create_out = basketService.create(new TCreate_Input[]{basket_in});
+        assertEquals("create result set", 1, Baskets_create_out.length);
+        assertEquals("created?", new Boolean(true), Baskets_create_out[0].getCreated());
+        assertNotNull("Path not null",Baskets_create_out[0].getPath());
+    }
+
+    /**
+     * Update a Basket and check if the update was successful
      */
     public void testUpdate() throws RemoteException {
         log.info("BasketServiceTestCase: testUpdate");
@@ -163,7 +175,7 @@ public class BasketServiceTest {
     }
 
     /**
-     * Delete a Order and check if no error occured.
+     * Delete a Basket and check if no error occured.
      */
     public void testDelete() throws RemoteException {
         log.info("BasketServiceTestCase: testDelete");
@@ -189,6 +201,7 @@ public class BasketServiceTest {
     public void testAll() throws RemoteException
     {
         testCreate();
+        testCreateWithDefaults();
         testExists(true);
         testGetInfo(false);
         testUpdate();
