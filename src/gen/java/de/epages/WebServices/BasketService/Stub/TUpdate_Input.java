@@ -19,14 +19,8 @@ public class TUpdate_Input  implements java.io.Serializable {
     /* basket object path */
     private java.lang.String path;
 
-    /* basket's customer (object path to customer) */
-    private java.lang.String customer;
-
     /* basket's user (object path to user) */
     private java.lang.String user;
-
-    /* basket's creation date */
-    private java.util.Calendar creationDate;
 
     /* the products, payments, shipping etc. of this basket (see baskettypes:TLineItemContainerIn) */
     private de.epages.WebServices.BasketService.Stub.TLineItemContainerIn lineItemContainer;
@@ -43,17 +37,13 @@ public class TUpdate_Input  implements java.io.Serializable {
 
     public TUpdate_Input(
            java.lang.String path,
-           java.lang.String customer,
            java.lang.String user,
-           java.util.Calendar creationDate,
            de.epages.WebServices.BasketService.Stub.TLineItemContainerIn lineItemContainer,
            de.epages.WebServices.BasketService.Stub.TAddressNamed billingAddress,
            de.epages.WebServices.BasketService.Stub.TAddressNamed shippingAddress,
            de.epages.WebServices.BasketService.Stub.TAttribute[] attributes) {
            this.path = path;
-           this.customer = customer;
            this.user = user;
-           this.creationDate = creationDate;
            this.lineItemContainer = lineItemContainer;
            this.billingAddress = billingAddress;
            this.shippingAddress = shippingAddress;
@@ -82,26 +72,6 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the customer value for this TUpdate_Input.
-     * 
-     * @return customer   * basket's customer (object path to customer)
-     */
-    public java.lang.String getCustomer() {
-        return customer;
-    }
-
-
-    /**
-     * Sets the customer value for this TUpdate_Input.
-     * 
-     * @param customer   * basket's customer (object path to customer)
-     */
-    public void setCustomer(java.lang.String customer) {
-        this.customer = customer;
-    }
-
-
-    /**
      * Gets the user value for this TUpdate_Input.
      * 
      * @return user   * basket's user (object path to user)
@@ -118,26 +88,6 @@ public class TUpdate_Input  implements java.io.Serializable {
      */
     public void setUser(java.lang.String user) {
         this.user = user;
-    }
-
-
-    /**
-     * Gets the creationDate value for this TUpdate_Input.
-     * 
-     * @return creationDate   * basket's creation date
-     */
-    public java.util.Calendar getCreationDate() {
-        return creationDate;
-    }
-
-
-    /**
-     * Sets the creationDate value for this TUpdate_Input.
-     * 
-     * @param creationDate   * basket's creation date
-     */
-    public void setCreationDate(java.util.Calendar creationDate) {
-        this.creationDate = creationDate;
     }
 
 
@@ -235,15 +185,9 @@ public class TUpdate_Input  implements java.io.Serializable {
             ((this.path==null && other.getPath()==null) || 
              (this.path!=null &&
               this.path.equals(other.getPath()))) &&
-            ((this.customer==null && other.getCustomer()==null) || 
-             (this.customer!=null &&
-              this.customer.equals(other.getCustomer()))) &&
             ((this.user==null && other.getUser()==null) || 
              (this.user!=null &&
               this.user.equals(other.getUser()))) &&
-            ((this.creationDate==null && other.getCreationDate()==null) || 
-             (this.creationDate!=null &&
-              this.creationDate.equals(other.getCreationDate()))) &&
             ((this.lineItemContainer==null && other.getLineItemContainer()==null) || 
              (this.lineItemContainer!=null &&
               this.lineItemContainer.equals(other.getLineItemContainer()))) &&
@@ -270,14 +214,8 @@ public class TUpdate_Input  implements java.io.Serializable {
         if (getPath() != null) {
             _hashCode += getPath().hashCode();
         }
-        if (getCustomer() != null) {
-            _hashCode += getCustomer().hashCode();
-        }
         if (getUser() != null) {
             _hashCode += getUser().hashCode();
-        }
-        if (getCreationDate() != null) {
-            _hashCode += getCreationDate().hashCode();
         }
         if (getLineItemContainer() != null) {
             _hashCode += getLineItemContainer().hashCode();
@@ -316,23 +254,9 @@ public class TUpdate_Input  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("customer");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "Customer"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("user");
         elemField.setXmlName(new javax.xml.namespace.QName("", "User"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("creationDate");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "CreationDate"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

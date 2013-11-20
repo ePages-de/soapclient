@@ -5,7 +5,6 @@ import static org.junit.Assert.assertNotNull;
 
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
-import java.util.GregorianCalendar;
 import java.util.logging.Logger;
 
 import org.junit.Before;
@@ -39,7 +38,6 @@ public class BasketServiceTest {
     private TAddressNamed Address_in = new TAddressNamed();
     private TAddressNamed Address_up = new TAddressNamed();
 
-    private String Customer = "/Shops/DemoShop/Customers/1001"; /* mmustermann */
     private String BasketPath;
 
     private String[] Baskets;
@@ -72,8 +70,6 @@ public class BasketServiceTest {
         Address_up.setStreet("Musterstraße 2b");
         Address_up.setStreet2("Ortsteil Oberfingeln");
 
-        // TODO: order input data - should not be possible!?
-        Basket_in.setCustomer(Customer);
         Basket_in.setBillingAddress(Address_in);
 
         Basket_in.setAttributes(new TAttribute[]{BasketAttr_in});
@@ -91,7 +87,6 @@ public class BasketServiceTest {
 
         // init order update data
         Basket_up.setBillingAddress(Address_up);
-        Basket_up.setCreationDate(new GregorianCalendar(2008, 0, 1, 11, 11));
         Basket_up.setAttributes(new TAttribute[]{BasketAttr_up});
 
         // delete the test order if it exists
@@ -138,8 +133,6 @@ public class BasketServiceTest {
         assertEquals("exists result set",1, Baskets_info_out.length);
 
         TGetInfo_Return Basket_info_out = Baskets_info_out[0];
-        assertEquals("Customer",        Basket_in.getCustomer()                             , Basket_info_out.getCustomer());
-
         TAddressNamed Address_out = Basket_info_out.getBillingAddress();
         assertEquals("EMail",           Address_in.getEMail()                               , Address_out.getEMail());
 

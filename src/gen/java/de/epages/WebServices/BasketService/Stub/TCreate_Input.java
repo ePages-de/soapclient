@@ -22,9 +22,6 @@ public class TCreate_Input  implements java.io.Serializable {
     /* basket alias */
     private java.lang.String alias;
 
-    /* basket's customer (object path to customer) */
-    private java.lang.String customer;
-
     /* basket's user (object path to user) */
     private java.lang.String user;
 
@@ -43,14 +40,12 @@ public class TCreate_Input  implements java.io.Serializable {
 
     public TCreate_Input(
            java.lang.String alias,
-           java.lang.String customer,
            java.lang.String user,
            de.epages.WebServices.BasketService.Stub.TLineItemContainerIn lineItemContainer,
            de.epages.WebServices.BasketService.Stub.TAddressNamed billingAddress,
            de.epages.WebServices.BasketService.Stub.TAddressNamed shippingAddress,
            de.epages.WebServices.BasketService.Stub.TAttribute[] attributes) {
            this.alias = alias;
-           this.customer = customer;
            this.user = user;
            this.lineItemContainer = lineItemContainer;
            this.billingAddress = billingAddress;
@@ -76,26 +71,6 @@ public class TCreate_Input  implements java.io.Serializable {
      */
     public void setAlias(java.lang.String alias) {
         this.alias = alias;
-    }
-
-
-    /**
-     * Gets the customer value for this TCreate_Input.
-     * 
-     * @return customer   * basket's customer (object path to customer)
-     */
-    public java.lang.String getCustomer() {
-        return customer;
-    }
-
-
-    /**
-     * Sets the customer value for this TCreate_Input.
-     * 
-     * @param customer   * basket's customer (object path to customer)
-     */
-    public void setCustomer(java.lang.String customer) {
-        this.customer = customer;
     }
 
 
@@ -213,9 +188,6 @@ public class TCreate_Input  implements java.io.Serializable {
             ((this.alias==null && other.getAlias()==null) || 
              (this.alias!=null &&
               this.alias.equals(other.getAlias()))) &&
-            ((this.customer==null && other.getCustomer()==null) || 
-             (this.customer!=null &&
-              this.customer.equals(other.getCustomer()))) &&
             ((this.user==null && other.getUser()==null) || 
              (this.user!=null &&
               this.user.equals(other.getUser()))) &&
@@ -244,9 +216,6 @@ public class TCreate_Input  implements java.io.Serializable {
         int _hashCode = 1;
         if (getAlias() != null) {
             _hashCode += getAlias().hashCode();
-        }
-        if (getCustomer() != null) {
-            _hashCode += getCustomer().hashCode();
         }
         if (getUser() != null) {
             _hashCode += getUser().hashCode();
@@ -289,13 +258,6 @@ public class TCreate_Input  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("customer");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "Customer"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("user");
         elemField.setXmlName(new javax.xml.namespace.QName("", "User"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
@@ -306,6 +268,7 @@ public class TCreate_Input  implements java.io.Serializable {
         elemField.setFieldName("lineItemContainer");
         elemField.setXmlName(new javax.xml.namespace.QName("", "LineItemContainer"));
         elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/BasketTypes/2013/11", "TLineItemContainerIn"));
+        elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
