@@ -17,7 +17,6 @@ class BasketServiceStubFactoryImpl implements BasketServiceStubFactory {
         log.info("address specified by wsdl: " + service.getport_BasketAddress());
         log.info("using web service Url: " + config.getWebserviceURL());
             try {
-
                 Bind_Basket_SOAPStub stub = new Bind_Basket_SOAPStub(config.getWebserviceURL(), service);
                 stub.setUsername(config.getUsername());
                 stub.setPassword(config.getPassword());

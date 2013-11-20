@@ -4,10 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.math.BigInteger;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -38,15 +35,15 @@ import de.epages.WebServices.ProductService11.Stub.TUpdate_Return;
  * A JUnit TestSuite to test epages Product WebServices.
  *
  */
-public class Product11TestCase {
-    ProductService11Client serviceClient;
-    TCreate_Input Product_in = new TCreate_Input();
-    TUpdate_Input Product_update = new TUpdate_Input();
-    TCreate_Input Product_down = new TCreate_Input();
-    TCreate_Input Product_down_up = new TCreate_Input();
+public class ProductService11Test {
+    private ProductService11Client serviceClient;
+    private TCreate_Input Product_in = new TCreate_Input();
+    private TUpdate_Input Product_update = new TUpdate_Input();
+    private TCreate_Input Product_down = new TCreate_Input();
+    private TCreate_Input Product_down_up = new TCreate_Input();
 
-    String path = "/Shops/DemoShop/Products/";
-    String alias = "java_test-1";
+    private String path = "/Shops/DemoShop/Products/";
+    private String alias = "java_test-1";
 
     /**
      * Sets all the required prerequisites for the tests. Will be called before the test are run.

@@ -3,10 +3,12 @@ package de.epages.WebServices.ProductService11;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
-import org.apache.axis.AxisFault;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import de.epages.WebServices.ErrorHandler;
+import de.epages.WebServices.ThrowingErrorHandler;
 import de.epages.WebServices.WebServiceConfiguration;
 import de.epages.WebServices.ProductService11.Stub.Bind_Product_SOAPStub;
 import de.epages.WebServices.ProductService11.Stub.ProductService;
@@ -21,27 +23,23 @@ import de.epages.WebServices.ProductService11.Stub.TUpdate_Input;
 import de.epages.WebServices.ProductService11.Stub.TUpdate_Return;
 
 public class ProductService11Client {
-    private ProductService service;
-    private Bind_Product_SOAPStub stub;
-    private static Logger log = Logger.getLogger(ProductService11Client.class.getName());
+    private final ProductService service = new ProductServiceLocator();
+    private final Bind_Product_SOAPStub stub;
+    private final ErrorHandler errorHandler;
 
-    /**
-     * Class constructor
-     */
-    public ProductService11Client(WebServiceConfiguration config) {
-        service = new ProductServiceLocator();
-        log.info("address specified by wsdl: " + service.getport_ProductAddress());
-        log.info("using web service Url: " + config.getWebserviceURL());
+    private static final Logger log = LoggerFactory.getLogger(ProductService11Client.class);
 
-        try {
-            stub = new Bind_Product_SOAPStub(config.getWebserviceURL(), service);
-        } catch (AxisFault e) {
-            throw new RuntimeException(e);
-        }
+    public ProductService11Client(final WebServiceConfiguration config) {
+        this(config, new ThrowingErrorHandler());
+    }
 
-        // setting user-path and password of the shop
-        stub.setUsername(config.getUsername());
-        stub.setPassword(config.getPassword());
+    public ProductService11Client(WebServiceConfiguration config, ErrorHandler errorHandler) {
+        this(config, errorHandler, new ProductService11StubFactoryImpl());
+    }
+
+    public ProductService11Client(WebServiceConfiguration config, ErrorHandler errorHandler, ProductService11StubFactory factory) {
+        this.stub = factory.create(config, service);
+        this.errorHandler = errorHandler;
     }
 
     public List<TGetInfo_Return> getProductInfo(String[] paths) throws RemoteException {
@@ -74,8 +72,7 @@ public class ProductService11Client {
                 log.info("successfully retrieved Product: " + product.getAlias());
                 result.add(product);
             } else {
-                // TODO: Collect and throw MultiException?
-                throw new RemoteException(product.getError().getMessage());
+                errorHandler.handle(product, product.getError().getMessage());
             }
         }
         return result;
@@ -109,7 +106,7 @@ public class ProductService11Client {
                 log.info("successfully created Product: " + result.getAlias());
                 resultList.add(result);
             } else {
-                throw new RemoteException(result.getError().getMessage());
+                errorHandler.handle(result, result.getError().getMessage());
             }
         }
 
@@ -144,7 +141,7 @@ public class ProductService11Client {
                 log.info("successfully updated Product: " + result.getPath());
                 resultList.add(result);
             } else {
-                throw new RemoteException(result.getError().getMessage());
+                errorHandler.handle(result, result.getError().getMessage());
             }
         }
 
@@ -174,7 +171,7 @@ public class ProductService11Client {
                 log.info("successfully deleted Product: " + result.getPath());
                 resultList.add(result);
             } else {
-                throw new RemoteException(result.getError().getMessage());
+                errorHandler.handle(result, result.getError().getMessage());
             }
         }
 
@@ -204,7 +201,7 @@ public class ProductService11Client {
                 log.info("successfully check Product existance: " + result.getPath());
                 resultList.add(result);
             } else {
-                throw new RemoteException(result.getError().getMessage());
+                errorHandler.handle(result, result.getError().getMessage());
             }
         }
 
@@ -221,11 +218,8 @@ public class ProductService11Client {
      */
     public String[] findProducts(TFind_Input parameters) throws RemoteException {
         log.info("findProduct called");
-
         String[] results = stub.find(parameters);
-
         log.info("result count: " + results.length);
-
         return results;
     }
 }
