@@ -7,10 +7,8 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -204,10 +202,9 @@ public class ProductService11Test {
         Product_down_up.setDownloadProductMaps(new TDownload[]{download_up});
 
         // delete the test product if it exists
-        List<TExists_Return> Products_exists_out;
-        Products_exists_out = serviceClient.existsProduct(new String[]{path + alias});
-        if( Products_exists_out.get(0).getExists() ) {
-            serviceClient.deleteProduct(new String[]{path + alias});
+        TExists_Return[] Products_exists_out = serviceClient.exists(new String[]{path + alias});
+        if( Products_exists_out[0].getExists() ) {
+            serviceClient.delete(new String[]{path + alias});
         }
     }
 
@@ -215,37 +212,24 @@ public class ProductService11Test {
      * Create a Product and check if the creation was successful
      */
     public void testCreate() throws RemoteException {
-        List<TCreate_Input> Products_create_in = new ArrayList<>();
-        Products_create_in.add(Product_in);
-
-        List<TCreate_Return> Products_create_out = new ArrayList<>();
-
-        Products_create_out = serviceClient.createProduct(Products_create_in);
+        TCreate_Input[] Products_create_in = new TCreate_Input[] {Product_in};
+        TCreate_Return[] Products_create_out = serviceClient.create(Products_create_in);
 
         // test if creation was successful
-        assertEquals("create result set", 1, Products_create_out.size());
-        assertEquals("created?", new Boolean(true), Products_create_out.get(0).getCreated());
+        assertEquals("create result set", 1, Products_create_out.length);
+        assertEquals("created?", new Boolean(true), Products_create_out[0].getCreated());
     }
 
     /**
      * Update a Product and check if the update was successful
      */
-    public void testUpdate() {
-        List<TUpdate_Input> Products_update_in = new ArrayList<>();
-        Products_update_in.add(Product_update);
-
-        List<TUpdate_Return> Products_update_out = new ArrayList<>();
-
-        try {
-            Products_update_out = serviceClient.updateProduct(Products_update_in);
-        }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+    public void testUpdate() throws RemoteException {
+        TUpdate_Input[] Products_update_in = new TUpdate_Input[] {Product_update};
+        TUpdate_Return[] Products_update_out = serviceClient.update(Products_update_in);
 
         // test if update was successful
-        assertEquals("udpate result set", 1, Products_update_out.size());
-        assertEquals("updated?", new Boolean(true), Products_update_out.get(0).getUpdated());
+        assertEquals("udpate result set", 1, Products_update_out.length);
+        assertEquals("updated?", new Boolean(true), Products_update_out[0].getUpdated());
     }
 
     /**
@@ -255,17 +239,16 @@ public class ProductService11Test {
      * @param isAlreadyUpdated if true check against update data, else against create data
      */
     public void testGetInfo(boolean isAlreadyUpdated) throws RemoteException {
-        List<TGetInfo_Return> Products_info_out = new ArrayList<>();
-        Products_info_out = serviceClient.getProductInfo(
+        TGetInfo_Return[] Products_info_out = serviceClient.getInfo(
             new String[]{path + alias},
             new String[]{"Manufacturer"},
             new String[]{"de", "en"}
         );
 
         // test if getinfo was successful and if all data are equal to input
-        assertEquals("getinfo result set", 1, Products_info_out.size());
+        assertEquals("getinfo result set", 1, Products_info_out.length);
 
-        TGetInfo_Return Product_info_out = Products_info_out.get(0);
+        TGetInfo_Return Product_info_out = Products_info_out[0];
 
         assertEquals("alias", alias, Product_info_out.getAlias());
         assertEquals("Number of languages", 2, Product_info_out.getName().length );
@@ -379,12 +362,11 @@ public class ProductService11Test {
      * Delete a Product and check if no error occured.
      */
     public void testDelete() throws RemoteException {
-        List<TDelete_Return> Products_delete_out = new ArrayList<>();
-        Products_delete_out = serviceClient.deleteProduct(new String[]{path + alias});
+        TDelete_Return[] Products_delete_out = serviceClient.delete(new String[]{path + alias});
 
         // test if deletion was successful
-        assertEquals("delete result set", 1, Products_delete_out.size());
-        assertEquals("deleted?", new Boolean(true), Products_delete_out.get(0).getDeleted());
+        assertEquals("delete result set", 1, Products_delete_out.length);
+        assertEquals("deleted?", new Boolean(true), Products_delete_out[0].getDeleted());
     }
 
     /**
@@ -393,12 +375,11 @@ public class ProductService11Test {
      * @param expected if false the Test will be successful if the Product does NOT exist
      */
     public void testExists(boolean expected) throws RemoteException {
-        List<TExists_Return> Products_exists_out = new ArrayList<>();
-        Products_exists_out = serviceClient.existsProduct(new String[]{path + alias});
+        TExists_Return[] Products_exists_out = serviceClient.exists(new String[]{path + alias});
 
         // test if exists check was successful
-        assertEquals("exists result set", 1, Products_exists_out.size());
-        assertEquals("exists?", new Boolean(expected), Products_exists_out.get(0).getExists());
+        assertEquals("exists result set", 1, Products_exists_out.length);
+        assertEquals("exists?", new Boolean(expected), Products_exists_out[0].getExists());
     }
 
     public void testFind() throws RemoteException {
@@ -406,7 +387,7 @@ public class ProductService11Test {
         parameters.setAlias(Product_in.getAlias());
 
         String[] Products_find_out = new String[]{};
-        Products_find_out = serviceClient.findProducts(parameters);
+        Products_find_out = serviceClient.find(parameters);
 
         // test if find was successful
         assertEquals("find result set", 1, Products_find_out.length);
@@ -414,29 +395,25 @@ public class ProductService11Test {
     }
 
     public void testCreateDownload() throws RemoteException {
-        List<TCreate_Input> Products_create_in = new ArrayList<>();
-        Products_create_in.add(Product_down);
-
-        List<TCreate_Return> Products_create_out = new ArrayList<>();
-        Products_create_out = serviceClient.createProduct(Products_create_in);
+        TCreate_Input[] Products_create_in = new TCreate_Input[] {Product_down};
+        TCreate_Return[] Products_create_out = serviceClient.create(Products_create_in);
 
         // test if creation was successful
-        assertEquals("create result set", 1, Products_create_out.size());
-        assertEquals("created?", new Boolean(true), Products_create_out.get(0).getCreated());
+        assertEquals("create result set", 1, Products_create_out.length);
+        assertEquals("created?", new Boolean(true), Products_create_out[0].getCreated());
     }
 
     public void testGetInfoDownload() throws RemoteException {
-        List<TGetInfo_Return> Products_info_out = new ArrayList<>();
-        Products_info_out = serviceClient.getProductInfo(
+        TGetInfo_Return[] Products_info_out = serviceClient.getInfo(
             new String[]{path + alias},
             new String[]{},
             new String[]{"de", "en"}
         );
 
         // test if getinfo was successful and if all data are equal to input
-        assertEquals("getinfo result set", 1, Products_info_out.size());
+        assertEquals("getinfo result set", 1, Products_info_out.length);
 
-        TGetInfo_Return Product_info_out = Products_info_out.get(0);
+        TGetInfo_Return Product_info_out = Products_info_out[0];
 
         assertEquals("alias", alias, Product_info_out.getAlias());
         assertTrue("isDownloadProduct", Product_info_out.isIsDownloadProduct());
@@ -450,30 +427,25 @@ public class ProductService11Test {
     }
 
     public void testCreateDownloadWithUpload() throws RemoteException {
-        List<TCreate_Input> Products_create_in = new ArrayList<>();
-        Products_create_in.add(Product_down_up);
-
-        List<TCreate_Return> Products_create_out = new ArrayList<>();
-
-        Products_create_out = serviceClient.createProduct(Products_create_in);
+        TCreate_Input[] Products_create_in = new TCreate_Input[] {Product_down_up};
+        TCreate_Return[] Products_create_out = serviceClient.create(Products_create_in);
 
         // test if creation was successful
-        assertEquals("create result set", 1, Products_create_out.size());
-        assertEquals("created?", new Boolean(true), Products_create_out.get(0).getCreated());
+        assertEquals("create result set", 1, Products_create_out.length);
+        assertEquals("created?", new Boolean(true), Products_create_out[0].getCreated());
     }
 
     public void testGetInfoDownloadWithUpload() throws RemoteException {
-        List<TGetInfo_Return> Products_info_out = new ArrayList<>();
-        Products_info_out = serviceClient.getProductInfo(
+        TGetInfo_Return[] Products_info_out = serviceClient.getInfo(
             new String[]{path + alias},
             new String[]{},
             new String[]{"de", "en"}
         );
 
         // test if getinfo was successful and if all data are equal to input
-        assertEquals("getinfo result set", 1, Products_info_out.size());
+        assertEquals("getinfo result set", 1, Products_info_out.length);
 
-        TGetInfo_Return Product_info_out = Products_info_out.get(0);
+        TGetInfo_Return Product_info_out = Products_info_out[0];
 
         assertEquals("alias", alias, Product_info_out.getAlias());
         assertTrue("isDownloadProduct", Product_info_out.isIsDownloadProduct());
