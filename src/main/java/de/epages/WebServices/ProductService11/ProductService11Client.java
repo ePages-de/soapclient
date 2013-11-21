@@ -2,6 +2,7 @@ package de.epages.WebServices.ProductService11;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import de.epages.WebServices.ErrorHandler;
 import de.epages.WebServices.ThrowingErrorHandler;
 import de.epages.WebServices.WebServiceConfiguration;
 import de.epages.WebServices.ProductService11.Stub.Bind_Product_SOAPStub;
+import de.epages.WebServices.ProductService11.Stub.Port_Product_PortType;
 import de.epages.WebServices.ProductService11.Stub.ProductService;
 import de.epages.WebServices.ProductService11.Stub.ProductServiceLocator;
 import de.epages.WebServices.ProductService11.Stub.TCreate_Input;
@@ -22,7 +24,7 @@ import de.epages.WebServices.ProductService11.Stub.TGetInfo_Return;
 import de.epages.WebServices.ProductService11.Stub.TUpdate_Input;
 import de.epages.WebServices.ProductService11.Stub.TUpdate_Return;
 
-public class ProductService11Client {
+public class ProductService11Client implements Port_Product_PortType {
     private final ProductService service = new ProductServiceLocator();
     private final Bind_Product_SOAPStub stub;
     private final ErrorHandler errorHandler;
@@ -42,10 +44,12 @@ public class ProductService11Client {
         this.errorHandler = errorHandler;
     }
 
+    @Deprecated
     public List<TGetInfo_Return> getProductInfo(String[] paths) throws RemoteException {
         return getProductInfo(paths, new String[]{});
     }
 
+    @Deprecated
     public List<TGetInfo_Return> getProductInfo(String[] paths, String[] attributes) throws RemoteException {
         return getProductInfo(paths, attributes, new String[]{});
     }
@@ -60,6 +64,7 @@ public class ProductService11Client {
      * @throws              RemoteException
      * @see                 TGetInfo_Return
      */
+    @Deprecated
     public List<TGetInfo_Return> getProductInfo(String[] paths, String[] attributes, String[] languages) throws RemoteException {
         log.info("getProductInfo called");
         TGetInfo_Return[] products = stub.getInfo(paths, attributes, languages);
@@ -89,6 +94,7 @@ public class ProductService11Client {
      * @see             TCreate_Input
      * @see             TCreate_Return
      */
+    @Deprecated
     public List<TCreate_Return> createProduct(List<TCreate_Input> Products) throws RemoteException {
         log.info("createProduct called");
         TCreate_Input[] input = new TCreate_Input[Products.size()];
@@ -124,6 +130,7 @@ public class ProductService11Client {
      * @see             TUpdate_Input
      * @see             TUpdate_Return
      */
+    @Deprecated
     public List<TUpdate_Return> updateProduct(List<TUpdate_Input> Products) throws RemoteException {
         log.info("updateProduct called");
         TUpdate_Input[] input = new TUpdate_Input[Products.size()];
@@ -158,6 +165,7 @@ public class ProductService11Client {
      * @throws          RemoteException
      * @see             TDelete_Return
      */
+    @Deprecated
     public List<TDelete_Return> deleteProduct(String[] paths) throws RemoteException {
         log.info("deleteProduct called");
 
@@ -188,6 +196,7 @@ public class ProductService11Client {
      * @throws          RemoteException
      * @see             TExists_Return
      */
+    @Deprecated
     public List<TExists_Return> existsProduct(String[] paths) throws RemoteException {
         log.info("existsProduct called");
 
@@ -216,10 +225,46 @@ public class ProductService11Client {
      * @throws              RemoteException
      * @see                 TFind_Input
      */
+    @Deprecated
     public String[] findProducts(TFind_Input parameters) throws RemoteException {
         log.info("findProduct called");
         String[] results = stub.find(parameters);
         log.info("result count: " + results.length);
         return results;
+    }
+
+    @Override
+    public TGetInfo_Return[] getInfo(String[] products, String[] attributes, String[] languageCodes) throws RemoteException {
+        List<TGetInfo_Return> productInfo = getProductInfo(products, attributes, languageCodes);
+        return productInfo.toArray(new TGetInfo_Return[productInfo.size()]);
+    }
+
+    @Override
+    public TExists_Return[] exists(String[] products) throws RemoteException {
+        List<TExists_Return> existsProduct = existsProduct(products);
+        return existsProduct.toArray(new TExists_Return[existsProduct.size()]);
+    }
+
+    @Override
+    public TDelete_Return[] delete(String[] products) throws RemoteException {
+        List<TDelete_Return> deleteProduct = deleteProduct(products);
+        return deleteProduct.toArray(new TDelete_Return[deleteProduct.size()]);
+    }
+
+    @Override
+    public TUpdate_Return[] update(TUpdate_Input[] products) throws RemoteException {
+        List<TUpdate_Return> existsProduct = updateProduct(Arrays.asList(products));
+        return existsProduct.toArray(new TUpdate_Return[existsProduct.size()]);
+    }
+
+    @Override
+    public TCreate_Return[] create(TCreate_Input[] products) throws RemoteException {
+        List<TCreate_Return> existsProduct = createProduct(Arrays.asList(products));
+        return existsProduct.toArray(new TCreate_Return[existsProduct.size()]);
+    }
+
+    @Override
+    public String[] find(TFind_Input searchParameters) throws RemoteException {
+        return findProducts(searchParameters);
     }
 }

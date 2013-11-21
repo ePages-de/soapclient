@@ -20,6 +20,7 @@ ext {
     junitVersion = "4.11"
     wsdl4jVersion = "1.6.3"
     commonsDiscoveryVersion = "0.5"
+    logbackVersion = "1.0.13"
 }
 
 dependencies {
@@ -35,6 +36,7 @@ dependencies {
 
     testRuntime "org.slf4j:jul-to-slf4j:${slf4jVersion}"
     testRuntime "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+    testRuntime "ch.qos.logback:logback-core:${logbackVersion}"
 }
 
 project.sourceCompatibility = rootProject.hasProperty("SOURCE_COMPATIBILITY") ?: "1.7"
