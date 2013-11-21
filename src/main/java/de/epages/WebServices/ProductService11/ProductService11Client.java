@@ -59,14 +59,13 @@ public class ProductService11Client implements Port_Product_PortType {
      * it will be not part of there result list.
      *
      * @param paths         list of Product paths
-     * @param attributes    list of Product paths
+     * @param attributes    list of additional attributes
      * @return              list of TGetInfo_Return
      * @throws              RemoteException
      * @see                 TGetInfo_Return
      */
     @Deprecated
     public List<TGetInfo_Return> getProductInfo(String[] paths, String[] attributes, String[] languages) throws RemoteException {
-        log.info("getProductInfo called");
         TGetInfo_Return[] products = stub.getInfo(paths, attributes, languages);
         List<TGetInfo_Return> result = new ArrayList<>(products.length);
 
@@ -74,7 +73,7 @@ public class ProductService11Client implements Port_Product_PortType {
             TGetInfo_Return product = products[i];
 
             if (product.getError() == null) {
-                log.info("successfully retrieved Product: " + product.getAlias());
+                log.info("successfully retrieved product: " + product.getPath());
                 result.add(product);
             } else {
                 errorHandler.handle(product, product.getError().getMessage());
@@ -96,7 +95,6 @@ public class ProductService11Client implements Port_Product_PortType {
      */
     @Deprecated
     public List<TCreate_Return> createProduct(List<TCreate_Input> Products) throws RemoteException {
-        log.info("createProduct called");
         TCreate_Input[] input = new TCreate_Input[Products.size()];
         for (int i = 0; i < Products.size(); i++) {
             input[i] =  Products.get(i);
@@ -109,7 +107,7 @@ public class ProductService11Client implements Port_Product_PortType {
             TCreate_Return result = results[i];
 
             if (result.getError() == null) {
-                log.info("successfully created Product: " + result.getAlias());
+                log.info("successfully created product: " + result.getPath());
                 resultList.add(result);
             } else {
                 errorHandler.handle(result, result.getError().getMessage());
@@ -132,7 +130,6 @@ public class ProductService11Client implements Port_Product_PortType {
      */
     @Deprecated
     public List<TUpdate_Return> updateProduct(List<TUpdate_Input> Products) throws RemoteException {
-        log.info("updateProduct called");
         TUpdate_Input[] input = new TUpdate_Input[Products.size()];
         for (int i = 0; i < Products.size(); i++) {
             input[i] =  Products.get(i);
@@ -145,7 +142,7 @@ public class ProductService11Client implements Port_Product_PortType {
             TUpdate_Return result = results[i];
 
             if (result.getError() == null) {
-                log.info("successfully updated Product: " + result.getPath());
+                log.info("successfully updated product: " + result.getPath());
                 resultList.add(result);
             } else {
                 errorHandler.handle(result, result.getError().getMessage());
@@ -167,8 +164,6 @@ public class ProductService11Client implements Port_Product_PortType {
      */
     @Deprecated
     public List<TDelete_Return> deleteProduct(String[] paths) throws RemoteException {
-        log.info("deleteProduct called");
-
         TDelete_Return[] results = stub.delete(paths);
         List<TDelete_Return> resultList = new ArrayList<>();
 
@@ -176,7 +171,7 @@ public class ProductService11Client implements Port_Product_PortType {
             TDelete_Return result = results[i];
 
             if (result.getError() == null) {
-                log.info("successfully deleted Product: " + result.getPath());
+                log.info("successfully deleted product: " + result.getPath());
                 resultList.add(result);
             } else {
                 errorHandler.handle(result, result.getError().getMessage());
@@ -198,8 +193,6 @@ public class ProductService11Client implements Port_Product_PortType {
      */
     @Deprecated
     public List<TExists_Return> existsProduct(String[] paths) throws RemoteException {
-        log.info("existsProduct called");
-
         TExists_Return[] results = stub.exists(paths);
         List<TExists_Return> resultList = new ArrayList<>();
 
@@ -207,7 +200,7 @@ public class ProductService11Client implements Port_Product_PortType {
             TExists_Return result = results[i];
 
             if (result.getError() == null) {
-                log.info("successfully check Product existance: " + result.getPath());
+                log.info("successfully check product existance: " + result.getPath());
                 resultList.add(result);
             } else {
                 errorHandler.handle(result, result.getError().getMessage());
@@ -227,10 +220,7 @@ public class ProductService11Client implements Port_Product_PortType {
      */
     @Deprecated
     public String[] findProducts(TFind_Input parameters) throws RemoteException {
-        log.info("findProduct called");
-        String[] results = stub.find(parameters);
-        log.info("result count: " + results.length);
-        return results;
+        return stub.find(parameters);
     }
 
     @Override
