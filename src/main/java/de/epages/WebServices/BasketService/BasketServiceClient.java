@@ -16,6 +16,8 @@ import de.epages.WebServices.BasketService.Stub.TCreate_Return;
 import de.epages.WebServices.BasketService.Stub.TDelete_Return;
 import de.epages.WebServices.BasketService.Stub.TExists_Return;
 import de.epages.WebServices.BasketService.Stub.TGetInfo_Return;
+import de.epages.WebServices.BasketService.Stub.TUpdateLineItem_Input;
+import de.epages.WebServices.BasketService.Stub.TUpdateLineItem_Return;
 import de.epages.WebServices.BasketService.Stub.TUpdate_Input;
 import de.epages.WebServices.BasketService.Stub.TUpdate_Return;
 
@@ -127,6 +129,16 @@ public class BasketServiceClient implements Port_Basket_PortType {
             }
         }
         return resultList.toArray(new TCreate_Return[resultList.size()]);
+    }
+
+    @Override
+    public TUpdateLineItem_Return updateLineItem(String TBasketPath, TUpdateLineItem_Input lineItem) throws RemoteException {
+        TUpdateLineItem_Return update = stub.updateLineItem(TBasketPath, lineItem);
+
+        if (update.getError() != null) {
+            errorHandler.handle(update, update.getError().getMessage());
+        }
+        return update;
     }
 
 }
