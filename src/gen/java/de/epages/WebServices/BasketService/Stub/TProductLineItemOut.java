@@ -16,6 +16,9 @@ public class TProductLineItemOut  implements java.io.Serializable {
     /* the class of the product line item */
     private java.lang.String _class;
 
+    /* alias of the product line item */
+    private java.lang.String alias;
+
     /* name of the product line item */
     private java.lang.String name;
 
@@ -55,6 +58,7 @@ public class TProductLineItemOut  implements java.io.Serializable {
 
     public TProductLineItemOut(
            java.lang.String _class,
+           java.lang.String alias,
            java.lang.String name,
            java.lang.String SKU,
            java.lang.String product,
@@ -67,6 +71,7 @@ public class TProductLineItemOut  implements java.io.Serializable {
            float taxAmount,
            de.epages.WebServices.BasketService.Stub.TAttribute[] attributes) {
            this._class = _class;
+           this.alias = alias;
            this.name = name;
            this.SKU = SKU;
            this.product = product;
@@ -98,6 +103,26 @@ public class TProductLineItemOut  implements java.io.Serializable {
      */
     public void set_class(java.lang.String _class) {
         this._class = _class;
+    }
+
+
+    /**
+     * Gets the alias value for this TProductLineItemOut.
+     * 
+     * @return alias   * alias of the product line item
+     */
+    public java.lang.String getAlias() {
+        return alias;
+    }
+
+
+    /**
+     * Sets the alias value for this TProductLineItemOut.
+     * 
+     * @param alias   * alias of the product line item
+     */
+    public void setAlias(java.lang.String alias) {
+        this.alias = alias;
     }
 
 
@@ -337,6 +362,9 @@ public class TProductLineItemOut  implements java.io.Serializable {
             ((this._class==null && other.get_class()==null) || 
              (this._class!=null &&
               this._class.equals(other.get_class()))) &&
+            ((this.alias==null && other.getAlias()==null) || 
+             (this.alias!=null &&
+              this.alias.equals(other.getAlias()))) &&
             ((this.name==null && other.getName()==null) || 
              (this.name!=null &&
               this.name.equals(other.getName()))) &&
@@ -371,6 +399,9 @@ public class TProductLineItemOut  implements java.io.Serializable {
         int _hashCode = 1;
         if (get_class() != null) {
             _hashCode += get_class().hashCode();
+        }
+        if (getAlias() != null) {
+            _hashCode += getAlias().hashCode();
         }
         if (getName() != null) {
             _hashCode += getName().hashCode();
@@ -414,6 +445,12 @@ public class TProductLineItemOut  implements java.io.Serializable {
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("_class");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Class"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("alias");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "Alias"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
