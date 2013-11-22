@@ -1,6 +1,8 @@
 package de.epages.WebServices.BasketService;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 
 import de.epages.WebServices.ErrorHandler;
 import de.epages.WebServices.ThrowingErrorHandler;
@@ -56,60 +58,75 @@ public class BasketServiceClient implements Port_Basket_PortType {
     public TGetInfo_Return[] getInfo(String[] baskets, String[] attributes, String[] addressAttributes, String[] lineItemAttributes,
             String[] languageCodes) throws RemoteException {
         TGetInfo_Return[] info = stub.getInfo(baskets, attributes, addressAttributes, lineItemAttributes, languageCodes);
+        List<TGetInfo_Return> resultList = new ArrayList<>(info.length);
         for (int i = 0; i < info.length; i++) {
             TGetInfo_Return element = info[i];
             if (element.getError() != null) {
                 errorHandler.handle(element, element.getError().getMessage());
+            } else {
+                resultList.add(element);
             }
         }
-        return info;
+        return resultList.toArray(new TGetInfo_Return[resultList.size()]);
     }
 
     public TExists_Return[] exists(String[] baskets) throws RemoteException {
         TExists_Return[] exists = stub.exists(baskets);
+        List<TExists_Return> resultList = new ArrayList<>(exists.length);
         for (int i = 0; i < exists.length; i++) {
             TExists_Return element = exists[i];
             if (element.getError() != null) {
                 errorHandler.handle(element, element.getError().getMessage());
+            } else {
+                resultList.add(element);
             }
         }
-        return exists;
+        return resultList.toArray(new TExists_Return[resultList.size()]);
     }
 
     public TDelete_Return[] delete(String[] baskets) throws RemoteException {
         TDelete_Return[] delete = stub.delete(baskets);
+        List<TDelete_Return> resultList = new ArrayList<>(delete.length);
 
         for (int i = 0; i < delete.length; i++) {
             TDelete_Return element = delete[i];
             if (element.getError() != null) {
                 errorHandler.handle(element, element.getError().getMessage());
+            } else {
+                resultList.add(element);
             }
         }
-        return delete;
+        return resultList.toArray(new TDelete_Return[resultList.size()]);
     }
 
     public TUpdate_Return[] update(TUpdate_Input[] baskets) throws RemoteException {
         TUpdate_Return[] update = stub.update(baskets);
+        List<TUpdate_Return> resultList = new ArrayList<>(update.length);
 
         for (int i = 0; i < update.length; i++) {
             TUpdate_Return element = update[i];
             if (element.getError() != null) {
                 errorHandler.handle(element, element.getError().getMessage());
+            } else {
+                resultList.add(element);
             }
         }
-        return update;
+        return resultList.toArray(new TUpdate_Return[resultList.size()]);
     }
 
     public TCreate_Return[] create(TCreate_Input[] baskets) throws RemoteException {
         TCreate_Return[] create = stub.create(baskets);
+        List<TCreate_Return> resultList = new ArrayList<>(create.length);
 
         for (int i = 0; i < create.length; i++) {
             TCreate_Return element = create[i];
             if (element.getError() != null) {
                 errorHandler.handle(element, element.getError().getMessage());
+            } else {
+                resultList.add(element);
             }
         }
-        return create;
+        return resultList.toArray(new TCreate_Return[resultList.size()]);
     }
 
 }
