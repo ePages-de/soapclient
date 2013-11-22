@@ -2,6 +2,7 @@ package de.epages.WebServices.BasketService;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
@@ -20,6 +21,9 @@ import de.epages.WebServices.BasketService.Stub.TExists_Return;
 import de.epages.WebServices.BasketService.Stub.TGetInfo_Return;
 import de.epages.WebServices.BasketService.Stub.TLineItemContainerIn;
 import de.epages.WebServices.BasketService.Stub.TProductLineItemIn;
+import de.epages.WebServices.BasketService.Stub.TProductLineItemOut;
+import de.epages.WebServices.BasketService.Stub.TUpdateLineItem_Input;
+import de.epages.WebServices.BasketService.Stub.TUpdateLineItem_Return;
 import de.epages.WebServices.BasketService.Stub.TUpdate_Input;
 import de.epages.WebServices.BasketService.Stub.TUpdate_Return;
 /* import java.math.BigInteger; */
@@ -41,7 +45,7 @@ public class BasketServiceTest {
     private String BasketPath;
 
     private String[] Baskets;
-    private String[] BasketAttributes = new String[]{"IsAddressOK"};
+    private String[] BasketAttributes = new String[]{"IsAddressOK", "WebUrl", "PickupToken"};
     private String[] AddressAttributes = new String[]{"JobTitle" /*,"Salutation" */ };
     private String[] ItemAttributes = new String[]{"Name"};
 
@@ -129,7 +133,7 @@ public class BasketServiceTest {
         Basket_up.setPath(BasketPath);
         TUpdate_Return[] Baskets_update_out = basketService.update(new TUpdate_Input[]{Basket_up});
         assertEquals("update result set", 1, Baskets_update_out.length);
-        assertEquals("updated?", new Boolean(true), Baskets_update_out[0].getUpdated());
+        assertTrue("updated?", Baskets_update_out[0].getUpdated());
     }
 
     /**
@@ -145,9 +149,12 @@ public class BasketServiceTest {
         assertEquals("exists result set",1, Baskets_info_out.length);
 
         TGetInfo_Return Basket_info_out = Baskets_info_out[0];
+
+        assertNotNull(Basket_info_out.getAlias());
+        
         TAddressNamed Address_out = Basket_info_out.getBillingAddress();
         assertEquals("EMail",           Address_in.getEMail()                               , Address_out.getEMail());
-
+        TProductLineItemOut productLineItem = Basket_info_out.getLineItemContainer().getProductLineItems()[0];
 
         if (isAlreadyUpdated) {
             // check updated order data
@@ -158,20 +165,42 @@ public class BasketServiceTest {
             assertEquals("LastName",    Address_up.getLastName()                            , Address_out.getLastName());
             assertEquals("Street",      Address_up.getStreet()                              , Address_out.getStreet());
             assertEquals("Street2",     Address_up.getStreet2()                             , Address_out.getStreet2());
+            assertEquals("Quantity", 20f, productLineItem.getQuantity(), 0.0);
         } else {
             // check order data created without update
             assertEquals("IsAcceptCreditCheckOK",     Basket_in.getAttributes()[0].getValue()             , Basket_info_out.getAttributes()[0].getValue());
 
             // check created address
-            assertEquals("FirstName", Address_in.getFirstName(), Address_out.getFirstName());
+            assertEquals("FirstName",   Address_in.getFirstName(), Address_out.getFirstName());
             assertEquals("LastName",    Address_in.getLastName()                            , Address_out.getLastName());
             assertEquals("Street",      Address_in.getStreet()                              , Address_out.getStreet());
             assertEquals("Street2",     Address_in.getStreet2()                             , Address_out.getStreet2());
+            assertEquals("Quantity", 10f, productLineItem.getQuantity(), 0.0);
         }
 
         assertEquals("TaxArea",         Basket_in.getLineItemContainer().getTaxArea()       , Basket_info_out.getLineItemContainer().getTaxArea());
         assertEquals("TaxModel",        Basket_in.getLineItemContainer().getTaxModel()      , Basket_info_out.getLineItemContainer().getTaxModel());
         assertEquals("CurrencyID",      Basket_in.getLineItemContainer().getCurrencyID()    , Basket_info_out.getLineItemContainer().getCurrencyID());
+        // "IsAddressOK", "WebUrl", "PickupToken"
+        assertNotNull("IsAddressOK", Basket_info_out.getAttributes()[0].getValue());
+        assertNotNull("WebUrl", Basket_info_out.getAttributes()[1].getValue());
+        assertNotNull("PickupToken", Basket_info_out.getAttributes()[2].getValue());
+
+        assertNotNull("Alias", productLineItem.getAlias());
+        assertNotNull("Name", productLineItem.getName());
+        assertNotNull("Product", productLineItem.getProduct());
+        assertNotNull("TaxClass", productLineItem.getTaxClass());
+        assertTrue("BasePrice", productLineItem.getBasePrice() > 0);
+        assertTrue("LineItemPrice", productLineItem.getLineItemPrice() > 0);
+        assertEquals("SKU", "ho_1112105010", productLineItem.getSKU());
+    }
+
+    public void testUpdateLineItem() throws RemoteException {
+        TGetInfo_Return[] Baskets_info_out = basketService.getInfo(Baskets, BasketAttributes, AddressAttributes, ItemAttributes, null);
+        String lineitemAlias = Baskets_info_out[0].getLineItemContainer().getProductLineItems()[0].getAlias();
+        TUpdateLineItem_Input lineItem = new TUpdateLineItem_Input(lineitemAlias, 20f);
+        TUpdateLineItem_Return updateLineItem = basketService.updateLineItem(BasketPath, lineItem);
+        assertTrue("updated?", updateLineItem.getUpdated());
     }
 
     /**
@@ -205,6 +234,7 @@ public class BasketServiceTest {
         testExists(true);
         testGetInfo(false);
         testUpdate();
+        testUpdateLineItem();
         testGetInfo(true);
         testDelete();
         testExists(false);
