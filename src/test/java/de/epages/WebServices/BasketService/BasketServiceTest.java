@@ -105,7 +105,7 @@ public class BasketServiceTest {
      * Create a Basket and check if the creation was successful
      */
     public void testCreate() throws RemoteException {
-        log.info("BasketServiceTestCase: testCreate");
+        log.info("BasketServiceTest: testCreate");
         TCreate_Return[] Baskets_create_out = basketService.create(new TCreate_Input[]{Basket_in});
         assertEquals("create result set", 1, Baskets_create_out.length);
         assertEquals("created?", new Boolean(true), Baskets_create_out[0].getCreated());
@@ -117,7 +117,7 @@ public class BasketServiceTest {
      * Create a Basket without passing optional fields, and check if the creation was successful
      */
     public void testCreateWithDefaults() throws RemoteException {
-        log.info("BasketServiceTestCase: testCreateWithoutLIC");
+        log.info("BasketServiceTest: testCreateWithoutLIC");
         TCreate_Input basket_in = new TCreate_Input();
         TCreate_Return[] Baskets_create_out = basketService.create(new TCreate_Input[]{basket_in});
         assertEquals("create result set", 1, Baskets_create_out.length);
@@ -129,7 +129,7 @@ public class BasketServiceTest {
      * Update a Basket and check if the update was successful
      */
     public void testUpdate() throws RemoteException {
-        log.info("BasketServiceTestCase: testUpdate");
+        log.info("BasketServiceTest: testUpdate");
         Basket_up.setPath(BasketPath);
         TUpdate_Return[] Baskets_update_out = basketService.update(new TUpdate_Input[]{Basket_up});
         assertEquals("update result set", 1, Baskets_update_out.length);
@@ -143,7 +143,7 @@ public class BasketServiceTest {
      * @param isAlreadyUpdated if true check against update data, else against create data
      */
     public void testGetInfo(boolean isAlreadyUpdated) throws RemoteException {
-        log.info("BasketServiceTestCase: testGetInfo");
+        log.info("BasketServiceTest: testGetInfo");
         Baskets = new String[]{BasketPath};
         TGetInfo_Return[] Baskets_info_out = basketService.getInfo(Baskets, BasketAttributes, AddressAttributes, ItemAttributes, null);
         assertEquals("exists result set",1, Baskets_info_out.length);
@@ -196,6 +196,7 @@ public class BasketServiceTest {
     }
 
     public void testUpdateLineItem() throws RemoteException {
+        log.info("BasetServiceTest: testUpdateLineItem");
         TGetInfo_Return[] Baskets_info_out = basketService.getInfo(Baskets, BasketAttributes, AddressAttributes, ItemAttributes, null);
         String lineitemAlias = Baskets_info_out[0].getLineItemContainer().getProductLineItems()[0].getAlias();
         TUpdateLineItem_Input lineItem = new TUpdateLineItem_Input(lineitemAlias, 20f);
@@ -207,7 +208,7 @@ public class BasketServiceTest {
      * Delete a Basket and check if no error occured.
      */
     public void testDelete() throws RemoteException {
-        log.info("BasketServiceTestCase: testDelete");
+        log.info("BasketServiceTest: testDelete");
         TDelete_Return[] Basket_delete_out = basketService.delete(new String[]{BasketPath});
         assertEquals("delete result set", 1, Basket_delete_out.length);
     }
@@ -217,7 +218,7 @@ public class BasketServiceTest {
      * @param expected  if false, test is successful if the Order does NOT exists
      */
     public void testExists(boolean expected) throws RemoteException {
-        log.info("BasketServiceTestCase: testExists");
+        log.info("BasketServiceTest: testExists");
         TExists_Return[] Baskets_exists_out = basketService.exists(new String[]{BasketPath});
         assertEquals("exists result set", 1, Baskets_exists_out.length);
         assertEquals("exists?", new Boolean(expected), Baskets_exists_out[0].getExists());
