@@ -1,15 +1,29 @@
+buildscript {
+    repositories {
+        maven { url project.properties['artifactoryContextUrl'] + "epages-repos" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.4'
+    }
+}
+
 apply plugin: "java"
 apply plugin: "eclipse"
 apply plugin: 'maven'
 apply plugin: 'jacoco'
 apply plugin: "sonar-runner"
+apply plugin: 'versions'
 
 archivesBaseName = 'soapclient'
 group = 'de.epages'
 description = 'AXIS 1.x based SOAP client for epages6'
-version = '6.17.0-SNAPSHOT'
+version = '1.0'
 
-repositories { mavenCentral() }
+repositories { 
+    maven { url project.properties['artifactoryContextUrl'] + "epages-repos" }
+    mavenCentral()
+}
 configurations { axisGenTask }
 
 // add src/gen/java
@@ -122,6 +136,14 @@ task axisGen() {
             )
         }
     }
+}
+
+task checkDependencyUpdates() {
+    description = 'Prints report comparing the current dependencies against their latest release version.'
+    group = 'Report'
+
+    System.properties['revision'] = "release"
+    doFirst { dependencyUpdates.execute() }
 }
 
 artifacts {
