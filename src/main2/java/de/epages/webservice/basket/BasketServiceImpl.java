@@ -7,8 +7,11 @@ import java.util.List;
 import de.epages.webservice.ErrorHandler;
 import de.epages.webservice.ThrowingErrorHandler;
 import de.epages.webservice.WebServiceConfiguration;
+import de.epages.webservice.basket.model.TAddProductLineItem_Input;
+import de.epages.webservice.basket.model.TAddProductLineItem_Return;
 import de.epages.webservice.basket.model.TCreate_Input;
 import de.epages.webservice.basket.model.TCreate_Return;
+import de.epages.webservice.basket.model.TDeleteLineItem_Return;
 import de.epages.webservice.basket.model.TDelete_Return;
 import de.epages.webservice.basket.model.TExists_Return;
 import de.epages.webservice.basket.model.TGetInfo_Return;
@@ -143,6 +146,39 @@ public class BasketServiceImpl implements BasketService {
             }
         }
         return resultList.toArray(new TUpdateLineItem_Return[resultList.size()]);
+    }
+
+    @Override
+    public TDeleteLineItem_Return[] deleteLineItem(String TBasketPath, String[] lineItems) throws RemoteException {
+        TDeleteLineItem_Return[] delete = stub.deleteLineItem(TBasketPath, lineItems);
+        List<TDeleteLineItem_Return> resultList = new ArrayList<>(delete.length);
+
+        for (int i = 0; i < delete.length; i++) {
+            TDeleteLineItem_Return element = delete[i];
+            if (element.getError() != null) {
+                errorHandler.handle(element, element.getError().getMessage());
+            } else {
+                resultList.add(element);
+            }
+        }
+        return resultList.toArray(new TDeleteLineItem_Return[resultList.size()]);
+    }
+
+    @Override
+    public TAddProductLineItem_Return[] addProductLineItem(String TBasketPath, TAddProductLineItem_Input[] lineItems)
+            throws RemoteException {
+        TAddProductLineItem_Return[] add = stub.addProductLineItem(TBasketPath, lineItems);
+        List<TAddProductLineItem_Return> resultList = new ArrayList<>(add.length);
+
+        for (int i = 0; i < add.length; i++) {
+            TAddProductLineItem_Return element = add[i];
+            if (element.getError() != null) {
+                errorHandler.handle(element, element.getError().getMessage());
+            } else {
+                resultList.add(element);
+            }
+        }
+        return resultList.toArray(new TAddProductLineItem_Return[resultList.size()]);
     }
 
 }

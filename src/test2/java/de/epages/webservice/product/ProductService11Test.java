@@ -15,19 +15,20 @@ import org.junit.Test;
 
 import de.epages.webservice.FileUtil;
 import de.epages.webservice.WebServiceTestConfiguration;
-import de.epages.webservice.common.model2.TAttribute;
-import de.epages.webservice.common.model2.TLocalizedValue;
-import de.epages.webservice.product.model11.TCreate_Input;
-import de.epages.webservice.product.model11.TCreate_Return;
-import de.epages.webservice.product.model11.TDelete_Return;
-import de.epages.webservice.product.model11.TDownload;
-import de.epages.webservice.product.model11.TExists_Return;
-import de.epages.webservice.product.model11.TGetInfo_Return;
-import de.epages.webservice.product.model11.TProductPrice;
-import de.epages.webservice.product.model11.TShippingMethod;
-import de.epages.webservice.product.model11.TUpdate_Input;
-import de.epages.webservice.product.model11.TUpdate_Return;
-import de.epages.webservice.product.stub11.TFind_Input;
+import de.epages.webservice.common2.model.TAttribute;
+import de.epages.webservice.common2.model.TLocalizedValue;
+import de.epages.webservice.product11.stub.TFind_Input;
+import de.epages.webservice.product9.model.TCreate_Input;
+import de.epages.webservice.product9.model.TCreate_Return;
+import de.epages.webservice.product9.model.TDelete_Return;
+import de.epages.webservice.product9.model.TDownload;
+import de.epages.webservice.product9.model.TExists_Return;
+import de.epages.webservice.product9.model.TGetInfo_Return;
+import de.epages.webservice.product9.model.TProductPrice;
+import de.epages.webservice.product9.model.TShippingMethod;
+import de.epages.webservice.product9.model.TUpdate_Input;
+import de.epages.webservice.product9.model.TUpdate_Return;
+
 
 
 /**

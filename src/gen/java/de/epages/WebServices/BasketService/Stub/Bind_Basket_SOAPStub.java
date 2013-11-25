@@ -16,7 +16,7 @@ public class Bind_Basket_SOAPStub extends org.apache.axis.client.Stub implements
     static org.apache.axis.description.OperationDesc [] _operations;
 
     static {
-        _operations = new org.apache.axis.description.OperationDesc[6];
+        _operations = new org.apache.axis.description.OperationDesc[8];
         _initOperationDesc1();
     }
 
@@ -99,6 +99,32 @@ public class Bind_Basket_SOAPStub extends org.apache.axis.client.Stub implements
         oper.setUse(org.apache.axis.constants.Use.ENCODED);
         _operations[5] = oper;
 
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("deleteLineItem");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "TBasketPath"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "LineItems"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/BasketService/2013/11", "type_DeleteLineItem_In"), java.lang.String[].class, false, false);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/BasketService/2013/11", "type_DeleteLineItem_Out"));
+        oper.setReturnClass(de.epages.WebServices.BasketService.Stub.TDeleteLineItem_Return[].class);
+        oper.setReturnQName(new javax.xml.namespace.QName("", "LineItems"));
+        oper.setStyle(org.apache.axis.constants.Style.RPC);
+        oper.setUse(org.apache.axis.constants.Use.ENCODED);
+        _operations[6] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("addProductLineItem");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "TBasketPath"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "LineItems"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/BasketService/2013/11", "type_AddProductLineItem_In"), de.epages.WebServices.BasketService.Stub.TAddProductLineItem_Input[].class, false, false);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/BasketService/2013/11", "type_AddProductLineItem_Out"));
+        oper.setReturnClass(de.epages.WebServices.BasketService.Stub.TAddProductLineItem_Return[].class);
+        oper.setReturnQName(new javax.xml.namespace.QName("", "LineItems"));
+        oper.setStyle(org.apache.axis.constants.Style.RPC);
+        oper.setUse(org.apache.axis.constants.Use.ENCODED);
+        _operations[7] = oper;
+
     }
 
     public Bind_Basket_SOAPStub() throws org.apache.axis.AxisFault {
@@ -130,6 +156,24 @@ public class Bind_Basket_SOAPStub extends org.apache.axis.client.Stub implements
             java.lang.Class simpledf = org.apache.axis.encoding.ser.SimpleDeserializerFactory.class;
             java.lang.Class simplelistsf = org.apache.axis.encoding.ser.SimpleListSerializerFactory.class;
             java.lang.Class simplelistdf = org.apache.axis.encoding.ser.SimpleListDeserializerFactory.class;
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/BasketService/2013/11", "type_AddProductLineItem_In");
+            cachedSerQNames.add(qName);
+            cls = de.epages.WebServices.BasketService.Stub.TAddProductLineItem_Input[].class;
+            cachedSerClasses.add(cls);
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/BasketTypes/2013/11", "TAddProductLineItem_Input");
+            qName2 = null;
+            cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
+            cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
+
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/BasketService/2013/11", "type_AddProductLineItem_Out");
+            cachedSerQNames.add(qName);
+            cls = de.epages.WebServices.BasketService.Stub.TAddProductLineItem_Return[].class;
+            cachedSerClasses.add(cls);
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/BasketTypes/2013/11", "TAddProductLineItem_Return");
+            qName2 = null;
+            cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
+            cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
+
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/BasketService/2013/11", "type_AttributeNames_In");
             cachedSerQNames.add(qName);
             cls = java.lang.String[].class;
@@ -171,6 +215,24 @@ public class Bind_Basket_SOAPStub extends org.apache.axis.client.Stub implements
             cls = de.epages.WebServices.BasketService.Stub.TDelete_Return[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/BasketTypes/2013/11", "TDelete_Return");
+            qName2 = null;
+            cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
+            cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
+
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/BasketService/2013/11", "type_DeleteLineItem_In");
+            cachedSerQNames.add(qName);
+            cls = java.lang.String[].class;
+            cachedSerClasses.add(cls);
+            qName = new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string");
+            qName2 = null;
+            cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
+            cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
+
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/BasketService/2013/11", "type_DeleteLineItem_Out");
+            cachedSerQNames.add(qName);
+            cls = de.epages.WebServices.BasketService.Stub.TDeleteLineItem_Return[].class;
+            cachedSerClasses.add(cls);
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/BasketTypes/2013/11", "TDeleteLineItem_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
@@ -256,6 +318,20 @@ public class Bind_Basket_SOAPStub extends org.apache.axis.client.Stub implements
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/BasketTypes/2013/11", "TAddProductLineItem_Input");
+            cachedSerQNames.add(qName);
+            cls = de.epages.WebServices.BasketService.Stub.TAddProductLineItem_Input.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/BasketTypes/2013/11", "TAddProductLineItem_Return");
+            cachedSerQNames.add(qName);
+            cls = de.epages.WebServices.BasketService.Stub.TAddProductLineItem_Return.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/BasketTypes/2013/11", "TBaseLineItem");
             cachedSerQNames.add(qName);
             cls = de.epages.WebServices.BasketService.Stub.TBaseLineItem.class;
@@ -287,6 +363,13 @@ public class Bind_Basket_SOAPStub extends org.apache.axis.client.Stub implements
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/BasketTypes/2013/11", "TDelete_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.WebServices.BasketService.Stub.TDelete_Return.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/BasketTypes/2013/11", "TDeleteLineItem_Return");
+            cachedSerQNames.add(qName);
+            cls = de.epages.WebServices.BasketService.Stub.TDeleteLineItem_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
@@ -799,6 +882,68 @@ public class Bind_Basket_SOAPStub extends org.apache.axis.client.Stub implements
                 return (de.epages.WebServices.BasketService.Stub.TUpdateLineItem_Return[]) _resp;
             } catch (java.lang.Exception _exception) {
                 return (de.epages.WebServices.BasketService.Stub.TUpdateLineItem_Return[]) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.WebServices.BasketService.Stub.TUpdateLineItem_Return[].class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
+    public de.epages.WebServices.BasketService.Stub.TDeleteLineItem_Return[] deleteLineItem(java.lang.String TBasketPath, java.lang.String[] lineItems) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[6]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("urn://epages.de/WebService/BasketService/2013/11#deleteLineItem");
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("urn://epages.de/WebService/BasketService/2013/11", "deleteLineItem"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {TBasketPath, lineItems});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (de.epages.WebServices.BasketService.Stub.TDeleteLineItem_Return[]) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (de.epages.WebServices.BasketService.Stub.TDeleteLineItem_Return[]) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.WebServices.BasketService.Stub.TDeleteLineItem_Return[].class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
+    public de.epages.WebServices.BasketService.Stub.TAddProductLineItem_Return[] addProductLineItem(java.lang.String TBasketPath, de.epages.WebServices.BasketService.Stub.TAddProductLineItem_Input[] lineItems) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[7]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("urn://epages.de/WebService/BasketService/2013/11#addProductLineItem");
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("urn://epages.de/WebService/BasketService/2013/11", "addProductLineItem"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {TBasketPath, lineItems});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (de.epages.WebServices.BasketService.Stub.TAddProductLineItem_Return[]) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (de.epages.WebServices.BasketService.Stub.TAddProductLineItem_Return[]) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.WebServices.BasketService.Stub.TAddProductLineItem_Return[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {

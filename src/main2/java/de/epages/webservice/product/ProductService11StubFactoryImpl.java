@@ -5,8 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.epages.webservice.WebServiceConfiguration;
-import de.epages.webservice.product.stub11.Bind_Product_SOAPStub;
-import de.epages.webservice.product.stub11.ProductService;
+import de.epages.webservice.product11.stub.Bind_Product_SOAPStub;
+import de.epages.webservice.product11.stub.ProductService;
+
 
 class ProductService11StubFactoryImpl implements ProductService11StubFactory {
 

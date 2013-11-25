@@ -25,7 +25,7 @@ import de.epages.webservice.basket.model.TUpdateLineItem_Return;
 import de.epages.webservice.basket.model.TUpdate_Input;
 import de.epages.webservice.basket.model.TUpdate_Return;
 import de.epages.webservice.common.model.TAttribute;
-import de.epages.webservice.shop.model3.TAddressNamed;
+import de.epages.webservice.shop3.model.TAddressNamed;
 
 /* import java.math.BigInteger; */
 

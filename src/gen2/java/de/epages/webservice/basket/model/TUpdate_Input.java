@@ -25,9 +25,9 @@ public class TUpdate_Input  implements java.io.Serializable {
     /* the products, payments, shipping etc. of this basket (see baskettypes:TLineItemContainerIn) */
     private de.epages.webservice.basket.model.TLineItemContainerIn lineItemContainer;
 
-    private de.epages.webservice.shop.model3.TAddressNamed billingAddress;
+    private de.epages.webservice.shop3.model.TAddressNamed billingAddress;
 
-    private de.epages.webservice.shop.model3.TAddressNamed shippingAddress;
+    private de.epages.webservice.shop3.model.TAddressNamed shippingAddress;
 
     /* list of requested attributes (see epagestypes:ListOfAttributes) */
     private de.epages.webservice.common.model.TAttribute[] attributes;
@@ -39,8 +39,8 @@ public class TUpdate_Input  implements java.io.Serializable {
            java.lang.String path,
            java.lang.String user,
            de.epages.webservice.basket.model.TLineItemContainerIn lineItemContainer,
-           de.epages.webservice.shop.model3.TAddressNamed billingAddress,
-           de.epages.webservice.shop.model3.TAddressNamed shippingAddress,
+           de.epages.webservice.shop3.model.TAddressNamed billingAddress,
+           de.epages.webservice.shop3.model.TAddressNamed shippingAddress,
            de.epages.webservice.common.model.TAttribute[] attributes) {
            this.path = path;
            this.user = user;
@@ -116,7 +116,7 @@ public class TUpdate_Input  implements java.io.Serializable {
      * 
      * @return billingAddress
      */
-    public de.epages.webservice.shop.model3.TAddressNamed getBillingAddress() {
+    public de.epages.webservice.shop3.model.TAddressNamed getBillingAddress() {
         return billingAddress;
     }
 
@@ -126,7 +126,7 @@ public class TUpdate_Input  implements java.io.Serializable {
      * 
      * @param billingAddress
      */
-    public void setBillingAddress(de.epages.webservice.shop.model3.TAddressNamed billingAddress) {
+    public void setBillingAddress(de.epages.webservice.shop3.model.TAddressNamed billingAddress) {
         this.billingAddress = billingAddress;
     }
 
@@ -136,7 +136,7 @@ public class TUpdate_Input  implements java.io.Serializable {
      * 
      * @return shippingAddress
      */
-    public de.epages.webservice.shop.model3.TAddressNamed getShippingAddress() {
+    public de.epages.webservice.shop3.model.TAddressNamed getShippingAddress() {
         return shippingAddress;
     }
 
@@ -146,7 +146,7 @@ public class TUpdate_Input  implements java.io.Serializable {
      * 
      * @param shippingAddress
      */
-    public void setShippingAddress(de.epages.webservice.shop.model3.TAddressNamed shippingAddress) {
+    public void setShippingAddress(de.epages.webservice.shop3.model.TAddressNamed shippingAddress) {
         this.shippingAddress = shippingAddress;
     }
 

@@ -10,16 +10,17 @@ import org.slf4j.LoggerFactory;
 import de.epages.webservice.ErrorHandler;
 import de.epages.webservice.ThrowingErrorHandler;
 import de.epages.webservice.WebServiceConfiguration;
-import de.epages.webservice.product.model11.TCreate_Input;
-import de.epages.webservice.product.model11.TCreate_Return;
-import de.epages.webservice.product.model11.TDelete_Return;
-import de.epages.webservice.product.model11.TExists_Return;
-import de.epages.webservice.product.model11.TGetInfo_Return;
-import de.epages.webservice.product.model11.TUpdate_Input;
-import de.epages.webservice.product.model11.TUpdate_Return;
-import de.epages.webservice.product.stub11.Bind_Product_SOAPStub;
-import de.epages.webservice.product.stub11.ProductServiceLocator;
-import de.epages.webservice.product.stub11.TFind_Input;
+import de.epages.webservice.product11.stub.Bind_Product_SOAPStub;
+import de.epages.webservice.product11.stub.ProductServiceLocator;
+import de.epages.webservice.product11.stub.TFind_Input;
+import de.epages.webservice.product9.model.TCreate_Input;
+import de.epages.webservice.product9.model.TCreate_Return;
+import de.epages.webservice.product9.model.TDelete_Return;
+import de.epages.webservice.product9.model.TExists_Return;
+import de.epages.webservice.product9.model.TGetInfo_Return;
+import de.epages.webservice.product9.model.TUpdate_Input;
+import de.epages.webservice.product9.model.TUpdate_Return;
+
 
 public class ProductServiceClient11Impl implements ProductServiceClient11 {
     private final ProductServiceLocator serviceLocator = new ProductServiceLocator();

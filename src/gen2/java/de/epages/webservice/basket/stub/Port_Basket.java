@@ -25,9 +25,19 @@ public interface Port_Basket extends java.rmi.Remote {
     public de.epages.webservice.basket.model.TDelete_Return[] delete(java.lang.String[] baskets) throws java.rmi.RemoteException;
 
     /**
+     * delete line items of a baskets
+     */
+    public de.epages.webservice.basket.model.TDeleteLineItem_Return[] deleteLineItem(java.lang.String TBasketPath, java.lang.String[] lineItems) throws java.rmi.RemoteException;
+
+    /**
      * update a list of baskets
      */
     public de.epages.webservice.basket.model.TUpdate_Return[] update(de.epages.webservice.basket.model.TUpdate_Input[] baskets) throws java.rmi.RemoteException;
+
+    /**
+     * update line items of a baskets
+     */
+    public de.epages.webservice.basket.model.TUpdateLineItem_Return[] updateLineItem(java.lang.String TBasketPath, de.epages.webservice.basket.model.TUpdateLineItem_Input[] lineItems) throws java.rmi.RemoteException;
 
     /**
      * create new baskets
@@ -35,7 +45,7 @@ public interface Port_Basket extends java.rmi.Remote {
     public de.epages.webservice.basket.model.TCreate_Return[] create(de.epages.webservice.basket.model.TCreate_Input[] baskets) throws java.rmi.RemoteException;
 
     /**
-     * update a single lineitem of baskets
+     * add products tp baskets
      */
-    public de.epages.webservice.basket.model.TUpdateLineItem_Return[] updateLineItem(java.lang.String TBasketPath, de.epages.webservice.basket.model.TUpdateLineItem_Input[] lineItems) throws java.rmi.RemoteException;
+    public de.epages.webservice.basket.model.TAddProductLineItem_Return[] addProductLineItem(java.lang.String TBasketPath, de.epages.webservice.basket.model.TAddProductLineItem_Input[] lineItems) throws java.rmi.RemoteException;
 }
