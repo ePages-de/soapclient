@@ -1,4 +1,4 @@
-package de.epages.WebServices;
+package de.epages.webservice;
 
 import java.io.FileInputStream;
 import java.net.MalformedURLException;
@@ -9,7 +9,6 @@ import java.util.Properties;
 /**
  * Common configuration data for all web services
  */
-@Deprecated
 public class WebServiceTestConfiguration implements WebServiceConfiguration {
 
     private static final WebServiceTestConfiguration _INSTANCE = new WebServiceTestConfiguration();

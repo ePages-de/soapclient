@@ -10,7 +10,7 @@ package de.epages.WebServices.BasketService.Stub;
 public interface BasketService extends javax.xml.rpc.Service {
 
 /**
- * epages Order Service
+ * epages Basket Service
  */
     public java.lang.String getport_BasketAddress();
 

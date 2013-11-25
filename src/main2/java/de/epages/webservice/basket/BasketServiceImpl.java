@@ -1,43 +1,40 @@
-package de.epages.WebServices.BasketService;
+package de.epages.webservice.basket;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.epages.WebServices.ErrorHandler;
-import de.epages.WebServices.ThrowingErrorHandler;
-import de.epages.WebServices.WebServiceConfiguration;
-import de.epages.WebServices.BasketService.Stub.BasketService;
-import de.epages.WebServices.BasketService.Stub.BasketServiceLocator;
-import de.epages.WebServices.BasketService.Stub.Bind_Basket_SOAPStub;
-import de.epages.WebServices.BasketService.Stub.Port_Basket_PortType;
-import de.epages.WebServices.BasketService.Stub.TCreate_Input;
-import de.epages.WebServices.BasketService.Stub.TCreate_Return;
-import de.epages.WebServices.BasketService.Stub.TDelete_Return;
-import de.epages.WebServices.BasketService.Stub.TExists_Return;
-import de.epages.WebServices.BasketService.Stub.TGetInfo_Return;
-import de.epages.WebServices.BasketService.Stub.TUpdateLineItem_Input;
-import de.epages.WebServices.BasketService.Stub.TUpdateLineItem_Return;
-import de.epages.WebServices.BasketService.Stub.TUpdate_Input;
-import de.epages.WebServices.BasketService.Stub.TUpdate_Return;
+import de.epages.webservice.ErrorHandler;
+import de.epages.webservice.ThrowingErrorHandler;
+import de.epages.webservice.WebServiceConfiguration;
+import de.epages.webservice.basket.model.TCreate_Input;
+import de.epages.webservice.basket.model.TCreate_Return;
+import de.epages.webservice.basket.model.TDelete_Return;
+import de.epages.webservice.basket.model.TExists_Return;
+import de.epages.webservice.basket.model.TGetInfo_Return;
+import de.epages.webservice.basket.model.TUpdateLineItem_Input;
+import de.epages.webservice.basket.model.TUpdateLineItem_Return;
+import de.epages.webservice.basket.model.TUpdate_Input;
+import de.epages.webservice.basket.model.TUpdate_Return;
+import de.epages.webservice.basket.stub.BasketServiceLocator;
+import de.epages.webservice.basket.stub.Bind_Basket_SOAPStub;
 
-@Deprecated
-public class BasketServiceClient implements Port_Basket_PortType {
+public class BasketServiceImpl implements BasketService {
 
-    private static final BasketService service = new BasketServiceLocator();
+    private static final BasketServiceLocator serviceLocator = new BasketServiceLocator();
     private final Bind_Basket_SOAPStub stub;
     private final ErrorHandler errorHandler;
 
-    public BasketServiceClient(final WebServiceConfiguration config) {
+    public BasketServiceImpl(final WebServiceConfiguration config) {
         this(config, new ThrowingErrorHandler());
     }
 
-    public BasketServiceClient(WebServiceConfiguration config, ErrorHandler errorHandler) {
+    public BasketServiceImpl(WebServiceConfiguration config, ErrorHandler errorHandler) {
         this(config, errorHandler, new BasketServiceStubFactoryImpl());
     }
 
-    public BasketServiceClient(WebServiceConfiguration config, ErrorHandler errorHandler, BasketServiceStubFactory factory) {
-        this.stub = factory.create(config, service);
+    public BasketServiceImpl(WebServiceConfiguration config, ErrorHandler errorHandler, BasketServiceStubFactory factory) {
+        this.stub = factory.create(config, serviceLocator);
         this.errorHandler = errorHandler;
     }
 

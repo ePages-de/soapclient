@@ -1,9 +1,8 @@
-package de.epages.WebServices;
+package de.epages.webservice;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-@Deprecated
 public class FileUtil {
 
     /**

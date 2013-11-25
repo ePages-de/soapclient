@@ -37,5 +37,5 @@ public interface Port_Basket_PortType extends java.rmi.Remote {
     /**
      * update a single lineitem of baskets
      */
-    public de.epages.WebServices.BasketService.Stub.TUpdateLineItem_Return updateLineItem(java.lang.String TBasketPath, de.epages.WebServices.BasketService.Stub.TUpdateLineItem_Input lineItem) throws java.rmi.RemoteException;
+    public de.epages.WebServices.BasketService.Stub.TUpdateLineItem_Return[] updateLineItem(java.lang.String TBasketPath, de.epages.WebServices.BasketService.Stub.TUpdateLineItem_Input[] lineItems) throws java.rmi.RemoteException;
 }

@@ -2,12 +2,12 @@
  * BasketServiceLocator.java
  *
  * This file was auto-generated from WSDL
- * by the Apache Axis 1.3 Oct 05, 2005 (05:23:37 EDT) WSDL2Java emitter.
+ * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package de.epages.WebServices.BasketService.Stub;
+package de.epages.webservice.basket.stub;
 
-public class BasketServiceLocator extends org.apache.axis.client.Service implements de.epages.WebServices.BasketService.Stub.BasketService {
+public class BasketServiceLocator extends org.apache.axis.client.Service implements de.epages.webservice.basket.stub.BasketService {
 
 /**
  * epages Basket Service
@@ -43,7 +43,7 @@ public class BasketServiceLocator extends org.apache.axis.client.Service impleme
         port_BasketWSDDServiceName = name;
     }
 
-    public de.epages.WebServices.BasketService.Stub.Port_Basket_PortType getport_Basket() throws javax.xml.rpc.ServiceException {
+    public de.epages.webservice.basket.stub.Port_Basket getport_Basket() throws javax.xml.rpc.ServiceException {
        java.net.URL endpoint;
         try {
             endpoint = new java.net.URL(port_Basket_address);
@@ -54,9 +54,9 @@ public class BasketServiceLocator extends org.apache.axis.client.Service impleme
         return getport_Basket(endpoint);
     }
 
-    public de.epages.WebServices.BasketService.Stub.Port_Basket_PortType getport_Basket(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
+    public de.epages.webservice.basket.stub.Port_Basket getport_Basket(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
         try {
-            de.epages.WebServices.BasketService.Stub.Bind_Basket_SOAPStub _stub = new de.epages.WebServices.BasketService.Stub.Bind_Basket_SOAPStub(portAddress, this);
+            de.epages.webservice.basket.stub.Bind_Basket_SOAPStub _stub = new de.epages.webservice.basket.stub.Bind_Basket_SOAPStub(portAddress, this);
             _stub.setPortName(getport_BasketWSDDServiceName());
             return _stub;
         }
@@ -76,8 +76,8 @@ public class BasketServiceLocator extends org.apache.axis.client.Service impleme
      */
     public java.rmi.Remote getPort(Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
         try {
-            if (de.epages.WebServices.BasketService.Stub.Port_Basket_PortType.class.isAssignableFrom(serviceEndpointInterface)) {
-                de.epages.WebServices.BasketService.Stub.Bind_Basket_SOAPStub _stub = new de.epages.WebServices.BasketService.Stub.Bind_Basket_SOAPStub(new java.net.URL(port_Basket_address), this);
+            if (de.epages.webservice.basket.stub.Port_Basket.class.isAssignableFrom(serviceEndpointInterface)) {
+                de.epages.webservice.basket.stub.Bind_Basket_SOAPStub _stub = new de.epages.webservice.basket.stub.Bind_Basket_SOAPStub(new java.net.URL(port_Basket_address), this);
                 _stub.setPortName(getport_BasketWSDDServiceName());
                 return _stub;
             }

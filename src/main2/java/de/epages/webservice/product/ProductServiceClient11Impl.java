@@ -1,4 +1,4 @@
-package de.epages.WebServices.ProductService11;
+package de.epages.webservice.product;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -7,40 +7,37 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.epages.WebServices.ErrorHandler;
-import de.epages.WebServices.ThrowingErrorHandler;
-import de.epages.WebServices.WebServiceConfiguration;
-import de.epages.WebServices.ProductService11.Stub.Bind_Product_SOAPStub;
-import de.epages.WebServices.ProductService11.Stub.Port_Product_PortType;
-import de.epages.WebServices.ProductService11.Stub.ProductService;
-import de.epages.WebServices.ProductService11.Stub.ProductServiceLocator;
-import de.epages.WebServices.ProductService11.Stub.TCreate_Input;
-import de.epages.WebServices.ProductService11.Stub.TCreate_Return;
-import de.epages.WebServices.ProductService11.Stub.TDelete_Return;
-import de.epages.WebServices.ProductService11.Stub.TExists_Return;
-import de.epages.WebServices.ProductService11.Stub.TFind_Input;
-import de.epages.WebServices.ProductService11.Stub.TGetInfo_Return;
-import de.epages.WebServices.ProductService11.Stub.TUpdate_Input;
-import de.epages.WebServices.ProductService11.Stub.TUpdate_Return;
+import de.epages.webservice.ErrorHandler;
+import de.epages.webservice.ThrowingErrorHandler;
+import de.epages.webservice.WebServiceConfiguration;
+import de.epages.webservice.product.model11.TCreate_Input;
+import de.epages.webservice.product.model11.TCreate_Return;
+import de.epages.webservice.product.model11.TDelete_Return;
+import de.epages.webservice.product.model11.TExists_Return;
+import de.epages.webservice.product.model11.TGetInfo_Return;
+import de.epages.webservice.product.model11.TUpdate_Input;
+import de.epages.webservice.product.model11.TUpdate_Return;
+import de.epages.webservice.product.stub11.Bind_Product_SOAPStub;
+import de.epages.webservice.product.stub11.ProductServiceLocator;
+import de.epages.webservice.product.stub11.TFind_Input;
 
-@Deprecated
-public class ProductService11Client implements Port_Product_PortType {
-    private final ProductService service = new ProductServiceLocator();
+public class ProductServiceClient11Impl implements ProductServiceClient11 {
+    private final ProductServiceLocator serviceLocator = new ProductServiceLocator();
     private final Bind_Product_SOAPStub stub;
     private final ErrorHandler errorHandler;
 
-    private static final Logger log = LoggerFactory.getLogger(ProductService11Client.class);
+    private static final Logger log = LoggerFactory.getLogger(ProductServiceClient11Impl.class);
 
-    public ProductService11Client(final WebServiceConfiguration config) {
+    public ProductServiceClient11Impl(final WebServiceConfiguration config) {
         this(config, new ThrowingErrorHandler());
     }
 
-    public ProductService11Client(WebServiceConfiguration config, ErrorHandler errorHandler) {
+    public ProductServiceClient11Impl(WebServiceConfiguration config, ErrorHandler errorHandler) {
         this(config, errorHandler, new ProductService11StubFactoryImpl());
     }
 
-    public ProductService11Client(WebServiceConfiguration config, ErrorHandler errorHandler, ProductService11StubFactory factory) {
-        this.stub = factory.create(config, service);
+    public ProductServiceClient11Impl(WebServiceConfiguration config, ErrorHandler errorHandler, ProductService11StubFactory factory) {
+        this.stub = factory.create(config, serviceLocator);
         this.errorHandler = errorHandler;
     }
 

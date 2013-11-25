@@ -1,4 +1,4 @@
-package de.epages.WebServices.BasketService;
+package de.epages.webservice.basket;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -11,21 +11,22 @@ import java.util.logging.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.epages.WebServices.WebServiceTestConfiguration;
-import de.epages.WebServices.BasketService.Stub.TAddressNamed;
-import de.epages.WebServices.BasketService.Stub.TAttribute;
-import de.epages.WebServices.BasketService.Stub.TCreate_Input;
-import de.epages.WebServices.BasketService.Stub.TCreate_Return;
-import de.epages.WebServices.BasketService.Stub.TDelete_Return;
-import de.epages.WebServices.BasketService.Stub.TExists_Return;
-import de.epages.WebServices.BasketService.Stub.TGetInfo_Return;
-import de.epages.WebServices.BasketService.Stub.TLineItemContainerIn;
-import de.epages.WebServices.BasketService.Stub.TProductLineItemIn;
-import de.epages.WebServices.BasketService.Stub.TProductLineItemOut;
-import de.epages.WebServices.BasketService.Stub.TUpdateLineItem_Input;
-import de.epages.WebServices.BasketService.Stub.TUpdateLineItem_Return;
-import de.epages.WebServices.BasketService.Stub.TUpdate_Input;
-import de.epages.WebServices.BasketService.Stub.TUpdate_Return;
+import de.epages.webservice.WebServiceTestConfiguration;
+import de.epages.webservice.basket.model.TCreate_Input;
+import de.epages.webservice.basket.model.TCreate_Return;
+import de.epages.webservice.basket.model.TDelete_Return;
+import de.epages.webservice.basket.model.TExists_Return;
+import de.epages.webservice.basket.model.TGetInfo_Return;
+import de.epages.webservice.basket.model.TLineItemContainerIn;
+import de.epages.webservice.basket.model.TProductLineItemIn;
+import de.epages.webservice.basket.model.TProductLineItemOut;
+import de.epages.webservice.basket.model.TUpdateLineItem_Input;
+import de.epages.webservice.basket.model.TUpdateLineItem_Return;
+import de.epages.webservice.basket.model.TUpdate_Input;
+import de.epages.webservice.basket.model.TUpdate_Return;
+import de.epages.webservice.common.model.TAttribute;
+import de.epages.webservice.shop.model3.TAddressNamed;
+
 /* import java.math.BigInteger; */
 
 /**
@@ -34,7 +35,7 @@ import de.epages.WebServices.BasketService.Stub.TUpdate_Return;
 public class BasketServiceTest {
     private static final Logger log = Logger.getLogger(BasketServiceTest.class.getName());
 
-    private BasketServiceClient basketService;
+    private BasketServiceImpl basketService;
     private TCreate_Input Basket_in = new TCreate_Input();
     private TUpdate_Input Basket_up = new TUpdate_Input();
     private TAttribute BasketAttr_in = new TAttribute("IsAddressOK","1",null,null);
@@ -56,7 +57,7 @@ public class BasketServiceTest {
     public void setUp() throws RemoteException, MalformedURLException {
         log.info("BasketTestCase: setUp");
 
-        basketService = new BasketServiceClient(new WebServiceTestConfiguration());
+        basketService = new BasketServiceImpl(new WebServiceTestConfiguration());
 
         // init input address data
         Address_in.setEMail("java_test-1@epages.de");

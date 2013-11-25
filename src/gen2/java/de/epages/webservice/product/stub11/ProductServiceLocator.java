@@ -1,63 +1,63 @@
 /**
- * BasketServiceLocator.java
+ * ProductServiceLocator.java
  *
  * This file was auto-generated from WSDL
- * by the Apache Axis 1.3 Oct 05, 2005 (05:23:37 EDT) WSDL2Java emitter.
+ * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package de.epages.WebServices.BasketService.Stub;
+package de.epages.webservice.product.stub11;
 
-public class BasketServiceLocator extends org.apache.axis.client.Service implements de.epages.WebServices.BasketService.Stub.BasketService {
+public class ProductServiceLocator extends org.apache.axis.client.Service implements de.epages.webservice.product.stub11.ProductService {
 
 /**
- * epages Basket Service
+ * epages Product Service
  */
 
-    public BasketServiceLocator() {
+    public ProductServiceLocator() {
     }
 
 
-    public BasketServiceLocator(org.apache.axis.EngineConfiguration config) {
+    public ProductServiceLocator(org.apache.axis.EngineConfiguration config) {
         super(config);
     }
 
-    public BasketServiceLocator(java.lang.String wsdlLoc, javax.xml.namespace.QName sName) throws javax.xml.rpc.ServiceException {
+    public ProductServiceLocator(java.lang.String wsdlLoc, javax.xml.namespace.QName sName) throws javax.xml.rpc.ServiceException {
         super(wsdlLoc, sName);
     }
 
-    // Use to get a proxy class for port_Basket
-    private java.lang.String port_Basket_address = "http://localhost/epages/Store.soap";
+    // Use to get a proxy class for port_Product
+    private java.lang.String port_Product_address = "http://localhost/epages/Store.soap";
 
-    public java.lang.String getport_BasketAddress() {
-        return port_Basket_address;
+    public java.lang.String getport_ProductAddress() {
+        return port_Product_address;
     }
 
     // The WSDD service name defaults to the port name.
-    private java.lang.String port_BasketWSDDServiceName = "port_Basket";
+    private java.lang.String port_ProductWSDDServiceName = "port_Product";
 
-    public java.lang.String getport_BasketWSDDServiceName() {
-        return port_BasketWSDDServiceName;
+    public java.lang.String getport_ProductWSDDServiceName() {
+        return port_ProductWSDDServiceName;
     }
 
-    public void setport_BasketWSDDServiceName(java.lang.String name) {
-        port_BasketWSDDServiceName = name;
+    public void setport_ProductWSDDServiceName(java.lang.String name) {
+        port_ProductWSDDServiceName = name;
     }
 
-    public de.epages.WebServices.BasketService.Stub.Port_Basket_PortType getport_Basket() throws javax.xml.rpc.ServiceException {
+    public de.epages.webservice.product.stub11.Port_Product getport_Product() throws javax.xml.rpc.ServiceException {
        java.net.URL endpoint;
         try {
-            endpoint = new java.net.URL(port_Basket_address);
+            endpoint = new java.net.URL(port_Product_address);
         }
         catch (java.net.MalformedURLException e) {
             throw new javax.xml.rpc.ServiceException(e);
         }
-        return getport_Basket(endpoint);
+        return getport_Product(endpoint);
     }
 
-    public de.epages.WebServices.BasketService.Stub.Port_Basket_PortType getport_Basket(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
+    public de.epages.webservice.product.stub11.Port_Product getport_Product(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
         try {
-            de.epages.WebServices.BasketService.Stub.Bind_Basket_SOAPStub _stub = new de.epages.WebServices.BasketService.Stub.Bind_Basket_SOAPStub(portAddress, this);
-            _stub.setPortName(getport_BasketWSDDServiceName());
+            de.epages.webservice.product.stub11.Bind_Product_SOAPStub _stub = new de.epages.webservice.product.stub11.Bind_Product_SOAPStub(portAddress, this);
+            _stub.setPortName(getport_ProductWSDDServiceName());
             return _stub;
         }
         catch (org.apache.axis.AxisFault e) {
@@ -65,8 +65,8 @@ public class BasketServiceLocator extends org.apache.axis.client.Service impleme
         }
     }
 
-    public void setport_BasketEndpointAddress(java.lang.String address) {
-        port_Basket_address = address;
+    public void setport_ProductEndpointAddress(java.lang.String address) {
+        port_Product_address = address;
     }
 
     /**
@@ -76,9 +76,9 @@ public class BasketServiceLocator extends org.apache.axis.client.Service impleme
      */
     public java.rmi.Remote getPort(Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
         try {
-            if (de.epages.WebServices.BasketService.Stub.Port_Basket_PortType.class.isAssignableFrom(serviceEndpointInterface)) {
-                de.epages.WebServices.BasketService.Stub.Bind_Basket_SOAPStub _stub = new de.epages.WebServices.BasketService.Stub.Bind_Basket_SOAPStub(new java.net.URL(port_Basket_address), this);
-                _stub.setPortName(getport_BasketWSDDServiceName());
+            if (de.epages.webservice.product.stub11.Port_Product.class.isAssignableFrom(serviceEndpointInterface)) {
+                de.epages.webservice.product.stub11.Bind_Product_SOAPStub _stub = new de.epages.webservice.product.stub11.Bind_Product_SOAPStub(new java.net.URL(port_Product_address), this);
+                _stub.setPortName(getport_ProductWSDDServiceName());
                 return _stub;
             }
         }
@@ -98,8 +98,8 @@ public class BasketServiceLocator extends org.apache.axis.client.Service impleme
             return getPort(serviceEndpointInterface);
         }
         java.lang.String inputPortName = portName.getLocalPart();
-        if ("port_Basket".equals(inputPortName)) {
-            return getport_Basket();
+        if ("port_Product".equals(inputPortName)) {
+            return getport_Product();
         }
         else  {
             java.rmi.Remote _stub = getPort(serviceEndpointInterface);
@@ -109,7 +109,7 @@ public class BasketServiceLocator extends org.apache.axis.client.Service impleme
     }
 
     public javax.xml.namespace.QName getServiceName() {
-        return new javax.xml.namespace.QName("urn://epages.de/WebService/BasketService/2013/11", "BasketService");
+        return new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "ProductService");
     }
 
     private java.util.HashSet ports = null;
@@ -117,7 +117,7 @@ public class BasketServiceLocator extends org.apache.axis.client.Service impleme
     public java.util.Iterator getPorts() {
         if (ports == null) {
             ports = new java.util.HashSet();
-            ports.add(new javax.xml.namespace.QName("urn://epages.de/WebService/BasketService/2013/11", "port_Basket"));
+            ports.add(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "port_Product"));
         }
         return ports.iterator();
     }
@@ -127,8 +127,8 @@ public class BasketServiceLocator extends org.apache.axis.client.Service impleme
     */
     public void setEndpointAddress(java.lang.String portName, java.lang.String address) throws javax.xml.rpc.ServiceException {
         
-if ("port_Basket".equals(portName)) {
-            setport_BasketEndpointAddress(address);
+if ("port_Product".equals(portName)) {
+            setport_ProductEndpointAddress(address);
         }
         else 
 { // Unknown Port Name

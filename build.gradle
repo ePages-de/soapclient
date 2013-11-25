@@ -10,9 +10,13 @@ description = 'AXIS 1.x based SOAP client for epages6'
 version = '6.17.0-SNAPSHOT'
 
 repositories { mavenCentral() }
+configurations { axisGenTask }
 
 // add src/gen/java
 sourceSets.main.java.srcDirs 'src/gen/java'
+sourceSets.main.java.srcDirs 'src/main2/java'
+sourceSets.main.java.srcDirs 'src/gen2/java'
+sourceSets.test.java.srcDirs 'src/test2/java'
 
 ext {
     axisVersion = "1.4"
@@ -37,6 +41,14 @@ dependencies {
     testRuntime "org.slf4j:jul-to-slf4j:${slf4jVersion}"
     testRuntime "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
     testRuntime "ch.qos.logback:logback-core:${logbackVersion}"
+
+    axisGenTask "org.apache.axis:axis-ant:${axisVersion}"
+    axisGenTask "org.apache.axis:axis:${axisVersion}"
+    axisGenTask "org.apache.axis:axis-jaxrpc:${axisVersion}"
+    axisGenTask "wsdl4j:wsdl4j:${wsdl4jVersion}"
+    axisGenTask "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+    axisGenTask "ch.qos.logback:logback-core:${logbackVersion}"
+    axisGenTask "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
 }
 
 project.sourceCompatibility = rootProject.hasProperty("SOURCE_COMPATIBILITY") ?: "1.7"
@@ -87,6 +99,29 @@ sonarRunner {
         properties["sonar.jacoco.reportPath"] = "build/jacoco/test.exec"
         properties["sonar.jacoco.itReportPath"] = "build/jacoco/integrationTest.exec"
    }
+}
+
+task axisGen() {
+    outputs.dir file('src/gen2/java')
+    ant.echo(message: 'Generating Classes from WSDL')
+    ant.taskdef(
+        name: 'codegen',
+        classname: 'org.apache.axis.tools.ant.wsdl.Wsdl2javaAntTask',
+        classpath: configurations.axisGenTask.asPath,
+    )
+
+    doLast {
+        file('src/gen2/java').mkdirs()
+        ['BasketService', 'ProductService11'].each 
+        { def wsdlName ->
+            ant.codegen(
+                url: "../wsdl/${wsdlName}.wsdl",
+                output: 'src/gen2/java',
+                verbose: true,
+                helpergen: false,
+            )
+        }
+    }
 }
 
 artifacts {
