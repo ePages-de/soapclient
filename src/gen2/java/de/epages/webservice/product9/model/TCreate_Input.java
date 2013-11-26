@@ -24,23 +24,23 @@ public class TCreate_Input  implements java.io.Serializable {
     private java.lang.String _class;
 
     /* product's name */
-    private de.epages.webservice.common2.model.TLocalizedValue[] name;
+    private de.epages.webservice.common.model.TLocalizedValue[] name;
 
     /* product's description */
-    private de.epages.webservice.common2.model.TLocalizedValue[] description;
+    private de.epages.webservice.common.model.TLocalizedValue[] description;
 
     /* product's long description (formerly LongDescription) */
-    private de.epages.webservice.common2.model.TLocalizedValue[] text;
+    private de.epages.webservice.common.model.TLocalizedValue[] text;
 
     /* product's key words */
-    private de.epages.webservice.common2.model.TLocalizedValue[] keywords;
+    private de.epages.webservice.common.model.TLocalizedValue[] keywords;
 
     /* product's main characteristics in last step of checkout process,
      * in addition to description and text */
-    private de.epages.webservice.common2.model.TLocalizedValue[] mainCharacteristics;
+    private de.epages.webservice.common.model.TLocalizedValue[] mainCharacteristics;
 
     /* Localizable page title shown in SF. */
-    private de.epages.webservice.common2.model.TLocalizedValue[] title;
+    private de.epages.webservice.common.model.TLocalizedValue[] title;
 
     /* product's tax class (object path to a tax class) */
     private java.lang.String taxClass;
@@ -106,13 +106,13 @@ public class TCreate_Input  implements java.io.Serializable {
     private java.lang.Boolean isAvailable;
 
     /* Comment displayed if product is not available (see IsAvailable). */
-    private de.epages.webservice.common2.model.TLocalizedValue[] availabilityComment;
+    private de.epages.webservice.common.model.TLocalizedValue[] availabilityComment;
 
     /* Date when the product is going to be available/is for sale. */
     private java.util.Calendar availabilityDate;
 
     /* short uri asunique part of short URL, affects the CanonicalURL */
-    private de.epages.webservice.common2.model.TLocalizedValue[] URI;
+    private de.epages.webservice.common.model.TLocalizedValue[] URI;
 
     /* Indicates that the product have download files. */
     private boolean isDownloadProduct;
@@ -145,7 +145,7 @@ public class TCreate_Input  implements java.io.Serializable {
     /* if this is a variation (sub product): the actual attribute
      * keys and values of the variation
      *             (see epagestypes:ListOfAttributes) */
-    private de.epages.webservice.common2.model.TAttribute[] variationAttributes;
+    private de.epages.webservice.common.model.TAttribute[] variationAttributes;
 
     /* list of product prices (see producttypes:ListOfListOfProductPrices) */
     private de.epages.webservice.product9.model.TProductPrice[] productPrices;
@@ -172,7 +172,7 @@ public class TCreate_Input  implements java.io.Serializable {
     private de.epages.webservice.product9.model.TShippingMethod[] shippingMethods;
 
     /* list of attributes (see type ListOfAttributes) */
-    private de.epages.webservice.common2.model.TAttribute[] attributes;
+    private de.epages.webservice.product9.model.TAttribute[] attributes;
 
     public TCreate_Input() {
     }
@@ -180,12 +180,12 @@ public class TCreate_Input  implements java.io.Serializable {
     public TCreate_Input(
            java.lang.String alias,
            java.lang.String _class,
-           de.epages.webservice.common2.model.TLocalizedValue[] name,
-           de.epages.webservice.common2.model.TLocalizedValue[] description,
-           de.epages.webservice.common2.model.TLocalizedValue[] text,
-           de.epages.webservice.common2.model.TLocalizedValue[] keywords,
-           de.epages.webservice.common2.model.TLocalizedValue[] mainCharacteristics,
-           de.epages.webservice.common2.model.TLocalizedValue[] title,
+           de.epages.webservice.common.model.TLocalizedValue[] name,
+           de.epages.webservice.common.model.TLocalizedValue[] description,
+           de.epages.webservice.common.model.TLocalizedValue[] text,
+           de.epages.webservice.common.model.TLocalizedValue[] keywords,
+           de.epages.webservice.common.model.TLocalizedValue[] mainCharacteristics,
+           de.epages.webservice.common.model.TLocalizedValue[] title,
            java.lang.String taxClass,
            java.lang.Boolean isVisible,
            java.lang.Boolean isNew,
@@ -208,9 +208,9 @@ public class TCreate_Input  implements java.io.Serializable {
            java.lang.Float width,
            java.lang.Float height,
            java.lang.Boolean isAvailable,
-           de.epages.webservice.common2.model.TLocalizedValue[] availabilityComment,
+           de.epages.webservice.common.model.TLocalizedValue[] availabilityComment,
            java.util.Calendar availabilityDate,
-           de.epages.webservice.common2.model.TLocalizedValue[] URI,
+           de.epages.webservice.common.model.TLocalizedValue[] URI,
            boolean isDownloadProduct,
            java.math.BigInteger maxDownloadTime,
            java.math.BigInteger maxDownloadCount,
@@ -219,7 +219,7 @@ public class TCreate_Input  implements java.io.Serializable {
            java.lang.String defaultSubProduct,
            java.lang.Boolean isDefault,
            java.lang.Boolean hasSubOwnPrices,
-           de.epages.webservice.common2.model.TAttribute[] variationAttributes,
+           de.epages.webservice.common.model.TAttribute[] variationAttributes,
            de.epages.webservice.product9.model.TProductPrice[] productPrices,
            de.epages.webservice.product9.model.TProductPrice[] manufacturerPrices,
            de.epages.webservice.product9.model.TProductPrice[] depositPrices,
@@ -228,7 +228,7 @@ public class TCreate_Input  implements java.io.Serializable {
            java.lang.String prepaymentType,
            java.lang.Float prepaymentValue,
            de.epages.webservice.product9.model.TShippingMethod[] shippingMethods,
-           de.epages.webservice.common2.model.TAttribute[] attributes) {
+           de.epages.webservice.product9.model.TAttribute[] attributes) {
            this.alias = alias;
            this._class = _class;
            this.name = name;
@@ -328,7 +328,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * 
      * @return name   * product's name
      */
-    public de.epages.webservice.common2.model.TLocalizedValue[] getName() {
+    public de.epages.webservice.common.model.TLocalizedValue[] getName() {
         return name;
     }
 
@@ -338,7 +338,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * 
      * @param name   * product's name
      */
-    public void setName(de.epages.webservice.common2.model.TLocalizedValue[] name) {
+    public void setName(de.epages.webservice.common.model.TLocalizedValue[] name) {
         this.name = name;
     }
 
@@ -348,7 +348,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * 
      * @return description   * product's description
      */
-    public de.epages.webservice.common2.model.TLocalizedValue[] getDescription() {
+    public de.epages.webservice.common.model.TLocalizedValue[] getDescription() {
         return description;
     }
 
@@ -358,7 +358,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * 
      * @param description   * product's description
      */
-    public void setDescription(de.epages.webservice.common2.model.TLocalizedValue[] description) {
+    public void setDescription(de.epages.webservice.common.model.TLocalizedValue[] description) {
         this.description = description;
     }
 
@@ -368,7 +368,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * 
      * @return text   * product's long description (formerly LongDescription)
      */
-    public de.epages.webservice.common2.model.TLocalizedValue[] getText() {
+    public de.epages.webservice.common.model.TLocalizedValue[] getText() {
         return text;
     }
 
@@ -378,7 +378,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * 
      * @param text   * product's long description (formerly LongDescription)
      */
-    public void setText(de.epages.webservice.common2.model.TLocalizedValue[] text) {
+    public void setText(de.epages.webservice.common.model.TLocalizedValue[] text) {
         this.text = text;
     }
 
@@ -388,7 +388,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * 
      * @return keywords   * product's key words
      */
-    public de.epages.webservice.common2.model.TLocalizedValue[] getKeywords() {
+    public de.epages.webservice.common.model.TLocalizedValue[] getKeywords() {
         return keywords;
     }
 
@@ -398,7 +398,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * 
      * @param keywords   * product's key words
      */
-    public void setKeywords(de.epages.webservice.common2.model.TLocalizedValue[] keywords) {
+    public void setKeywords(de.epages.webservice.common.model.TLocalizedValue[] keywords) {
         this.keywords = keywords;
     }
 
@@ -409,7 +409,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * @return mainCharacteristics   * product's main characteristics in last step of checkout process,
      * in addition to description and text
      */
-    public de.epages.webservice.common2.model.TLocalizedValue[] getMainCharacteristics() {
+    public de.epages.webservice.common.model.TLocalizedValue[] getMainCharacteristics() {
         return mainCharacteristics;
     }
 
@@ -420,7 +420,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * @param mainCharacteristics   * product's main characteristics in last step of checkout process,
      * in addition to description and text
      */
-    public void setMainCharacteristics(de.epages.webservice.common2.model.TLocalizedValue[] mainCharacteristics) {
+    public void setMainCharacteristics(de.epages.webservice.common.model.TLocalizedValue[] mainCharacteristics) {
         this.mainCharacteristics = mainCharacteristics;
     }
 
@@ -430,7 +430,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * 
      * @return title   * Localizable page title shown in SF.
      */
-    public de.epages.webservice.common2.model.TLocalizedValue[] getTitle() {
+    public de.epages.webservice.common.model.TLocalizedValue[] getTitle() {
         return title;
     }
 
@@ -440,7 +440,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * 
      * @param title   * Localizable page title shown in SF.
      */
-    public void setTitle(de.epages.webservice.common2.model.TLocalizedValue[] title) {
+    public void setTitle(de.epages.webservice.common.model.TLocalizedValue[] title) {
         this.title = title;
     }
 
@@ -894,7 +894,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * 
      * @return availabilityComment   * Comment displayed if product is not available (see IsAvailable).
      */
-    public de.epages.webservice.common2.model.TLocalizedValue[] getAvailabilityComment() {
+    public de.epages.webservice.common.model.TLocalizedValue[] getAvailabilityComment() {
         return availabilityComment;
     }
 
@@ -904,7 +904,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * 
      * @param availabilityComment   * Comment displayed if product is not available (see IsAvailable).
      */
-    public void setAvailabilityComment(de.epages.webservice.common2.model.TLocalizedValue[] availabilityComment) {
+    public void setAvailabilityComment(de.epages.webservice.common.model.TLocalizedValue[] availabilityComment) {
         this.availabilityComment = availabilityComment;
     }
 
@@ -934,7 +934,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * 
      * @return URI   * short uri asunique part of short URL, affects the CanonicalURL
      */
-    public de.epages.webservice.common2.model.TLocalizedValue[] getURI() {
+    public de.epages.webservice.common.model.TLocalizedValue[] getURI() {
         return URI;
     }
 
@@ -944,7 +944,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * 
      * @param URI   * short uri asunique part of short URL, affects the CanonicalURL
      */
-    public void setURI(de.epages.webservice.common2.model.TLocalizedValue[] URI) {
+    public void setURI(de.epages.webservice.common.model.TLocalizedValue[] URI) {
         this.URI = URI;
     }
 
@@ -1124,7 +1124,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * keys and values of the variation
      *             (see epagestypes:ListOfAttributes)
      */
-    public de.epages.webservice.common2.model.TAttribute[] getVariationAttributes() {
+    public de.epages.webservice.common.model.TAttribute[] getVariationAttributes() {
         return variationAttributes;
     }
 
@@ -1136,7 +1136,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * keys and values of the variation
      *             (see epagestypes:ListOfAttributes)
      */
-    public void setVariationAttributes(de.epages.webservice.common2.model.TAttribute[] variationAttributes) {
+    public void setVariationAttributes(de.epages.webservice.common.model.TAttribute[] variationAttributes) {
         this.variationAttributes = variationAttributes;
     }
 
@@ -1306,7 +1306,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * 
      * @return attributes   * list of attributes (see type ListOfAttributes)
      */
-    public de.epages.webservice.common2.model.TAttribute[] getAttributes() {
+    public de.epages.webservice.product9.model.TAttribute[] getAttributes() {
         return attributes;
     }
 
@@ -1316,7 +1316,7 @@ public class TCreate_Input  implements java.io.Serializable {
      * 
      * @param attributes   * list of attributes (see type ListOfAttributes)
      */
-    public void setAttributes(de.epages.webservice.common2.model.TAttribute[] attributes) {
+    public void setAttributes(de.epages.webservice.product9.model.TAttribute[] attributes) {
         this.attributes = attributes;
     }
 
@@ -1807,42 +1807,42 @@ public class TCreate_Input  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("name");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Name"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TLocalizedValue"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TLocalizedValue"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("description");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Description"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TLocalizedValue"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TLocalizedValue"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("text");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Text"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TLocalizedValue"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TLocalizedValue"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("keywords");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Keywords"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TLocalizedValue"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TLocalizedValue"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("mainCharacteristics");
         elemField.setXmlName(new javax.xml.namespace.QName("", "MainCharacteristics"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TLocalizedValue"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TLocalizedValue"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("title");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Title"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TLocalizedValue"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TLocalizedValue"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -2002,7 +2002,7 @@ public class TCreate_Input  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("availabilityComment");
         elemField.setXmlName(new javax.xml.namespace.QName("", "AvailabilityComment"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TLocalizedValue"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TLocalizedValue"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -2016,7 +2016,7 @@ public class TCreate_Input  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("URI");
         elemField.setXmlName(new javax.xml.namespace.QName("", "URI"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TLocalizedValue"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TLocalizedValue"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -2078,7 +2078,7 @@ public class TCreate_Input  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("variationAttributes");
         elemField.setXmlName(new javax.xml.namespace.QName("", "VariationAttributes"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TAttribute"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TAttribute"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -2141,7 +2141,7 @@ public class TCreate_Input  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("attributes");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Attributes"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TAttribute"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TAttribute"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

@@ -24,7 +24,7 @@ public class TDownload  implements java.io.Serializable {
     /* the binary filecontent (needs to set IsExternal=false) */
     private byte[] fileContent;
 
-    /* True if file is saved on external server. */
+    /* true if file is saved on external server */
     private boolean isExternal;
 
     /* position of download in the list (step distance 10) */
@@ -132,7 +132,7 @@ public class TDownload  implements java.io.Serializable {
     /**
      * Gets the isExternal value for this TDownload.
      * 
-     * @return isExternal   * True if file is saved on external server.
+     * @return isExternal   * true if file is saved on external server
      */
     public boolean isIsExternal() {
         return isExternal;
@@ -142,7 +142,7 @@ public class TDownload  implements java.io.Serializable {
     /**
      * Sets the isExternal value for this TDownload.
      * 
-     * @param isExternal   * True if file is saved on external server.
+     * @param isExternal   * true if file is saved on external server
      */
     public void setIsExternal(boolean isExternal) {
         this.isExternal = isExternal;

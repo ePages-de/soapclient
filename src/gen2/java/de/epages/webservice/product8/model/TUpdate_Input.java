@@ -34,7 +34,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /* product's key words */
     private de.epages.webservice.common.model.TLocalizedValue[] keywords;
 
-    /* Localizable page title shown in SF. */
+    /* localizable page title shown in SF */
     private de.epages.webservice.common.model.TLocalizedValue[] title;
 
     /* product's tax class (object path to a tax class) */
@@ -97,25 +97,25 @@ public class TUpdate_Input  implements java.io.Serializable {
     /* product's height (in millimeter) */
     private java.lang.Float height;
 
-    /* Indicates that the product is for sale. */
+    /* indicates that the product is for sale */
     private java.lang.Boolean isAvailable;
 
-    /* Comment displayed if product is not available (see IsAvailable). */
+    /* comment displayed if product is not available (see IsAvailable) */
     private de.epages.webservice.common.model.TLocalizedValue[] availabilityComment;
 
-    /* Date when the product is going to be available/is for sale. */
+    /* date when the product is going to be available/is for sale */
     private java.util.Calendar availabilityDate;
 
     /* short uri asunique part of short URL, affects the CanonicalURL */
     private de.epages.webservice.common.model.TLocalizedValue[] URI;
 
-    /* Indicates that the product have download files. */
+    /* indicates that the product have download files */
     private boolean isDownloadProduct;
 
-    /* Temporal delimitation for download. */
+    /* temporal delimitation for download */
     private java.math.BigInteger maxDownloadTime;
 
-    /* Number possible downloads. */
+    /* number possible downloads */
     private java.math.BigInteger maxDownloadCount;
 
     /* list of product download files */
@@ -148,10 +148,10 @@ public class TUpdate_Input  implements java.io.Serializable {
     /* list of prepayment prices (see producttypes:ListOfListOfProductPrices) */
     private de.epages.webservice.product8.model.TProductPrice[] prepaymentPrices;
 
-    /* Type of prepayment (percent, fix) */
+    /* type of prepayment (percent, fix) */
     private java.lang.String prepaymentType;
 
-    /* Percental value of prepayment */
+    /* percental value of prepayment */
     private java.lang.Float prepaymentValue;
 
     /* list of shipping methods (see producttypes:ListOfShippingMethods) */
@@ -386,7 +386,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Gets the title value for this TUpdate_Input.
      * 
-     * @return title   * Localizable page title shown in SF.
+     * @return title   * localizable page title shown in SF
      */
     public de.epages.webservice.common.model.TLocalizedValue[] getTitle() {
         return title;
@@ -396,7 +396,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Sets the title value for this TUpdate_Input.
      * 
-     * @param title   * Localizable page title shown in SF.
+     * @param title   * localizable page title shown in SF
      */
     public void setTitle(de.epages.webservice.common.model.TLocalizedValue[] title) {
         this.title = title;
@@ -830,7 +830,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Gets the isAvailable value for this TUpdate_Input.
      * 
-     * @return isAvailable   * Indicates that the product is for sale.
+     * @return isAvailable   * indicates that the product is for sale
      */
     public java.lang.Boolean getIsAvailable() {
         return isAvailable;
@@ -840,7 +840,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Sets the isAvailable value for this TUpdate_Input.
      * 
-     * @param isAvailable   * Indicates that the product is for sale.
+     * @param isAvailable   * indicates that the product is for sale
      */
     public void setIsAvailable(java.lang.Boolean isAvailable) {
         this.isAvailable = isAvailable;
@@ -850,7 +850,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Gets the availabilityComment value for this TUpdate_Input.
      * 
-     * @return availabilityComment   * Comment displayed if product is not available (see IsAvailable).
+     * @return availabilityComment   * comment displayed if product is not available (see IsAvailable)
      */
     public de.epages.webservice.common.model.TLocalizedValue[] getAvailabilityComment() {
         return availabilityComment;
@@ -860,7 +860,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Sets the availabilityComment value for this TUpdate_Input.
      * 
-     * @param availabilityComment   * Comment displayed if product is not available (see IsAvailable).
+     * @param availabilityComment   * comment displayed if product is not available (see IsAvailable)
      */
     public void setAvailabilityComment(de.epages.webservice.common.model.TLocalizedValue[] availabilityComment) {
         this.availabilityComment = availabilityComment;
@@ -870,7 +870,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Gets the availabilityDate value for this TUpdate_Input.
      * 
-     * @return availabilityDate   * Date when the product is going to be available/is for sale.
+     * @return availabilityDate   * date when the product is going to be available/is for sale
      */
     public java.util.Calendar getAvailabilityDate() {
         return availabilityDate;
@@ -880,7 +880,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Sets the availabilityDate value for this TUpdate_Input.
      * 
-     * @param availabilityDate   * Date when the product is going to be available/is for sale.
+     * @param availabilityDate   * date when the product is going to be available/is for sale
      */
     public void setAvailabilityDate(java.util.Calendar availabilityDate) {
         this.availabilityDate = availabilityDate;
@@ -910,7 +910,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Gets the isDownloadProduct value for this TUpdate_Input.
      * 
-     * @return isDownloadProduct   * Indicates that the product have download files.
+     * @return isDownloadProduct   * indicates that the product have download files
      */
     public boolean isIsDownloadProduct() {
         return isDownloadProduct;
@@ -920,7 +920,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Sets the isDownloadProduct value for this TUpdate_Input.
      * 
-     * @param isDownloadProduct   * Indicates that the product have download files.
+     * @param isDownloadProduct   * indicates that the product have download files
      */
     public void setIsDownloadProduct(boolean isDownloadProduct) {
         this.isDownloadProduct = isDownloadProduct;
@@ -930,7 +930,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Gets the maxDownloadTime value for this TUpdate_Input.
      * 
-     * @return maxDownloadTime   * Temporal delimitation for download.
+     * @return maxDownloadTime   * temporal delimitation for download
      */
     public java.math.BigInteger getMaxDownloadTime() {
         return maxDownloadTime;
@@ -940,7 +940,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Sets the maxDownloadTime value for this TUpdate_Input.
      * 
-     * @param maxDownloadTime   * Temporal delimitation for download.
+     * @param maxDownloadTime   * temporal delimitation for download
      */
     public void setMaxDownloadTime(java.math.BigInteger maxDownloadTime) {
         this.maxDownloadTime = maxDownloadTime;
@@ -950,7 +950,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Gets the maxDownloadCount value for this TUpdate_Input.
      * 
-     * @return maxDownloadCount   * Number possible downloads.
+     * @return maxDownloadCount   * number possible downloads
      */
     public java.math.BigInteger getMaxDownloadCount() {
         return maxDownloadCount;
@@ -960,7 +960,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Sets the maxDownloadCount value for this TUpdate_Input.
      * 
-     * @param maxDownloadCount   * Number possible downloads.
+     * @param maxDownloadCount   * number possible downloads
      */
     public void setMaxDownloadCount(java.math.BigInteger maxDownloadCount) {
         this.maxDownloadCount = maxDownloadCount;
@@ -1156,7 +1156,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Gets the prepaymentType value for this TUpdate_Input.
      * 
-     * @return prepaymentType   * Type of prepayment (percent, fix)
+     * @return prepaymentType   * type of prepayment (percent, fix)
      */
     public java.lang.String getPrepaymentType() {
         return prepaymentType;
@@ -1166,7 +1166,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Sets the prepaymentType value for this TUpdate_Input.
      * 
-     * @param prepaymentType   * Type of prepayment (percent, fix)
+     * @param prepaymentType   * type of prepayment (percent, fix)
      */
     public void setPrepaymentType(java.lang.String prepaymentType) {
         this.prepaymentType = prepaymentType;
@@ -1176,7 +1176,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Gets the prepaymentValue value for this TUpdate_Input.
      * 
-     * @return prepaymentValue   * Percental value of prepayment
+     * @return prepaymentValue   * percental value of prepayment
      */
     public java.lang.Float getPrepaymentValue() {
         return prepaymentValue;
@@ -1186,7 +1186,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Sets the prepaymentValue value for this TUpdate_Input.
      * 
-     * @param prepaymentValue   * Percental value of prepayment
+     * @param prepaymentValue   * percental value of prepayment
      */
     public void setPrepaymentValue(java.lang.Float prepaymentValue) {
         this.prepaymentValue = prepaymentValue;

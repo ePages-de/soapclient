@@ -124,41 +124,41 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
             java.lang.Class simpledf = org.apache.axis.encoding.ser.SimpleDeserializerFactory.class;
             java.lang.Class simplelistsf = org.apache.axis.encoding.ser.SimpleListSerializerFactory.class;
             java.lang.Class simplelistdf = org.apache.axis.encoding.ser.SimpleListDeserializerFactory.class;
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "ListOfAttributes");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "ListOfAttributes");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.common2.model.TAttribute[].class;
+            cls = de.epages.webservice.common.model.TAttribute[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TAttribute");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TAttribute");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "ListOfLocalizedValues");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "ListOfLocalizedValues");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.common2.model.TLocalizedValue[].class;
+            cls = de.epages.webservice.common.model.TLocalizedValue[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TLocalizedValue");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TLocalizedValue");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TAttribute");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TAttribute");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.common2.model.TAttribute.class;
+            cls = de.epages.webservice.common.model.TAttribute.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TError");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TError");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.common2.model.TError.class;
+            cls = de.epages.webservice.common.model.TError.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TLocalizedValue");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TLocalizedValue");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.common2.model.TLocalizedValue.class;
+            cls = de.epages.webservice.common.model.TLocalizedValue.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
@@ -287,6 +287,15 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "ListOfAttributes");
+            cachedSerQNames.add(qName);
+            cls = de.epages.webservice.product9.model.TAttribute[].class;
+            cachedSerClasses.add(cls);
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TAttribute");
+            qName2 = null;
+            cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
+            cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
+
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "ListOfDownloads");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.product9.model.TDownload[].class;
@@ -322,6 +331,13 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
+
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TAttribute");
+            cachedSerQNames.add(qName);
+            cls = de.epages.webservice.product9.model.TAttribute.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TCreate_Input");
             cachedSerQNames.add(qName);

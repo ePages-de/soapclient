@@ -15,7 +15,7 @@ public class TShippingMethod  implements java.io.Serializable {
     /* path of an shipping method */
     private java.lang.String path;
 
-    /* True if shipping method have to delete during update. */
+    /* true if shipping method have to delete during update */
     private java.lang.Boolean delete;
 
     public TShippingMethod() {
@@ -52,7 +52,7 @@ public class TShippingMethod  implements java.io.Serializable {
     /**
      * Gets the delete value for this TShippingMethod.
      * 
-     * @return delete   * True if shipping method have to delete during update.
+     * @return delete   * true if shipping method have to delete during update
      */
     public java.lang.Boolean getDelete() {
         return delete;
@@ -62,7 +62,7 @@ public class TShippingMethod  implements java.io.Serializable {
     /**
      * Sets the delete value for this TShippingMethod.
      * 
-     * @param delete   * True if shipping method have to delete during update.
+     * @param delete   * true if shipping method have to delete during update
      */
     public void setDelete(java.lang.Boolean delete) {
         this.delete = delete;

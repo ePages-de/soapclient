@@ -18,7 +18,7 @@ apply plugin: 'versions'
 archivesBaseName = 'soapclient'
 group = 'de.epages'
 description = 'AXIS 1.x based SOAP client for epages6'
-version = '1.1'
+version = '1.2'
 
 repositories { 
     maven { url project.properties['artifactoryContextUrl'] + "epages-repos" }
@@ -117,6 +117,7 @@ sonarRunner {
 
 task axisGen() {
     outputs.dir file('src/gen2/java')
+    outputs.upToDateWhen({ false })
     ant.echo(message: 'Generating Classes from WSDL')
     ant.taskdef(
         name: 'codegen',
@@ -191,7 +192,7 @@ task axisGen() {
   'PaymentMethodService' ].each 
         { def wsdlName ->
             ant.codegen(
-                url: "../wsdl/${wsdlName}.wsdl",
+                url: "http://epagesj-vm02/WebRoot/WSDL/${wsdlName}.wsdl",
                 output: 'src/gen2/java',
                 verbose: true,
                 helpergen: false,

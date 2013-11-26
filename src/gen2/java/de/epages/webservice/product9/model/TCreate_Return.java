@@ -24,7 +24,7 @@ public class TCreate_Return  implements java.io.Serializable {
     private java.lang.Boolean created;
 
     /* error object (see epagestypes:TError) */
-    private de.epages.webservice.common2.model.TError error;
+    private de.epages.webservice.common.model.TError error;
 
     public TCreate_Return() {
     }
@@ -33,7 +33,7 @@ public class TCreate_Return  implements java.io.Serializable {
            java.lang.String alias,
            java.lang.String path,
            java.lang.Boolean created,
-           de.epages.webservice.common2.model.TError error) {
+           de.epages.webservice.common.model.TError error) {
            this.alias = alias;
            this.path = path;
            this.created = created;
@@ -106,7 +106,7 @@ public class TCreate_Return  implements java.io.Serializable {
      * 
      * @return error   * error object (see epagestypes:TError)
      */
-    public de.epages.webservice.common2.model.TError getError() {
+    public de.epages.webservice.common.model.TError getError() {
         return error;
     }
 
@@ -116,7 +116,7 @@ public class TCreate_Return  implements java.io.Serializable {
      * 
      * @param error   * error object (see epagestypes:TError)
      */
-    public void setError(de.epages.webservice.common2.model.TError error) {
+    public void setError(de.epages.webservice.common.model.TError error) {
         this.error = error;
     }
 
@@ -200,7 +200,7 @@ public class TCreate_Return  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("error");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Error"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TError"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TError"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

@@ -1,4 +1,4 @@
-package de.epages.webservice.product;
+package de.epages.webservice.product11;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -15,8 +15,9 @@ import org.junit.Test;
 
 import de.epages.webservice.FileUtil;
 import de.epages.webservice.WebServiceTestConfiguration;
-import de.epages.webservice.common2.model.TAttribute;
-import de.epages.webservice.common2.model.TLocalizedValue;
+import de.epages.webservice.common.model.TAttribute;
+import de.epages.webservice.common.model.TLocalizedValue;
+import de.epages.webservice.product.ProductServiceClient11Impl;
 import de.epages.webservice.product11.stub.TFind_Input;
 import de.epages.webservice.product9.model.TCreate_Input;
 import de.epages.webservice.product9.model.TCreate_Return;
@@ -35,7 +36,7 @@ import de.epages.webservice.product9.model.TUpdate_Return;
  * A JUnit TestSuite to test epages Product WebServices.
  *
  */
-public class ProductService11Test {
+public class ProductServiceTest {
     private ProductServiceClient11Impl serviceClient;
     private TCreate_Input Product_in = new TCreate_Input();
     private TUpdate_Input Product_update = new TUpdate_Input();
@@ -115,10 +116,10 @@ public class ProductService11Test {
                 });
         Product_in.setAvailabilityDate(new GregorianCalendar(2007,11,25,12,00));
 
-        TAttribute attr1 = new TAttribute();
+        de.epages.webservice.product9.model.TAttribute attr1 = new de.epages.webservice.product9.model.TAttribute();
         attr1.setName("Manufacturer");
         attr1.setValue("java WebService client tester");
-        Product_in.setAttributes(new TAttribute[]{attr1});
+        Product_in.setAttributes(new de.epages.webservice.product9.model.TAttribute[]{attr1});
 
         Product_update.setPath(path + alias);
         Product_update.setName(new TLocalizedValue[]{
