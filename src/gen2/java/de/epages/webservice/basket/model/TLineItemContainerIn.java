@@ -336,6 +336,7 @@ public class TLineItemContainerIn  implements java.io.Serializable {
         elemField.setFieldName("taxArea");
         elemField.setXmlName(new javax.xml.namespace.QName("", "TaxArea"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();

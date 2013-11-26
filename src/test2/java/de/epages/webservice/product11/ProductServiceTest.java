@@ -202,6 +202,8 @@ public class ProductServiceTest {
         download_up.setFileName("image_download.jpg");
         download_up.setPosition( new BigInteger("10") );
         download_up.setFileContent( FileUtil.readFileFromClasspath("TestData/ProductImageService/cg_0100504001.jpg"));
+        // TODO: Why has this become mandatory?
+        download_up.setTargetUrl("http://localhost/");
         Product_down_up.setDownloadProductMaps(new TDownload[]{download_up});
 
         // delete the test product if it exists
