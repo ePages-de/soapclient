@@ -29,8 +29,8 @@ public class TCreate_Input  implements java.io.Serializable {
     /* product's description */
     private de.epages.webservice.common.model.TLocalizedValue[] description;
 
-    /* product's long description (formerly LongDescription) */
-    private de.epages.webservice.common.model.TLocalizedValue[] text;
+    /* product's long description */
+    private de.epages.webservice.common.model.TLocalizedValue[] longDescription;
 
     /* product's key words */
     private de.epages.webservice.common.model.TLocalizedValue[] keywords;
@@ -152,9 +152,6 @@ public class TCreate_Input  implements java.io.Serializable {
     /* list of deposit prices (see producttypes:ListOfListOfProductPrices) */
     private de.epages.webservice.product6.model.TProductPrice[] depositPrices;
 
-    /* list of eco participation  prices (see producttypes:ListOfListOfProductPrices) */
-    private de.epages.webservice.product6.model.TProductPrice[] ecoParticipationPrices;
-
     /* list of prepayment prices (see producttypes:ListOfListOfProductPrices) */
     private de.epages.webservice.product6.model.TProductPrice[] prepaymentPrices;
 
@@ -175,7 +172,7 @@ public class TCreate_Input  implements java.io.Serializable {
            java.lang.String _class,
            de.epages.webservice.common.model.TLocalizedValue[] name,
            de.epages.webservice.common.model.TLocalizedValue[] description,
-           de.epages.webservice.common.model.TLocalizedValue[] text,
+           de.epages.webservice.common.model.TLocalizedValue[] longDescription,
            de.epages.webservice.common.model.TLocalizedValue[] keywords,
            de.epages.webservice.common.model.TLocalizedValue[] title,
            java.lang.String taxClass,
@@ -215,7 +212,6 @@ public class TCreate_Input  implements java.io.Serializable {
            de.epages.webservice.product6.model.TProductPrice[] productPrices,
            de.epages.webservice.product6.model.TProductPrice[] manufacturerPrices,
            de.epages.webservice.product6.model.TProductPrice[] depositPrices,
-           de.epages.webservice.product6.model.TProductPrice[] ecoParticipationPrices,
            de.epages.webservice.product6.model.TProductPrice[] prepaymentPrices,
            java.lang.String prepaymentType,
            java.lang.Float prepaymentValue,
@@ -224,7 +220,7 @@ public class TCreate_Input  implements java.io.Serializable {
            this._class = _class;
            this.name = name;
            this.description = description;
-           this.text = text;
+           this.longDescription = longDescription;
            this.keywords = keywords;
            this.title = title;
            this.taxClass = taxClass;
@@ -264,7 +260,6 @@ public class TCreate_Input  implements java.io.Serializable {
            this.productPrices = productPrices;
            this.manufacturerPrices = manufacturerPrices;
            this.depositPrices = depositPrices;
-           this.ecoParticipationPrices = ecoParticipationPrices;
            this.prepaymentPrices = prepaymentPrices;
            this.prepaymentType = prepaymentType;
            this.prepaymentValue = prepaymentValue;
@@ -353,22 +348,22 @@ public class TCreate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the text value for this TCreate_Input.
+     * Gets the longDescription value for this TCreate_Input.
      * 
-     * @return text   * product's long description (formerly LongDescription)
+     * @return longDescription   * product's long description
      */
-    public de.epages.webservice.common.model.TLocalizedValue[] getText() {
-        return text;
+    public de.epages.webservice.common.model.TLocalizedValue[] getLongDescription() {
+        return longDescription;
     }
 
 
     /**
-     * Sets the text value for this TCreate_Input.
+     * Sets the longDescription value for this TCreate_Input.
      * 
-     * @param text   * product's long description (formerly LongDescription)
+     * @param longDescription   * product's long description
      */
-    public void setText(de.epages.webservice.common.model.TLocalizedValue[] text) {
-        this.text = text;
+    public void setLongDescription(de.epages.webservice.common.model.TLocalizedValue[] longDescription) {
+        this.longDescription = longDescription;
     }
 
 
@@ -1169,26 +1164,6 @@ public class TCreate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the ecoParticipationPrices value for this TCreate_Input.
-     * 
-     * @return ecoParticipationPrices   * list of eco participation  prices (see producttypes:ListOfListOfProductPrices)
-     */
-    public de.epages.webservice.product6.model.TProductPrice[] getEcoParticipationPrices() {
-        return ecoParticipationPrices;
-    }
-
-
-    /**
-     * Sets the ecoParticipationPrices value for this TCreate_Input.
-     * 
-     * @param ecoParticipationPrices   * list of eco participation  prices (see producttypes:ListOfListOfProductPrices)
-     */
-    public void setEcoParticipationPrices(de.epages.webservice.product6.model.TProductPrice[] ecoParticipationPrices) {
-        this.ecoParticipationPrices = ecoParticipationPrices;
-    }
-
-
-    /**
      * Gets the prepaymentPrices value for this TCreate_Input.
      * 
      * @return prepaymentPrices   * list of prepayment prices (see producttypes:ListOfListOfProductPrices)
@@ -1291,9 +1266,9 @@ public class TCreate_Input  implements java.io.Serializable {
             ((this.description==null && other.getDescription()==null) || 
              (this.description!=null &&
               java.util.Arrays.equals(this.description, other.getDescription()))) &&
-            ((this.text==null && other.getText()==null) || 
-             (this.text!=null &&
-              java.util.Arrays.equals(this.text, other.getText()))) &&
+            ((this.longDescription==null && other.getLongDescription()==null) || 
+             (this.longDescription!=null &&
+              java.util.Arrays.equals(this.longDescription, other.getLongDescription()))) &&
             ((this.keywords==null && other.getKeywords()==null) || 
              (this.keywords!=null &&
               java.util.Arrays.equals(this.keywords, other.getKeywords()))) &&
@@ -1409,9 +1384,6 @@ public class TCreate_Input  implements java.io.Serializable {
             ((this.depositPrices==null && other.getDepositPrices()==null) || 
              (this.depositPrices!=null &&
               java.util.Arrays.equals(this.depositPrices, other.getDepositPrices()))) &&
-            ((this.ecoParticipationPrices==null && other.getEcoParticipationPrices()==null) || 
-             (this.ecoParticipationPrices!=null &&
-              java.util.Arrays.equals(this.ecoParticipationPrices, other.getEcoParticipationPrices()))) &&
             ((this.prepaymentPrices==null && other.getPrepaymentPrices()==null) || 
              (this.prepaymentPrices!=null &&
               java.util.Arrays.equals(this.prepaymentPrices, other.getPrepaymentPrices()))) &&
@@ -1463,11 +1435,11 @@ public class TCreate_Input  implements java.io.Serializable {
                 }
             }
         }
-        if (getText() != null) {
+        if (getLongDescription() != null) {
             for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getText());
+                 i<java.lang.reflect.Array.getLength(getLongDescription());
                  i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getText(), i);
+                java.lang.Object obj = java.lang.reflect.Array.get(getLongDescription(), i);
                 if (obj != null &&
                     !obj.getClass().isArray()) {
                     _hashCode += obj.hashCode();
@@ -1661,17 +1633,6 @@ public class TCreate_Input  implements java.io.Serializable {
                 }
             }
         }
-        if (getEcoParticipationPrices() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getEcoParticipationPrices());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getEcoParticipationPrices(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
-                    _hashCode += obj.hashCode();
-                }
-            }
-        }
         if (getPrepaymentPrices() != null) {
             for (int i=0;
                  i<java.lang.reflect.Array.getLength(getPrepaymentPrices());
@@ -1709,7 +1670,7 @@ public class TCreate_Input  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(TCreate_Input.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/01", "TCreate_Input"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/10", "TCreate_Input"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("alias");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Alias"));
@@ -1738,8 +1699,8 @@ public class TCreate_Input  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("text");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "Text"));
+        elemField.setFieldName("longDescription");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "LongDescription"));
         elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TLocalizedValue"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
@@ -1955,7 +1916,7 @@ public class TCreate_Input  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("downloadProductMaps");
         elemField.setXmlName(new javax.xml.namespace.QName("", "DownloadProductMaps"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/01", "TDownload"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/10", "TDownload"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -1997,35 +1958,28 @@ public class TCreate_Input  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("productPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "ProductPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/01", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/10", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("manufacturerPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "ManufacturerPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/01", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/10", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("depositPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "DepositPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/01", "TProductPrice"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("ecoParticipationPrices");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "EcoParticipationPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/01", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/10", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("prepaymentPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "PrepaymentPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/01", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/10", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

@@ -5,7 +5,7 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package de.epages.webservice.product4.model;
+package de.epages.webservice.product11.model;
 
 
 /**
@@ -21,6 +21,9 @@ public class TDownload  implements java.io.Serializable {
     /* size of file */
     private float fileSize;
 
+    /* content of file */
+    private byte[] fileContent;
+
     /* True if file is saved on external server. */
     private boolean isExternal;
 
@@ -34,11 +37,13 @@ public class TDownload  implements java.io.Serializable {
            java.lang.String targetUrl,
            java.lang.String fileName,
            float fileSize,
+           byte[] fileContent,
            boolean isExternal,
            java.math.BigInteger position) {
            this.targetUrl = targetUrl;
            this.fileName = fileName;
            this.fileSize = fileSize;
+           this.fileContent = fileContent;
            this.isExternal = isExternal;
            this.position = position;
     }
@@ -105,6 +110,26 @@ public class TDownload  implements java.io.Serializable {
 
 
     /**
+     * Gets the fileContent value for this TDownload.
+     * 
+     * @return fileContent   * content of file
+     */
+    public byte[] getFileContent() {
+        return fileContent;
+    }
+
+
+    /**
+     * Sets the fileContent value for this TDownload.
+     * 
+     * @param fileContent   * content of file
+     */
+    public void setFileContent(byte[] fileContent) {
+        this.fileContent = fileContent;
+    }
+
+
+    /**
      * Gets the isExternal value for this TDownload.
      * 
      * @return isExternal   * True if file is saved on external server.
@@ -162,6 +187,9 @@ public class TDownload  implements java.io.Serializable {
              (this.fileName!=null &&
               this.fileName.equals(other.getFileName()))) &&
             this.fileSize == other.getFileSize() &&
+            ((this.fileContent==null && other.getFileContent()==null) || 
+             (this.fileContent!=null &&
+              java.util.Arrays.equals(this.fileContent, other.getFileContent()))) &&
             this.isExternal == other.isIsExternal() &&
             ((this.position==null && other.getPosition()==null) || 
              (this.position!=null &&
@@ -184,6 +212,17 @@ public class TDownload  implements java.io.Serializable {
             _hashCode += getFileName().hashCode();
         }
         _hashCode += new Float(getFileSize()).hashCode();
+        if (getFileContent() != null) {
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getFileContent());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getFileContent(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
+        }
         _hashCode += (isIsExternal() ? Boolean.TRUE : Boolean.FALSE).hashCode();
         if (getPosition() != null) {
             _hashCode += getPosition().hashCode();
@@ -197,7 +236,7 @@ public class TDownload  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(TDownload.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/05", "TDownload"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TDownload"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("targetUrl");
         elemField.setXmlName(new javax.xml.namespace.QName("", "TargetUrl"));
@@ -214,6 +253,13 @@ public class TDownload  implements java.io.Serializable {
         elemField.setFieldName("fileSize");
         elemField.setXmlName(new javax.xml.namespace.QName("", "FileSize"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "float"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("fileContent");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "FileContent"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "base64Binary"));
+        elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();

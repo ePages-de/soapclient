@@ -139,7 +139,7 @@ public class TProductPrice  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(TProductPrice.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/03", "TProductPrice"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/01", "TProductPrice"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("price");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Price"));

@@ -36,7 +36,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /* product's key words */
     private de.epages.webservice.common.model.TLocalizedValue[] keywords;
 
-    /* localizable page title shown in SF */
+    /* Localizable page title shown in SF. */
     private de.epages.webservice.common.model.TLocalizedValue[] title;
 
     /* product's tax class (object path to a tax class) */
@@ -102,13 +102,13 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /* product's storefront web url */
     private java.lang.String webUrl;
 
-    /* indicates that the product is for sale */
+    /* Indicates that the product is for sale. */
     private boolean isAvailable;
 
-    /* comment displayed if product is not available (see IsAvailable) */
+    /* Comment displayed if product is not available (see IsAvailable). */
     private de.epages.webservice.common.model.TLocalizedValue[] availabilityComment;
 
-    /* date when the product is going to be available/is for sale */
+    /* Date when the product is going to be available/is for sale. */
     private java.util.Calendar availabilityDate;
 
     /* short uri (unique part of short URL, see CanonicalURL) */
@@ -118,13 +118,13 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * i.e. http://my.do.main/myURI) */
     private de.epages.webservice.common.model.TLocalizedValue[] canonicalURL;
 
-    /* indicates that the product have download files */
+    /* Indicates that the product have download files. */
     private boolean isDownloadProduct;
 
-    /* temporal delimitation for download */
+    /* Temporal delimitation for download. */
     private java.math.BigInteger maxDownloadTime;
 
-    /* number possible downloads */
+    /* Number possible downloads. */
     private java.math.BigInteger maxDownloadCount;
 
     /* list of product download files */
@@ -173,10 +173,10 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /* list of prepayment prices (see producttypes:ListOfListOfProductPrices) */
     private de.epages.webservice.product8.model.TProductPrice[] prepaymentPrices;
 
-    /* type of prepayment (percent, fix) */
+    /* Type of prepayment (percent, fix) */
     private java.lang.String prepaymentType;
 
-    /* percental value of prepayment */
+    /* Percental value of prepayment */
     private java.lang.Float prepaymentValue;
 
     /* list of shipping methods (see producttypes:ListOfShippingMethods) */
@@ -448,7 +448,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Gets the title value for this TGetInfo_Return.
      * 
-     * @return title   * localizable page title shown in SF
+     * @return title   * Localizable page title shown in SF.
      */
     public de.epages.webservice.common.model.TLocalizedValue[] getTitle() {
         return title;
@@ -458,7 +458,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Sets the title value for this TGetInfo_Return.
      * 
-     * @param title   * localizable page title shown in SF
+     * @param title   * Localizable page title shown in SF.
      */
     public void setTitle(de.epages.webservice.common.model.TLocalizedValue[] title) {
         this.title = title;
@@ -912,7 +912,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Gets the isAvailable value for this TGetInfo_Return.
      * 
-     * @return isAvailable   * indicates that the product is for sale
+     * @return isAvailable   * Indicates that the product is for sale.
      */
     public boolean isIsAvailable() {
         return isAvailable;
@@ -922,7 +922,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Sets the isAvailable value for this TGetInfo_Return.
      * 
-     * @param isAvailable   * indicates that the product is for sale
+     * @param isAvailable   * Indicates that the product is for sale.
      */
     public void setIsAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
@@ -932,7 +932,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Gets the availabilityComment value for this TGetInfo_Return.
      * 
-     * @return availabilityComment   * comment displayed if product is not available (see IsAvailable)
+     * @return availabilityComment   * Comment displayed if product is not available (see IsAvailable).
      */
     public de.epages.webservice.common.model.TLocalizedValue[] getAvailabilityComment() {
         return availabilityComment;
@@ -942,7 +942,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Sets the availabilityComment value for this TGetInfo_Return.
      * 
-     * @param availabilityComment   * comment displayed if product is not available (see IsAvailable)
+     * @param availabilityComment   * Comment displayed if product is not available (see IsAvailable).
      */
     public void setAvailabilityComment(de.epages.webservice.common.model.TLocalizedValue[] availabilityComment) {
         this.availabilityComment = availabilityComment;
@@ -952,7 +952,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Gets the availabilityDate value for this TGetInfo_Return.
      * 
-     * @return availabilityDate   * date when the product is going to be available/is for sale
+     * @return availabilityDate   * Date when the product is going to be available/is for sale.
      */
     public java.util.Calendar getAvailabilityDate() {
         return availabilityDate;
@@ -962,7 +962,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Sets the availabilityDate value for this TGetInfo_Return.
      * 
-     * @param availabilityDate   * date when the product is going to be available/is for sale
+     * @param availabilityDate   * Date when the product is going to be available/is for sale.
      */
     public void setAvailabilityDate(java.util.Calendar availabilityDate) {
         this.availabilityDate = availabilityDate;
@@ -1014,7 +1014,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Gets the isDownloadProduct value for this TGetInfo_Return.
      * 
-     * @return isDownloadProduct   * indicates that the product have download files
+     * @return isDownloadProduct   * Indicates that the product have download files.
      */
     public boolean isIsDownloadProduct() {
         return isDownloadProduct;
@@ -1024,7 +1024,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Sets the isDownloadProduct value for this TGetInfo_Return.
      * 
-     * @param isDownloadProduct   * indicates that the product have download files
+     * @param isDownloadProduct   * Indicates that the product have download files.
      */
     public void setIsDownloadProduct(boolean isDownloadProduct) {
         this.isDownloadProduct = isDownloadProduct;
@@ -1034,7 +1034,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Gets the maxDownloadTime value for this TGetInfo_Return.
      * 
-     * @return maxDownloadTime   * temporal delimitation for download
+     * @return maxDownloadTime   * Temporal delimitation for download.
      */
     public java.math.BigInteger getMaxDownloadTime() {
         return maxDownloadTime;
@@ -1044,7 +1044,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Sets the maxDownloadTime value for this TGetInfo_Return.
      * 
-     * @param maxDownloadTime   * temporal delimitation for download
+     * @param maxDownloadTime   * Temporal delimitation for download.
      */
     public void setMaxDownloadTime(java.math.BigInteger maxDownloadTime) {
         this.maxDownloadTime = maxDownloadTime;
@@ -1054,7 +1054,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Gets the maxDownloadCount value for this TGetInfo_Return.
      * 
-     * @return maxDownloadCount   * number possible downloads
+     * @return maxDownloadCount   * Number possible downloads.
      */
     public java.math.BigInteger getMaxDownloadCount() {
         return maxDownloadCount;
@@ -1064,7 +1064,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Sets the maxDownloadCount value for this TGetInfo_Return.
      * 
-     * @param maxDownloadCount   * number possible downloads
+     * @param maxDownloadCount   * Number possible downloads.
      */
     public void setMaxDownloadCount(java.math.BigInteger maxDownloadCount) {
         this.maxDownloadCount = maxDownloadCount;
@@ -1334,7 +1334,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Gets the prepaymentType value for this TGetInfo_Return.
      * 
-     * @return prepaymentType   * type of prepayment (percent, fix)
+     * @return prepaymentType   * Type of prepayment (percent, fix)
      */
     public java.lang.String getPrepaymentType() {
         return prepaymentType;
@@ -1344,7 +1344,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Sets the prepaymentType value for this TGetInfo_Return.
      * 
-     * @param prepaymentType   * type of prepayment (percent, fix)
+     * @param prepaymentType   * Type of prepayment (percent, fix)
      */
     public void setPrepaymentType(java.lang.String prepaymentType) {
         this.prepaymentType = prepaymentType;
@@ -1354,7 +1354,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Gets the prepaymentValue value for this TGetInfo_Return.
      * 
-     * @return prepaymentValue   * percental value of prepayment
+     * @return prepaymentValue   * Percental value of prepayment
      */
     public java.lang.Float getPrepaymentValue() {
         return prepaymentValue;
@@ -1364,7 +1364,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Sets the prepaymentValue value for this TGetInfo_Return.
      * 
-     * @param prepaymentValue   * percental value of prepayment
+     * @param prepaymentValue   * Percental value of prepayment
      */
     public void setPrepaymentValue(java.lang.Float prepaymentValue) {
         this.prepaymentValue = prepaymentValue;
@@ -1928,7 +1928,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(TGetInfo_Return.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/10", "TGetInfo_Return"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/03", "TGetInfo_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("path");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
@@ -2193,7 +2193,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("downloadProductMaps");
         elemField.setXmlName(new javax.xml.namespace.QName("", "DownloadProductMaps"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/10", "TDownload"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/03", "TDownload"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -2242,35 +2242,35 @@ public class TGetInfo_Return  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("productPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "ProductPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/10", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/03", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("manufacturerPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "ManufacturerPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/10", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/03", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("depositPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "DepositPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/10", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/03", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("ecoParticipationPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "EcoParticipationPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/10", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/03", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("prepaymentPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "PrepaymentPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/10", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/03", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -2291,7 +2291,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("shippingMethods");
         elemField.setXmlName(new javax.xml.namespace.QName("", "ShippingMethods"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/10", "TShippingMethod"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/03", "TShippingMethod"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

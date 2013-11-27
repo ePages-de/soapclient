@@ -154,9 +154,6 @@ public class TUpdate_Input  implements java.io.Serializable {
     /* Percental value of prepayment */
     private java.lang.Float prepaymentValue;
 
-    /* list of shipping methods (see producttypes:ListOfShippingMethods) */
-    private de.epages.webservice.product7.model.TShippingMethod[] shippingMethods;
-
     /* list of requested attributes (see epagestypes:ListOfAttributes) */
     private de.epages.webservice.common.model.TAttribute[] attributes;
 
@@ -210,7 +207,6 @@ public class TUpdate_Input  implements java.io.Serializable {
            de.epages.webservice.product7.model.TProductPrice[] prepaymentPrices,
            java.lang.String prepaymentType,
            java.lang.Float prepaymentValue,
-           de.epages.webservice.product7.model.TShippingMethod[] shippingMethods,
            de.epages.webservice.common.model.TAttribute[] attributes) {
            this.path = path;
            this._class = _class;
@@ -258,7 +254,6 @@ public class TUpdate_Input  implements java.io.Serializable {
            this.prepaymentPrices = prepaymentPrices;
            this.prepaymentType = prepaymentType;
            this.prepaymentValue = prepaymentValue;
-           this.shippingMethods = shippingMethods;
            this.attributes = attributes;
     }
 
@@ -1194,26 +1189,6 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the shippingMethods value for this TUpdate_Input.
-     * 
-     * @return shippingMethods   * list of shipping methods (see producttypes:ListOfShippingMethods)
-     */
-    public de.epages.webservice.product7.model.TShippingMethod[] getShippingMethods() {
-        return shippingMethods;
-    }
-
-
-    /**
-     * Sets the shippingMethods value for this TUpdate_Input.
-     * 
-     * @param shippingMethods   * list of shipping methods (see producttypes:ListOfShippingMethods)
-     */
-    public void setShippingMethods(de.epages.webservice.product7.model.TShippingMethod[] shippingMethods) {
-        this.shippingMethods = shippingMethods;
-    }
-
-
-    /**
      * Gets the attributes value for this TUpdate_Input.
      * 
      * @return attributes   * list of requested attributes (see epagestypes:ListOfAttributes)
@@ -1380,9 +1355,6 @@ public class TUpdate_Input  implements java.io.Serializable {
             ((this.prepaymentValue==null && other.getPrepaymentValue()==null) || 
              (this.prepaymentValue!=null &&
               this.prepaymentValue.equals(other.getPrepaymentValue()))) &&
-            ((this.shippingMethods==null && other.getShippingMethods()==null) || 
-             (this.shippingMethods!=null &&
-              java.util.Arrays.equals(this.shippingMethods, other.getShippingMethods()))) &&
             ((this.attributes==null && other.getAttributes()==null) || 
              (this.attributes!=null &&
               java.util.Arrays.equals(this.attributes, other.getAttributes())));
@@ -1637,17 +1609,6 @@ public class TUpdate_Input  implements java.io.Serializable {
         if (getPrepaymentValue() != null) {
             _hashCode += getPrepaymentValue().hashCode();
         }
-        if (getShippingMethods() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getShippingMethods());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getShippingMethods(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
-                    _hashCode += obj.hashCode();
-                }
-            }
-        }
         if (getAttributes() != null) {
             for (int i=0;
                  i<java.lang.reflect.Array.getLength(getAttributes());
@@ -1668,7 +1629,7 @@ public class TUpdate_Input  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(TUpdate_Input.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/03", "TUpdate_Input"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/01", "TUpdate_Input"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("path");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
@@ -1915,7 +1876,7 @@ public class TUpdate_Input  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("downloadProductMaps");
         elemField.setXmlName(new javax.xml.namespace.QName("", "DownloadProductMaps"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/03", "TDownload"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/01", "TDownload"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -1943,35 +1904,35 @@ public class TUpdate_Input  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("productPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "ProductPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/03", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/01", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("manufacturerPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "ManufacturerPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/03", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/01", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("depositPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "DepositPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/03", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/01", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("ecoParticipationPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "EcoParticipationPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/03", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/01", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("prepaymentPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "PrepaymentPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/03", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/01", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -1986,13 +1947,6 @@ public class TUpdate_Input  implements java.io.Serializable {
         elemField.setFieldName("prepaymentValue");
         elemField.setXmlName(new javax.xml.namespace.QName("", "PrepaymentValue"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "float"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("shippingMethods");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "ShippingMethods"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/03", "TShippingMethod"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

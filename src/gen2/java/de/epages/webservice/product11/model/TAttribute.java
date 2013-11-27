@@ -5,7 +5,7 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package de.epages.webservice.product9.model;
+package de.epages.webservice.product11.model;
 
 
 /**

@@ -5,7 +5,7 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package de.epages.webservice.product4.model;
+package de.epages.webservice.product11.model;
 
 
 /**
@@ -139,7 +139,7 @@ public class TProductPrice  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(TProductPrice.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/05", "TProductPrice"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TProductPrice"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("price");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Price"));

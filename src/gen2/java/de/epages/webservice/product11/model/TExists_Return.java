@@ -1,43 +1,43 @@
 /**
- * TDelete_Return.java
+ * TExists_Return.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package de.epages.webservice.product4.model;
+package de.epages.webservice.product11.model;
 
 
 /**
- * a single return value of a delete() product call.
+ * a single return value of a exists() product call.
  *         the path will be always returned.
  *         the error element will be returned in case of error.
- *         the deleted flag will be returned if no error has occured.
+ *         the exists flag will be returned if no error has occured.
  */
-public class TDelete_Return  implements java.io.Serializable {
+public class TExists_Return  implements java.io.Serializable {
     private java.lang.String path;
 
-    /* a boolean flag indicating that this product was deleted */
-    private java.lang.Boolean deleted;
+    /* a boolean flag indicating that this product exists */
+    private java.lang.Boolean exists;
 
     /* error object (see epagestypes:TError) */
     private de.epages.webservice.common.model.TError error;
 
-    public TDelete_Return() {
+    public TExists_Return() {
     }
 
-    public TDelete_Return(
+    public TExists_Return(
            java.lang.String path,
-           java.lang.Boolean deleted,
+           java.lang.Boolean exists,
            de.epages.webservice.common.model.TError error) {
            this.path = path;
-           this.deleted = deleted;
+           this.exists = exists;
            this.error = error;
     }
 
 
     /**
-     * Gets the path value for this TDelete_Return.
+     * Gets the path value for this TExists_Return.
      * 
      * @return path
      */
@@ -47,7 +47,7 @@ public class TDelete_Return  implements java.io.Serializable {
 
 
     /**
-     * Sets the path value for this TDelete_Return.
+     * Sets the path value for this TExists_Return.
      * 
      * @param path
      */
@@ -57,27 +57,27 @@ public class TDelete_Return  implements java.io.Serializable {
 
 
     /**
-     * Gets the deleted value for this TDelete_Return.
+     * Gets the exists value for this TExists_Return.
      * 
-     * @return deleted   * a boolean flag indicating that this product was deleted
+     * @return exists   * a boolean flag indicating that this product exists
      */
-    public java.lang.Boolean getDeleted() {
-        return deleted;
+    public java.lang.Boolean getExists() {
+        return exists;
     }
 
 
     /**
-     * Sets the deleted value for this TDelete_Return.
+     * Sets the exists value for this TExists_Return.
      * 
-     * @param deleted   * a boolean flag indicating that this product was deleted
+     * @param exists   * a boolean flag indicating that this product exists
      */
-    public void setDeleted(java.lang.Boolean deleted) {
-        this.deleted = deleted;
+    public void setExists(java.lang.Boolean exists) {
+        this.exists = exists;
     }
 
 
     /**
-     * Gets the error value for this TDelete_Return.
+     * Gets the error value for this TExists_Return.
      * 
      * @return error   * error object (see epagestypes:TError)
      */
@@ -87,7 +87,7 @@ public class TDelete_Return  implements java.io.Serializable {
 
 
     /**
-     * Sets the error value for this TDelete_Return.
+     * Sets the error value for this TExists_Return.
      * 
      * @param error   * error object (see epagestypes:TError)
      */
@@ -97,8 +97,8 @@ public class TDelete_Return  implements java.io.Serializable {
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof TDelete_Return)) return false;
-        TDelete_Return other = (TDelete_Return) obj;
+        if (!(obj instanceof TExists_Return)) return false;
+        TExists_Return other = (TExists_Return) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -110,9 +110,9 @@ public class TDelete_Return  implements java.io.Serializable {
             ((this.path==null && other.getPath()==null) || 
              (this.path!=null &&
               this.path.equals(other.getPath()))) &&
-            ((this.deleted==null && other.getDeleted()==null) || 
-             (this.deleted!=null &&
-              this.deleted.equals(other.getDeleted()))) &&
+            ((this.exists==null && other.getExists()==null) || 
+             (this.exists!=null &&
+              this.exists.equals(other.getExists()))) &&
             ((this.error==null && other.getError()==null) || 
              (this.error!=null &&
               this.error.equals(other.getError())));
@@ -130,8 +130,8 @@ public class TDelete_Return  implements java.io.Serializable {
         if (getPath() != null) {
             _hashCode += getPath().hashCode();
         }
-        if (getDeleted() != null) {
-            _hashCode += getDeleted().hashCode();
+        if (getExists() != null) {
+            _hashCode += getExists().hashCode();
         }
         if (getError() != null) {
             _hashCode += getError().hashCode();
@@ -142,10 +142,10 @@ public class TDelete_Return  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(TDelete_Return.class, true);
+        new org.apache.axis.description.TypeDesc(TExists_Return.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/05", "TDelete_Return"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TExists_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("path");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
@@ -153,8 +153,8 @@ public class TDelete_Return  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("deleted");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "deleted"));
+        elemField.setFieldName("exists");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "exists"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "boolean"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

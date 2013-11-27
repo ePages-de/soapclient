@@ -21,10 +21,10 @@ public class TDownload  implements java.io.Serializable {
     /* size of file */
     private float fileSize;
 
-    /* content of file */
+    /* the binary filecontent (needs to set IsExternal=false) */
     private byte[] fileContent;
 
-    /* True if file is saved on external server. */
+    /* true if file is saved on external server */
     private boolean isExternal;
 
     /* position of download in the list (step distance 10) */
@@ -112,7 +112,7 @@ public class TDownload  implements java.io.Serializable {
     /**
      * Gets the fileContent value for this TDownload.
      * 
-     * @return fileContent   * content of file
+     * @return fileContent   * the binary filecontent (needs to set IsExternal=false)
      */
     public byte[] getFileContent() {
         return fileContent;
@@ -122,7 +122,7 @@ public class TDownload  implements java.io.Serializable {
     /**
      * Sets the fileContent value for this TDownload.
      * 
-     * @param fileContent   * content of file
+     * @param fileContent   * the binary filecontent (needs to set IsExternal=false)
      */
     public void setFileContent(byte[] fileContent) {
         this.fileContent = fileContent;
@@ -132,7 +132,7 @@ public class TDownload  implements java.io.Serializable {
     /**
      * Gets the isExternal value for this TDownload.
      * 
-     * @return isExternal   * True if file is saved on external server.
+     * @return isExternal   * true if file is saved on external server
      */
     public boolean isIsExternal() {
         return isExternal;
@@ -142,7 +142,7 @@ public class TDownload  implements java.io.Serializable {
     /**
      * Sets the isExternal value for this TDownload.
      * 
-     * @param isExternal   * True if file is saved on external server.
+     * @param isExternal   * true if file is saved on external server
      */
     public void setIsExternal(boolean isExternal) {
         this.isExternal = isExternal;
@@ -236,11 +236,12 @@ public class TDownload  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(TDownload.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TDownload"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/10", "TDownload"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("targetUrl");
         elemField.setXmlName(new javax.xml.namespace.QName("", "TargetUrl"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();

@@ -12,27 +12,27 @@ public interface Port_Product extends java.rmi.Remote {
     /**
      * get information about a list of products
      */
-    public de.epages.webservice.product6.model.TGetInfo_Return[] getInfo(java.lang.String[] products, java.lang.String[] attributes, java.lang.String[] languageCodes) throws java.rmi.RemoteException;
+    public de.epages.webservice.product7.model.TGetInfo_Return[] getInfo(java.lang.String[] products, java.lang.String[] attributes, java.lang.String[] languageCodes) throws java.rmi.RemoteException;
 
     /**
      * check if a list of products exist.
      */
-    public de.epages.webservice.product6.model.TExists_Return[] exists(java.lang.String[] products) throws java.rmi.RemoteException;
+    public de.epages.webservice.product7.model.TExists_Return[] exists(java.lang.String[] products) throws java.rmi.RemoteException;
 
     /**
      * delete a list of products
      */
-    public de.epages.webservice.product6.model.TDelete_Return[] delete(java.lang.String[] products) throws java.rmi.RemoteException;
+    public de.epages.webservice.product7.model.TDelete_Return[] delete(java.lang.String[] products) throws java.rmi.RemoteException;
 
     /**
      * update a list of products
      */
-    public de.epages.webservice.product6.model.TUpdate_Return[] update(de.epages.webservice.product6.model.TUpdate_Input[] products) throws java.rmi.RemoteException;
+    public de.epages.webservice.product7.model.TUpdate_Return[] update(de.epages.webservice.product7.model.TUpdate_Input[] products) throws java.rmi.RemoteException;
 
     /**
      * create new products
      */
-    public de.epages.webservice.product6.model.TCreate_Return[] create(de.epages.webservice.product6.model.TCreate_Input[] products) throws java.rmi.RemoteException;
+    public de.epages.webservice.product7.model.TCreate_Return[] create(de.epages.webservice.product7.model.TCreate_Input[] products) throws java.rmi.RemoteException;
 
     /**
      * find products

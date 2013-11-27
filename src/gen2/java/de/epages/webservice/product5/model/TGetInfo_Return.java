@@ -36,9 +36,6 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /* product's key words */
     private de.epages.webservice.common.model.TLocalizedValue[] keywords;
 
-    /* Localizable page title shown in SF. */
-    private de.epages.webservice.common.model.TLocalizedValue[] title;
-
     /* product's tax class (object path to a tax class) */
     private java.lang.String taxClass;
 
@@ -161,21 +158,6 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /* list of product prices (see producttypes:ListOfListOfProductPrices) */
     private de.epages.webservice.product5.model.TProductPrice[] productPrices;
 
-    /* list of manufacturer prices (see producttypes:ListOfListOfProductPrices) */
-    private de.epages.webservice.product5.model.TProductPrice[] manufacturerPrices;
-
-    /* list of deposit prices (see producttypes:ListOfListOfProductPrices) */
-    private de.epages.webservice.product5.model.TProductPrice[] depositPrices;
-
-    /* list of prepayment prices (see producttypes:ListOfListOfProductPrices) */
-    private de.epages.webservice.product5.model.TProductPrice[] prepaymentPrices;
-
-    /* Type of prepayment (percent, fix) */
-    private java.lang.String prepaymentType;
-
-    /* Percental value of prepayment */
-    private java.lang.Float prepaymentValue;
-
     /* list of requested attributes (see epagestypes:ListOfAttributes) */
     private de.epages.webservice.common.model.TAttribute[] attributes;
 
@@ -193,7 +175,6 @@ public class TGetInfo_Return  implements java.io.Serializable {
            de.epages.webservice.common.model.TLocalizedValue[] description,
            de.epages.webservice.common.model.TLocalizedValue[] longDescription,
            de.epages.webservice.common.model.TLocalizedValue[] keywords,
-           de.epages.webservice.common.model.TLocalizedValue[] title,
            java.lang.String taxClass,
            java.lang.Boolean isVisible,
            java.lang.Boolean isNew,
@@ -232,11 +213,6 @@ public class TGetInfo_Return  implements java.io.Serializable {
            java.lang.Boolean hasSubOwnPrices,
            de.epages.webservice.common.model.TAttribute[] variationAttributes,
            de.epages.webservice.product5.model.TProductPrice[] productPrices,
-           de.epages.webservice.product5.model.TProductPrice[] manufacturerPrices,
-           de.epages.webservice.product5.model.TProductPrice[] depositPrices,
-           de.epages.webservice.product5.model.TProductPrice[] prepaymentPrices,
-           java.lang.String prepaymentType,
-           java.lang.Float prepaymentValue,
            de.epages.webservice.common.model.TAttribute[] attributes,
            de.epages.webservice.common.model.TError error) {
            this.path = path;
@@ -246,7 +222,6 @@ public class TGetInfo_Return  implements java.io.Serializable {
            this.description = description;
            this.longDescription = longDescription;
            this.keywords = keywords;
-           this.title = title;
            this.taxClass = taxClass;
            this.isVisible = isVisible;
            this.isNew = isNew;
@@ -285,11 +260,6 @@ public class TGetInfo_Return  implements java.io.Serializable {
            this.hasSubOwnPrices = hasSubOwnPrices;
            this.variationAttributes = variationAttributes;
            this.productPrices = productPrices;
-           this.manufacturerPrices = manufacturerPrices;
-           this.depositPrices = depositPrices;
-           this.prepaymentPrices = prepaymentPrices;
-           this.prepaymentType = prepaymentType;
-           this.prepaymentValue = prepaymentValue;
            this.attributes = attributes;
            this.error = error;
     }
@@ -432,26 +402,6 @@ public class TGetInfo_Return  implements java.io.Serializable {
      */
     public void setKeywords(de.epages.webservice.common.model.TLocalizedValue[] keywords) {
         this.keywords = keywords;
-    }
-
-
-    /**
-     * Gets the title value for this TGetInfo_Return.
-     * 
-     * @return title   * Localizable page title shown in SF.
-     */
-    public de.epages.webservice.common.model.TLocalizedValue[] getTitle() {
-        return title;
-    }
-
-
-    /**
-     * Sets the title value for this TGetInfo_Return.
-     * 
-     * @param title   * Localizable page title shown in SF.
-     */
-    public void setTitle(de.epages.webservice.common.model.TLocalizedValue[] title) {
-        this.title = title;
     }
 
 
@@ -1242,106 +1192,6 @@ public class TGetInfo_Return  implements java.io.Serializable {
 
 
     /**
-     * Gets the manufacturerPrices value for this TGetInfo_Return.
-     * 
-     * @return manufacturerPrices   * list of manufacturer prices (see producttypes:ListOfListOfProductPrices)
-     */
-    public de.epages.webservice.product5.model.TProductPrice[] getManufacturerPrices() {
-        return manufacturerPrices;
-    }
-
-
-    /**
-     * Sets the manufacturerPrices value for this TGetInfo_Return.
-     * 
-     * @param manufacturerPrices   * list of manufacturer prices (see producttypes:ListOfListOfProductPrices)
-     */
-    public void setManufacturerPrices(de.epages.webservice.product5.model.TProductPrice[] manufacturerPrices) {
-        this.manufacturerPrices = manufacturerPrices;
-    }
-
-
-    /**
-     * Gets the depositPrices value for this TGetInfo_Return.
-     * 
-     * @return depositPrices   * list of deposit prices (see producttypes:ListOfListOfProductPrices)
-     */
-    public de.epages.webservice.product5.model.TProductPrice[] getDepositPrices() {
-        return depositPrices;
-    }
-
-
-    /**
-     * Sets the depositPrices value for this TGetInfo_Return.
-     * 
-     * @param depositPrices   * list of deposit prices (see producttypes:ListOfListOfProductPrices)
-     */
-    public void setDepositPrices(de.epages.webservice.product5.model.TProductPrice[] depositPrices) {
-        this.depositPrices = depositPrices;
-    }
-
-
-    /**
-     * Gets the prepaymentPrices value for this TGetInfo_Return.
-     * 
-     * @return prepaymentPrices   * list of prepayment prices (see producttypes:ListOfListOfProductPrices)
-     */
-    public de.epages.webservice.product5.model.TProductPrice[] getPrepaymentPrices() {
-        return prepaymentPrices;
-    }
-
-
-    /**
-     * Sets the prepaymentPrices value for this TGetInfo_Return.
-     * 
-     * @param prepaymentPrices   * list of prepayment prices (see producttypes:ListOfListOfProductPrices)
-     */
-    public void setPrepaymentPrices(de.epages.webservice.product5.model.TProductPrice[] prepaymentPrices) {
-        this.prepaymentPrices = prepaymentPrices;
-    }
-
-
-    /**
-     * Gets the prepaymentType value for this TGetInfo_Return.
-     * 
-     * @return prepaymentType   * Type of prepayment (percent, fix)
-     */
-    public java.lang.String getPrepaymentType() {
-        return prepaymentType;
-    }
-
-
-    /**
-     * Sets the prepaymentType value for this TGetInfo_Return.
-     * 
-     * @param prepaymentType   * Type of prepayment (percent, fix)
-     */
-    public void setPrepaymentType(java.lang.String prepaymentType) {
-        this.prepaymentType = prepaymentType;
-    }
-
-
-    /**
-     * Gets the prepaymentValue value for this TGetInfo_Return.
-     * 
-     * @return prepaymentValue   * Percental value of prepayment
-     */
-    public java.lang.Float getPrepaymentValue() {
-        return prepaymentValue;
-    }
-
-
-    /**
-     * Sets the prepaymentValue value for this TGetInfo_Return.
-     * 
-     * @param prepaymentValue   * Percental value of prepayment
-     */
-    public void setPrepaymentValue(java.lang.Float prepaymentValue) {
-        this.prepaymentValue = prepaymentValue;
-    }
-
-
-    /**
      * Gets the attributes value for this TGetInfo_Return.
      * 
      * @return attributes   * list of requested attributes (see epagestypes:ListOfAttributes)
@@ -1413,9 +1263,6 @@ public class TGetInfo_Return  implements java.io.Serializable {
             ((this.keywords==null && other.getKeywords()==null) || 
              (this.keywords!=null &&
               java.util.Arrays.equals(this.keywords, other.getKeywords()))) &&
-            ((this.title==null && other.getTitle()==null) || 
-             (this.title!=null &&
-              java.util.Arrays.equals(this.title, other.getTitle()))) &&
             ((this.taxClass==null && other.getTaxClass()==null) || 
              (this.taxClass!=null &&
               this.taxClass.equals(other.getTaxClass()))) &&
@@ -1526,21 +1373,6 @@ public class TGetInfo_Return  implements java.io.Serializable {
             ((this.productPrices==null && other.getProductPrices()==null) || 
              (this.productPrices!=null &&
               java.util.Arrays.equals(this.productPrices, other.getProductPrices()))) &&
-            ((this.manufacturerPrices==null && other.getManufacturerPrices()==null) || 
-             (this.manufacturerPrices!=null &&
-              java.util.Arrays.equals(this.manufacturerPrices, other.getManufacturerPrices()))) &&
-            ((this.depositPrices==null && other.getDepositPrices()==null) || 
-             (this.depositPrices!=null &&
-              java.util.Arrays.equals(this.depositPrices, other.getDepositPrices()))) &&
-            ((this.prepaymentPrices==null && other.getPrepaymentPrices()==null) || 
-             (this.prepaymentPrices!=null &&
-              java.util.Arrays.equals(this.prepaymentPrices, other.getPrepaymentPrices()))) &&
-            ((this.prepaymentType==null && other.getPrepaymentType()==null) || 
-             (this.prepaymentType!=null &&
-              this.prepaymentType.equals(other.getPrepaymentType()))) &&
-            ((this.prepaymentValue==null && other.getPrepaymentValue()==null) || 
-             (this.prepaymentValue!=null &&
-              this.prepaymentValue.equals(other.getPrepaymentValue()))) &&
             ((this.attributes==null && other.getAttributes()==null) || 
              (this.attributes!=null &&
               java.util.Arrays.equals(this.attributes, other.getAttributes()))) &&
@@ -1605,17 +1437,6 @@ public class TGetInfo_Return  implements java.io.Serializable {
                  i<java.lang.reflect.Array.getLength(getKeywords());
                  i++) {
                 java.lang.Object obj = java.lang.reflect.Array.get(getKeywords(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
-                    _hashCode += obj.hashCode();
-                }
-            }
-        }
-        if (getTitle() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getTitle());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getTitle(), i);
                 if (obj != null &&
                     !obj.getClass().isArray()) {
                     _hashCode += obj.hashCode();
@@ -1788,45 +1609,6 @@ public class TGetInfo_Return  implements java.io.Serializable {
                 }
             }
         }
-        if (getManufacturerPrices() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getManufacturerPrices());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getManufacturerPrices(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
-                    _hashCode += obj.hashCode();
-                }
-            }
-        }
-        if (getDepositPrices() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getDepositPrices());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getDepositPrices(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
-                    _hashCode += obj.hashCode();
-                }
-            }
-        }
-        if (getPrepaymentPrices() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getPrepaymentPrices());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getPrepaymentPrices(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
-                    _hashCode += obj.hashCode();
-                }
-            }
-        }
-        if (getPrepaymentType() != null) {
-            _hashCode += getPrepaymentType().hashCode();
-        }
-        if (getPrepaymentValue() != null) {
-            _hashCode += getPrepaymentValue().hashCode();
-        }
         if (getAttributes() != null) {
             for (int i=0;
                  i<java.lang.reflect.Array.getLength(getAttributes());
@@ -1850,7 +1632,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(TGetInfo_Return.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/10", "TGetInfo_Return"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/05", "TGetInfo_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("path");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
@@ -1893,13 +1675,6 @@ public class TGetInfo_Return  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("keywords");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Keywords"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TLocalizedValue"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("title");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "Title"));
         elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TLocalizedValue"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
@@ -2115,7 +1890,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("downloadProductMaps");
         elemField.setXmlName(new javax.xml.namespace.QName("", "DownloadProductMaps"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/10", "TDownload"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/05", "TDownload"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -2164,42 +1939,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("productPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "ProductPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/10", "TProductPrice"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("manufacturerPrices");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "ManufacturerPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/10", "TProductPrice"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("depositPrices");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "DepositPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/10", "TProductPrice"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("prepaymentPrices");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "PrepaymentPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/10", "TProductPrice"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("prepaymentType");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "PrepaymentType"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("prepaymentValue");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "PrepaymentValue"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "float"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/05", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

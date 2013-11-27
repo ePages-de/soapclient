@@ -34,11 +34,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /* product's key words */
     private de.epages.webservice.common.model.TLocalizedValue[] keywords;
 
-    /* product's main characteristics in last step of checkout process,
-     * in addition to description and text */
-    private de.epages.webservice.common.model.TLocalizedValue[] mainCharacteristics;
-
-    /* Localizable page title shown in SF. */
+    /* localizable page title shown in SF */
     private de.epages.webservice.common.model.TLocalizedValue[] title;
 
     /* product's tax class (object path to a tax class) */
@@ -101,25 +97,25 @@ public class TUpdate_Input  implements java.io.Serializable {
     /* product's height (in millimeter) */
     private java.lang.Float height;
 
-    /* Indicates that the product is for sale. */
+    /* indicates that the product is for sale */
     private java.lang.Boolean isAvailable;
 
-    /* Comment displayed if product is not available (see IsAvailable). */
+    /* comment displayed if product is not available (see IsAvailable) */
     private de.epages.webservice.common.model.TLocalizedValue[] availabilityComment;
 
-    /* Date when the product is going to be available/is for sale. */
+    /* date when the product is going to be available/is for sale */
     private java.util.Calendar availabilityDate;
 
     /* short uri asunique part of short URL, affects the CanonicalURL */
     private de.epages.webservice.common.model.TLocalizedValue[] URI;
 
-    /* Indicates that the product have download files. */
+    /* indicates that the product have download files */
     private boolean isDownloadProduct;
 
-    /* Temporal delimitation for download. */
+    /* temporal delimitation for download */
     private java.math.BigInteger maxDownloadTime;
 
-    /* Number possible downloads. */
+    /* number possible downloads */
     private java.math.BigInteger maxDownloadCount;
 
     /* list of product download files */
@@ -152,10 +148,10 @@ public class TUpdate_Input  implements java.io.Serializable {
     /* list of prepayment prices (see producttypes:ListOfListOfProductPrices) */
     private de.epages.webservice.product9.model.TProductPrice[] prepaymentPrices;
 
-    /* Type of prepayment (percent, fix) */
+    /* type of prepayment (percent, fix) */
     private java.lang.String prepaymentType;
 
-    /* Percental value of prepayment */
+    /* percental value of prepayment */
     private java.lang.Float prepaymentValue;
 
     /* list of shipping methods (see producttypes:ListOfShippingMethods) */
@@ -174,7 +170,6 @@ public class TUpdate_Input  implements java.io.Serializable {
            de.epages.webservice.common.model.TLocalizedValue[] description,
            de.epages.webservice.common.model.TLocalizedValue[] text,
            de.epages.webservice.common.model.TLocalizedValue[] keywords,
-           de.epages.webservice.common.model.TLocalizedValue[] mainCharacteristics,
            de.epages.webservice.common.model.TLocalizedValue[] title,
            java.lang.String taxClass,
            java.lang.Boolean isVisible,
@@ -223,7 +218,6 @@ public class TUpdate_Input  implements java.io.Serializable {
            this.description = description;
            this.text = text;
            this.keywords = keywords;
-           this.mainCharacteristics = mainCharacteristics;
            this.title = title;
            this.taxClass = taxClass;
            this.isVisible = isVisible;
@@ -390,31 +384,9 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the mainCharacteristics value for this TUpdate_Input.
-     * 
-     * @return mainCharacteristics   * product's main characteristics in last step of checkout process,
-     * in addition to description and text
-     */
-    public de.epages.webservice.common.model.TLocalizedValue[] getMainCharacteristics() {
-        return mainCharacteristics;
-    }
-
-
-    /**
-     * Sets the mainCharacteristics value for this TUpdate_Input.
-     * 
-     * @param mainCharacteristics   * product's main characteristics in last step of checkout process,
-     * in addition to description and text
-     */
-    public void setMainCharacteristics(de.epages.webservice.common.model.TLocalizedValue[] mainCharacteristics) {
-        this.mainCharacteristics = mainCharacteristics;
-    }
-
-
-    /**
      * Gets the title value for this TUpdate_Input.
      * 
-     * @return title   * Localizable page title shown in SF.
+     * @return title   * localizable page title shown in SF
      */
     public de.epages.webservice.common.model.TLocalizedValue[] getTitle() {
         return title;
@@ -424,7 +396,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Sets the title value for this TUpdate_Input.
      * 
-     * @param title   * Localizable page title shown in SF.
+     * @param title   * localizable page title shown in SF
      */
     public void setTitle(de.epages.webservice.common.model.TLocalizedValue[] title) {
         this.title = title;
@@ -858,7 +830,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Gets the isAvailable value for this TUpdate_Input.
      * 
-     * @return isAvailable   * Indicates that the product is for sale.
+     * @return isAvailable   * indicates that the product is for sale
      */
     public java.lang.Boolean getIsAvailable() {
         return isAvailable;
@@ -868,7 +840,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Sets the isAvailable value for this TUpdate_Input.
      * 
-     * @param isAvailable   * Indicates that the product is for sale.
+     * @param isAvailable   * indicates that the product is for sale
      */
     public void setIsAvailable(java.lang.Boolean isAvailable) {
         this.isAvailable = isAvailable;
@@ -878,7 +850,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Gets the availabilityComment value for this TUpdate_Input.
      * 
-     * @return availabilityComment   * Comment displayed if product is not available (see IsAvailable).
+     * @return availabilityComment   * comment displayed if product is not available (see IsAvailable)
      */
     public de.epages.webservice.common.model.TLocalizedValue[] getAvailabilityComment() {
         return availabilityComment;
@@ -888,7 +860,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Sets the availabilityComment value for this TUpdate_Input.
      * 
-     * @param availabilityComment   * Comment displayed if product is not available (see IsAvailable).
+     * @param availabilityComment   * comment displayed if product is not available (see IsAvailable)
      */
     public void setAvailabilityComment(de.epages.webservice.common.model.TLocalizedValue[] availabilityComment) {
         this.availabilityComment = availabilityComment;
@@ -898,7 +870,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Gets the availabilityDate value for this TUpdate_Input.
      * 
-     * @return availabilityDate   * Date when the product is going to be available/is for sale.
+     * @return availabilityDate   * date when the product is going to be available/is for sale
      */
     public java.util.Calendar getAvailabilityDate() {
         return availabilityDate;
@@ -908,7 +880,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Sets the availabilityDate value for this TUpdate_Input.
      * 
-     * @param availabilityDate   * Date when the product is going to be available/is for sale.
+     * @param availabilityDate   * date when the product is going to be available/is for sale
      */
     public void setAvailabilityDate(java.util.Calendar availabilityDate) {
         this.availabilityDate = availabilityDate;
@@ -938,7 +910,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Gets the isDownloadProduct value for this TUpdate_Input.
      * 
-     * @return isDownloadProduct   * Indicates that the product have download files.
+     * @return isDownloadProduct   * indicates that the product have download files
      */
     public boolean isIsDownloadProduct() {
         return isDownloadProduct;
@@ -948,7 +920,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Sets the isDownloadProduct value for this TUpdate_Input.
      * 
-     * @param isDownloadProduct   * Indicates that the product have download files.
+     * @param isDownloadProduct   * indicates that the product have download files
      */
     public void setIsDownloadProduct(boolean isDownloadProduct) {
         this.isDownloadProduct = isDownloadProduct;
@@ -958,7 +930,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Gets the maxDownloadTime value for this TUpdate_Input.
      * 
-     * @return maxDownloadTime   * Temporal delimitation for download.
+     * @return maxDownloadTime   * temporal delimitation for download
      */
     public java.math.BigInteger getMaxDownloadTime() {
         return maxDownloadTime;
@@ -968,7 +940,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Sets the maxDownloadTime value for this TUpdate_Input.
      * 
-     * @param maxDownloadTime   * Temporal delimitation for download.
+     * @param maxDownloadTime   * temporal delimitation for download
      */
     public void setMaxDownloadTime(java.math.BigInteger maxDownloadTime) {
         this.maxDownloadTime = maxDownloadTime;
@@ -978,7 +950,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Gets the maxDownloadCount value for this TUpdate_Input.
      * 
-     * @return maxDownloadCount   * Number possible downloads.
+     * @return maxDownloadCount   * number possible downloads
      */
     public java.math.BigInteger getMaxDownloadCount() {
         return maxDownloadCount;
@@ -988,7 +960,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Sets the maxDownloadCount value for this TUpdate_Input.
      * 
-     * @param maxDownloadCount   * Number possible downloads.
+     * @param maxDownloadCount   * number possible downloads
      */
     public void setMaxDownloadCount(java.math.BigInteger maxDownloadCount) {
         this.maxDownloadCount = maxDownloadCount;
@@ -1184,7 +1156,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Gets the prepaymentType value for this TUpdate_Input.
      * 
-     * @return prepaymentType   * Type of prepayment (percent, fix)
+     * @return prepaymentType   * type of prepayment (percent, fix)
      */
     public java.lang.String getPrepaymentType() {
         return prepaymentType;
@@ -1194,7 +1166,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Sets the prepaymentType value for this TUpdate_Input.
      * 
-     * @param prepaymentType   * Type of prepayment (percent, fix)
+     * @param prepaymentType   * type of prepayment (percent, fix)
      */
     public void setPrepaymentType(java.lang.String prepaymentType) {
         this.prepaymentType = prepaymentType;
@@ -1204,7 +1176,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Gets the prepaymentValue value for this TUpdate_Input.
      * 
-     * @return prepaymentValue   * Percental value of prepayment
+     * @return prepaymentValue   * percental value of prepayment
      */
     public java.lang.Float getPrepaymentValue() {
         return prepaymentValue;
@@ -1214,7 +1186,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     /**
      * Sets the prepaymentValue value for this TUpdate_Input.
      * 
-     * @param prepaymentValue   * Percental value of prepayment
+     * @param prepaymentValue   * percental value of prepayment
      */
     public void setPrepaymentValue(java.lang.Float prepaymentValue) {
         this.prepaymentValue = prepaymentValue;
@@ -1290,9 +1262,6 @@ public class TUpdate_Input  implements java.io.Serializable {
             ((this.keywords==null && other.getKeywords()==null) || 
              (this.keywords!=null &&
               java.util.Arrays.equals(this.keywords, other.getKeywords()))) &&
-            ((this.mainCharacteristics==null && other.getMainCharacteristics()==null) || 
-             (this.mainCharacteristics!=null &&
-              java.util.Arrays.equals(this.mainCharacteristics, other.getMainCharacteristics()))) &&
             ((this.title==null && other.getTitle()==null) || 
              (this.title!=null &&
               java.util.Arrays.equals(this.title, other.getTitle()))) &&
@@ -1472,17 +1441,6 @@ public class TUpdate_Input  implements java.io.Serializable {
                  i<java.lang.reflect.Array.getLength(getKeywords());
                  i++) {
                 java.lang.Object obj = java.lang.reflect.Array.get(getKeywords(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
-                    _hashCode += obj.hashCode();
-                }
-            }
-        }
-        if (getMainCharacteristics() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getMainCharacteristics());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getMainCharacteristics(), i);
                 if (obj != null &&
                     !obj.getClass().isArray()) {
                     _hashCode += obj.hashCode();
@@ -1710,7 +1668,7 @@ public class TUpdate_Input  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(TUpdate_Input.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TUpdate_Input"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/10", "TUpdate_Input"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("path");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
@@ -1748,13 +1706,6 @@ public class TUpdate_Input  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("keywords");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Keywords"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TLocalizedValue"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("mainCharacteristics");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "MainCharacteristics"));
         elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TLocalizedValue"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
@@ -1964,7 +1915,7 @@ public class TUpdate_Input  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("downloadProductMaps");
         elemField.setXmlName(new javax.xml.namespace.QName("", "DownloadProductMaps"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TDownload"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/10", "TDownload"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -1992,35 +1943,35 @@ public class TUpdate_Input  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("productPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "ProductPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/10", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("manufacturerPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "ManufacturerPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/10", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("depositPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "DepositPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/10", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("ecoParticipationPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "EcoParticipationPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/10", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("prepaymentPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "PrepaymentPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/10", "TProductPrice"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -2041,7 +1992,7 @@ public class TUpdate_Input  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("shippingMethods");
         elemField.setXmlName(new javax.xml.namespace.QName("", "ShippingMethods"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TShippingMethod"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/10", "TShippingMethod"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

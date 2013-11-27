@@ -197,7 +197,7 @@ public class TDownload  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(TDownload.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/03", "TDownload"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2011/01", "TDownload"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("targetUrl");
         elemField.setXmlName(new javax.xml.namespace.QName("", "TargetUrl"));

@@ -1,23 +1,24 @@
 /**
- * TUpdate_Input.java
+ * TCreate_Input.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package de.epages.webservice.product4.model;
+package de.epages.webservice.product11.model;
 
 
 /**
- * input arguments of a single update() product call.
- *         a set of optional product specific attributes that will be
- * updated.
- *         the path element is mandatory.
- *         all others are optional.
+ * input arguments of a single create() product call.
+ *         a set of product specific attributes that will be used to
+ * create a product.
+ *         alias, tax class are mandatory.
+ *         variation attributes are mandatory for creation of sub products.
+ * all others are optional.
  */
-public class TUpdate_Input  implements java.io.Serializable {
-    /* product path */
-    private java.lang.String path;
+public class TCreate_Input  implements java.io.Serializable {
+    /* product alias */
+    private java.lang.String alias;
 
     /* product's class (object path to a product type) */
     private java.lang.String _class;
@@ -28,11 +29,18 @@ public class TUpdate_Input  implements java.io.Serializable {
     /* product's description */
     private de.epages.webservice.common.model.TLocalizedValue[] description;
 
-    /* product's long description */
-    private de.epages.webservice.common.model.TLocalizedValue[] longDescription;
+    /* product's long description (formerly LongDescription) */
+    private de.epages.webservice.common.model.TLocalizedValue[] text;
 
     /* product's key words */
     private de.epages.webservice.common.model.TLocalizedValue[] keywords;
+
+    /* product's main characteristics in last step of checkout process,
+     * in addition to description and text */
+    private de.epages.webservice.common.model.TLocalizedValue[] mainCharacteristics;
+
+    /* Localizable page title shown in SF. */
+    private de.epages.webservice.common.model.TLocalizedValue[] title;
 
     /* product's tax class (object path to a tax class) */
     private java.lang.String taxClass;
@@ -116,7 +124,11 @@ public class TUpdate_Input  implements java.io.Serializable {
     private java.math.BigInteger maxDownloadCount;
 
     /* list of product download files */
-    private de.epages.webservice.product4.model.TDownload[] downloadProductMaps;
+    private de.epages.webservice.product11.model.TDownload[] downloadProductMaps;
+
+    /* object path to variation's super product (if this is a variation
+     * (sub product)) */
+    private java.lang.String superProduct;
 
     /* product's default sub product (if this is a product with variations
      * (super product)) */
@@ -130,22 +142,50 @@ public class TUpdate_Input  implements java.io.Serializable {
      * this is a variation (sub product)) */
     private java.lang.Boolean hasSubOwnPrices;
 
+    /* if this is a variation (sub product): the actual attribute
+     * keys and values of the variation
+     *             (see epagestypes:ListOfAttributes) */
+    private de.epages.webservice.common.model.TAttribute[] variationAttributes;
+
     /* list of product prices (see producttypes:ListOfListOfProductPrices) */
-    private de.epages.webservice.product4.model.TProductPrice[] productPrices;
+    private de.epages.webservice.product11.model.TProductPrice[] productPrices;
 
-    /* list of requested attributes (see epagestypes:ListOfAttributes) */
-    private de.epages.webservice.common.model.TAttribute[] attributes;
+    /* list of manufacturer prices (see producttypes:ListOfListOfProductPrices) */
+    private de.epages.webservice.product11.model.TProductPrice[] manufacturerPrices;
 
-    public TUpdate_Input() {
+    /* list of deposit prices (see producttypes:ListOfListOfProductPrices) */
+    private de.epages.webservice.product11.model.TProductPrice[] depositPrices;
+
+    /* list of eco participation  prices (see producttypes:ListOfListOfProductPrices) */
+    private de.epages.webservice.product11.model.TProductPrice[] ecoParticipationPrices;
+
+    /* list of prepayment prices (see producttypes:ListOfListOfProductPrices) */
+    private de.epages.webservice.product11.model.TProductPrice[] prepaymentPrices;
+
+    /* Type of prepayment (percent, fix) */
+    private java.lang.String prepaymentType;
+
+    /* Percental value of prepayment */
+    private java.lang.Float prepaymentValue;
+
+    /* list of shipping methods (see producttypes:ListOfShippingMethods) */
+    private de.epages.webservice.product11.model.TShippingMethod[] shippingMethods;
+
+    /* list of attributes (see type ListOfAttributes) */
+    private de.epages.webservice.product11.model.TAttribute[] attributes;
+
+    public TCreate_Input() {
     }
 
-    public TUpdate_Input(
-           java.lang.String path,
+    public TCreate_Input(
+           java.lang.String alias,
            java.lang.String _class,
            de.epages.webservice.common.model.TLocalizedValue[] name,
            de.epages.webservice.common.model.TLocalizedValue[] description,
-           de.epages.webservice.common.model.TLocalizedValue[] longDescription,
+           de.epages.webservice.common.model.TLocalizedValue[] text,
            de.epages.webservice.common.model.TLocalizedValue[] keywords,
+           de.epages.webservice.common.model.TLocalizedValue[] mainCharacteristics,
+           de.epages.webservice.common.model.TLocalizedValue[] title,
            java.lang.String taxClass,
            java.lang.Boolean isVisible,
            java.lang.Boolean isNew,
@@ -174,18 +214,29 @@ public class TUpdate_Input  implements java.io.Serializable {
            boolean isDownloadProduct,
            java.math.BigInteger maxDownloadTime,
            java.math.BigInteger maxDownloadCount,
-           de.epages.webservice.product4.model.TDownload[] downloadProductMaps,
+           de.epages.webservice.product11.model.TDownload[] downloadProductMaps,
+           java.lang.String superProduct,
            java.lang.String defaultSubProduct,
            java.lang.Boolean isDefault,
            java.lang.Boolean hasSubOwnPrices,
-           de.epages.webservice.product4.model.TProductPrice[] productPrices,
-           de.epages.webservice.common.model.TAttribute[] attributes) {
-           this.path = path;
+           de.epages.webservice.common.model.TAttribute[] variationAttributes,
+           de.epages.webservice.product11.model.TProductPrice[] productPrices,
+           de.epages.webservice.product11.model.TProductPrice[] manufacturerPrices,
+           de.epages.webservice.product11.model.TProductPrice[] depositPrices,
+           de.epages.webservice.product11.model.TProductPrice[] ecoParticipationPrices,
+           de.epages.webservice.product11.model.TProductPrice[] prepaymentPrices,
+           java.lang.String prepaymentType,
+           java.lang.Float prepaymentValue,
+           de.epages.webservice.product11.model.TShippingMethod[] shippingMethods,
+           de.epages.webservice.product11.model.TAttribute[] attributes) {
+           this.alias = alias;
            this._class = _class;
            this.name = name;
            this.description = description;
-           this.longDescription = longDescription;
+           this.text = text;
            this.keywords = keywords;
+           this.mainCharacteristics = mainCharacteristics;
+           this.title = title;
            this.taxClass = taxClass;
            this.isVisible = isVisible;
            this.isNew = isNew;
@@ -215,36 +266,45 @@ public class TUpdate_Input  implements java.io.Serializable {
            this.maxDownloadTime = maxDownloadTime;
            this.maxDownloadCount = maxDownloadCount;
            this.downloadProductMaps = downloadProductMaps;
+           this.superProduct = superProduct;
            this.defaultSubProduct = defaultSubProduct;
            this.isDefault = isDefault;
            this.hasSubOwnPrices = hasSubOwnPrices;
+           this.variationAttributes = variationAttributes;
            this.productPrices = productPrices;
+           this.manufacturerPrices = manufacturerPrices;
+           this.depositPrices = depositPrices;
+           this.ecoParticipationPrices = ecoParticipationPrices;
+           this.prepaymentPrices = prepaymentPrices;
+           this.prepaymentType = prepaymentType;
+           this.prepaymentValue = prepaymentValue;
+           this.shippingMethods = shippingMethods;
            this.attributes = attributes;
     }
 
 
     /**
-     * Gets the path value for this TUpdate_Input.
+     * Gets the alias value for this TCreate_Input.
      * 
-     * @return path   * product path
+     * @return alias   * product alias
      */
-    public java.lang.String getPath() {
-        return path;
+    public java.lang.String getAlias() {
+        return alias;
     }
 
 
     /**
-     * Sets the path value for this TUpdate_Input.
+     * Sets the alias value for this TCreate_Input.
      * 
-     * @param path   * product path
+     * @param alias   * product alias
      */
-    public void setPath(java.lang.String path) {
-        this.path = path;
+    public void setAlias(java.lang.String alias) {
+        this.alias = alias;
     }
 
 
     /**
-     * Gets the _class value for this TUpdate_Input.
+     * Gets the _class value for this TCreate_Input.
      * 
      * @return _class   * product's class (object path to a product type)
      */
@@ -254,7 +314,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the _class value for this TUpdate_Input.
+     * Sets the _class value for this TCreate_Input.
      * 
      * @param _class   * product's class (object path to a product type)
      */
@@ -264,7 +324,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the name value for this TUpdate_Input.
+     * Gets the name value for this TCreate_Input.
      * 
      * @return name   * product's name
      */
@@ -274,7 +334,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the name value for this TUpdate_Input.
+     * Sets the name value for this TCreate_Input.
      * 
      * @param name   * product's name
      */
@@ -284,7 +344,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the description value for this TUpdate_Input.
+     * Gets the description value for this TCreate_Input.
      * 
      * @return description   * product's description
      */
@@ -294,7 +354,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the description value for this TUpdate_Input.
+     * Sets the description value for this TCreate_Input.
      * 
      * @param description   * product's description
      */
@@ -304,27 +364,27 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the longDescription value for this TUpdate_Input.
+     * Gets the text value for this TCreate_Input.
      * 
-     * @return longDescription   * product's long description
+     * @return text   * product's long description (formerly LongDescription)
      */
-    public de.epages.webservice.common.model.TLocalizedValue[] getLongDescription() {
-        return longDescription;
+    public de.epages.webservice.common.model.TLocalizedValue[] getText() {
+        return text;
     }
 
 
     /**
-     * Sets the longDescription value for this TUpdate_Input.
+     * Sets the text value for this TCreate_Input.
      * 
-     * @param longDescription   * product's long description
+     * @param text   * product's long description (formerly LongDescription)
      */
-    public void setLongDescription(de.epages.webservice.common.model.TLocalizedValue[] longDescription) {
-        this.longDescription = longDescription;
+    public void setText(de.epages.webservice.common.model.TLocalizedValue[] text) {
+        this.text = text;
     }
 
 
     /**
-     * Gets the keywords value for this TUpdate_Input.
+     * Gets the keywords value for this TCreate_Input.
      * 
      * @return keywords   * product's key words
      */
@@ -334,7 +394,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the keywords value for this TUpdate_Input.
+     * Sets the keywords value for this TCreate_Input.
      * 
      * @param keywords   * product's key words
      */
@@ -344,7 +404,49 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the taxClass value for this TUpdate_Input.
+     * Gets the mainCharacteristics value for this TCreate_Input.
+     * 
+     * @return mainCharacteristics   * product's main characteristics in last step of checkout process,
+     * in addition to description and text
+     */
+    public de.epages.webservice.common.model.TLocalizedValue[] getMainCharacteristics() {
+        return mainCharacteristics;
+    }
+
+
+    /**
+     * Sets the mainCharacteristics value for this TCreate_Input.
+     * 
+     * @param mainCharacteristics   * product's main characteristics in last step of checkout process,
+     * in addition to description and text
+     */
+    public void setMainCharacteristics(de.epages.webservice.common.model.TLocalizedValue[] mainCharacteristics) {
+        this.mainCharacteristics = mainCharacteristics;
+    }
+
+
+    /**
+     * Gets the title value for this TCreate_Input.
+     * 
+     * @return title   * Localizable page title shown in SF.
+     */
+    public de.epages.webservice.common.model.TLocalizedValue[] getTitle() {
+        return title;
+    }
+
+
+    /**
+     * Sets the title value for this TCreate_Input.
+     * 
+     * @param title   * Localizable page title shown in SF.
+     */
+    public void setTitle(de.epages.webservice.common.model.TLocalizedValue[] title) {
+        this.title = title;
+    }
+
+
+    /**
+     * Gets the taxClass value for this TCreate_Input.
      * 
      * @return taxClass   * product's tax class (object path to a tax class)
      */
@@ -354,7 +456,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the taxClass value for this TUpdate_Input.
+     * Sets the taxClass value for this TCreate_Input.
      * 
      * @param taxClass   * product's tax class (object path to a tax class)
      */
@@ -364,7 +466,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the isVisible value for this TUpdate_Input.
+     * Gets the isVisible value for this TCreate_Input.
      * 
      * @return isVisible
      */
@@ -374,7 +476,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the isVisible value for this TUpdate_Input.
+     * Sets the isVisible value for this TCreate_Input.
      * 
      * @param isVisible
      */
@@ -384,7 +486,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the isNew value for this TUpdate_Input.
+     * Gets the isNew value for this TCreate_Input.
      * 
      * @return isNew
      */
@@ -394,7 +496,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the isNew value for this TUpdate_Input.
+     * Sets the isNew value for this TCreate_Input.
      * 
      * @param isNew
      */
@@ -404,7 +506,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the isDailyPrice value for this TUpdate_Input.
+     * Gets the isDailyPrice value for this TCreate_Input.
      * 
      * @return isDailyPrice
      */
@@ -414,7 +516,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the isDailyPrice value for this TUpdate_Input.
+     * Sets the isDailyPrice value for this TCreate_Input.
      * 
      * @param isDailyPrice
      */
@@ -424,7 +526,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the orderUnit value for this TUpdate_Input.
+     * Gets the orderUnit value for this TCreate_Input.
      * 
      * @return orderUnit   * product's main unit (object path to a unit)
      */
@@ -434,7 +536,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the orderUnit value for this TUpdate_Input.
+     * Sets the orderUnit value for this TCreate_Input.
      * 
      * @param orderUnit   * product's main unit (object path to a unit)
      */
@@ -444,7 +546,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the priceQuantity value for this TUpdate_Input.
+     * Gets the priceQuantity value for this TCreate_Input.
      * 
      * @return priceQuantity   * product's main quantity (all prices are based on this amount
      * of OrderUnits)
@@ -455,7 +557,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the priceQuantity value for this TUpdate_Input.
+     * Sets the priceQuantity value for this TCreate_Input.
      * 
      * @param priceQuantity   * product's main quantity (all prices are based on this amount
      * of OrderUnits)
@@ -466,7 +568,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the minOrder value for this TUpdate_Input.
+     * Gets the minOrder value for this TCreate_Input.
      * 
      * @return minOrder   * product's minimum order amount (minimum quantity in order)
      */
@@ -476,7 +578,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the minOrder value for this TUpdate_Input.
+     * Sets the minOrder value for this TCreate_Input.
      * 
      * @param minOrder   * product's minimum order amount (minimum quantity in order)
      */
@@ -486,7 +588,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the intervalOrder value for this TUpdate_Input.
+     * Gets the intervalOrder value for this TCreate_Input.
      * 
      * @return intervalOrder   * product's interval amount (quantity step in order)
      */
@@ -496,7 +598,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the intervalOrder value for this TUpdate_Input.
+     * Sets the intervalOrder value for this TCreate_Input.
      * 
      * @param intervalOrder   * product's interval amount (quantity step in order)
      */
@@ -506,7 +608,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the weightUnit value for this TUpdate_Input.
+     * Gets the weightUnit value for this TCreate_Input.
      * 
      * @return weightUnit   * product's weight unit (object path to a unit)
      */
@@ -516,7 +618,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the weightUnit value for this TUpdate_Input.
+     * Sets the weightUnit value for this TCreate_Input.
      * 
      * @param weightUnit   * product's weight unit (object path to a unit)
      */
@@ -526,7 +628,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the weight value for this TUpdate_Input.
+     * Gets the weight value for this TCreate_Input.
      * 
      * @return weight   * product's weight (in WeightUnit)
      */
@@ -536,7 +638,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the weight value for this TUpdate_Input.
+     * Sets the weight value for this TCreate_Input.
      * 
      * @param weight   * product's weight (in WeightUnit)
      */
@@ -546,7 +648,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the refUnit value for this TUpdate_Input.
+     * Gets the refUnit value for this TCreate_Input.
      * 
      * @return refUnit   * product's reference unit (object path to a unit)
      */
@@ -556,7 +658,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the refUnit value for this TUpdate_Input.
+     * Sets the refUnit value for this TCreate_Input.
      * 
      * @param refUnit   * product's reference unit (object path to a unit)
      */
@@ -566,7 +668,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the refAmount value for this TUpdate_Input.
+     * Gets the refAmount value for this TCreate_Input.
      * 
      * @return refAmount   * product's reference amount (in RefUnit)
      */
@@ -576,7 +678,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the refAmount value for this TUpdate_Input.
+     * Sets the refAmount value for this TCreate_Input.
      * 
      * @param refAmount   * product's reference amount (in RefUnit)
      */
@@ -586,7 +688,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the refContentAmount value for this TUpdate_Input.
+     * Gets the refContentAmount value for this TCreate_Input.
      * 
      * @return refContentAmount   * product's reference content amount (amount of RefUnit actually
      * in the product)
@@ -597,7 +699,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the refContentAmount value for this TUpdate_Input.
+     * Sets the refContentAmount value for this TCreate_Input.
      * 
      * @param refContentAmount   * product's reference content amount (amount of RefUnit actually
      * in the product)
@@ -608,7 +710,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the stockLevel value for this TUpdate_Input.
+     * Gets the stockLevel value for this TCreate_Input.
      * 
      * @return stockLevel   * product's stock level (in OrderUnit)
      */
@@ -618,7 +720,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the stockLevel value for this TUpdate_Input.
+     * Sets the stockLevel value for this TCreate_Input.
      * 
      * @param stockLevel   * product's stock level (in OrderUnit)
      */
@@ -628,7 +730,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the stockLevelAlert value for this TUpdate_Input.
+     * Gets the stockLevelAlert value for this TCreate_Input.
      * 
      * @return stockLevelAlert   * product's stock level alert (in OrderUnit)
      */
@@ -638,7 +740,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the stockLevelAlert value for this TUpdate_Input.
+     * Sets the stockLevelAlert value for this TCreate_Input.
      * 
      * @param stockLevelAlert   * product's stock level alert (in OrderUnit)
      */
@@ -648,7 +750,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the manufacturer value for this TUpdate_Input.
+     * Gets the manufacturer value for this TCreate_Input.
      * 
      * @return manufacturer
      */
@@ -658,7 +760,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the manufacturer value for this TUpdate_Input.
+     * Sets the manufacturer value for this TCreate_Input.
      * 
      * @param manufacturer
      */
@@ -668,7 +770,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the manufacturerSKU value for this TUpdate_Input.
+     * Gets the manufacturerSKU value for this TCreate_Input.
      * 
      * @return manufacturerSKU
      */
@@ -678,7 +780,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the manufacturerSKU value for this TUpdate_Input.
+     * Sets the manufacturerSKU value for this TCreate_Input.
      * 
      * @param manufacturerSKU
      */
@@ -688,7 +790,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the deliveryPeriod value for this TUpdate_Input.
+     * Gets the deliveryPeriod value for this TCreate_Input.
      * 
      * @return deliveryPeriod   * product's delivery period as string
      */
@@ -698,7 +800,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the deliveryPeriod value for this TUpdate_Input.
+     * Sets the deliveryPeriod value for this TCreate_Input.
      * 
      * @param deliveryPeriod   * product's delivery period as string
      */
@@ -708,7 +810,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the length value for this TUpdate_Input.
+     * Gets the length value for this TCreate_Input.
      * 
      * @return length   * product's length (in millimeter)
      */
@@ -718,7 +820,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the length value for this TUpdate_Input.
+     * Sets the length value for this TCreate_Input.
      * 
      * @param length   * product's length (in millimeter)
      */
@@ -728,7 +830,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the width value for this TUpdate_Input.
+     * Gets the width value for this TCreate_Input.
      * 
      * @return width   * product's width (in millimeter)
      */
@@ -738,7 +840,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the width value for this TUpdate_Input.
+     * Sets the width value for this TCreate_Input.
      * 
      * @param width   * product's width (in millimeter)
      */
@@ -748,7 +850,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the height value for this TUpdate_Input.
+     * Gets the height value for this TCreate_Input.
      * 
      * @return height   * product's height (in millimeter)
      */
@@ -758,7 +860,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the height value for this TUpdate_Input.
+     * Sets the height value for this TCreate_Input.
      * 
      * @param height   * product's height (in millimeter)
      */
@@ -768,7 +870,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the isAvailable value for this TUpdate_Input.
+     * Gets the isAvailable value for this TCreate_Input.
      * 
      * @return isAvailable   * Indicates that the product is for sale.
      */
@@ -778,7 +880,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the isAvailable value for this TUpdate_Input.
+     * Sets the isAvailable value for this TCreate_Input.
      * 
      * @param isAvailable   * Indicates that the product is for sale.
      */
@@ -788,7 +890,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the availabilityComment value for this TUpdate_Input.
+     * Gets the availabilityComment value for this TCreate_Input.
      * 
      * @return availabilityComment   * Comment displayed if product is not available (see IsAvailable).
      */
@@ -798,7 +900,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the availabilityComment value for this TUpdate_Input.
+     * Sets the availabilityComment value for this TCreate_Input.
      * 
      * @param availabilityComment   * Comment displayed if product is not available (see IsAvailable).
      */
@@ -808,7 +910,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the availabilityDate value for this TUpdate_Input.
+     * Gets the availabilityDate value for this TCreate_Input.
      * 
      * @return availabilityDate   * Date when the product is going to be available/is for sale.
      */
@@ -818,7 +920,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the availabilityDate value for this TUpdate_Input.
+     * Sets the availabilityDate value for this TCreate_Input.
      * 
      * @param availabilityDate   * Date when the product is going to be available/is for sale.
      */
@@ -828,7 +930,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the URI value for this TUpdate_Input.
+     * Gets the URI value for this TCreate_Input.
      * 
      * @return URI   * short uri asunique part of short URL, affects the CanonicalURL
      */
@@ -838,7 +940,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the URI value for this TUpdate_Input.
+     * Sets the URI value for this TCreate_Input.
      * 
      * @param URI   * short uri asunique part of short URL, affects the CanonicalURL
      */
@@ -848,7 +950,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the isDownloadProduct value for this TUpdate_Input.
+     * Gets the isDownloadProduct value for this TCreate_Input.
      * 
      * @return isDownloadProduct   * Indicates that the product have download files.
      */
@@ -858,7 +960,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the isDownloadProduct value for this TUpdate_Input.
+     * Sets the isDownloadProduct value for this TCreate_Input.
      * 
      * @param isDownloadProduct   * Indicates that the product have download files.
      */
@@ -868,7 +970,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the maxDownloadTime value for this TUpdate_Input.
+     * Gets the maxDownloadTime value for this TCreate_Input.
      * 
      * @return maxDownloadTime   * Temporal delimitation for download.
      */
@@ -878,7 +980,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the maxDownloadTime value for this TUpdate_Input.
+     * Sets the maxDownloadTime value for this TCreate_Input.
      * 
      * @param maxDownloadTime   * Temporal delimitation for download.
      */
@@ -888,7 +990,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the maxDownloadCount value for this TUpdate_Input.
+     * Gets the maxDownloadCount value for this TCreate_Input.
      * 
      * @return maxDownloadCount   * Number possible downloads.
      */
@@ -898,7 +1000,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the maxDownloadCount value for this TUpdate_Input.
+     * Sets the maxDownloadCount value for this TCreate_Input.
      * 
      * @param maxDownloadCount   * Number possible downloads.
      */
@@ -908,27 +1010,49 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the downloadProductMaps value for this TUpdate_Input.
+     * Gets the downloadProductMaps value for this TCreate_Input.
      * 
      * @return downloadProductMaps   * list of product download files
      */
-    public de.epages.webservice.product4.model.TDownload[] getDownloadProductMaps() {
+    public de.epages.webservice.product11.model.TDownload[] getDownloadProductMaps() {
         return downloadProductMaps;
     }
 
 
     /**
-     * Sets the downloadProductMaps value for this TUpdate_Input.
+     * Sets the downloadProductMaps value for this TCreate_Input.
      * 
      * @param downloadProductMaps   * list of product download files
      */
-    public void setDownloadProductMaps(de.epages.webservice.product4.model.TDownload[] downloadProductMaps) {
+    public void setDownloadProductMaps(de.epages.webservice.product11.model.TDownload[] downloadProductMaps) {
         this.downloadProductMaps = downloadProductMaps;
     }
 
 
     /**
-     * Gets the defaultSubProduct value for this TUpdate_Input.
+     * Gets the superProduct value for this TCreate_Input.
+     * 
+     * @return superProduct   * object path to variation's super product (if this is a variation
+     * (sub product))
+     */
+    public java.lang.String getSuperProduct() {
+        return superProduct;
+    }
+
+
+    /**
+     * Sets the superProduct value for this TCreate_Input.
+     * 
+     * @param superProduct   * object path to variation's super product (if this is a variation
+     * (sub product))
+     */
+    public void setSuperProduct(java.lang.String superProduct) {
+        this.superProduct = superProduct;
+    }
+
+
+    /**
+     * Gets the defaultSubProduct value for this TCreate_Input.
      * 
      * @return defaultSubProduct   * product's default sub product (if this is a product with variations
      * (super product))
@@ -939,7 +1063,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the defaultSubProduct value for this TUpdate_Input.
+     * Sets the defaultSubProduct value for this TCreate_Input.
      * 
      * @param defaultSubProduct   * product's default sub product (if this is a product with variations
      * (super product))
@@ -950,7 +1074,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the isDefault value for this TUpdate_Input.
+     * Gets the isDefault value for this TCreate_Input.
      * 
      * @return isDefault   * indicates, if this variation is the default one of the super
      * product (if this is a variation (sub product))
@@ -961,7 +1085,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the isDefault value for this TUpdate_Input.
+     * Sets the isDefault value for this TCreate_Input.
      * 
      * @param isDefault   * indicates, if this variation is the default one of the super
      * product (if this is a variation (sub product))
@@ -972,7 +1096,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the hasSubOwnPrices value for this TUpdate_Input.
+     * Gets the hasSubOwnPrices value for this TCreate_Input.
      * 
      * @return hasSubOwnPrices   * indicates, if own prices of sub product should be used (if
      * this is a variation (sub product))
@@ -983,7 +1107,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the hasSubOwnPrices value for this TUpdate_Input.
+     * Sets the hasSubOwnPrices value for this TCreate_Input.
      * 
      * @param hasSubOwnPrices   * indicates, if own prices of sub product should be used (if
      * this is a variation (sub product))
@@ -994,48 +1118,212 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the productPrices value for this TUpdate_Input.
+     * Gets the variationAttributes value for this TCreate_Input.
+     * 
+     * @return variationAttributes   * if this is a variation (sub product): the actual attribute
+     * keys and values of the variation
+     *             (see epagestypes:ListOfAttributes)
+     */
+    public de.epages.webservice.common.model.TAttribute[] getVariationAttributes() {
+        return variationAttributes;
+    }
+
+
+    /**
+     * Sets the variationAttributes value for this TCreate_Input.
+     * 
+     * @param variationAttributes   * if this is a variation (sub product): the actual attribute
+     * keys and values of the variation
+     *             (see epagestypes:ListOfAttributes)
+     */
+    public void setVariationAttributes(de.epages.webservice.common.model.TAttribute[] variationAttributes) {
+        this.variationAttributes = variationAttributes;
+    }
+
+
+    /**
+     * Gets the productPrices value for this TCreate_Input.
      * 
      * @return productPrices   * list of product prices (see producttypes:ListOfListOfProductPrices)
      */
-    public de.epages.webservice.product4.model.TProductPrice[] getProductPrices() {
+    public de.epages.webservice.product11.model.TProductPrice[] getProductPrices() {
         return productPrices;
     }
 
 
     /**
-     * Sets the productPrices value for this TUpdate_Input.
+     * Sets the productPrices value for this TCreate_Input.
      * 
      * @param productPrices   * list of product prices (see producttypes:ListOfListOfProductPrices)
      */
-    public void setProductPrices(de.epages.webservice.product4.model.TProductPrice[] productPrices) {
+    public void setProductPrices(de.epages.webservice.product11.model.TProductPrice[] productPrices) {
         this.productPrices = productPrices;
     }
 
 
     /**
-     * Gets the attributes value for this TUpdate_Input.
+     * Gets the manufacturerPrices value for this TCreate_Input.
      * 
-     * @return attributes   * list of requested attributes (see epagestypes:ListOfAttributes)
+     * @return manufacturerPrices   * list of manufacturer prices (see producttypes:ListOfListOfProductPrices)
      */
-    public de.epages.webservice.common.model.TAttribute[] getAttributes() {
+    public de.epages.webservice.product11.model.TProductPrice[] getManufacturerPrices() {
+        return manufacturerPrices;
+    }
+
+
+    /**
+     * Sets the manufacturerPrices value for this TCreate_Input.
+     * 
+     * @param manufacturerPrices   * list of manufacturer prices (see producttypes:ListOfListOfProductPrices)
+     */
+    public void setManufacturerPrices(de.epages.webservice.product11.model.TProductPrice[] manufacturerPrices) {
+        this.manufacturerPrices = manufacturerPrices;
+    }
+
+
+    /**
+     * Gets the depositPrices value for this TCreate_Input.
+     * 
+     * @return depositPrices   * list of deposit prices (see producttypes:ListOfListOfProductPrices)
+     */
+    public de.epages.webservice.product11.model.TProductPrice[] getDepositPrices() {
+        return depositPrices;
+    }
+
+
+    /**
+     * Sets the depositPrices value for this TCreate_Input.
+     * 
+     * @param depositPrices   * list of deposit prices (see producttypes:ListOfListOfProductPrices)
+     */
+    public void setDepositPrices(de.epages.webservice.product11.model.TProductPrice[] depositPrices) {
+        this.depositPrices = depositPrices;
+    }
+
+
+    /**
+     * Gets the ecoParticipationPrices value for this TCreate_Input.
+     * 
+     * @return ecoParticipationPrices   * list of eco participation  prices (see producttypes:ListOfListOfProductPrices)
+     */
+    public de.epages.webservice.product11.model.TProductPrice[] getEcoParticipationPrices() {
+        return ecoParticipationPrices;
+    }
+
+
+    /**
+     * Sets the ecoParticipationPrices value for this TCreate_Input.
+     * 
+     * @param ecoParticipationPrices   * list of eco participation  prices (see producttypes:ListOfListOfProductPrices)
+     */
+    public void setEcoParticipationPrices(de.epages.webservice.product11.model.TProductPrice[] ecoParticipationPrices) {
+        this.ecoParticipationPrices = ecoParticipationPrices;
+    }
+
+
+    /**
+     * Gets the prepaymentPrices value for this TCreate_Input.
+     * 
+     * @return prepaymentPrices   * list of prepayment prices (see producttypes:ListOfListOfProductPrices)
+     */
+    public de.epages.webservice.product11.model.TProductPrice[] getPrepaymentPrices() {
+        return prepaymentPrices;
+    }
+
+
+    /**
+     * Sets the prepaymentPrices value for this TCreate_Input.
+     * 
+     * @param prepaymentPrices   * list of prepayment prices (see producttypes:ListOfListOfProductPrices)
+     */
+    public void setPrepaymentPrices(de.epages.webservice.product11.model.TProductPrice[] prepaymentPrices) {
+        this.prepaymentPrices = prepaymentPrices;
+    }
+
+
+    /**
+     * Gets the prepaymentType value for this TCreate_Input.
+     * 
+     * @return prepaymentType   * Type of prepayment (percent, fix)
+     */
+    public java.lang.String getPrepaymentType() {
+        return prepaymentType;
+    }
+
+
+    /**
+     * Sets the prepaymentType value for this TCreate_Input.
+     * 
+     * @param prepaymentType   * Type of prepayment (percent, fix)
+     */
+    public void setPrepaymentType(java.lang.String prepaymentType) {
+        this.prepaymentType = prepaymentType;
+    }
+
+
+    /**
+     * Gets the prepaymentValue value for this TCreate_Input.
+     * 
+     * @return prepaymentValue   * Percental value of prepayment
+     */
+    public java.lang.Float getPrepaymentValue() {
+        return prepaymentValue;
+    }
+
+
+    /**
+     * Sets the prepaymentValue value for this TCreate_Input.
+     * 
+     * @param prepaymentValue   * Percental value of prepayment
+     */
+    public void setPrepaymentValue(java.lang.Float prepaymentValue) {
+        this.prepaymentValue = prepaymentValue;
+    }
+
+
+    /**
+     * Gets the shippingMethods value for this TCreate_Input.
+     * 
+     * @return shippingMethods   * list of shipping methods (see producttypes:ListOfShippingMethods)
+     */
+    public de.epages.webservice.product11.model.TShippingMethod[] getShippingMethods() {
+        return shippingMethods;
+    }
+
+
+    /**
+     * Sets the shippingMethods value for this TCreate_Input.
+     * 
+     * @param shippingMethods   * list of shipping methods (see producttypes:ListOfShippingMethods)
+     */
+    public void setShippingMethods(de.epages.webservice.product11.model.TShippingMethod[] shippingMethods) {
+        this.shippingMethods = shippingMethods;
+    }
+
+
+    /**
+     * Gets the attributes value for this TCreate_Input.
+     * 
+     * @return attributes   * list of attributes (see type ListOfAttributes)
+     */
+    public de.epages.webservice.product11.model.TAttribute[] getAttributes() {
         return attributes;
     }
 
 
     /**
-     * Sets the attributes value for this TUpdate_Input.
+     * Sets the attributes value for this TCreate_Input.
      * 
-     * @param attributes   * list of requested attributes (see epagestypes:ListOfAttributes)
+     * @param attributes   * list of attributes (see type ListOfAttributes)
      */
-    public void setAttributes(de.epages.webservice.common.model.TAttribute[] attributes) {
+    public void setAttributes(de.epages.webservice.product11.model.TAttribute[] attributes) {
         this.attributes = attributes;
     }
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof TUpdate_Input)) return false;
-        TUpdate_Input other = (TUpdate_Input) obj;
+        if (!(obj instanceof TCreate_Input)) return false;
+        TCreate_Input other = (TCreate_Input) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -1044,9 +1332,9 @@ public class TUpdate_Input  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
-            ((this.path==null && other.getPath()==null) || 
-             (this.path!=null &&
-              this.path.equals(other.getPath()))) &&
+            ((this.alias==null && other.getAlias()==null) || 
+             (this.alias!=null &&
+              this.alias.equals(other.getAlias()))) &&
             ((this._class==null && other.get_class()==null) || 
              (this._class!=null &&
               this._class.equals(other.get_class()))) &&
@@ -1056,12 +1344,18 @@ public class TUpdate_Input  implements java.io.Serializable {
             ((this.description==null && other.getDescription()==null) || 
              (this.description!=null &&
               java.util.Arrays.equals(this.description, other.getDescription()))) &&
-            ((this.longDescription==null && other.getLongDescription()==null) || 
-             (this.longDescription!=null &&
-              java.util.Arrays.equals(this.longDescription, other.getLongDescription()))) &&
+            ((this.text==null && other.getText()==null) || 
+             (this.text!=null &&
+              java.util.Arrays.equals(this.text, other.getText()))) &&
             ((this.keywords==null && other.getKeywords()==null) || 
              (this.keywords!=null &&
               java.util.Arrays.equals(this.keywords, other.getKeywords()))) &&
+            ((this.mainCharacteristics==null && other.getMainCharacteristics()==null) || 
+             (this.mainCharacteristics!=null &&
+              java.util.Arrays.equals(this.mainCharacteristics, other.getMainCharacteristics()))) &&
+            ((this.title==null && other.getTitle()==null) || 
+             (this.title!=null &&
+              java.util.Arrays.equals(this.title, other.getTitle()))) &&
             ((this.taxClass==null && other.getTaxClass()==null) || 
              (this.taxClass!=null &&
               this.taxClass.equals(other.getTaxClass()))) &&
@@ -1147,6 +1441,9 @@ public class TUpdate_Input  implements java.io.Serializable {
             ((this.downloadProductMaps==null && other.getDownloadProductMaps()==null) || 
              (this.downloadProductMaps!=null &&
               java.util.Arrays.equals(this.downloadProductMaps, other.getDownloadProductMaps()))) &&
+            ((this.superProduct==null && other.getSuperProduct()==null) || 
+             (this.superProduct!=null &&
+              this.superProduct.equals(other.getSuperProduct()))) &&
             ((this.defaultSubProduct==null && other.getDefaultSubProduct()==null) || 
              (this.defaultSubProduct!=null &&
               this.defaultSubProduct.equals(other.getDefaultSubProduct()))) &&
@@ -1156,9 +1453,33 @@ public class TUpdate_Input  implements java.io.Serializable {
             ((this.hasSubOwnPrices==null && other.getHasSubOwnPrices()==null) || 
              (this.hasSubOwnPrices!=null &&
               this.hasSubOwnPrices.equals(other.getHasSubOwnPrices()))) &&
+            ((this.variationAttributes==null && other.getVariationAttributes()==null) || 
+             (this.variationAttributes!=null &&
+              java.util.Arrays.equals(this.variationAttributes, other.getVariationAttributes()))) &&
             ((this.productPrices==null && other.getProductPrices()==null) || 
              (this.productPrices!=null &&
               java.util.Arrays.equals(this.productPrices, other.getProductPrices()))) &&
+            ((this.manufacturerPrices==null && other.getManufacturerPrices()==null) || 
+             (this.manufacturerPrices!=null &&
+              java.util.Arrays.equals(this.manufacturerPrices, other.getManufacturerPrices()))) &&
+            ((this.depositPrices==null && other.getDepositPrices()==null) || 
+             (this.depositPrices!=null &&
+              java.util.Arrays.equals(this.depositPrices, other.getDepositPrices()))) &&
+            ((this.ecoParticipationPrices==null && other.getEcoParticipationPrices()==null) || 
+             (this.ecoParticipationPrices!=null &&
+              java.util.Arrays.equals(this.ecoParticipationPrices, other.getEcoParticipationPrices()))) &&
+            ((this.prepaymentPrices==null && other.getPrepaymentPrices()==null) || 
+             (this.prepaymentPrices!=null &&
+              java.util.Arrays.equals(this.prepaymentPrices, other.getPrepaymentPrices()))) &&
+            ((this.prepaymentType==null && other.getPrepaymentType()==null) || 
+             (this.prepaymentType!=null &&
+              this.prepaymentType.equals(other.getPrepaymentType()))) &&
+            ((this.prepaymentValue==null && other.getPrepaymentValue()==null) || 
+             (this.prepaymentValue!=null &&
+              this.prepaymentValue.equals(other.getPrepaymentValue()))) &&
+            ((this.shippingMethods==null && other.getShippingMethods()==null) || 
+             (this.shippingMethods!=null &&
+              java.util.Arrays.equals(this.shippingMethods, other.getShippingMethods()))) &&
             ((this.attributes==null && other.getAttributes()==null) || 
              (this.attributes!=null &&
               java.util.Arrays.equals(this.attributes, other.getAttributes())));
@@ -1173,8 +1494,8 @@ public class TUpdate_Input  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        if (getPath() != null) {
-            _hashCode += getPath().hashCode();
+        if (getAlias() != null) {
+            _hashCode += getAlias().hashCode();
         }
         if (get_class() != null) {
             _hashCode += get_class().hashCode();
@@ -1201,11 +1522,11 @@ public class TUpdate_Input  implements java.io.Serializable {
                 }
             }
         }
-        if (getLongDescription() != null) {
+        if (getText() != null) {
             for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getLongDescription());
+                 i<java.lang.reflect.Array.getLength(getText());
                  i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getLongDescription(), i);
+                java.lang.Object obj = java.lang.reflect.Array.get(getText(), i);
                 if (obj != null &&
                     !obj.getClass().isArray()) {
                     _hashCode += obj.hashCode();
@@ -1217,6 +1538,28 @@ public class TUpdate_Input  implements java.io.Serializable {
                  i<java.lang.reflect.Array.getLength(getKeywords());
                  i++) {
                 java.lang.Object obj = java.lang.reflect.Array.get(getKeywords(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
+        }
+        if (getMainCharacteristics() != null) {
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getMainCharacteristics());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getMainCharacteristics(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
+        }
+        if (getTitle() != null) {
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getTitle());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getTitle(), i);
                 if (obj != null &&
                     !obj.getClass().isArray()) {
                     _hashCode += obj.hashCode();
@@ -1332,6 +1675,9 @@ public class TUpdate_Input  implements java.io.Serializable {
                 }
             }
         }
+        if (getSuperProduct() != null) {
+            _hashCode += getSuperProduct().hashCode();
+        }
         if (getDefaultSubProduct() != null) {
             _hashCode += getDefaultSubProduct().hashCode();
         }
@@ -1341,11 +1687,83 @@ public class TUpdate_Input  implements java.io.Serializable {
         if (getHasSubOwnPrices() != null) {
             _hashCode += getHasSubOwnPrices().hashCode();
         }
+        if (getVariationAttributes() != null) {
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getVariationAttributes());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getVariationAttributes(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
+        }
         if (getProductPrices() != null) {
             for (int i=0;
                  i<java.lang.reflect.Array.getLength(getProductPrices());
                  i++) {
                 java.lang.Object obj = java.lang.reflect.Array.get(getProductPrices(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
+        }
+        if (getManufacturerPrices() != null) {
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getManufacturerPrices());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getManufacturerPrices(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
+        }
+        if (getDepositPrices() != null) {
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getDepositPrices());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getDepositPrices(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
+        }
+        if (getEcoParticipationPrices() != null) {
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getEcoParticipationPrices());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getEcoParticipationPrices(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
+        }
+        if (getPrepaymentPrices() != null) {
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getPrepaymentPrices());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getPrepaymentPrices(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
+        }
+        if (getPrepaymentType() != null) {
+            _hashCode += getPrepaymentType().hashCode();
+        }
+        if (getPrepaymentValue() != null) {
+            _hashCode += getPrepaymentValue().hashCode();
+        }
+        if (getShippingMethods() != null) {
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getShippingMethods());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getShippingMethods(), i);
                 if (obj != null &&
                     !obj.getClass().isArray()) {
                     _hashCode += obj.hashCode();
@@ -1369,13 +1787,13 @@ public class TUpdate_Input  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(TUpdate_Input.class, true);
+        new org.apache.axis.description.TypeDesc(TCreate_Input.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/05", "TUpdate_Input"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TCreate_Input"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("path");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
+        elemField.setFieldName("alias");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "Alias"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -1401,8 +1819,8 @@ public class TUpdate_Input  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("longDescription");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "LongDescription"));
+        elemField.setFieldName("text");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "Text"));
         elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TLocalizedValue"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
@@ -1415,10 +1833,23 @@ public class TUpdate_Input  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("mainCharacteristics");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "MainCharacteristics"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TLocalizedValue"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("title");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "Title"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TLocalizedValue"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("taxClass");
         elemField.setXmlName(new javax.xml.namespace.QName("", "TaxClass"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
@@ -1612,7 +2043,14 @@ public class TUpdate_Input  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("downloadProductMaps");
         elemField.setXmlName(new javax.xml.namespace.QName("", "DownloadProductMaps"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/05", "TDownload"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TDownload"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("superProduct");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "SuperProduct"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -1638,16 +2076,72 @@ public class TUpdate_Input  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("variationAttributes");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "VariationAttributes"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TAttribute"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("productPrices");
         elemField.setXmlName(new javax.xml.namespace.QName("", "ProductPrices"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/05", "TProductPrice"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TProductPrice"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("manufacturerPrices");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "ManufacturerPrices"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TProductPrice"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("depositPrices");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "DepositPrices"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TProductPrice"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("ecoParticipationPrices");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "EcoParticipationPrices"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TProductPrice"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("prepaymentPrices");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "PrepaymentPrices"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TProductPrice"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("prepaymentType");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "PrepaymentType"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("prepaymentValue");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "PrepaymentValue"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "float"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("shippingMethods");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "ShippingMethods"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TShippingMethod"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("attributes");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Attributes"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TAttribute"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TAttribute"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

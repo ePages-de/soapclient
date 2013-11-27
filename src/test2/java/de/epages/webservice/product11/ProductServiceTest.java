@@ -19,16 +19,16 @@ import de.epages.webservice.common.model.TAttribute;
 import de.epages.webservice.common.model.TLocalizedValue;
 import de.epages.webservice.product.ProductServiceClient11Impl;
 import de.epages.webservice.product11.stub.TFind_Input;
-import de.epages.webservice.product9.model.TCreate_Input;
-import de.epages.webservice.product9.model.TCreate_Return;
-import de.epages.webservice.product9.model.TDelete_Return;
-import de.epages.webservice.product9.model.TDownload;
-import de.epages.webservice.product9.model.TExists_Return;
-import de.epages.webservice.product9.model.TGetInfo_Return;
-import de.epages.webservice.product9.model.TProductPrice;
-import de.epages.webservice.product9.model.TShippingMethod;
-import de.epages.webservice.product9.model.TUpdate_Input;
-import de.epages.webservice.product9.model.TUpdate_Return;
+import de.epages.webservice.product11.model.TCreate_Input;
+import de.epages.webservice.product11.model.TCreate_Return;
+import de.epages.webservice.product11.model.TDelete_Return;
+import de.epages.webservice.product11.model.TDownload;
+import de.epages.webservice.product11.model.TExists_Return;
+import de.epages.webservice.product11.model.TGetInfo_Return;
+import de.epages.webservice.product11.model.TProductPrice;
+import de.epages.webservice.product11.model.TShippingMethod;
+import de.epages.webservice.product11.model.TUpdate_Input;
+import de.epages.webservice.product11.model.TUpdate_Return;
 
 
 
@@ -116,10 +116,10 @@ public class ProductServiceTest {
                 });
         Product_in.setAvailabilityDate(new GregorianCalendar(2007,11,25,12,00));
 
-        de.epages.webservice.product9.model.TAttribute attr1 = new de.epages.webservice.product9.model.TAttribute();
+        de.epages.webservice.product11.model.TAttribute attr1 = new de.epages.webservice.product11.model.TAttribute();
         attr1.setName("Manufacturer");
         attr1.setValue("java WebService client tester");
-        Product_in.setAttributes(new de.epages.webservice.product9.model.TAttribute[]{attr1});
+        Product_in.setAttributes(new de.epages.webservice.product11.model.TAttribute[]{attr1});
 
         Product_update.setPath(path + alias);
         Product_update.setName(new TLocalizedValue[]{

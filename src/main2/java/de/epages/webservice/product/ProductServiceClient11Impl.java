@@ -13,13 +13,13 @@ import de.epages.webservice.WebServiceConfiguration;
 import de.epages.webservice.product11.stub.Bind_Product_SOAPStub;
 import de.epages.webservice.product11.stub.ProductServiceLocator;
 import de.epages.webservice.product11.stub.TFind_Input;
-import de.epages.webservice.product9.model.TCreate_Input;
-import de.epages.webservice.product9.model.TCreate_Return;
-import de.epages.webservice.product9.model.TDelete_Return;
-import de.epages.webservice.product9.model.TExists_Return;
-import de.epages.webservice.product9.model.TGetInfo_Return;
-import de.epages.webservice.product9.model.TUpdate_Input;
-import de.epages.webservice.product9.model.TUpdate_Return;
+import de.epages.webservice.product11.model.TCreate_Input;
+import de.epages.webservice.product11.model.TCreate_Return;
+import de.epages.webservice.product11.model.TDelete_Return;
+import de.epages.webservice.product11.model.TExists_Return;
+import de.epages.webservice.product11.model.TGetInfo_Return;
+import de.epages.webservice.product11.model.TUpdate_Input;
+import de.epages.webservice.product11.model.TUpdate_Return;
 
 
 public class ProductServiceClient11Impl implements ProductServiceClient11 {

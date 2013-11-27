@@ -1,43 +1,43 @@
 /**
- * TUpdate_Return.java
+ * TDelete_Return.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package de.epages.webservice.product4.model;
+package de.epages.webservice.product11.model;
 
 
 /**
- * a single return value of a update() product call.
+ * a single return value of a delete() product call.
  *         the path will be always returned.
  *         the error element will be returned in case of error.
- *         the updated flag will be returned if no error has occured.
+ *         the deleted flag will be returned if no error has occured.
  */
-public class TUpdate_Return  implements java.io.Serializable {
+public class TDelete_Return  implements java.io.Serializable {
     private java.lang.String path;
 
-    /* a boolean flag indicating that this product was updated */
-    private java.lang.Boolean updated;
+    /* a boolean flag indicating that this product was deleted */
+    private java.lang.Boolean deleted;
 
     /* error object (see epagestypes:TError) */
     private de.epages.webservice.common.model.TError error;
 
-    public TUpdate_Return() {
+    public TDelete_Return() {
     }
 
-    public TUpdate_Return(
+    public TDelete_Return(
            java.lang.String path,
-           java.lang.Boolean updated,
+           java.lang.Boolean deleted,
            de.epages.webservice.common.model.TError error) {
            this.path = path;
-           this.updated = updated;
+           this.deleted = deleted;
            this.error = error;
     }
 
 
     /**
-     * Gets the path value for this TUpdate_Return.
+     * Gets the path value for this TDelete_Return.
      * 
      * @return path
      */
@@ -47,7 +47,7 @@ public class TUpdate_Return  implements java.io.Serializable {
 
 
     /**
-     * Sets the path value for this TUpdate_Return.
+     * Sets the path value for this TDelete_Return.
      * 
      * @param path
      */
@@ -57,27 +57,27 @@ public class TUpdate_Return  implements java.io.Serializable {
 
 
     /**
-     * Gets the updated value for this TUpdate_Return.
+     * Gets the deleted value for this TDelete_Return.
      * 
-     * @return updated   * a boolean flag indicating that this product was updated
+     * @return deleted   * a boolean flag indicating that this product was deleted
      */
-    public java.lang.Boolean getUpdated() {
-        return updated;
+    public java.lang.Boolean getDeleted() {
+        return deleted;
     }
 
 
     /**
-     * Sets the updated value for this TUpdate_Return.
+     * Sets the deleted value for this TDelete_Return.
      * 
-     * @param updated   * a boolean flag indicating that this product was updated
+     * @param deleted   * a boolean flag indicating that this product was deleted
      */
-    public void setUpdated(java.lang.Boolean updated) {
-        this.updated = updated;
+    public void setDeleted(java.lang.Boolean deleted) {
+        this.deleted = deleted;
     }
 
 
     /**
-     * Gets the error value for this TUpdate_Return.
+     * Gets the error value for this TDelete_Return.
      * 
      * @return error   * error object (see epagestypes:TError)
      */
@@ -87,7 +87,7 @@ public class TUpdate_Return  implements java.io.Serializable {
 
 
     /**
-     * Sets the error value for this TUpdate_Return.
+     * Sets the error value for this TDelete_Return.
      * 
      * @param error   * error object (see epagestypes:TError)
      */
@@ -97,8 +97,8 @@ public class TUpdate_Return  implements java.io.Serializable {
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof TUpdate_Return)) return false;
-        TUpdate_Return other = (TUpdate_Return) obj;
+        if (!(obj instanceof TDelete_Return)) return false;
+        TDelete_Return other = (TDelete_Return) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -110,9 +110,9 @@ public class TUpdate_Return  implements java.io.Serializable {
             ((this.path==null && other.getPath()==null) || 
              (this.path!=null &&
               this.path.equals(other.getPath()))) &&
-            ((this.updated==null && other.getUpdated()==null) || 
-             (this.updated!=null &&
-              this.updated.equals(other.getUpdated()))) &&
+            ((this.deleted==null && other.getDeleted()==null) || 
+             (this.deleted!=null &&
+              this.deleted.equals(other.getDeleted()))) &&
             ((this.error==null && other.getError()==null) || 
              (this.error!=null &&
               this.error.equals(other.getError())));
@@ -130,8 +130,8 @@ public class TUpdate_Return  implements java.io.Serializable {
         if (getPath() != null) {
             _hashCode += getPath().hashCode();
         }
-        if (getUpdated() != null) {
-            _hashCode += getUpdated().hashCode();
+        if (getDeleted() != null) {
+            _hashCode += getDeleted().hashCode();
         }
         if (getError() != null) {
             _hashCode += getError().hashCode();
@@ -142,10 +142,10 @@ public class TUpdate_Return  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(TUpdate_Return.class, true);
+        new org.apache.axis.description.TypeDesc(TDelete_Return.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2010/05", "TUpdate_Return"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TDelete_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("path");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
@@ -153,8 +153,8 @@ public class TUpdate_Return  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("updated");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "updated"));
+        elemField.setFieldName("deleted");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "deleted"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "boolean"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

@@ -32,7 +32,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "LanguageCodes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "type_LanguageCodes_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "type_GetInfo_Out"));
-        oper.setReturnClass(de.epages.webservice.product9.model.TGetInfo_Return[].class);
+        oper.setReturnClass(de.epages.webservice.product11.model.TGetInfo_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Products"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.ENCODED);
@@ -43,7 +43,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Products"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "type_Exists_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "type_Exists_Out"));
-        oper.setReturnClass(de.epages.webservice.product9.model.TExists_Return[].class);
+        oper.setReturnClass(de.epages.webservice.product11.model.TExists_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Products"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.ENCODED);
@@ -54,7 +54,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Products"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "type_Delete_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "type_Delete_Out"));
-        oper.setReturnClass(de.epages.webservice.product9.model.TDelete_Return[].class);
+        oper.setReturnClass(de.epages.webservice.product11.model.TDelete_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Products"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.ENCODED);
@@ -62,10 +62,10 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("update");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Products"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "type_Update_In"), de.epages.webservice.product9.model.TUpdate_Input[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Products"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "type_Update_In"), de.epages.webservice.product11.model.TUpdate_Input[].class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "type_Update_Out"));
-        oper.setReturnClass(de.epages.webservice.product9.model.TUpdate_Return[].class);
+        oper.setReturnClass(de.epages.webservice.product11.model.TUpdate_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Products"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.ENCODED);
@@ -73,10 +73,10 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("create");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Products"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "type_Create_In"), de.epages.webservice.product9.model.TCreate_Input[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Products"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "type_Create_In"), de.epages.webservice.product11.model.TCreate_Input[].class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "type_Create_Out"));
-        oper.setReturnClass(de.epages.webservice.product9.model.TCreate_Return[].class);
+        oper.setReturnClass(de.epages.webservice.product11.model.TCreate_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Products"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.ENCODED);
@@ -181,7 +181,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "type_Create_In");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TCreate_Input[].class;
+            cls = de.epages.webservice.product11.model.TCreate_Input[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TCreate_Input");
             qName2 = null;
@@ -190,7 +190,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "type_Create_Out");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TCreate_Return[].class;
+            cls = de.epages.webservice.product11.model.TCreate_Return[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TCreate_Return");
             qName2 = null;
@@ -208,7 +208,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "type_Delete_Out");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TDelete_Return[].class;
+            cls = de.epages.webservice.product11.model.TDelete_Return[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TDelete_Return");
             qName2 = null;
@@ -226,7 +226,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "type_Exists_Out");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TExists_Return[].class;
+            cls = de.epages.webservice.product11.model.TExists_Return[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TExists_Return");
             qName2 = null;
@@ -253,7 +253,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "type_GetInfo_Out");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TGetInfo_Return[].class;
+            cls = de.epages.webservice.product11.model.TGetInfo_Return[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TGetInfo_Return");
             qName2 = null;
@@ -271,7 +271,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "type_Update_In");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TUpdate_Input[].class;
+            cls = de.epages.webservice.product11.model.TUpdate_Input[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TUpdate_Input");
             qName2 = null;
@@ -280,7 +280,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2013/01", "type_Update_Out");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TUpdate_Return[].class;
+            cls = de.epages.webservice.product11.model.TUpdate_Return[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TUpdate_Return");
             qName2 = null;
@@ -289,7 +289,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "ListOfAttributes");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TAttribute[].class;
+            cls = de.epages.webservice.product11.model.TAttribute[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TAttribute");
             qName2 = null;
@@ -298,7 +298,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "ListOfDownloads");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TDownload[].class;
+            cls = de.epages.webservice.product11.model.TDownload[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TDownload");
             qName2 = null;
@@ -307,7 +307,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "ListOfProductPrices");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TProductPrice[].class;
+            cls = de.epages.webservice.product11.model.TProductPrice[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TProductPrice");
             qName2 = null;
@@ -316,7 +316,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "ListOfShippingMethods");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TShippingMethod[].class;
+            cls = de.epages.webservice.product11.model.TShippingMethod[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TShippingMethod");
             qName2 = null;
@@ -334,77 +334,77 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TAttribute");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TAttribute.class;
+            cls = de.epages.webservice.product11.model.TAttribute.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TCreate_Input");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TCreate_Input.class;
+            cls = de.epages.webservice.product11.model.TCreate_Input.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TCreate_Return");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TCreate_Return.class;
+            cls = de.epages.webservice.product11.model.TCreate_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TDelete_Return");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TDelete_Return.class;
+            cls = de.epages.webservice.product11.model.TDelete_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TDownload");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TDownload.class;
+            cls = de.epages.webservice.product11.model.TDownload.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TExists_Return");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TExists_Return.class;
+            cls = de.epages.webservice.product11.model.TExists_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TGetInfo_Return");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TGetInfo_Return.class;
+            cls = de.epages.webservice.product11.model.TGetInfo_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TProductPrice");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TProductPrice.class;
+            cls = de.epages.webservice.product11.model.TProductPrice.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TShippingMethod");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TShippingMethod.class;
+            cls = de.epages.webservice.product11.model.TShippingMethod.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TUpdate_Input");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TUpdate_Input.class;
+            cls = de.epages.webservice.product11.model.TUpdate_Input.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TUpdate_Return");
             cachedSerQNames.add(qName);
-            cls = de.epages.webservice.product9.model.TUpdate_Return.class;
+            cls = de.epages.webservice.product11.model.TUpdate_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
@@ -476,7 +476,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
         }
     }
 
-    public de.epages.webservice.product9.model.TGetInfo_Return[] getInfo(java.lang.String[] products, java.lang.String[] attributes, java.lang.String[] languageCodes) throws java.rmi.RemoteException {
+    public de.epages.webservice.product11.model.TGetInfo_Return[] getInfo(java.lang.String[] products, java.lang.String[] attributes, java.lang.String[] languageCodes) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -497,9 +497,9 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
         else {
             extractAttachments(_call);
             try {
-                return (de.epages.webservice.product9.model.TGetInfo_Return[]) _resp;
+                return (de.epages.webservice.product11.model.TGetInfo_Return[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (de.epages.webservice.product9.model.TGetInfo_Return[]) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.webservice.product9.model.TGetInfo_Return[].class);
+                return (de.epages.webservice.product11.model.TGetInfo_Return[]) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.webservice.product11.model.TGetInfo_Return[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -507,7 +507,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 }
     }
 
-    public de.epages.webservice.product9.model.TExists_Return[] exists(java.lang.String[] products) throws java.rmi.RemoteException {
+    public de.epages.webservice.product11.model.TExists_Return[] exists(java.lang.String[] products) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -528,9 +528,9 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
         else {
             extractAttachments(_call);
             try {
-                return (de.epages.webservice.product9.model.TExists_Return[]) _resp;
+                return (de.epages.webservice.product11.model.TExists_Return[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (de.epages.webservice.product9.model.TExists_Return[]) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.webservice.product9.model.TExists_Return[].class);
+                return (de.epages.webservice.product11.model.TExists_Return[]) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.webservice.product11.model.TExists_Return[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -538,7 +538,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 }
     }
 
-    public de.epages.webservice.product9.model.TDelete_Return[] delete(java.lang.String[] products) throws java.rmi.RemoteException {
+    public de.epages.webservice.product11.model.TDelete_Return[] delete(java.lang.String[] products) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -559,9 +559,9 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
         else {
             extractAttachments(_call);
             try {
-                return (de.epages.webservice.product9.model.TDelete_Return[]) _resp;
+                return (de.epages.webservice.product11.model.TDelete_Return[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (de.epages.webservice.product9.model.TDelete_Return[]) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.webservice.product9.model.TDelete_Return[].class);
+                return (de.epages.webservice.product11.model.TDelete_Return[]) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.webservice.product11.model.TDelete_Return[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -569,7 +569,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 }
     }
 
-    public de.epages.webservice.product9.model.TUpdate_Return[] update(de.epages.webservice.product9.model.TUpdate_Input[] products) throws java.rmi.RemoteException {
+    public de.epages.webservice.product11.model.TUpdate_Return[] update(de.epages.webservice.product11.model.TUpdate_Input[] products) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -590,9 +590,9 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
         else {
             extractAttachments(_call);
             try {
-                return (de.epages.webservice.product9.model.TUpdate_Return[]) _resp;
+                return (de.epages.webservice.product11.model.TUpdate_Return[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (de.epages.webservice.product9.model.TUpdate_Return[]) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.webservice.product9.model.TUpdate_Return[].class);
+                return (de.epages.webservice.product11.model.TUpdate_Return[]) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.webservice.product11.model.TUpdate_Return[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -600,7 +600,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 }
     }
 
-    public de.epages.webservice.product9.model.TCreate_Return[] create(de.epages.webservice.product9.model.TCreate_Input[] products) throws java.rmi.RemoteException {
+    public de.epages.webservice.product11.model.TCreate_Return[] create(de.epages.webservice.product11.model.TCreate_Input[] products) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -621,9 +621,9 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
         else {
             extractAttachments(_call);
             try {
-                return (de.epages.webservice.product9.model.TCreate_Return[]) _resp;
+                return (de.epages.webservice.product11.model.TCreate_Return[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (de.epages.webservice.product9.model.TCreate_Return[]) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.webservice.product9.model.TCreate_Return[].class);
+                return (de.epages.webservice.product11.model.TCreate_Return[]) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.webservice.product11.model.TCreate_Return[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
