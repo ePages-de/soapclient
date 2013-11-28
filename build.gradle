@@ -56,6 +56,7 @@ dependencies {
     testCompile "org.apache.axis2:axis2-ant-plugin:${axisVersion}"
     
     axisGenTask "org.apache.axis2:axis2-ant-plugin:${axisVersion}"
+    axisGenTask "org.apache.axis2:axis2-xmlbeans:${axisVersion}"
 //    axisGenTask "org.apache.axis:axis-ant:${axisVersion}"
 //    axisGenTask "org.apache.axis:axis:${axisVersion}"
 //    axisGenTask "org.apache.axis:axis-jaxrpc:${axisVersion}"
@@ -193,17 +194,18 @@ task axisGen() {
     doLast {
         file('src/gen/java').mkdirs()
         [
-            'AssignmentService',
-            'BasketService',
-            'ProductService11',
-            'CatalogService8'
+//            'AssignmentService',
+            'BasketService'
+//            'ProductService11',
+//            'CatalogService8'
         ].each
         { def wsdlName ->
             ant.echo(message: "Generating Classes for ${wsdlName}")
             ant.codegen(
                     wsdlfilename: "http://epagesj-vm01/WebRoot/WSDL/${wsdlName}.wsdl",
                     output: 'src/gen/java',
-                    wsdlVersion: 1.1
+                    wsdlVersion: 1.1,
+                    databindingName: 'xmlbeans',
 //                    verbose: true,
 //                    helpergen: false,
             )
