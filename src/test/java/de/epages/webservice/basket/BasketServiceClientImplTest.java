@@ -5,7 +5,6 @@ import static de.epages.webservice.common.AssertNoError.assertNoError;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
@@ -27,7 +26,6 @@ import de.epages.webservice.basket.model.TUpdateLineItem_Return;
 import de.epages.webservice.basket.model.TUpdate_Input;
 import de.epages.webservice.basket.model.TUpdate_Return;
 import de.epages.webservice.common.model.TAttribute;
-import de.epages.webservice.common.model.TError;
 import de.epages.webservice.shop3.model.TAddressNamed;
 
 /**
@@ -35,13 +33,13 @@ import de.epages.webservice.shop3.model.TAddressNamed;
  */
 public class BasketServiceClientImplTest {
 
-    private BasketServiceClientImpl basketService;
-    private TCreate_Input Basket_in = new TCreate_Input();
-    private TUpdate_Input Basket_up = new TUpdate_Input();
-    private TAttribute BasketAttr_in = new TAttribute("IsAddressOK","1",null,null);
-    private TAttribute BasketAttr_up = new TAttribute("IsAddressOK","0",null,null);
-    private TAddressNamed Address_in = new TAddressNamed();
-    private TAddressNamed Address_up = new TAddressNamed();
+    private static final BasketServiceClientImpl basketService = new BasketServiceClientImpl(new WebServiceTestConfiguration());
+    private TCreate_Input Basket_in;
+    private TUpdate_Input Basket_up;
+    private TAttribute BasketAttr_in;
+    private TAttribute BasketAttr_up;
+    private TAddressNamed Address_in;
+    private TAddressNamed Address_up;
 
     private String BasketPath;
 
@@ -55,8 +53,12 @@ public class BasketServiceClientImplTest {
      */
     @Before
     public void setUp() throws RemoteException, MalformedURLException {
-
-        basketService = new BasketServiceClientImpl(new WebServiceTestConfiguration());
+        Basket_in = new TCreate_Input();
+        Basket_up = new TUpdate_Input();
+        BasketAttr_in = new TAttribute("IsAddressOK","1",null,null);
+        BasketAttr_up = new TAttribute("IsAddressOK","0",null,null);
+        Address_in = new TAddressNamed();
+        Address_up = new TAddressNamed();
 
         // init input address data
         Address_in.setEMail("java_test-1@epages.de");

@@ -18,7 +18,7 @@ apply plugin: 'versions'
 archivesBaseName = 'soapclient'
 group = 'de.epages'
 description = 'AXIS 1.x based SOAP client for epages6'
-version = '1.4.0'
+version = '1.4.1'
 
 repositories { 
     maven { url project.properties['artifactoryContextUrl'] + "epages-repos" }
@@ -28,9 +28,6 @@ configurations { axisGenTask }
 
 // add src/gen/java
 sourceSets.main.java.srcDirs 'src/gen/java'
-//sourceSets.main.java.srcDirs 'src/main2/java'
-//sourceSets.main.java.srcDirs 'src/gen2/java'
-//sourceSets.test.java.srcDirs 'src/test2/java'
 
 ext {
     axisVersion = "1.4"
@@ -52,11 +49,10 @@ dependencies {
 
     testCompile "junit:junit:${junitVersion}"
 
-    testRuntime "org.slf4j:jul-to-slf4j:${slf4jVersion}"
     testRuntime "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
     testRuntime "ch.qos.logback:logback-core:${logbackVersion}"
     testRuntime "ch.qos.logback:logback-classic:${logbackVersion}"
-    
+
     axisGenTask "org.apache.axis:axis-ant:${axisVersion}"
     axisGenTask "org.apache.axis:axis:${axisVersion}"
     axisGenTask "org.apache.axis:axis-jaxrpc:${axisVersion}"

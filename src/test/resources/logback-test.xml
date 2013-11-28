@@ -20,5 +20,7 @@
   <root level="INFO">
     <appender-ref ref="STDOUT" />
   </root>
-
-</configuration>
+  <!--  For printing out the low-level http communication
+  <logger name="org.apache.axis.transport.http" level="DEBUG" />
+ 	-->
+ </configuration>
