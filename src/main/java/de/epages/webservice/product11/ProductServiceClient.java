@@ -9,7 +9,7 @@ import de.epages.webservice.product11.model.TUpdate_Input;
 import de.epages.webservice.product11.model.TUpdate_Return;
 import de.epages.webservice.product11.stub.Port_Product;
 
-interface ProductServiceClient extends Port_Product {
+public interface ProductServiceClient extends Port_Product {
 
     /**
      * get information about a list of products

@@ -18,7 +18,7 @@ apply plugin: 'versions'
 archivesBaseName = 'soapclient'
 group = 'de.epages'
 description = 'AXIS 1.x based SOAP client for epages6'
-version = '1.4.1'
+version = '1.4.2'
 
 repositories { 
     maven { url project.properties['artifactoryContextUrl'] + "epages-repos" }
