@@ -19,6 +19,21 @@ public interface BasketServiceClient extends Port_Basket {
     /**
      * get information about a list of baskets
      */
+    public TGetInfo_Return[] getInfo(String[] baskets);
+
+    /**
+     * get information about a list of baskets
+     */
+    public TGetInfo_Return[] getInfo(String[] baskets, String[] attributes);
+
+    /**
+     * get information about a list of baskets
+     */
+    public TGetInfo_Return[] getInfo(String[] baskets, String[] attributes, String[] languageCodes);
+
+    /**
+     * get information about a list of baskets
+     */
     public TGetInfo_Return[] getInfo(String[] baskets, String[] attributes, String[] addressAttributes, String[] lineItemAttributes, String[] languageCodes);
 
     /**

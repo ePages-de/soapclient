@@ -37,6 +37,17 @@ public class BasketServiceClientImpl implements BasketServiceClient {
         this.stub = stub;
     }
 
+    public TGetInfo_Return[] getInfo(String[] baskets) {
+        return this.getInfo(baskets, new String[] {}, new String[] {}, new String[] {}, new String[] {});
+    }
+
+    public TGetInfo_Return[] getInfo(String[] baskets, String[] attributes) {
+        return this.getInfo(baskets, new String[] {}, new String[] {}, attributes, new String[] {});
+    }
+
+    public TGetInfo_Return[] getInfo(String[] baskets, String[] attributes, String[] languageCodes) {
+        return this.getInfo(baskets, attributes, new String[] {}, new String[] {}, languageCodes);
+    }
 
     public TGetInfo_Return[] getInfo(String[] baskets, String[] attributes, String[] addressAttributes, String[] lineItemAttributes,
             String[] languageCodes) {
