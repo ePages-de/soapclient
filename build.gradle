@@ -28,9 +28,9 @@ configurations { axisGenTask }
 
 // add src/gen/java
 sourceSets.main.java.srcDirs 'src/gen/java'
-sourceSets.main.java.srcDirs 'src/main2/java'
-sourceSets.main.java.srcDirs 'src/gen2/java'
-sourceSets.test.java.srcDirs 'src/test2/java'
+//sourceSets.main.java.srcDirs 'src/main2/java'
+//sourceSets.main.java.srcDirs 'src/gen2/java'
+//sourceSets.test.java.srcDirs 'src/test2/java'
 
 ext {
     axisVersion = "1.4"
@@ -55,13 +55,15 @@ dependencies {
     testRuntime "org.slf4j:jul-to-slf4j:${slf4jVersion}"
     testRuntime "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
     testRuntime "ch.qos.logback:logback-core:${logbackVersion}"
-
+    testRuntime "ch.qos.logback:logback-classic:${logbackVersion}"
+    
     axisGenTask "org.apache.axis:axis-ant:${axisVersion}"
     axisGenTask "org.apache.axis:axis:${axisVersion}"
     axisGenTask "org.apache.axis:axis-jaxrpc:${axisVersion}"
     axisGenTask "wsdl4j:wsdl4j:${wsdl4jVersion}"
     axisGenTask "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
     axisGenTask "ch.qos.logback:logback-core:${logbackVersion}"
+    axisGenTask "ch.qos.logback:logback-classic:${logbackVersion}"
     axisGenTask "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
 }
 
@@ -118,17 +120,13 @@ sonarRunner {
 task axisGen() {
     outputs.dir file('src/gen2/java')
     outputs.upToDateWhen({ false })
-    ant.echo(message: 'Generating Classes from WSDL')
     ant.taskdef(
         name: 'codegen',
         classname: 'org.apache.axis.tools.ant.wsdl.Wsdl2javaAntTask',
         classpath: configurations.axisGenTask.asPath,
     )
 
-    doLast {
-        file('src/gen2/java').mkdirs()
-        [
-  'AssignmentService',
+    def wsdlFiles =  [ 'AssignmentService',
   'BasketService',
   'CatalogService',
   'CatalogService2',
@@ -189,11 +187,21 @@ task axisGen() {
   'UserService4',
   'UserService5',
   'ShippingMethodService',
-  'PaymentMethodService' ].each 
+  'PaymentMethodService' ]
+    
+    doLast {
+        file('src/gen/java').mkdirs()
+        [
+  'AssignmentService',
+  'BasketService',
+  'ProductService11',
+  'CatalogService8'
+].each 
         { def wsdlName ->
+            ant.echo(message: "Generating Classes for ${wsdlName}")
             ant.codegen(
-                url: "http://epagesj-vm02/WebRoot/WSDL/${wsdlName}.wsdl",
-                output: 'src/gen2/java',
+                url: "../WSDL/${wsdlName}.wsdl",
+                output: 'src/gen/java',
                 verbose: true,
                 helpergen: false,
             )
