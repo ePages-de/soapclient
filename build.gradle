@@ -28,6 +28,7 @@ configurations { axisGenTask }
 
 // add src/gen/java
 sourceSets.main.java.srcDirs 'src/gen/java'
+sourceSets.main.resources.srcDirs 'src/gen/resources'
 
 ext {
     axisVersion = "1.6.2"
@@ -41,29 +42,24 @@ ext {
 dependencies {
     compile "org.apache.axis2:axis2-kernel:${axisVersion}"
     compile "org.apache.axis2:axis2-xmlbeans:${axisVersion}"
-//    compile "org.apache.axis2:axis2-integration:${axisVersion}"
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+
     runtime "org.apache.axis2:axis2-transport-http:${axisVersion}"
     runtime "org.apache.axis2:axis2-saaj:${axisVersion}"
-        compile "org.slf4j:slf4j-api:${slf4jVersion}"
 
     testCompile "junit:junit:${junitVersion}"
+    // only to get the Ant task on the eclipse classpath.
+    testCompile "org.apache.axis2:axis2-ant-plugin:${axisVersion}"
 
     testRuntime "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
     testRuntime "ch.qos.logback:logback-core:${logbackVersion}"
     testRuntime "ch.qos.logback:logback-classic:${logbackVersion}"
 
-    testCompile "org.apache.axis2:axis2-ant-plugin:${axisVersion}"
-    
     axisGenTask "org.apache.axis2:axis2-ant-plugin:${axisVersion}"
     axisGenTask "org.apache.axis2:axis2-xmlbeans:${axisVersion}"
-//    axisGenTask "org.apache.axis:axis-ant:${axisVersion}"
-//    axisGenTask "org.apache.axis:axis:${axisVersion}"
-//    axisGenTask "org.apache.axis:axis-jaxrpc:${axisVersion}"
-//    axisGenTask "wsdl4j:wsdl4j:${wsdl4jVersion}"
     axisGenTask "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
     axisGenTask "ch.qos.logback:logback-core:${logbackVersion}"
     axisGenTask "ch.qos.logback:logback-classic:${logbackVersion}"
-//    axisGenTask "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
 }
 
 project.sourceCompatibility = rootProject.hasProperty("SOURCE_COMPATIBILITY") ?: "1.7"
@@ -124,6 +120,45 @@ task axisGen() {
         classname: 'org.apache.axis2.tool.ant.AntCodegenTask',
         classpath: configurations.axisGenTask.asPath,
     )
+    //WDSL files in use by EPJ
+    doLast {
+        file('src/gen/java').mkdirs()
+        [
+//            'AssignmentService',
+            'BasketService'
+//            'ProductService11',
+//            'CatalogService8'
+        ].each
+        { def wsdlName ->
+            ant.echo(message: "Generating Classes for ${wsdlName}")
+            ant.codegen(
+                    wsdlfilename: "../WSDL/${wsdlName}.wsdl",
+                    targetSourceFolderLocation: 'src/gen/java',
+                    targetResourcesFolderLocation: 'src/gen/resources',
+                    databindingName: 'xmlbeans',
+                    namespaceToPackages: 'NStoPkg.properties',
+                    skipBuildXML: true,
+                    testcase: true,
+            )
+        }
+    }
+}
+
+task checkDependencyUpdates() {
+    description = 'Prints report comparing the current dependencies against their latest release version.'
+    group = 'Report'
+
+    System.properties['revision'] = "release"
+    doFirst { dependencyUpdates.execute() }
+}
+
+artifacts {
+    archives sourceJar
+}
+
+wrapper {  gradleVersion = "1.9" }
+
+
 //
 //    //reference WSDL files, not in use
 //    def wsdlFiles =  [ 'AssignmentService',
@@ -189,42 +224,3 @@ task axisGen() {
 //  'ShippingMethodService',
 //  'PaymentMethodService' ]
 //
-    //WDSL files in use by EPJ
-    doLast {
-        file('src/gen/java').mkdirs()
-        [
-//            'AssignmentService',
-            'BasketService'
-//            'ProductService11',
-//            'CatalogService8'
-        ].each
-        { def wsdlName ->
-            ant.echo(message: "Generating Classes for ${wsdlName}")
-            ant.codegen(
-                    wsdlfilename: "http://epagesj-vm01/WebRoot/WSDL/${wsdlName}.wsdl",
-//                    output: 'src/gen/java',
-                    targetSourceFolderLocation: 'src/gen/java',
-                    targetResourcesFolderLocation: 'src/gen/resources',
-                    wsdlVersion: 1.1,
-                    databindingName: 'xmlbeans',
-                    namespaceToPackages: 'NStoPkg.properties'
-//                    verbose: true,
-//                    helpergen: false,
-            )
-        }
-    }
-}
-
-task checkDependencyUpdates() {
-    description = 'Prints report comparing the current dependencies against their latest release version.'
-    group = 'Report'
-
-    System.properties['revision'] = "release"
-    doFirst { dependencyUpdates.execute() }
-}
-
-artifacts {
-    archives sourceJar
-}
-
-wrapper {  gradleVersion = "1.9" }
