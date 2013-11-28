@@ -30,7 +30,7 @@ configurations { axisGenTask }
 sourceSets.main.java.srcDirs 'src/gen/java'
 
 ext {
-    axisVersion = "1.4"
+    axisVersion = "1.6.2"
     slf4jVersion = "1.7.5"
     junitVersion = "4.11"
     wsdl4jVersion = "1.6.3"
@@ -43,9 +43,9 @@ dependencies {
     compile "org.apache.axis:axis-jaxrpc:${axisVersion}"
     compile "org.slf4j:slf4j-api:${slf4jVersion}"
 
-    runtime "org.apache.axis:axis-saaj:${axisVersion}"
-    runtime "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
-    runtime "wsdl4j:wsdl4j:${wsdl4jVersion}"
+    ///runtime "org.apache.axis:axis-saaj:${axisVersion}"
+    //runtime "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
+    //runtime "wsdl4j:wsdl4j:${wsdl4jVersion}"
 
     testCompile "junit:junit:${junitVersion}"
 
@@ -53,14 +53,17 @@ dependencies {
     testRuntime "ch.qos.logback:logback-core:${logbackVersion}"
     testRuntime "ch.qos.logback:logback-classic:${logbackVersion}"
 
-    axisGenTask "org.apache.axis:axis-ant:${axisVersion}"
-    axisGenTask "org.apache.axis:axis:${axisVersion}"
-    axisGenTask "org.apache.axis:axis-jaxrpc:${axisVersion}"
-    axisGenTask "wsdl4j:wsdl4j:${wsdl4jVersion}"
+    testCompile "org.apache.axis2:axis2-ant-plugin:${axisVersion}"
+    
+    axisGenTask "org.apache.axis2:axis2-ant-plugin:${axisVersion}"
+//    axisGenTask "org.apache.axis:axis-ant:${axisVersion}"
+//    axisGenTask "org.apache.axis:axis:${axisVersion}"
+//    axisGenTask "org.apache.axis:axis-jaxrpc:${axisVersion}"
+//    axisGenTask "wsdl4j:wsdl4j:${wsdl4jVersion}"
     axisGenTask "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
     axisGenTask "ch.qos.logback:logback-core:${logbackVersion}"
     axisGenTask "ch.qos.logback:logback-classic:${logbackVersion}"
-    axisGenTask "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
+//    axisGenTask "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
 }
 
 project.sourceCompatibility = rootProject.hasProperty("SOURCE_COMPATIBILITY") ?: "1.7"
@@ -118,74 +121,74 @@ task axisGen() {
     outputs.upToDateWhen({ false })
     ant.taskdef(
         name: 'codegen',
-        classname: 'org.apache.axis.tools.ant.wsdl.Wsdl2javaAntTask',
+        classname: 'org.apache.axis2.tool.ant.AntCodegenTask',
         classpath: configurations.axisGenTask.asPath,
     )
-
-    //reference WSDL files, not in use
-    def wsdlFiles =  [ 'AssignmentService',
-  'BasketService',
-  'CatalogService',
-  'CatalogService2',
-  'CatalogService3',
-  'CatalogService4',
-//  'CatalogService5',
-  'CatalogService6',
-  'CrossSellingService',
-  'CrossSellingService2',
-  'CustomerGroupService',
-  'CustomerGroupService2',
-  'CustomerService',
-  'CustomerService2',
-  'CustomerService3',
-  'CustomerService4',
-  'OrderDocumentService',
-  'OrderDocumentService2',
-  'OrderDocumentService3',
-  'OrderDocumentService4',
-  'OrderDocumentService5',
-  'OrderDocumentService6',
-//  'OrderDocumentService7',
-  'OrderService',
-  'OrderService2',
-  'OrderService3',
-  'OrderService4',
-  'OrderService5',
-  'OrderService6',
-  'OrderService7',
-  'OrderService8',
-  'OrderService9',
-  'PageCacheService',
-  'PriceListAssignmentService',
-  'PriceListService',
-  'PriceListService2',
-  'ProductAttributeService',
-  'ProductAttributeService2',
-  'ProductBundleService',
-  'ProductImageService',
-  'ProductService',
-  'ProductService2',
-//  'ProductService3',
-  'ProductService5',
-  'ProductService6',
-  'ProductService7',
-  'ProductService8',
-  'ProductService9',
-//  'ProductService10',
-  'ProductService11',
-  'ProductTypeService',
-  'ProductTypeService2',
-  'TaxAreaService',
-  'TaxClassService',
-  'UserService',
-  'UserService',
-  'UserService2',
-  'UserService3',
-  'UserService4',
-  'UserService5',
-  'ShippingMethodService',
-  'PaymentMethodService' ]
-
+//
+//    //reference WSDL files, not in use
+//    def wsdlFiles =  [ 'AssignmentService',
+//  'BasketService',
+//  'CatalogService',
+//  'CatalogService2',
+//  'CatalogService3',
+//  'CatalogService4',
+////  'CatalogService5',
+//  'CatalogService6',
+//  'CrossSellingService',
+//  'CrossSellingService2',
+//  'CustomerGroupService',
+//  'CustomerGroupService2',
+//  'CustomerService',
+//  'CustomerService2',
+//  'CustomerService3',
+//  'CustomerService4',
+//  'OrderDocumentService',
+//  'OrderDocumentService2',
+//  'OrderDocumentService3',
+//  'OrderDocumentService4',
+//  'OrderDocumentService5',
+//  'OrderDocumentService6',
+////  'OrderDocumentService7',
+//  'OrderService',
+//  'OrderService2',
+//  'OrderService3',
+//  'OrderService4',
+//  'OrderService5',
+//  'OrderService6',
+//  'OrderService7',
+//  'OrderService8',
+//  'OrderService9',
+//  'PageCacheService',
+//  'PriceListAssignmentService',
+//  'PriceListService',
+//  'PriceListService2',
+//  'ProductAttributeService',
+//  'ProductAttributeService2',
+//  'ProductBundleService',
+//  'ProductImageService',
+//  'ProductService',
+//  'ProductService2',
+////  'ProductService3',
+//  'ProductService5',
+//  'ProductService6',
+//  'ProductService7',
+//  'ProductService8',
+//  'ProductService9',
+////  'ProductService10',
+//  'ProductService11',
+//  'ProductTypeService',
+//  'ProductTypeService2',
+//  'TaxAreaService',
+//  'TaxClassService',
+//  'UserService',
+//  'UserService',
+//  'UserService2',
+//  'UserService3',
+//  'UserService4',
+//  'UserService5',
+//  'ShippingMethodService',
+//  'PaymentMethodService' ]
+//
     //WDSL files in use by EPJ
     doLast {
         file('src/gen/java').mkdirs()
@@ -198,10 +201,11 @@ task axisGen() {
         { def wsdlName ->
             ant.echo(message: "Generating Classes for ${wsdlName}")
             ant.codegen(
-                    url: "http://epagesj-vm01/WebRoot/WSDL/${wsdlName}.wsdl",
+                    wsdlfilename: "http://epagesj-vm01/WebRoot/WSDL/${wsdlName}.wsdl",
                     output: 'src/gen/java',
-                    verbose: true,
-                    helpergen: false,
+                    wsdlVersion: 1.1
+//                    verbose: true,
+//                    helpergen: false,
             )
         }
     }
