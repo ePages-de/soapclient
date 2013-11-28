@@ -39,13 +39,12 @@ ext {
 }
 
 dependencies {
-    compile "org.apache.axis:axis:${axisVersion}"
-    compile "org.apache.axis:axis-jaxrpc:${axisVersion}"
-    compile "org.slf4j:slf4j-api:${slf4jVersion}"
-
-    ///runtime "org.apache.axis:axis-saaj:${axisVersion}"
-    //runtime "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
-    //runtime "wsdl4j:wsdl4j:${wsdl4jVersion}"
+    compile "org.apache.axis2:axis2-kernel:${axisVersion}"
+    compile "org.apache.axis2:axis2-xmlbeans:${axisVersion}"
+//    compile "org.apache.axis2:axis2-integration:${axisVersion}"
+    runtime "org.apache.axis2:axis2-transport-http:${axisVersion}"
+    runtime "org.apache.axis2:axis2-saaj:${axisVersion}"
+        compile "org.slf4j:slf4j-api:${slf4jVersion}"
 
     testCompile "junit:junit:${junitVersion}"
 
@@ -203,7 +202,9 @@ task axisGen() {
             ant.echo(message: "Generating Classes for ${wsdlName}")
             ant.codegen(
                     wsdlfilename: "http://epagesj-vm01/WebRoot/WSDL/${wsdlName}.wsdl",
-                    output: 'src/gen/java',
+//                    output: 'src/gen/java',
+                    targetSourceFolderLocation: 'src/gen/java',
+                    targetResourcesFolderLocation: 'src/gen/resources',
                     wsdlVersion: 1.1,
                     databindingName: 'xmlbeans',
                     namespaceToPackages: 'NStoPkg.properties'
