@@ -2,13 +2,16 @@ This web service implementation with Java uses:
 - JDK 1.6.0 Standard Edition
   See http://java.sun.com/j2se/1.6.0/download.jsp
 
-- the Apache AXIS Web Service Framework (version 1.3)
+- the Apache AXIS Web Service Framework (version 1.4)
   See http://ws.apache.org/axis/java/releases.html
 
-- the JUnit Test Framework (version 4.1)
+- the JUnit Test Framework (version 4.11)
   See http://www.junit.org/ for more information.
-  
-Running test cases with Eclipse version 3.x (http://www.eclipse.org/)
+
+Running test cases with Gradle (http://www.gradle.org/)
+1. run "./gradlew test" (Linux) or "gradlew.cmd test" in project folder 
+
+Running test cases with Eclipse (http://www.eclipse.org/)
 1. In the Package Explorer, right-click and select "New/Project...".
 2. Select "Java Project", click "Next".
 3. Enter the project name "WebServiceExamples",
