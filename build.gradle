@@ -114,7 +114,7 @@ sonarRunner {
 }
 
 task axisGen() {
-    outputs.dir file('src/gen2/java')
+    outputs.dir file('src/gen/java')
     outputs.upToDateWhen({ false })
     ant.taskdef(
         name: 'codegen',
@@ -122,6 +122,7 @@ task axisGen() {
         classpath: configurations.axisGenTask.asPath,
     )
 
+    //reference WSDL files, not in use
     def wsdlFiles =  [ 'AssignmentService',
   'BasketService',
   'CatalogService',
@@ -184,22 +185,23 @@ task axisGen() {
   'UserService5',
   'ShippingMethodService',
   'PaymentMethodService' ]
-    
+
+    //WDSL files in use by EPJ
     doLast {
         file('src/gen/java').mkdirs()
         [
-  'AssignmentService',
-  'BasketService',
-  'ProductService11',
-  'CatalogService8'
-].each 
+            'AssignmentService',
+            'BasketService',
+            'ProductService11',
+            'CatalogService8'
+        ].each
         { def wsdlName ->
             ant.echo(message: "Generating Classes for ${wsdlName}")
             ant.codegen(
-                url: "../WSDL/${wsdlName}.wsdl",
-                output: 'src/gen/java',
-                verbose: true,
-                helpergen: false,
+                    url: "http://epagesj-vm01/WebRoot/WSDL/${wsdlName}.wsdl",
+                    output: 'src/gen/java',
+                    verbose: true,
+                    helpergen: false,
             )
         }
     }
