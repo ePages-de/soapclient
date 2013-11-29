@@ -13,7 +13,7 @@ package de.epages.webservice.product11.model;
  */
 public class TProductPrice  implements java.io.Serializable {
     /* the actual price (in currency id) */
-    private float price;
+    private java.lang.Float price;
 
     /* the currency id (e.g. 'USD') */
     private java.lang.String currencyID;
@@ -25,7 +25,7 @@ public class TProductPrice  implements java.io.Serializable {
     }
 
     public TProductPrice(
-           float price,
+           java.lang.Float price,
            java.lang.String currencyID,
            java.lang.String taxModel) {
            this.price = price;
@@ -39,7 +39,7 @@ public class TProductPrice  implements java.io.Serializable {
      * 
      * @return price   * the actual price (in currency id)
      */
-    public float getPrice() {
+    public java.lang.Float getPrice() {
         return price;
     }
 
@@ -49,7 +49,7 @@ public class TProductPrice  implements java.io.Serializable {
      * 
      * @param price   * the actual price (in currency id)
      */
-    public void setPrice(float price) {
+    public void setPrice(java.lang.Float price) {
         this.price = price;
     }
 
@@ -105,7 +105,9 @@ public class TProductPrice  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
-            this.price == other.getPrice() &&
+            ((this.price==null && other.getPrice()==null) || 
+             (this.price!=null &&
+              this.price.equals(other.getPrice()))) &&
             ((this.currencyID==null && other.getCurrencyID()==null) || 
              (this.currencyID!=null &&
               this.currencyID.equals(other.getCurrencyID()))) &&
@@ -123,7 +125,9 @@ public class TProductPrice  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        _hashCode += new Float(getPrice()).hashCode();
+        if (getPrice() != null) {
+            _hashCode += getPrice().hashCode();
+        }
         if (getCurrencyID() != null) {
             _hashCode += getCurrencyID().hashCode();
         }
@@ -144,7 +148,7 @@ public class TProductPrice  implements java.io.Serializable {
         elemField.setFieldName("price");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Price"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "float"));
-        elemField.setNillable(false);
+        elemField.setNillable(true);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("currencyID");
