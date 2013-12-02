@@ -22,9 +22,6 @@ import de.epages.webservice.assignment.model.TIsProductAssignedToCatalog_Return;
 import de.epages.webservice.assignment.model.TRemoveProductFromCatalog_Input;
 import de.epages.webservice.assignment.model.TRemoveProductFromCatalog_Return;
 
-/**
- * A JUnit TestSuite to test epages Assignment WebServices.
- */
 public class AssignmentServiceClientImplTest {
     private AssignmentServiceClient serviceClient;
 
@@ -38,16 +35,12 @@ public class AssignmentServiceClientImplTest {
     @Before
     public void setUp() {
         serviceClient = new AssignmentServiceClientImpl(new WebServiceTestConfiguration());
-        // create test Assignments that can be used with the create and update
-        // methods
     }
 
     /**
-     * Assign Catalog to Product and check if the assignment was successful
-     * 
-     * @throws RemoteException
+     * Assign Product to Catalog and check if the assignment was successful
      */
-    public void testAssignProductToCatalog() throws RemoteException {
+    public void testAssignProductToCatalog() {
         TAssignProductToCatalog_Input assignment = new TAssignProductToCatalog_Input(catalog, product, new BigInteger("1000"));
         TAssignProductToCatalog_Input[] Assignments_create_in = new TAssignProductToCatalog_Input[] { assignment };
         TAssignProductToCatalog_Return[] Assignments_create_out = serviceClient.assignProductToCatalog(Assignments_create_in);

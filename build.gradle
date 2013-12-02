@@ -72,6 +72,11 @@ compileJava {
     }
 }
 
+tasks.withType(Test) {
+    // pass ep6HostName down to test
+    systemProperty 'ep6HostName', System.getProperty("ep6HostName")
+}
+
 task sourceJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
     from sourceSets.main.allSource
@@ -198,7 +203,7 @@ task axisGen() {
         { def wsdlName ->
             ant.echo(message: "Generating Classes for ${wsdlName}")
             ant.codegen(
-                    url: "http://epagesj-vm01/WebRoot/WSDL/${wsdlName}.wsdl",
+                    url: "http://" + (System.properties["ep6HostName"] ?: 'localhost') + "/WebRoot/WSDL/${wsdlName}.wsdl",
                     output: 'src/gen/java',
                     verbose: true,
                     helpergen: false,
