@@ -15,8 +15,7 @@ class ProductService11StubFactoryImpl implements ProductService11StubFactory {
 
     @Override
     public Port_Product create(WebServiceConfiguration config, ProductService serviceLocator) {
-        log.info("address specified by wsdl: " + serviceLocator.getport_ProductAddress());
-        log.info("using web service Url: " + config.getWebserviceURL());
+        log.info("Using webservice URL: " + config.getWebserviceURL());
         try {
             Bind_Product_SOAPStub stub = new Bind_Product_SOAPStub(config.getWebserviceURL(), serviceLocator);
             stub.setUsername(config.getUsername());

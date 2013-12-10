@@ -26,10 +26,10 @@ public class BasketServiceClientImpl implements BasketServiceClient {
     private final Port_Basket stub;
 
     public BasketServiceClientImpl(final WebServiceConfiguration config) {
-        this(config, new BasketStubFactoryImpl());
+        this(config, new BasketServiceStubFactoryImpl());
     }
 
-    public BasketServiceClientImpl(WebServiceConfiguration config, BasketStubFactory factory) {
+    public BasketServiceClientImpl(WebServiceConfiguration config, BasketServiceStubFactory factory) {
         this.stub = factory.create(config, serviceLocator);
     }
 
