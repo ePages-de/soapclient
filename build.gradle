@@ -74,7 +74,9 @@ compileJava {
 
 tasks.withType(Test) {
     // pass ep6HostName down to test
-    systemProperty 'ep6HostName', System.getProperty("ep6HostName")
+    if(System.getProperty("ep6HostName") != null) {
+        systemProperty 'ep6HostName', System.getProperty("ep6HostName")
+    }
 }
 
 task sourceJar(type: Jar, dependsOn: classes) {
