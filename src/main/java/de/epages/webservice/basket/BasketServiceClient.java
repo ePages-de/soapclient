@@ -19,56 +19,56 @@ public interface BasketServiceClient extends Port_Basket {
     /**
      * get information about a list of baskets
      */
-    public TGetInfo_Return[] getInfo(String[] baskets);
+    TGetInfo_Return[] getInfo(String[] baskets);
 
     /**
      * get information about a list of baskets
      */
-    public TGetInfo_Return[] getInfo(String[] baskets, String[] attributes);
+    TGetInfo_Return[] getInfo(String[] baskets, String[] attributes);
 
     /**
      * get information about a list of baskets
      */
-    public TGetInfo_Return[] getInfo(String[] baskets, String[] attributes, String[] languageCodes);
+    TGetInfo_Return[] getInfo(String[] baskets, String[] attributes, String[] languageCodes);
 
     /**
      * get information about a list of baskets
      */
-    public TGetInfo_Return[] getInfo(String[] baskets, String[] attributes, String[] addressAttributes, String[] lineItemAttributes, String[] languageCodes);
+    TGetInfo_Return[] getInfo(String[] baskets, String[] attributes, String[] addressAttributes, String[] lineItemAttributes, String[] languageCodes);
 
     /**
      * check if a list of baskets exist.
      */
-    public TExists_Return[] exists(String[] baskets);
+    TExists_Return[] exists(String[] baskets);
 
     /**
      * delete a list of baskets
      */
-    public TDelete_Return[] delete(String[] baskets);
+    TDelete_Return[] delete(String[] baskets);
 
     /**
      * delete line items of a baskets
      */
-    public TDeleteLineItem_Return[] deleteLineItem(String TBasketPath, String[] lineItems);
+    TDeleteLineItem_Return[] deleteLineItem(String TBasketPath, String[] lineItems);
 
     /**
      * update a list of baskets
      */
-    public TUpdate_Return[] update(TUpdate_Input[] baskets);
+    TUpdate_Return[] update(TUpdate_Input[] baskets);
 
     /**
      * update line items of a baskets
      */
-    public TUpdateLineItem_Return[] updateLineItem(String TBasketPath, TUpdateLineItem_Input[] lineItems);
+    TUpdateLineItem_Return[] updateLineItem(String TBasketPath, TUpdateLineItem_Input[] lineItems);
 
     /**
      * create new baskets
      */
-    public TCreate_Return[] create(TCreate_Input[] baskets);
+    TCreate_Return[] create(TCreate_Input[] baskets);
 
     /**
      * add products tp baskets
      */
-    public TAddProductLineItem_Return[] addProductLineItem(String TBasketPath, TAddProductLineItem_Input[] lineItems);
+    TAddProductLineItem_Return[] addProductLineItem(String TBasketPath, TAddProductLineItem_Input[] lineItems);
 
 }

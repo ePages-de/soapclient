@@ -9,14 +9,13 @@ import de.epages.webservice.catalog8.stub.Bind_Catalog_SOAPStub;
 import de.epages.webservice.catalog8.stub.CatalogService;
 import de.epages.webservice.catalog8.stub.Port_Catalog;
 
-class CatalogServiceStubFactoryImpl implements CatalogServiceStubFactory {
+final class CatalogServiceStubFactoryImpl implements CatalogServiceStubFactory {
 
     private static final Logger log = LoggerFactory.getLogger(CatalogServiceStubFactoryImpl.class);
 
     @Override
     public Port_Catalog create(WebServiceConfiguration config, CatalogService service) {
-        log.info("address specified by wsdl: " + service.getport_CatalogAddress());
-        log.info("using web service Url: " + config.getWebserviceURL());
+        log.info("Using webservice URL: " + config.getWebserviceURL());
             try {
                 Bind_Catalog_SOAPStub stub = new Bind_Catalog_SOAPStub(config.getWebserviceURL(), service);
                 stub.setUsername(config.getUsername());

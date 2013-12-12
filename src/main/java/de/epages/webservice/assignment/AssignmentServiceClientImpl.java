@@ -16,7 +16,7 @@ import de.epages.webservice.assignment.model.TRemoveProductFromCatalog_Return;
 import de.epages.webservice.assignment.stub.AssignmentServiceLocator;
 import de.epages.webservice.assignment.stub.Port_Assignment;
 
-public class AssignmentServiceClientImpl implements AssignmentServiceClient {
+public final class AssignmentServiceClientImpl implements AssignmentServiceClient {
     private static final AssignmentServiceLocator serviceLocator = new AssignmentServiceLocator();
     private final Port_Assignment stub;
 

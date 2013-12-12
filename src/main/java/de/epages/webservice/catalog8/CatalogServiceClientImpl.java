@@ -20,7 +20,7 @@ import de.epages.webservice.catalog8.stub.CatalogServiceLocator;
 import de.epages.webservice.catalog8.stub.Port_Catalog;
 import de.epages.webservice.catalog8.stub.TGetRoot_Return;
 
-public class CatalogServiceClientImpl implements CatalogServiceClient {
+public final class CatalogServiceClientImpl implements CatalogServiceClient {
 
     private static final CatalogServiceLocator serviceLocator = new CatalogServiceLocator();
     private final Port_Catalog stub;

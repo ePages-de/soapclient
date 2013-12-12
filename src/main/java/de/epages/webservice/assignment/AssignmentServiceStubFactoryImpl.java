@@ -9,7 +9,7 @@ import de.epages.webservice.assignment.stub.AssignmentService;
 import de.epages.webservice.assignment.stub.Bind_Assignment_SOAPStub;
 import de.epages.webservice.assignment.stub.Port_Assignment;
 
-class AssignmentServiceStubFactoryImpl implements AssignmentServiceStubFactory {
+final class AssignmentServiceStubFactoryImpl implements AssignmentServiceStubFactory {
 
     private static final Logger log = LoggerFactory.getLogger(AssignmentServiceStubFactoryImpl.class);
 

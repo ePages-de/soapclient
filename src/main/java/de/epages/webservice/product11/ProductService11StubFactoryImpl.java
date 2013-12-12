@@ -9,7 +9,7 @@ import de.epages.webservice.product11.stub.Bind_Product_SOAPStub;
 import de.epages.webservice.product11.stub.Port_Product;
 import de.epages.webservice.product11.stub.ProductService;
 
-class ProductService11StubFactoryImpl implements ProductService11StubFactory {
+final class ProductService11StubFactoryImpl implements ProductService11StubFactory {
 
     private static final Logger log = LoggerFactory.getLogger(ProductService11StubFactoryImpl.class);
 

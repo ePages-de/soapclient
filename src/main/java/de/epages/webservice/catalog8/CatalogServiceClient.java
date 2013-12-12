@@ -26,45 +26,45 @@ public interface CatalogServiceClient extends Port_Catalog {
     /**
      * get information about a list of catalogs
      */
-    public TGetInfo_Return[] getInfo(java.lang.String[] catalogs, java.lang.String[] attributes, java.lang.String[] languageCodes);
+    TGetInfo_Return[] getInfo(String[] catalogs, String[] attributes, String[] languageCodes);
 
     /**
      * check if a list of catalogs exist.
      */
-    public TExists_Return[] exists(java.lang.String[] catalogs);
+    TExists_Return[] exists(String[] catalogs);
 
     /**
      * delete a list of catalogs
      */
-    public TDelete_Return[] delete(java.lang.String[] catalogs);
+    TDelete_Return[] delete(String[] catalogs);
 
     /**
      * update a list of catalogs
      */
-    public TUpdate_Return[] update(TUpdate_Input[] catalogs);
+    TUpdate_Return[] update(TUpdate_Input[] catalogs);
 
     /**
      * create new catalogs
      */
-    public TCreate_Return[] create(TCreate_Input[] catalogs);
+    TCreate_Return[] create(TCreate_Input[] catalogs);
 
     /**
      * get root catalog
      */
-    public TGetRoot_Return getRoot();
+    TGetRoot_Return getRoot();
 
     /**
      * sort products in each catalog of a list of catalogs
      */
-    public TSortProducts_Return[] sortProducts(TSortProducts_Input[] catalogs);
+    TSortProducts_Return[] sortProducts(TSortProducts_Input[] catalogs);
 
     /**
      * upload catalog related images.
      */
-    public TUpload_Return uploadImage(java.lang.String TObjectPath, TUpload_Input imageData);
+    TUpload_Return uploadImage(String TObjectPath, TUpload_Input imageData);
 
     /**
      * get all recursive categorie paths as simple flat list
      */
-    public java.lang.String[] getCategories();
+    String[] getCategories();
 }

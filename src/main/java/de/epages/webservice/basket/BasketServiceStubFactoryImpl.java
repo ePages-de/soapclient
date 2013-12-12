@@ -9,7 +9,7 @@ import de.epages.webservice.basket.stub.BasketService;
 import de.epages.webservice.basket.stub.Bind_Basket_SOAPStub;
 import de.epages.webservice.basket.stub.Port_Basket;
 
-class BasketServiceStubFactoryImpl implements BasketServiceStubFactory {
+final class BasketServiceStubFactoryImpl implements BasketServiceStubFactory {
 
     private static final Logger log = LoggerFactory.getLogger(BasketServiceStubFactoryImpl.class);
 

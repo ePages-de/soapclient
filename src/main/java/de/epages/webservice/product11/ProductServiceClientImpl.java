@@ -16,8 +16,7 @@ import de.epages.webservice.product11.stub.Port_Product;
 import de.epages.webservice.product11.stub.ProductServiceLocator;
 import de.epages.webservice.product11.stub.TFind_Input;
 
-
-public class ProductServiceClientImpl implements ProductServiceClient {
+public final class ProductServiceClientImpl implements ProductServiceClient {
     private final ProductServiceLocator serviceLocator = new ProductServiceLocator();
     private final Port_Product stub;
 

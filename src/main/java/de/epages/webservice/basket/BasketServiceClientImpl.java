@@ -20,7 +20,7 @@ import de.epages.webservice.basket.model.TUpdate_Return;
 import de.epages.webservice.basket.stub.BasketServiceLocator;
 import de.epages.webservice.basket.stub.Port_Basket;
 
-public class BasketServiceClientImpl implements BasketServiceClient {
+public final class BasketServiceClientImpl implements BasketServiceClient {
 
     private static final BasketServiceLocator serviceLocator = new BasketServiceLocator();
     private final Port_Basket stub;
