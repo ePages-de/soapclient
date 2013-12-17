@@ -215,7 +215,7 @@ task axisGen() {
         { def wsdlName ->
             ant.echo(message: "Generating Classes for ${wsdlName}")
             ant.codegen(
-                    url: "../WSDL/${wsdlName}.wsdl",
+                    url: (System.getProperty("wsdlBaseUrl") ?: "../WSDL/") + "${wsdlName}.wsdl",
                     output: 'src/gen/java',
                     verbose: true,
                     helpergen: false,
