@@ -21,10 +21,10 @@ public final class ProductServiceClientImpl implements ProductServiceClient {
     private final Port_Product stub;
 
     public ProductServiceClientImpl(WebServiceConfiguration config) {
-        this(config, new ProductService11StubFactoryImpl());
+        this(config, new ProductServiceStubFactoryImpl());
     }
 
-    public ProductServiceClientImpl(WebServiceConfiguration config, ProductService11StubFactory factory) {
+    public ProductServiceClientImpl(WebServiceConfiguration config, ProductServiceStubFactory factory) {
         this.stub = factory.create(config, serviceLocator);
     }
 
