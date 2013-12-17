@@ -1,9 +1,9 @@
 package de.epages.ws.product11;
 
+import static de.epages.ws.common.AssertNoError.assertNoError;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -16,9 +16,7 @@ import org.junit.Test;
 import de.epages.ws.FileUtil;
 import de.epages.ws.WebServiceTestConfiguration;
 import de.epages.ws.common2.model.TAttribute;
-import de.epages.ws.common2.model.TError;
 import de.epages.ws.common2.model.TLocalizedValue;
-import de.epages.ws.product11.ProductServiceClientImpl;
 import de.epages.ws.product11.model.TCreate_Input;
 import de.epages.ws.product11.model.TCreate_Return;
 import de.epages.ws.product11.model.TDelete_Return;
@@ -37,7 +35,7 @@ import de.epages.ws.product11.stub.TFind_Input;
  * A JUnit TestSuite to test epages Product WebServices.
  *
  */
-public class ProductServiceClientImplTest {
+public class ProductServiceTest {
     private ProductServiceClientImpl serviceClient;
     private TCreate_Input Product_in;
     private TUpdate_Input Product_update;
@@ -228,7 +226,7 @@ public class ProductServiceClientImplTest {
 
         // test if creation was successful
         assertEquals("create result set", 1, Products_create_out.length);
-        checkForError(Products_create_out[0].getError());
+        assertNoError(Products_create_out[0].getError());
         assertEquals("created?", true, Products_create_out[0].getCreated());
     }
 
@@ -241,7 +239,7 @@ public class ProductServiceClientImplTest {
 
         // test if update was successful
         assertEquals("udpate result set", 1, Products_update_out.length);
-        checkForError(Products_update_out[0].getError());
+        assertNoError(Products_update_out[0].getError());
         assertEquals("updated?", new Boolean(true), Products_update_out[0].getUpdated());
     }
 
@@ -260,7 +258,7 @@ public class ProductServiceClientImplTest {
 
         // test if getinfo was successful and if all data are equal to input
         assertEquals("getinfo result set", 1, Products_info_out.length);
-        checkForError(Products_info_out[0].getError());
+        assertNoError(Products_info_out[0].getError());
 
         TGetInfo_Return Product_info_out = Products_info_out[0];
 
@@ -380,7 +378,7 @@ public class ProductServiceClientImplTest {
 
         // test if deletion was successful
         assertEquals("delete result set", 1, Products_delete_out.length);
-        checkForError(Products_delete_out[0].getError());
+        assertNoError(Products_delete_out[0].getError());
         assertEquals("deleted?", new Boolean(true), Products_delete_out[0].getDeleted());
     }
 
@@ -394,7 +392,7 @@ public class ProductServiceClientImplTest {
 
         // test if exists check was successful
         assertEquals("exists result set", 1, Products_exists_out.length);
-        checkForError(Products_exists_out[0].getError());
+        assertNoError(Products_exists_out[0].getError());
         assertEquals("exists?", new Boolean(expected), Products_exists_out[0].getExists());
     }
 
@@ -416,7 +414,7 @@ public class ProductServiceClientImplTest {
 
         // test if creation was successful
         assertEquals("create result set", 1, Products_create_out.length);
-        checkForError(Products_create_out[0].getError());
+        assertNoError(Products_create_out[0].getError());
         assertEquals("created?", new Boolean(true), Products_create_out[0].getCreated());
     }
 
@@ -429,7 +427,7 @@ public class ProductServiceClientImplTest {
 
         // test if getinfo was successful and if all data are equal to input
         assertEquals("getinfo result set", 1, Products_info_out.length);
-        checkForError(Products_info_out[0].getError());
+        assertNoError(Products_info_out[0].getError());
 
         TGetInfo_Return Product_info_out = Products_info_out[0];
 
@@ -450,7 +448,7 @@ public class ProductServiceClientImplTest {
 
         // test if creation was successful
         assertEquals("create result set", 1, Products_create_out.length);
-        checkForError(Products_create_out[0].getError());
+        assertNoError(Products_create_out[0].getError());
         assertEquals("created?", true, Products_create_out[0].getCreated());
     }
 
@@ -463,7 +461,7 @@ public class ProductServiceClientImplTest {
 
         // test if getinfo was successful and if all data are equal to input
         assertEquals("getinfo result set", 1, Products_info_out.length);
-        checkForError(Products_info_out[0].getError());
+        assertNoError(Products_info_out[0].getError());
         TGetInfo_Return Product_info_out = Products_info_out[0];
 
         assertEquals("alias", alias, Product_info_out.getAlias());
@@ -476,11 +474,6 @@ public class ProductServiceClientImplTest {
         assertEquals("Position", getDownload.getPosition(), refDownload.getPosition() );
     }
 
-    private void checkForError(TError error) {
-        if (error != null) {
-            fail(error.getMessage());
-        }
-    }
     /**
      * Runs all tests:
      * <ol>

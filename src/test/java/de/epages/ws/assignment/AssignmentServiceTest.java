@@ -24,7 +24,7 @@ import de.epages.ws.assignment.model.TIsProductAssignedToCatalog_Return;
 import de.epages.ws.assignment.model.TRemoveProductFromCatalog_Input;
 import de.epages.ws.assignment.model.TRemoveProductFromCatalog_Return;
 
-public class AssignmentServiceClientImplTest {
+public class AssignmentServiceTest {
     private AssignmentServiceClient serviceClient;
 
     private static final String catalog = "/Shops/DemoShop/Categories/Jackets";

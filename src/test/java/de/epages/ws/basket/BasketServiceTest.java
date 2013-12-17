@@ -32,7 +32,7 @@ import de.epages.ws.shop3.model.TAddressNamed;
 /**
  * A JUnit TestSuite to test epages Basket WebServices.
  */
-public class BasketServiceClientImplTest {
+public class BasketServiceTest {
 
     private static final BasketServiceClientImpl basketService = new BasketServiceClientImpl(new WebServiceTestConfiguration());
     private TCreate_Input Basket_in;

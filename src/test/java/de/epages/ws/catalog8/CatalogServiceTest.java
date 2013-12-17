@@ -31,7 +31,7 @@ import de.epages.ws.common.model.TLocalizedValue;
 /**
  * A JUnit TestSuite to test epages Catalog WebServices.
  */
-public class CatalogServiceClientImplTest extends WebServiceTestConfiguration {
+public class CatalogServiceTest extends WebServiceTestConfiguration {
 
     private CatalogServiceClientImpl catalogService;
 
