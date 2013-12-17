@@ -25,13 +25,13 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
         org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getInfo");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Catalogs"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_GetInfo_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Catalogs"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_GetInfo_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Attributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_AttributeNames_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Attributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_AttributeNames_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "LanguageCodes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_LanguageCodes_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "LanguageCodes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_LanguageCodes_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_GetInfo_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_GetInfo_Out"));
         oper.setReturnClass(de.epages.webservice.catalog8.model.TGetInfo_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Catalogs"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -40,9 +40,9 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("exists");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Catalogs"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_Exists_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Catalogs"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_Exists_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_Exists_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_Exists_Out"));
         oper.setReturnClass(de.epages.webservice.catalog8.model.TExists_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Catalogs"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -51,9 +51,9 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("delete");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Catalogs"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_Delete_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Catalogs"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_Delete_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_Delete_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_Delete_Out"));
         oper.setReturnClass(de.epages.webservice.catalog8.model.TDelete_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Catalogs"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -62,9 +62,9 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("update");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Catalogs"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_Update_In"), de.epages.webservice.catalog8.model.TUpdate_Input[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Catalogs"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_Update_In"), de.epages.webservice.catalog8.model.TUpdate_Input[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_Update_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_Update_Out"));
         oper.setReturnClass(de.epages.webservice.catalog8.model.TUpdate_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Catalogs"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -73,9 +73,9 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("create");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Catalogs"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_Create_In"), de.epages.webservice.catalog8.model.TCreate_Input[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Catalogs"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_Create_In"), de.epages.webservice.catalog8.model.TCreate_Input[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_Create_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_Create_Out"));
         oper.setReturnClass(de.epages.webservice.catalog8.model.TCreate_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Catalogs"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -84,7 +84,7 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getRoot");
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "TGetRoot_Return"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "TGetRoot_Return"));
         oper.setReturnClass(de.epages.webservice.catalog8.stub.TGetRoot_Return.class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Root"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -93,9 +93,9 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("sortProducts");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Catalogs"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_SortProducts_In"), de.epages.webservice.catalog8.model.TSortProducts_Input[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Catalogs"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_SortProducts_In"), de.epages.webservice.catalog8.model.TSortProducts_Input[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_SortProducts_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_SortProducts_Out"));
         oper.setReturnClass(de.epages.webservice.catalog8.model.TSortProducts_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Catalogs"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -106,9 +106,9 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
         oper.setName("uploadImage");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "TObjectPath"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ImageData"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TUpload_Input"), de.epages.webservice.catalog8.model.TUpload_Input.class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ImageData"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TUpload_Input"), de.epages.webservice.catalog8.model.TUpload_Input.class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TUpload_Return"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TUpload_Return"));
         oper.setReturnClass(de.epages.webservice.catalog8.model.TUpload_Return.class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Files"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -117,7 +117,7 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getCategories");
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_GetCategories_Return"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_GetCategories_Return"));
         oper.setReturnClass(java.lang.String[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Categories"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -155,14 +155,14 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
             java.lang.Class simpledf = org.apache.axis.encoding.ser.SimpleDeserializerFactory.class;
             java.lang.Class simplelistsf = org.apache.axis.encoding.ser.SimpleListSerializerFactory.class;
             java.lang.Class simplelistdf = org.apache.axis.encoding.ser.SimpleListDeserializerFactory.class;
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "TGetRoot_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "TGetRoot_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.stub.TGetRoot_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_AttributeNames_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_AttributeNames_In");
             cachedSerQNames.add(qName);
             cls = java.lang.String[].class;
             cachedSerClasses.add(cls);
@@ -171,25 +171,25 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_Create_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_Create_In");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TCreate_Input[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TCreate_Input");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TCreate_Input");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_Create_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_Create_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TCreate_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TCreate_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TCreate_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_Delete_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_Delete_In");
             cachedSerQNames.add(qName);
             cls = java.lang.String[].class;
             cachedSerClasses.add(cls);
@@ -198,16 +198,16 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_Delete_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_Delete_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TDelete_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TDelete_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TDelete_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_Exists_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_Exists_In");
             cachedSerQNames.add(qName);
             cls = java.lang.String[].class;
             cachedSerClasses.add(cls);
@@ -216,16 +216,16 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_Exists_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_Exists_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TExists_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TExists_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TExists_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_GetCategories_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_GetCategories_Return");
             cachedSerQNames.add(qName);
             cls = java.lang.String[].class;
             cachedSerClasses.add(cls);
@@ -234,7 +234,7 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_GetInfo_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_GetInfo_In");
             cachedSerQNames.add(qName);
             cls = java.lang.String[].class;
             cachedSerClasses.add(cls);
@@ -243,16 +243,16 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_GetInfo_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_GetInfo_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TGetInfo_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TGetInfo_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TGetInfo_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_LanguageCodes_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_LanguageCodes_In");
             cachedSerQNames.add(qName);
             cls = java.lang.String[].class;
             cachedSerClasses.add(cls);
@@ -261,43 +261,43 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_SortProducts_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_SortProducts_In");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TSortProducts_Input[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TSortProducts_Input");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TSortProducts_Input");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_SortProducts_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_SortProducts_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TSortProducts_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TSortProducts_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TSortProducts_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_Update_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_Update_In");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TUpdate_Input[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TUpdate_Input");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TUpdate_Input");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "type_Update_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "type_Update_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TUpdate_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TUpdate_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TUpdate_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "ListOfCatalogPaths");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "ListOfCatalogPaths");
             cachedSerQNames.add(qName);
             cls = java.lang.String[].class;
             cachedSerClasses.add(cls);
@@ -306,93 +306,93 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "ListOfImageData");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "ListOfImageData");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TImageData[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TImageData");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TImageData");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TCreate_Input");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TCreate_Input");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TCreate_Input.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TCreate_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TCreate_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TCreate_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TDelete_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TDelete_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TDelete_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TExists_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TExists_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TExists_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TGetInfo_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TGetInfo_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TGetInfo_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TImageData");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TImageData");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TImageData.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TSortProducts_Input");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TSortProducts_Input");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TSortProducts_Input.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TSortProducts_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TSortProducts_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TSortProducts_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TUpdate_Input");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TUpdate_Input");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TUpdate_Input.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TUpdate_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TUpdate_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TUpdate_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TUpload_Input");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TUpload_Input");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TUpload_Input.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TUpload_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TUpload_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.webservice.catalog8.model.TUpload_Return.class;
             cachedSerClasses.add(cls);

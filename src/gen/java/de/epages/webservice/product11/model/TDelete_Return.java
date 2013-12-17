@@ -21,7 +21,7 @@ public class TDelete_Return  implements java.io.Serializable {
     private java.lang.Boolean deleted;
 
     /* error object (see epagestypes:TError) */
-    private de.epages.webservice.common.model.TError error;
+    private de.epages.webservice.common2.model.TError error;
 
     public TDelete_Return() {
     }
@@ -29,7 +29,7 @@ public class TDelete_Return  implements java.io.Serializable {
     public TDelete_Return(
            java.lang.String path,
            java.lang.Boolean deleted,
-           de.epages.webservice.common.model.TError error) {
+           de.epages.webservice.common2.model.TError error) {
            this.path = path;
            this.deleted = deleted;
            this.error = error;
@@ -81,7 +81,7 @@ public class TDelete_Return  implements java.io.Serializable {
      * 
      * @return error   * error object (see epagestypes:TError)
      */
-    public de.epages.webservice.common.model.TError getError() {
+    public de.epages.webservice.common2.model.TError getError() {
         return error;
     }
 
@@ -91,7 +91,7 @@ public class TDelete_Return  implements java.io.Serializable {
      * 
      * @param error   * error object (see epagestypes:TError)
      */
-    public void setError(de.epages.webservice.common.model.TError error) {
+    public void setError(de.epages.webservice.common2.model.TError error) {
         this.error = error;
     }
 
@@ -162,7 +162,7 @@ public class TDelete_Return  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("error");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Error"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TError"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TError"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

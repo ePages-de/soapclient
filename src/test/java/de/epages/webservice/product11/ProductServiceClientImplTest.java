@@ -15,9 +15,9 @@ import org.junit.Test;
 
 import de.epages.webservice.FileUtil;
 import de.epages.webservice.WebServiceTestConfiguration;
-import de.epages.webservice.common.model.TError;
-import de.epages.webservice.common.model.TLocalizedValue;
-import de.epages.webservice.product11.model.TAttribute;
+import de.epages.webservice.common2.model.TAttribute;
+import de.epages.webservice.common2.model.TError;
+import de.epages.webservice.common2.model.TLocalizedValue;
 import de.epages.webservice.product11.model.TCreate_Input;
 import de.epages.webservice.product11.model.TCreate_Return;
 import de.epages.webservice.product11.model.TDelete_Return;
@@ -172,10 +172,10 @@ public class ProductServiceClientImplTest {
                 });
         Product_update.setAvailabilityDate(new GregorianCalendar(2007,11,26,12,00));
 
-        de.epages.webservice.common.model.TAttribute attr_update = new de.epages.webservice.common.model.TAttribute();
+        de.epages.webservice.common2.model.TAttribute attr_update = new de.epages.webservice.common2.model.TAttribute();
         attr_update.setName("Manufacturer");
         attr_update.setValue("java WebService client tester again");
-        Product_update.setAttributes(new de.epages.webservice.common.model.TAttribute[]{attr_update});
+        Product_update.setAttributes(new de.epages.webservice.common2.model.TAttribute[]{attr_update});
 
         Product_down.setAlias(alias);
         Product_down.set_class("/Shops/DemoShop/ProductTypes/Shoe");

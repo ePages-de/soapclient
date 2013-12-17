@@ -113,7 +113,7 @@ public class TGetRoot_Return  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(TGetRoot_Return.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "TGetRoot_Return"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "TGetRoot_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("path");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));

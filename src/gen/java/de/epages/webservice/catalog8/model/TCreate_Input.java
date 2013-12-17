@@ -500,7 +500,7 @@ public class TCreate_Input  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(TCreate_Input.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TCreate_Input"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TCreate_Input"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("alias");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Alias"));

@@ -705,7 +705,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(TGetInfo_Return.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TGetInfo_Return"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TGetInfo_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("path");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));

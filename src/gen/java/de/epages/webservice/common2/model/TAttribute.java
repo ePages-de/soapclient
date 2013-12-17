@@ -5,7 +5,7 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package de.epages.webservice.product11.model;
+package de.epages.webservice.common2.model;
 
 
 /**
@@ -26,7 +26,7 @@ public class TAttribute  implements java.io.Serializable {
 
     /* localized values of attribute.
      *             see epagestypes:ListOfLocalizedValues */
-    private de.epages.webservice.common.model.TLocalizedValue[] localizedValues;
+    private de.epages.webservice.common2.model.TLocalizedValue[] localizedValues;
 
     /* content of file if type file */
     private byte[] fileContent;
@@ -40,7 +40,7 @@ public class TAttribute  implements java.io.Serializable {
     public TAttribute(
            java.lang.String name,
            java.lang.String value,
-           de.epages.webservice.common.model.TLocalizedValue[] localizedValues,
+           de.epages.webservice.common2.model.TLocalizedValue[] localizedValues,
            byte[] fileContent,
            java.lang.String type) {
            this.name = name;
@@ -99,7 +99,7 @@ public class TAttribute  implements java.io.Serializable {
      * @return localizedValues   * localized values of attribute.
      *             see epagestypes:ListOfLocalizedValues
      */
-    public de.epages.webservice.common.model.TLocalizedValue[] getLocalizedValues() {
+    public de.epages.webservice.common2.model.TLocalizedValue[] getLocalizedValues() {
         return localizedValues;
     }
 
@@ -110,7 +110,7 @@ public class TAttribute  implements java.io.Serializable {
      * @param localizedValues   * localized values of attribute.
      *             see epagestypes:ListOfLocalizedValues
      */
-    public void setLocalizedValues(de.epages.webservice.common.model.TLocalizedValue[] localizedValues) {
+    public void setLocalizedValues(de.epages.webservice.common2.model.TLocalizedValue[] localizedValues) {
         this.localizedValues = localizedValues;
     }
 
@@ -232,7 +232,7 @@ public class TAttribute  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(TAttribute.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypes/2013/01", "TAttribute"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TAttribute"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("name");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Name"));
@@ -249,7 +249,7 @@ public class TAttribute  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("localizedValues");
         elemField.setXmlName(new javax.xml.namespace.QName("", "LocalizedValues"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TLocalizedValue"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TLocalizedValue"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

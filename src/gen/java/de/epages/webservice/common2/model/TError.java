@@ -1,48 +1,52 @@
 /**
- * TUpload_Input.java
+ * TError.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package de.epages.webservice.catalog8.model;
+package de.epages.webservice.common2.model;
 
-public class TUpload_Input  implements java.io.Serializable {
-    /* list of filecontents and filenames */
-    private de.epages.webservice.catalog8.model.TImageData[] imageData;
 
-    public TUpload_Input() {
+/**
+ * an error object
+ */
+public class TError  implements java.io.Serializable {
+    /* a short error message as description */
+    private java.lang.String message;
+
+    public TError() {
     }
 
-    public TUpload_Input(
-           de.epages.webservice.catalog8.model.TImageData[] imageData) {
-           this.imageData = imageData;
-    }
-
-
-    /**
-     * Gets the imageData value for this TUpload_Input.
-     * 
-     * @return imageData   * list of filecontents and filenames
-     */
-    public de.epages.webservice.catalog8.model.TImageData[] getImageData() {
-        return imageData;
+    public TError(
+           java.lang.String message) {
+           this.message = message;
     }
 
 
     /**
-     * Sets the imageData value for this TUpload_Input.
+     * Gets the message value for this TError.
      * 
-     * @param imageData   * list of filecontents and filenames
+     * @return message   * a short error message as description
      */
-    public void setImageData(de.epages.webservice.catalog8.model.TImageData[] imageData) {
-        this.imageData = imageData;
+    public java.lang.String getMessage() {
+        return message;
+    }
+
+
+    /**
+     * Sets the message value for this TError.
+     * 
+     * @param message   * a short error message as description
+     */
+    public void setMessage(java.lang.String message) {
+        this.message = message;
     }
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof TUpload_Input)) return false;
-        TUpload_Input other = (TUpload_Input) obj;
+        if (!(obj instanceof TError)) return false;
+        TError other = (TError) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -51,9 +55,9 @@ public class TUpload_Input  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
-            ((this.imageData==null && other.getImageData()==null) || 
-             (this.imageData!=null &&
-              java.util.Arrays.equals(this.imageData, other.getImageData())));
+            ((this.message==null && other.getMessage()==null) || 
+             (this.message!=null &&
+              this.message.equals(other.getMessage())));
         __equalsCalc = null;
         return _equals;
     }
@@ -65,16 +69,8 @@ public class TUpload_Input  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        if (getImageData() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getImageData());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getImageData(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
-                    _hashCode += obj.hashCode();
-                }
-            }
+        if (getMessage() != null) {
+            _hashCode += getMessage().hashCode();
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -82,15 +78,14 @@ public class TUpload_Input  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(TUpload_Input.class, true);
+        new org.apache.axis.description.TypeDesc(TError.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TUpload_Input"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TError"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("imageData");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "ImageData"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TImageData"));
-        elemField.setMinOccurs(0);
+        elemField.setFieldName("message");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "Message"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
     }

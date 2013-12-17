@@ -109,7 +109,7 @@ public class CatalogServiceLocator extends org.apache.axis.client.Service implem
     }
 
     public javax.xml.namespace.QName getServiceName() {
-        return new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "CatalogService");
+        return new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "CatalogService");
     }
 
     private java.util.HashSet ports = null;
@@ -117,7 +117,7 @@ public class CatalogServiceLocator extends org.apache.axis.client.Service implem
     public java.util.Iterator getPorts() {
         if (ports == null) {
             ports = new java.util.HashSet();
-            ports.add(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "port_Catalog"));
+            ports.add(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/11", "port_Catalog"));
         }
         return ports.iterator();
     }

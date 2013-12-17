@@ -9,7 +9,7 @@ package de.epages.webservice.catalog8.model;
 
 
 /**
- * the content and the filename of a product image
+ * the content and the filename of a catalog image
  */
 public class TImageData  implements java.io.Serializable {
     /* the filename without path */
@@ -151,7 +151,7 @@ public class TImageData  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(TImageData.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/03", "TImageData"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2011/11", "TImageData"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("fileName");
         elemField.setXmlName(new javax.xml.namespace.QName("", "FileName"));

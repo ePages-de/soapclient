@@ -130,14 +130,18 @@ task axisGen() {
     )
 
     //reference WSDL files, not in use
-    def wsdlFiles =  [ 'AssignmentService',
+    def wsdlFiles =  [
+  'AppointmentService',
+  'AssignmentService',
   'BasketService',
   'CatalogService',
   'CatalogService2',
   'CatalogService3',
   'CatalogService4',
-//  'CatalogService5',
+  'CatalogService5',
   'CatalogService6',
+  'CatalogService7',
+  'CatalogService8',
   'CrossSellingService',
   'CrossSellingService2',
   'CustomerGroupService',
@@ -152,7 +156,7 @@ task axisGen() {
   'OrderDocumentService4',
   'OrderDocumentService5',
   'OrderDocumentService6',
-//  'OrderDocumentService7',
+  'OrderDocumentService7',
   'OrderService',
   'OrderService2',
   'OrderService3',
@@ -162,6 +166,9 @@ task axisGen() {
   'OrderService7',
   'OrderService8',
   'OrderService9',
+  'OrderService10',
+  'OrderService11',
+  'OrderService12',
   'PageCacheService',
   'PriceListAssignmentService',
   'PriceListService',
@@ -191,7 +198,8 @@ task axisGen() {
   'UserService4',
   'UserService5',
   'ShippingMethodService',
-  'PaymentMethodService' ]
+  'PaymentMethodService' 
+  ]
 
     //WDSL files in use by EPJ
     doLast {
@@ -205,7 +213,7 @@ task axisGen() {
         { def wsdlName ->
             ant.echo(message: "Generating Classes for ${wsdlName}")
             ant.codegen(
-                    url: "http://" + (System.properties["ep6HostName"] ?: 'localhost') + "/WebRoot/WSDL/${wsdlName}.wsdl",
+                    url: "../WSDL/${wsdlName}.wsdl",
                     output: 'src/gen/java',
                     verbose: true,
                     helpergen: false,
