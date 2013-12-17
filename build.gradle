@@ -209,7 +209,8 @@ task axisGen() {
             'BasketService',
             'ProductService11',
             'CatalogService8',
-            'OrderService9' // orderservice 12 has bugs regarding ShippingLineItem.Taxes
+            'OrderService9', // orderservice 12 has bugs regarding ShippingLineItem.Taxes
+            'CustomerService4',
         ].each
         { def wsdlName ->
             ant.echo(message: "Generating Classes for ${wsdlName}")
