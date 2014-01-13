@@ -7,6 +7,7 @@ import de.epages.ws.customer4.CustomerServiceClient;
 import de.epages.ws.order12.OrderServiceClient;
 import de.epages.ws.orderdocument7.OrderDocumentServiceClient;
 import de.epages.ws.product11.ProductServiceClient;
+import de.epages.ws.shippingmethod.ShippingMethodServiceClient;
 
 /**
  * Interface to the latest implementations of the epages6 webservices.
@@ -26,5 +27,7 @@ public interface WebServiceFactory {
     OrderServiceClient createOrderServiceClient(WebServiceConfiguration config);
 
     ProductServiceClient createProductServiceClient(WebServiceConfiguration config);
+
+    ShippingMethodServiceClient createShippingMethodServiceClient(WebServiceConfiguration config);
 
 }
