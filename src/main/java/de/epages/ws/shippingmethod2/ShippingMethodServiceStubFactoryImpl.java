@@ -1,4 +1,4 @@
-package de.epages.ws.shippingmethod;
+package de.epages.ws.shippingmethod2;
 
 import org.apache.axis.AxisFault;
 import org.slf4j.Logger;

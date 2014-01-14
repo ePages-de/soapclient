@@ -1,4 +1,4 @@
-package de.epages.ws.shippingmethod;
+package de.epages.ws.shippingmethod2;
 
 import de.epages.ws.WebServiceConfiguration;
 import de.epages.ws.shippingmethod2.stub.Port_ShippingMethod;

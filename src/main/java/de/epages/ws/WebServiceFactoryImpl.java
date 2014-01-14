@@ -14,8 +14,8 @@ import de.epages.ws.orderdocument7.OrderDocumentServiceClient;
 import de.epages.ws.orderdocument7.OrderDocumentServiceClientImpl;
 import de.epages.ws.product11.ProductServiceClient;
 import de.epages.ws.product11.ProductServiceClientImpl;
-import de.epages.ws.shippingmethod.ShippingMethodServiceClient;
-import de.epages.ws.shippingmethod.ShippingMethodServiceClientImpl;
+import de.epages.ws.shippingmethod2.ShippingMethodServiceClient;
+import de.epages.ws.shippingmethod2.ShippingMethodServiceClientImpl;
 
 public class WebServiceFactoryImpl implements WebServiceFactory {
 
