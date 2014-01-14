@@ -126,7 +126,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
             java.lang.Class simplelistdf = org.apache.axis.encoding.ser.SimpleListDeserializerFactory.class;
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "ListOfAttributes");
             cachedSerQNames.add(qName);
-            cls = de.epages.ws.common2.model.TAttribute[].class;
+            cls = de.epages.ws.common.model.TAttribute[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TAttribute");
             qName2 = null;
@@ -135,7 +135,7 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "ListOfLocalizedValues");
             cachedSerQNames.add(qName);
-            cls = de.epages.ws.common2.model.TLocalizedValue[].class;
+            cls = de.epages.ws.common.model.TLocalizedValue[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TLocalizedValue");
             qName2 = null;
@@ -144,21 +144,21 @@ public class Bind_Product_SOAPStub extends org.apache.axis.client.Stub implement
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TAttribute");
             cachedSerQNames.add(qName);
-            cls = de.epages.ws.common2.model.TAttribute.class;
+            cls = de.epages.ws.common.model.TAttribute.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TError");
             cachedSerQNames.add(qName);
-            cls = de.epages.ws.common2.model.TError.class;
+            cls = de.epages.ws.common.model.TError.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2013/01", "TLocalizedValue");
             cachedSerQNames.add(qName);
-            cls = de.epages.ws.common2.model.TLocalizedValue.class;
+            cls = de.epages.ws.common.model.TLocalizedValue.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
