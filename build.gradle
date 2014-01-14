@@ -18,9 +18,9 @@ apply plugin: 'versions'
 archivesBaseName = 'soapclient'
 group = 'de.epages'
 description = 'AXIS 1.x based SOAP client for epages6'
-version = '1.4.6'
+version = '1.4.7'
 
-repositories { 
+repositories {
     maven { url project.properties['artifactoryContextUrl'] + "epages-repos" }
     mavenCentral()
 }
@@ -198,7 +198,7 @@ task axisGen() {
   'UserService4',
   'UserService5',
   'ShippingMethodService',
-  'PaymentMethodService' 
+  'PaymentMethodService'
   ]
 
     //WDSL files in use by EPJ
