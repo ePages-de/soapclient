@@ -25,23 +25,23 @@ public class TGetInfo_Return  implements java.io.Serializable {
     private java.lang.String _class;
 
     /* product's name */
-    private de.epages.ws.common2.model.TLocalizedValue[] name;
+    private de.epages.ws.common.model.TLocalizedValue[] name;
 
     /* product's description */
-    private de.epages.ws.common2.model.TLocalizedValue[] description;
+    private de.epages.ws.common.model.TLocalizedValue[] description;
 
     /* product's long description (formerly LongDescription) */
-    private de.epages.ws.common2.model.TLocalizedValue[] text;
+    private de.epages.ws.common.model.TLocalizedValue[] text;
 
     /* product's key words */
-    private de.epages.ws.common2.model.TLocalizedValue[] keywords;
+    private de.epages.ws.common.model.TLocalizedValue[] keywords;
 
     /* product's main characteristics in last step of checkout process,
      * in addition to description and text */
-    private de.epages.ws.common2.model.TLocalizedValue[] mainCharacteristics;
+    private de.epages.ws.common.model.TLocalizedValue[] mainCharacteristics;
 
     /* Localizable page title shown in SF. */
-    private de.epages.ws.common2.model.TLocalizedValue[] title;
+    private de.epages.ws.common.model.TLocalizedValue[] title;
 
     /* product's tax class (object path to a tax class) */
     private java.lang.String taxClass;
@@ -110,17 +110,17 @@ public class TGetInfo_Return  implements java.io.Serializable {
     private boolean isAvailable;
 
     /* Comment displayed if product is not available (see IsAvailable). */
-    private de.epages.ws.common2.model.TLocalizedValue[] availabilityComment;
+    private de.epages.ws.common.model.TLocalizedValue[] availabilityComment;
 
     /* Date when the product is going to be available/is for sale. */
     private java.util.Calendar availabilityDate;
 
     /* short uri (unique part of short URL, see CanonicalURL) */
-    private de.epages.ws.common2.model.TLocalizedValue[] URI;
+    private de.epages.ws.common.model.TLocalizedValue[] URI;
 
     /* complete url for canonical tag (based on domain name and URI,
      * i.e. http://my.do.main/myURI) */
-    private de.epages.ws.common2.model.TLocalizedValue[] canonicalURL;
+    private de.epages.ws.common.model.TLocalizedValue[] canonicalURL;
 
     /* Indicates that the product have download files. */
     private boolean isDownloadProduct;
@@ -160,7 +160,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      *             if this is a variation (sub product): the actual attribute
      * keys and values of the variation
      *             (see epagestypes:ListOfAttributes) */
-    private de.epages.ws.common2.model.TAttribute[] variationAttributes;
+    private de.epages.ws.common.model.TAttribute[] variationAttributes;
 
     /* list of product prices (see producttypes:ListOfListOfProductPrices) */
     private de.epages.ws.product11.model.TProductPrice[] productPrices;
@@ -187,10 +187,10 @@ public class TGetInfo_Return  implements java.io.Serializable {
     private de.epages.ws.product11.model.TShippingMethod[] shippingMethods;
 
     /* list of requested attributes (see epagestypes:ListOfAttributes) */
-    private de.epages.ws.common2.model.TAttribute[] attributes;
+    private de.epages.ws.common.model.TAttribute[] attributes;
 
     /* error object (see epagestypes:TError) */
-    private de.epages.ws.common2.model.TError error;
+    private de.epages.ws.common.model.TError error;
 
     public TGetInfo_Return() {
     }
@@ -199,12 +199,12 @@ public class TGetInfo_Return  implements java.io.Serializable {
            java.lang.String path,
            java.lang.String alias,
            java.lang.String _class,
-           de.epages.ws.common2.model.TLocalizedValue[] name,
-           de.epages.ws.common2.model.TLocalizedValue[] description,
-           de.epages.ws.common2.model.TLocalizedValue[] text,
-           de.epages.ws.common2.model.TLocalizedValue[] keywords,
-           de.epages.ws.common2.model.TLocalizedValue[] mainCharacteristics,
-           de.epages.ws.common2.model.TLocalizedValue[] title,
+           de.epages.ws.common.model.TLocalizedValue[] name,
+           de.epages.ws.common.model.TLocalizedValue[] description,
+           de.epages.ws.common.model.TLocalizedValue[] text,
+           de.epages.ws.common.model.TLocalizedValue[] keywords,
+           de.epages.ws.common.model.TLocalizedValue[] mainCharacteristics,
+           de.epages.ws.common.model.TLocalizedValue[] title,
            java.lang.String taxClass,
            java.lang.Boolean isVisible,
            java.lang.Boolean isNew,
@@ -228,10 +228,10 @@ public class TGetInfo_Return  implements java.io.Serializable {
            java.lang.Float height,
            java.lang.String webUrl,
            boolean isAvailable,
-           de.epages.ws.common2.model.TLocalizedValue[] availabilityComment,
+           de.epages.ws.common.model.TLocalizedValue[] availabilityComment,
            java.util.Calendar availabilityDate,
-           de.epages.ws.common2.model.TLocalizedValue[] URI,
-           de.epages.ws.common2.model.TLocalizedValue[] canonicalURL,
+           de.epages.ws.common.model.TLocalizedValue[] URI,
+           de.epages.ws.common.model.TLocalizedValue[] canonicalURL,
            boolean isDownloadProduct,
            java.math.BigInteger maxDownloadTime,
            java.math.BigInteger maxDownloadCount,
@@ -241,7 +241,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
            java.lang.String defaultSubProduct,
            java.lang.Boolean isDefault,
            java.lang.Boolean hasSubOwnPrices,
-           de.epages.ws.common2.model.TAttribute[] variationAttributes,
+           de.epages.ws.common.model.TAttribute[] variationAttributes,
            de.epages.ws.product11.model.TProductPrice[] productPrices,
            de.epages.ws.product11.model.TProductPrice[] manufacturerPrices,
            de.epages.ws.product11.model.TProductPrice[] depositPrices,
@@ -250,8 +250,8 @@ public class TGetInfo_Return  implements java.io.Serializable {
            java.lang.String prepaymentType,
            java.lang.Float prepaymentValue,
            de.epages.ws.product11.model.TShippingMethod[] shippingMethods,
-           de.epages.ws.common2.model.TAttribute[] attributes,
-           de.epages.ws.common2.model.TError error) {
+           de.epages.ws.common.model.TAttribute[] attributes,
+           de.epages.ws.common.model.TError error) {
            this.path = path;
            this.alias = alias;
            this._class = _class;
@@ -376,7 +376,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * 
      * @return name   * product's name
      */
-    public de.epages.ws.common2.model.TLocalizedValue[] getName() {
+    public de.epages.ws.common.model.TLocalizedValue[] getName() {
         return name;
     }
 
@@ -386,7 +386,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * 
      * @param name   * product's name
      */
-    public void setName(de.epages.ws.common2.model.TLocalizedValue[] name) {
+    public void setName(de.epages.ws.common.model.TLocalizedValue[] name) {
         this.name = name;
     }
 
@@ -396,7 +396,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * 
      * @return description   * product's description
      */
-    public de.epages.ws.common2.model.TLocalizedValue[] getDescription() {
+    public de.epages.ws.common.model.TLocalizedValue[] getDescription() {
         return description;
     }
 
@@ -406,7 +406,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * 
      * @param description   * product's description
      */
-    public void setDescription(de.epages.ws.common2.model.TLocalizedValue[] description) {
+    public void setDescription(de.epages.ws.common.model.TLocalizedValue[] description) {
         this.description = description;
     }
 
@@ -416,7 +416,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * 
      * @return text   * product's long description (formerly LongDescription)
      */
-    public de.epages.ws.common2.model.TLocalizedValue[] getText() {
+    public de.epages.ws.common.model.TLocalizedValue[] getText() {
         return text;
     }
 
@@ -426,7 +426,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * 
      * @param text   * product's long description (formerly LongDescription)
      */
-    public void setText(de.epages.ws.common2.model.TLocalizedValue[] text) {
+    public void setText(de.epages.ws.common.model.TLocalizedValue[] text) {
         this.text = text;
     }
 
@@ -436,7 +436,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * 
      * @return keywords   * product's key words
      */
-    public de.epages.ws.common2.model.TLocalizedValue[] getKeywords() {
+    public de.epages.ws.common.model.TLocalizedValue[] getKeywords() {
         return keywords;
     }
 
@@ -446,7 +446,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * 
      * @param keywords   * product's key words
      */
-    public void setKeywords(de.epages.ws.common2.model.TLocalizedValue[] keywords) {
+    public void setKeywords(de.epages.ws.common.model.TLocalizedValue[] keywords) {
         this.keywords = keywords;
     }
 
@@ -457,7 +457,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * @return mainCharacteristics   * product's main characteristics in last step of checkout process,
      * in addition to description and text
      */
-    public de.epages.ws.common2.model.TLocalizedValue[] getMainCharacteristics() {
+    public de.epages.ws.common.model.TLocalizedValue[] getMainCharacteristics() {
         return mainCharacteristics;
     }
 
@@ -468,7 +468,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * @param mainCharacteristics   * product's main characteristics in last step of checkout process,
      * in addition to description and text
      */
-    public void setMainCharacteristics(de.epages.ws.common2.model.TLocalizedValue[] mainCharacteristics) {
+    public void setMainCharacteristics(de.epages.ws.common.model.TLocalizedValue[] mainCharacteristics) {
         this.mainCharacteristics = mainCharacteristics;
     }
 
@@ -478,7 +478,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * 
      * @return title   * Localizable page title shown in SF.
      */
-    public de.epages.ws.common2.model.TLocalizedValue[] getTitle() {
+    public de.epages.ws.common.model.TLocalizedValue[] getTitle() {
         return title;
     }
 
@@ -488,7 +488,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * 
      * @param title   * Localizable page title shown in SF.
      */
-    public void setTitle(de.epages.ws.common2.model.TLocalizedValue[] title) {
+    public void setTitle(de.epages.ws.common.model.TLocalizedValue[] title) {
         this.title = title;
     }
 
@@ -962,7 +962,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * 
      * @return availabilityComment   * Comment displayed if product is not available (see IsAvailable).
      */
-    public de.epages.ws.common2.model.TLocalizedValue[] getAvailabilityComment() {
+    public de.epages.ws.common.model.TLocalizedValue[] getAvailabilityComment() {
         return availabilityComment;
     }
 
@@ -972,7 +972,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * 
      * @param availabilityComment   * Comment displayed if product is not available (see IsAvailable).
      */
-    public void setAvailabilityComment(de.epages.ws.common2.model.TLocalizedValue[] availabilityComment) {
+    public void setAvailabilityComment(de.epages.ws.common.model.TLocalizedValue[] availabilityComment) {
         this.availabilityComment = availabilityComment;
     }
 
@@ -1002,7 +1002,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * 
      * @return URI   * short uri (unique part of short URL, see CanonicalURL)
      */
-    public de.epages.ws.common2.model.TLocalizedValue[] getURI() {
+    public de.epages.ws.common.model.TLocalizedValue[] getURI() {
         return URI;
     }
 
@@ -1012,7 +1012,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * 
      * @param URI   * short uri (unique part of short URL, see CanonicalURL)
      */
-    public void setURI(de.epages.ws.common2.model.TLocalizedValue[] URI) {
+    public void setURI(de.epages.ws.common.model.TLocalizedValue[] URI) {
         this.URI = URI;
     }
 
@@ -1023,7 +1023,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * @return canonicalURL   * complete url for canonical tag (based on domain name and URI,
      * i.e. http://my.do.main/myURI)
      */
-    public de.epages.ws.common2.model.TLocalizedValue[] getCanonicalURL() {
+    public de.epages.ws.common.model.TLocalizedValue[] getCanonicalURL() {
         return canonicalURL;
     }
 
@@ -1034,7 +1034,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * @param canonicalURL   * complete url for canonical tag (based on domain name and URI,
      * i.e. http://my.do.main/myURI)
      */
-    public void setCanonicalURL(de.epages.ws.common2.model.TLocalizedValue[] canonicalURL) {
+    public void setCanonicalURL(de.epages.ws.common.model.TLocalizedValue[] canonicalURL) {
         this.canonicalURL = canonicalURL;
     }
 
@@ -1240,7 +1240,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * keys and values of the variation
      *             (see epagestypes:ListOfAttributes)
      */
-    public de.epages.ws.common2.model.TAttribute[] getVariationAttributes() {
+    public de.epages.ws.common.model.TAttribute[] getVariationAttributes() {
         return variationAttributes;
     }
 
@@ -1254,7 +1254,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * keys and values of the variation
      *             (see epagestypes:ListOfAttributes)
      */
-    public void setVariationAttributes(de.epages.ws.common2.model.TAttribute[] variationAttributes) {
+    public void setVariationAttributes(de.epages.ws.common.model.TAttribute[] variationAttributes) {
         this.variationAttributes = variationAttributes;
     }
 
@@ -1424,7 +1424,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * 
      * @return attributes   * list of requested attributes (see epagestypes:ListOfAttributes)
      */
-    public de.epages.ws.common2.model.TAttribute[] getAttributes() {
+    public de.epages.ws.common.model.TAttribute[] getAttributes() {
         return attributes;
     }
 
@@ -1434,7 +1434,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * 
      * @param attributes   * list of requested attributes (see epagestypes:ListOfAttributes)
      */
-    public void setAttributes(de.epages.ws.common2.model.TAttribute[] attributes) {
+    public void setAttributes(de.epages.ws.common.model.TAttribute[] attributes) {
         this.attributes = attributes;
     }
 
@@ -1444,7 +1444,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * 
      * @return error   * error object (see epagestypes:TError)
      */
-    public de.epages.ws.common2.model.TError getError() {
+    public de.epages.ws.common.model.TError getError() {
         return error;
     }
 
@@ -1454,7 +1454,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
      * 
      * @param error   * error object (see epagestypes:TError)
      */
-    public void setError(de.epages.ws.common2.model.TError error) {
+    public void setError(de.epages.ws.common.model.TError error) {
         this.error = error;
     }
 

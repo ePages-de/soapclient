@@ -21,7 +21,7 @@ public class TDelete_Return  implements java.io.Serializable {
     private java.lang.Boolean deleted;
 
     /* error object (see epagestypes:TError) */
-    private de.epages.ws.common2.model.TError error;
+    private de.epages.ws.common.model.TError error;
 
     public TDelete_Return() {
     }
@@ -29,7 +29,7 @@ public class TDelete_Return  implements java.io.Serializable {
     public TDelete_Return(
            java.lang.String path,
            java.lang.Boolean deleted,
-           de.epages.ws.common2.model.TError error) {
+           de.epages.ws.common.model.TError error) {
            this.path = path;
            this.deleted = deleted;
            this.error = error;
@@ -81,7 +81,7 @@ public class TDelete_Return  implements java.io.Serializable {
      * 
      * @return error   * error object (see epagestypes:TError)
      */
-    public de.epages.ws.common2.model.TError getError() {
+    public de.epages.ws.common.model.TError getError() {
         return error;
     }
 
@@ -91,7 +91,7 @@ public class TDelete_Return  implements java.io.Serializable {
      * 
      * @param error   * error object (see epagestypes:TError)
      */
-    public void setError(de.epages.ws.common2.model.TError error) {
+    public void setError(de.epages.ws.common.model.TError error) {
         this.error = error;
     }
 

@@ -15,8 +15,8 @@ import org.junit.Test;
 
 import de.epages.ws.FileUtil;
 import de.epages.ws.WebServiceTestConfiguration;
-import de.epages.ws.common2.model.TAttribute;
-import de.epages.ws.common2.model.TLocalizedValue;
+import de.epages.ws.common.model.TAttribute;
+import de.epages.ws.common.model.TLocalizedValue;
 import de.epages.ws.product11.model.TCreate_Input;
 import de.epages.ws.product11.model.TCreate_Return;
 import de.epages.ws.product11.model.TDelete_Return;
