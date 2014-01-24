@@ -36,12 +36,14 @@ ext {
     wsdl4jVersion = "1.6.3"
     commonsDiscoveryVersion = "0.5"
     logbackVersion = "1.0.13"
+    httpclientVersion = "3.1"
 }
 
 dependencies {
     compile "org.apache.axis:axis:${axisVersion}"
     compile "org.apache.axis:axis-jaxrpc:${axisVersion}"
     compile "org.slf4j:slf4j-api:${slf4jVersion}"
+    compile "commons-httpclient:commons-httpclient:${httpclientVersion}"
 
     runtime "org.apache.axis:axis-saaj:${axisVersion}"
     runtime "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"

@@ -17,7 +17,7 @@ import de.epages.ws.product11.stub.ProductServiceLocator;
 import de.epages.ws.product11.stub.TFind_Input;
 
 public final class ProductServiceClientImpl implements ProductServiceClient {
-    private final ProductServiceLocator serviceLocator = new ProductServiceLocator();
+    private static final ProductServiceLocator serviceLocator = new ProductServiceLocator();
     private final Port_Product stub;
 
     public ProductServiceClientImpl(WebServiceConfiguration config) {
