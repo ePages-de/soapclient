@@ -20,6 +20,9 @@ final class ProductServiceStubFactoryImpl implements ProductServiceStubFactory {
         log.info("Using webservice URL: " + config.getWebserviceURL());
         try {
             Bind_Product_SOAPStub stub = (Bind_Product_SOAPStub) serviceLocator.getport_Product(config.getWebserviceURL());
+            if (stub == null) {
+                throw new NullPointerException("stub");
+            }
             return StubConfigurator.configure(stub, config);
         } catch (ServiceException e) {
             throw new RuntimeException(e);

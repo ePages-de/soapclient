@@ -1,6 +1,7 @@
 package de.epages.ws.basket;
 
-import org.apache.axis.AxisFault;
+import javax.xml.rpc.ServiceException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,9 +19,12 @@ final class BasketServiceStubFactoryImpl implements BasketServiceStubFactory {
     public Port_Basket create(WebServiceConfiguration config, BasketService service) {
         log.info("Using webservice URL: " + config.getWebserviceURL());
         try {
-            Bind_Basket_SOAPStub stub = new Bind_Basket_SOAPStub(config.getWebserviceURL(), service);
+            Bind_Basket_SOAPStub stub = (Bind_Basket_SOAPStub) service.getport_Basket(config.getWebserviceURL());
+            if (stub == null) {
+                throw new NullPointerException("stub");
+            }
             return StubConfigurator.configure(stub, config);
-        } catch (AxisFault e) {
+        } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
     }

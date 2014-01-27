@@ -1,6 +1,7 @@
 package de.epages.ws.catalog8;
 
-import org.apache.axis.AxisFault;
+import javax.xml.rpc.ServiceException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,12 +18,15 @@ final class CatalogServiceStubFactoryImpl implements CatalogServiceStubFactory {
     @Override
     public Port_Catalog create(WebServiceConfiguration config, CatalogService service) {
         log.info("Using webservice URL: " + config.getWebserviceURL());
-            try {
-                Bind_Catalog_SOAPStub stub = new Bind_Catalog_SOAPStub(config.getWebserviceURL(), service);
-                return StubConfigurator.configure(stub, config);
-            } catch (AxisFault e) {
-                throw new RuntimeException(e);
+        try {
+            Bind_Catalog_SOAPStub stub = (Bind_Catalog_SOAPStub) service.getport_Catalog(config.getWebserviceURL());
+            if (stub == null) {
+                throw new NullPointerException("stub");
             }
+            return StubConfigurator.configure(stub, config);
+        } catch (ServiceException e) {
+            throw new RuntimeException(e);
+        }
     }
-    
+
 }

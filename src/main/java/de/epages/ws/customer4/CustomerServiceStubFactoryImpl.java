@@ -1,6 +1,7 @@
 package de.epages.ws.customer4;
 
-import org.apache.axis.AxisFault;
+import javax.xml.rpc.ServiceException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,12 +18,15 @@ final class CustomerServiceStubFactoryImpl implements CustomerServiceStubFactory
     @Override
     public Port_Customer create(WebServiceConfiguration config, CustomerService service) {
         log.info("Using webservice URL: " + config.getWebserviceURL());
-            try {
-                Bind_Customer_SOAPStub stub = new Bind_Customer_SOAPStub(config.getWebserviceURL(), service);
-                return StubConfigurator.configure(stub, config);
-            } catch (AxisFault e) {
-                throw new RuntimeException(e);
+        try {
+            Bind_Customer_SOAPStub stub = (Bind_Customer_SOAPStub) service.getport_Customer(config.getWebserviceURL());
+            if (stub == null) {
+                throw new NullPointerException("stub");
             }
+            return StubConfigurator.configure(stub, config);
+        } catch (ServiceException e) {
+            throw new RuntimeException(e);
+        }
     }
-    
+
 }

@@ -1,6 +1,7 @@
 package de.epages.ws.orderdocument7;
 
-import org.apache.axis.AxisFault;
+import javax.xml.rpc.ServiceException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,9 +19,13 @@ final class OrderDocumentServiceStubFactoryImpl implements OrderDocumentServiceS
     public Port_OrderDocument create(WebServiceConfiguration config, OrderDocumentService serviceLocator) {
         log.info("Using webservice URL: " + config.getWebserviceURL());
         try {
-            Bind_OrderDocument_SOAPStub stub = new Bind_OrderDocument_SOAPStub(config.getWebserviceURL(), serviceLocator);
+            Bind_OrderDocument_SOAPStub stub = (Bind_OrderDocument_SOAPStub) serviceLocator
+                    .getport_OrderDocument(config.getWebserviceURL());
+            if (stub == null) {
+                throw new NullPointerException("stub");
+            }
             return StubConfigurator.configure(stub, config);
-        } catch (AxisFault e) {
+        } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
     }

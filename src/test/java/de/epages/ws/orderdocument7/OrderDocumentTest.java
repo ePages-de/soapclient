@@ -17,7 +17,6 @@ import de.epages.ws.orderdocument7.model.TGetCreditNotes_Return;
 import de.epages.ws.orderdocument7.model.TGetInfo_Return;
 import de.epages.ws.orderdocument7.model.TGetInvoices_Return;
 import de.epages.ws.orderdocument7.model.TGetPackingSlips_Return;
-import de.epages.ws.orderdocument7.model.TUpdate_Input;
 
 
 /**

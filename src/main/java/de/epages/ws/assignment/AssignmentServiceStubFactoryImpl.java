@@ -1,6 +1,7 @@
 package de.epages.ws.assignment;
 
-import org.apache.axis.AxisFault;
+import javax.xml.rpc.ServiceException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,12 +16,15 @@ final class AssignmentServiceStubFactoryImpl implements AssignmentServiceStubFac
     private static final Logger log = LoggerFactory.getLogger(AssignmentServiceStubFactoryImpl.class);
 
     @Override
-    public Port_Assignment create(WebServiceConfiguration config, AssignmentService service) {
+    public Port_Assignment create(WebServiceConfiguration config, AssignmentService serviceLocator) {
         log.info("Using webservice URL: " + config.getWebserviceURL());
         try {
-            Bind_Assignment_SOAPStub stub = new Bind_Assignment_SOAPStub(config.getWebserviceURL(), service);
+            Bind_Assignment_SOAPStub stub = (Bind_Assignment_SOAPStub) serviceLocator.getport_Assignment(config.getWebserviceURL());
+            if (stub == null) {
+                throw new NullPointerException("stub");
+            }
             return StubConfigurator.configure(stub, config);
-        } catch (AxisFault e) {
+        } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
     }

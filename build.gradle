@@ -43,7 +43,6 @@ dependencies {
     compile "org.apache.axis:axis:${axisVersion}"
     compile "org.apache.axis:axis-jaxrpc:${axisVersion}"
     compile "org.slf4j:slf4j-api:${slf4jVersion}"
-    compile "commons-httpclient:commons-httpclient:${httpclientVersion}"
 
     runtime "org.apache.axis:axis-saaj:${axisVersion}"
     runtime "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
@@ -54,6 +53,7 @@ dependencies {
     testRuntime "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
     testRuntime "ch.qos.logback:logback-core:${logbackVersion}"
     testRuntime "ch.qos.logback:logback-classic:${logbackVersion}"
+    testRuntime "commons-httpclient:commons-httpclient:${httpclientVersion}"
 
     axisGenTask "org.apache.axis:axis-ant:${axisVersion}"
     axisGenTask "org.apache.axis:axis:${axisVersion}"

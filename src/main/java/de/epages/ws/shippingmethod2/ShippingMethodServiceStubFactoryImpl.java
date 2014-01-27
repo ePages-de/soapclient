@@ -1,6 +1,7 @@
 package de.epages.ws.shippingmethod2;
 
-import org.apache.axis.AxisFault;
+import javax.xml.rpc.ServiceException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,7 +11,6 @@ import de.epages.ws.shippingmethod2.stub.Bind_ShippingMethod_SOAPStub;
 import de.epages.ws.shippingmethod2.stub.Port_ShippingMethod;
 import de.epages.ws.shippingmethod2.stub.ShippingMethodService;
 
-
 final class ShippingMethodServiceStubFactoryImpl implements ShippingMethodServiceStubFactory {
 
     private static final Logger log = LoggerFactory.getLogger(ShippingMethodServiceStubFactoryImpl.class);
@@ -19,9 +19,13 @@ final class ShippingMethodServiceStubFactoryImpl implements ShippingMethodServic
     public Port_ShippingMethod create(WebServiceConfiguration config, ShippingMethodService serviceLocator) {
         log.info("Using webservice URL: " + config.getWebserviceURL());
         try {
-            Bind_ShippingMethod_SOAPStub stub = new Bind_ShippingMethod_SOAPStub(config.getWebserviceURL(), serviceLocator);
+            Bind_ShippingMethod_SOAPStub stub = (Bind_ShippingMethod_SOAPStub) serviceLocator.getport_ShippingMethod(config
+                    .getWebserviceURL());
+            if (stub == null) {
+                throw new NullPointerException("stub");
+            }
             return StubConfigurator.configure(stub, config);
-        } catch (AxisFault e) {
+        } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
     }
