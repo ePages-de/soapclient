@@ -19,7 +19,7 @@ import de.epages.ws.orderdocument7.stub.OrderDocumentServiceLocator;
 import de.epages.ws.orderdocument7.stub.Port_OrderDocument;
 
 public final class OrderDocumentServiceClientImpl implements OrderDocumentServiceClient {
-    private final OrderDocumentServiceLocator serviceLocator = new OrderDocumentServiceLocator();
+    private static final OrderDocumentServiceLocator serviceLocator = new OrderDocumentServiceLocator();
     private final Port_OrderDocument stub;
 
     public OrderDocumentServiceClientImpl(WebServiceConfiguration config) {

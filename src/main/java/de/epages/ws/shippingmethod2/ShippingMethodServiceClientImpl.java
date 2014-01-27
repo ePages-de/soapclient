@@ -11,7 +11,7 @@ import de.epages.ws.shippingmethod2.stub.ShippingMethodServiceLocator;
 
 public final class ShippingMethodServiceClientImpl implements ShippingMethodServiceClient {
 
-    private final ShippingMethodServiceLocator serviceLocator = new ShippingMethodServiceLocator();
+    private static final ShippingMethodServiceLocator serviceLocator = new ShippingMethodServiceLocator();
 
     private final Port_ShippingMethod stub;
 

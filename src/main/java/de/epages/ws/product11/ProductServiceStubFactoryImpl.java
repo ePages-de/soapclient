@@ -1,9 +1,11 @@
 package de.epages.ws.product11;
 
-import org.apache.axis.AxisFault;
+import javax.xml.rpc.ServiceException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.epages.ws.StubConfigurator;
 import de.epages.ws.WebServiceConfiguration;
 import de.epages.ws.product11.stub.Bind_Product_SOAPStub;
 import de.epages.ws.product11.stub.Port_Product;
@@ -17,11 +19,9 @@ final class ProductServiceStubFactoryImpl implements ProductServiceStubFactory {
     public Port_Product create(WebServiceConfiguration config, ProductService serviceLocator) {
         log.info("Using webservice URL: " + config.getWebserviceURL());
         try {
-            Bind_Product_SOAPStub stub = new Bind_Product_SOAPStub(config.getWebserviceURL(), serviceLocator);
-            stub.setUsername(config.getUsername());
-            stub.setPassword(config.getPassword());
-            return stub;
-        } catch (AxisFault e) {
+            Bind_Product_SOAPStub stub = (Bind_Product_SOAPStub) serviceLocator.getport_Product(config.getWebserviceURL());
+            return StubConfigurator.configure(stub, config);
+        } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
     }
