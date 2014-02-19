@@ -23,8 +23,8 @@ public class TUpdate_Return  implements java.io.Serializable {
     /* error object (see epagestypes:TError) */
     private de.epages.ws.common.model.TError error;
 
-    /* form error object (see formtypes:TFormError) */
-    private de.epages.ws.common.model.TFormError formError;
+    /* list of form error objects (see formtypes:TListOfFormErrors) */
+    private de.epages.ws.common.model.TFormError[] formErrors;
 
     public TUpdate_Return() {
     }
@@ -33,11 +33,11 @@ public class TUpdate_Return  implements java.io.Serializable {
            java.lang.String path,
            java.lang.Boolean updated,
            de.epages.ws.common.model.TError error,
-           de.epages.ws.common.model.TFormError formError) {
+           de.epages.ws.common.model.TFormError[] formErrors) {
            this.path = path;
            this.updated = updated;
            this.error = error;
-           this.formError = formError;
+           this.formErrors = formErrors;
     }
 
 
@@ -102,22 +102,22 @@ public class TUpdate_Return  implements java.io.Serializable {
 
 
     /**
-     * Gets the formError value for this TUpdate_Return.
+     * Gets the formErrors value for this TUpdate_Return.
      * 
-     * @return formError   * form error object (see formtypes:TFormError)
+     * @return formErrors   * list of form error objects (see formtypes:TListOfFormErrors)
      */
-    public de.epages.ws.common.model.TFormError getFormError() {
-        return formError;
+    public de.epages.ws.common.model.TFormError[] getFormErrors() {
+        return formErrors;
     }
 
 
     /**
-     * Sets the formError value for this TUpdate_Return.
+     * Sets the formErrors value for this TUpdate_Return.
      * 
-     * @param formError   * form error object (see formtypes:TFormError)
+     * @param formErrors   * list of form error objects (see formtypes:TListOfFormErrors)
      */
-    public void setFormError(de.epages.ws.common.model.TFormError formError) {
-        this.formError = formError;
+    public void setFormErrors(de.epages.ws.common.model.TFormError[] formErrors) {
+        this.formErrors = formErrors;
     }
 
     private java.lang.Object __equalsCalc = null;
@@ -141,9 +141,9 @@ public class TUpdate_Return  implements java.io.Serializable {
             ((this.error==null && other.getError()==null) || 
              (this.error!=null &&
               this.error.equals(other.getError()))) &&
-            ((this.formError==null && other.getFormError()==null) || 
-             (this.formError!=null &&
-              this.formError.equals(other.getFormError())));
+            ((this.formErrors==null && other.getFormErrors()==null) || 
+             (this.formErrors!=null &&
+              java.util.Arrays.equals(this.formErrors, other.getFormErrors())));
         __equalsCalc = null;
         return _equals;
     }
@@ -164,8 +164,16 @@ public class TUpdate_Return  implements java.io.Serializable {
         if (getError() != null) {
             _hashCode += getError().hashCode();
         }
-        if (getFormError() != null) {
-            _hashCode += getFormError().hashCode();
+        if (getFormErrors() != null) {
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getFormErrors());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getFormErrors(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -198,8 +206,8 @@ public class TUpdate_Return  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("formError");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "FormError"));
+        elemField.setFieldName("formErrors");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "FormErrors"));
         elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/FormTypes/2014/02", "TFormError"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
