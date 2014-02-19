@@ -4,6 +4,7 @@ package de.epages.ws.basket;
 import static de.epages.ws.common.AssertNoError.assertNoError;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.net.MalformedURLException;
@@ -13,7 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.epages.ws.WebServiceTestConfiguration;
-import de.epages.ws.basket.BasketServiceClientImpl;
 import de.epages.ws.basket.model.TCreate_Input;
 import de.epages.ws.basket.model.TCreate_Return;
 import de.epages.ws.basket.model.TDelete_Return;
@@ -27,6 +27,7 @@ import de.epages.ws.basket.model.TUpdateLineItem_Return;
 import de.epages.ws.basket.model.TUpdate_Input;
 import de.epages.ws.basket.model.TUpdate_Return;
 import de.epages.ws.common.model.TAttribute;
+import de.epages.ws.common.model.TFormError;
 import de.epages.ws.shop3.model.TAddressNamed;
 
 /**
@@ -110,6 +111,7 @@ public class BasketServiceTest {
     public void testCreate() {
         TCreate_Return[] Baskets_create_out = basketService.create(new TCreate_Input[]{Basket_in});
         assertNoError(Baskets_create_out[0].getError());
+        assertNull("No FormErrors", Baskets_create_out[0].getFormErrors());
         assertEquals("created?", new Boolean(true), Baskets_create_out[0].getCreated());
         assertNotNull("Path not null",Baskets_create_out[0].getPath());
         BasketPath = Baskets_create_out[0].getPath();
@@ -122,6 +124,7 @@ public class BasketServiceTest {
         TCreate_Input basket_in = new TCreate_Input();
         TCreate_Return[] Baskets_create_out = basketService.create(new TCreate_Input[]{basket_in});
         assertNoError(Baskets_create_out[0].getError());
+        assertNull("No FormErrors", Baskets_create_out[0].getFormErrors());
         assertEquals("created?", new Boolean(true), Baskets_create_out[0].getCreated());
         assertNotNull("Path not null",Baskets_create_out[0].getPath());
     }
@@ -133,7 +136,18 @@ public class BasketServiceTest {
         Basket_up.setPath(BasketPath);
         TUpdate_Return[] Baskets_update_out = basketService.update(new TUpdate_Input[]{Basket_up});
         assertNoError(Baskets_update_out[0].getError());
+        assertNull("No FormErrors", Baskets_update_out[0].getFormErrors());
         assertTrue("updated?", Baskets_update_out[0].getUpdated());
+    }
+
+    /**
+     * Update a Basket with a billing address and check if the update was successful
+     */
+    public void testUpdateWithFormError() {
+        Basket_up.setPath(BasketPath);
+        TUpdate_Return[] Baskets_update_out = basketService.update(new TUpdate_Input[]{Basket_up});
+        Baskets_update_out[0].setFormErrors(new TFormError[] { new TFormError() });
+        assertEquals("updateWithFormError resultset", Baskets_update_out[0].getFormErrors().length, 1);
     }
 
     /**
@@ -234,6 +248,7 @@ public class BasketServiceTest {
         testExists(true);
         testGetInfo(false);
         testUpdate();
+        testUpdateWithFormError();
         testUpdateLineItem();
         testGetInfo(true);
         testDelete();
