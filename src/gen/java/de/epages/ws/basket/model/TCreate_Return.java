@@ -26,6 +26,9 @@ public class TCreate_Return  implements java.io.Serializable {
     /* error object (see epagestypes:TError) */
     private de.epages.ws.common.model.TError error;
 
+    /* list of form error objects (see formtypes:TListOfFormErrors) */
+    private de.epages.ws.common.model.TFormError[] formErrors;
+
     public TCreate_Return() {
     }
 
@@ -33,11 +36,13 @@ public class TCreate_Return  implements java.io.Serializable {
            java.lang.String alias,
            java.lang.String path,
            java.lang.Boolean created,
-           de.epages.ws.common.model.TError error) {
+           de.epages.ws.common.model.TError error,
+           de.epages.ws.common.model.TFormError[] formErrors) {
            this.alias = alias;
            this.path = path;
            this.created = created;
            this.error = error;
+           this.formErrors = formErrors;
     }
 
 
@@ -120,6 +125,26 @@ public class TCreate_Return  implements java.io.Serializable {
         this.error = error;
     }
 
+
+    /**
+     * Gets the formErrors value for this TCreate_Return.
+     * 
+     * @return formErrors   * list of form error objects (see formtypes:TListOfFormErrors)
+     */
+    public de.epages.ws.common.model.TFormError[] getFormErrors() {
+        return formErrors;
+    }
+
+
+    /**
+     * Sets the formErrors value for this TCreate_Return.
+     * 
+     * @param formErrors   * list of form error objects (see formtypes:TListOfFormErrors)
+     */
+    public void setFormErrors(de.epages.ws.common.model.TFormError[] formErrors) {
+        this.formErrors = formErrors;
+    }
+
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
         if (!(obj instanceof TCreate_Return)) return false;
@@ -143,7 +168,10 @@ public class TCreate_Return  implements java.io.Serializable {
               this.created.equals(other.getCreated()))) &&
             ((this.error==null && other.getError()==null) || 
              (this.error!=null &&
-              this.error.equals(other.getError())));
+              this.error.equals(other.getError()))) &&
+            ((this.formErrors==null && other.getFormErrors()==null) || 
+             (this.formErrors!=null &&
+              java.util.Arrays.equals(this.formErrors, other.getFormErrors())));
         __equalsCalc = null;
         return _equals;
     }
@@ -166,6 +194,17 @@ public class TCreate_Return  implements java.io.Serializable {
         }
         if (getError() != null) {
             _hashCode += getError().hashCode();
+        }
+        if (getFormErrors() != null) {
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getFormErrors());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getFormErrors(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -201,6 +240,13 @@ public class TCreate_Return  implements java.io.Serializable {
         elemField.setFieldName("error");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Error"));
         elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/EpagesTypes/2005/01", "TError"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("formErrors");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "FormErrors"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/FormTypes/2014/02", "TFormError"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
