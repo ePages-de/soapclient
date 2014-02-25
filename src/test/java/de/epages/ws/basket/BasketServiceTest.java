@@ -7,6 +7,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.math.BigInteger;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 
@@ -60,12 +61,14 @@ public class BasketServiceTest {
         BasketAttr_in = new TAttribute("IsAddressOK","1",null,null);
         BasketAttr_up = new TAttribute("IsAddressOK","0",null,null);
         Address_in = new TAddressNamed();
-        Address_up = new TAddressNamed();
 
         // init input address data
         Address_in.setEMail("java_test-1@epages.de");
         Address_in.setFirstName("Klaus");
         Address_in.setLastName("Klaussen");
+        Address_in.setCity("Klausdorf");
+        Address_in.setZipcode("08151");
+        Address_in.setCountryID(BigInteger.valueOf(276));
         Address_in.setStreet("Musterstraße 2");
         Address_in.setStreet2("Ortsteil Niederfingeln");
         Address_in.setAttributes( new TAttribute[] {
@@ -73,6 +76,8 @@ public class BasketServiceTest {
                 new TAttribute("Salutation","Dr.",null,null),
         });
 
+        Address_up = Address_in;
+        // just update some fields
         Address_up.setFirstName("Hans");
         Address_up.setLastName("Hanssen");
         Address_up.setStreet("Musterstraße 2b");
@@ -111,6 +116,7 @@ public class BasketServiceTest {
     public void testCreate() {
         TCreate_Return[] Baskets_create_out = basketService.create(new TCreate_Input[]{Basket_in});
         assertNoError(Baskets_create_out[0].getError());
+
         assertNull("No FormErrors", Baskets_create_out[0].getFormErrors());
         assertEquals("created?", new Boolean(true), Baskets_create_out[0].getCreated());
         assertNotNull("Path not null",Baskets_create_out[0].getPath());
