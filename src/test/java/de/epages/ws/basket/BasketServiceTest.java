@@ -12,6 +12,7 @@ import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import de.epages.ws.WebServiceTestConfiguration;
@@ -247,6 +248,7 @@ public class BasketServiceTest {
      * runs all tests
      */
     @Test
+    @Ignore
     public void testAll() throws RemoteException
     {
         testCreate();
