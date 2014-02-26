@@ -631,14 +631,14 @@ public class Bind_Basket_SOAPStub extends org.apache.axis.client.Stub implements
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/FormTypes/2014/02", "TFormError");
             cachedSerQNames.add(qName);
-            cls = de.epages.ws.common.model.TFormError.class;
+            cls = de.epages.ws.form.model.TFormError.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/FormTypes/2014/02", "TListOfFormErrors");
             cachedSerQNames.add(qName);
-            cls = de.epages.ws.common.model.TFormError[].class;
+            cls = de.epages.ws.form.model.TFormError[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/FormTypes/2014/02", "TFormError");
             qName2 = null;

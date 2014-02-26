@@ -24,7 +24,7 @@ public class TUpdate_Return  implements java.io.Serializable {
     private de.epages.ws.common.model.TError error;
 
     /* list of form error objects (see formtypes:TListOfFormErrors) */
-    private de.epages.ws.common.model.TFormError[] formErrors;
+    private de.epages.ws.form.model.TFormError[] formErrors;
 
     public TUpdate_Return() {
     }
@@ -33,7 +33,7 @@ public class TUpdate_Return  implements java.io.Serializable {
            java.lang.String path,
            java.lang.Boolean updated,
            de.epages.ws.common.model.TError error,
-           de.epages.ws.common.model.TFormError[] formErrors) {
+           de.epages.ws.form.model.TFormError[] formErrors) {
            this.path = path;
            this.updated = updated;
            this.error = error;
@@ -106,7 +106,7 @@ public class TUpdate_Return  implements java.io.Serializable {
      * 
      * @return formErrors   * list of form error objects (see formtypes:TListOfFormErrors)
      */
-    public de.epages.ws.common.model.TFormError[] getFormErrors() {
+    public de.epages.ws.form.model.TFormError[] getFormErrors() {
         return formErrors;
     }
 
@@ -116,7 +116,7 @@ public class TUpdate_Return  implements java.io.Serializable {
      * 
      * @param formErrors   * list of form error objects (see formtypes:TListOfFormErrors)
      */
-    public void setFormErrors(de.epages.ws.common.model.TFormError[] formErrors) {
+    public void setFormErrors(de.epages.ws.form.model.TFormError[] formErrors) {
         this.formErrors = formErrors;
     }
 
