@@ -29,7 +29,7 @@ import de.epages.ws.basket.model.TUpdateLineItem_Return;
 import de.epages.ws.basket.model.TUpdate_Input;
 import de.epages.ws.basket.model.TUpdate_Return;
 import de.epages.ws.common.model.TAttribute;
-import de.epages.ws.common.model.TFormError;
+import de.epages.ws.form.model.TFormError;
 import de.epages.ws.shop3.model.TAddressNamed;
 
 /**
