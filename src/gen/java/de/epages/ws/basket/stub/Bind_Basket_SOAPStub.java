@@ -629,6 +629,22 @@ public class Bind_Basket_SOAPStub extends org.apache.axis.client.Stub implements
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/FormTypes/2014/02", "TFormError");
+            cachedSerQNames.add(qName);
+            cls = de.epages.ws.form.model.TFormError.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/FormTypes/2014/02", "TListOfFormErrors");
+            cachedSerQNames.add(qName);
+            cls = de.epages.ws.form.model.TFormError[].class;
+            cachedSerClasses.add(cls);
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/FormTypes/2014/02", "TFormError");
+            qName2 = null;
+            cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
+            cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
+
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ShopTypes/2011/01", "TAddressNamed");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.shop3.model.TAddressNamed.class;
