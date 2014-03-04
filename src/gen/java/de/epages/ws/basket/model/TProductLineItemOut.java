@@ -25,7 +25,7 @@ public class TProductLineItemOut  implements java.io.Serializable {
     /* sku of the product line item */
     private java.lang.String SKU;
 
-    /* the product object path of the product line item */
+    /* the product object GUID of the product line item */
     private java.lang.String product;
 
     /* the tax class of the product line item (object path to tax
@@ -169,7 +169,7 @@ public class TProductLineItemOut  implements java.io.Serializable {
     /**
      * Gets the product value for this TProductLineItemOut.
      * 
-     * @return product   * the product object path of the product line item
+     * @return product   * the product object GUID of the product line item
      */
     public java.lang.String getProduct() {
         return product;
@@ -179,7 +179,7 @@ public class TProductLineItemOut  implements java.io.Serializable {
     /**
      * Sets the product value for this TProductLineItemOut.
      * 
-     * @param product   * the product object path of the product line item
+     * @param product   * the product object GUID of the product line item
      */
     public void setProduct(java.lang.String product) {
         this.product = product;

@@ -23,7 +23,12 @@ public class TUpdate_Return  implements java.io.Serializable {
     /* error object (see epagestypes:TError) */
     private de.epages.ws.common.model.TError error;
 
-    /* list of form error objects (see formtypes:TListOfFormErrors) */
+    /* list of form error objects (see formtypes:TListOfFormErrors).
+     * special form error objects when updating/setting the billing- or shipping-address
+     * could have the following error codings:
+     *              VATIDIsNotValid
+     *              VATIDIsNotFromSameCountry
+     *              ZIPCODE_NOT_VALID */
     private de.epages.ws.form.model.TFormError[] formErrors;
 
     public TUpdate_Return() {
@@ -104,7 +109,12 @@ public class TUpdate_Return  implements java.io.Serializable {
     /**
      * Gets the formErrors value for this TUpdate_Return.
      * 
-     * @return formErrors   * list of form error objects (see formtypes:TListOfFormErrors)
+     * @return formErrors   * list of form error objects (see formtypes:TListOfFormErrors).
+     * special form error objects when updating/setting the billing- or shipping-address
+     * could have the following error codings:
+     *              VATIDIsNotValid
+     *              VATIDIsNotFromSameCountry
+     *              ZIPCODE_NOT_VALID
      */
     public de.epages.ws.form.model.TFormError[] getFormErrors() {
         return formErrors;
@@ -114,7 +124,12 @@ public class TUpdate_Return  implements java.io.Serializable {
     /**
      * Sets the formErrors value for this TUpdate_Return.
      * 
-     * @param formErrors   * list of form error objects (see formtypes:TListOfFormErrors)
+     * @param formErrors   * list of form error objects (see formtypes:TListOfFormErrors).
+     * special form error objects when updating/setting the billing- or shipping-address
+     * could have the following error codings:
+     *              VATIDIsNotValid
+     *              VATIDIsNotFromSameCountry
+     *              ZIPCODE_NOT_VALID
      */
     public void setFormErrors(de.epages.ws.form.model.TFormError[] formErrors) {
         this.formErrors = formErrors;

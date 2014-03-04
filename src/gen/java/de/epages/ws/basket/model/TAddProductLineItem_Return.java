@@ -10,12 +10,12 @@ package de.epages.ws.basket.model;
 
 /**
  * a single return value of a addProductLineItem() call.
- *         the path will be always returned.
+ *         the GUID will be always returned.
  *         the error element will be returned in case of error.
  *         the added flag will be returned if no error has occured.
  */
 public class TAddProductLineItem_Return  implements java.io.Serializable {
-    private java.lang.String path;
+    private java.lang.String GUID;
 
     /* a boolean flag indicating that this product line item was added */
     private java.lang.Boolean added;
@@ -27,32 +27,32 @@ public class TAddProductLineItem_Return  implements java.io.Serializable {
     }
 
     public TAddProductLineItem_Return(
-           java.lang.String path,
+           java.lang.String GUID,
            java.lang.Boolean added,
            de.epages.ws.common.model.TError error) {
-           this.path = path;
+           this.GUID = GUID;
            this.added = added;
            this.error = error;
     }
 
 
     /**
-     * Gets the path value for this TAddProductLineItem_Return.
+     * Gets the GUID value for this TAddProductLineItem_Return.
      * 
-     * @return path
+     * @return GUID
      */
-    public java.lang.String getPath() {
-        return path;
+    public java.lang.String getGUID() {
+        return GUID;
     }
 
 
     /**
-     * Sets the path value for this TAddProductLineItem_Return.
+     * Sets the GUID value for this TAddProductLineItem_Return.
      * 
-     * @param path
+     * @param GUID
      */
-    public void setPath(java.lang.String path) {
-        this.path = path;
+    public void setGUID(java.lang.String GUID) {
+        this.GUID = GUID;
     }
 
 
@@ -107,9 +107,9 @@ public class TAddProductLineItem_Return  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
-            ((this.path==null && other.getPath()==null) || 
-             (this.path!=null &&
-              this.path.equals(other.getPath()))) &&
+            ((this.GUID==null && other.getGUID()==null) || 
+             (this.GUID!=null &&
+              this.GUID.equals(other.getGUID()))) &&
             ((this.added==null && other.getAdded()==null) || 
              (this.added!=null &&
               this.added.equals(other.getAdded()))) &&
@@ -127,8 +127,8 @@ public class TAddProductLineItem_Return  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        if (getPath() != null) {
-            _hashCode += getPath().hashCode();
+        if (getGUID() != null) {
+            _hashCode += getGUID().hashCode();
         }
         if (getAdded() != null) {
             _hashCode += getAdded().hashCode();
@@ -147,8 +147,8 @@ public class TAddProductLineItem_Return  implements java.io.Serializable {
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/BasketTypes/2013/11", "TAddProductLineItem_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("path");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
+        elemField.setFieldName("GUID");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "GUID"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
