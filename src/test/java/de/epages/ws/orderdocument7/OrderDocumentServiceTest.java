@@ -22,7 +22,7 @@ import de.epages.ws.orderdocument7.model.TUpdate_Return;
 /**
  * A JUnit TestSuite to test epages Order WebServices.
  */
-public class OrderDocumentTest {
+public class OrderDocumentServiceTest {
 
     private OrderDocumentServiceClient orderDocService = new OrderDocumentServiceClientImpl(new WebServiceTestConfiguration());
 
