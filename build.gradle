@@ -217,12 +217,12 @@ task axisGen() {
     doAxisGen(it, [
             'AssignmentService',
             'BasketService',
-            'ProductService11',
             'CatalogService8',
             'OrderService12',
             'CustomerService4',
             'OrderDocumentService7',
-            'ShippingMethodService2'
+            'ShippingMethodService2',
+            'ProductService11'
         ], 'src/gen/java')
 }
 
@@ -230,8 +230,10 @@ task axisGen() {
 task axisGenOld() {
     doAxisGen(it, oldWsdls, 'src/gen-old/java')
     // remove potential duplicates.
-    delete 'src/gen-old/java/de/epages/ws/shop3/model'
-    delete 'src/gen-old/java/de/epages/ws/common/model'
+    doLast {
+        delete file('src/gen-old/java/de/epages/ws/shop3/model')
+        delete file('src/gen-old/java/de/epages/ws/common/model')
+    }
 }
 
 task checkDependencyUpdates() {
