@@ -3,8 +3,6 @@ package de.epages.ws.catalog3;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.net.MalformedURLException;
-import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -53,7 +51,7 @@ public class CatalogServiceTest {
      * the test are run.
      */
     @Before
-    public void setUp() throws RemoteException, MalformedURLException {
+    public void setUp() {
 
         // create test Catalogs that can be used with the create and update
         // methods

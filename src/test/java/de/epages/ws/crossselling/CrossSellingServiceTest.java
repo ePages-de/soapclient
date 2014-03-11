@@ -6,8 +6,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.math.BigInteger;
-import java.net.MalformedURLException;
-import java.rmi.RemoteException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +33,7 @@ public class CrossSellingServiceTest {
      * the test are run.
      */
     @Before
-    public void setUp() throws RemoteException, MalformedURLException {
+    public void setUp() {
         // remove all assigned cross selling products
         TDeleteCrossSelling_Input CrossSelling_in = new TDeleteCrossSelling_Input();
         CrossSelling_in.setProduct(product);
@@ -74,7 +72,7 @@ public class CrossSellingServiceTest {
     /**
      * insert a cross selling and check if the creation was successful
      */
-    public void testInsert() throws RemoteException {
+    public void testInsert() {
         // insert a CrossSelling, a ProductComparison and an Accessory product
         TInsertCrossSelling_Input crossSelling = new TInsertCrossSelling_Input();
         crossSelling.setProduct(product);
@@ -112,7 +110,7 @@ public class CrossSellingServiceTest {
     /**
      * delete a cross selling and check if the deletion was successful
      */
-    public void testDelete() throws RemoteException {
+    public void testDelete() {
 
         TDeleteCrossSelling_Input crossSelling = new TDeleteCrossSelling_Input();
         crossSelling.setProduct(product);
@@ -149,7 +147,7 @@ public class CrossSellingServiceTest {
      *            if false, test is successful if the CrossSelling does NOT
      *            exists
      */
-    public void testExists(boolean expected) throws RemoteException {
+    public void testExists(boolean expected) {
 
         // all cross selling types (Type=null)
         TExistsCrossSelling_Input CrossSelling_in = new TExistsCrossSelling_Input();
@@ -189,7 +187,7 @@ public class CrossSellingServiceTest {
     /**
      * test get method
      */
-    public void testGet() throws RemoteException {
+    public void testGet() {
         TGetCrossSelling_Input CrossSelling_in = new TGetCrossSelling_Input();
         CrossSelling_in.setProduct(product);
         CrossSelling_in.setType("CrossSelling");
@@ -226,7 +224,7 @@ public class CrossSellingServiceTest {
      * runs all tests
      */
     @Test
-    public void testAll() throws RemoteException {
+    public void testAll() {
         testInsert();
         testExists(true);
         testGet();

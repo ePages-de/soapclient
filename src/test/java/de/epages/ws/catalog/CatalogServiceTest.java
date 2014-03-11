@@ -1,6 +1,7 @@
 package de.epages.ws.catalog;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -81,7 +82,7 @@ public class CatalogServiceTest {
 
         // test if creation was successful
         assertEquals("create result set", 1, Catalogs_create_out.length);
-        assertEquals("created?", true, Catalogs_create_out[0].getCreated());
+        assertTrue("created?", Catalogs_create_out[0].getCreated());
     }
 
     /**
@@ -93,7 +94,7 @@ public class CatalogServiceTest {
 
         // test if update was successful
         assertEquals("update result set", 1, Catalogs_update_out.length);
-        assertEquals("updated?", true, Catalogs_update_out[0].getUpdated());
+        assertTrue("updated?", Catalogs_update_out[0].getUpdated());
     }
 
     /**
@@ -162,7 +163,7 @@ public class CatalogServiceTest {
         assertEquals("delete result set", 1, Catalogs_delete_out.length);
         TDelete_Return Catalog_delete_out = Catalogs_delete_out[0];
 
-        assertEquals("deleted?", true, Catalog_delete_out.getDeleted());
+        assertTrue("deleted?", Catalog_delete_out.getDeleted());
     }
 
     /**
