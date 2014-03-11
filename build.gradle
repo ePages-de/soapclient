@@ -229,8 +229,9 @@ task axisGen() {
 // everything else
 task axisGenOld() {
     doAxisGen(it, oldWsdls, 'src/gen-old/java')
-    delete 'src/gen-old/java/ws/shop3/model'
-    delete 'src/gen-old/java/ws/common/model'
+    // remove potential duplicates.
+    delete 'src/gen-old/java/de/epages/ws/shop3/model'
+    delete 'src/gen-old/java/de/epages/ws/common/model'
 }
 
 task checkDependencyUpdates() {
