@@ -1,4 +1,4 @@
-package de.epages.ws.order4;
+package de.epages.ws.order5;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,16 +11,16 @@ import org.junit.Test;
 
 import de.epages.ws.WebServiceTestConfiguration;
 import de.epages.ws.common.model.TAttribute;
-import de.epages.ws.order4.model.TCreate_Input;
-import de.epages.ws.order4.model.TCreate_Return;
-import de.epages.ws.order4.model.TDelete_Return;
-import de.epages.ws.order4.model.TExists_Return;
-import de.epages.ws.order4.model.TGetInfo_Return;
-import de.epages.ws.order4.model.TLineItemContainerIn;
-import de.epages.ws.order4.model.TProductLineItemIn;
-import de.epages.ws.order4.model.TUpdate_Input;
-import de.epages.ws.order4.model.TUpdate_Return;
-import de.epages.ws.order4.stub.TFind_Input;
+import de.epages.ws.order5.model.TCreate_Input;
+import de.epages.ws.order5.model.TCreate_Return;
+import de.epages.ws.order5.model.TDelete_Return;
+import de.epages.ws.order5.model.TExists_Return;
+import de.epages.ws.order5.model.TGetInfo_Return;
+import de.epages.ws.order5.model.TLineItemContainerIn;
+import de.epages.ws.order5.model.TProductLineItemIn;
+import de.epages.ws.order5.model.TUpdate_Input;
+import de.epages.ws.order5.model.TUpdate_Return;
+import de.epages.ws.order5.stub.TFind_Input;
 import de.epages.ws.shop2.model.TAddressNamed;
 
 public class OrderServiceTest {
