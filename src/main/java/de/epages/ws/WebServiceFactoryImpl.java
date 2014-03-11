@@ -10,6 +10,8 @@ import de.epages.ws.crossselling2.CrossSellingServiceClientImpl;
 import de.epages.ws.crossselling2.CrossSellingServiceClient;
 import de.epages.ws.customer4.CustomerServiceClient;
 import de.epages.ws.customer4.CustomerServiceClientImpl;
+import de.epages.ws.customergroup2.CustomerGroupServiceClient;
+import de.epages.ws.customergroup2.CustomerGroupServiceClientImpl;
 import de.epages.ws.order12.OrderServiceClient;
 import de.epages.ws.order12.OrderServiceClientImpl;
 import de.epages.ws.orderdocument7.OrderDocumentServiceClient;
@@ -37,8 +39,18 @@ public class WebServiceFactoryImpl implements WebServiceFactory {
     }
 
     @Override
+    public CrossSellingServiceClient createCrossSellingServiceClient(WebServiceConfiguration config) {
+        return new CrossSellingServiceClientImpl(config);
+    }
+
+    @Override
     public CustomerServiceClient createCustomerServiceClient(WebServiceConfiguration config) {
         return new CustomerServiceClientImpl(config);
+    }
+
+    @Override
+    public CustomerGroupServiceClient createCustomerGroupServiceClient(WebServiceConfiguration config) {
+        return new CustomerGroupServiceClientImpl(config);
     }
 
     @Override
@@ -61,8 +73,4 @@ public class WebServiceFactoryImpl implements WebServiceFactory {
         return new ShippingMethodServiceClientImpl(config);
     }
 
-    @Override
-    public CrossSellingServiceClient createCrossSellingServiceClient(WebServiceConfiguration config) {
-        return new CrossSellingServiceClientImpl(config);
-    }
 }
