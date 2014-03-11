@@ -1,4 +1,4 @@
-package de.epages.ws.order8;
+package de.epages.ws.order9;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -12,16 +12,17 @@ import org.junit.Test;
 
 import de.epages.ws.WebServiceTestConfiguration;
 import de.epages.ws.common.model.TAttribute;
-import de.epages.ws.order8.model.TCreate_Input;
-import de.epages.ws.order8.model.TCreate_Return;
-import de.epages.ws.order8.model.TDelete_Return;
-import de.epages.ws.order8.model.TExists_Return;
-import de.epages.ws.order8.model.TGetInfo_Return;
-import de.epages.ws.order8.model.TLineItemContainerIn;
-import de.epages.ws.order8.model.TProductLineItemIn;
-import de.epages.ws.order8.model.TUpdate_Input;
-import de.epages.ws.order8.model.TUpdate_Return;
-import de.epages.ws.order8.stub.TFind_Input;
+import de.epages.ws.order9.model.TBaseLineItem;
+import de.epages.ws.order9.model.TCreate_Input;
+import de.epages.ws.order9.model.TCreate_Return;
+import de.epages.ws.order9.model.TDelete_Return;
+import de.epages.ws.order9.model.TExists_Return;
+import de.epages.ws.order9.model.TGetInfo_Return;
+import de.epages.ws.order9.model.TLineItemContainerIn;
+import de.epages.ws.order9.model.TProductLineItemIn;
+import de.epages.ws.order9.model.TUpdate_Input;
+import de.epages.ws.order9.model.TUpdate_Return;
+import de.epages.ws.order9.stub.TFind_Input;
 import de.epages.ws.shop3.model.TAddressNamed;
 
 public class OrderServiceTest {
@@ -168,6 +169,16 @@ public class OrderServiceTest {
         assertEquals("TaxArea", Order_in.getLineItemContainer().getTaxArea(), Order_info_out.getLineItemContainer().getTaxArea());
         assertEquals("TaxModel", Order_in.getLineItemContainer().getTaxModel(), Order_info_out.getLineItemContainer().getTaxModel());
         assertEquals("CurrencyID", Order_in.getLineItemContainer().getCurrencyID(), Order_info_out.getLineItemContainer().getCurrencyID());
+
+        TProductLineItemIn refLineItem = Order_in.getLineItemContainer().getProductLineItems()[0];
+        TBaseLineItem[] AllLineItems = Order_info_out.getLineItemContainer().getAllBaseLineItems();
+        for (TBaseLineItem tBaseLineItem : AllLineItems) {
+            if ( "Products/" + tBaseLineItem.getSKU() == refLineItem.getProduct() ) {
+                assertEquals("base line item is a product", "LineItemProduct", tBaseLineItem.getClass());
+                assertEquals("base line item quantity", refLineItem.getQuantity(), tBaseLineItem.getQuantity(), 0.0f);
+            }
+        }
+
     }
 
     /**
