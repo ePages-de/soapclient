@@ -159,7 +159,6 @@ def oldWsdls = [
 'CatalogService7',
 'CrossSellingService',
 'CustomerGroupService',
-'CustomerGroupService2',
 'CustomerService',
 'CustomerService2',
 'CustomerService3',
@@ -222,6 +221,7 @@ task axisGen() {
             'OrderDocumentService7',
             'ShippingMethodService2',
             'CrossSellingService2',
+            'CustomerGroupService2',
             'ProductService11'
         ], 'src/gen/java')
 }
