@@ -6,6 +6,8 @@ import de.epages.ws.basket.BasketServiceClient;
 import de.epages.ws.basket.BasketServiceClientImpl;
 import de.epages.ws.catalog8.CatalogServiceClient;
 import de.epages.ws.catalog8.CatalogServiceClientImpl;
+import de.epages.ws.crossselling2.CrossSellingServiceClientImpl;
+import de.epages.ws.crossselling2.CrossSellingServiceClient;
 import de.epages.ws.customer4.CustomerServiceClient;
 import de.epages.ws.customer4.CustomerServiceClientImpl;
 import de.epages.ws.order12.OrderServiceClient;
@@ -43,7 +45,7 @@ public class WebServiceFactoryImpl implements WebServiceFactory {
     public OrderDocumentServiceClient createOrderDocumentServiceClient(WebServiceConfiguration config) {
         return new OrderDocumentServiceClientImpl(config);
     }
-    
+
     @Override
     public OrderServiceClient createOrderServiceClient(WebServiceConfiguration config) {
         return new OrderServiceClientImpl(config);
@@ -59,4 +61,8 @@ public class WebServiceFactoryImpl implements WebServiceFactory {
         return new ShippingMethodServiceClientImpl(config);
     }
 
+    @Override
+    public CrossSellingServiceClient createCrossSellingServiceClient(WebServiceConfiguration config) {
+        return new CrossSellingServiceClientImpl(config);
+    }
 }
