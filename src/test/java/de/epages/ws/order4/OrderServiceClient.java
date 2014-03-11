@@ -7,10 +7,12 @@
 
 package de.epages.ws.order4;
 
+import de.epages.ws.order4.model.TCreate_Input;
 import de.epages.ws.order4.model.TCreate_Return;
 import de.epages.ws.order4.model.TDelete_Return;
 import de.epages.ws.order4.model.TExists_Return;
 import de.epages.ws.order4.model.TGetInfo_Return;
+import de.epages.ws.order4.model.TUpdate_Input;
 import de.epages.ws.order4.model.TUpdate_Return;
 import de.epages.ws.order4.stub.Port_Order;
 
@@ -55,13 +57,13 @@ public interface OrderServiceClient extends Port_Order {
      * update a list of orders. This function also sends order
      *         status e-mails to customers if the e-mail events are enabled.
      */
-    TUpdate_Return[] update(de.epages.ws.order4.model.TUpdate_Input[] orders);
+    TUpdate_Return[] update(TUpdate_Input[] orders);
 
     /**
      * create new orders. This function does not send order
      *         confirmation e-mails to the customers.
      */
-    TCreate_Return[] create(de.epages.ws.order4.model.TCreate_Input[] orders);
+    TCreate_Return[] create(TCreate_Input[] orders);
 
     /**
      * find orders

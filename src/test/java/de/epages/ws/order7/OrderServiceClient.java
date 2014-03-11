@@ -7,12 +7,15 @@
 
 package de.epages.ws.order7;
 
+import de.epages.ws.order7.model.TCreate_Input;
 import de.epages.ws.order7.model.TCreate_Return;
 import de.epages.ws.order7.model.TDelete_Return;
 import de.epages.ws.order7.model.TExists_Return;
 import de.epages.ws.order7.model.TGetInfo_Return;
+import de.epages.ws.order7.model.TUpdate_Input;
 import de.epages.ws.order7.model.TUpdate_Return;
 import de.epages.ws.order7.stub.Port_Order;
+import de.epages.ws.order7.stub.TFind_Input;
 
 public interface OrderServiceClient extends Port_Order {
 
@@ -55,17 +58,17 @@ public interface OrderServiceClient extends Port_Order {
      * update a list of orders. This function also sends order
      *         status e-mails to customers if the e-mail events are enabled.
      */
-    TUpdate_Return[] update(de.epages.ws.order7.model.TUpdate_Input[] orders);
+    TUpdate_Return[] update(TUpdate_Input[] orders);
 
     /**
      * create new orders. This function does not send order
      *         confirmation e-mails to the customers.
      */
-    TCreate_Return[] create(de.epages.ws.order7.model.TCreate_Input[] orders);
+    TCreate_Return[] create(TCreate_Input[] orders);
 
     /**
      * find orders
      */
-    String[] find(de.epages.ws.order7.stub.TFind_Input searchParameters);
+    String[] find(TFind_Input searchParameters);
 
 }
