@@ -12,7 +12,33 @@ package de.epages.ws.form.model;
  * an form error object
  */
 public class TFormError  implements java.io.Serializable {
-    /* the error code */
+    /* the error code return from the form validation.
+     *             this is a list of general codes which may be returned:
+     * DATETIME_TOO_LARGE
+     *               DATETIME_TOO_SMALL
+     *               FORMAT_NOT_TIME
+     *               FORMAT_NOT_DATE
+     *               FORMAT_NOT_DATETIME
+     *               FORMAT_NOT_FLOAT
+     *               FORMAT_NOT_INTEGER
+     *               FORMAT_NOT_MONEY
+     *               FORMAT_NOT_IPADDRESS
+     *               FORMAT_NOT_EMAILADDRESS
+     *               FORMAT_NOT_URL
+     *               FORMAT_NOT_DOMAIN
+     *               INTEGER_TOO_LARGE
+     *               INTEGER_TOO_SMALL
+     *               FLOAT_TOO_LARGE
+     *               FLOAT_TOO_SMALL
+     *               STRING_EMPTY
+     *               STRING_TOO_LONG
+     *               STRING_TOO_SHORT
+     *               FILE_TOO_LONG
+     *               FILE_TOO_SMALL
+     *               FILE_NOT_UPLOADED
+     *               SMTP_FALSE_MAIL_FORMAT
+     *               TLE_ERROR
+     *               PasswordWithSpaces */
     private java.lang.String code;
 
     /* the field name */
@@ -21,28 +47,49 @@ public class TFormError  implements java.io.Serializable {
     /* the field value */
     private java.lang.String fieldValue;
 
-    /* a short error message as description */
-    private java.lang.String message;
-
     public TFormError() {
     }
 
     public TFormError(
            java.lang.String code,
            java.lang.String fieldName,
-           java.lang.String fieldValue,
-           java.lang.String message) {
+           java.lang.String fieldValue) {
            this.code = code;
            this.fieldName = fieldName;
            this.fieldValue = fieldValue;
-           this.message = message;
     }
 
 
     /**
      * Gets the code value for this TFormError.
      * 
-     * @return code   * the error code
+     * @return code   * the error code return from the form validation.
+     *             this is a list of general codes which may be returned:
+     * DATETIME_TOO_LARGE
+     *               DATETIME_TOO_SMALL
+     *               FORMAT_NOT_TIME
+     *               FORMAT_NOT_DATE
+     *               FORMAT_NOT_DATETIME
+     *               FORMAT_NOT_FLOAT
+     *               FORMAT_NOT_INTEGER
+     *               FORMAT_NOT_MONEY
+     *               FORMAT_NOT_IPADDRESS
+     *               FORMAT_NOT_EMAILADDRESS
+     *               FORMAT_NOT_URL
+     *               FORMAT_NOT_DOMAIN
+     *               INTEGER_TOO_LARGE
+     *               INTEGER_TOO_SMALL
+     *               FLOAT_TOO_LARGE
+     *               FLOAT_TOO_SMALL
+     *               STRING_EMPTY
+     *               STRING_TOO_LONG
+     *               STRING_TOO_SHORT
+     *               FILE_TOO_LONG
+     *               FILE_TOO_SMALL
+     *               FILE_NOT_UPLOADED
+     *               SMTP_FALSE_MAIL_FORMAT
+     *               TLE_ERROR
+     *               PasswordWithSpaces
      */
     public java.lang.String getCode() {
         return code;
@@ -52,7 +99,33 @@ public class TFormError  implements java.io.Serializable {
     /**
      * Sets the code value for this TFormError.
      * 
-     * @param code   * the error code
+     * @param code   * the error code return from the form validation.
+     *             this is a list of general codes which may be returned:
+     * DATETIME_TOO_LARGE
+     *               DATETIME_TOO_SMALL
+     *               FORMAT_NOT_TIME
+     *               FORMAT_NOT_DATE
+     *               FORMAT_NOT_DATETIME
+     *               FORMAT_NOT_FLOAT
+     *               FORMAT_NOT_INTEGER
+     *               FORMAT_NOT_MONEY
+     *               FORMAT_NOT_IPADDRESS
+     *               FORMAT_NOT_EMAILADDRESS
+     *               FORMAT_NOT_URL
+     *               FORMAT_NOT_DOMAIN
+     *               INTEGER_TOO_LARGE
+     *               INTEGER_TOO_SMALL
+     *               FLOAT_TOO_LARGE
+     *               FLOAT_TOO_SMALL
+     *               STRING_EMPTY
+     *               STRING_TOO_LONG
+     *               STRING_TOO_SHORT
+     *               FILE_TOO_LONG
+     *               FILE_TOO_SMALL
+     *               FILE_NOT_UPLOADED
+     *               SMTP_FALSE_MAIL_FORMAT
+     *               TLE_ERROR
+     *               PasswordWithSpaces
      */
     public void setCode(java.lang.String code) {
         this.code = code;
@@ -98,26 +171,6 @@ public class TFormError  implements java.io.Serializable {
         this.fieldValue = fieldValue;
     }
 
-
-    /**
-     * Gets the message value for this TFormError.
-     * 
-     * @return message   * a short error message as description
-     */
-    public java.lang.String getMessage() {
-        return message;
-    }
-
-
-    /**
-     * Sets the message value for this TFormError.
-     * 
-     * @param message   * a short error message as description
-     */
-    public void setMessage(java.lang.String message) {
-        this.message = message;
-    }
-
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
         if (!(obj instanceof TFormError)) return false;
@@ -138,10 +191,7 @@ public class TFormError  implements java.io.Serializable {
               this.fieldName.equals(other.getFieldName()))) &&
             ((this.fieldValue==null && other.getFieldValue()==null) || 
              (this.fieldValue!=null &&
-              this.fieldValue.equals(other.getFieldValue()))) &&
-            ((this.message==null && other.getMessage()==null) || 
-             (this.message!=null &&
-              this.message.equals(other.getMessage())));
+              this.fieldValue.equals(other.getFieldValue())));
         __equalsCalc = null;
         return _equals;
     }
@@ -161,9 +211,6 @@ public class TFormError  implements java.io.Serializable {
         }
         if (getFieldValue() != null) {
             _hashCode += getFieldValue().hashCode();
-        }
-        if (getMessage() != null) {
-            _hashCode += getMessage().hashCode();
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -190,12 +237,6 @@ public class TFormError  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("fieldValue");
         elemField.setXmlName(new javax.xml.namespace.QName("", "FieldValue"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("message");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "Message"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
