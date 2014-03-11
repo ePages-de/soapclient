@@ -12,6 +12,8 @@ import de.epages.ws.catalog2.model.TCreate_Return;
 import de.epages.ws.catalog2.model.TDelete_Return;
 import de.epages.ws.catalog2.model.TExists_Return;
 import de.epages.ws.catalog2.model.TGetInfo_Return;
+import de.epages.ws.catalog2.model.TSortProducts_Input;
+import de.epages.ws.catalog2.model.TSortProducts_Return;
 import de.epages.ws.catalog2.model.TUpdate_Input;
 import de.epages.ws.catalog2.model.TUpdate_Return;
 import de.epages.ws.catalog2.stub.Port_Catalog;
@@ -49,4 +51,8 @@ public interface CatalogServiceClient extends Port_Catalog {
      */
     TGetRoot_Return getRoot();
 
+    /**
+     * sort products in each catalog of a list of catalogs
+     */
+    TSortProducts_Return[] sortProducts(TSortProducts_Input[] catalogs);
 }
