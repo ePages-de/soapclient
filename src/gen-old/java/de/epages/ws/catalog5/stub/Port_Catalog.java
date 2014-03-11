@@ -47,5 +47,5 @@ public interface Port_Catalog extends java.rmi.Remote {
     /**
      * upload catalog related images.
      */
-    public de.epages.ws.catalog5.model.TUpload_Return uploadImage(java.lang.String TObjectPath, de.epages.ws.catalog5.model.TUpload_Input imageData) throws java.rmi.RemoteException;
+    public de.epages.ws.catalog5.model.TUpload_Return uploadImage(java.lang.String catalog, de.epages.ws.catalog5.model.TUpload_Input imageData) throws java.rmi.RemoteException;
 }

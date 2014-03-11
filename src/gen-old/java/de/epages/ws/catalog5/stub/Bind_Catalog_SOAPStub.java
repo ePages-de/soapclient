@@ -104,7 +104,7 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("uploadImage");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "TObjectPath"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Catalog"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ImageData"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogTypes/2010/04", "TUpload_Input"), de.epages.ws.catalog5.model.TUpload_Input.class, false, false);
         oper.addParameter(param);
@@ -704,7 +704,7 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
 }
     }
 
-    public de.epages.ws.catalog5.model.TUpload_Return uploadImage(java.lang.String TObjectPath, de.epages.ws.catalog5.model.TUpload_Input imageData) throws java.rmi.RemoteException {
+    public de.epages.ws.catalog5.model.TUpload_Return uploadImage(java.lang.String catalog, de.epages.ws.catalog5.model.TUpload_Input imageData) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -717,7 +717,7 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
 
         setRequestHeaders(_call);
         setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {TObjectPath, imageData});
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {catalog, imageData});
 
         if (_resp instanceof java.rmi.RemoteException) {
             throw (java.rmi.RemoteException)_resp;
