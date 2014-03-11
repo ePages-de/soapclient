@@ -21,31 +21,31 @@ public interface CustomerServiceClient extends Port_Customer {
     /**
      * get information about a list of customers
      */
-    public TGetInfo_Return[] getInfo(String[] customers, String[] attributes);
+    TGetInfo_Return[] getInfo(String[] customers, String[] attributes);
 
     /**
      * check if a list of customers exist.
      */
-    public TExists_Return[] exists(String[] customers);
+    TExists_Return[] exists(String[] customers);
 
     /**
      * delete a list of customers
      */
-    public TDelete_Return[] delete(String[] customers);
+    TDelete_Return[] delete(String[] customers);
 
     /**
      * update a list of customers
      */
-    public TUpdate_Return[] update(TUpdate_Input[] customers);
+    TUpdate_Return[] update(TUpdate_Input[] customers);
 
     /**
      * create new customers
      */
-    public TCreate_Return[] create(TCreate_Input[] customers);
+    TCreate_Return[] create(TCreate_Input[] customers);
 
     /**
      * find customers
      */
-    public String[] find(de.epages.ws.customer2.stub.TFind_Input searchParameters);
+    String[] find(de.epages.ws.customer2.stub.TFind_Input searchParameters);
 
 }
