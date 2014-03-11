@@ -5,17 +5,16 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package de.epages.ws.customer;
+package de.epages.ws.customer2;
 
-import de.epages.ws.customer.model.TCreate_Input;
-import de.epages.ws.customer.model.TCreate_Return;
-import de.epages.ws.customer.model.TDelete_Return;
-import de.epages.ws.customer.model.TExists_Return;
-import de.epages.ws.customer.model.TGetInfo_Return;
-import de.epages.ws.customer.model.TUpdate_Input;
-import de.epages.ws.customer.model.TUpdate_Return;
-import de.epages.ws.customer.stub.Port_Customer;
-import de.epages.ws.customer.stub.TFind_Input;
+import de.epages.ws.customer2.model.TCreate_Input;
+import de.epages.ws.customer2.model.TCreate_Return;
+import de.epages.ws.customer2.model.TDelete_Return;
+import de.epages.ws.customer2.model.TExists_Return;
+import de.epages.ws.customer2.model.TGetInfo_Return;
+import de.epages.ws.customer2.model.TUpdate_Input;
+import de.epages.ws.customer2.model.TUpdate_Return;
+import de.epages.ws.customer2.stub.Port_Customer;
 
 public interface CustomerServiceClient extends Port_Customer {
 
@@ -47,6 +46,6 @@ public interface CustomerServiceClient extends Port_Customer {
     /**
      * find customers
      */
-    public String[] find(TFind_Input searchParameters);
+    public String[] find(de.epages.ws.customer2.stub.TFind_Input searchParameters);
 
 }
