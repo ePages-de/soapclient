@@ -9,6 +9,7 @@ import de.epages.ws.customergroup2.CustomerGroupServiceClient;
 import de.epages.ws.order12.OrderServiceClient;
 import de.epages.ws.orderdocument7.OrderDocumentServiceClient;
 import de.epages.ws.pagecache.PageCacheServiceClient;
+import de.epages.ws.paymentmethod.PaymentMethodServiceClient;
 import de.epages.ws.product11.ProductServiceClient;
 import de.epages.ws.shippingmethod2.ShippingMethodServiceClient;
 
@@ -34,6 +35,8 @@ public interface WebServiceFactory {
     OrderServiceClient createOrderServiceClient(WebServiceConfiguration config);
 
     PageCacheServiceClient createPageCacheServiceClient(WebServiceConfiguration config);
+
+    PaymentMethodServiceClient createPaymentMethodServiceClient(WebServiceConfiguration config);
 
     ProductServiceClient createProductServiceClient(WebServiceConfiguration config);
 

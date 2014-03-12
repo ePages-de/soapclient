@@ -18,6 +18,8 @@ import de.epages.ws.orderdocument7.OrderDocumentServiceClient;
 import de.epages.ws.orderdocument7.OrderDocumentServiceClientImpl;
 import de.epages.ws.pagecache.PageCacheServiceClient;
 import de.epages.ws.pagecache.PageCacheServiceClientImpl;
+import de.epages.ws.paymentmethod.PaymentMethodServiceClient;
+import de.epages.ws.paymentmethod.PaymentMethodServiceClientImpl;
 import de.epages.ws.product11.ProductServiceClient;
 import de.epages.ws.product11.ProductServiceClientImpl;
 import de.epages.ws.shippingmethod2.ShippingMethodServiceClient;
@@ -68,6 +70,11 @@ public class WebServiceFactoryImpl implements WebServiceFactory {
     @Override
     public PageCacheServiceClient createPageCacheServiceClient(WebServiceConfiguration config) {
         return new PageCacheServiceClientImpl(config);
+    }
+
+    @Override
+    public PaymentMethodServiceClient createPaymentMethodServiceClient(WebServiceConfiguration config) {
+        return new PaymentMethodServiceClientImpl(config);
     }
 
     @Override
