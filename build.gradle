@@ -134,8 +134,8 @@ def doAxisGen = { currentTask, wsdls, outputDir ->
     //WDSL files in use by EPJ
     currentTask.doLast {
         file(outputDir).mkdirs()
-        wsdls.each
-        { def wsdlName ->
+        wsdls.grep { filename -> System.getProperty("wsdlFile") != null ? filename.equals(System.getProperty("wsdlFile")) : true }
+        .each { def wsdlName ->
             def url = (System.getProperty("wsdlBaseUrl") ?: "../WSDL/") + "${wsdlName}.wsdl"
             ant.echo(message: "Generating classes for ${wsdlName} from ${url}")
             ant.codegen(
@@ -209,21 +209,21 @@ def oldWsdls = [
 
 def currentWsdls = [
     'ProductTypeService2',
-//    'PriceListService2',
-//    'PriceListAssignmentService',
-//    'AssignmentService',
-//    'BasketService',
-//    'CatalogService8',
-//    'CrossSellingService2',
-//    'CustomerGroupService2',
-//    'CustomerService4',
-//    'OrderService12',
-//    'OrderDocumentService7',
-//    'PageCacheService',
-//    'PaymentMethodService',
-//    'ShippingMethodService2',
-//    // this needs to come last due to a namespace mapping hack.
-//    'ProductService11'
+    'PriceListService2',
+    'PriceListAssignmentService',
+    'AssignmentService',
+    'BasketService',
+    'CatalogService8',
+    'CrossSellingService2',
+    'CustomerGroupService2',
+    'CustomerService4',
+    'OrderService12',
+    'OrderDocumentService7',
+    'PageCacheService',
+    'PaymentMethodService',
+    'ShippingMethodService2',
+    // this needs to come last due to a namespace mapping hack.
+    'ProductService11'
 ]
 
 // current supported services
