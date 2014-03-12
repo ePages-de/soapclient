@@ -183,7 +183,6 @@ def oldWsdls = [
     'PriceListService',
     'ProductAttributeService',
     'ProductAttributeService2',
-    'ProductBundleService',
     'ProductImageService',
     'ProductService',
     'ProductService2',
@@ -221,6 +220,7 @@ def currentWsdls = [
     'OrderDocumentService7',
     'PageCacheService',
     'PaymentMethodService',
+    'ProductBundleService',
     'ShippingMethodService2',
     // this needs to come last due to a namespace mapping hack.
     'ProductService11'
