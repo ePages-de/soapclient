@@ -180,7 +180,6 @@ def oldWsdls = [
     'OrderService10',
     'OrderService11',
     'PriceListService',
-    'PriceListService2',
     'ProductAttributeService',
     'ProductAttributeService2',
     'ProductBundleService',
@@ -208,6 +207,7 @@ def oldWsdls = [
 ]
 
 def currentWsdls = [
+    'PriceListService2',
     'PriceListAssignmentService',
     'AssignmentService',
     'BasketService',

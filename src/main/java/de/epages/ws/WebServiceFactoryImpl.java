@@ -6,8 +6,8 @@ import de.epages.ws.basket.BasketServiceClient;
 import de.epages.ws.basket.BasketServiceClientImpl;
 import de.epages.ws.catalog8.CatalogServiceClient;
 import de.epages.ws.catalog8.CatalogServiceClientImpl;
-import de.epages.ws.crossselling2.CrossSellingServiceClientImpl;
 import de.epages.ws.crossselling2.CrossSellingServiceClient;
+import de.epages.ws.crossselling2.CrossSellingServiceClientImpl;
 import de.epages.ws.customer4.CustomerServiceClient;
 import de.epages.ws.customer4.CustomerServiceClientImpl;
 import de.epages.ws.customergroup2.CustomerGroupServiceClient;
@@ -20,6 +20,8 @@ import de.epages.ws.pagecache.PageCacheServiceClient;
 import de.epages.ws.pagecache.PageCacheServiceClientImpl;
 import de.epages.ws.paymentmethod.PaymentMethodServiceClient;
 import de.epages.ws.paymentmethod.PaymentMethodServiceClientImpl;
+import de.epages.ws.pricelist2.PriceListServiceClient;
+import de.epages.ws.pricelist2.PriceListServiceClientImpl;
 import de.epages.ws.pricelistassignment.PriceListAssignmentServiceClient;
 import de.epages.ws.pricelistassignment.PriceListAssignmentServiceClientImpl;
 import de.epages.ws.product11.ProductServiceClient;
@@ -82,6 +84,11 @@ public class WebServiceFactoryImpl implements WebServiceFactory {
     @Override
     public PriceListAssignmentServiceClient createPriceListAssignmentServiceClient(WebServiceConfiguration config) {
         return new PriceListAssignmentServiceClientImpl(config);
+
+    }
+    @Override
+    public PriceListServiceClient createPriceListServiceClient(WebServiceConfiguration config) {
+        return new PriceListServiceClientImpl(config);
     }
 
     @Override
