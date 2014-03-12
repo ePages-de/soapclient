@@ -15,7 +15,7 @@ apply plugin: 'jacoco'
 apply plugin: "sonar-runner"
 apply plugin: 'versions'
 
-archivesBaseName = 'soapclient'
+archivesBaseName = 'epages-soapclient'
 group = 'de.epages'
 description = 'AXIS 1.x based SOAP client for epages6'
 version = '1.4.11-SNAPSHOT'
