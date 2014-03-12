@@ -7,11 +7,6 @@ import java.net.URI;
 import java.net.URL;
 import java.util.Properties;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import de.epages.ws.WebServiceConfiguration;
-
 /**
  * Common configuration data for all web services.
  *
@@ -23,8 +18,6 @@ import de.epages.ws.WebServiceConfiguration;
  * Default credentials for DemoShop admin are used to authenticate the user.
  */
 public class WebServiceTestConfiguration implements WebServiceConfiguration {
-
-    private static final Logger log = LoggerFactory.getLogger(WebServiceTestConfiguration.class);
 
     public final static String WEBSERVICE_LOGIN = "/Shops/DemoShop/Users/admin";
     public final static String WEBSERVICE_PASSWORD = "admin";
@@ -75,9 +68,7 @@ public class WebServiceTestConfiguration implements WebServiceConfiguration {
     private URL doGetWebserviceURL() {
         String hostname = readSystemDomainName();
         try {
-            URL url = URI.create("http://" + hostname + "/epages/Store.soap").toURL();
-            log.info("using epages6 SOAP URL: " + url.toString());
-            return url;
+            return URI.create("http://" + hostname + "/epages/Store.soap").toURL();
         } catch (MalformedURLException e) {
             throw new IllegalArgumentException(e);
         }

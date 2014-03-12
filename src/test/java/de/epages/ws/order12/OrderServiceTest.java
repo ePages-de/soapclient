@@ -27,9 +27,6 @@ import de.epages.ws.order12.model.TUpdate_Return;
 import de.epages.ws.order12.stub.TFind_Input;
 import de.epages.ws.shop3.model.TAddressNamed;
 
-/**
- * A JUnit TestSuite to test epages Order WebServices.
- */
 public class OrderServiceTest {
 
     private static final OrderServiceClient orderService = new OrderServiceClientImpl(new WebServiceTestConfiguration());

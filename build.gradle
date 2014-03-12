@@ -15,10 +15,10 @@ apply plugin: 'jacoco'
 apply plugin: "sonar-runner"
 apply plugin: 'versions'
 
-archivesBaseName = 'soapclient'
+archivesBaseName = 'epages-soapclient'
 group = 'de.epages'
 description = 'AXIS 1.x based SOAP client for epages6'
-version = '1.4.10'
+version = '1.4.11'
 
 repositories {
     maven { url project.properties['artifactoryContextUrl'] + "epages-repos" }
@@ -28,6 +28,7 @@ configurations { axisGenTask }
 
 // add src/gen/java
 sourceSets.main.java.srcDirs 'src/gen/java'
+sourceSets.test.java.srcDirs 'src/gen-old/java'
 
 ext {
     axisVersion = "1.4"
@@ -122,109 +123,121 @@ sonarRunner {
    }
 }
 
-task axisGen() {
-    outputs.dir file('src/gen/java')
-    outputs.upToDateWhen({ false })
-    ant.taskdef(
+def doAxisGen = { currentTask, wsdls, outputDir ->
+    currentTask.outputs.dir file(outputDir)
+    currentTask.outputs.upToDateWhen({ false })
+    currentTask.ant.taskdef(
         name: 'codegen',
         classname: 'org.apache.axis.tools.ant.wsdl.Wsdl2javaAntTask',
         classpath: configurations.axisGenTask.asPath,
     )
-
-    //reference WSDL files, not in use
-    def wsdlFiles =  [
-  'AppointmentService',
-  'AssignmentService',
-  'BasketService',
-  'CatalogService',
-  'CatalogService2',
-  'CatalogService3',
-  'CatalogService4',
-  'CatalogService5',
-  'CatalogService6',
-  'CatalogService7',
-  'CatalogService8',
-  'CrossSellingService',
-  'CrossSellingService2',
-  'CustomerGroupService',
-  'CustomerGroupService2',
-  'CustomerService',
-  'CustomerService2',
-  'CustomerService3',
-  'CustomerService4',
-  'OrderDocumentService',
-  'OrderDocumentService2',
-  'OrderDocumentService3',
-  'OrderDocumentService4',
-  'OrderDocumentService5',
-  'OrderDocumentService6',
-  'OrderDocumentService7',
-  'OrderService',
-  'OrderService2',
-  'OrderService3',
-  'OrderService4',
-  'OrderService5',
-  'OrderService6',
-  'OrderService7',
-  'OrderService8',
-  'OrderService9',
-  'OrderService10',
-  'OrderService11',
-  'OrderService12',
-  'PageCacheService',
-  'PriceListAssignmentService',
-  'PriceListService',
-  'PriceListService2',
-  'ProductAttributeService',
-  'ProductAttributeService2',
-  'ProductBundleService',
-  'ProductImageService',
-  'ProductService',
-  'ProductService2',
-//  'ProductService3',
-  'ProductService5',
-  'ProductService6',
-  'ProductService7',
-  'ProductService8',
-  'ProductService9',
-//  'ProductService10',
-  'ProductService11',
-  'ProductTypeService',
-  'ProductTypeService2',
-  'TaxAreaService',
-  'TaxClassService',
-  'UserService',
-  'UserService',
-  'UserService2',
-  'UserService3',
-  'UserService4',
-  'UserService5',
-  'ShippingMethodService',
-  'PaymentMethodService'
-  ]
-
     //WDSL files in use by EPJ
-    doLast {
-        file('src/gen/java').mkdirs()
-        [
-            'AssignmentService',
-            'BasketService',
-            'ProductService11',
-            'CatalogService8',
-            'OrderService12',
-            'CustomerService4',
-            'OrderDocumentService7',
-            'ShippingMethodService2'
-        ].each
-        { def wsdlName ->
-            ant.echo(message: "Generating Classes for ${wsdlName}")
+    currentTask.doLast {
+        file(outputDir).mkdirs()
+        wsdls.grep { filename -> System.getProperty("wsdlFile") != null ? filename.equals(System.getProperty("wsdlFile")) : true }
+        .each { def wsdlName ->
+            def url = (System.getProperty("wsdlBaseUrl") ?: "../WSDL/") + "${wsdlName}.wsdl"
+            ant.echo(message: "Generating classes for ${wsdlName} from ${url}")
             ant.codegen(
-                    url: (System.getProperty("wsdlBaseUrl") ?: "../WSDL/") + "${wsdlName}.wsdl",
-                    output: 'src/gen/java',
+                    url: url,
+                    output: outputDir,
                     verbose: true,
                     helpergen: false,
             )
         }
+    }
+}
+
+// list of WSDL files for old versions
+def oldWsdls = [
+    'AppointmentService',
+    'CatalogService',
+    'CatalogService2',
+    'CatalogService3',
+    'CatalogService4',
+    'CatalogService5',
+    'CatalogService6',
+    'CatalogService7',
+    'CrossSellingService',
+    'CustomerGroupService',
+    'CustomerService',
+    'CustomerService2',
+    'CustomerService3',
+    'OrderDocumentService',
+    'OrderDocumentService2',
+    'OrderDocumentService3',
+    'OrderDocumentService4',
+    'OrderDocumentService5',
+    'OrderDocumentService6',
+    'OrderService',
+    'OrderService2',
+    'OrderService3',
+    'OrderService4',
+    'OrderService5',
+    'OrderService6',
+    'OrderService7',
+    'OrderService8',
+    'OrderService9',
+    'OrderService10',
+    'OrderService11',
+    'PriceListService',
+    'ProductAttributeService',
+    'ProductAttributeService2',
+    'ProductBundleService',
+    'ProductImageService',
+    'ProductService',
+    'ProductService2',
+    'ProductService3',
+    'ProductService5',
+    'ProductService6',
+    'ProductService7',
+    'ProductService8',
+    'ProductService9',
+    'ProductService10',
+    'ProductTypeService',
+    'ProductTypeService2',
+    'TaxAreaService',
+    'TaxClassService',
+    'UserService',
+    'UserService',
+    'UserService2',
+    'UserService3',
+    'UserService4',
+    'UserService5',
+    'ShippingMethodService'
+]
+
+def currentWsdls = [
+    'ProductTypeService2',
+    'PriceListService2',
+    'PriceListAssignmentService',
+    'AssignmentService',
+    'BasketService',
+    'CatalogService8',
+    'CrossSellingService2',
+    'CustomerGroupService2',
+    'CustomerService4',
+    'OrderService12',
+    'OrderDocumentService7',
+    'PageCacheService',
+    'PaymentMethodService',
+    'ShippingMethodService2',
+    // this needs to come last due to a namespace mapping hack.
+    'ProductService11'
+]
+
+// current supported services
+task axisGen() {
+    doAxisGen(it, currentWsdls, 'src/gen/java')
+}
+
+// everything else
+task axisGenOld() {
+    doAxisGen(it, oldWsdls, 'src/gen-old/java')
+    // remove potential duplicates.
+    doLast {
+        delete file('src/gen-old/java/de/epages/ws/shop3/model')
+        delete file('src/gen-old/java/de/epages/ws/common/model')
     }
 }
 

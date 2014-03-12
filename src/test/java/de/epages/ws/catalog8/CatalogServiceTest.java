@@ -31,9 +31,9 @@ import de.epages.ws.common.model.TLocalizedValue;
 /**
  * A JUnit TestSuite to test epages Catalog WebServices.
  */
-public class CatalogServiceTest extends WebServiceTestConfiguration {
+public class CatalogServiceTest {
 
-    private CatalogServiceClientImpl catalogService;
+    private static final CatalogServiceClientImpl catalogService = new CatalogServiceClientImpl(new WebServiceTestConfiguration());
 
     private TCreate_Input Catalog_in;
     private TUpdate_Input Catalog_up;
@@ -60,10 +60,6 @@ public class CatalogServiceTest extends WebServiceTestConfiguration {
      */
     @Before
     public void setUp() {
-
-        // log and bind web service
-        catalogService = new CatalogServiceClientImpl(new WebServiceTestConfiguration());
-
         Catalog_in = new TCreate_Input();
         Catalog_up = new TUpdate_Input();
         Catalog_move = new TUpdate_Input();
@@ -142,7 +138,8 @@ public class CatalogServiceTest extends WebServiceTestConfiguration {
 
         // test if creation was successful
         assertEquals("create result set", 1, Catalogs_out.length);
-        assertEquals("created?", new Boolean(true), Catalogs_out[0].getCreated());
+        assertNoError(Catalogs_out[0].getError());
+        assertTrue("created?", Catalogs_out[0].getCreated());
     }
 
     /**
@@ -154,6 +151,7 @@ public class CatalogServiceTest extends WebServiceTestConfiguration {
 
         // test if update was successful
         assertEquals("update result set", 1, Catalogs_out.length);
+        assertNoError(Catalogs_out[0].getError());
         assertTrue("updated?", Catalogs_out[0].getUpdated());
     }
 
@@ -166,13 +164,14 @@ public class CatalogServiceTest extends WebServiceTestConfiguration {
 
         // test if update was successful
         assertEquals("update result set", 1, Catalogs_out.length);
+        assertNoError(Catalogs_out[0].getError());
         assertTrue("updated?", Catalogs_out[0].getUpdated());
     }
 
     /**
      * Retrieve information about an Catalog. Check if the returned data are
      * equal to the data of create or update call
-     * 
+     *
      * @param isAlreadyUpdated
      *            if true check against update data, else against create data
      */
@@ -182,6 +181,7 @@ public class CatalogServiceTest extends WebServiceTestConfiguration {
 
         // test if getinfo was successful and if all data are equal to input
         assertEquals("getInfo result set", 1, Catalogs_out.length);
+        assertNoError(Catalogs_out[0].getError());
         assertEquals("catalog alias", alias, Catalogs_out[0].getAlias());
         assertEquals("Number of languages", 2, Catalogs_out[0].getName().length);
         HashMap<String, String> hash = new HashMap<String, String>();
@@ -223,12 +223,13 @@ public class CatalogServiceTest extends WebServiceTestConfiguration {
 
         // test if update was successful
         assertEquals("update result set", 1, Catalogs_out.length);
+        assertNoError(Catalogs_out[0].getError());
         assertTrue("deleted?", Catalogs_out[0].getDeleted());
     }
 
     /**
      * Test if a Catalog exists or not
-     * 
+     *
      * @param expected
      *            if false the Test will be successful if the Catalog does NOT
      *            exist
@@ -238,7 +239,8 @@ public class CatalogServiceTest extends WebServiceTestConfiguration {
 
         // test if update was successful
         assertEquals("update result set", 1, Catalogs_out.length);
-        assertEquals("exists?", new Boolean(expected), Catalogs_out[0].getExists());
+        assertNoError(Catalogs_out[0].getError());
+        assertEquals("exists?", expected, Catalogs_out[0].getExists());
     }
 
     /**
