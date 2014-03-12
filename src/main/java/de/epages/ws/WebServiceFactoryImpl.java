@@ -16,6 +16,8 @@ import de.epages.ws.order12.OrderServiceClient;
 import de.epages.ws.order12.OrderServiceClientImpl;
 import de.epages.ws.orderdocument7.OrderDocumentServiceClient;
 import de.epages.ws.orderdocument7.OrderDocumentServiceClientImpl;
+import de.epages.ws.pagecache.PageCacheServiceClient;
+import de.epages.ws.pagecache.PageCacheServiceClientImpl;
 import de.epages.ws.product11.ProductServiceClient;
 import de.epages.ws.product11.ProductServiceClientImpl;
 import de.epages.ws.shippingmethod2.ShippingMethodServiceClient;
@@ -61,6 +63,11 @@ public class WebServiceFactoryImpl implements WebServiceFactory {
     @Override
     public OrderServiceClient createOrderServiceClient(WebServiceConfiguration config) {
         return new OrderServiceClientImpl(config);
+    }
+
+    @Override
+    public PageCacheServiceClient createPageCacheServiceClient(WebServiceConfiguration config) {
+        return new PageCacheServiceClientImpl(config);
     }
 
     @Override
