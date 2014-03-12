@@ -35,13 +35,13 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getInfo");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductTypes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_GetInfo_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductTypes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_GetInfo_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Attributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_AttributeNames_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Attributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_AttributeNames_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "LanguageCodes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_LanguageCodes_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "LanguageCodes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_LanguageCodes_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_GetInfo_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_GetInfo_Out"));
         oper.setReturnClass(de.epages.ws.producttype2.model.TGetInfo_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "ProductTypes"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -50,11 +50,11 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getAllInfo");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Attributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_AttributeNames_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Attributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_AttributeNames_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "LanguageCodes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_LanguageCodes_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "LanguageCodes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_LanguageCodes_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_GetInfo_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_GetInfo_Out"));
         oper.setReturnClass(de.epages.ws.producttype2.model.TGetInfo_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "ProductTypes"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -63,9 +63,9 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("exists");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductTypes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_Exists_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductTypes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_Exists_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_Exists_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_Exists_Out"));
         oper.setReturnClass(de.epages.ws.producttype2.model.TExists_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "ProductTypes"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -74,9 +74,9 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("delete");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductTypes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_Delete_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductTypes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_Delete_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_Delete_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_Delete_Out"));
         oper.setReturnClass(de.epages.ws.producttype2.model.TDelete_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "ProductTypes"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -85,9 +85,9 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("update");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductTypes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_Update_In"), de.epages.ws.producttype2.model.TUpdate_Input[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductTypes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_Update_In"), de.epages.ws.producttype2.model.TUpdate_Input[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_Update_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_Update_Out"));
         oper.setReturnClass(de.epages.ws.producttype2.model.TUpdate_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "ProductTypes"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -96,9 +96,9 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("create");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductTypes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_Create_In"), de.epages.ws.producttype2.model.TCreate_Input[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductTypes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_Create_In"), de.epages.ws.producttype2.model.TCreate_Input[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_Create_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_Create_Out"));
         oper.setReturnClass(de.epages.ws.producttype2.model.TCreate_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "ProductTypes"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -109,11 +109,11 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
         oper.setName("getProductAttributeInfo");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductType"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_ProductAttributeNames_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_ProductAttributeNames_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "LanguageCodes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_LanguageCodes_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "LanguageCodes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_LanguageCodes_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_GetProductAttributeInfo_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_GetProductAttributeInfo_Out"));
         oper.setReturnClass(de.epages.ws.producttype2.model.TGetProductAttributeInfo_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "ProductAttributes"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -124,9 +124,9 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
         oper.setName("getAllProductAttributesInfo");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductType"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "LanguageCodes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_LanguageCodes_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "LanguageCodes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_LanguageCodes_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_GetProductAttributeInfo_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_GetProductAttributeInfo_Out"));
         oper.setReturnClass(de.epages.ws.producttype2.model.TGetProductAttributeInfo_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "ProductAttributes"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -137,9 +137,9 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
         oper.setName("existsProductAttribute");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductType"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_ProductAttributeNames_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_ProductAttributeNames_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_ExistsProductAttribute_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_ExistsProductAttribute_Out"));
         oper.setReturnClass(de.epages.ws.producttype2.model.TExistsProductAttribute_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "ProductAttributes"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -155,9 +155,9 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
         oper.setName("deleteProductAttribute");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductType"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_ProductAttributeNames_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_ProductAttributeNames_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_DeleteProductAttribute_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_DeleteProductAttribute_Out"));
         oper.setReturnClass(de.epages.ws.producttype2.model.TDeleteProductAttribute_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "ProductAttributes"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -168,9 +168,9 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
         oper.setName("updateProductAttribute");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductType"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_UpdateProductAttribute_In"), de.epages.ws.producttype2.model.TUpdateProductAttribute_Input[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_UpdateProductAttribute_In"), de.epages.ws.producttype2.model.TUpdateProductAttribute_Input[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_UpdateProductAttribute_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_UpdateProductAttribute_Out"));
         oper.setReturnClass(de.epages.ws.producttype2.model.TUpdateProductAttribute_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "ProductAttributes"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -181,9 +181,9 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
         oper.setName("createProductAttribute");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductType"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_CreateProductAttribute_In"), de.epages.ws.producttype2.model.TCreateProductAttribute_Input[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_CreateProductAttribute_In"), de.epages.ws.producttype2.model.TCreateProductAttribute_Input[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_CreateProductAttribute_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_CreateProductAttribute_Out"));
         oper.setReturnClass(de.epages.ws.producttype2.model.TCreateProductAttribute_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "ProductAttributes"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -194,11 +194,11 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
         oper.setName("getPreDefAttributeInfo");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductAttribute"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "PreDefAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_PreDefAttributeNames_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "PreDefAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_PreDefAttributeNames_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "LanguageCodes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_LanguageCodes_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "LanguageCodes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_LanguageCodes_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_GetPreDefAttributeInfo_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_GetPreDefAttributeInfo_Out"));
         oper.setReturnClass(de.epages.ws.producttype2.model.TGetPreDefAttributeInfo_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "PreDefAttributes"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -209,9 +209,9 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
         oper.setName("getAllPreDefAttributesInfo");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductAttribute"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "LanguageCodes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_LanguageCodes_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "LanguageCodes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_LanguageCodes_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_GetPreDefAttributeInfo_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_GetPreDefAttributeInfo_Out"));
         oper.setReturnClass(de.epages.ws.producttype2.model.TGetPreDefAttributeInfo_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "PreDefAttributes"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -222,9 +222,9 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
         oper.setName("existsPreDefAttribute");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductAttribute"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "PreDefAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_PreDefAttributeNames_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "PreDefAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_PreDefAttributeNames_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_ExistsPreDefAttribute_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_ExistsPreDefAttribute_Out"));
         oper.setReturnClass(de.epages.ws.producttype2.model.TExistsPreDefAttribute_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "PreDefAttributes"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -235,9 +235,9 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
         oper.setName("deletePreDefAttribute");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductAttribute"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "PreDefAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_PreDefAttributeNames_In"), java.lang.String[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "PreDefAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_PreDefAttributeNames_In"), java.lang.String[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_DeletePreDefAttribute_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_DeletePreDefAttribute_Out"));
         oper.setReturnClass(de.epages.ws.producttype2.model.TDeletePreDefAttribute_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "PreDefAttributes"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -248,9 +248,9 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
         oper.setName("updatePreDefAttribute");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductAttribute"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "PreDefAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_UpdatePreDefAttribute_In"), de.epages.ws.producttype2.model.TUpdatePreDefAttribute_Input[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "PreDefAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_UpdatePreDefAttribute_In"), de.epages.ws.producttype2.model.TUpdatePreDefAttribute_Input[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_UpdatePreDefAttribute_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_UpdatePreDefAttribute_Out"));
         oper.setReturnClass(de.epages.ws.producttype2.model.TUpdatePreDefAttribute_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "PreDefAttributes"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -261,9 +261,9 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
         oper.setName("createPreDefAttribute");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ProductAttribute"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "PreDefAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_CreatePreDefAttribute_In"), de.epages.ws.producttype2.model.TCreatePreDefAttribute_Input[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "PreDefAttributes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_CreatePreDefAttribute_In"), de.epages.ws.producttype2.model.TCreatePreDefAttribute_Input[].class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_CreatePreDefAttribute_Out"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_CreatePreDefAttribute_Out"));
         oper.setReturnClass(de.epages.ws.producttype2.model.TCreatePreDefAttribute_Return[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "PreDefAttributes"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -340,7 +340,7 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_AttributeNames_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_AttributeNames_In");
             cachedSerQNames.add(qName);
             cls = java.lang.String[].class;
             cachedSerClasses.add(cls);
@@ -349,61 +349,61 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_Create_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_Create_In");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TCreate_Input[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TCreate_Input");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TCreate_Input");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_Create_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_Create_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TCreate_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TCreate_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TCreate_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_CreatePreDefAttribute_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_CreatePreDefAttribute_In");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TCreatePreDefAttribute_Input[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TCreatePreDefAttribute_Input");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TCreatePreDefAttribute_Input");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_CreatePreDefAttribute_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_CreatePreDefAttribute_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TCreatePreDefAttribute_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TCreatePreDefAttribute_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TCreatePreDefAttribute_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_CreateProductAttribute_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_CreateProductAttribute_In");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TCreateProductAttribute_Input[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TCreateProductAttribute_Input");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TCreateProductAttribute_Input");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_CreateProductAttribute_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_CreateProductAttribute_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TCreateProductAttribute_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TCreateProductAttribute_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TCreateProductAttribute_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_Delete_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_Delete_In");
             cachedSerQNames.add(qName);
             cls = java.lang.String[].class;
             cachedSerClasses.add(cls);
@@ -412,34 +412,34 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_Delete_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_Delete_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TDelete_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TDelete_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TDelete_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_DeletePreDefAttribute_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_DeletePreDefAttribute_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TDeletePreDefAttribute_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TDeletePreDefAttribute_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TDeletePreDefAttribute_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_DeleteProductAttribute_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_DeleteProductAttribute_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TDeleteProductAttribute_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TDeleteProductAttribute_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TDeleteProductAttribute_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_Exists_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_Exists_In");
             cachedSerQNames.add(qName);
             cls = java.lang.String[].class;
             cachedSerClasses.add(cls);
@@ -448,34 +448,34 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_Exists_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_Exists_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TExists_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TExists_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TExists_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_ExistsPreDefAttribute_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_ExistsPreDefAttribute_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TExistsPreDefAttribute_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TExistsPreDefAttribute_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TExistsPreDefAttribute_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_ExistsProductAttribute_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_ExistsProductAttribute_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TExistsProductAttribute_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TExistsProductAttribute_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TExistsProductAttribute_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_GetInfo_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_GetInfo_In");
             cachedSerQNames.add(qName);
             cls = java.lang.String[].class;
             cachedSerClasses.add(cls);
@@ -484,34 +484,34 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_GetInfo_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_GetInfo_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TGetInfo_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TGetInfo_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TGetInfo_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_GetPreDefAttributeInfo_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_GetPreDefAttributeInfo_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TGetPreDefAttributeInfo_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TGetPreDefAttributeInfo_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TGetPreDefAttributeInfo_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_GetProductAttributeInfo_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_GetProductAttributeInfo_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TGetProductAttributeInfo_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TGetProductAttributeInfo_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TGetProductAttributeInfo_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_LanguageCodes_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_LanguageCodes_In");
             cachedSerQNames.add(qName);
             cls = java.lang.String[].class;
             cachedSerClasses.add(cls);
@@ -520,7 +520,7 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_PreDefAttributeNames_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_PreDefAttributeNames_In");
             cachedSerQNames.add(qName);
             cls = java.lang.String[].class;
             cachedSerClasses.add(cls);
@@ -529,7 +529,7 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_ProductAttributeNames_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_ProductAttributeNames_In");
             cachedSerQNames.add(qName);
             cls = java.lang.String[].class;
             cachedSerClasses.add(cls);
@@ -538,201 +538,201 @@ public class Bind_ProductType_SOAPStub extends org.apache.axis.client.Stub imple
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_Update_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_Update_In");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TUpdate_Input[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TUpdate_Input");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TUpdate_Input");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_Update_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_Update_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TUpdate_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TUpdate_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TUpdate_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_UpdatePreDefAttribute_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_UpdatePreDefAttribute_In");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TUpdatePreDefAttribute_Input[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TUpdatePreDefAttribute_Input");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TUpdatePreDefAttribute_Input");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_UpdatePreDefAttribute_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_UpdatePreDefAttribute_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TUpdatePreDefAttribute_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TUpdatePreDefAttribute_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TUpdatePreDefAttribute_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_UpdateProductAttribute_In");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_UpdateProductAttribute_In");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TUpdateProductAttribute_Input[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TUpdateProductAttribute_Input");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TUpdateProductAttribute_Input");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "type_UpdateProductAttribute_Out");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "type_UpdateProductAttribute_Out");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TUpdateProductAttribute_Return[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TUpdateProductAttribute_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TUpdateProductAttribute_Return");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TCreate_Input");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TCreate_Input");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TCreate_Input.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TCreate_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TCreate_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TCreate_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TCreatePreDefAttribute_Input");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TCreatePreDefAttribute_Input");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TCreatePreDefAttribute_Input.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TCreatePreDefAttribute_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TCreatePreDefAttribute_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TCreatePreDefAttribute_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TCreateProductAttribute_Input");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TCreateProductAttribute_Input");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TCreateProductAttribute_Input.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TCreateProductAttribute_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TCreateProductAttribute_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TCreateProductAttribute_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TDelete_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TDelete_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TDelete_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TDeletePreDefAttribute_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TDeletePreDefAttribute_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TDeletePreDefAttribute_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TDeleteProductAttribute_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TDeleteProductAttribute_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TDeleteProductAttribute_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TExists_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TExists_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TExists_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TExistsPreDefAttribute_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TExistsPreDefAttribute_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TExistsPreDefAttribute_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TExistsProductAttribute_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TExistsProductAttribute_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TExistsProductAttribute_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TGetInfo_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TGetInfo_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TGetInfo_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TGetPreDefAttributeInfo_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TGetPreDefAttributeInfo_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TGetPreDefAttributeInfo_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TGetProductAttributeInfo_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TGetProductAttributeInfo_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TGetProductAttributeInfo_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TUpdate_Input");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TUpdate_Input");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TUpdate_Input.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TUpdate_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TUpdate_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TUpdate_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TUpdatePreDefAttribute_Input");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TUpdatePreDefAttribute_Input");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TUpdatePreDefAttribute_Input.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TUpdatePreDefAttribute_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TUpdatePreDefAttribute_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TUpdatePreDefAttribute_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TUpdateProductAttribute_Input");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TUpdateProductAttribute_Input");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TUpdateProductAttribute_Input.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TUpdateProductAttribute_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TUpdateProductAttribute_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.producttype2.model.TUpdateProductAttribute_Return.class;
             cachedSerClasses.add(cls);

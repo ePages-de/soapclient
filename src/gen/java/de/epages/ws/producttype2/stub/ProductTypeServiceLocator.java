@@ -1,5 +1,5 @@
 /**
- * ProductTypeService2Locator.java
+ * ProductTypeServiceLocator.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
@@ -7,21 +7,21 @@
 
 package de.epages.ws.producttype2.stub;
 
-public class ProductTypeService2Locator extends org.apache.axis.client.Service implements de.epages.ws.producttype2.stub.ProductTypeService2 {
+public class ProductTypeServiceLocator extends org.apache.axis.client.Service implements de.epages.ws.producttype2.stub.ProductTypeService {
 
 /**
  * epages Product Type Service 2
  */
 
-    public ProductTypeService2Locator() {
+    public ProductTypeServiceLocator() {
     }
 
 
-    public ProductTypeService2Locator(org.apache.axis.EngineConfiguration config) {
+    public ProductTypeServiceLocator(org.apache.axis.EngineConfiguration config) {
         super(config);
     }
 
-    public ProductTypeService2Locator(java.lang.String wsdlLoc, javax.xml.namespace.QName sName) throws javax.xml.rpc.ServiceException {
+    public ProductTypeServiceLocator(java.lang.String wsdlLoc, javax.xml.namespace.QName sName) throws javax.xml.rpc.ServiceException {
         super(wsdlLoc, sName);
     }
 
@@ -109,7 +109,7 @@ public class ProductTypeService2Locator extends org.apache.axis.client.Service i
     }
 
     public javax.xml.namespace.QName getServiceName() {
-        return new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "ProductTypeService2");
+        return new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "ProductTypeService");
     }
 
     private java.util.HashSet ports = null;
@@ -117,7 +117,7 @@ public class ProductTypeService2Locator extends org.apache.axis.client.Service i
     public java.util.Iterator getPorts() {
         if (ports == null) {
             ports = new java.util.HashSet();
-            ports.add(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService2/2007/11", "port_ProductType"));
+            ports.add(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeService/2007/11", "port_ProductType"));
         }
         return ports.iterator();
     }

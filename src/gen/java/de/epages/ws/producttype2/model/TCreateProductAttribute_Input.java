@@ -295,7 +295,7 @@ public class TCreateProductAttribute_Input  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(TCreateProductAttribute_Input.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TCreateProductAttribute_Input"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TCreateProductAttribute_Input"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("alias");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Alias"));

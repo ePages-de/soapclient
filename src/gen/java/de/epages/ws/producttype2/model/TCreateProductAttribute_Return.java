@@ -1,5 +1,5 @@
 /**
- * TDeletePreDefAttribute_Return.java
+ * TCreateProductAttribute_Return.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
@@ -9,35 +9,39 @@ package de.epages.ws.producttype2.model;
 
 
 /**
- * a single return value of a deletePreDefAttribute() call.
+ * a single return value of a createProductAttribute() call.
  *         the alias will be always returned.
  *         the error element will be returned in case of error.
  *         the other elements will be returned if no error has occured.
  */
-public class TDeletePreDefAttribute_Return  implements java.io.Serializable {
+public class TCreateProductAttribute_Return  implements java.io.Serializable {
     private java.lang.String alias;
 
-    /* flag indicating whether the predefined attribute has been deleted */
-    private java.lang.Boolean deleted;
+    private java.lang.String path;
+
+    /* flag indicating whether the product attribute has been created */
+    private java.lang.Boolean created;
 
     /* error object (see epagestypes:TError) */
     private de.epages.ws.common.model.TError error;
 
-    public TDeletePreDefAttribute_Return() {
+    public TCreateProductAttribute_Return() {
     }
 
-    public TDeletePreDefAttribute_Return(
+    public TCreateProductAttribute_Return(
            java.lang.String alias,
-           java.lang.Boolean deleted,
+           java.lang.String path,
+           java.lang.Boolean created,
            de.epages.ws.common.model.TError error) {
            this.alias = alias;
-           this.deleted = deleted;
+           this.path = path;
+           this.created = created;
            this.error = error;
     }
 
 
     /**
-     * Gets the alias value for this TDeletePreDefAttribute_Return.
+     * Gets the alias value for this TCreateProductAttribute_Return.
      * 
      * @return alias
      */
@@ -47,7 +51,7 @@ public class TDeletePreDefAttribute_Return  implements java.io.Serializable {
 
 
     /**
-     * Sets the alias value for this TDeletePreDefAttribute_Return.
+     * Sets the alias value for this TCreateProductAttribute_Return.
      * 
      * @param alias
      */
@@ -57,27 +61,47 @@ public class TDeletePreDefAttribute_Return  implements java.io.Serializable {
 
 
     /**
-     * Gets the deleted value for this TDeletePreDefAttribute_Return.
+     * Gets the path value for this TCreateProductAttribute_Return.
      * 
-     * @return deleted   * flag indicating whether the predefined attribute has been deleted
+     * @return path
      */
-    public java.lang.Boolean getDeleted() {
-        return deleted;
+    public java.lang.String getPath() {
+        return path;
     }
 
 
     /**
-     * Sets the deleted value for this TDeletePreDefAttribute_Return.
+     * Sets the path value for this TCreateProductAttribute_Return.
      * 
-     * @param deleted   * flag indicating whether the predefined attribute has been deleted
+     * @param path
      */
-    public void setDeleted(java.lang.Boolean deleted) {
-        this.deleted = deleted;
+    public void setPath(java.lang.String path) {
+        this.path = path;
     }
 
 
     /**
-     * Gets the error value for this TDeletePreDefAttribute_Return.
+     * Gets the created value for this TCreateProductAttribute_Return.
+     * 
+     * @return created   * flag indicating whether the product attribute has been created
+     */
+    public java.lang.Boolean getCreated() {
+        return created;
+    }
+
+
+    /**
+     * Sets the created value for this TCreateProductAttribute_Return.
+     * 
+     * @param created   * flag indicating whether the product attribute has been created
+     */
+    public void setCreated(java.lang.Boolean created) {
+        this.created = created;
+    }
+
+
+    /**
+     * Gets the error value for this TCreateProductAttribute_Return.
      * 
      * @return error   * error object (see epagestypes:TError)
      */
@@ -87,7 +111,7 @@ public class TDeletePreDefAttribute_Return  implements java.io.Serializable {
 
 
     /**
-     * Sets the error value for this TDeletePreDefAttribute_Return.
+     * Sets the error value for this TCreateProductAttribute_Return.
      * 
      * @param error   * error object (see epagestypes:TError)
      */
@@ -97,8 +121,8 @@ public class TDeletePreDefAttribute_Return  implements java.io.Serializable {
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof TDeletePreDefAttribute_Return)) return false;
-        TDeletePreDefAttribute_Return other = (TDeletePreDefAttribute_Return) obj;
+        if (!(obj instanceof TCreateProductAttribute_Return)) return false;
+        TCreateProductAttribute_Return other = (TCreateProductAttribute_Return) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -110,9 +134,12 @@ public class TDeletePreDefAttribute_Return  implements java.io.Serializable {
             ((this.alias==null && other.getAlias()==null) || 
              (this.alias!=null &&
               this.alias.equals(other.getAlias()))) &&
-            ((this.deleted==null && other.getDeleted()==null) || 
-             (this.deleted!=null &&
-              this.deleted.equals(other.getDeleted()))) &&
+            ((this.path==null && other.getPath()==null) || 
+             (this.path!=null &&
+              this.path.equals(other.getPath()))) &&
+            ((this.created==null && other.getCreated()==null) || 
+             (this.created!=null &&
+              this.created.equals(other.getCreated()))) &&
             ((this.error==null && other.getError()==null) || 
              (this.error!=null &&
               this.error.equals(other.getError())));
@@ -130,8 +157,11 @@ public class TDeletePreDefAttribute_Return  implements java.io.Serializable {
         if (getAlias() != null) {
             _hashCode += getAlias().hashCode();
         }
-        if (getDeleted() != null) {
-            _hashCode += getDeleted().hashCode();
+        if (getPath() != null) {
+            _hashCode += getPath().hashCode();
+        }
+        if (getCreated() != null) {
+            _hashCode += getCreated().hashCode();
         }
         if (getError() != null) {
             _hashCode += getError().hashCode();
@@ -142,10 +172,10 @@ public class TDeletePreDefAttribute_Return  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(TDeletePreDefAttribute_Return.class, true);
+        new org.apache.axis.description.TypeDesc(TCreateProductAttribute_Return.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TDeletePreDefAttribute_Return"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TCreateProductAttribute_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("alias");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Alias"));
@@ -153,8 +183,15 @@ public class TDeletePreDefAttribute_Return  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("deleted");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "deleted"));
+        elemField.setFieldName("path");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("created");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "created"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "boolean"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

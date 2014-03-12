@@ -1,5 +1,5 @@
 /**
- * TUpdateProductAttribute_Return.java
+ * TUpdatePreDefAttribute_Return.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
@@ -9,24 +9,24 @@ package de.epages.ws.producttype2.model;
 
 
 /**
- * a single return value of an updateProductAttribute() call.
+ * a single return value of an updatePreDefAttribute() call.
  *         the alias will be always returned.
  *         the error element will be returned in case of error.
  *         the other elements will be returned if no error has occured.
  */
-public class TUpdateProductAttribute_Return  implements java.io.Serializable {
+public class TUpdatePreDefAttribute_Return  implements java.io.Serializable {
     private java.lang.String alias;
 
-    /* flag indicating whether the product attribute has been updated */
+    /* flag indicating whether the predefined attribute has been updated */
     private java.lang.Boolean updated;
 
     /* error object (see epagestypes:TError) */
     private de.epages.ws.common.model.TError error;
 
-    public TUpdateProductAttribute_Return() {
+    public TUpdatePreDefAttribute_Return() {
     }
 
-    public TUpdateProductAttribute_Return(
+    public TUpdatePreDefAttribute_Return(
            java.lang.String alias,
            java.lang.Boolean updated,
            de.epages.ws.common.model.TError error) {
@@ -37,7 +37,7 @@ public class TUpdateProductAttribute_Return  implements java.io.Serializable {
 
 
     /**
-     * Gets the alias value for this TUpdateProductAttribute_Return.
+     * Gets the alias value for this TUpdatePreDefAttribute_Return.
      * 
      * @return alias
      */
@@ -47,7 +47,7 @@ public class TUpdateProductAttribute_Return  implements java.io.Serializable {
 
 
     /**
-     * Sets the alias value for this TUpdateProductAttribute_Return.
+     * Sets the alias value for this TUpdatePreDefAttribute_Return.
      * 
      * @param alias
      */
@@ -57,9 +57,9 @@ public class TUpdateProductAttribute_Return  implements java.io.Serializable {
 
 
     /**
-     * Gets the updated value for this TUpdateProductAttribute_Return.
+     * Gets the updated value for this TUpdatePreDefAttribute_Return.
      * 
-     * @return updated   * flag indicating whether the product attribute has been updated
+     * @return updated   * flag indicating whether the predefined attribute has been updated
      */
     public java.lang.Boolean getUpdated() {
         return updated;
@@ -67,9 +67,9 @@ public class TUpdateProductAttribute_Return  implements java.io.Serializable {
 
 
     /**
-     * Sets the updated value for this TUpdateProductAttribute_Return.
+     * Sets the updated value for this TUpdatePreDefAttribute_Return.
      * 
-     * @param updated   * flag indicating whether the product attribute has been updated
+     * @param updated   * flag indicating whether the predefined attribute has been updated
      */
     public void setUpdated(java.lang.Boolean updated) {
         this.updated = updated;
@@ -77,7 +77,7 @@ public class TUpdateProductAttribute_Return  implements java.io.Serializable {
 
 
     /**
-     * Gets the error value for this TUpdateProductAttribute_Return.
+     * Gets the error value for this TUpdatePreDefAttribute_Return.
      * 
      * @return error   * error object (see epagestypes:TError)
      */
@@ -87,7 +87,7 @@ public class TUpdateProductAttribute_Return  implements java.io.Serializable {
 
 
     /**
-     * Sets the error value for this TUpdateProductAttribute_Return.
+     * Sets the error value for this TUpdatePreDefAttribute_Return.
      * 
      * @param error   * error object (see epagestypes:TError)
      */
@@ -97,8 +97,8 @@ public class TUpdateProductAttribute_Return  implements java.io.Serializable {
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof TUpdateProductAttribute_Return)) return false;
-        TUpdateProductAttribute_Return other = (TUpdateProductAttribute_Return) obj;
+        if (!(obj instanceof TUpdatePreDefAttribute_Return)) return false;
+        TUpdatePreDefAttribute_Return other = (TUpdatePreDefAttribute_Return) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -142,10 +142,10 @@ public class TUpdateProductAttribute_Return  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(TUpdateProductAttribute_Return.class, true);
+        new org.apache.axis.description.TypeDesc(TUpdatePreDefAttribute_Return.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TUpdateProductAttribute_Return"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TUpdatePreDefAttribute_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("alias");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Alias"));

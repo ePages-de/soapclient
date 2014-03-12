@@ -1,5 +1,5 @@
 /**
- * TDeleteProductAttribute_Return.java
+ * TUpdateProductAttribute_Return.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
@@ -9,35 +9,35 @@ package de.epages.ws.producttype2.model;
 
 
 /**
- * a single return value of a deleteProductAttribute() call.
+ * a single return value of an updateProductAttribute() call.
  *         the alias will be always returned.
  *         the error element will be returned in case of error.
  *         the other elements will be returned if no error has occured.
  */
-public class TDeleteProductAttribute_Return  implements java.io.Serializable {
+public class TUpdateProductAttribute_Return  implements java.io.Serializable {
     private java.lang.String alias;
 
-    /* flag indicating whether the product attribute has been deleted */
-    private java.lang.Boolean deleted;
+    /* flag indicating whether the product attribute has been updated */
+    private java.lang.Boolean updated;
 
     /* error object (see epagestypes:TError) */
     private de.epages.ws.common.model.TError error;
 
-    public TDeleteProductAttribute_Return() {
+    public TUpdateProductAttribute_Return() {
     }
 
-    public TDeleteProductAttribute_Return(
+    public TUpdateProductAttribute_Return(
            java.lang.String alias,
-           java.lang.Boolean deleted,
+           java.lang.Boolean updated,
            de.epages.ws.common.model.TError error) {
            this.alias = alias;
-           this.deleted = deleted;
+           this.updated = updated;
            this.error = error;
     }
 
 
     /**
-     * Gets the alias value for this TDeleteProductAttribute_Return.
+     * Gets the alias value for this TUpdateProductAttribute_Return.
      * 
      * @return alias
      */
@@ -47,7 +47,7 @@ public class TDeleteProductAttribute_Return  implements java.io.Serializable {
 
 
     /**
-     * Sets the alias value for this TDeleteProductAttribute_Return.
+     * Sets the alias value for this TUpdateProductAttribute_Return.
      * 
      * @param alias
      */
@@ -57,27 +57,27 @@ public class TDeleteProductAttribute_Return  implements java.io.Serializable {
 
 
     /**
-     * Gets the deleted value for this TDeleteProductAttribute_Return.
+     * Gets the updated value for this TUpdateProductAttribute_Return.
      * 
-     * @return deleted   * flag indicating whether the product attribute has been deleted
+     * @return updated   * flag indicating whether the product attribute has been updated
      */
-    public java.lang.Boolean getDeleted() {
-        return deleted;
+    public java.lang.Boolean getUpdated() {
+        return updated;
     }
 
 
     /**
-     * Sets the deleted value for this TDeleteProductAttribute_Return.
+     * Sets the updated value for this TUpdateProductAttribute_Return.
      * 
-     * @param deleted   * flag indicating whether the product attribute has been deleted
+     * @param updated   * flag indicating whether the product attribute has been updated
      */
-    public void setDeleted(java.lang.Boolean deleted) {
-        this.deleted = deleted;
+    public void setUpdated(java.lang.Boolean updated) {
+        this.updated = updated;
     }
 
 
     /**
-     * Gets the error value for this TDeleteProductAttribute_Return.
+     * Gets the error value for this TUpdateProductAttribute_Return.
      * 
      * @return error   * error object (see epagestypes:TError)
      */
@@ -87,7 +87,7 @@ public class TDeleteProductAttribute_Return  implements java.io.Serializable {
 
 
     /**
-     * Sets the error value for this TDeleteProductAttribute_Return.
+     * Sets the error value for this TUpdateProductAttribute_Return.
      * 
      * @param error   * error object (see epagestypes:TError)
      */
@@ -97,8 +97,8 @@ public class TDeleteProductAttribute_Return  implements java.io.Serializable {
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof TDeleteProductAttribute_Return)) return false;
-        TDeleteProductAttribute_Return other = (TDeleteProductAttribute_Return) obj;
+        if (!(obj instanceof TUpdateProductAttribute_Return)) return false;
+        TUpdateProductAttribute_Return other = (TUpdateProductAttribute_Return) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -110,9 +110,9 @@ public class TDeleteProductAttribute_Return  implements java.io.Serializable {
             ((this.alias==null && other.getAlias()==null) || 
              (this.alias!=null &&
               this.alias.equals(other.getAlias()))) &&
-            ((this.deleted==null && other.getDeleted()==null) || 
-             (this.deleted!=null &&
-              this.deleted.equals(other.getDeleted()))) &&
+            ((this.updated==null && other.getUpdated()==null) || 
+             (this.updated!=null &&
+              this.updated.equals(other.getUpdated()))) &&
             ((this.error==null && other.getError()==null) || 
              (this.error!=null &&
               this.error.equals(other.getError())));
@@ -130,8 +130,8 @@ public class TDeleteProductAttribute_Return  implements java.io.Serializable {
         if (getAlias() != null) {
             _hashCode += getAlias().hashCode();
         }
-        if (getDeleted() != null) {
-            _hashCode += getDeleted().hashCode();
+        if (getUpdated() != null) {
+            _hashCode += getUpdated().hashCode();
         }
         if (getError() != null) {
             _hashCode += getError().hashCode();
@@ -142,10 +142,10 @@ public class TDeleteProductAttribute_Return  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(TDeleteProductAttribute_Return.class, true);
+        new org.apache.axis.description.TypeDesc(TUpdateProductAttribute_Return.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TDeleteProductAttribute_Return"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TUpdateProductAttribute_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("alias");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Alias"));
@@ -153,8 +153,8 @@ public class TDeleteProductAttribute_Return  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("deleted");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "deleted"));
+        elemField.setFieldName("updated");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "updated"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "boolean"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

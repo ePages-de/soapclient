@@ -136,9 +136,10 @@ def doAxisGen = { currentTask, wsdls, outputDir ->
         file(outputDir).mkdirs()
         wsdls.each
         { def wsdlName ->
-            ant.echo(message: "Generating Classes for ${wsdlName}")
+            def url = (System.getProperty("wsdlBaseUrl") ?: "../WSDL/") + "${wsdlName}.wsdl"
+            ant.echo(message: "Generating classes for ${wsdlName} from ${url}")
             ant.codegen(
-                    url: (System.getProperty("wsdlBaseUrl") ?: "../WSDL/") + "${wsdlName}.wsdl",
+                    url: url,
                     output: outputDir,
                     verbose: true,
                     helpergen: false,
@@ -207,21 +208,22 @@ def oldWsdls = [
 ]
 
 def currentWsdls = [
-    'PriceListService2',
-    'PriceListAssignmentService',
-    'AssignmentService',
-    'BasketService',
-    'CatalogService8',
-    'CrossSellingService2',
-    'CustomerGroupService2',
-    'CustomerService4',
-    'OrderService12',
-    'OrderDocumentService7',
-    'PageCacheService',
-    'PaymentMethodService',
-    'ShippingMethodService2',
-    // this needs to come last due to a namespace mapping hack.
-    'ProductService11'
+    'ProductTypeService2',
+//    'PriceListService2',
+//    'PriceListAssignmentService',
+//    'AssignmentService',
+//    'BasketService',
+//    'CatalogService8',
+//    'CrossSellingService2',
+//    'CustomerGroupService2',
+//    'CustomerService4',
+//    'OrderService12',
+//    'OrderDocumentService7',
+//    'PageCacheService',
+//    'PaymentMethodService',
+//    'ShippingMethodService2',
+//    // this needs to come last due to a namespace mapping hack.
+//    'ProductService11'
 ]
 
 // current supported services

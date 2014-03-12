@@ -1,5 +1,5 @@
 /**
- * TExists_Return.java
+ * TUpdate_Return.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
@@ -9,35 +9,36 @@ package de.epages.ws.producttype2.model;
 
 
 /**
- * a single return value of a exists() product type call.
+ * a single return value of a update() product type call.
  *         the path will be always returned.
  *         the error element will be returned in case of error.
- *         the exists flag will be returned if no error has occured.
+ *         the updated flag will be returned if no error has occured.
  */
-public class TExists_Return  implements java.io.Serializable {
+public class TUpdate_Return  implements java.io.Serializable {
     private java.lang.String path;
 
-    /* a boolean flag indicating that whether the product type exists */
-    private java.lang.Boolean exists;
+    /* a boolean flag indicating whether this product type has been
+     * updated */
+    private java.lang.Boolean updated;
 
     /* error object (see epagestypes:TError) */
     private de.epages.ws.common.model.TError error;
 
-    public TExists_Return() {
+    public TUpdate_Return() {
     }
 
-    public TExists_Return(
+    public TUpdate_Return(
            java.lang.String path,
-           java.lang.Boolean exists,
+           java.lang.Boolean updated,
            de.epages.ws.common.model.TError error) {
            this.path = path;
-           this.exists = exists;
+           this.updated = updated;
            this.error = error;
     }
 
 
     /**
-     * Gets the path value for this TExists_Return.
+     * Gets the path value for this TUpdate_Return.
      * 
      * @return path
      */
@@ -47,7 +48,7 @@ public class TExists_Return  implements java.io.Serializable {
 
 
     /**
-     * Sets the path value for this TExists_Return.
+     * Sets the path value for this TUpdate_Return.
      * 
      * @param path
      */
@@ -57,27 +58,29 @@ public class TExists_Return  implements java.io.Serializable {
 
 
     /**
-     * Gets the exists value for this TExists_Return.
+     * Gets the updated value for this TUpdate_Return.
      * 
-     * @return exists   * a boolean flag indicating that whether the product type exists
+     * @return updated   * a boolean flag indicating whether this product type has been
+     * updated
      */
-    public java.lang.Boolean getExists() {
-        return exists;
+    public java.lang.Boolean getUpdated() {
+        return updated;
     }
 
 
     /**
-     * Sets the exists value for this TExists_Return.
+     * Sets the updated value for this TUpdate_Return.
      * 
-     * @param exists   * a boolean flag indicating that whether the product type exists
+     * @param updated   * a boolean flag indicating whether this product type has been
+     * updated
      */
-    public void setExists(java.lang.Boolean exists) {
-        this.exists = exists;
+    public void setUpdated(java.lang.Boolean updated) {
+        this.updated = updated;
     }
 
 
     /**
-     * Gets the error value for this TExists_Return.
+     * Gets the error value for this TUpdate_Return.
      * 
      * @return error   * error object (see epagestypes:TError)
      */
@@ -87,7 +90,7 @@ public class TExists_Return  implements java.io.Serializable {
 
 
     /**
-     * Sets the error value for this TExists_Return.
+     * Sets the error value for this TUpdate_Return.
      * 
      * @param error   * error object (see epagestypes:TError)
      */
@@ -97,8 +100,8 @@ public class TExists_Return  implements java.io.Serializable {
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof TExists_Return)) return false;
-        TExists_Return other = (TExists_Return) obj;
+        if (!(obj instanceof TUpdate_Return)) return false;
+        TUpdate_Return other = (TUpdate_Return) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -110,9 +113,9 @@ public class TExists_Return  implements java.io.Serializable {
             ((this.path==null && other.getPath()==null) || 
              (this.path!=null &&
               this.path.equals(other.getPath()))) &&
-            ((this.exists==null && other.getExists()==null) || 
-             (this.exists!=null &&
-              this.exists.equals(other.getExists()))) &&
+            ((this.updated==null && other.getUpdated()==null) || 
+             (this.updated!=null &&
+              this.updated.equals(other.getUpdated()))) &&
             ((this.error==null && other.getError()==null) || 
              (this.error!=null &&
               this.error.equals(other.getError())));
@@ -130,8 +133,8 @@ public class TExists_Return  implements java.io.Serializable {
         if (getPath() != null) {
             _hashCode += getPath().hashCode();
         }
-        if (getExists() != null) {
-            _hashCode += getExists().hashCode();
+        if (getUpdated() != null) {
+            _hashCode += getUpdated().hashCode();
         }
         if (getError() != null) {
             _hashCode += getError().hashCode();
@@ -142,10 +145,10 @@ public class TExists_Return  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(TExists_Return.class, true);
+        new org.apache.axis.description.TypeDesc(TUpdate_Return.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TExists_Return"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TUpdate_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("path");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
@@ -153,8 +156,8 @@ public class TExists_Return  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("exists");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "exists"));
+        elemField.setFieldName("updated");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "updated"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "boolean"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

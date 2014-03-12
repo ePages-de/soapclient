@@ -1,5 +1,5 @@
 /**
- * TCreateProductAttribute_Return.java
+ * TExists_Return.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
@@ -9,59 +9,35 @@ package de.epages.ws.producttype2.model;
 
 
 /**
- * a single return value of a createProductAttribute() call.
- *         the alias will be always returned.
+ * a single return value of a exists() product type call.
+ *         the path will be always returned.
  *         the error element will be returned in case of error.
- *         the other elements will be returned if no error has occured.
+ *         the exists flag will be returned if no error has occured.
  */
-public class TCreateProductAttribute_Return  implements java.io.Serializable {
-    private java.lang.String alias;
-
+public class TExists_Return  implements java.io.Serializable {
     private java.lang.String path;
 
-    /* flag indicating whether the product attribute has been created */
-    private java.lang.Boolean created;
+    /* a boolean flag indicating that whether the product type exists */
+    private java.lang.Boolean exists;
 
     /* error object (see epagestypes:TError) */
     private de.epages.ws.common.model.TError error;
 
-    public TCreateProductAttribute_Return() {
+    public TExists_Return() {
     }
 
-    public TCreateProductAttribute_Return(
-           java.lang.String alias,
+    public TExists_Return(
            java.lang.String path,
-           java.lang.Boolean created,
+           java.lang.Boolean exists,
            de.epages.ws.common.model.TError error) {
-           this.alias = alias;
            this.path = path;
-           this.created = created;
+           this.exists = exists;
            this.error = error;
     }
 
 
     /**
-     * Gets the alias value for this TCreateProductAttribute_Return.
-     * 
-     * @return alias
-     */
-    public java.lang.String getAlias() {
-        return alias;
-    }
-
-
-    /**
-     * Sets the alias value for this TCreateProductAttribute_Return.
-     * 
-     * @param alias
-     */
-    public void setAlias(java.lang.String alias) {
-        this.alias = alias;
-    }
-
-
-    /**
-     * Gets the path value for this TCreateProductAttribute_Return.
+     * Gets the path value for this TExists_Return.
      * 
      * @return path
      */
@@ -71,7 +47,7 @@ public class TCreateProductAttribute_Return  implements java.io.Serializable {
 
 
     /**
-     * Sets the path value for this TCreateProductAttribute_Return.
+     * Sets the path value for this TExists_Return.
      * 
      * @param path
      */
@@ -81,27 +57,27 @@ public class TCreateProductAttribute_Return  implements java.io.Serializable {
 
 
     /**
-     * Gets the created value for this TCreateProductAttribute_Return.
+     * Gets the exists value for this TExists_Return.
      * 
-     * @return created   * flag indicating whether the product attribute has been created
+     * @return exists   * a boolean flag indicating that whether the product type exists
      */
-    public java.lang.Boolean getCreated() {
-        return created;
+    public java.lang.Boolean getExists() {
+        return exists;
     }
 
 
     /**
-     * Sets the created value for this TCreateProductAttribute_Return.
+     * Sets the exists value for this TExists_Return.
      * 
-     * @param created   * flag indicating whether the product attribute has been created
+     * @param exists   * a boolean flag indicating that whether the product type exists
      */
-    public void setCreated(java.lang.Boolean created) {
-        this.created = created;
+    public void setExists(java.lang.Boolean exists) {
+        this.exists = exists;
     }
 
 
     /**
-     * Gets the error value for this TCreateProductAttribute_Return.
+     * Gets the error value for this TExists_Return.
      * 
      * @return error   * error object (see epagestypes:TError)
      */
@@ -111,7 +87,7 @@ public class TCreateProductAttribute_Return  implements java.io.Serializable {
 
 
     /**
-     * Sets the error value for this TCreateProductAttribute_Return.
+     * Sets the error value for this TExists_Return.
      * 
      * @param error   * error object (see epagestypes:TError)
      */
@@ -121,8 +97,8 @@ public class TCreateProductAttribute_Return  implements java.io.Serializable {
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof TCreateProductAttribute_Return)) return false;
-        TCreateProductAttribute_Return other = (TCreateProductAttribute_Return) obj;
+        if (!(obj instanceof TExists_Return)) return false;
+        TExists_Return other = (TExists_Return) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -131,15 +107,12 @@ public class TCreateProductAttribute_Return  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
-            ((this.alias==null && other.getAlias()==null) || 
-             (this.alias!=null &&
-              this.alias.equals(other.getAlias()))) &&
             ((this.path==null && other.getPath()==null) || 
              (this.path!=null &&
               this.path.equals(other.getPath()))) &&
-            ((this.created==null && other.getCreated()==null) || 
-             (this.created!=null &&
-              this.created.equals(other.getCreated()))) &&
+            ((this.exists==null && other.getExists()==null) || 
+             (this.exists!=null &&
+              this.exists.equals(other.getExists()))) &&
             ((this.error==null && other.getError()==null) || 
              (this.error!=null &&
               this.error.equals(other.getError())));
@@ -154,14 +127,11 @@ public class TCreateProductAttribute_Return  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        if (getAlias() != null) {
-            _hashCode += getAlias().hashCode();
-        }
         if (getPath() != null) {
             _hashCode += getPath().hashCode();
         }
-        if (getCreated() != null) {
-            _hashCode += getCreated().hashCode();
+        if (getExists() != null) {
+            _hashCode += getExists().hashCode();
         }
         if (getError() != null) {
             _hashCode += getError().hashCode();
@@ -172,26 +142,19 @@ public class TCreateProductAttribute_Return  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(TCreateProductAttribute_Return.class, true);
+        new org.apache.axis.description.TypeDesc(TExists_Return.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TCreateProductAttribute_Return"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TExists_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("alias");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "Alias"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("path");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("created");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "created"));
+        elemField.setFieldName("exists");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "exists"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "boolean"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

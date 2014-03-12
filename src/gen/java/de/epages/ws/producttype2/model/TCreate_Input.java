@@ -1,5 +1,5 @@
 /**
- * TUpdate_Input.java
+ * TCreate_Input.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
@@ -9,15 +9,15 @@ package de.epages.ws.producttype2.model;
 
 
 /**
- * input arguments of a single update() product type call.
- *         a set of optional product type specific attributes that will
- * be updated.
- *         the path element is mandatory.
+ * input arguments of a single create() product type call.
+ *         a set of product specific attributes that will be used to
+ * create a product.
+ *         alias is mandatory.
  *         all others are optional.
  */
-public class TUpdate_Input  implements java.io.Serializable {
-    /* product type path */
-    private java.lang.String path;
+public class TCreate_Input  implements java.io.Serializable {
+    /* product type alias */
+    private java.lang.String alias;
 
     /* product type's name */
     private de.epages.ws.common.model.TLocalizedValue[] name;
@@ -31,16 +31,16 @@ public class TUpdate_Input  implements java.io.Serializable {
     /* layout template for bundle products display */
     private java.lang.String layoutContentBundles;
 
-    public TUpdate_Input() {
+    public TCreate_Input() {
     }
 
-    public TUpdate_Input(
-           java.lang.String path,
+    public TCreate_Input(
+           java.lang.String alias,
            de.epages.ws.common.model.TLocalizedValue[] name,
            java.lang.String layoutContentBase,
            java.lang.String layoutContentVariation,
            java.lang.String layoutContentBundles) {
-           this.path = path;
+           this.alias = alias;
            this.name = name;
            this.layoutContentBase = layoutContentBase;
            this.layoutContentVariation = layoutContentVariation;
@@ -49,27 +49,27 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the path value for this TUpdate_Input.
+     * Gets the alias value for this TCreate_Input.
      * 
-     * @return path   * product type path
+     * @return alias   * product type alias
      */
-    public java.lang.String getPath() {
-        return path;
+    public java.lang.String getAlias() {
+        return alias;
     }
 
 
     /**
-     * Sets the path value for this TUpdate_Input.
+     * Sets the alias value for this TCreate_Input.
      * 
-     * @param path   * product type path
+     * @param alias   * product type alias
      */
-    public void setPath(java.lang.String path) {
-        this.path = path;
+    public void setAlias(java.lang.String alias) {
+        this.alias = alias;
     }
 
 
     /**
-     * Gets the name value for this TUpdate_Input.
+     * Gets the name value for this TCreate_Input.
      * 
      * @return name   * product type's name
      */
@@ -79,7 +79,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the name value for this TUpdate_Input.
+     * Sets the name value for this TCreate_Input.
      * 
      * @param name   * product type's name
      */
@@ -89,7 +89,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the layoutContentBase value for this TUpdate_Input.
+     * Gets the layoutContentBase value for this TCreate_Input.
      * 
      * @return layoutContentBase   * layout template for product details display
      */
@@ -99,7 +99,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the layoutContentBase value for this TUpdate_Input.
+     * Sets the layoutContentBase value for this TCreate_Input.
      * 
      * @param layoutContentBase   * layout template for product details display
      */
@@ -109,7 +109,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the layoutContentVariation value for this TUpdate_Input.
+     * Gets the layoutContentVariation value for this TCreate_Input.
      * 
      * @return layoutContentVariation   * layout template for variations display
      */
@@ -119,7 +119,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the layoutContentVariation value for this TUpdate_Input.
+     * Sets the layoutContentVariation value for this TCreate_Input.
      * 
      * @param layoutContentVariation   * layout template for variations display
      */
@@ -129,7 +129,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the layoutContentBundles value for this TUpdate_Input.
+     * Gets the layoutContentBundles value for this TCreate_Input.
      * 
      * @return layoutContentBundles   * layout template for bundle products display
      */
@@ -139,7 +139,7 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Sets the layoutContentBundles value for this TUpdate_Input.
+     * Sets the layoutContentBundles value for this TCreate_Input.
      * 
      * @param layoutContentBundles   * layout template for bundle products display
      */
@@ -149,8 +149,8 @@ public class TUpdate_Input  implements java.io.Serializable {
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof TUpdate_Input)) return false;
-        TUpdate_Input other = (TUpdate_Input) obj;
+        if (!(obj instanceof TCreate_Input)) return false;
+        TCreate_Input other = (TCreate_Input) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -159,9 +159,9 @@ public class TUpdate_Input  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
-            ((this.path==null && other.getPath()==null) || 
-             (this.path!=null &&
-              this.path.equals(other.getPath()))) &&
+            ((this.alias==null && other.getAlias()==null) || 
+             (this.alias!=null &&
+              this.alias.equals(other.getAlias()))) &&
             ((this.name==null && other.getName()==null) || 
              (this.name!=null &&
               java.util.Arrays.equals(this.name, other.getName()))) &&
@@ -185,8 +185,8 @@ public class TUpdate_Input  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        if (getPath() != null) {
-            _hashCode += getPath().hashCode();
+        if (getAlias() != null) {
+            _hashCode += getAlias().hashCode();
         }
         if (getName() != null) {
             for (int i=0;
@@ -214,13 +214,13 @@ public class TUpdate_Input  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(TUpdate_Input.class, true);
+        new org.apache.axis.description.TypeDesc(TCreate_Input.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TUpdate_Input"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TCreate_Input"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("path");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
+        elemField.setFieldName("alias");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "Alias"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

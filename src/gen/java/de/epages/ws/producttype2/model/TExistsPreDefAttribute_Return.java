@@ -1,5 +1,5 @@
 /**
- * TExistsProductAttribute_Return.java
+ * TExistsPreDefAttribute_Return.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
@@ -9,18 +9,18 @@ package de.epages.ws.producttype2.model;
 
 
 /**
- * a single return value of an existProductAttribute() call.
+ * a single return value of an existPreDefAttribute() call.
  */
-public class TExistsProductAttribute_Return  implements java.io.Serializable {
+public class TExistsPreDefAttribute_Return  implements java.io.Serializable {
     private java.lang.String alias;
 
-    /* flag indicating whether the product attribute exists */
+    /* flag indicating whether the predefined attribute exists */
     private boolean exists;
 
-    public TExistsProductAttribute_Return() {
+    public TExistsPreDefAttribute_Return() {
     }
 
-    public TExistsProductAttribute_Return(
+    public TExistsPreDefAttribute_Return(
            java.lang.String alias,
            boolean exists) {
            this.alias = alias;
@@ -29,7 +29,7 @@ public class TExistsProductAttribute_Return  implements java.io.Serializable {
 
 
     /**
-     * Gets the alias value for this TExistsProductAttribute_Return.
+     * Gets the alias value for this TExistsPreDefAttribute_Return.
      * 
      * @return alias
      */
@@ -39,7 +39,7 @@ public class TExistsProductAttribute_Return  implements java.io.Serializable {
 
 
     /**
-     * Sets the alias value for this TExistsProductAttribute_Return.
+     * Sets the alias value for this TExistsPreDefAttribute_Return.
      * 
      * @param alias
      */
@@ -49,9 +49,9 @@ public class TExistsProductAttribute_Return  implements java.io.Serializable {
 
 
     /**
-     * Gets the exists value for this TExistsProductAttribute_Return.
+     * Gets the exists value for this TExistsPreDefAttribute_Return.
      * 
-     * @return exists   * flag indicating whether the product attribute exists
+     * @return exists   * flag indicating whether the predefined attribute exists
      */
     public boolean isExists() {
         return exists;
@@ -59,9 +59,9 @@ public class TExistsProductAttribute_Return  implements java.io.Serializable {
 
 
     /**
-     * Sets the exists value for this TExistsProductAttribute_Return.
+     * Sets the exists value for this TExistsPreDefAttribute_Return.
      * 
-     * @param exists   * flag indicating whether the product attribute exists
+     * @param exists   * flag indicating whether the predefined attribute exists
      */
     public void setExists(boolean exists) {
         this.exists = exists;
@@ -69,8 +69,8 @@ public class TExistsProductAttribute_Return  implements java.io.Serializable {
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof TExistsProductAttribute_Return)) return false;
-        TExistsProductAttribute_Return other = (TExistsProductAttribute_Return) obj;
+        if (!(obj instanceof TExistsPreDefAttribute_Return)) return false;
+        TExistsPreDefAttribute_Return other = (TExistsPreDefAttribute_Return) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -104,10 +104,10 @@ public class TExistsProductAttribute_Return  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(TExistsProductAttribute_Return.class, true);
+        new org.apache.axis.description.TypeDesc(TExistsPreDefAttribute_Return.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TExistsProductAttribute_Return"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TExistsPreDefAttribute_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("alias");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Alias"));

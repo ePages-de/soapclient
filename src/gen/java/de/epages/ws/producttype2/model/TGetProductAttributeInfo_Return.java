@@ -354,7 +354,7 @@ public class TGetProductAttributeInfo_Return  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(TGetProductAttributeInfo_Return.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes2/2007/11", "TGetProductAttributeInfo_Return"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductTypeTypes/2007/11", "TGetProductAttributeInfo_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("alias");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Alias"));

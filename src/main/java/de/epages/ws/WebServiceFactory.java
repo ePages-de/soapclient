@@ -13,6 +13,7 @@ import de.epages.ws.paymentmethod.PaymentMethodServiceClient;
 import de.epages.ws.pricelist2.PriceListServiceClient;
 import de.epages.ws.pricelistassignment.PriceListAssignmentServiceClient;
 import de.epages.ws.product11.ProductServiceClient;
+import de.epages.ws.producttype2.ProductTypeServiceClient;
 import de.epages.ws.shippingmethod2.ShippingMethodServiceClient;
 
 /**
@@ -45,6 +46,8 @@ public interface WebServiceFactory {
     PriceListServiceClient createPriceListServiceClient(WebServiceConfiguration config);
 
     ProductServiceClient createProductServiceClient(WebServiceConfiguration config);
+
+    ProductTypeServiceClient createProductTypeServiceClient(WebServiceConfiguration config);
 
     ShippingMethodServiceClient createShippingMethodServiceClient(WebServiceConfiguration config);
 

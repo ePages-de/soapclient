@@ -26,6 +26,8 @@ import de.epages.ws.pricelistassignment.PriceListAssignmentServiceClient;
 import de.epages.ws.pricelistassignment.PriceListAssignmentServiceClientImpl;
 import de.epages.ws.product11.ProductServiceClient;
 import de.epages.ws.product11.ProductServiceClientImpl;
+import de.epages.ws.producttype2.ProductTypeServiceClient;
+import de.epages.ws.producttype2.ProductTypeServiceClientImpl;
 import de.epages.ws.shippingmethod2.ShippingMethodServiceClient;
 import de.epages.ws.shippingmethod2.ShippingMethodServiceClientImpl;
 
@@ -94,6 +96,11 @@ public class WebServiceFactoryImpl implements WebServiceFactory {
     @Override
     public ProductServiceClient createProductServiceClient(WebServiceConfiguration config) {
         return new ProductServiceClientImpl(config);
+    }
+
+    @Override
+    public ProductTypeServiceClient createProductTypeServiceClient(WebServiceConfiguration config) {
+        return new ProductTypeServiceClientImpl(config);
     }
 
     @Override
