@@ -1,10 +1,3 @@
-/**
- * Port_Basket.java
- *
- * This file was auto-generated from WSDL
- * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
- */
-
 package de.epages.ws.catalog7;
 
 import de.epages.ws.catalog7.model.TCreate_Input;
