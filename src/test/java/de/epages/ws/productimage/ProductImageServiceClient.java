@@ -1,10 +1,3 @@
-/**
- * Port_Basket.java
- *
- * This file was auto-generated from WSDL
- * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
- */
-
 package de.epages.ws.productimage;
 
 import de.epages.ws.productimage.model.TDelete_Return;
@@ -20,7 +13,7 @@ public interface ProductImageServiceClient extends Port_ProductImage {
     /**
      * check if a product image exists.
      */
-    public boolean exists(String TObjectPath, String TFileName);
+    boolean exists(String TObjectPath, String TFileName);
 
     /**
      * delete a list of productimages.
