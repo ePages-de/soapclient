@@ -1,14 +1,7 @@
-package de.epages.ws.product;
+package de.epages.ws.product2;
 
-import de.epages.ws.product.model.TCreate_Input;
-import de.epages.ws.product.model.TCreate_Return;
-import de.epages.ws.product.model.TDelete_Return;
-import de.epages.ws.product.model.TExists_Return;
-import de.epages.ws.product.model.TGetInfo_Return;
-import de.epages.ws.product.model.TUpdate_Input;
-import de.epages.ws.product.model.TUpdate_Return;
-import de.epages.ws.product.stub.Port_Product;
-import de.epages.ws.product.stub.TFind_Input;
+import de.epages.ws.product2.model.*;
+import de.epages.ws.product2.stub.*;
 
 public interface ProductServiceClient extends Port_Product {
 
@@ -41,4 +34,5 @@ public interface ProductServiceClient extends Port_Product {
      * find products
      */
     String[] find(TFind_Input searchParameters);
+
 }

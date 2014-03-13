@@ -1,10 +1,9 @@
-package de.epages.ws.product;
+package de.epages.ws.product2;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
@@ -14,26 +13,23 @@ import org.junit.Test;
 import de.epages.ws.WebServiceTestConfiguration;
 import de.epages.ws.common.model.TAttribute;
 import de.epages.ws.common.model.TLocalizedValue;
-import de.epages.ws.product.model.TCreate_Input;
-import de.epages.ws.product.model.TCreate_Return;
-import de.epages.ws.product.model.TDelete_Return;
-import de.epages.ws.product.model.TExists_Return;
-import de.epages.ws.product.model.TGetInfo_Return;
-import de.epages.ws.product.model.TProductPrice;
-import de.epages.ws.product.model.TUpdate_Input;
-import de.epages.ws.product.model.TUpdate_Return;
-import de.epages.ws.product.stub.TFind_Input;
+import de.epages.ws.product2.model.TCreate_Input;
+import de.epages.ws.product2.model.TCreate_Return;
+import de.epages.ws.product2.model.TDelete_Return;
+import de.epages.ws.product2.model.TExists_Return;
+import de.epages.ws.product2.model.TGetInfo_Return;
+import de.epages.ws.product2.model.TProductPrice;
+import de.epages.ws.product2.model.TUpdate_Input;
+import de.epages.ws.product2.model.TUpdate_Return;
+import de.epages.ws.product2.stub.TFind_Input;
 
-public class ProductServiceClientTest {
+public class ProductServiceTest {
     private static final ProductServiceClientImpl serviceClient = new ProductServiceClientImpl(new WebServiceTestConfiguration());
     private final TCreate_Input Product_in = new TCreate_Input();
     private final TUpdate_Input Product_update = new TUpdate_Input();
 
     private final String path = "/Shops/DemoShop/Products/";
     private final String alias = "java_test-1";
-
-    private final SimpleDateFormat sdf_in = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-    private final SimpleDateFormat sdf_out = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
     /**
      * Sets all the required prerequisites for the tests. Will be called before
@@ -64,12 +60,14 @@ public class ProductServiceClientTest {
         Product_in.setStockLevelAlert((float) 100);
 
         Product_in.setProductPrices(new TProductPrice[] { new TProductPrice((float) 123, "EUR", "gross"), });
+        Product_in.setIsAvailable(true);
+        Product_in.setAvailabilityComment(new TLocalizedValue[] { new TLocalizedValue("de", "verfügbar bis update test"),
+                new TLocalizedValue("en", "available until update test"), });
+        Product_in.setAvailabilityDate(new GregorianCalendar(2007, 11, 25, 12, 00));
 
-        String dateStr = new String(sdf_in.format(new GregorianCalendar(2005, 11, 24, 18, 00).getTime()));
         TAttribute attr1 = new TAttribute();
-        attr1.setName("AvailabilityDate");
-        attr1.setType("DateTime");
-        attr1.setValue(dateStr);
+        attr1.setName("Manufacturer");
+        attr1.setValue("java WebService client tester");
         Product_in.setAttributes(new TAttribute[] { attr1 });
 
         Product_update.setPath(path + alias);
@@ -77,13 +75,17 @@ public class ProductServiceClientTest {
                 new TLocalizedValue("en", "updated test master product"), });
         Product_update.setProductPrices(new TProductPrice[] { new TProductPrice((float) 123.50, "EUR", "gross"), });
 
-        dateStr = new String(sdf_in.format(new GregorianCalendar(2005, 11, 25, 18, 00).getTime()));
+        Product_update.setIsAvailable(false);
+        Product_update.setAvailabilityComment(new TLocalizedValue[] { new TLocalizedValue("de", "wird gleich gelöscht"),
+                new TLocalizedValue("en", "will deleted soon"), });
+        Product_update.setAvailabilityDate(new GregorianCalendar(2007, 11, 26, 12, 00));
+
         TAttribute attr_update = new TAttribute();
-        attr_update.setName("AvailabilityDate");
-        attr_update.setType("DateTime");
-        attr_update.setValue(dateStr);
+        attr_update.setName("Manufacturer");
+        attr_update.setValue("java WebService client tester again");
         Product_update.setAttributes(new TAttribute[] { attr_update });
 
+        // delete the test product if it exists
         TExists_Return[] Products_exists_out = serviceClient.exists(new String[] { path + alias });
         if (Products_exists_out[0].getExists()) {
             serviceClient.delete(new String[] { path + alias });
@@ -120,50 +122,66 @@ public class ProductServiceClientTest {
      *
      * @param isAlreadyUpdated
      *            if true check against update data, else against create data
-     * @throws ParseException
      */
-    public void testGetInfo(boolean isAlreadyUpdated) throws ParseException {
-        TGetInfo_Return[] Products_info_out = serviceClient.getInfo(new String[] { path + alias }, new String[] { "AvailabilityDate" },
+    public void testGetInfo(boolean isAlreadyUpdated) {
+        TGetInfo_Return[] Products_info_out = serviceClient.getInfo(new String[] { path + alias }, new String[] { "Manufacturer" },
                 new String[] { "de", "en" });
 
         // test if getinfo was successful and if all data are equal to input
         assertEquals("getinfo result set", 1, Products_info_out.length);
+
         TGetInfo_Return Product_info_out = Products_info_out[0];
 
         assertEquals("alias", alias, Product_info_out.getAlias());
         assertEquals("Number of languages", 2, Product_info_out.getName().length);
-        HashMap<String, String> hash = new HashMap<String, String>();
-        hash.put(Product_info_out.getName()[0].getLanguageCode(), Product_info_out.getName()[0].getValue());
-        hash.put(Product_info_out.getName()[1].getLanguageCode(), Product_info_out.getName()[1].getValue());
+
+        HashMap<String, String> hashName = new HashMap<String, String>();
+        hashName.put(Product_info_out.getName()[0].getLanguageCode(), Product_info_out.getName()[0].getValue());
+        hashName.put(Product_info_out.getName()[1].getLanguageCode(), Product_info_out.getName()[1].getValue());
+
+        HashMap<String, String> hashAComment = new HashMap<String, String>();
+        hashAComment.put(Product_info_out.getAvailabilityComment()[0].getLanguageCode(),
+                Product_info_out.getAvailabilityComment()[0].getValue());
+        hashAComment.put(Product_info_out.getAvailabilityComment()[1].getLanguageCode(),
+                Product_info_out.getAvailabilityComment()[1].getValue());
 
         HashMap<String, Float> priceHash = new HashMap<String, Float>();
         priceHash.put(Product_info_out.getProductPrices()[0].getCurrencyID(), Product_info_out.getProductPrices()[0].getPrice());
         priceHash.put(Product_info_out.getProductPrices()[1].getCurrencyID(), Product_info_out.getProductPrices()[1].getPrice());
 
         if (isAlreadyUpdated) {
-            Date date_in = sdf_in.parse(Product_update.getAttributes()[0].getValue());
-            Date date_out = sdf_out.parse(Product_info_out.getAttributes()[0].getValue());
-            assertEquals("AvailabilityDate", date_in, date_out);
-
+            assertEquals("Manufacturer", Product_update.getAttributes()[0].getValue(), Product_info_out.getAttributes()[0].getValue());
             assertEquals("updated localized Name", Product_update.getName()[0].getValue(),
-                    hash.get(Product_update.getName()[0].getLanguageCode()));
+                    hashName.get(Product_update.getName()[0].getLanguageCode()));
             assertEquals("updated localized Name", Product_update.getName()[1].getValue(),
-                    hash.get(Product_update.getName()[1].getLanguageCode()));
+                    hashName.get(Product_update.getName()[1].getLanguageCode()));
 
             assertEquals("Price Value", Product_update.getProductPrices()[0].getPrice(),
                     priceHash.get(Product_update.getProductPrices()[0].getCurrencyID()), 0.0f);
+
+            assertFalse("isAvailable", Product_update.getIsAvailable());
+            assertEquals("updated localized AvailabilityComment", Product_update.getAvailabilityComment()[0].getValue(),
+                    hashAComment.get(Product_update.getAvailabilityComment()[0].getLanguageCode()));
+            assertEquals("updated localized AvailabilityComment", Product_update.getAvailabilityComment()[1].getValue(),
+                    hashAComment.get(Product_update.getAvailabilityComment()[1].getLanguageCode()));
+            assertEquals("AvailabilityDate", Product_update.getAvailabilityDate().getTime(), Product_info_out.getAvailabilityDate()
+                    .getTime());
         } else {
-
-            Date date_in = sdf_in.parse(Product_in.getAttributes()[0].getValue());
-            Date date_out = sdf_out.parse(Product_info_out.getAttributes()[0].getValue());
-            assertEquals("AvailabilityDate", date_in, date_out);
-
+            assertEquals("Manufacturer", Product_in.getAttributes()[0].getValue(), Product_info_out.getAttributes()[0].getValue());
             assertEquals("initial localized Name", Product_in.getName()[0].getValue(),
-                    hash.get(Product_update.getName()[0].getLanguageCode()));
+                    hashName.get(Product_update.getName()[0].getLanguageCode()));
             assertEquals("initial localized Name", Product_in.getName()[1].getValue(),
-                    hash.get(Product_update.getName()[1].getLanguageCode()));
+                    hashName.get(Product_update.getName()[1].getLanguageCode()));
+
             assertEquals("Price Value", Product_in.getProductPrices()[0].getPrice(),
                     priceHash.get(Product_in.getProductPrices()[0].getCurrencyID()), 0.0f);
+
+            assertTrue("isAvailable", Product_in.getIsAvailable());
+            assertEquals("updated localized AvailabilityComment", Product_in.getAvailabilityComment()[0].getValue(),
+                    hashAComment.get(Product_in.getAvailabilityComment()[0].getLanguageCode()));
+            assertEquals("updated localized AvailabilityComment", Product_in.getAvailabilityComment()[1].getValue(),
+                    hashAComment.get(Product_in.getAvailabilityComment()[1].getLanguageCode()));
+            assertEquals("AvailabilityDate", Product_in.getAvailabilityDate().getTime(), Product_info_out.getAvailabilityDate().getTime());
         }
 
         assertEquals("TaxClass", Product_in.getTaxClass(), Product_info_out.getTaxClass());
@@ -195,7 +213,7 @@ public class ProductServiceClientTest {
 
         // test if exists check was successful
         assertEquals("exists result set", 1, Products_exists_out.length);
-        assertEquals("exists?", new Boolean(expected), Products_exists_out[0].getExists());
+        assertEquals("exists?", expected, Products_exists_out[0].getExists());
     }
 
     public void testFind() {
@@ -226,7 +244,7 @@ public class ProductServiceClientTest {
      * </ol>
      */
     @Test
-    public void testAll() throws ParseException {
+    public void testAll() {
         testCreate();
         testExists(true);
         testFind();
