@@ -18,7 +18,7 @@ apply plugin: 'versions'
 archivesBaseName = 'epages-soapclient'
 group = 'de.epages'
 description = 'AXIS 1.x based SOAP client for epages6'
-version = '1.4.11'
+version = '1.4.12'
 
 repositories {
     maven { url project.properties['artifactoryContextUrl'] + "epages-repos" }
@@ -134,7 +134,7 @@ def doAxisGen = { currentTask, wsdls, outputDir ->
     //WDSL files in use by EPJ
     currentTask.doLast {
         file(outputDir).mkdirs()
-        wsdls.grep { filename -> System.getProperty("wsdlFile") != null ? filename.equals(System.getProperty("wsdlFile")) : true }
+        wsdls.grep { wsdlName -> System.getProperty("wsdlFile") != null ? wsdlName.equals(System.getProperty("wsdlFile")) : true }
         .each { def wsdlName ->
             def url = (System.getProperty("wsdlBaseUrl") ?: "../WSDL/") + "${wsdlName}.wsdl"
             ant.echo(message: "Generating classes for ${wsdlName} from ${url}")
@@ -183,11 +183,11 @@ def oldWsdls = [
     'PriceListService',
     'ProductAttributeService',
     'ProductAttributeService2',
-    'ProductBundleService',
     'ProductImageService',
     'ProductService',
     'ProductService2',
     'ProductService3',
+    'ProductService4',
     'ProductService5',
     'ProductService6',
     'ProductService7',
@@ -195,9 +195,6 @@ def oldWsdls = [
     'ProductService9',
     'ProductService10',
     'ProductTypeService',
-    'ProductTypeService2',
-    'TaxAreaService',
-    'TaxClassService',
     'UserService',
     'UserService',
     'UserService2',
@@ -221,7 +218,10 @@ def currentWsdls = [
     'OrderDocumentService7',
     'PageCacheService',
     'PaymentMethodService',
+    'ProductBundleService',
     'ShippingMethodService2',
+    'TaxAreaService',
+    'TaxClassService',
     // this needs to come last due to a namespace mapping hack.
     'ProductService11'
 ]
