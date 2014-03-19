@@ -12,4 +12,10 @@ public class AssertNoError {
         }
     }
 
+    public static void assertNoError(String message, TError error) {
+        if (error != null) {
+            fail(message + ": " + error.getMessage());
+        }
+    }
+
 }

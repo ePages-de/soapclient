@@ -77,7 +77,7 @@ public class ProductBundleServiceTest {
         assertEquals("delete result count", 1, ProductBundles_out.length);
         TDelete_Return ProductBundle_out = ProductBundles_out[0];
         assertNoError(ProductBundle_out.getError());
-        assertNull("delete: no error", ProductBundle_out.getError());
+        assertNoError("delete: no error", ProductBundle_out.getError());
         assertEquals("Product path", product, ProductBundle_out.getProduct());
         assertTrue("deleted?", ProductBundle_out.getDeleted());
     }
@@ -98,7 +98,7 @@ public class ProductBundleServiceTest {
         assertNoError(ProductBundle_out.getError());
 
         // test if exists check was successful
-        assertNull("exists: no error", ProductBundle_out.getError());
+        assertNoError("exists: no error", ProductBundle_out.getError());
         assertEquals("Product path", product, ProductBundle_out.getProduct());
     }
 
@@ -113,7 +113,7 @@ public class ProductBundleServiceTest {
         assertEquals("getInfo result count", 1, ProductBundles_out.length);
         TGetInfo_Return ProductBundle_out = ProductBundles_out[0];
         assertNoError(ProductBundle_out.getError());
-        assertNull("getInfo: no error", ProductBundle_out.getError());
+        assertNoError("getInfo: no error", ProductBundle_out.getError());
         assertEquals("Product path", product, ProductBundle_out.getProduct());
     }
 

@@ -1,7 +1,7 @@
 package de.epages.ws.productimage;
 
+import static de.epages.ws.common.AssertNoError.assertNoError;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
@@ -76,7 +76,7 @@ public class ProductImageServiceTest {
     public void cleanUp() {
         String[] deletePaths = { path + alias };
         de.epages.ws.product11.model.TDelete_Return[] result = productService.delete(deletePaths);
-        assertNull("no error", result[0].getError());
+        assertNoError("no error", result[0].getError());
         assertTrue("product is deleted", result[0].getDeleted());
     }
 

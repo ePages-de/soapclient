@@ -146,7 +146,7 @@ public class CrossSellingServiceTest {
         assertEquals("delete result count", 4, CrossSellings_out.length);
         TDelete_Return CrossSelling_out = CrossSellings_out[0];
         assertNoError(CrossSelling_out.getError());
-        assertNull("delete: no error", CrossSelling_out.getError());
+        assertNoError("delete: no error", CrossSelling_out.getError());
         assertEquals("Product path", product, CrossSelling_out.getProduct());
         assertTrue("deleted?", CrossSelling_out.isDeleted());
     }
@@ -168,7 +168,7 @@ public class CrossSellingServiceTest {
         assertNoError(CrossSelling_out.getError());
 
         // test if exists check was successful
-        assertNull("exists: no error", CrossSelling_out.getError());
+        assertNoError("exists: no error", CrossSelling_out.getError());
         assertEquals("Product path", product, CrossSelling_out.getProduct());
         assertEquals("Target product", target_product, CrossSelling_out.getTargetProduct());
         assertEquals("exists?", expected, CrossSelling_out.isExists());
@@ -180,7 +180,7 @@ public class CrossSellingServiceTest {
         assertNoError(CrossSelling_out.getError());
 
         // test if exists check was successful
-        assertNull("exists: no error", CrossSelling_out.getError());
+        assertNoError("exists: no error", CrossSelling_out.getError());
         assertEquals("Product path", product, CrossSelling_out.getProduct());
         assertEquals("Target product", target_product, CrossSelling_out.getTargetProduct());
         assertEquals("exists?", expected, CrossSelling_out.isExists());
