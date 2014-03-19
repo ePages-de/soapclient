@@ -68,7 +68,7 @@ public class WebServiceTestConfiguration implements WebServiceConfiguration {
     private URL doGetWebserviceURL() {
         String hostname = readSystemDomainName();
         try {
-            return URI.create("http://" + hostname + "/epages/Store.soap").toURL();
+            return URI.create("http://" + hostname + "/epages/Store.soap").toURL(); // ?useGuidAsPath=1
         } catch (MalformedURLException e) {
             throw new IllegalArgumentException(e);
         }

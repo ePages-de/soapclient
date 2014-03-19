@@ -29,12 +29,6 @@ import de.epages.ws.product11.model.TUpdate_Input;
 import de.epages.ws.product11.model.TUpdate_Return;
 import de.epages.ws.product11.stub.TFind_Input;
 
-
-
-/**
- * A JUnit TestSuite to test epages Product WebServices.
- *
- */
 public class ProductServiceTest {
     private ProductServiceClientImpl serviceClient;
     private TCreate_Input Product_in;

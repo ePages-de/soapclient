@@ -3,12 +3,12 @@ package de.epages.ws.producttype2;
 import static de.epages.ws.common.AssertNoError.assertNoError;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.math.BigInteger;
-import java.rmi.RemoteException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -40,7 +40,7 @@ import de.epages.ws.producttype2.model.TUpdate_Return;
 
 public class ProductTypeServiceTest {
 
-    private ProductTypeServiceClientImpl productTypeService = new ProductTypeServiceClientImpl(new WebServiceTestConfiguration());
+    private static final ProductTypeServiceClientImpl productTypeService = new ProductTypeServiceClientImpl(new WebServiceTestConfiguration());
 
     private static final String SHOP_PATH = "/Shops/DemoShop/";
     private static final String PRODUCTTYPES_PATH = SHOP_PATH + "ProductTypes/";
@@ -83,15 +83,7 @@ public class ProductTypeServiceTest {
     private static final String PREDEF_ATTRIBUTE2_PATH = PREDEF_ATTRIBUTES_PATH + PREDEF_ATTRIBUTE2_ALIAS;
     private static final String PREDEF_ATTRIBUTE2_NAME = "predef2Name";
 
-    /**
-     * Sets all the required prerequisites for the tests. Will be called before
-     * the test are run.
-     */
     @Before
-    public void setUp() {
-        deleteIfExist();
-    }
-
     public void deleteIfExist() {
         TExists_Return[] existsResult = productTypeService.exists(new String[] { JAVA_TEST1_PATH, JAVA_TEST2_PATH });
 
@@ -102,21 +94,18 @@ public class ProductTypeServiceTest {
         }
     }
 
-    public void testGetBaseProductType() throws RemoteException {
-
+    public void testGetBaseProductType() {
         String baseProductType = productTypeService.getBaseProductType();
         assertEquals(SHOP_PATH + "ProductClass", baseProductType);
     }
 
-    public void testGetAllInfo() throws RemoteException {
-
+    public void testGetAllInfo() {
         String baseProductType = productTypeService.getBaseProductType();
         TGetInfo_Return[] productTypes = productTypeService.getAllInfo(new String[] {}, new String[] {});
 
         boolean javaTest1Found = false, javaTest2Found = false, baseFound = false;
         for (TGetInfo_Return productType : productTypes) {
             assertNoError(productType.getError());
-
             if (productType.getAlias().equals(JAVA_TEST1_ALIAS)) {
                 javaTest1Found = true;
                 assertEquals(JAVA_TEST1_LAYOUT_BUNDLES, productType.getLayoutContentBundles());
@@ -149,14 +138,14 @@ public class ProductTypeServiceTest {
 
     }
 
-    public void testGetInfo() throws RemoteException {
+    public void testGetInfo() {
 
         TGetInfo_Return[] productTypes = productTypeService.getInfo(new String[] { JAVA_TEST1_PATH, JAVA_TEST2_PATH, NOT_EXISTING_PATH },
                 new String[] { "WebUrl" }, new String[] { "de", "en" });
 
         // check first created test product type
         assertEquals(JAVA_TEST1_PATH, productTypes[0].getPath());
-        assertNull(productTypes[0].getError());
+        assertNoError(productTypes[0].getError());
         assertEquals(JAVA_TEST1_ALIAS, productTypes[0].getAlias());
         assertEquals(JAVA_TEST1_LAYOUT_BUNDLES, productTypes[0].getLayoutContentBundles());
         TLocalizedValue[] names = productTypes[0].getName();
@@ -174,7 +163,7 @@ public class ProductTypeServiceTest {
 
         // check second created test product type
         assertEquals(JAVA_TEST2_PATH, productTypes[1].getPath());
-        assertNull(productTypes[1].getError());
+        assertNoError(productTypes[1].getError());
         assertEquals(JAVA_TEST2_ALIAS, productTypes[1].getAlias());
         assertEquals(JAVA_TEST2_LAYOUT_BASE, productTypes[1].getLayoutContentBase());
         names = productTypes[1].getName();
@@ -195,11 +184,11 @@ public class ProductTypeServiceTest {
 
     }
 
-    public void testExists() throws RemoteException {
+    public void testExists() {
 
         TExists_Return[] productTypes = productTypeService.exists(new String[] { JAVA_TEST1_PATH, JAVA_TEST2_PATH, NOT_EXISTING_PATH });
         for (TExists_Return productType : productTypes) {
-            assertNull(productType.getError());
+            assertNoError(productType.getError());
         }
         assertEquals(3, productTypes.length);
         assertEquals(JAVA_TEST1_PATH, productTypes[0].getPath());
@@ -211,7 +200,7 @@ public class ProductTypeServiceTest {
 
     }
 
-    public void testCreate() throws RemoteException {
+    public void testCreate() {
 
         TCreate_Input create1 = new TCreate_Input();
         create1.setAlias(JAVA_TEST1_ALIAS);
@@ -241,18 +230,18 @@ public class ProductTypeServiceTest {
         assertEquals(createProductTypes.length, productTypes.length);
 
         assertEquals(JAVA_TEST1_ALIAS, productTypes[0].getAlias());
-        assertNull(productTypes[0].getError());
+        assertNoError(productTypes[0].getError());
         assertTrue(productTypes[0].getCreated());
         assertEquals(JAVA_TEST1_PATH, productTypes[0].getPath());
 
         assertEquals(JAVA_TEST2_ALIAS, productTypes[1].getAlias());
-        assertNull(productTypes[1].getError());
+        assertNoError(productTypes[1].getError());
         assertTrue(productTypes[1].getCreated());
         assertEquals(JAVA_TEST2_PATH, productTypes[1].getPath());
 
     }
 
-    public void testUpdate() throws RemoteException {
+    public void testUpdate() {
 
         TUpdate_Input update1 = new TUpdate_Input();
         update1.setPath(JAVA_TEST1_PATH);
@@ -265,7 +254,7 @@ public class ProductTypeServiceTest {
         TUpdate_Return[] productTypes = productTypeService.update(new TUpdate_Input[] { update1 });
         assertEquals(1, productTypes.length);
         assertEquals(JAVA_TEST1_PATH, productTypes[0].getPath());
-        assertNull(productTypes[0].getError());
+        assertNoError(productTypes[0].getError());
         assertTrue(productTypes[0].getUpdated());
 
         TGetInfo_Return[] result = productTypeService.getInfo(new String[] { JAVA_TEST1_PATH }, new String[] {},
@@ -273,7 +262,7 @@ public class ProductTypeServiceTest {
 
         assertEquals(1, result.length);
         assertEquals(JAVA_TEST1_PATH, result[0].getPath());
-        assertNull(result[0].getError());
+        assertNoError(result[0].getError());
         assertEquals(JAVA_TEST1_ALIAS, result[0].getAlias());
         assertEquals(JAVA_TEST1_LAYOUT_BUNDLES, result[0].getLayoutContentBundles());
         TLocalizedValue[] names = result[0].getName();
@@ -285,16 +274,16 @@ public class ProductTypeServiceTest {
 
     }
 
-    public void testDelete() throws RemoteException {
+    public void testDelete() {
 
         TDelete_Return[] result = productTypeService.delete(new String[] { JAVA_TEST1_PATH, JAVA_TEST2_PATH, NOT_EXISTING_PATH });
         assertEquals(3, result.length);
         assertEquals(JAVA_TEST1_PATH, result[0].getPath());
-        assertNull(result[0].getError());
+        assertNoError(result[0].getError());
         assertTrue(result[0].getDeleted());
 
         assertEquals(JAVA_TEST2_PATH, result[1].getPath());
-        assertNull(result[1].getError());
+        assertNoError(result[1].getError());
         assertTrue(result[1].getDeleted());
 
         assertEquals(NOT_EXISTING_PATH, result[2].getPath());
@@ -303,16 +292,16 @@ public class ProductTypeServiceTest {
         TExists_Return[] existsResult = productTypeService.exists(new String[] { JAVA_TEST1_PATH, JAVA_TEST2_PATH });
         assertEquals(2, existsResult.length);
         assertEquals(JAVA_TEST1_PATH, existsResult[0].getPath());
-        assertNull(existsResult[0].getError());
+        assertNoError(existsResult[0].getError());
         assertFalse(existsResult[0].getExists());
 
         assertEquals(JAVA_TEST2_PATH, existsResult[1].getPath());
-        assertNull(existsResult[1].getError());
+        assertNoError(existsResult[1].getError());
         assertFalse(existsResult[1].getExists());
 
     }
 
-    public void testCreateProductAttribute() throws RemoteException {
+    public void testCreateProductAttribute() {
 
         TCreateProductAttribute_Input in1 = new TCreateProductAttribute_Input();
         in1.setAlias(ATTRIBUTE1_ALIAS);
@@ -341,11 +330,11 @@ public class ProductTypeServiceTest {
         assertNotNull(attributes);
         assertEquals(in.length, attributes.length);
         assertEquals(ATTRIBUTE1_ALIAS, attributes[0].getAlias());
-        assertNull(attributes[0].getError());
+        assertNoError(attributes[0].getError());
         assertEquals(ATTRIBUTE1_PATH, attributes[0].getPath());
         assertTrue(attributes[0].getCreated());
         assertEquals(ATTRIBUTE2_ALIAS, attributes[1].getAlias());
-        assertNull(attributes[1].getError());
+        assertNoError(attributes[1].getError());
         assertEquals(ATTRIBUTE2_PATH, attributes[1].getPath());
         assertTrue(attributes[1].getCreated());
         assertEquals("CurrencyID", attributes[2].getAlias());
@@ -353,7 +342,7 @@ public class ProductTypeServiceTest {
 
     }
 
-    public void testGetEmptyProductAttibutesInfo() throws RemoteException {
+    public void testGetEmptyProductAttibutesInfo() {
 
         TGetProductAttributeInfo_Return[] attributes = productTypeService.getAllProductAttributesInfo(JAVA_TEST1_PATH, new String[] { "de",
                 "en" });
@@ -363,7 +352,7 @@ public class ProductTypeServiceTest {
 
     }
 
-    public void testGetAllProductAttibutesInfo() throws RemoteException {
+    public void testGetAllProductAttibutesInfo() {
 
         TGetProductAttributeInfo_Return[] attributes = productTypeService.getAllProductAttributesInfo(JAVA_TEST1_PATH, new String[] { "de",
                 "en" });
@@ -420,15 +409,14 @@ public class ProductTypeServiceTest {
 
     }
 
-    public void testGetProductAttributeInfo() throws RemoteException {
-
+    public void testGetProductAttributeInfo() {
         TGetProductAttributeInfo_Return[] attributes = productTypeService.getProductAttributeInfo(JAVA_TEST1_PATH, new String[] {
                 ATTRIBUTE1_ALIAS, ATTRIBUTE2_ALIAS, NOT_EXISTING_ALIAS }, new String[] { "en", "de" });
         assertNotNull(attributes);
         assertEquals(3, attributes.length);
 
         assertEquals(ATTRIBUTE1_ALIAS, attributes[0].getAlias());
-        assertNull(attributes[0].getError());
+        assertNoError(attributes[0].getError());
         assertEquals(ATTRIBUTE1_PATH, attributes[0].getPath());
         assertEquals(ATTRIBUTE1_TYPE, attributes[0].getType());
         assertTrue(attributes[0].getIsVisible());
@@ -436,7 +424,7 @@ public class ProductTypeServiceTest {
         assertEquals(0, attributes[0].getPosition().intValue() % 10);
 
         assertEquals(ATTRIBUTE2_ALIAS, attributes[1].getAlias());
-        assertNull(attributes[1].getError());
+        assertNoError(attributes[1].getError());
         assertEquals(ATTRIBUTE2_PATH, attributes[1].getPath());
         assertEquals(ATTRIBUTE2_TYPE, attributes[1].getType());
         assertFalse(attributes[1].getIsVisible());
@@ -449,8 +437,7 @@ public class ProductTypeServiceTest {
 
     }
 
-    public void testExistsProductAttribute() throws RemoteException {
-
+    public void testExistsProductAttribute() {
         TExistsProductAttribute_Return[] attributes = productTypeService.existsProductAttribute(JAVA_TEST1_PATH, new String[] {
                 ATTRIBUTE1_ALIAS, ATTRIBUTE2_ALIAS, NOT_EXISTING_ALIAS });
         assertNotNull(attributes);
@@ -462,11 +449,9 @@ public class ProductTypeServiceTest {
         assertTrue(attributes[1].isExists());
         assertEquals(NOT_EXISTING_ALIAS, attributes[2].getAlias());
         assertFalse(attributes[2].isExists());
-
     }
 
-    public void testUpdateProductAttribute() throws RemoteException {
-
+    public void testUpdateProductAttribute() {
         TUpdateProductAttribute_Input in1 = new TUpdateProductAttribute_Input();
         in1.setAlias(ATTRIBUTE1_ALIAS);
         in1.setIsHTML(false);
@@ -488,11 +473,11 @@ public class ProductTypeServiceTest {
         assertEquals(3, attributes.length);
 
         assertEquals(ATTRIBUTE1_ALIAS, attributes[0].getAlias());
-        assertNull(attributes[0].getError());
+        assertNoError(attributes[0].getError());
         assertTrue(attributes[0].getUpdated());
 
         assertEquals(ATTRIBUTE2_ALIAS, attributes[1].getAlias());
-        assertNull(attributes[1].getError());
+        assertNoError(attributes[1].getError());
         assertTrue(attributes[1].getUpdated());
 
         assertEquals(NOT_EXISTING_ALIAS, attributes[2].getAlias());
@@ -504,7 +489,7 @@ public class ProductTypeServiceTest {
         assertEquals(2, attributes2.length);
 
         assertEquals(ATTRIBUTE1_ALIAS, attributes2[0].getAlias());
-        assertNull(attributes2[0].getError());
+        assertNoError(attributes2[0].getError());
         assertEquals(ATTRIBUTE1_PATH, attributes2[0].getPath());
         assertTrue(attributes2[0].getIsVisible());
         assertFalse(attributes2[0].getIsHTML());
@@ -519,7 +504,7 @@ public class ProductTypeServiceTest {
         }
 
         assertEquals(ATTRIBUTE2_ALIAS, attributes2[1].getAlias());
-        assertNull(attributes2[1].getError());
+        assertNoError(attributes2[1].getError());
         assertEquals(ATTRIBUTE2_PATH, attributes2[1].getPath());
         assertTrue(attributes2[1].getIsVisible());
         assertFalse(attributes2[1].getIsHTML());
@@ -532,19 +517,17 @@ public class ProductTypeServiceTest {
             else if ("en".equals(name.getLanguageCode()))
                 assertEquals(ATTRIBUTE2_NAME_EN, name.getValue());
         }
-        assertFalse(0 == attributes2[0].getPosition().compareTo(attributes2[1].getPosition()));
-
+        assertNotEquals(attributes2[0].getPosition(),attributes2[1].getPosition());
     }
 
-    public void testDeleteProductAttribute() throws RemoteException {
-
+    public void testDeleteProductAttribute() {
         TDeleteProductAttribute_Return[] attributes = productTypeService.deleteProductAttribute(JAVA_TEST1_PATH, new String[] {
                 ATTRIBUTE1_ALIAS, NOT_EXISTING_ALIAS });
         assertNotNull(attributes);
         assertEquals(2, attributes.length);
 
         assertEquals(ATTRIBUTE1_ALIAS, attributes[0].getAlias());
-        assertNull(attributes[0].getError());
+        assertNoError(attributes[0].getError());
         assertTrue(attributes[0].getDeleted());
 
         assertEquals(NOT_EXISTING_ALIAS, attributes[1].getAlias());
@@ -556,11 +539,9 @@ public class ProductTypeServiceTest {
         assertEquals(1, attributes2.length);
         assertEquals(ATTRIBUTE1_ALIAS, attributes2[0].getAlias());
         assertFalse(attributes2[0].isExists());
-
     }
 
-    public void testCreatePreDefAttribute() throws RemoteException {
-
+    public void testCreatePreDefAttribute() {
         TCreatePreDefAttribute_Input in1 = new TCreatePreDefAttribute_Input();
         in1.setAlias(PREDEF_ATTRIBUTE1_ALIAS);
         in1.setValueString(PREDEF_ATTRIBUTE1_NAME);
@@ -581,21 +562,20 @@ public class ProductTypeServiceTest {
         assertEquals(3, predefs.length);
 
         assertEquals(PREDEF_ATTRIBUTE1_ALIAS, predefs[0].getAlias());
-        assertNull(predefs[0].getError());
+        assertNoError(predefs[0].getError());
         assertEquals(PREDEF_ATTRIBUTE1_PATH, predefs[0].getPath());
         assertTrue(predefs[0].getCreated());
 
         assertEquals(PREDEF_ATTRIBUTE2_ALIAS, predefs[1].getAlias());
-        assertNull(predefs[1].getError());
+        assertNoError(predefs[1].getError());
         assertEquals(PREDEF_ATTRIBUTE2_PATH, predefs[1].getPath());
         assertTrue(predefs[1].getCreated());
 
         assertEquals(PREDEF_ATTRIBUTE2_ALIAS, predefs[2].getAlias());
         assertNotNull(predefs[2].getError());
-
     }
 
-    public void testGetAllPreDefAttributesInfo() throws RemoteException {
+    public void testGetAllPreDefAttributesInfo() {
 
         TGetPreDefAttributeInfo_Return[] predefs = productTypeService.getAllPreDefAttributesInfo(ATTRIBUTE2_PATH, new String[] {});
         assertNotNull(predefs);
@@ -616,25 +596,23 @@ public class ProductTypeServiceTest {
         }
         assertTrue(predef1Found);
         assertTrue(predef2Found);
-
     }
 
-    public void testGetPreDefAttributeInfo() throws RemoteException {
-
+    public void testGetPreDefAttributeInfo() {
         TGetPreDefAttributeInfo_Return[] predefs = productTypeService.getPreDefAttributeInfo(ATTRIBUTE2_PATH, new String[] {
                 PREDEF_ATTRIBUTE1_ALIAS, PREDEF_ATTRIBUTE2_ALIAS, NOT_EXISTING_ALIAS }, new String[] {});
         assertNotNull(predefs);
         assertEquals(3, predefs.length);
 
         assertEquals(PREDEF_ATTRIBUTE1_ALIAS, predefs[0].getAlias());
-        assertNull(predefs[0].getError());
+        assertNoError(predefs[0].getError());
         assertEquals(PREDEF_ATTRIBUTE1_PATH, predefs[0].getPath());
         assertEquals(PREDEF_ATTRIBUTE1_NAME, predefs[0].getValueString());
         assertNull(predefs[0].getValueLocString());
         assertEquals(0, predefs[0].getPosition().intValue() % 10);
 
         assertEquals(PREDEF_ATTRIBUTE2_ALIAS, predefs[1].getAlias());
-        assertNull(predefs[1].getError());
+        assertNoError(predefs[1].getError());
         assertEquals(PREDEF_ATTRIBUTE2_PATH, predefs[1].getPath());
         assertEquals(PREDEF_ATTRIBUTE2_NAME, predefs[1].getValueString());
         assertNull(predefs[1].getValueLocString());
@@ -644,11 +622,9 @@ public class ProductTypeServiceTest {
 
         assertEquals(NOT_EXISTING_ALIAS, predefs[2].getAlias());
         assertNotNull(predefs[2].getError());
-
     }
 
-    public void testExistsPreDefAttribute() throws RemoteException {
-
+    public void testExistsPreDefAttribute() {
         TExistsPreDefAttribute_Return[] predefs = productTypeService.existsPreDefAttribute(ATTRIBUTE2_PATH, new String[] {
                 PREDEF_ATTRIBUTE1_ALIAS, PREDEF_ATTRIBUTE2_ALIAS, NOT_EXISTING_ALIAS });
         assertNotNull(predefs);
@@ -662,11 +638,9 @@ public class ProductTypeServiceTest {
 
         assertEquals(NOT_EXISTING_ALIAS, predefs[2].getAlias());
         assertFalse(predefs[2].isExists());
-
     }
 
-    public void testUpdatePreDefAttibute() throws RemoteException {
-
+    public void testUpdatePreDefAttibute() {
         TUpdatePreDefAttribute_Input in1 = new TUpdatePreDefAttribute_Input();
         in1.setAlias(PREDEF_ATTRIBUTE1_ALIAS);
         in1.setValueString(PREDEF_ATTRIBUTE1_NAME + "updated");
@@ -681,7 +655,7 @@ public class ProductTypeServiceTest {
         assertEquals(2, predefs.length);
 
         assertEquals(PREDEF_ATTRIBUTE1_ALIAS, predefs[0].getAlias());
-        assertNull(predefs[0].getError());
+        assertNoError(predefs[0].getError());
         assertTrue(predefs[0].getUpdated());
 
         assertEquals(NOT_EXISTING_ALIAS, predefs[1].getAlias());
@@ -693,30 +667,28 @@ public class ProductTypeServiceTest {
         assertEquals(2, predefs2.length);
 
         assertEquals(PREDEF_ATTRIBUTE1_ALIAS, predefs2[0].getAlias());
-        assertNull(predefs2[0].getError());
+        assertNoError(predefs2[0].getError());
         assertEquals(PREDEF_ATTRIBUTE1_NAME + "updated", predefs2[0].getValueString());
         assertNull(predefs2[0].getValueLocString());
         assertEquals(0, predefs2[0].getPosition().intValue() % 10);
 
         assertEquals(PREDEF_ATTRIBUTE2_ALIAS, predefs2[1].getAlias());
-        assertNull(predefs2[1].getError());
+        assertNoError(predefs2[1].getError());
         assertEquals(PREDEF_ATTRIBUTE2_NAME, predefs2[1].getValueString());
         assertNull(predefs2[1].getValueLocString());
         assertEquals(0, predefs2[1].getPosition().intValue() % 10);
 
         assertFalse(0 == predefs2[0].getPosition().compareTo(predefs2[1].getPosition()));
-
     }
 
-    public void testDeletePreDefAttribute() throws RemoteException {
-
+    public void testDeletePreDefAttribute() {
         TDeletePreDefAttribute_Return[] predefs = productTypeService.deletePreDefAttribute(ATTRIBUTE2_PATH, new String[] {
                 PREDEF_ATTRIBUTE2_ALIAS, NOT_EXISTING_ALIAS });
         assertNotNull(predefs);
         assertEquals(2, predefs.length);
 
         assertEquals(PREDEF_ATTRIBUTE2_ALIAS, predefs[0].getAlias());
-        assertNull(predefs[0].getError());
+        assertNoError(predefs[0].getError());
         assertTrue(predefs[0].getDeleted());
 
         assertEquals(NOT_EXISTING_ALIAS, predefs[1].getAlias());
@@ -729,7 +701,6 @@ public class ProductTypeServiceTest {
 
         assertEquals(PREDEF_ATTRIBUTE2_ALIAS, predefs2[0].getAlias());
         assertFalse(predefs2[0].isExists());
-
     }
 
     /**
@@ -737,33 +708,29 @@ public class ProductTypeServiceTest {
      */
     @Test
     public void testAll() {
-        try {
-            testGetBaseProductType();
-            testCreate();
-            testGetAllInfo();
-            testGetInfo();
-            testExists();
-            testUpdate();
+        testGetBaseProductType();
+        testCreate();
+        testGetAllInfo();
+        testGetInfo();
+        testExists();
+        testUpdate();
 
-            testGetEmptyProductAttibutesInfo();
-            testCreateProductAttribute();
-            testGetAllProductAttibutesInfo();
-            testGetProductAttributeInfo();
-            testExistsProductAttribute();
-            testUpdateProductAttribute();
+        testGetEmptyProductAttibutesInfo();
+        testCreateProductAttribute();
+        testGetAllProductAttibutesInfo();
+        testGetProductAttributeInfo();
+        testExistsProductAttribute();
+        testUpdateProductAttribute();
 
-            testCreatePreDefAttribute();
-            testGetAllPreDefAttributesInfo();
-            testGetPreDefAttributeInfo();
-            testExistsPreDefAttribute();
-            testUpdatePreDefAttibute();
-            testDeletePreDefAttribute();
+        testCreatePreDefAttribute();
+        testGetAllPreDefAttributesInfo();
+        testGetPreDefAttributeInfo();
+        testExistsPreDefAttribute();
+        testUpdatePreDefAttibute();
+        testDeletePreDefAttribute();
 
-            testDeleteProductAttribute();
+        testDeleteProductAttribute();
 
-            testDelete();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        testDelete();
     }
 }
