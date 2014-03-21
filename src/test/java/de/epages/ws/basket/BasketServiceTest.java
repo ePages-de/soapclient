@@ -12,7 +12,6 @@ import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import de.epages.ws.WebServiceTestConfiguration;
@@ -30,6 +29,7 @@ import de.epages.ws.basket.model.TUpdate_Input;
 import de.epages.ws.basket.model.TUpdate_Return;
 import de.epages.ws.common.model.TAttribute;
 import de.epages.ws.form.model.TFormError;
+import de.epages.ws.product11.ProductServiceClientImpl;
 import de.epages.ws.shop3.model.TAddressNamed;
 
 /**
@@ -38,6 +38,7 @@ import de.epages.ws.shop3.model.TAddressNamed;
 public class BasketServiceTest {
 
     private static final BasketServiceClientImpl basketService = new BasketServiceClientImpl(new WebServiceTestConfiguration());
+    private static final ProductServiceClientImpl productService = new ProductServiceClientImpl(new WebServiceTestConfiguration());
     private TCreate_Input Basket_in;
     private TUpdate_Input Basket_up;
     private TAttribute BasketAttr_in;
@@ -94,7 +95,7 @@ public class BasketServiceTest {
         lineItemContainer.setTaxArea("/TaxMatrixGermany/EU");
         lineItemContainer.setTaxModel("gross");
         lineItemContainer.setProductLineItems(new TProductLineItemIn[]{
-                new TProductLineItemIn("/Shops/DemoShop/Products/ho_1112105010", (float)10),
+                new TProductLineItemIn(getProductGuidFromPath("/Shops/DemoShop/Products/ho_1112105010"), (float)10),
                 //new TProductLineItemIn("/Shops/DemoShop/Products/de_3203104010", (float)10),
         });
         Basket_in.setLineItemContainer(lineItemContainer);
@@ -109,6 +110,11 @@ public class BasketServiceTest {
             TDelete_Return[] Baskets_delete_out = basketService.delete(new String[]{BasketGuid});
             assertNoError(Baskets_delete_out[0].getError());
         }
+    }
+
+    private String getProductGuidFromPath(String product) {
+        de.epages.ws.product11.model.TGetInfo_Return[] info = productService.getInfo(new String[] {product}, new String[] {"GUID"});
+        return info[0].getAttributes()[0].getValue();
     }
 
     /**
@@ -248,7 +254,6 @@ public class BasketServiceTest {
      * runs all tests
      */
     @Test
-    @Ignore
     public void testAll() throws RemoteException
     {
         testCreate();
