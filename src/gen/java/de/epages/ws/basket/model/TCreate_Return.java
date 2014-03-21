@@ -12,13 +12,13 @@ package de.epages.ws.basket.model;
  * a single return value of a create() basket call.
  *         the alias will be always returned.
  *         the error element will be returned in case of error.
- *         the created flag and path will be returned if no error has
+ *         the created flag and alias will be returned if no error has
  * occured.
  */
 public class TCreate_Return  implements java.io.Serializable {
     private java.lang.String alias;
 
-    private java.lang.String path;
+    private java.lang.String GUID;
 
     /* a boolean flag indicating that this basket was created */
     private java.lang.Boolean created;
@@ -39,12 +39,12 @@ public class TCreate_Return  implements java.io.Serializable {
 
     public TCreate_Return(
            java.lang.String alias,
-           java.lang.String path,
+           java.lang.String GUID,
            java.lang.Boolean created,
            de.epages.ws.common.model.TError error,
            de.epages.ws.form.model.TFormError[] formErrors) {
            this.alias = alias;
-           this.path = path;
+           this.GUID = GUID;
            this.created = created;
            this.error = error;
            this.formErrors = formErrors;
@@ -72,22 +72,22 @@ public class TCreate_Return  implements java.io.Serializable {
 
 
     /**
-     * Gets the path value for this TCreate_Return.
+     * Gets the GUID value for this TCreate_Return.
      * 
-     * @return path
+     * @return GUID
      */
-    public java.lang.String getPath() {
-        return path;
+    public java.lang.String getGUID() {
+        return GUID;
     }
 
 
     /**
-     * Sets the path value for this TCreate_Return.
+     * Sets the GUID value for this TCreate_Return.
      * 
-     * @param path
+     * @param GUID
      */
-    public void setPath(java.lang.String path) {
-        this.path = path;
+    public void setGUID(java.lang.String GUID) {
+        this.GUID = GUID;
     }
 
 
@@ -175,9 +175,9 @@ public class TCreate_Return  implements java.io.Serializable {
             ((this.alias==null && other.getAlias()==null) || 
              (this.alias!=null &&
               this.alias.equals(other.getAlias()))) &&
-            ((this.path==null && other.getPath()==null) || 
-             (this.path!=null &&
-              this.path.equals(other.getPath()))) &&
+            ((this.GUID==null && other.getGUID()==null) || 
+             (this.GUID!=null &&
+              this.GUID.equals(other.getGUID()))) &&
             ((this.created==null && other.getCreated()==null) || 
              (this.created!=null &&
               this.created.equals(other.getCreated()))) &&
@@ -201,8 +201,8 @@ public class TCreate_Return  implements java.io.Serializable {
         if (getAlias() != null) {
             _hashCode += getAlias().hashCode();
         }
-        if (getPath() != null) {
-            _hashCode += getPath().hashCode();
+        if (getGUID() != null) {
+            _hashCode += getGUID().hashCode();
         }
         if (getCreated() != null) {
             _hashCode += getCreated().hashCode();
@@ -238,8 +238,8 @@ public class TCreate_Return  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("path");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
+        elemField.setFieldName("GUID");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "GUID"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

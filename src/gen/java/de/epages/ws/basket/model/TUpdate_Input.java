@@ -12,12 +12,12 @@ package de.epages.ws.basket.model;
  * input arguments of a single update() basket call.
  *         a set of optional basket specific attributes that will be
  * updated.
- *         the path element is mandatory.
+ *         the guid element is mandatory.
  *         all others are optional.
  */
 public class TUpdate_Input  implements java.io.Serializable {
-    /* basket object path */
-    private java.lang.String path;
+    /* basket GUID */
+    private java.lang.String GUID;
 
     /* basket's user (object path to user) */
     private java.lang.String user;
@@ -36,13 +36,13 @@ public class TUpdate_Input  implements java.io.Serializable {
     }
 
     public TUpdate_Input(
-           java.lang.String path,
+           java.lang.String GUID,
            java.lang.String user,
            de.epages.ws.basket.model.TLineItemContainerIn lineItemContainer,
            de.epages.ws.shop3.model.TAddressNamed billingAddress,
            de.epages.ws.shop3.model.TAddressNamed shippingAddress,
            de.epages.ws.common.model.TAttribute[] attributes) {
-           this.path = path;
+           this.GUID = GUID;
            this.user = user;
            this.lineItemContainer = lineItemContainer;
            this.billingAddress = billingAddress;
@@ -52,22 +52,22 @@ public class TUpdate_Input  implements java.io.Serializable {
 
 
     /**
-     * Gets the path value for this TUpdate_Input.
+     * Gets the GUID value for this TUpdate_Input.
      * 
-     * @return path   * basket object path
+     * @return GUID   * basket GUID
      */
-    public java.lang.String getPath() {
-        return path;
+    public java.lang.String getGUID() {
+        return GUID;
     }
 
 
     /**
-     * Sets the path value for this TUpdate_Input.
+     * Sets the GUID value for this TUpdate_Input.
      * 
-     * @param path   * basket object path
+     * @param GUID   * basket GUID
      */
-    public void setPath(java.lang.String path) {
-        this.path = path;
+    public void setGUID(java.lang.String GUID) {
+        this.GUID = GUID;
     }
 
 
@@ -182,9 +182,9 @@ public class TUpdate_Input  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
-            ((this.path==null && other.getPath()==null) || 
-             (this.path!=null &&
-              this.path.equals(other.getPath()))) &&
+            ((this.GUID==null && other.getGUID()==null) || 
+             (this.GUID!=null &&
+              this.GUID.equals(other.getGUID()))) &&
             ((this.user==null && other.getUser()==null) || 
              (this.user!=null &&
               this.user.equals(other.getUser()))) &&
@@ -211,8 +211,8 @@ public class TUpdate_Input  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        if (getPath() != null) {
-            _hashCode += getPath().hashCode();
+        if (getGUID() != null) {
+            _hashCode += getGUID().hashCode();
         }
         if (getUser() != null) {
             _hashCode += getUser().hashCode();
@@ -248,8 +248,8 @@ public class TUpdate_Input  implements java.io.Serializable {
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/BasketTypes/2013/11", "TUpdate_Input"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("path");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
+        elemField.setFieldName("GUID");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "GUID"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
