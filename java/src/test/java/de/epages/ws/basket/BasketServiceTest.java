@@ -34,6 +34,7 @@ import de.epages.ws.shop3.model.TAddressNamed;
  */
 public class BasketServiceTest {
 
+    private static final String GUID_ATTRIBUTE = "GUID";
     private static final BasketServiceClientImpl basketService = new BasketServiceClientImpl(new WebServiceTestConfiguration());
     private static final ProductServiceClientImpl productService = new ProductServiceClientImpl(new WebServiceTestConfiguration());
     private TCreate_Input Basket_in;
@@ -111,8 +112,12 @@ public class BasketServiceTest {
     }
 
     private String getProductGuidFromPath(String product) {
-        de.epages.ws.product11.model.TGetInfo_Return[] info = productService.getInfo(new String[] {product}, new String[] {"GUID"});
-        return info[0].getAttributes()[0].getValue();
+        de.epages.ws.product11.model.TGetInfo_Return[] productInfos = productService.getInfo(new String[] {product}, new String[] {GUID_ATTRIBUTE});
+        de.epages.ws.product11.model.TGetInfo_Return productInfo = productInfos[0];
+        assertNoError(productInfo.getError());
+        TAttribute guidAttribute = productInfo.getAttributes()[0];
+        assertEquals("Is the passed Attribute a GUID?",GUID_ATTRIBUTE, guidAttribute.getName());
+        return guidAttribute.getValue();
     }
 
     /**
