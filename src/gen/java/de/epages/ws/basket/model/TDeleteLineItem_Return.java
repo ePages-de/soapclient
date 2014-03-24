@@ -10,12 +10,12 @@ package de.epages.ws.basket.model;
 
 /**
  * a single return value of a deleteLineItem() call.
- *         the path will be always returned.
+ *         the alias will be always returned.
  *         the error element will be returned in case of error.
  *         the deleted flag will be returned if no error has occured.
  */
 public class TDeleteLineItem_Return  implements java.io.Serializable {
-    private java.lang.String path;
+    private java.lang.String alias;
 
     /* a boolean flag indicating that this lineitem was deleted */
     private java.lang.Boolean deleted;
@@ -27,32 +27,32 @@ public class TDeleteLineItem_Return  implements java.io.Serializable {
     }
 
     public TDeleteLineItem_Return(
-           java.lang.String path,
+           java.lang.String alias,
            java.lang.Boolean deleted,
            de.epages.ws.common.model.TError error) {
-           this.path = path;
+           this.alias = alias;
            this.deleted = deleted;
            this.error = error;
     }
 
 
     /**
-     * Gets the path value for this TDeleteLineItem_Return.
+     * Gets the alias value for this TDeleteLineItem_Return.
      * 
-     * @return path
+     * @return alias
      */
-    public java.lang.String getPath() {
-        return path;
+    public java.lang.String getAlias() {
+        return alias;
     }
 
 
     /**
-     * Sets the path value for this TDeleteLineItem_Return.
+     * Sets the alias value for this TDeleteLineItem_Return.
      * 
-     * @param path
+     * @param alias
      */
-    public void setPath(java.lang.String path) {
-        this.path = path;
+    public void setAlias(java.lang.String alias) {
+        this.alias = alias;
     }
 
 
@@ -107,9 +107,9 @@ public class TDeleteLineItem_Return  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
-            ((this.path==null && other.getPath()==null) || 
-             (this.path!=null &&
-              this.path.equals(other.getPath()))) &&
+            ((this.alias==null && other.getAlias()==null) || 
+             (this.alias!=null &&
+              this.alias.equals(other.getAlias()))) &&
             ((this.deleted==null && other.getDeleted()==null) || 
              (this.deleted!=null &&
               this.deleted.equals(other.getDeleted()))) &&
@@ -127,8 +127,8 @@ public class TDeleteLineItem_Return  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        if (getPath() != null) {
-            _hashCode += getPath().hashCode();
+        if (getAlias() != null) {
+            _hashCode += getAlias().hashCode();
         }
         if (getDeleted() != null) {
             _hashCode += getDeleted().hashCode();
@@ -147,8 +147,8 @@ public class TDeleteLineItem_Return  implements java.io.Serializable {
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/BasketTypes/2013/11", "TDeleteLineItem_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("path");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
+        elemField.setFieldName("alias");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "Alias"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

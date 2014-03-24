@@ -10,12 +10,12 @@ package de.epages.ws.basket.model;
 
 /**
  * a single return value of a delete() basket call.
- *         the path will be always returned.
+ *         the guid will be always returned.
  *         the error element will be returned in case of error.
  *         the deleted flag will be returned if no error has occured.
  */
 public class TDelete_Return  implements java.io.Serializable {
-    private java.lang.String path;
+    private java.lang.String GUID;
 
     /* a boolean flag indicating that this basket was deleted */
     private java.lang.Boolean deleted;
@@ -27,32 +27,32 @@ public class TDelete_Return  implements java.io.Serializable {
     }
 
     public TDelete_Return(
-           java.lang.String path,
+           java.lang.String GUID,
            java.lang.Boolean deleted,
            de.epages.ws.common.model.TError error) {
-           this.path = path;
+           this.GUID = GUID;
            this.deleted = deleted;
            this.error = error;
     }
 
 
     /**
-     * Gets the path value for this TDelete_Return.
+     * Gets the GUID value for this TDelete_Return.
      * 
-     * @return path
+     * @return GUID
      */
-    public java.lang.String getPath() {
-        return path;
+    public java.lang.String getGUID() {
+        return GUID;
     }
 
 
     /**
-     * Sets the path value for this TDelete_Return.
+     * Sets the GUID value for this TDelete_Return.
      * 
-     * @param path
+     * @param GUID
      */
-    public void setPath(java.lang.String path) {
-        this.path = path;
+    public void setGUID(java.lang.String GUID) {
+        this.GUID = GUID;
     }
 
 
@@ -107,9 +107,9 @@ public class TDelete_Return  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
-            ((this.path==null && other.getPath()==null) || 
-             (this.path!=null &&
-              this.path.equals(other.getPath()))) &&
+            ((this.GUID==null && other.getGUID()==null) || 
+             (this.GUID!=null &&
+              this.GUID.equals(other.getGUID()))) &&
             ((this.deleted==null && other.getDeleted()==null) || 
              (this.deleted!=null &&
               this.deleted.equals(other.getDeleted()))) &&
@@ -127,8 +127,8 @@ public class TDelete_Return  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        if (getPath() != null) {
-            _hashCode += getPath().hashCode();
+        if (getGUID() != null) {
+            _hashCode += getGUID().hashCode();
         }
         if (getDeleted() != null) {
             _hashCode += getDeleted().hashCode();
@@ -147,8 +147,8 @@ public class TDelete_Return  implements java.io.Serializable {
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/BasketTypes/2013/11", "TDelete_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("path");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
+        elemField.setFieldName("GUID");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "GUID"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
