@@ -10,7 +10,6 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import de.epages.ws.FileUtil;
@@ -148,6 +147,7 @@ public class ProductServiceTest {
         download_up.setFileName("image_download.jpg");
         download_up.setPosition(new BigInteger("10"));
         download_up.setFileContent(FileUtil.readFileFromClasspath("TestData/ProductImageService/cg_0100504001.jpg"));
+        download_up.setTargetUrl("http://www.blabla.bla/");
         Product_down_up.setDownloadProductMaps(new TDownload[] { download_up });
 
         // delete the test product if it exists
@@ -437,7 +437,6 @@ public class ProductServiceTest {
      * </ol>
      */
     @Test
-    @Ignore
     public void testAll() {
         testCreate();
         testExists(true);
