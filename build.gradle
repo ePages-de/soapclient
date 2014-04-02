@@ -222,6 +222,7 @@ def currentWsdls = [
     'ShippingMethodService2',
     'TaxAreaService',
     'TaxClassService',
+    'UserService6',
     // this needs to come last due to a namespace mapping hack.
     'ProductService11'
 ]
