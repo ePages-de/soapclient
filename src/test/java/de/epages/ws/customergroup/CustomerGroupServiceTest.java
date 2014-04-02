@@ -3,8 +3,6 @@ package de.epages.ws.customergroup;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.rmi.RemoteException;
-
 import org.junit.Test;
 
 import de.epages.ws.WebServiceTestConfiguration;
@@ -17,7 +15,7 @@ public class CustomerGroupServiceTest {
      * Get a list of all customer groups
      */
     @Test
-    public void testGetList() throws RemoteException {
+    public void testGetList() {
     	TGetList_Return[] customerGroups = customerGroupService.getList();
 
         int count = customerGroups.length;

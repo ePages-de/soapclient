@@ -4,7 +4,6 @@ import static de.epages.ws.common.AssertNoError.assertNoError;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,7 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.epages.ws.WebServiceTestConfiguration;
-import de.epages.ws.catalog8.CatalogServiceClientImpl;
 import de.epages.ws.catalog8.model.TCreate_Input;
 import de.epages.ws.catalog8.model.TCreate_Return;
 import de.epages.ws.catalog8.model.TDelete_Return;
@@ -175,7 +173,7 @@ public class CatalogServiceTest {
      * @param isAlreadyUpdated
      *            if true check against update data, else against create data
      */
-    public void testGetInfo(boolean isAlreadyUpdated) throws RemoteException, ParseException {
+    public void testGetInfo(boolean isAlreadyUpdated) throws ParseException {
         TGetInfo_Return[] Catalogs_out = catalogService
                 .getInfo(new String[] { full }, new String[] { "Date" }, new String[] { "de", "en" });
 
@@ -190,13 +188,9 @@ public class CatalogServiceTest {
 
         if (isAlreadyUpdated) {
 
-            try {
-                Date date_in = sdf_in.parse(Catalog_up.getAttributes()[0].getValue());
-                Date date_out = sdf_out.parse(Catalogs_out[0].getAttributes()[0].getValue());
-                assertEquals("Date", date_in, date_out);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            Date date_in = sdf_in.parse(Catalog_up.getAttributes()[0].getValue());
+            Date date_out = sdf_out.parse(Catalogs_out[0].getAttributes()[0].getValue());
+            assertEquals("Date", date_in, date_out);
 
             assertEquals("updated localized Name", Catalog_up.getName()[0].getValue(), hash.get(Catalog_up.getName()[0].getLanguageCode()));
             assertEquals("updated localized Name", Catalog_up.getName()[1].getValue(), hash.get(Catalog_up.getName()[1].getLanguageCode()));

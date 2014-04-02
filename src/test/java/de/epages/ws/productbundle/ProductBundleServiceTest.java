@@ -2,11 +2,9 @@ package de.epages.ws.productbundle;
 
 import static de.epages.ws.common.AssertNoError.assertNoError;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.math.BigInteger;
-import java.rmi.RemoteException;
 
 import org.junit.Test;
 
@@ -37,7 +35,7 @@ public class ProductBundleServiceTest {
     /**
      * insert a cross selling and check if the creation was successful
      */
-    public void testCreate() throws RemoteException {
+    public void testCreate() {
         // create a ProductBundle
         TBundledProduct bundledProduct = new TBundledProduct(
         // bundled_product, new String("10"),
@@ -66,7 +64,7 @@ public class ProductBundleServiceTest {
     /**
      * delete a product bundle and check if the deletion was successful
      */
-    public void testDelete() throws RemoteException {
+    public void testDelete() {
         TBundledProductPath bundledProductPath = new TBundledProductPath(bundled_product2);
         TBundledProductPath[] bundledProductPaths = new TBundledProductPath[] { bundledProductPath };
         TDelete_Input productBundle = new TDelete_Input(product, bundledProductPaths);
@@ -89,7 +87,7 @@ public class ProductBundleServiceTest {
      *            if false, test is successful if the ProductBundle does NOT
      *            exists
      */
-    public void testExists(boolean expected) throws RemoteException {
+    public void testExists(boolean expected) {
         TExists_Input productBundle = new TExists_Input(product, bundled_product2);
         TExists_Input[] productBundles = new TExists_Input[] { productBundle };
         TExists_Return[] ProductBundles_out = productBundleService.exists(productBundles);
@@ -105,7 +103,7 @@ public class ProductBundleServiceTest {
     /**
      * test getInfo method
      */
-    public void testGetInfo() throws RemoteException {
+    public void testGetInfo() {
         String[] productBundles = new String[] { product };
         TGetInfo_Return[] ProductBundles_out = productBundleService.getInfo(productBundles);
 
@@ -121,7 +119,7 @@ public class ProductBundleServiceTest {
      * runs all tests
      */
     @Test
-    public void testAll() throws RemoteException {
+    public void testAll() {
         testCreate();
         testExists(true);
         testGetInfo();

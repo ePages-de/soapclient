@@ -29,7 +29,7 @@ public interface OrderServiceClient extends Port_Order {
     /**
      * get information about a list of orders
      */
-    TGetInfo_Return[] getInfo(java.lang.String[] orders, java.lang.String[] attributes, java.lang.String[] addressAttributes, java.lang.String[] languageCodes) throws java.rmi.RemoteException;
+    TGetInfo_Return[] getInfo(java.lang.String[] orders, java.lang.String[] attributes, java.lang.String[] addressAttributes, java.lang.String[] languageCodes);
 
     /**
      * check if a list of orders exist.

@@ -41,7 +41,6 @@ public class ProductServiceTest {
     /**
      * Sets all the required prerequisites for the tests. Will be called before
      * the test are run.
-     *
      * @throws IOException
      */
     @Before

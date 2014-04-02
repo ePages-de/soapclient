@@ -3,9 +3,6 @@ package de.epages.ws.orderdocument5;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.net.MalformedURLException;
-import java.rmi.RemoteException;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -60,7 +57,7 @@ public class OrderDocumentServiceTest {
      * the test are run.
      */
     @Before
-    public void setUp() throws RemoteException, MalformedURLException {
+    public void setUp() {
         // delete the test order documents if it exists
         TExists_Return[] Doc_exists_out = orderDocService.exists(Docs);
         for (TExists_Return exist : Doc_exists_out) {

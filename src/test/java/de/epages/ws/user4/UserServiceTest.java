@@ -190,7 +190,7 @@ public class UserServiceTest {
 
         // test if exists check was successful
         assertEquals("exists result set", 1, users_out.length);
-        assertEquals("exists?", new Boolean(expected), users_out[0].getExists());
+        assertEquals("exists?", expected, users_out[0].getExists());
     }
 
     /**

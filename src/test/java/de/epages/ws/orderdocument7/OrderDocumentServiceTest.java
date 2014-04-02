@@ -94,7 +94,7 @@ public class OrderDocumentServiceTest {
         TCreate_Return[] Doc_create_out = orderDocService.create(Docs_in);
         assertEquals("create result set", 3, Doc_create_out.length);
         for (TCreate_Return create : Doc_create_out) {
-            assertEquals("created?", new Boolean(true), create.getCreated());
+            assertEquals("created?", true, create.getCreated());
         }
     }
 
@@ -112,7 +112,7 @@ public class OrderDocumentServiceTest {
         TDelete_Return[] Doc_delete_out = orderDocService.delete(Docs);
         assertEquals("delete result set", 3, Doc_delete_out.length);
         for (TDelete_Return del : Doc_delete_out) {
-            assertEquals("created?", new Boolean(true), del.getDeleted());
+            assertEquals("created?", true, del.getDeleted());
         }
     }
 
@@ -192,7 +192,7 @@ public class OrderDocumentServiceTest {
     public void testExists(boolean expected) {
         TExists_Return[] Doc_exists_out = orderDocService.exists(Docs);
         for (TExists_Return exist : Doc_exists_out) {
-            assertEquals("exists?", new Boolean(expected), exist.getExists());
+            assertEquals("exists?", expected, exist.getExists());
         }
     }
 

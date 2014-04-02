@@ -2,8 +2,6 @@ package de.epages.ws.productattribute;
 
 import static org.junit.Assert.assertTrue;
 
-import java.rmi.RemoteException;
-
 import org.junit.Test;
 
 import de.epages.ws.WebServiceTestConfiguration;
@@ -17,7 +15,7 @@ public class ProductAttributeServiceTest {
      * Get a list of all product attributes
      */
     @Test
-    public void testGetList() throws RemoteException {
+    public void testGetList() {
         TGetInfoList_Return[] allAttributes = productAttributeService.getInfoList();
 
         // test if transfer was successful

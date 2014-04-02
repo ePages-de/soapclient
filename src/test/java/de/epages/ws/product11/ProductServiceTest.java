@@ -234,7 +234,7 @@ public class ProductServiceTest {
         // test if update was successful
         assertEquals("udpate result set", 1, Products_update_out.length);
         assertNoError(Products_update_out[0].getError());
-        assertEquals("updated?", new Boolean(true), Products_update_out[0].getUpdated());
+        assertEquals("updated?", true, Products_update_out[0].getUpdated());
     }
 
     /**
@@ -373,7 +373,7 @@ public class ProductServiceTest {
         // test if deletion was successful
         assertEquals("delete result set", 1, Products_delete_out.length);
         assertNoError(Products_delete_out[0].getError());
-        assertEquals("deleted?", new Boolean(true), Products_delete_out[0].getDeleted());
+        assertEquals("deleted?", true, Products_delete_out[0].getDeleted());
     }
 
     /**
@@ -387,7 +387,7 @@ public class ProductServiceTest {
         // test if exists check was successful
         assertEquals("exists result set", 1, Products_exists_out.length);
         assertNoError(Products_exists_out[0].getError());
-        assertEquals("exists?", new Boolean(expected), Products_exists_out[0].getExists());
+        assertEquals("exists?", expected, Products_exists_out[0].getExists());
     }
 
     public void testFind() {
@@ -409,7 +409,7 @@ public class ProductServiceTest {
         // test if creation was successful
         assertEquals("create result set", 1, Products_create_out.length);
         assertNoError(Products_create_out[0].getError());
-        assertEquals("created?", new Boolean(true), Products_create_out[0].getCreated());
+        assertEquals("created?", true, Products_create_out[0].getCreated());
     }
 
     public void testGetInfoDownload() {

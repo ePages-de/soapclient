@@ -4,8 +4,6 @@ import static de.epages.ws.common.AssertNoError.assertNoError;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.net.MalformedURLException;
-import java.rmi.RemoteException;
 import java.util.GregorianCalendar;
 
 import org.junit.Before;
@@ -42,7 +40,7 @@ public class CustomerServiceTest {
      * the test are run.
      */
     @Before
-    public void setUp() throws RemoteException, MalformedURLException {
+    public void setUp() {
         // test data customer_in
         customer_in.setAlias(alias);
         customer_in.setCustomerGroup("/Shops/DemoShop/Groups/NewCustomer");

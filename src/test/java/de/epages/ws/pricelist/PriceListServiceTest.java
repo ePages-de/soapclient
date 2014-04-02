@@ -4,8 +4,6 @@ import static de.epages.ws.common.AssertNoError.assertNoError;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.net.MalformedURLException;
-import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -46,7 +44,7 @@ public class PriceListServiceTest {
      * the test are run.
      */
     @Before
-    public void setUp() throws RemoteException, MalformedURLException {
+    public void setUp() {
         /* get customer groups at first */
         String customerGroupsPath = "/Shops/DemoShop/Groups/";
         String[] customerGroups = new String[] { customerGroupsPath + "Neukunde", customerGroupsPath + "Stammkunde" };

@@ -195,7 +195,7 @@ public class ProductServiceTest {
 
         // test if exists check was successful
         assertEquals("exists result set", 1, Products_exists_out.length);
-        assertEquals("exists?", new Boolean(expected), Products_exists_out[0].getExists());
+        assertEquals("exists?", expected, Products_exists_out[0].getExists());
     }
 
     public void testFind() {

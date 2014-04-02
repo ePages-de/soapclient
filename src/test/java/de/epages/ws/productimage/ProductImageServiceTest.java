@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 import org.junit.After;
 import org.junit.Before;
@@ -63,7 +62,7 @@ public class ProductImageServiceTest {
      * the test are run.
      */
     @Before
-    public void setUp() throws MalformedURLException {
+    public void setUp() {
         // create the test product
         TCreate_Input productInfo = new TCreate_Input();
         productInfo.setAlias(alias);

@@ -3,7 +3,6 @@ package de.epages.ws.customer3;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.rmi.RemoteException;
 import java.util.GregorianCalendar;
 
 import org.junit.Before;
@@ -209,7 +208,7 @@ public class CustomerServiceTest {
      * runs all tests
      */
     @Test
-    public void testAll() throws RemoteException {
+    public void testAll() {
         testCreate();
         testExists();
         testFind();

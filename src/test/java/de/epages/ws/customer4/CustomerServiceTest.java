@@ -4,7 +4,6 @@ import static de.epages.ws.common.AssertNoError.assertNoError;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.rmi.RemoteException;
 import java.util.GregorianCalendar;
 
 import org.junit.Before;
@@ -130,16 +129,11 @@ public class CustomerServiceTest {
     /**
      * Retrieve information about an customer. Check if the returned data are
      * equal to the data of create or update call
-     * 
+     *
      * @param isAlreadyUpdated
      *            if true check against update data, else against create data
      */
-    public void testGetInfo() {
-        testGetInfo("");
-    }
-
-    public void testGetInfo(String testUpdated) {
-        boolean isAlreadyUpdated = testUpdated.equalsIgnoreCase("updated");
+    public void testGetInfo(boolean isAlreadyUpdated) {
         TGetInfo_Return[] customers_out = customerService.getInfo(new String[] { path }, new String[] { "Comment" }, new String[] {
                 "JobTitle", "Salutation" });
 
@@ -187,7 +181,7 @@ public class CustomerServiceTest {
 
     /**
      * Test if a customer exists or not
-     * 
+     *
      * @param expected
      *            if false the Test will be successful if the customer does NOT
      *            exist
@@ -222,13 +216,13 @@ public class CustomerServiceTest {
      * runs all tests
      */
     @Test
-    public void testAll() throws RemoteException {
+    public void testAll() {
         testCreate();
         testExists();
         testFind();
-        testGetInfo();
+        testGetInfo(false);
         testUpdate();
-        testGetInfo("updated");
+        testGetInfo(true);
         testDelete();
         testExists(false);
     }

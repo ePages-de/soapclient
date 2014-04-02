@@ -4,7 +4,6 @@ import static de.epages.ws.common.AssertNoError.assertNoError;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.rmi.RemoteException;
 import java.util.GregorianCalendar;
 
 import org.junit.Before;
@@ -12,8 +11,6 @@ import org.junit.Test;
 
 import de.epages.ws.WebServiceTestConfiguration;
 import de.epages.ws.common.model.TAttribute;
-import de.epages.ws.order12.OrderServiceClient;
-import de.epages.ws.order12.OrderServiceClientImpl;
 import de.epages.ws.order12.model.TBaseLineItem;
 import de.epages.ws.order12.model.TCreate_Input;
 import de.epages.ws.order12.model.TCreate_Return;
@@ -107,20 +104,20 @@ public class OrderServiceTest {
     /**
      * Create a Order and check if the creation was successful
      */
-    public void testCreate() throws RemoteException {
+    public void testCreate() {
         TCreate_Return[] Orders_create_out = orderService.create(new TCreate_Input[]{Order_in});
         assertEquals("create result set", 1, Orders_create_out.length);
-        assertEquals("created?", new Boolean(true), Orders_create_out[0].getCreated());
+        assertEquals("created?", true, Orders_create_out[0].getCreated());
         assertNoError(Orders_create_out[0].getError());
     }
 
     /**
      * Update a Order and check if the update was successful
      */
-    public void testUpdate() throws RemoteException {
+    public void testUpdate() {
         TUpdate_Return[] Orders_update_out = orderService.update(new TUpdate_Input[]{Order_up});
         assertEquals("update result set", 1, Orders_update_out.length);
-        assertEquals("updated?", new Boolean(true), Orders_update_out[0].getUpdated());
+        assertEquals("updated?", true, Orders_update_out[0].getUpdated());
         assertNoError(Orders_update_out[0].getError());
     }
 
@@ -130,7 +127,7 @@ public class OrderServiceTest {
      *
      * @param isAlreadyUpdated if true check against update data, else against create data
      */
-    public void testGetInfo(boolean isAlreadyUpdated) throws RemoteException {
+    public void testGetInfo(boolean isAlreadyUpdated) {
         TGetInfo_Return[] Orders_info_out = orderService.getInfo(Orders, OrderAttributes, AddressAttributes, ItemAttributes, null);
         assertEquals("exists result set", 1, Orders_info_out.length);
 
@@ -184,7 +181,7 @@ public class OrderServiceTest {
     /**
      * Delete a Order and check if no error occured.
      */
-    public void testDelete() throws RemoteException {
+    public void testDelete() {
         TDelete_Return[] Orders_delete_out = orderService.delete(new String[]{OrderPath});
         assertEquals("delete result set", 1, Orders_delete_out.length);
         assertNoError(Orders_delete_out[0].getError());
@@ -194,7 +191,7 @@ public class OrderServiceTest {
     * test exists method
     * @param expected  if false, test is successful if the Order does NOT exists
     */
-    public void testExists(boolean expected) throws RemoteException {
+    public void testExists(boolean expected) {
         TExists_Return[] Orders_exists_out = orderService.exists(new String[]{OrderPath});
         assertEquals("exists result set", 1, Orders_exists_out.length);
         assertEquals("exists?", expected, Orders_exists_out[0].getExists());
@@ -228,8 +225,7 @@ public class OrderServiceTest {
      * runs all tests
      */
     @Test
-    public void testAll() throws RemoteException
-    {
+    public void testAll() {
         testCreate();
         testExists(true);
         testFind();

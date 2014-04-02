@@ -3,8 +3,6 @@ package de.epages.ws.customergroup2;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.rmi.RemoteException;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -59,7 +57,7 @@ public class CustomerGroupServiceTest {
     /**
      * Get a list of all customer groups
      */
-    public void testGetList() throws RemoteException {
+    public void testGetList() {
         TGetList_Return[] customerGroups = customerGroupService.getList();
 
         int count = customerGroups.length;
@@ -106,14 +104,14 @@ public class CustomerGroupServiceTest {
 
         // test if exists check was successful
         assertEquals("exists result set", 1, customers_out.length);
-        assertEquals("exists?", new Boolean(expected), customers_out[0].getExists());
+        assertEquals("exists?", expected, customers_out[0].getExists());
     }
 
     /**
      * runs all tests
      */
     @Test
-    public void testAll() throws RemoteException {
+    public void testAll() {
         testGetList();
         testCreate();
         testExists();

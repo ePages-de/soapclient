@@ -125,7 +125,7 @@ public class CatalogServiceTest {
 
         // test if creation was successful
         assertEquals("create result set", 1, Catalogs_out.length);
-        assertEquals("created?", new Boolean(true), Catalogs_out[0].getCreated());
+        assertEquals("created?", true, Catalogs_out[0].getCreated());
     }
 
     /**
