@@ -2,9 +2,10 @@ buildscript {
     repositories {
         maven { url project.properties['artifactoryContextUrl'] + "epages-repos" }
         mavenCentral()
+        maven { url "https://github.com/ben-manes/gradle-versions-plugin/raw/mvnrepo" }
     }
     dependencies {
-        classpath 'com.github.ben-manes:gradle-versions-plugin:0.4'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.5-beta-1'
     }
 }
 
@@ -19,6 +20,12 @@ archivesBaseName = 'epages-soapclient'
 group = 'de.epages'
 description = 'AXIS 1.x based SOAP client for epages6'
 version = '1.4.13-SNAPSHOT'
+
+eclipse {
+  project {
+	name = 'soapclient-java'
+  }
+}
 
 repositories {
     maven { url project.properties['artifactoryContextUrl'] + "epages-repos" }
