@@ -18,7 +18,7 @@ h2. Running test cases with Gradle (http://www.gradle.org/)
 
 1. run "./gradlew test" (Linux) or "gradlew.cmd test" (Windows) in project folder.
 2. If epages6 is not installed locally, use the
-   system property "ep6HostName" to an epages6 installation (-Dep6HostName=somehost)
+   gradle property "ep6HostName" to an epages6 installation (-Pep6HostName=somehost)
 
 h2. Running test cases with Eclipse (http://www.eclipse.org/)
 
@@ -29,11 +29,14 @@ h2. Running test cases with Eclipse (http://www.eclipse.org/)
 5. In the Package Explorer, right-click on the project
    and select "Run As/JUnit Test".
 6. If epages6 is not installed locally, use the 
-   system property "ep6HostName" in launch configuration to point 
-   to an epages6 installation (-Dep6HostName=somehost)
+   gradle property "ep6HostName" in launch configuration to point 
+   to an epages6 installation (-Pep6HostName=somehost)
 
 h2. Regenerating stub classes
 
-1. run "./gradlew axisGen" (Linux) or "gradlew.cmd axisGen" (Windows) in project folder.
+1. run "./gradlew java:generate" (Linux) or "gradlew.cmd java:generate" (Windows) in project folder.
 2. If epages6 is not installed locally, use the
-   system property "ep6HostName" to an epages6 installation (-Dep6HostName=somehost)
+   gradle property "wsdlBaseUrl" to point to a WSDL directory or an epages6 
+   installation (-PwsdlBaseUrl=http://somehost/WebRoot/WSDL/)
+3. If you only want to regenerate a specific webservice, pass the gradle property 
+   onlyThisService (-PonlyThisService=ProductTypeService2)
