@@ -1,0 +1,192 @@
+
+
+buildscript {
+    repositories {
+        maven { url project.properties['artifactoryContextUrl'] + "epages-repos" }
+        mavenCentral()
+        maven { url 'http://jcenter.bintray.com' }
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.3'
+    }
+}
+
+apply plugin: "java"
+apply plugin: "eclipse"
+apply plugin: 'maven-publish'
+
+apply plugin: 'bintray'
+apply plugin: 'jacoco'
+
+archivesBaseName = 'soapclient'
+group = 'de.epages'
+description = 'AXIS 1.x based SOAP client for epages6'
+version = '1.4.13'
+
+repositories {
+    maven { url artifactoryContextUrl + "epages-repos" }
+    mavenCentral()
+}
+
+configurations { axisGenTask }
+
+// add src/gen/java
+sourceSets.main.java.srcDirs 'src/gen/java'
+sourceSets.test.java.srcDirs 'src/gen-old/java'
+
+ext {
+    axisVersion = "1.4"
+    slf4jVersion = "1.7.5"
+    junitVersion = "4.11"
+    wsdl4jVersion = "1.6.3"
+    commonsDiscoveryVersion = "0.5"
+    logbackVersion = "1.0.13"
+    httpclientVersion = "3.1"
+}
+
+dependencies {
+    compile "org.apache.axis:axis:${axisVersion}"
+    compile "org.apache.axis:axis-jaxrpc:${axisVersion}"
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+
+    runtime "org.apache.axis:axis-saaj:${axisVersion}"
+    runtime "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
+    runtime "wsdl4j:wsdl4j:${wsdl4jVersion}"
+
+    testCompile "junit:junit:${junitVersion}"
+
+    testRuntime "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+    testRuntime "ch.qos.logback:logback-core:${logbackVersion}"
+    testRuntime "ch.qos.logback:logback-classic:${logbackVersion}"
+    testRuntime "commons-httpclient:commons-httpclient:${httpclientVersion}"
+
+    axisGenTask "org.apache.axis:axis-ant:${axisVersion}"
+    axisGenTask "org.apache.axis:axis:${axisVersion}"
+    axisGenTask "org.apache.axis:axis-jaxrpc:${axisVersion}"
+    axisGenTask "wsdl4j:wsdl4j:${wsdl4jVersion}"
+    axisGenTask "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+    axisGenTask "ch.qos.logback:logback-core:${logbackVersion}"
+    axisGenTask "ch.qos.logback:logback-classic:${logbackVersion}"
+    axisGenTask "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
+}
+
+project.sourceCompatibility = rootProject.hasProperty("SOURCE_COMPATIBILITY") ?: "1.7"
+
+
+compileJava {
+    options.with {
+        compilerArgs << "-Xlint:unchecked"
+        options.encoding = 'UTF-8'
+    }
+}
+
+eclipse {
+  project {
+    name = 'soapclient-java'
+  }
+}
+
+tasks.withType(Test) {
+    // pass ep6HostName down to test
+    if(properties["ep6HostName"] != null) {
+        systemProperty 'ep6HostName', properties["ep6HostName"]
+    }
+}
+
+/* code generation */
+def doAxisGen = { currentTask, wsdls, outputDir ->
+    currentTask.outputs.dir file(outputDir)
+    currentTask.outputs.upToDateWhen({ false })
+    currentTask.ant.taskdef(
+        name: 'codegen',
+        classname: 'org.apache.axis.tools.ant.wsdl.Wsdl2javaAntTask',
+        classpath: configurations.axisGenTask.asPath,
+    )
+
+    currentTask.doLast {
+        file(outputDir).mkdirs()
+        wsdls.grep { serviceName -> onlyThisService != null ? serviceName.equals(onlyThisService) : true }
+        .each { def serviceName ->
+            def url = (properties["wsdlBaseUrl"] ?: "${System.env.EPAGES_WEBROOT}/WSDL/") + "${serviceName}.wsdl"
+            ant.echo(message: "Generating classes for ${serviceName} from ${url}")
+            ant.codegen(
+                    url: url,
+                    output: outputDir,
+                    verbose: true,
+                    helpergen: false,
+            )
+        }
+    }
+}
+
+task generate() {
+    // current services (from root project)
+    doAxisGen(it, currentServices, 'src/gen/java')
+    // old services (from root project)
+    doAxisGen(it, oldServices, 'src/gen-old/java')
+    // remove potential duplicates.
+    doLast {
+        delete file('src/gen-old/java/de/epages/ws/shop3')
+        delete file('src/gen-old/java/de/epages/ws/common')
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+/////////////////////// publishing /////////////////////////
+
+def pomConfig = {
+    licenses {
+        license {
+            name "The Apache Software License, Version 2.0"
+            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            distribution "repo"
+        }
+    }
+    developers {
+        developer {
+            id "otrosien"
+            name "Oliver Trosien"
+            email "otrosien@epages.com"
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifactId = 'soapclient'
+            artifact sourcesJar
+
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', 'AXIS 1.x based SOAP client for epages6')
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}
+
+bintray {
+    user = rootProject.properties['bintray.user']
+    key = rootProject.properties['bintray.apiKey']
+    //configurations = ['archives'] // When uploading configuration files
+    publications = [ 'mavenJava' ]
+    pkg {
+        repo = 'maven'
+        userOrg = 'epages' // an optional organization name when the repo belongs to one of the user's orgs
+        name = 'epages-soapclient'
+        desc = 'AXIS 1.x based SOAP client for epages6'
+        licenses = ['Apache-2.0']
+        labels = ['soap','epages']
+    }
+    dryRun = rootProject.properties['bintray.dryRun'] ?: false // whether to run this as dry-run, without deploying
+}
+
+artifacts {
+    archives sourcesJar
+}

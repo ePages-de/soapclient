@@ -1,155 +1,33 @@
-buildscript {
-    repositories {
-        maven { url project.properties['artifactoryContextUrl'] + "epages-repos" }
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.github.ben-manes:gradle-versions-plugin:0.4'
-    }
-}
+wrapper {  gradleVersion = "1.11" }
 
-apply plugin: "java"
-apply plugin: "eclipse"
-apply plugin: 'maven'
-apply plugin: 'jacoco'
-apply plugin: "sonar-runner"
-apply plugin: 'versions'
-
-archivesBaseName = 'epages-soapclient'
-group = 'de.epages'
-description = 'AXIS 1.x based SOAP client for epages6'
-version = '1.4.13-SNAPSHOT'
-
-repositories {
-    maven { url project.properties['artifactoryContextUrl'] + "epages-repos" }
-    mavenCentral()
-}
-configurations { axisGenTask }
-
-// add src/gen/java
-sourceSets.main.java.srcDirs 'src/gen/java'
-sourceSets.test.java.srcDirs 'src/gen-old/java'
+description = 'SOAP clients and webservice tests for epages6'
 
 ext {
-    axisVersion = "1.4"
-    slf4jVersion = "1.7.5"
-    junitVersion = "4.11"
-    wsdl4jVersion = "1.6.3"
-    commonsDiscoveryVersion = "0.5"
-    logbackVersion = "1.0.13"
-    httpclientVersion = "3.1"
-}
+  /* latest version of all services (part of the wsdl filename) */
+  currentServices = [
+    'ProductTypeService2',
+    'PriceListService2',
+    'PriceListAssignmentService',
+    'AssignmentService',
+    'BasketService',
+    'CatalogService8',
+    'CrossSellingService2',
+    'CustomerGroupService2',
+    'CustomerService4',
+    'OrderService12',
+    'OrderDocumentService7',
+    'PageCacheService',
+    'PaymentMethodService',
+    'ProductBundleService',
+    'ShippingMethodService2',
+    'TaxAreaService',
+    'TaxClassService',
+    // for java this needs to come last due to a namespace mapping hack.
+    'ProductService11'
+    ]
 
-dependencies {
-    compile "org.apache.axis:axis:${axisVersion}"
-    compile "org.apache.axis:axis-jaxrpc:${axisVersion}"
-    compile "org.slf4j:slf4j-api:${slf4jVersion}"
-
-    runtime "org.apache.axis:axis-saaj:${axisVersion}"
-    runtime "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
-    runtime "wsdl4j:wsdl4j:${wsdl4jVersion}"
-
-    testCompile "junit:junit:${junitVersion}"
-
-    testRuntime "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
-    testRuntime "ch.qos.logback:logback-core:${logbackVersion}"
-    testRuntime "ch.qos.logback:logback-classic:${logbackVersion}"
-    testRuntime "commons-httpclient:commons-httpclient:${httpclientVersion}"
-
-    axisGenTask "org.apache.axis:axis-ant:${axisVersion}"
-    axisGenTask "org.apache.axis:axis:${axisVersion}"
-    axisGenTask "org.apache.axis:axis-jaxrpc:${axisVersion}"
-    axisGenTask "wsdl4j:wsdl4j:${wsdl4jVersion}"
-    axisGenTask "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
-    axisGenTask "ch.qos.logback:logback-core:${logbackVersion}"
-    axisGenTask "ch.qos.logback:logback-classic:${logbackVersion}"
-    axisGenTask "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
-}
-
-project.sourceCompatibility = rootProject.hasProperty("SOURCE_COMPATIBILITY") ?: "1.7"
-
-compileJava {
-    options.with {
-        compilerArgs << "-Xlint:unchecked"
-        options.encoding = 'UTF-8'
-    }
-}
-
-tasks.withType(Test) {
-    // pass ep6HostName down to test
-    if(System.getProperty("ep6HostName") != null) {
-        systemProperty 'ep6HostName', System.getProperty("ep6HostName")
-    }
-}
-
-task sourceJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-sonarRunner {
-    sonarProperties {
-        def env = System.getenv()
-        if (env.get("SONAR_URL") != null) {
-           property "sonar.host.url", env.get("SONAR_URL")
-        } else {
-            property "sonar.host.url", 'http://localhost:9000/'
-        }
-
-        if (env.get("SONAR_JDBC_URL") != null) {
-            property "sonar.jdbc.url", env.get("SONAR_JDBC_URL")
-        } else {
-            property "sonar.jdbc.url", "jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true"
-        }
-        property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"
-        property "sonar.jdbc.username", "sonar"
-        property "sonar.jdbc.password", "sonar"
-
-        property "sonar.jacoco.reportPath", "build/jacoco/test.exec"
-        property "sonar.jacoco.itReportPath", "build/jacoco/integrationTest.exec"
-        property "sonar.scm.url", "scm:git:https://github.com/ePages-de/soapclient/"
-
-        if (env.get("GIT_BRANCH") != null) {
-            // fix for new "feature" http://jira.codehaus.org/browse/SONAR-4188
-            property "sonar.branch", env.get("GIT_BRANCH").replace('/', '_')
-        }
-        properties["sonar.sources"] = sourceSets.main.allSource.srcDirs
-        .grep({ it.exists()})
-        .collect { project.relativePath(it) }
-        .join(',')
-        properties["sonar.binaries"] = sourceSets.main.runtimeClasspath.files.join(',')
-        properties["sonar.jacoco.reportPath"] = "build/jacoco/test.exec"
-        properties["sonar.jacoco.itReportPath"] = "build/jacoco/integrationTest.exec"
-   }
-}
-
-def doAxisGen = { currentTask, wsdls, outputDir ->
-    currentTask.outputs.dir file(outputDir)
-    currentTask.outputs.upToDateWhen({ false })
-    currentTask.ant.taskdef(
-        name: 'codegen',
-        classname: 'org.apache.axis.tools.ant.wsdl.Wsdl2javaAntTask',
-        classpath: configurations.axisGenTask.asPath,
-    )
-    //WDSL files in use by EPJ
-    currentTask.doLast {
-        file(outputDir).mkdirs()
-        wsdls.grep { wsdlName -> System.getProperty("wsdlFile") != null ? wsdlName.equals(System.getProperty("wsdlFile")) : true }
-        .each { def wsdlName ->
-            def url = (System.getProperty("wsdlBaseUrl") ?: "../WSDL/") + "${wsdlName}.wsdl"
-            ant.echo(message: "Generating classes for ${wsdlName} from ${url}")
-            ant.codegen(
-                    url: url,
-                    output: outputDir,
-                    verbose: true,
-                    helpergen: false,
-            )
-        }
-    }
-}
-
-// list of WSDL files for old versions
-def oldWsdls = [
+  /* previous versions of all supported services */
+  oldServices = [
     'AppointmentService',
     'CatalogService',
     'CatalogService2',
@@ -202,56 +80,7 @@ def oldWsdls = [
     'UserService4',
     'UserService5',
     'ShippingMethodService'
-]
+  ]
 
-def currentWsdls = [
-    'ProductTypeService2',
-    'PriceListService2',
-    'PriceListAssignmentService',
-    'AssignmentService',
-    'BasketService',
-    'CatalogService8',
-    'CrossSellingService2',
-    'CustomerGroupService2',
-    'CustomerService4',
-    'OrderService12',
-    'OrderDocumentService7',
-    'PageCacheService',
-    'PaymentMethodService',
-    'ProductBundleService',
-    'ShippingMethodService2',
-    'TaxAreaService',
-    'TaxClassService',
-    'UserService6',
-    // this needs to come last due to a namespace mapping hack.
-    'ProductService11'
-]
-
-// current supported services
-task axisGen() {
-    doAxisGen(it, currentWsdls, 'src/gen/java')
+  onlyThisService = project.properties["onlyThisService"]
 }
-
-// everything else
-task axisGenOld() {
-    doAxisGen(it, oldWsdls, 'src/gen-old/java')
-    // remove potential duplicates.
-    doLast {
-        delete file('src/gen-old/java/de/epages/ws/shop3/model')
-        delete file('src/gen-old/java/de/epages/ws/common/model')
-    }
-}
-
-task checkDependencyUpdates() {
-    description = 'Prints report comparing the current dependencies against their latest release version.'
-    group = 'Report'
-
-    System.properties['revision'] = "release"
-    doFirst { dependencyUpdates.execute() }
-}
-
-artifacts {
-    archives sourceJar
-}
-
-wrapper {  gradleVersion = "1.9" }
