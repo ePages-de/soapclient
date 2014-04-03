@@ -1,33 +1,30 @@
+
+
 buildscript {
     repositories {
         maven { url project.properties['artifactoryContextUrl'] + "epages-repos" }
         mavenCentral()
-        maven { url "https://github.com/ben-manes/gradle-versions-plugin/raw/mvnrepo" }
+        maven { url 'http://jcenter.bintray.com' }
     }
     dependencies {
-        classpath 'com.github.ben-manes:gradle-versions-plugin:0.5-beta-1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.3'
     }
 }
 
 apply plugin: "java"
 apply plugin: "eclipse"
-apply plugin: 'maven'
-apply plugin: 'jacoco'
-apply plugin: 'versions'
+apply plugin: 'maven-publish'
 
-archivesBaseName = 'epages-soapclient'
+apply plugin: 'bintray'
+apply plugin: 'jacoco'
+
+archivesBaseName = 'soapclient'
 group = 'de.epages'
 description = 'AXIS 1.x based SOAP client for epages6'
-version = '1.4.13-SNAPSHOT'
-
-eclipse {
-  project {
-	name = 'soapclient-java'
-  }
-}
+version = '1.4.13'
 
 repositories {
-    maven { url project.properties['artifactoryContextUrl'] + "epages-repos" }
+    maven { url artifactoryContextUrl + "epages-repos" }
     mavenCentral()
 }
 
@@ -75,6 +72,7 @@ dependencies {
 
 project.sourceCompatibility = rootProject.hasProperty("SOURCE_COMPATIBILITY") ?: "1.7"
 
+
 compileJava {
     options.with {
         compilerArgs << "-Xlint:unchecked"
@@ -82,16 +80,17 @@ compileJava {
     }
 }
 
+eclipse {
+  project {
+    name = 'soapclient-java'
+  }
+}
+
 tasks.withType(Test) {
     // pass ep6HostName down to test
     if(properties["ep6HostName"] != null) {
         systemProperty 'ep6HostName', properties["ep6HostName"]
     }
-}
-
-task sourceJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
 }
 
 /* code generation */
@@ -132,14 +131,62 @@ task generate() {
     }
 }
 
-task checkDependencyUpdates() {
-    description = 'Prints report comparing the current dependencies against their latest release version.'
-    group = 'Report'
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
 
-    System.properties['revision'] = "release"
-    doFirst { dependencyUpdates.execute() }
+/////////////////////// publishing /////////////////////////
+
+def pomConfig = {
+    licenses {
+        license {
+            name "The Apache Software License, Version 2.0"
+            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            distribution "repo"
+        }
+    }
+    developers {
+        developer {
+            id "otrosien"
+            name "Oliver Trosien"
+            email "otrosien@epages.com"
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifactId = 'soapclient'
+            artifact sourcesJar
+
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', 'AXIS 1.x based SOAP client for epages6')
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}
+
+bintray {
+    user = rootProject.properties['bintray.user']
+    key = rootProject.properties['bintray.apiKey']
+    //configurations = ['archives'] // When uploading configuration files
+    publications = [ 'mavenJava' ]
+    pkg {
+        repo = 'maven'
+        userOrg = 'epages' // an optional organization name when the repo belongs to one of the user's orgs
+        name = 'epages-soapclient'
+        desc = 'AXIS 1.x based SOAP client for epages6'
+        licenses = ['Apache-2.0']
+        labels = ['soap','epages']
+    }
+    dryRun = rootProject.properties['bintray.dryRun'] ?: false // whether to run this as dry-run, without deploying
 }
 
 artifacts {
-    archives sourceJar
+    archives sourcesJar
 }
