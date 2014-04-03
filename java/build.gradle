@@ -1,8 +1,5 @@
-
-
 buildscript {
     repositories {
-        maven { url project.properties['artifactoryContextUrl'] + "epages-repos" }
         mavenCentral()
         maven { url 'http://jcenter.bintray.com' }
     }
@@ -14,17 +11,16 @@ buildscript {
 apply plugin: "java"
 apply plugin: "eclipse"
 apply plugin: 'maven-publish'
-
 apply plugin: 'bintray'
 apply plugin: 'jacoco'
 
+//////////////// project setup //////////////////
 archivesBaseName = 'soapclient'
 group = 'de.epages'
 description = 'AXIS 1.x based SOAP client for epages6'
 version = '1.4.14-SNAPSHOT'
 
 repositories {
-    maven { url artifactoryContextUrl + "epages-repos" }
     mavenCentral()
 }
 
@@ -34,6 +30,7 @@ configurations { axisGenTask }
 sourceSets.main.java.srcDirs 'src/gen/java'
 sourceSets.test.java.srcDirs 'src/gen-old/java'
 
+///////////////////// dependencies ////////////////////
 ext {
     axisVersion = "1.4"
     slf4jVersion = "1.7.5"
@@ -80,11 +77,7 @@ compileJava {
     }
 }
 
-eclipse {
-  project {
-    name = 'soapclient-java'
-  }
-}
+eclipse.project.name = 'soapclient-java'
 
 tasks.withType(Test) {
     // pass ep6HostName down to test
@@ -93,7 +86,7 @@ tasks.withType(Test) {
     }
 }
 
-/* code generation */
+//////////////// code generation ///////////////////
 def doAxisGen = { currentTask, wsdls, outputDir ->
     currentTask.outputs.dir file(outputDir)
     currentTask.outputs.upToDateWhen({ false })
@@ -174,7 +167,6 @@ publishing {
 bintray {
     user = rootProject.properties['bintray.user']
     key = rootProject.properties['bintray.apiKey']
-    //configurations = ['archives'] // When uploading configuration files
     publications = [ 'mavenJava' ]
     pkg {
         repo = 'maven'
