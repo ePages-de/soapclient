@@ -21,7 +21,7 @@ apply plugin: 'jacoco'
 archivesBaseName = 'soapclient'
 group = 'de.epages'
 description = 'AXIS 1.x based SOAP client for epages6'
-version = '1.4.13'
+version = '1.4.14-SNAPSHOT'
 
 repositories {
     maven { url artifactoryContextUrl + "epages-repos" }
