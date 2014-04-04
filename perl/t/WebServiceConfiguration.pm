@@ -7,17 +7,17 @@ use Config::IniFiles;
 
 #get server from epages/Shared/Config/epages.conf SystemDomainName
 sub _getWServer {
-    my $WServer = 'localhost';
+    my $WServer = $ENV{'ep6HostName'};
 
     eval{
-        if ( -e $ENV{EPAGES_CONFIG}.'/epages.conf' ) {
+        if (!defined($WServer) && -e $ENV{EPAGES_CONFIG}.'/epages.conf' ) {
             my $cfg = Config::IniFiles->new( -file => $ENV{EPAGES_CONFIG}.'/epages.conf' );
             $WServer = $cfg->val('DE_EPAGES::Object', 'SystemDomainName');
         }
     };
 
     print "try to connect to server '$WServer'\n";
-    print "the server can reconfigure in file ".$INC{__PACKAGE__.'.pm'}."\n";
+    print "the server can be set via ENV variatble 'ep6HostName'\n";
 
     return $WServer;
 }

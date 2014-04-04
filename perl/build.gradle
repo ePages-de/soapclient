@@ -26,6 +26,8 @@ project.ext.osDependantPerl = {String[] args ->
 task runTests(type:Exec) {
     description = 'Runs all webservice tests'
     group = 'Test'
+    def mymap = ['ep6HostName':project.properties["ep6HostName"]]
+    environment mymap
     logging.captureStandardOutput LogLevel.INFO
     workingDir projectDir.path
     commandLine osDependantPerl('runTests.pl')
