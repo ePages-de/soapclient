@@ -1,6 +1,6 @@
-h1. Java SOAP Client for ePages6
+# Java SOAP Client for ePages6 #
 
-h2. This web service implementation with Java uses:
+## This web service implementation with Java uses: ##
 
 - JDK 1.7.0 Standard Edition
   See http://java.oracle.com/j2se/
@@ -14,7 +14,7 @@ h2. This web service implementation with Java uses:
 - Gradle build tool (version 1.x)
   See http://www.gradle.org/
 
-h2. Using epages-soapclient as SDK.
+## Using epages-soapclient as SDK ##
 
 1. Include jCenter to your maven repository resolution (http://jcenter.bintray.com)
    For gradle this could look like:    
@@ -31,13 +31,13 @@ dependencies {
 }
 ```
 
-h2. Running integration test cases with Gradle
+## Running integration test cases with Gradle ##
 
 1. run "./gradlew check" (Linux) or "gradlew.cmd check" (Windows) in project folder.
 2. If epages6 is not installed locally, use the
    gradle property "ep6HostName" to an epages6 installation (-Pep6HostName=somehost)
 
-h2. Running test cases with Eclipse (http://www.eclipse.org/)
+## Running test cases with Eclipse (http://www.eclipse.org/) ##
 
 1. Install "Gradle IDE" Eclipse plugin from Spring.
 2. Run "File > Import... > Gradle Project"
@@ -49,7 +49,7 @@ h2. Running test cases with Eclipse (http://www.eclipse.org/)
    gradle property "ep6HostName" in launch configuration to point 
    to an epages6 installation (-Pep6HostName=somehost)
 
-h2. Regenerating stub classes
+## Regenerating stub classes ##
 
 1. run "./gradlew java:generate" (Linux) or "gradlew.cmd java:generate" (Windows) in project folder.
 2. If epages6 is not installed locally, use the
