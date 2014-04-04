@@ -31,24 +31,6 @@ dependencies {
 }
 ```
 
-## Running integration test cases with Gradle ##
-
-1. run "./gradlew check" (Linux) or "gradlew.cmd check" (Windows) in project folder.
-2. If epages6 is not installed locally, use the
-   gradle property "ep6HostName" to an epages6 installation (-Pep6HostName=somehost)
-
-## Running test cases with Eclipse (http://www.eclipse.org/) ##
-
-1. Install "Gradle IDE" Eclipse plugin from Spring.
-2. Run "File > Import... > Gradle Project"
-3. Select location of soapclient source, and run "Build model"
-4. Select soapclient and click Finish
-5. In the Package Explorer, right-click on the project
-   and select "Run As/JUnit Test".
-6. If epages6 is not installed locally, use the 
-   gradle property "ep6HostName" in launch configuration to point 
-   to an epages6 installation (-Pep6HostName=somehost)
-
 ## Regenerating stub classes ##
 
 1. run "./gradlew java:generate" (Linux) or "gradlew.cmd java:generate" (Windows) in project folder.
