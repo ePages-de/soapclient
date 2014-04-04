@@ -14,9 +14,26 @@ h2. This web service implementation with Java uses:
 - Gradle build tool (version 1.x)
   See http://www.gradle.org/
 
-h2. Running test cases with Gradle (http://www.gradle.org/)
+h2. Using epages-soapclient as SDK.
 
-1. run "./gradlew test" (Linux) or "gradlew.cmd test" (Windows) in project folder.
+1. Include jCenter to your maven repository resolution (http://jcenter.bintray.com)
+   For gradle this could look like:    
+```
+repositories {
+    maven { url 'http://jcenter.bintray.com' }
+}
+```
+
+2. Add a dependency to epages-soapclient. 
+```
+dependencies {
+    compile 'de.epages:soapclient:1.4.13'
+}
+```
+
+h2. Running integration test cases with Gradle
+
+1. run "./gradlew check" (Linux) or "gradlew.cmd check" (Windows) in project folder.
 2. If epages6 is not installed locally, use the
    gradle property "ep6HostName" to an epages6 installation (-Pep6HostName=somehost)
 
