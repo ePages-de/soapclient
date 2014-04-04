@@ -1,0 +1,31 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+apply plugin: "eclipse"
+
+eclipse {
+    project {
+        name = 'soapclient-perl'
+        natures 'org.epic.perleditor.perlnature'
+        buildCommand 'org.epic.perleditor.perlbuilder'
+    }
+}
+
+project.ext.getOSCmd = {String[] args ->
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        List<String> newArgs = new ArrayList<String>()
+        newArgs.add("cmd.exe")
+        newArgs.add("/C")
+        newArgs.addAll(args)
+        return newArgs.toArray(new String[0])
+    }
+    return args
+}
+
+task runTests(type:Exec) {
+    description = 'Runs all webservice tests'
+    group = 'Test'
+    logging.captureStandardOutput LogLevel.INFO
+    workingDir projectDir.path
+    commandLine getOSCmd('perl', 'runTests.pl')
+}
+
+task check (dependsOn: runTests) {}
