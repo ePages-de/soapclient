@@ -9,15 +9,18 @@ eclipse {
     }
 }
 
-project.ext.getOSCmd = {String[] args ->
+project.ext.osDependantPerl = {String[] args ->
+    List<String> newArgs = new ArrayList<String>()
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-        List<String> newArgs = new ArrayList<String>()
         newArgs.add("cmd.exe")
         newArgs.add("/C")
+        newArgs.add("perl")
         newArgs.addAll(args)
-        return newArgs.toArray(new String[0])
+    } else {
+        newArgs.add( System.env.PERL ?: "perl" )
+        newArgs.addAll(args)
     }
-    return args
+    return newArgs.toArray(new String[0])
 }
 
 task runTests(type:Exec) {
@@ -25,7 +28,7 @@ task runTests(type:Exec) {
     group = 'Test'
     logging.captureStandardOutput LogLevel.INFO
     workingDir projectDir.path
-    commandLine getOSCmd('perl', 'runTests.pl')
+    commandLine osDependantPerl('runTests.pl')
 }
 
-task check (dependsOn: runTests) {}
+task check (dependsOn: runTests)
