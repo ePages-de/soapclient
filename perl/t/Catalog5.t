@@ -78,10 +78,10 @@ my $Catalog_update  = {
 };
 
 my %Images_upload = (
-    'Small'     => '../TestData/CatalogService/Jacket.gif',
-    'Medium'    => '../TestData/CatalogService/Jacket.gif',
-    #'1'         => '../TestData/CatalogService/Jacket.gif',
-    #'2'         => '../TestData/CatalogService/Jacket.gif',
+    'Small'     => '../../TestData/CatalogService/Jacket.gif',
+    'Medium'    => '../../TestData/CatalogService/Jacket.gif',
+    #'1'         => '../../TestData/CatalogService/Jacket.gif',
+    #'2'         => '../../TestData/CatalogService/Jacket.gif',
 );
 
 

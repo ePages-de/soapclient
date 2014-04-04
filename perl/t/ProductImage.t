@@ -26,13 +26,13 @@ my $hOptions = {
 };
 
 my @ProductImages_upload = (
-    '../TestData/ProductImageService/be_40401_blue.jpg',
-    '../TestData/ProductImageService/cg_0100504001.jpg',
+    '../../TestData/ProductImageService/be_40401_blue.jpg',
+    '../../TestData/ProductImageService/cg_0100504001.jpg',
 );
 
 my @ProductImage_uploadScale = (
-    '../TestData/ProductImageService/be_40401_blue.jpg',
-    '../TestData/ProductImageService/cg_0100504001.jpg',
+    '../../TestData/ProductImageService/be_40401_blue.jpg',
+    '../../TestData/ProductImageService/cg_0100504001.jpg',
 );
 
 #ImagesSlideShowStringUpload
