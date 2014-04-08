@@ -2,4 +2,8 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 include 'java'
 include 'perl'
-include 'dotnet'
+
+if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+    // msbuild plugin only supported on windows
+    include 'dotnet'
+}
