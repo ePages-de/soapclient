@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn://epages.de/WebService/UserTypes/2005/01" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:shoptypes="urn://epages.de/WebService/ShopTypes/2005/01" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/UserTypes/2005/01" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="EpagesTypes.xsd" namespace="urn://epages.de/WebService/EpagesTypes/2005/01" />
+  <xs:import schemaLocation="ShopTypes.xsd" namespace="urn://epages.de/WebService/ShopTypes/2005/01" />
+  <xs:complexType name="TGetInfo_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a getInfo() user call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Alias" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user alias (=login)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Class" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>path to user's class</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="LocaleID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's locale id (e.g. 'en_US')</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="LanguageCode" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's shop language code (e.g. 'en')</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="CurrencyID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's currency (e.g. 'EUR')</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Password" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's password (crypted)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsActivated" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>user's activ state</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="DeleteConfirmation" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>user's delete confirmation preference</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsLoginCookieAllowed" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>user's login cookie preference</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsHtmlEMailAllowed" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>user's html email preference</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ReminderQuestion" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's reminder question</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ChallengePhrase" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's challenge phrase</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="EMail" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's email</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Name" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's display name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="BillingAddress" type="shoptypes:TAddress">
+        <xs:annotation>
+          <xs:documentation>user's billing address</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ShippingAddress" type="shoptypes:TAddress">
+        <xs:annotation>
+          <xs:documentation>user's shipping address</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Customers" type="tns:ListOfCustomerPaths">
+        <xs:annotation>
+          <xs:documentation>list of assigned customers (see usertypes:ListOfCustomerPaths)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Attributes" type="epagestypes:ListOfAttributes">
+        <xs:annotation>
+          <xs:documentation>list of requested attributes (see epagestypes:ListOfAttributes)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TExists_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a exists() user call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        the exists flag will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="exists" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that this user exists</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TDelete_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a delete() user call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        the deleted flag will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="deleted" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that this user was deleted</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TUpdate_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input arguments of a single update() user call.
+        a set of optional user specific attributes that will be updated.
+        the path element is mandatory.
+        all others are optional.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="LocaleID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's locale id (e.g. 'en_US')</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="LanguageCode" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's shop language code (e.g. 'en')</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="CurrencyID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's currency (e.g. 'EUR')</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Password" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's password (crypted)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsActivated" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>user's activ state</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="DeleteConfirmation" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>user's delete confirmation preference</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsLoginCookieAllowed" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>user's login cookie preference</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsHtmlEMailAllowed" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>user's html email preference</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ReminderQuestion" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's reminder question</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ChallengePhrase" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's challenge phrase</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="EMail" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's email</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Name" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's display name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="BillingAddress" type="shoptypes:TAddress">
+        <xs:annotation>
+          <xs:documentation>user's billing address</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ShippingAddress" type="shoptypes:TAddress">
+        <xs:annotation>
+          <xs:documentation>user's shipping address</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Customers" type="tns:ListOfCustomerPaths">
+        <xs:annotation>
+          <xs:documentation>list of assigned customers (see usertypes:ListOfCustomerPaths)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Attributes" type="epagestypes:ListOfAttributes">
+        <xs:annotation>
+          <xs:documentation>list of requested attributes (see epagestypes:ListOfAttributes)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TUpdate_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a update() user call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        the updated flag will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="updated" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that this user was updated</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TCreate_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input arguments of a single create() user call.
+        a set of customer specific attributes that will be used to create a user.
+        alias, password, email, name, billing address, shipping address are mandatory.
+        all others are optional.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user alias (=login)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="LocaleID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's locale id (e.g. 'en_US')</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="LanguageCode" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's shop language code (e.g. 'en')</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="CurrencyID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's currency (e.g. 'EUR')</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Password" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's password (crypted)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsActivated" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>user's activ state</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="DeleteConfirmation" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>user's delete confirmation preference</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsLoginCookieAllowed" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>user's login cookie preference</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsHtmlEMailAllowed" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>user's html email preference</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ReminderQuestion" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's reminder question</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ChallengePhrase" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's challenge phrase</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EMail" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's email</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Name" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>user's display name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BillingAddress" type="shoptypes:TAddress">
+        <xs:annotation>
+          <xs:documentation>user's billing address</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ShippingAddress" type="shoptypes:TAddress">
+        <xs:annotation>
+          <xs:documentation>user's shipping address</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Customers" type="tns:ListOfCustomerPaths">
+        <xs:annotation>
+          <xs:documentation>list of assigned customers (see usertypes:ListOfCustomerPaths)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Attributes" type="epagestypes:ListOfAttributes">
+        <xs:annotation>
+          <xs:documentation>list of requested attributes (see epagestypes:ListOfAttributes)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TCreate_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a create() user call.
+        the alias will be always returned.
+        the error element will be returned in case of error.
+        the created flag and path will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string" />
+      <xs:element minOccurs="0" name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="created" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that this user was created</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ListOfCustomerPaths">
+    <xs:annotation>
+      <xs:documentation>
+        list of customer paths.
+        each element is a object path of a customer.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

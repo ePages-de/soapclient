@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="TError">
+    <xs:annotation>
+      <xs:documentation>an error object</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Message" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            a short error message as description
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ListOfAttributes">
+    <xs:annotation>
+      <xs:documentation>
+        list of attributes with values.
+        see epagestypes:TAttribute
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TAttribute[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TAttribute">
+    <xs:annotation>
+      <xs:documentation>
+        an attribute object with value.
+        if used in get requests, the type will be returned, too.
+        the type attribute is not mandatory on set requests.
+        Value will be used for not-localized attributes.
+        LocalizedValues will be used for localized attributes.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Name" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>name of attribute (unique identifier)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Value" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            value of attribute.
+            epages objects will be serialized with their object path
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="LocalizedValues" type="tns:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>
+            localized values of attribute.
+            see epagestypes:ListOfLocalizedValues
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Type" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>type of attribute</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ListOfLocalizedValues">
+    <xs:annotation>
+      <xs:documentation>
+        list of localized values.
+        see epagestypes:TLocalizedValue
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TLocalizedValue[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TLocalizedValue">
+    <xs:annotation>
+      <xs:documentation>
+        a localized value (e.g. of an attribute).
+        contains language and the actual value in this language.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="LanguageCode" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>language code (e.g. 'en')</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Value" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            value in the acording language.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:bundletypes="urn://epages.de/WebService/ProductBundleTypes/2007/07" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/ProductBundleService/2007/07" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" name="ProductBundleService" targetNamespace="urn://epages.de/WebService/ProductBundleService/2007/07" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <documentation>
+    this is a web service for an epages e-commerce system.
+    this service is a container for all methods in the product bundle context.
+  </documentation>
+  <wsdl:types>
+    <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/ProductBundleService/2007/07">
+      <xs:import schemaLocation="ProductBundleTypes.xsd" namespace="urn://epages.de/WebService/ProductBundleTypes/2007/071" />
+      <xs:complexType name="type_Create_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an create() call.
+            see bundletypes:TCreate_Input
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="bundletypes:TCreate_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Create_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an create() call.
+            see bundletypes:TCreate_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="bundletypes:TCreate_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Delete_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an delete() call.
+            see bundletypes:TDelete_Input
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="bundletypes:TDelete_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Delete_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an delete() call.
+            see bundletypes:TDelete_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="bundletypes:TDelete_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Exists_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an exists() call.
+            see bundletypes:TExists_Input.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="bundletypes:TExists_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Exists_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an exists() call.
+            see bundletypes:TExists_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="bundletypes:TExists_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetInfo_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an getInfo() call.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetInfo_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an getInfo() call.
+            see bundletypes:TGetInfo_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="bundletypes:TGetInfo_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="msg_Create_Input">
+    <wsdl:part name="ProductBundles" type="tns:type_Create_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Create_Output">
+    <wsdl:part name="ProductBundles" type="tns:type_Create_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Delete_Input">
+    <wsdl:part name="ProductBundles" type="tns:type_Delete_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Delete_Output">
+    <wsdl:part name="ProductBundles" type="tns:type_Delete_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Exists_Input">
+    <wsdl:part name="ProductBundles" type="tns:type_Exists_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Exists_Output">
+    <wsdl:part name="ProductBundles" type="tns:type_Exists_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetInfo_Input">
+    <wsdl:part name="Products" type="tns:type_GetInfo_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetInfo_Output">
+    <wsdl:part name="ProductBundles" type="tns:type_GetInfo_Out" />
+  </wsdl:message>
+  <wsdl:portType name="port_ProductBundle">
+    <wsdl:operation name="create">
+      <documentation>assign a product to a product bundle</documentation>
+      <wsdl:input message="tns:msg_Create_Input" />
+      <wsdl:output message="tns:msg_Create_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <documentation>unassign a product from a product bundle </documentation>
+      <wsdl:input message="tns:msg_Delete_Input" />
+      <wsdl:output message="tns:msg_Delete_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <documentation>check if a product is assigned to a product bundle</documentation>
+      <wsdl:input message="tns:msg_Exists_Input" />
+      <wsdl:output message="tns:msg_Exists_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="getInfo">
+      <documentation>get bundled products assigned to a product bundle</documentation>
+      <wsdl:input message="tns:msg_GetInfo_Input" />
+      <wsdl:output message="tns:msg_GetInfo_Output" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="bind_ProductBundle_SOAP" type="tns:port_ProductBundle">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="create">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductBundleService/2007/07#create" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductBundleService/2007/07" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductBundleService/2007/07" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductBundleService/2007/07#delete" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductBundleService/2007/07" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductBundleService/2007/07" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductBundleService/2007/07#exists" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductBundleService/2007/07" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductBundleService/2007/07" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInfo">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductBundleService/2007/07#getInfo" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductBundleService/2007/07" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductBundleService/2007/07" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProductBundleService">
+    <documentation>epages Product Bundle Service</documentation>
+    <wsdl:port name="port_ProductBundle" binding="tns:bind_ProductBundle_SOAP">
+      <soap:address location="http://localhost/epages/Store.soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -33,7 +33,7 @@ dependencies {
 
 ## Regenerating stub classes ##
 
-1. run "./gradlew java:generate" (Linux) or "gradlew.cmd java:generate" (Windows) in project folder.
+1. run "./gradlew java:generate" (Linux) or "gradlew.cmd java:generate" (Windows) in root-project folder.
 2. If epages6 is not installed locally, use the
    gradle property "wsdlBaseUrl" to point to a WSDL directory or an epages6 
    installation (-PwsdlBaseUrl=http://somehost/WebRoot/WSDL/)

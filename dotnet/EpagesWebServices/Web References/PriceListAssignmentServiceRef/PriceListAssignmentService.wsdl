@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tns="urn://epages.de/WebService/PriceListAssignmentService/2005/01" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:pricelistassignmenttypes="urn://epages.de/WebService/PriceListAssignmentTypes/2005/01" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" name="PriceListAssignmentService" targetNamespace="urn://epages.de/WebService/PriceListAssignmentService/2005/01" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <documentation>
+    this is a web service for an epages e-commerce system.
+    this service is a container for all methods in the pricelistassignment context.
+  </documentation>
+  <wsdl:types>
+    <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/PriceListAssignmentService/2005/01">
+      <xs:import schemaLocation="PriceListAssignmentTypes.xsd" namespace="urn://epages.de/WebService/PriceListAssignmentTypes/2005/01" />
+      <xs:complexType name="type_GetScalePrices_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an getScalePrices() call.
+            a simple list of product paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetScalePrices_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an getScalePrices() call.
+            see pricelistassignmenttypes:TGetScalePrices_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="pricelistassignmenttypes:TGetScalePrices_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_SetScalePrices_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an setScalePrices() call.
+            see pricelistassignmenttypes:TSetScalePrices_Input
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="pricelistassignmenttypes:TSetScalePrices_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_SetScalePrices_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an setScalePrices() call.
+            see pricelistassignmenttypes:TSetScalePrices_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="pricelistassignmenttypes:TSetScalePrices_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetQuantityDiscounts_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an getQuantityDiscounts() call.
+            a simple list of product paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetQuantityDiscounts_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an getQuantityDiscounts() call.
+            see pricelistassignmenttypes:TGetQuantityDiscounts_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="pricelistassignmenttypes:TGetQuantityDiscounts_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_SetQuantityDiscounts_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an setQuantityDiscounts() call.
+            see pricelistassignmenttypes:TSetQuantityDiscounts_Input
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="pricelistassignmenttypes:TSetQuantityDiscounts_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_SetQuantityDiscounts_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an setQuantityDiscounts() call.
+            see pricelistassignmenttypes:TSetQuantityDiscounts_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="pricelistassignmenttypes:TSetQuantityDiscounts_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetValueDiscounts_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an getValueDiscounts() call.
+            a simple list of product paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetValueDiscounts_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an getValueDiscounts() call.
+            see pricelistassignmenttypes:TGetValueDiscounts_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="pricelistassignmenttypes:TGetValueDiscounts_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_SetValueDiscounts_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an setValueDiscounts() call.
+            see pricelistassignmenttypes:TSetValueDiscounts_Input
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="pricelistassignmenttypes:TSetValueDiscounts_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_SetValueDiscounts_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an setValueDiscounts() call.
+            see pricelistassignmenttypes:TSetValueDiscounts_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="pricelistassignmenttypes:TSetValueDiscounts_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_PriceLists_In">
+        <xs:annotation>
+          <xs:documentation>
+            additional input of a getScalePrice(), getQuantityDiscount(), getValueDiscount()  call.
+            a simple list of pricelist paths.
+            defines the returned price lists for the products.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="msg_GetScalePrices_Input">
+    <wsdl:part name="Products" type="tns:type_GetScalePrices_In" />
+    <wsdl:part name="PriceLists" type="tns:type_PriceLists_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetScalePrices_Output">
+    <wsdl:part name="Products" type="tns:type_GetScalePrices_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_SetScalePrices_Input">
+    <wsdl:part name="Products" type="tns:type_SetScalePrices_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_SetScalePrices_Output">
+    <wsdl:part name="Products" type="tns:type_SetScalePrices_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetQuantityDiscounts_Input">
+    <wsdl:part name="Products" type="tns:type_GetQuantityDiscounts_In" />
+    <wsdl:part name="PriceLists" type="tns:type_PriceLists_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetQuantityDiscounts_Output">
+    <wsdl:part name="Products" type="tns:type_GetQuantityDiscounts_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_SetQuantityDiscounts_Input">
+    <wsdl:part name="Products" type="tns:type_SetQuantityDiscounts_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_SetQuantityDiscounts_Output">
+    <wsdl:part name="Products" type="tns:type_SetQuantityDiscounts_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetValueDiscounts_Input">
+    <wsdl:part name="Products" type="tns:type_GetValueDiscounts_In" />
+    <wsdl:part name="PriceLists" type="tns:type_PriceLists_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetValueDiscounts_Output">
+    <wsdl:part name="Products" type="tns:type_GetValueDiscounts_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_SetValueDiscounts_Input">
+    <wsdl:part name="Products" type="tns:type_SetValueDiscounts_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_SetValueDiscounts_Output">
+    <wsdl:part name="Products" type="tns:type_SetValueDiscounts_Out" />
+  </wsdl:message>
+  <wsdl:portType name="port_PriceListAssignment">
+    <wsdl:operation name="getScalePrices">
+      <documentation>get information about a product's scale prices</documentation>
+      <wsdl:input message="tns:msg_GetScalePrices_Input" />
+      <wsdl:output message="tns:msg_GetScalePrices_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="setScalePrices">
+      <documentation>update product's scale prices</documentation>
+      <wsdl:input message="tns:msg_SetScalePrices_Input" />
+      <wsdl:output message="tns:msg_SetScalePrices_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="getQuantityDiscounts">
+      <documentation>get information about a product's quantity discounts</documentation>
+      <wsdl:input message="tns:msg_GetQuantityDiscounts_Input" />
+      <wsdl:output message="tns:msg_GetQuantityDiscounts_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="setQuantityDiscounts">
+      <documentation>update product's quantity discounts</documentation>
+      <wsdl:input message="tns:msg_SetQuantityDiscounts_Input" />
+      <wsdl:output message="tns:msg_SetQuantityDiscounts_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="getValueDiscounts">
+      <documentation>get information about a product's value discounts</documentation>
+      <wsdl:input message="tns:msg_GetValueDiscounts_Input" />
+      <wsdl:output message="tns:msg_GetValueDiscounts_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="setValueDiscounts">
+      <documentation>update product's value discounts</documentation>
+      <wsdl:input message="tns:msg_SetValueDiscounts_Input" />
+      <wsdl:output message="tns:msg_SetValueDiscounts_Output" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="bind_PriceListAssignment_SOAP" type="tns:port_PriceListAssignment">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="getScalePrices">
+      <soap:operation soapAction="urn://epages.de/WebService/PriceListAssignmentService/2005/01#getScalePrices" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/PriceListAssignmentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/PriceListAssignmentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setScalePrices">
+      <soap:operation soapAction="urn://epages.de/WebService/PriceListAssignmentService/2005/01#setScalePrices" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/PriceListAssignmentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/PriceListAssignmentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getQuantityDiscounts">
+      <soap:operation soapAction="urn://epages.de/WebService/PriceListAssignmentService/2005/01#getQuantityDiscounts" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/PriceListAssignmentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/PriceListAssignmentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setQuantityDiscounts">
+      <soap:operation soapAction="urn://epages.de/WebService/PriceListAssignmentService/2005/01#setQuantityDiscounts" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/PriceListAssignmentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/PriceListAssignmentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getValueDiscounts">
+      <soap:operation soapAction="urn://epages.de/WebService/PriceListAssignmentService/2005/01#getValueDiscounts" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/PriceListAssignmentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/PriceListAssignmentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setValueDiscounts">
+      <soap:operation soapAction="urn://epages.de/WebService/PriceListAssignmentService/2005/01#setValueDiscounts" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/PriceListAssignmentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/PriceListAssignmentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PriceListAssignmentService">
+    <documentation>epages5 PriceListAssignment Service</documentation>
+    <wsdl:port name="port_PriceListAssignment" binding="tns:bind_PriceListAssignment_SOAP">
+      <soap:address location="http://localhost/epages/Store.soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

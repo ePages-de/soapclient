@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn://epages.de/WebService/ProductTypeTypes2/2007/11" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/ProductTypeTypes2/2007/11" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="EpagesTypes.xsd" namespace="urn://epages.de/WebService/EpagesTypes/2005/01" />
+  <xs:complexType name="TGetInfo_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a getInfo() product type call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product type path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Alias" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product type alias</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Name" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product type's name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Attributes" type="epagestypes:ListOfAttributes">
+        <xs:annotation>
+          <xs:documentation>list of requested attributes (see epagestypes:ListOfAttributes)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Layout.Content-Base" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>layout template for product details display</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Layout.Content-Variation" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>layout template for variations display</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Layout.Content-Bundles" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>layout template for bundle products display</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TExists_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a exists() product type call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        the exists flag will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="exists" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that whether the product type exists</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TDelete_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a delete() product type call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        the deleted flag will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="deleted" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating whether this product type has been deleted</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TUpdate_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input arguments of a single update() product type call.
+        a set of optional product type specific attributes that will be updated.
+        the path element is mandatory.
+        all others are optional.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product type path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Name" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product type's name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Layout.Content-Base" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>layout template for product details display</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Layout.Content-Variation" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>layout template for variations display</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Layout.Content-Bundles" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>layout template for bundle products display</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TUpdate_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a update() product type call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        the updated flag will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="updated" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating whether this product type has been updated</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TCreate_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input arguments of a single create() product type call.
+        a set of product specific attributes that will be used to create a product.
+        alias is mandatory.
+        all others are optional.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product type alias</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Name" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product type's name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Layout.Content-Base" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>layout template for product details display</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Layout.Content-Variation" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>layout template for variations display</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Layout.Content-Bundles" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>layout template for bundle products display</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TCreate_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a create() product type call.
+        the alias will be always returned.
+        the error element will be returned in case of error.
+        the created flag and path will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string" />
+      <xs:element minOccurs="0" name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="created" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating whether this product has been created</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TGetProductAttributeInfo_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a getProductAttributeInfo() call.
+        the alias will be always returned.
+        the error element will be returned in case of error.
+        the other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string" />
+      <xs:element minOccurs="0" name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="Position" type="xs:integer" />
+      <xs:element minOccurs="0" name="Type" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the product attribute type (one of Boolean, Date, DateTime, File, Float, Integer, LocalizedFile, LocalizedString, Money, PreDefLocalizedString, PreDefMultiLocalizedString, PreDefMultiString, PreDefString, String, Time)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsVisible" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>IsVisible flag</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsHTML" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>IsHTML flag</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Name" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product attribute's name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Description" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product attribute's description (tool tip text)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TExistsProductAttribute_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of an existProductAttribute() call.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string" />
+      <xs:element name="exists" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>flag indicating whether the product attribute exists</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TDeleteProductAttribute_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a deleteProductAttribute() call.
+        the alias will be always returned.
+        the error element will be returned in case of error.
+        the other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string" />
+      <xs:element minOccurs="0" name="deleted" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>flag indicating whether the product attribute has been deleted</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TUpdateProductAttribute_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input arguments of a single updateProductAttribute call.
+        a set of optional product attribute specific attributes that will be updated.
+        the alias element is mandatory.
+        all others are optional.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product attribute alias</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Name" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product attribute's name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Description" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product attribute's description (tool tip text)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Position" type="xs:integer" />
+      <xs:element minOccurs="0" name="IsVisible" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>is product attribute visible in storefront?</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsHTML" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>are HTML tags supported?</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TUpdateProductAttribute_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of an updateProductAttribute() call.
+        the alias will be always returned.
+        the error element will be returned in case of error.
+        the other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string" />
+      <xs:element minOccurs="0" name="updated" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>flag indicating whether the product attribute has been updated</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TCreateProductAttribute_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input arguments of a single createProductAttribute call.
+        a set of optional product attribute specific attributes that will be set.
+        the alias and type elements are mandatory.
+        all others are optional.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product attribute alias</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Type" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the product attribute type (one of Boolean, Date, DateTime, File, Float, Integer, LocalizedFile, LocalizedString, Money, PreDefLocalizedString, PreDefMultiLocalizedString, PreDefMultiString, PreDefString, String, Time)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Name" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product attribute's name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Description" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product attribute's description (tool tip text)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Position" type="xs:integer" />
+      <xs:element minOccurs="0" name="IsVisible" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>is product attribute visible in storefront?</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsHTML" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>are HTML tags supported?</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TCreateProductAttribute_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a createProductAttribute() call.
+        the alias will be always returned.
+        the error element will be returned in case of error.
+        the other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string" />
+      <xs:element minOccurs="0" name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="created" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>flag indicating whether the product attribute has been created</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TGetPreDefAttributeInfo_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a getPreDefAttributeInfo() call.
+        the alias will be always returned.
+        the error element will be returned in case of error.
+        the other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string" />
+      <xs:element minOccurs="0" name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="Position" type="xs:integer" />
+      <xs:element minOccurs="0" name="ValueString" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the predefined attribute value in case it's product attribute is not localizable</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ValueLocString" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>the predefined attribute value in case it's product attribute is localizable</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TGetAllPreDefAttributesInfo_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a getAllPreDefAttributesInfo() call.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string" />
+      <xs:element name="Path" type="xs:string" />
+      <xs:element name="Position" type="xs:integer" />
+      <xs:element minOccurs="0" name="ValueString" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the predefined attribute value in case it's product attribute is not localizable</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ValueLocString" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>the predefined attribute value in case it's product attribute is localizable</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TExistsPreDefAttribute_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of an existPreDefAttribute() call.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string" />
+      <xs:element name="exists" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>flag indicating whether the predefined attribute exists</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TDeletePreDefAttribute_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a deletePreDefAttribute() call.
+        the alias will be always returned.
+        the error element will be returned in case of error.
+        the other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string" />
+      <xs:element minOccurs="0" name="deleted" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>flag indicating whether the predefined attribute has been deleted</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TUpdatePreDefAttribute_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input arguments of a single updatePreDefAttribute call.
+        a set of optional predefined attribute specific attributes that will be updated.
+        the alias element is mandatory.
+        all others are optional.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>predefined attribute alias</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Position" type="xs:integer" />
+      <xs:element minOccurs="0" name="ValueString" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the predefined attribute value in case it's product attribute is not localizable</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ValueLocString" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>the predefined attribute value in case it's product attribute is localizable</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TUpdatePreDefAttribute_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of an updatePreDefAttribute() call.
+        the alias will be always returned.
+        the error element will be returned in case of error.
+        the other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string" />
+      <xs:element minOccurs="0" name="updated" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>flag indicating whether the predefined attribute has been updated</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TCreatePreDefAttribute_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input arguments of a single createPreDefAttribute call.
+        a set of optional predefined attribute specific attributes that will be set.
+        the alias element is mandatory.
+        all others are optional.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>predefined attribute alias</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Position" type="xs:integer" />
+      <xs:element minOccurs="0" name="ValueString" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the predefined attribute value in case it's product attribute is not localizable</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ValueLocString" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>the predefined attribute value in case it's product attribute is localizable</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TCreatePreDefAttribute_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a createPreDefAttribute() call.
+        the alias will be always returned.
+        the error element will be returned in case of error.
+        the other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string" />
+      <xs:element minOccurs="0" name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="created" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>flag indicating whether the predefined attribute has been created</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+</xs:schema>

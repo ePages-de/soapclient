@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tns="urn://epages.de/WebService/OrderDocumentService/2005/01" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:OrderDocumentTypes="urn://epages.de/WebService/OrderDocumentTypes/2005/01" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" name="OrderDocumentService" targetNamespace="urn://epages.de/WebService/OrderDocumentService/2005/01" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <documentation>
+    this is a web service for an epages e-commerce system.
+    this service is a container for all methods in the order document context.
+  </documentation>
+  <wsdl:types>
+    <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/OrderDocumentService/2005/01">
+      <xs:import schemaLocation="OrderDocumentTypes.xsd" namespace="urn://epages.de/WebService/OrderDocumentTypes/2005/01" />
+      <xs:complexType name="type_GetInfo_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of a getInfo() call.
+            a simple list of order document paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetInfo_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a getInfo() call.
+            see OrderDocumentTypes:TGetInfo_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="OrderDocumentTypes:TGetInfo_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_AttributeNames_In">
+        <xs:annotation>
+          <xs:documentation>
+            additional input of a getInfo() call.
+            a simple list of attribute names.
+            defines the content of the returned attribute name-value list.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_LanguageCodes_In">
+        <xs:annotation>
+          <xs:documentation>
+            additional input of a getInfo() call.
+            a simple list of language codes (e.g. 'en').
+            defines the content of the returned localized values.
+            this list is optional (all shop languages will be used if not provided).
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Exists_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an exists() call.
+            a simple list of order document paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Exists_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an exists() call.
+            see OrderDocumentTypes:TExists_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="OrderDocumentTypes:TExists_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Delete_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of a delete() call.
+            a simple list of order document paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Delete_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a delete() call.
+            see OrderDocumentTypes:TDelete_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="OrderDocumentTypes:TDelete_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Create_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of a create() call.
+            see OrderDocumentTypes:TCreate_Input
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="OrderDocumentTypes:TCreate_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Create_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a create() call.
+            see OrderDocumentTypes:TCreate_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="OrderDocumentTypes:TCreate_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetInvoices_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of a getInvoices() call.
+            a simple list of order paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetInvoices_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a getInvoices() call.
+            see OrderDocumentTypes:TGetInvoices_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="OrderDocumentTypes:TGetInvoices_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetPackingSlips_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of a getPackingSlips() call.
+            a simple list of order paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetPackingSlips_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a getPackingSlips() call.
+            see OrderDocumentTypes:TGetPackingSlips_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="OrderDocumentTypes:TGetPackingSlips_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetCreditNotes_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of a getCreditNotes() call.
+            a simple list of order paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetCreditNotes_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a getCreditNotes() call.
+            see OrderDocumentTypes:TGetCreditNotes_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="OrderDocumentTypes:TGetCreditNotes_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="msg_GetInfo_Input">
+    <wsdl:part name="OrderDocuments" type="tns:type_GetInfo_In" />
+    <wsdl:part name="Attributes" type="tns:type_AttributeNames_In" />
+    <wsdl:part name="LanguageCodes" type="tns:type_LanguageCodes_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetInfo_Output">
+    <wsdl:part name="OrderDocuments" type="tns:type_GetInfo_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Exists_Input">
+    <wsdl:part name="OrderDocuments" type="tns:type_Exists_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Exists_Output">
+    <wsdl:part name="OrderDocuments" type="tns:type_Exists_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Delete_Input">
+    <wsdl:part name="OrderDocuments" type="tns:type_Delete_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Delete_Output">
+    <wsdl:part name="OrderDocuments" type="tns:type_Delete_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Create_Input">
+    <wsdl:part name="OrderDocuments" type="tns:type_Create_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Create_Output">
+    <wsdl:part name="OrderDocuments" type="tns:type_Create_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetInvoices_Input">
+    <wsdl:part name="Orders" type="tns:type_GetInvoices_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetInvoices_Output">
+    <wsdl:part name="Orders" type="tns:type_GetInvoices_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetPackingSlips_Input">
+    <wsdl:part name="Orders" type="tns:type_GetPackingSlips_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetPackingSlips_Output">
+    <wsdl:part name="Orders" type="tns:type_GetPackingSlips_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetCreditNotes_Input">
+    <wsdl:part name="Orders" type="tns:type_GetCreditNotes_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetCreditNotes_Output">
+    <wsdl:part name="Orders" type="tns:type_GetCreditNotes_Out" />
+  </wsdl:message>
+  <wsdl:portType name="port_OrderDocument">
+    <wsdl:operation name="getInfo">
+      <documentation>get information about a list of order documents</documentation>
+      <wsdl:input message="tns:msg_GetInfo_Input" />
+      <wsdl:output message="tns:msg_GetInfo_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <documentation>check if a list of order documents exist.</documentation>
+      <wsdl:input message="tns:msg_Exists_Input" />
+      <wsdl:output message="tns:msg_Exists_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <documentation>delete a list of order documents</documentation>
+      <wsdl:input message="tns:msg_Delete_Input" />
+      <wsdl:output message="tns:msg_Delete_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <documentation>create new order documents</documentation>
+      <wsdl:input message="tns:msg_Create_Input" />
+      <wsdl:output message="tns:msg_Create_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="getInvoices">
+      <documentation>get invoices of an order</documentation>
+      <wsdl:input message="tns:msg_GetInvoices_Input" />
+      <wsdl:output message="tns:msg_GetInvoices_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="getPackingSlips">
+      <documentation>get packing slips of an order</documentation>
+      <wsdl:input message="tns:msg_GetPackingSlips_Input" />
+      <wsdl:output message="tns:msg_GetPackingSlips_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="getCreditNotes">
+      <documentation>get credit notes of an order</documentation>
+      <wsdl:input message="tns:msg_GetCreditNotes_Input" />
+      <wsdl:output message="tns:msg_GetCreditNotes_Output" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="bind_OrderDocument_SOAP" type="tns:port_OrderDocument">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="getInfo">
+      <soap:operation soapAction="urn://epages.de/WebService/OrderDocumentService/2005/01#getInfo" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderDocumentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderDocumentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <soap:operation soapAction="urn://epages.de/WebService/OrderDocumentService/2005/01#exists" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderDocumentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderDocumentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="urn://epages.de/WebService/OrderDocumentService/2005/01#delete" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderDocumentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderDocumentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <soap:operation soapAction="urn://epages.de/WebService/OrderDocumentService/2005/01#create" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderDocumentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderDocumentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInvoices">
+      <soap:operation soapAction="urn://epages.de/WebService/OrderDocumentService/2005/01#getInvoices" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderDocumentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderDocumentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPackingSlips">
+      <soap:operation soapAction="urn://epages.de/WebService/OrderDocumentService/2005/01#getPackingSlips" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderDocumentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderDocumentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCreditNotes">
+      <soap:operation soapAction="urn://epages.de/WebService/OrderDocumentService/2005/01#getCreditNotes" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderDocumentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderDocumentService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OrderDocumentService">
+    <documentation>epages5 Order Document Service</documentation>
+    <wsdl:port name="port_OrderDocument" binding="tns:bind_OrderDocument_SOAP">
+      <soap:address location="http://localhost/epages/Store.soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="file:///D:/RND/epages/epages5/AllOS/WebServiceExamples/WS_DemoClients/wsdl/CatalogService6.wsdl" filename="CatalogService.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/RND/epages/epages5/AllOS/WebServiceExamples/WS_DemoClients/wsdl/EpagesTypes.xsd" filename="EpagesTypes.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/RND/epages/epages5/AllOS/WebServiceExamples/WS_DemoClients/wsdl/CatalogTypes6.xsd" filename="CatalogTypes6.xsd" />
+  </Results>
+</DiscoveryClientResultsFile>

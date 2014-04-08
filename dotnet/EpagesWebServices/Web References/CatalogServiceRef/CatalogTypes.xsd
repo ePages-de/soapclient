@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn://epages.de/WebService/CatalogTypes/2005/01" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/CatalogTypes/2005/01" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="EpagesTypes.xsd" namespace="urn://epages.de/WebService/EpagesTypes/2005/01" />
+  <xs:complexType name="TGetInfo_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a getInfo() catalog call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>catalog object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Alias" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>catalog alias</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Class" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>path to catalog's class</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Position" type="xs:integer">
+        <xs:annotation>
+          <xs:documentation>catalog's position under the pages of the parent catalog</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ParentCatalog" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>parent catalog object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="WebUrl" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>web url to view the catalog in the shop storefront</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsVisible" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>localized name of catalog (see epagestypes:TLocalizedValue)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Text" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>localized text of catalog (see epagestypes:TLocalizedValue)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="SubCatalogs" type="tns:ListOfCatalogPaths">
+        <xs:annotation>
+          <xs:documentation>list of sub catalog paths</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Attributes" type="epagestypes:ListOfAttributes">
+        <xs:annotation>
+          <xs:documentation>list of requested attributes (see epagestypes:ListOfAttributes)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TExists_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a exists() catalog call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        the exists flag be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="exists" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating whether or not this catalog exists</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TDelete_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a delete() catalog call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        the deleted flag be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="deleted" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that this catalog was deleted</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TUpdate_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input arguments of a single update() catalog call.
+        a set of optional catalog specific attributes that will be updated.
+        the path element is mandatory.
+        all others are optional.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>catalog path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsVisible" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>flag indicating whether or not the catalog is visible</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Position" type="xs:integer">
+        <xs:annotation>
+          <xs:documentation>catalog's position under the pages of the parent catalog</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Name" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>localized name of catalog (see epagestypes:TLocalizedValue)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Text" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>localized text of catalog (see epagestypes:TLocalizedValue)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Attributes" type="epagestypes:ListOfAttributes">
+        <xs:annotation>
+          <xs:documentation>list of attributes to update (see epagestypes:ListOfAttributes)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TUpdate_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a update() catalog call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        the updated flag be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="updated" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating whether or not this catalog was updated</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TCreate_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input arguments of a single create() catalog call.
+        a set of catalog specific attributes that will be used to create a catalog.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>catalog alias</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ParentCatalog" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>path of parent catalog; this catalog must exist</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsVisible" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>flag indicating whether or not the catalog is visible</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Position" type="xs:integer">
+        <xs:annotation>
+          <xs:documentation>catalog's position under the pages of the parent catalog</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Name" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>localized name of catalog (see epagestypes:TLocalizedValue)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Text" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>localized text of catalog (see epagestypes:TLocalizedValue)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Attributes" type="epagestypes:ListOfAttributes">
+        <xs:annotation>
+          <xs:documentation>list of attributes to set (see epagestypes:ListOfAttributes)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TCreate_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a create() catalog call.
+        alias and parent catalog will be always returned.
+        the error element will be returned in case of error.
+        the updated flag and path will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string" />
+      <xs:element name="ParentCatalog" type="xs:string" />
+      <xs:element minOccurs="0" name="Path" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>object path of the created catalog</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="created" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that this catalog was created</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ListOfCatalogPaths">
+    <xs:annotation>
+      <xs:documentation>
+        list of catalog paths.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn://epages.de/WebService/AssignmentTypes/2005/01" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/AssignmentTypes/2005/01" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="EpagesTypes.xsd" namespace="urn://epages.de/WebService/EpagesTypes/2005/01" />
+  <xs:complexType name="TAssignProductToCatalog_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input value of a assignProductToCatalog() call.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Catalog" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>catalog object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Position" type="xs:integer">
+        <xs:annotation>
+          <xs:documentation>position in the list of products assigned to the catalog</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TAssignProductToCatalog_Return">
+    <xs:annotation>
+      <xs:documentation>
+        return value of a assignProductToCatalog() call.
+        Catalog and Product will be always returned.
+        the Error element will be returned in case of error.
+        all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Catalog" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>catalog object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="assigned" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>is product assigned to catalog</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="assignedWithParent" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>is product or its superproduct assigned to catalog</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TRemoveProductFromCatalog_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input value of a removeProductFromCatalog() call.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Catalog" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>catalog object path (use wildcard * to remove all assigned categories)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TRemoveProductFromCatalog_Return">
+    <xs:annotation>
+      <xs:documentation>
+        return value of a removeProductFromCatalog() call.
+        Catalog and Product will be always returned.
+        the Error element will be returned in case of error.
+        all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Catalog" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>catalog object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="removed" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>is product removed to catalog</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="assignedWithParent" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>is product or its superproduct assigned to catalog</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TIsProductAssignedToCatalog_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input value of a isProductAssignedToCatalog() call.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Catalog" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>catalog object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TIsProductAssignedToCatalog_Return">
+    <xs:annotation>
+      <xs:documentation>
+        return value of a isProductAssignedToCatalog() call.
+        Catalog and Product will be always returned.
+        the Error element will be returned in case of error.
+        all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Catalog" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>catalog object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="assigned" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>is product assigned to catalog</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="assignedWithParent" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>is product or its superproduct assigned to catalog</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TGetProductsAssignedToCatalog_Return">
+    <xs:annotation>
+      <xs:documentation>
+        return value of a getProductsAssignedToCatalog() call.
+        Catalog will be always returned.
+        the Error element will be returned in case of error.
+        all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Catalog" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>catalog object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Products" type="tns:ListOfAssignedProducts">
+        <xs:annotation>
+          <xs:documentation>list of products assigned to the catalog (see epagestypes:ListOfAssignedProducts)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ListOfAssignedProducts">
+    <xs:annotation>
+      <xs:documentation>
+        list of products assigned to a catalog
+        see epagestypes:TAssignedProduct
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TAssignedProduct[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TAssignedProduct">
+    <xs:annotation>
+      <xs:documentation>
+        a product assigned to a catalog
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element name="Position" type="xs:integer" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TGetCatalogsAssignedToProduct_Return">
+    <xs:annotation>
+      <xs:documentation>
+        return value of a getCatalogsAssignedToProduct() call.
+        Product will be always returned.
+        the Error element will be returned in case of error.
+        all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Catalogs" type="tns:ListOfAssignedCatalogs">
+        <xs:annotation>
+          <xs:documentation>list of catalogs the product is assigned to (see epagestypes:ListOfAssignedCatalogs)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ListOfAssignedCatalogs">
+    <xs:annotation>
+      <xs:documentation>
+        list of catalogs a product is assigned to
+        see epagestypes:TAssignedCatalog
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TAssignedCatalog[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TAssignedCatalog">
+    <xs:annotation>
+      <xs:documentation>
+        a catalog a product is assigned to
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element name="assigned" type="xs:boolean" />
+      <xs:element name="assignedWithParent" type="xs:boolean" />
+    </xs:all>
+  </xs:complexType>
+</xs:schema>

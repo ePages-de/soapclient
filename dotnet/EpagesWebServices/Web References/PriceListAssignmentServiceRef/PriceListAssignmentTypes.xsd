@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn://epages.de/WebService/PriceListAssignmentTypes/2005/01" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/PriceListAssignmentTypes/2005/01" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="EpagesTypes.xsd" namespace="urn://epages.de/WebService/EpagesTypes/2005/01" />
+  <xs:complexType name="TGetScalePrices_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a getScalePrices() call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PriceLists" type="tns:ListOfPriceListScalePrice">
+        <xs:annotation>
+          <xs:documentation>list of requested pricelists (see pricelistassignmenttypes:TPriceListScalePrice)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TSetScalePrices_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input arguments of a single setScalePrices() call.
+        all elements are mandatory.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product (object path)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PriceList" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>price list (object path)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ScalePrices" type="tns:ListOfScalePrices">
+        <xs:annotation>
+          <xs:documentation>list of scale prices to set (see pricelistassignmenttypes:TScalePrice)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TSetScalePrices_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a setScalePrices() call.
+        the product and pricelist path will be always returned.
+        the error element will be returned in case of error.
+        the updated flag will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string" />
+      <xs:element name="PriceList" type="xs:string" />
+      <xs:element minOccurs="0" name="updated" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that this product was updated</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TGetQuantityDiscounts_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a getQuantityDiscounts() call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PriceLists" type="tns:ListOfPriceListQuantityDiscount">
+        <xs:annotation>
+          <xs:documentation>list of requested pricelists (see pricelistassignmenttypes:TPriceListQuantityDiscount)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TSetQuantityDiscounts_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input arguments of a single setQuantityDiscounts() call.
+        all elements are mandatory.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product (object path)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PriceList" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>price list (object path)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="QuantityDiscounts" type="tns:ListOfQuantityDiscounts">
+        <xs:annotation>
+          <xs:documentation>list of quantity discounts to set (see pricelistassignmenttypes:TQuantityDiscount)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TSetQuantityDiscounts_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a setQuantityDiscounts() call.
+        the product and pricelist path will be always returned.
+        the error element will be returned in case of error.
+        the updated flag will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string" />
+      <xs:element name="PriceList" type="xs:string" />
+      <xs:element minOccurs="0" name="updated" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that this product was updated</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TGetValueDiscounts_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a getValueDiscounts() call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PriceLists" type="tns:ListOfPriceListValueDiscount">
+        <xs:annotation>
+          <xs:documentation>list of requested pricelists (see pricelistassignmenttypes:TPriceListValueDiscount)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TSetValueDiscounts_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input arguments of a single setValueDiscounts() call.
+        all elements are mandatory.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product (object path)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PriceList" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>price list (object path)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ValueDiscounts" type="tns:ListOfValueDiscounts">
+        <xs:annotation>
+          <xs:documentation>list of value discounts to set (see pricelistassignmenttypes:TValueDiscount)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TSetValueDiscounts_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a setValueDiscounts() call.
+        the product and pricelist path will be always returned.
+        the error element will be returned in case of error.
+        the updated flag will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string" />
+      <xs:element name="PriceList" type="xs:string" />
+      <xs:element minOccurs="0" name="updated" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that this product was updated</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ListOfPriceListScalePrice">
+    <xs:annotation>
+      <xs:documentation>
+        list of pricelists with scale price information.
+        each element is a TPriceListScalePrice.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TPriceListScalePrice[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TPriceListScalePrice">
+    <xs:annotation>
+      <xs:documentation>
+        a single pricelists with scale price information.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="PriceList" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the pricelist (a object path)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ScalePrices" type="tns:ListOfScalePrices">
+        <xs:annotation>
+          <xs:documentation>list of scale prices for this product and this pricelist (see pricelistassignmenttypes:TScalePrice)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ListOfScalePrices">
+    <xs:annotation>
+      <xs:documentation>
+        list of scale prices.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TScalePrice[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TScalePrice">
+    <xs:annotation>
+      <xs:documentation>
+        a single scale price.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Quantity" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>scale price's quantity</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Price" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>price for this quantity</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ListOfPriceListQuantityDiscount">
+    <xs:annotation>
+      <xs:documentation>
+        list of pricelists with quantity discount information.
+        each element is a TPriceListQuantityDiscount.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TPriceListQuantityDiscount[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TPriceListQuantityDiscount">
+    <xs:annotation>
+      <xs:documentation>
+        a single pricelists with quantity discount information.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="PriceList" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the pricelist (a object path)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="QuantityDiscounts" type="tns:ListOfQuantityDiscounts">
+        <xs:annotation>
+          <xs:documentation>list of quantity discount for this product and this pricelist (see pricelistassignmenttypes:TQuantityDiscount)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ListOfQuantityDiscounts">
+    <xs:annotation>
+      <xs:documentation>
+        list of quantity discounts.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TQuantityDiscount[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TQuantityDiscount">
+    <xs:annotation>
+      <xs:documentation>
+        a single quantity discount.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Quantity" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>discount's quantity</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Discount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>discount for this quantity</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ListOfPriceListValueDiscount">
+    <xs:annotation>
+      <xs:documentation>
+        list of pricelists with value discount information.
+        each element is a TPriceListValueDiscount.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TPriceListValueDiscount[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TPriceListValueDiscount">
+    <xs:annotation>
+      <xs:documentation>
+        a single pricelists with value discount information.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="PriceList" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the pricelist (a object path)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ValueDiscounts" type="tns:ListOfValueDiscounts">
+        <xs:annotation>
+          <xs:documentation>list of value discount for this product and this pricelist (see pricelistassignmenttypes:TValueDiscount)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ListOfValueDiscounts">
+    <xs:annotation>
+      <xs:documentation>
+        list of value discounts.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TValueDiscount[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TValueDiscount">
+    <xs:annotation>
+      <xs:documentation>
+        a single value discount.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Value" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>discount's value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Discount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>discount for this value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+</xs:schema>

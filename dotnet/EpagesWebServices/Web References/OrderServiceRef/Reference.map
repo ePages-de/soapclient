@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://localhost/WebRoot/Store/WSDL/EpagesTypes.xsd" filename="EpagesTypes.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://localhost/WebRoot/Store/WSDL/OrderService.wsdl" filename="OrderService.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://localhost/WebRoot/Store/WSDL/ShopTypes.xsd" filename="ShopTypes.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://localhost/WebRoot/Store/WSDL/OrderTypes.xsd" filename="OrderTypes.xsd" />
+  </Results>
+</DiscoveryClientResultsFile>

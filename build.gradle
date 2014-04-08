@@ -83,4 +83,5 @@ ext {
   ]
 
   onlyThisService = project.properties["onlyThisService"]
+  ep6HostName = project.properties["ep6HostName"]
 }

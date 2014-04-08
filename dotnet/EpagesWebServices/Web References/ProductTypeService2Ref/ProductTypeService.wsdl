@@ -1,0 +1,785 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tns="urn://epages.de/WebService/ProductTypeService2/2007/11" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:producttypetypes="urn://epages.de/WebService/ProductTypeTypes2/2007/11" xmlns="http://schemas.xmlsoap.org/wsdl/" name="ProductTypeService" targetNamespace="urn://epages.de/WebService/ProductTypeService2/2007/11" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <documentation>
+    this is a web service for an epages e-commerce system.
+    this service is a container for all methods in the product type context.
+  </documentation>
+  <wsdl:types>
+    <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/ProductTypeService2/2007/11">
+      <xs:import schemaLocation="ProductTypeTypes2.xsd" namespace="urn://epages.de/WebService/ProductTypeTypes2/2007/11" />
+      <xs:complexType name="type_GetInfo_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of a getInfo() product type call.
+            a simple list of product type paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetInfo_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a getInfo() product type call.
+            see producttypetypes:TGetInfo_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TGetInfo_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_AttributeNames_In">
+        <xs:annotation>
+          <xs:documentation>
+            additional input of a getInfo() product type call.
+            a simple list of attribute names.
+            defines the content of the returned attribute name-value list.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_LanguageCodes_In">
+        <xs:annotation>
+          <xs:documentation>
+            additional input of a getInfo() product type call.
+            a simple list of language codes (e.g. 'en').
+            defines the content of the returned localized values.
+            this list is optional (all shop languages will be used if not provided).
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Exists_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an exists() producttype call.
+            a simple list of product type paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Exists_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an exists() product type call.
+            see producttypetypes:TExists_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TExists_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Delete_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of a delete() product type call.
+            a simple list of product type paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Delete_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a delete() product type call.
+            see producttypetypes:TGetInfo_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TDelete_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Update_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an update() product type call.
+            see producttypetypes:TUpdate_Input
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TUpdate_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Update_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an update() product type call.
+            see producttypetypes:TUpdate_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TUpdate_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Create_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of a create() product type call.
+            see producttypetypes:TCreate_Input
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TCreate_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Create_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a create() product type call.
+            see producttypetypes:TCreate_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TCreate_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_ProductAttributeNames_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of diverse product attribute calls.
+            a simple list of product attribute aliases
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetProductAttributeInfo_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a getProductAttributeInfo() call.
+            see producttypetypes:TGetProductAttributeInfo_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TGetProductAttributeInfo_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_ExistsProductAttribute_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an existsProductAttribute call.
+            see producttypetypes:TExistsProductAttribute_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TExistsProductAttribute_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_DeleteProductAttribute_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a deleteProductAttribute call.
+            see producttypetypes:TDeleteProductAttribute_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TDeleteProductAttribute_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_UpdateProductAttribute_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an updateProductAttribute call.
+            see producttypetypes:TUpdateProductAttribute_Input
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TUpdateProductAttribute_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_UpdateProductAttribute_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an updateProductAttribute call.
+            see producttypetypes:TUpdateProductAttribute_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TUpdateProductAttribute_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_CreateProductAttribute_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of a createProductAttribute call.
+            see producttypetypes:TCreateProductAttribute_Input
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TCreateProductAttribute_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_CreateProductAttribute_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a createProductAttribute call.
+            see producttypetypes:TCreateProductAttribute_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TCreateProductAttribute_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_PreDefAttributeNames_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of diverse predefined attribute calls.
+            a simple list of predefined attribute aliases
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetPreDefAttributeInfo_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a getPreDefAttributeInfo() call.
+            see producttypetypes:TGetPreDefAttributeInfo_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TGetPreDefAttributeInfo_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_ExistsPreDefAttribute_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an existsPreDefAttribute call.
+            see producttypetypes:TExistsPreDefAttribute_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TExistsPreDefAttribute_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_DeletePreDefAttribute_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a deletePreDefAttribute call.
+            see producttypetypes:TDeletePreDefAttribute_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TDeletePreDefAttribute_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_UpdatePreDefAttribute_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an updatePreDefAttribute call.
+            see producttypetypes:TUpdatePreDefAttribute_Input
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TUpdatePreDefAttribute_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_UpdatePreDefAttribute_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an updatePreDefAttribute call.
+            see producttypetypes:TUpdatePreDefAttribute_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TUpdatePreDefAttribute_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_CreatePreDefAttribute_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of a createPreDefAttribute call.
+            see producttypetypes:TCreatePreDefAttribute_Input
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TCreatePreDefAttribute_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_CreatePreDefAttribute_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a createPreDefAttribute call.
+            see producttypetypes:TCreatePreDefAttribute_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypetypes:TCreatePreDefAttribute_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="msg_GetBaseProductType_Input" />
+  <wsdl:message name="msg_GetBaseProductType_Output">
+    <wsdl:part name="BaseProductType" type="xs:string" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetInfo_Input">
+    <wsdl:part name="ProductTypes" type="tns:type_GetInfo_In" />
+    <wsdl:part name="Attributes" type="tns:type_AttributeNames_In" />
+    <wsdl:part name="LanguageCodes" type="tns:type_LanguageCodes_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetInfo_Output">
+    <wsdl:part name="ProductTypes" type="tns:type_GetInfo_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetAllInfo_Input">
+    <wsdl:part name="Attributes" type="tns:type_AttributeNames_In" />
+    <wsdl:part name="LanguageCodes" type="tns:type_LanguageCodes_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetAllInfo_Output">
+    <wsdl:part name="ProductTypes" type="tns:type_GetInfo_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Exists_Input">
+    <wsdl:part name="ProductTypes" type="tns:type_Exists_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Exists_Output">
+    <wsdl:part name="ProductTypes" type="tns:type_Exists_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Delete_Input">
+    <wsdl:part name="ProductTypes" type="tns:type_Delete_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Delete_Output">
+    <wsdl:part name="ProductTypes" type="tns:type_Delete_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Update_Input">
+    <wsdl:part name="ProductTypes" type="tns:type_Update_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Update_Output">
+    <wsdl:part name="ProductTypes" type="tns:type_Update_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Create_Input">
+    <wsdl:part name="ProductTypes" type="tns:type_Create_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Create_Output">
+    <wsdl:part name="ProductTypes" type="tns:type_Create_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_getProductAttributeInfo_Input">
+    <wsdl:part name="ProductType" type="xs:string" />
+    <wsdl:part name="ProductAttributes" type="tns:type_ProductAttributeNames_In" />
+    <wsdl:part name="LanguageCodes" type="tns:type_LanguageCodes_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_getProductAttributeInfo_Output">
+    <wsdl:part name="ProductAttributes" type="tns:type_GetProductAttributeInfo_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_getAllProductAttributesInfo_Input">
+    <wsdl:part name="ProductType" type="xs:string" />
+    <wsdl:part name="LanguageCodes" type="tns:type_LanguageCodes_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_getAllProductAttributesInfo_Output">
+    <wsdl:part name="ProductAttributes" type="tns:type_GetProductAttributeInfo_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_existsProductAttribute_Input">
+    <wsdl:part name="ProductType" type="xs:string" />
+    <wsdl:part name="ProductAttributes" type="tns:type_ProductAttributeNames_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_existsProductAttribute_Output">
+    <wsdl:part name="ProductAttributes" type="tns:type_ExistsProductAttribute_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_deleteProductAttribute_Input">
+    <wsdl:part name="ProductType" type="xs:string" />
+    <wsdl:part name="ProductAttributes" type="tns:type_ProductAttributeNames_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_deleteProductAttribute_Output">
+    <wsdl:part name="ProductAttributes" type="tns:type_DeleteProductAttribute_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_updateProductAttribute_Input">
+    <wsdl:part name="ProductType" type="xs:string" />
+    <wsdl:part name="ProductAttributes" type="tns:type_UpdateProductAttribute_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_updateProductAttribute_Output">
+    <wsdl:part name="ProductAttributes" type="tns:type_UpdateProductAttribute_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_createProductAttribute_Input">
+    <wsdl:part name="ProductType" type="xs:string" />
+    <wsdl:part name="ProductAttributes" type="tns:type_CreateProductAttribute_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_createProductAttribute_Output">
+    <wsdl:part name="ProductAttributes" type="tns:type_CreateProductAttribute_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_getPreDefAttributeInfo_Input">
+    <wsdl:part name="ProductAttribute" type="xs:string" />
+    <wsdl:part name="PreDefAttributes" type="tns:type_PreDefAttributeNames_In" />
+    <wsdl:part name="LanguageCodes" type="tns:type_LanguageCodes_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_getPreDefAttributeInfo_Output">
+    <wsdl:part name="PreDefAttributes" type="tns:type_GetPreDefAttributeInfo_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_getAllPreDefAttributesInfo_Input">
+    <wsdl:part name="ProductAttribute" type="xs:string" />
+    <wsdl:part name="LanguageCodes" type="tns:type_LanguageCodes_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_getAllPreDefAttributesInfo_Output">
+    <wsdl:part name="PreDefAttributes" type="tns:type_GetPreDefAttributeInfo_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_existsPreDefAttribute_Input">
+    <wsdl:part name="ProductAttribute" type="xs:string" />
+    <wsdl:part name="PreDefAttributes" type="tns:type_PreDefAttributeNames_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_existsPreDefAttribute_Output">
+    <wsdl:part name="PreDefAttributes" type="tns:type_ExistsPreDefAttribute_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_deletePreDefAttribute_Input">
+    <wsdl:part name="ProductAttribute" type="xs:string" />
+    <wsdl:part name="PreDefAttributes" type="tns:type_PreDefAttributeNames_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_deletePreDefAttribute_Output">
+    <wsdl:part name="PreDefAttributes" type="tns:type_DeletePreDefAttribute_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_updatePreDefAttribute_Input">
+    <wsdl:part name="ProductAttribute" type="xs:string" />
+    <wsdl:part name="PreDefAttributes" type="tns:type_UpdatePreDefAttribute_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_updatePreDefAttribute_Output">
+    <wsdl:part name="PreDefAttributes" type="tns:type_UpdatePreDefAttribute_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_createPreDefAttribute_Input">
+    <wsdl:part name="ProductAttribute" type="xs:string" />
+    <wsdl:part name="PreDefAttributes" type="tns:type_CreatePreDefAttribute_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_createPreDefAttribute_Output">
+    <wsdl:part name="PreDefAttributes" type="tns:type_CreatePreDefAttribute_Out" />
+  </wsdl:message>
+  <wsdl:portType name="port_ProductType">
+    <wsdl:operation name="getBaseProductType">
+      <documentation>get the base product type</documentation>
+      <wsdl:input message="tns:msg_GetBaseProductType_Input" />
+      <wsdl:output message="tns:msg_GetBaseProductType_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="getInfo">
+      <documentation>get information about a list of product types</documentation>
+      <wsdl:input message="tns:msg_GetInfo_Input" />
+      <wsdl:output message="tns:msg_GetInfo_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllInfo">
+      <documentation>get information about all product types</documentation>
+      <wsdl:input message="tns:msg_GetAllInfo_Input" />
+      <wsdl:output message="tns:msg_GetAllInfo_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <documentation>check if a list of product types exist</documentation>
+      <wsdl:input message="tns:msg_Exists_Input" />
+      <wsdl:output message="tns:msg_Exists_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <documentation>delete a list of product types</documentation>
+      <wsdl:input message="tns:msg_Delete_Input" />
+      <wsdl:output message="tns:msg_Delete_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <documentation>update a list of product types</documentation>
+      <wsdl:input message="tns:msg_Update_Input" />
+      <wsdl:output message="tns:msg_Update_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <documentation>create new product types</documentation>
+      <wsdl:input message="tns:msg_Create_Input" />
+      <wsdl:output message="tns:msg_Create_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="getProductAttributeInfo">
+      <documentation>get information about a list of product attributes</documentation>
+      <wsdl:input message="tns:msg_getProductAttributeInfo_Input" />
+      <wsdl:output message="tns:msg_getProductAttributeInfo_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllProductAttributesInfo">
+      <documentation>get information about all product attibutes of a product type</documentation>
+      <wsdl:input message="tns:msg_getAllProductAttributesInfo_Input" />
+      <wsdl:output message="tns:msg_getAllProductAttributesInfo_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="existsProductAttribute">
+      <documentation>check if a list of product attributes exist</documentation>
+      <wsdl:input message="tns:msg_existsProductAttribute_Input" />
+      <wsdl:output message="tns:msg_existsProductAttribute_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteProductAttribute">
+      <documentation>delete a list of product attributes</documentation>
+      <wsdl:input message="tns:msg_deleteProductAttribute_Input" />
+      <wsdl:output message="tns:msg_deleteProductAttribute_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="updateProductAttribute">
+      <documentation>update a list of product attributes</documentation>
+      <wsdl:input message="tns:msg_updateProductAttribute_Input" />
+      <wsdl:output message="tns:msg_updateProductAttribute_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="createProductAttribute">
+      <documentation>create a list of product attributes</documentation>
+      <wsdl:input message="tns:msg_createProductAttribute_Input" />
+      <wsdl:output message="tns:msg_createProductAttribute_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="getPreDefAttributeInfo">
+      <documentation>get information about a list of predefined attributes</documentation>
+      <wsdl:input message="tns:msg_getPreDefAttributeInfo_Input" />
+      <wsdl:output message="tns:msg_getPreDefAttributeInfo_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllPreDefAttributesInfo">
+      <documentation>get information about all predefined attibutes of a product attribute</documentation>
+      <wsdl:input message="tns:msg_getAllPreDefAttributesInfo_Input" />
+      <wsdl:output message="tns:msg_getAllPreDefAttributesInfo_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="existsPreDefAttribute">
+      <documentation>check if a list of predefined attributes exist</documentation>
+      <wsdl:input message="tns:msg_existsPreDefAttribute_Input" />
+      <wsdl:output message="tns:msg_existsPreDefAttribute_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="deletePreDefAttribute">
+      <documentation>delete a list of predefined attributes</documentation>
+      <wsdl:input message="tns:msg_deletePreDefAttribute_Input" />
+      <wsdl:output message="tns:msg_deletePreDefAttribute_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="updatePreDefAttribute">
+      <documentation>update a list of predefined attributes</documentation>
+      <wsdl:input message="tns:msg_updatePreDefAttribute_Input" />
+      <wsdl:output message="tns:msg_updatePreDefAttribute_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="createPreDefAttribute">
+      <documentation>create a list of predefined attributes</documentation>
+      <wsdl:input message="tns:msg_createPreDefAttribute_Input" />
+      <wsdl:output message="tns:msg_createPreDefAttribute_Output" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="bind_ProductType_SOAP" type="tns:port_ProductType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="getBaseProductType">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductTypeService2/2007/11#getBaseProductType" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInfo">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductTypeService2/2007/11#getInfo" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllInfo">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductTypeService2/2007/11#getAllInfo" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductTypeService2/2007/11#exists" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductTypeService2/2007/11#delete" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductTypeService2/2007/11#update" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductTypeService2/2007/11#create" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProductAttributeInfo">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductTypeService2/2007/11#getProductAttributeInfo" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllProductAttributesInfo">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductTypeService2/2007/11#getAllProductAttributesInfo" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="existsProductAttribute">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductTypeService2/2007/11#existsProductAttribute" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteProductAttribute">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductTypeService2/2007/11#deleteProductAttribute" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProductAttribute">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductTypeService2/2007/11#updateProductAttribute" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createProductAttribute">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductTypeService2/2007/11#createProductAttribute" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPreDefAttributeInfo">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductTypeService2/2007/11#getPreDefAttributeInfo" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllPreDefAttributesInfo">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductTypeService2/2007/11#getAllPreDefAttributesInfo" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="existsPreDefAttribute">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductTypeService2/2007/11#existsPreDefAttribute" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePreDefAttribute">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductTypeService2/2007/11#deletePreDefAttribute" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePreDefAttribute">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductTypeService2/2007/11#updatePreDefAttribute" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createPreDefAttribute">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductTypeService2/2007/11#createPreDefAttribute" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductTypeService2/2007/11" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProductTypeService2">
+    <documentation>epages5 Product Type Service 2</documentation>
+    <wsdl:port name="port_ProductType" binding="tns:bind_ProductType_SOAP">
+      <soap:address location="http://localhost/epages/Store.soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

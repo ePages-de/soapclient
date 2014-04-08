@@ -1,0 +1,84 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EpagesWebServices.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="EpagesWebServices_CatalogServiceRef_CatalogService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_ProductService2Ref_ProductService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_ProductTypeServiceRef_ProductTypeService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_CustomerService3Ref_CustomerService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_ShippingMethodServiceRef_ShippingMethodService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_PaymentMethodServiceRef_PaymentMethodService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_OrderService3Ref_OrderService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_OrderService4Ref_OrderService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_CatalogService3Ref_CatalogService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_ProductService3Ref_ProductService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_localhost_OrderService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_ProductService5Ref_ProductService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_PriceListService2Ref_PriceListService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_ProductBundleServiceRef_ProductBundleService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_OrderService7Ref_OrderService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_ProductService6Ref_ProductService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_ProductService7Ref_ProductService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_OrderService8Ref_OrderService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_OrderDocumentService6Ref_OrderDocumentService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_CustomerService4Ref_CustomerService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_UserService4Ref_UserService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_UserService5Ref_UserService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_WebReference_CatalogService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_ProductServiceRef1_ProductService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_CustomerGroupService2Ref_CustomerGroupService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+    <Setting Name="EpagesWebServices_ProductService9Ref_ProductService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
