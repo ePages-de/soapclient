@@ -2,7 +2,4 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 include 'java'
 include 'perl'
-
-if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-    include 'dotnet'
-}
+include 'dotnet'

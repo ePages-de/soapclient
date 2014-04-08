@@ -55,7 +55,7 @@ project.ext.nUnit = {String[] args ->
         newArgs.add("cmd.exe")
         newArgs.add("/C")
     }
-    newArgs.add("nunit-console.exe")
+    newArgs.add("nunit-console")
     newArgs.addAll(args)
     return newArgs.toArray(new String[newArgs.size()])
 }
