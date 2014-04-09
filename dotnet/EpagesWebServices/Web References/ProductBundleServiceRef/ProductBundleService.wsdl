@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:bundletypes="urn://epages.de/WebService/ProductBundleTypes/2007/07" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/ProductBundleService/2007/07" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" name="ProductBundleService" targetNamespace="urn://epages.de/WebService/ProductBundleService/2007/07" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:bundletypes="urn://epages.de/WebService/ProductBundleTypes/2007/07" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:tns="urn://epages.de/WebService/ProductBundleService/2007/07" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="ProductBundleService" targetNamespace="urn://epages.de/WebService/ProductBundleService/2007/07" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <documentation>
     this is a web service for an epages e-commerce system.
     this service is a container for all methods in the product bundle context.
+    needs ePages 6.10.2 or higher
   </documentation>
   <wsdl:types>
     <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/ProductBundleService/2007/07">
-      <xs:import schemaLocation="ProductBundleTypes.xsd" namespace="urn://epages.de/WebService/ProductBundleTypes/2007/071" />
+      <xs:import schemaLocation="ProductBundleTypes.xsd" namespace="urn://epages.de/WebService/ProductBundleTypes/2007/07" />
       <xs:complexType name="type_Create_In">
         <xs:annotation>
           <xs:documentation>

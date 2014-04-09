@@ -530,72 +530,12 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\AssignmentServiceRef\TAssignProductToCatalog_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\AssignmentServiceRef\TGetCatalogsAssignedToProduct_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\AssignmentServiceRef\TGetProductsAssignedToCatalog_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\AssignmentServiceRef\TIsProductAssignedToCatalog_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\AssignmentServiceRef\TRemoveProductFromCatalog_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\CatalogService3Ref\CatalogService.wsdl" />
     <None Include="Web References\CatalogService3Ref\CatalogTypes3.xsd" />
     <None Include="Web References\CatalogService3Ref\EpagesTypes.xsd" />
     <None Include="Web References\CatalogService3Ref\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\CatalogService3Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CatalogService3Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CatalogService3Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CatalogService3Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CatalogService3Ref\TGetRoot_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CatalogService3Ref\TSortProducts_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CatalogService3Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CatalogService6Ref\TCreate_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CatalogService6Ref\TDelete_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CatalogService6Ref\TExists_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CatalogService6Ref\TGetInfo_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CatalogService6Ref\TGetRoot_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CatalogService6Ref\TSortProducts_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CatalogService6Ref\TUpdate_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CatalogService6Ref\TUpload_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\CatalogServiceRef\CatalogService.wsdl" />
     <None Include="Web References\CatalogServiceRef\CatalogTypes.xsd" />
@@ -604,45 +544,12 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\CatalogServiceRef\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CatalogServiceRef\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CatalogServiceRef\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CatalogServiceRef\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CatalogServiceRef\TGetRoot_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CatalogServiceRef\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\CrossSellingService2Ref\CrossSellingService.wsdl" />
     <None Include="Web References\CrossSellingService2Ref\CrossSellingTypes2.xsd" />
     <None Include="Web References\CrossSellingService2Ref\EpagesTypes.xsd" />
     <None Include="Web References\CrossSellingService2Ref\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\CrossSellingService2Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CrossSellingService2Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CrossSellingService2Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CrossSellingService2Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CrossSellingService2Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\CrossSellingServiceRef\CrossSellingService.wsdl" />
     <None Include="Web References\CrossSellingServiceRef\CrossSellingTypes.xsd" />
@@ -651,18 +558,6 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\CrossSellingServiceRef\TDeleteCrossSelling_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CrossSellingServiceRef\TExistsCrossSelling_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CrossSellingServiceRef\TGetCrossSelling_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CrossSellingServiceRef\TInsertCrossSelling_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\CustomerGroupService2Ref\CustomerGroupService.wsdl" />
     <None Include="Web References\CustomerGroupService2Ref\CustomerGroupTypes2.xsd" />
     <None Include="Web References\CustomerGroupService2Ref\EpagesTypes.xsd" />
@@ -670,30 +565,12 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\CustomerGroupService2Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerGroupService2Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerGroupService2Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerGroupService2Ref\TGetList_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerGroupService2Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\CustomerGroupServiceRef\CustomerGroupService.wsdl" />
     <None Include="Web References\CustomerGroupServiceRef\CustomerGroupTypes.xsd" />
     <None Include="Web References\CustomerGroupServiceRef\EpagesTypes.xsd" />
     <None Include="Web References\CustomerGroupServiceRef\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\CustomerGroupServiceRef\TGetList_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\CustomerService2Ref\CustomerService.wsdl" />
     <None Include="Web References\CustomerService2Ref\CustomerTypes2.xsd" />
@@ -703,21 +580,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\CustomerService2Ref\ShopTypes2.xsd" />
-    <None Include="Web References\CustomerService2Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerService2Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerService2Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerService2Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerService2Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\CustomerService3Ref\CustomerService.wsdl" />
     <None Include="Web References\CustomerService3Ref\CustomerTypes3.xsd" />
     <None Include="Web References\CustomerService3Ref\EpagesTypes.xsd" />
@@ -726,21 +588,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\CustomerService3Ref\ShopTypes2.xsd" />
-    <None Include="Web References\CustomerService3Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerService3Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerService3Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerService3Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerService3Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\CustomerService4Ref\CustomerService.wsdl" />
     <None Include="Web References\CustomerService4Ref\CustomerTypes4.xsd" />
     <None Include="Web References\CustomerService4Ref\EpagesTypes.xsd" />
@@ -749,21 +596,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\CustomerService4Ref\ShopTypes3.xsd" />
-    <None Include="Web References\CustomerService4Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerService4Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerService4Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerService4Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerService4Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\CustomerServiceRef\CustomerService.wsdl" />
     <None Include="Web References\CustomerServiceRef\CustomerTypes.xsd" />
     <None Include="Web References\CustomerServiceRef\EpagesTypes.xsd" />
@@ -772,21 +604,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\CustomerServiceRef\ShopTypes.xsd" />
-    <None Include="Web References\CustomerServiceRef\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerServiceRef\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerServiceRef\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerServiceRef\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\CustomerServiceRef\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\OrderDocumentService6Ref\EpagesTypes.xsd" />
     <None Include="Web References\OrderDocumentService6Ref\OrderDocumentService.wsdl" />
     <None Include="Web References\OrderDocumentService6Ref\OrderDocumentTypes6.xsd" />
@@ -795,27 +612,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\OrderDocumentService6Ref\ShopTypes3.xsd" />
-    <None Include="Web References\OrderDocumentService6Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderDocumentService6Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderDocumentService6Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderDocumentService6Ref\TGetCreditNotes_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderDocumentService6Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderDocumentService6Ref\TGetInvoices_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderDocumentService6Ref\TGetPackingSlips_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\OrderService5Ref\EpagesTypes.xsd" />
     <None Include="Web References\OrderService5Ref\OrderService.wsdl" />
     <None Include="Web References\OrderService5Ref\OrderTypes5.xsd" />
@@ -824,18 +620,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\OrderService5Ref\ShopTypes2.xsd" />
-    <None Include="Web References\OrderService5Ref\TCreate_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService5Ref\TDelete_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService5Ref\TExists_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService5Ref\TGetInfo_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\OrderDocumentService2Ref\EpagesTypes.xsd" />
     <None Include="Web References\OrderDocumentService2Ref\OrderDocumentService.wsdl" />
     <None Include="Web References\OrderDocumentService2Ref\OrderDocumentTypes2.xsd" />
@@ -844,27 +628,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\OrderDocumentService2Ref\ShopTypes2.xsd" />
-    <None Include="Web References\OrderDocumentService2Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderDocumentService2Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderDocumentService2Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderDocumentService2Ref\TGetCreditNotes_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderDocumentService2Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderDocumentService2Ref\TGetInvoices_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderDocumentService2Ref\TGetPackingSlips_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\OrderDocumentServiceRef\EpagesTypes.xsd" />
     <None Include="Web References\OrderDocumentServiceRef\OrderDocumentService.wsdl" />
     <None Include="Web References\OrderDocumentServiceRef\OrderDocumentTypes.xsd" />
@@ -873,27 +636,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\OrderDocumentServiceRef\ShopTypes.xsd" />
-    <None Include="Web References\OrderDocumentServiceRef\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderDocumentServiceRef\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderDocumentServiceRef\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderDocumentServiceRef\TGetCreditNotes_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderDocumentServiceRef\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderDocumentServiceRef\TGetInvoices_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderDocumentServiceRef\TGetPackingSlips_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\OrderService2Ref\EpagesTypes.xsd" />
     <None Include="Web References\OrderService2Ref\OrderService.wsdl" />
     <None Include="Web References\OrderService2Ref\OrderTypes2.xsd" />
@@ -902,21 +644,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\OrderService2Ref\ShopTypes2.xsd" />
-    <None Include="Web References\OrderService2Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService2Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService2Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService2Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService2Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\OrderService3Ref\EpagesTypes.xsd" />
     <None Include="Web References\OrderService3Ref\OrderService.wsdl" />
     <None Include="Web References\OrderService3Ref\OrderTypes3.xsd" />
@@ -925,21 +652,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\OrderService3Ref\ShopTypes2.xsd" />
-    <None Include="Web References\OrderService3Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService3Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService3Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService3Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService3Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\OrderService4Ref\EpagesTypes.xsd" />
     <None Include="Web References\OrderService4Ref\OrderService.wsdl" />
     <None Include="Web References\OrderService4Ref\OrderTypes4.xsd" />
@@ -948,24 +660,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\OrderService4Ref\ShopTypes2.xsd" />
-    <None Include="Web References\OrderService4Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService4Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService4Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService4Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService4Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService5Ref\TUpdate_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\OrderService7Ref\EpagesTypes.xsd" />
     <None Include="Web References\OrderService7Ref\OrderService.wsdl" />
     <None Include="Web References\OrderService7Ref\OrderTypes7.xsd" />
@@ -974,21 +668,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\OrderService7Ref\ShopTypes2.xsd" />
-    <None Include="Web References\OrderService7Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService7Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService7Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService7Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService7Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\OrderService8Ref\EpagesTypes.xsd" />
     <None Include="Web References\OrderService8Ref\OrderService.wsdl" />
     <None Include="Web References\OrderService8Ref\OrderTypes8.xsd" />
@@ -997,21 +676,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\OrderService8Ref\ShopTypes3.xsd" />
-    <None Include="Web References\OrderService8Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService8Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService8Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService8Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderService8Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\OrderServiceRef\EpagesTypes.xsd" />
     <None Include="Web References\OrderServiceRef\OrderService.wsdl" />
     <None Include="Web References\OrderServiceRef\OrderTypes.xsd" />
@@ -1020,21 +684,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\OrderServiceRef\ShopTypes.xsd" />
-    <None Include="Web References\OrderServiceRef\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderServiceRef\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderServiceRef\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderServiceRef\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\OrderServiceRef\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\PageCacheServiceRef\PageCacheService.wsdl" />
     <None Include="Web References\PageCacheServiceRef\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -1047,33 +696,12 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\PaymentMethodServiceRef\TGetList_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\PriceListAssignmentServiceRef\EpagesTypes.xsd" />
     <None Include="Web References\PriceListAssignmentServiceRef\PriceListAssignmentService.wsdl" />
     <None Include="Web References\PriceListAssignmentServiceRef\PriceListAssignmentTypes.xsd" />
     <None Include="Web References\PriceListAssignmentServiceRef\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\PriceListAssignmentServiceRef\TGetQuantityDiscounts_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\PriceListAssignmentServiceRef\TGetScalePrices_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\PriceListAssignmentServiceRef\TGetValueDiscounts_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\PriceListAssignmentServiceRef\TSetQuantityDiscounts_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\PriceListAssignmentServiceRef\TSetScalePrices_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\PriceListAssignmentServiceRef\TSetValueDiscounts_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\PriceListService2Ref\EpagesTypes.xsd" />
     <None Include="Web References\PriceListService2Ref\PriceListService.wsdl" />
@@ -1082,42 +710,12 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\PriceListService2Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\PriceListService2Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\PriceListService2Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\PriceListService2Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\PriceListService2Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\PriceListServiceRef\EpagesTypes.xsd" />
     <None Include="Web References\PriceListServiceRef\PriceListService.wsdl" />
     <None Include="Web References\PriceListServiceRef\PriceListTypes.xsd" />
     <None Include="Web References\PriceListServiceRef\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\PriceListServiceRef\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\PriceListServiceRef\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\PriceListServiceRef\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\PriceListServiceRef\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\PriceListServiceRef\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\ProductAttributeService2Ref\EpagesTypes.xsd" />
     <None Include="Web References\ProductAttributeService2Ref\ProductAttributeService.wsdl" />
@@ -1126,18 +724,12 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\ProductAttributeService2Ref\TGetInfoList_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\ProductAttributeServiceRef\EpagesTypes.xsd" />
     <None Include="Web References\ProductAttributeServiceRef\ProductAttributeService.wsdl" />
     <None Include="Web References\ProductAttributeServiceRef\ProductAttributeTypes.xsd" />
     <None Include="Web References\ProductAttributeServiceRef\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\ProductAttributeServiceRef\TGetInfoList_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\ProductBundleServiceRef\EpagesTypes.xsd" />
     <None Include="Web References\ProductBundleServiceRef\ProductBundleService.wsdl" />
@@ -1146,33 +738,12 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\ProductBundleServiceRef\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductBundleServiceRef\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductBundleServiceRef\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductBundleServiceRef\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\ProductImageServiceRef\EpagesTypes.xsd" />
     <None Include="Web References\ProductImageServiceRef\ProductImageService.wsdl" />
     <None Include="Web References\ProductImageServiceRef\ProductImageTypes.xsd" />
     <None Include="Web References\ProductImageServiceRef\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\ProductImageServiceRef\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductImageServiceRef\TUploadScale_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductImageServiceRef\TUpload_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\ProductService2Ref\EpagesTypes.xsd" />
     <None Include="Web References\ProductService2Ref\ProductService2.wsdl" />
@@ -1181,133 +752,37 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\ProductService2Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService2Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService2Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService2Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService2Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\ProductService3Ref\EpagesTypes.xsd" />
-    <None Include="Web References\ProductService3Ref\ProductService2.wsdl" />
     <None Include="Web References\ProductService3Ref\ProductTypes3.xsd" />
     <None Include="Web References\ProductService3Ref\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\ProductService3Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService3Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService3Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService3Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService3Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\ProductService5Ref\EpagesTypes.xsd" />
-    <None Include="Web References\ProductService5Ref\ProductService5.wsdl" />
     <None Include="Web References\ProductService5Ref\ProductTypes5.xsd" />
     <None Include="Web References\ProductService5Ref\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\ProductService5Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService5Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService5Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService5Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService5Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\ProductService6Ref\EpagesTypes.xsd" />
-    <None Include="Web References\ProductService6Ref\ProductService6.wsdl" />
     <None Include="Web References\ProductService6Ref\ProductTypes6.xsd" />
     <None Include="Web References\ProductService6Ref\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\ProductService6Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService6Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService6Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService6Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService6Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\ProductService7Ref\EpagesTypes.xsd" />
-    <None Include="Web References\ProductService7Ref\ProductService6.wsdl" />
     <None Include="Web References\ProductService7Ref\ProductTypes7.xsd" />
     <None Include="Web References\ProductService7Ref\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\ProductService7Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService7Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService7Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService7Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService7Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\ProductService8Ref\EpagesTypes.xsd" />
-    <None Include="Web References\ProductService8Ref\ProductService8.wsdl" />
     <None Include="Web References\ProductService8Ref\ProductTypes8.xsd" />
     <None Include="Web References\ProductService8Ref\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\ProductService8Ref\TCreate_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService8Ref\TDelete_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService8Ref\TExists_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService8Ref\TGetInfo_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductService8Ref\TUpdate_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\ProductService9Ref\EpagesTypes.xsd" />
-    <None Include="Web References\ProductService9Ref\ProductService8.wsdl" />
     <None Include="Web References\ProductService9Ref\ProductTypes9.xsd" />
     <None Include="Web References\ProductService9Ref\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -1320,87 +795,12 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\ProductServiceRef\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductServiceRef\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductServiceRef\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductServiceRef\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductServiceRef\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\ProductTypeService2Ref\EpagesTypes.xsd" />
     <None Include="Web References\ProductTypeService2Ref\ProductTypeService.wsdl" />
     <None Include="Web References\ProductTypeService2Ref\ProductTypeTypes2.xsd" />
     <None Include="Web References\ProductTypeService2Ref\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TCreatePreDefAttribute_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TCreateProductAttribute_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TCreate_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TDeletePreDefAttribute_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TDeleteProductAttribute_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TDelete_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TExistsPreDefAttribute_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TExistsProductAttribute_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TExists_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TGetInfo_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TGetPreDefAttributeInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TGetProductAttributeInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TUpdatePreDefAttribute_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TUpdateProductAttribute_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProductTypeService2Ref\TUpdate_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\ShippingMethodServiceRef\EpagesTypes.xsd" />
     <None Include="Web References\ShippingMethodServiceRef\Reference.map">
@@ -1409,9 +809,6 @@
     </None>
     <None Include="Web References\ShippingMethodServiceRef\ShippingMethodService.wsdl" />
     <None Include="Web References\ShippingMethodServiceRef\ShippingMethodTypes.xsd" />
-    <None Include="Web References\ShippingMethodServiceRef\TGetList_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\TaxAreaServiceRef\EpagesTypes.xsd" />
     <None Include="Web References\TaxAreaServiceRef\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -1419,9 +816,6 @@
     </None>
     <None Include="Web References\TaxAreaServiceRef\TaxAreaService.wsdl" />
     <None Include="Web References\TaxAreaServiceRef\TaxAreaTypes.xsd" />
-    <None Include="Web References\TaxAreaServiceRef\TGetList_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\TaxClassServiceRef\EpagesTypes.xsd" />
     <None Include="Web References\TaxClassServiceRef\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -1429,30 +823,12 @@
     </None>
     <None Include="Web References\TaxClassServiceRef\TaxClassService.wsdl" />
     <None Include="Web References\TaxClassServiceRef\TaxClassTypes.xsd" />
-    <None Include="Web References\TaxClassServiceRef\TGetList_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\UserService2Ref\EpagesTypes.xsd" />
     <None Include="Web References\UserService2Ref\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\UserService2Ref\ShopTypes2.xsd" />
-    <None Include="Web References\UserService2Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\UserService2Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\UserService2Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\UserService2Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\UserService2Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\UserService2Ref\UserService.wsdl" />
     <None Include="Web References\UserService2Ref\UserTypes2.xsd" />
     <None Include="Web References\UserService4Ref\EpagesTypes.xsd" />
@@ -1461,21 +837,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\UserService4Ref\ShopTypes3.xsd" />
-    <None Include="Web References\UserService4Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\UserService4Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\UserService4Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\UserService4Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\UserService4Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\UserService4Ref\UserService.wsdl" />
     <None Include="Web References\UserService4Ref\UserTypes4.xsd" />
     <None Include="Web References\UserService5Ref\EpagesTypes.xsd" />
@@ -1484,21 +845,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\UserService5Ref\ShopTypes3.xsd" />
-    <None Include="Web References\UserService5Ref\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\UserService5Ref\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\UserService5Ref\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\UserService5Ref\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\UserService5Ref\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\UserService5Ref\UserService.wsdl" />
     <None Include="Web References\UserService5Ref\UserTypes5.xsd" />
     <None Include="Web References\UserServiceRef\EpagesTypes.xsd" />
@@ -1507,21 +853,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\UserServiceRef\ShopTypes.xsd" />
-    <None Include="Web References\UserServiceRef\TCreate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\UserServiceRef\TDelete_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\UserServiceRef\TExists_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\UserServiceRef\TGetInfo_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\UserServiceRef\TUpdate_Return.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\UserServiceRef\UserService.wsdl" />
     <None Include="Web References\UserServiceRef\UserTypes.xsd" />
     <None Include="Web References\CatalogService6Ref\CatalogService.wsdl" />
@@ -1531,10 +862,10 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <WebReferenceUrl Include="D:\RND\epages\epages5\AllOS\WebServiceExamples\WS_DemoClients\wsdl\CatalogService6.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/CatalogService6.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\CatalogService6Ref\</RelPath>
-      <UpdateFromURL>D:\RND\epages\epages5\AllOS\WebServiceExamples\WS_DemoClients\wsdl\CatalogService6.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/CatalogService6.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1542,10 +873,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_WebReference_CatalogService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="D:\RND\epages\epages5\AllOS\WebServiceExamples\WS_DemoClients\wsdl\CustomerGroupService2.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/CustomerGroupService2.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\CustomerGroupService2Ref\</RelPath>
-      <UpdateFromURL>D:\RND\epages\epages5\AllOS\WebServiceExamples\WS_DemoClients\wsdl\CustomerGroupService2.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/CustomerGroupService2.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1553,10 +884,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_CustomerGroupService2Ref_CustomerGroupService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="D:\RND\epages\epages5\AllOS\WebServiceExamples\WS_DemoClients\wsdl\ProductService8.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ProductService8.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\ProductService8Ref\</RelPath>
-      <UpdateFromURL>D:\RND\epages\epages5\AllOS\WebServiceExamples\WS_DemoClients\wsdl\ProductService8.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ProductService8.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1564,10 +895,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_ProductServiceRef1_ProductService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="D:\RND\epages\epages5\AllOS\WebServiceExamples\WS_DemoClients\wsdl\ProductService9.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ProductService9.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\ProductService9Ref\</RelPath>
-      <UpdateFromURL>D:\RND\epages\epages5\AllOS\WebServiceExamples\WS_DemoClients\wsdl\ProductService9.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ProductService9.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1575,10 +906,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_ProductService9Ref_ProductService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://hmoye/WebRoot/StoreTypes/6.11.1/Store/WSDL/CustomerService4.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/CustomerService4.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\CustomerService4Ref\</RelPath>
-      <UpdateFromURL>http://hmoye/WebRoot/StoreTypes/6.11.1/Store/WSDL/CustomerService4.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/CustomerService4.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1586,10 +917,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_CustomerService4Ref_CustomerService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://hmoye/WebRoot/StoreTypes/6.11.1/Store/WSDL/OrderDocumentService6.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/OrderDocumentService6.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\OrderDocumentService6Ref\</RelPath>
-      <UpdateFromURL>http://hmoye/WebRoot/StoreTypes/6.11.1/Store/WSDL/OrderDocumentService6.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/OrderDocumentService6.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1597,10 +928,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_OrderDocumentService6Ref_OrderDocumentService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://hmoye/WebRoot/StoreTypes/6.11.1/Store/WSDL/OrderService8.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/OrderService8.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\OrderService8Ref\</RelPath>
-      <UpdateFromURL>http://hmoye/WebRoot/StoreTypes/6.11.1/Store/WSDL/OrderService8.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/OrderService8.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1608,10 +939,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_OrderService8Ref_OrderService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://hmoye/WebRoot/StoreTypes/6.11.1/Store/WSDL/ProductService6.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ProductService6.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\ProductService6Ref\</RelPath>
-      <UpdateFromURL>http://hmoye/WebRoot/StoreTypes/6.11.1/Store/WSDL/ProductService6.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ProductService6.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1619,10 +950,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_ProductService6Ref_ProductService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://hmoye/WebRoot/StoreTypes/6.11.1/Store/WSDL/ProductService7.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ProductService7.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\ProductService7Ref\</RelPath>
-      <UpdateFromURL>http://hmoye/WebRoot/StoreTypes/6.11.1/Store/WSDL/ProductService7.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ProductService7.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1630,10 +961,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_ProductService7Ref_ProductService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://hmoye/WebRoot/StoreTypes/6.11.1/Store/WSDL/UserService4.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/UserService4.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\UserService4Ref\</RelPath>
-      <UpdateFromURL>http://hmoye/WebRoot/StoreTypes/6.11.1/Store/WSDL/UserService4.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/UserService4.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1641,10 +972,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_UserService4Ref_UserService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://hmoye/WebRoot/StoreTypes/6.11.3/Store/WSDL/UserService5.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/UserService5.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\UserService5Ref\</RelPath>
-      <UpdateFromURL>http://hmoye/WebRoot/StoreTypes/6.11.3/Store/WSDL/UserService5.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/UserService5.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1652,10 +983,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_UserService5Ref_UserService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/CatalogService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/CatalogService.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\CatalogServiceRef\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/CatalogService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/CatalogService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1663,10 +994,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_CatalogServiceRef_CatalogService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/AssignmentService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/AssignmentService.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\AssignmentServiceRef\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/AssignmentService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/AssignmentService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1676,10 +1007,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/CatalogService3.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/CatalogService3.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\CatalogService3Ref\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/CatalogService3.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/CatalogService3.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1687,10 +1018,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_CatalogService3Ref_CatalogService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/CrossSellingService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/CrossSellingService.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\CrossSellingServiceRef\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/CrossSellingService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/CrossSellingService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1700,10 +1031,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/CrossSellingService2.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/CrossSellingService2.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\CrossSellingService2Ref\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/CrossSellingService2.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/CrossSellingService2.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1713,10 +1044,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/CustomerGroupService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/CustomerGroupService.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\CustomerGroupServiceRef\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/CustomerGroupService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/CustomerGroupService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1726,10 +1057,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/CustomerService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/CustomerService.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\CustomerServiceRef\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/CustomerService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/CustomerService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1739,10 +1070,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/CustomerService2.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/CustomerService2.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\CustomerService2Ref\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/CustomerService2.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/CustomerService2.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1752,10 +1083,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/CustomerService3.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/CustomerService3.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\CustomerService3Ref\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/CustomerService3.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/CustomerService3.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1763,10 +1094,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_CustomerService3Ref_CustomerService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/OrderDocumentService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/OrderDocumentService.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\OrderDocumentServiceRef\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/OrderDocumentService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/OrderDocumentService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1776,10 +1107,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/OrderDocumentService2.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/OrderDocumentService2.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\OrderDocumentService2Ref\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/OrderDocumentService2.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/OrderDocumentService2.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1789,10 +1120,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/OrderService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/OrderService.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\OrderServiceRef\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/OrderService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/OrderService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1802,10 +1133,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/OrderService2.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/OrderService2.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\OrderService2Ref\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/OrderService2.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/OrderService2.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1815,10 +1146,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/OrderService5.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/OrderService5.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\OrderService5Ref\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/OrderService5.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/OrderService5.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1826,10 +1157,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_localhost_OrderService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/PageCacheService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/PageCacheService.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\PageCacheServiceRef\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/PageCacheService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/PageCacheService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1839,10 +1170,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/PriceListAssignmentService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/PriceListAssignmentService.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\PriceListAssignmentServiceRef\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/PriceListAssignmentService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/PriceListAssignmentService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1852,10 +1183,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/PriceListService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/PriceListService.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\PriceListServiceRef\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/PriceListService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/PriceListService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1865,10 +1196,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/PriceListService2.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/PriceListService2.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\PriceListService2Ref\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/PriceListService2.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/PriceListService2.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1876,10 +1207,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_PriceListService2Ref_PriceListService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/ProductAttributeService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ProductAttributeService.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\ProductAttributeServiceRef\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/ProductAttributeService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ProductAttributeService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1889,10 +1220,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/ProductAttributeService2.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ProductAttributeService2.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\ProductAttributeService2Ref\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/ProductAttributeService2.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ProductAttributeService2.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1902,10 +1233,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/OrderService3.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/OrderService3.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\OrderService3Ref\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/OrderService3.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/OrderService3.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1913,10 +1244,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_OrderService3Ref_OrderService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/OrderService4.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/OrderService4.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\OrderService4Ref\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/OrderService4.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/OrderService4.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1924,10 +1255,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_OrderService4Ref_OrderService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/ProductBundleService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ProductBundleService.wsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\ProductBundleServiceRef\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/ProductBundleService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ProductBundleService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1935,10 +1266,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_ProductBundleServiceRef_ProductBundleService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/ProductImageService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ProductImageService.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\ProductImageServiceRef\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/ProductImageService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ProductImageService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1948,10 +1279,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/ProductService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ProductService.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\ProductServiceRef\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/ProductService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ProductService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1961,10 +1292,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/ProductService2.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ProductService2.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\ProductService2Ref\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/ProductService2.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ProductService2.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1972,10 +1303,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_ProductService2Ref_ProductService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/ProductService3.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ProductService3.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\ProductService3Ref\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/ProductService3.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ProductService3.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1983,10 +1314,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_ProductService3Ref_ProductService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/ProductService5.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ProductService5.wsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\ProductService5Ref\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/ProductService5.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ProductService5.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -1994,10 +1325,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_ProductService5Ref_ProductService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/TaxAreaService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/TaxAreaService.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\TaxAreaServiceRef\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/TaxAreaService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/TaxAreaService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -2007,10 +1338,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/TaxClassService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/TaxClassService.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\TaxClassServiceRef\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/TaxClassService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/TaxClassService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -2020,10 +1351,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/UserService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/UserService.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\UserServiceRef\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/UserService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/UserService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -2033,10 +1364,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/UserService2.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/UserService2.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\UserService2Ref\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/UserService2.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/UserService2.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -2046,10 +1377,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/ProductTypeService2.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ProductTypeService2.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\ProductTypeService2Ref\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/ProductTypeService2.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ProductTypeService2.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -2057,10 +1388,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_ProductTypeServiceRef_ProductTypeService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/PaymentMethodService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/PaymentMethodService.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\PaymentMethodServiceRef\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/PaymentMethodService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/PaymentMethodService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -2068,10 +1399,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_PaymentMethodServiceRef_PaymentMethodService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/Store/WSDL/ShippingMethodService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ShippingMethodService.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\ShippingMethodServiceRef\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/Store/WSDL/ShippingMethodService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ShippingMethodService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -2079,10 +1410,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesWebServices_ShippingMethodServiceRef_ShippingMethodService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost/WebRoot/StoreTypes/6.10.3/Store/WSDL/OrderService7.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/OrderService7.wsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\OrderService7Ref\</RelPath>
-      <UpdateFromURL>http://localhost/WebRoot/StoreTypes/6.10.3/Store/WSDL/OrderService7.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/OrderService7.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -2091,6 +1422,12 @@
       <CachedSettingsPropName>EpagesWebServices_OrderService7Ref_OrderService</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferences Include="Web References\" />
+    <None Include="Web References\ProductService8Ref\ProductService.wsdl" />
+    <None Include="Web References\ProductService9Ref\ProductService.wsdl" />
+    <None Include="Web References\ProductService6Ref\ProductService.wsdl" />
+    <None Include="Web References\ProductService7Ref\ProductService.wsdl" />
+    <None Include="Web References\ProductService3Ref\ProductService.wsdl" />
+    <None Include="Web References\ProductService5Ref\ProductService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

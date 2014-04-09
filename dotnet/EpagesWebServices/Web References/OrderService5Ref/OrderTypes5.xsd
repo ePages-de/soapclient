@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="urn://epages.de/WebService/OrderTypes/2009/01" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:shoptypes="urn://epages.de/WebService/ShopTypes/2006/07" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/OrderTypes/2009/01" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:shoptypes="urn://epages.de/WebService/ShopTypes/2006/07" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:tns="urn://epages.de/WebService/OrderTypes/2009/01" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/OrderTypes/2009/01" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="EpagesTypes.xsd" namespace="urn://epages.de/WebService/EpagesTypes/2005/01" />
   <xs:import schemaLocation="ShopTypes2.xsd" namespace="urn://epages.de/WebService/ShopTypes/2006/07" />
   <xs:complexType name="TGetInfo_Return">

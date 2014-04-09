@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:tns="urn://epages.de/WebService/ProductImageService/2006/03" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:productimagetypes="urn://epages.de/WebService/ProductImageTypes/2006/03" xmlns="http://schemas.xmlsoap.org/wsdl/" name="ProductImageService" targetNamespace="urn://epages.de/WebService/ProductImageService/2006/03" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:productimagetypes="urn://epages.de/WebService/ProductImageTypes/2006/03" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/ProductImageService/2006/03" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="ProductImageService" targetNamespace="urn://epages.de/WebService/ProductImageService/2006/03" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <documentation>
     this is a web service for an epages e-commerce system.
     this service is a container for all methods in the product context.
+    needs ePages 5.03 or higher
   </documentation>
   <wsdl:types>
     <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/ProductImageService/2006/03">
@@ -100,7 +101,7 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="ProductImageService">
-    <documentation>epages5 Product Image Service</documentation>
+    <documentation>epages Product Image Service</documentation>
     <wsdl:port name="port_ProductImage" binding="tns:bind_ProductImage_SOAP">
       <soap:address location="http://localhost/epages/Store.soap" />
     </wsdl:port>

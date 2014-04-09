@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="urn://epages.de/WebService/ProductTypes/2011/10" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" targetNamespace="urn://epages.de/WebService/ProductTypes/2011/10" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/ProductTypes/2011/10" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/ProductTypes/2011/10" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="EpagesTypes.xsd" namespace="urn://epages.de/WebService/EpagesTypes/2005/01" />
   <xs:complexType name="TGetInfo_Return">
     <xs:annotation>
@@ -48,7 +48,7 @@
       </xs:element>
       <xs:element minOccurs="0" name="Title" type="epagestypes:ListOfLocalizedValues">
         <xs:annotation>
-          <xs:documentation>Localizable page title shown in SF.</xs:documentation>
+          <xs:documentation>localizable page title shown in SF</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="TaxClass" type="xs:string">
@@ -143,17 +143,17 @@
       </xs:element>
       <xs:element name="IsAvailable" type="xs:boolean">
         <xs:annotation>
-          <xs:documentation>Indicates that the product is for sale.</xs:documentation>
+          <xs:documentation>indicates that the product is for sale</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="AvailabilityComment" type="epagestypes:ListOfLocalizedValues">
         <xs:annotation>
-          <xs:documentation>Comment displayed if product is not available (see IsAvailable).</xs:documentation>
+          <xs:documentation>comment displayed if product is not available (see IsAvailable)</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="AvailabilityDate" type="xs:dateTime">
         <xs:annotation>
-          <xs:documentation>Date when the product is going to be available/is for sale.</xs:documentation>
+          <xs:documentation>date when the product is going to be available/is for sale</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="URI" type="epagestypes:ListOfLocalizedValues">
@@ -168,17 +168,17 @@
       </xs:element>
       <xs:element name="IsDownloadProduct" type="xs:boolean">
         <xs:annotation>
-          <xs:documentation>Indicates that the product have download files.</xs:documentation>
+          <xs:documentation>indicates that the product have download files</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="MaxDownloadTime" type="xs:integer">
         <xs:annotation>
-          <xs:documentation>Temporal delimitation for download.</xs:documentation>
+          <xs:documentation>temporal delimitation for download</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="MaxDownloadCount" type="xs:integer">
         <xs:annotation>
-          <xs:documentation>Number possible downloads.</xs:documentation>
+          <xs:documentation>number possible downloads</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="DownloadProductMaps" type="tns:ListOfDownloads">
@@ -250,12 +250,12 @@
       </xs:element>
       <xs:element minOccurs="0" name="PrepaymentType" type="xs:string">
         <xs:annotation>
-          <xs:documentation>Type of prepayment (percent, fix)</xs:documentation>
+          <xs:documentation>type of prepayment (percent, fix)</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="PrepaymentValue" type="xs:float">
         <xs:annotation>
-          <xs:documentation>Percental value of prepayment</xs:documentation>
+          <xs:documentation>percental value of prepayment</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="ShippingMethods" type="tns:ListOfShippingMethods">
@@ -363,7 +363,7 @@
       </xs:element>
       <xs:element minOccurs="0" name="Title" type="epagestypes:ListOfLocalizedValues">
         <xs:annotation>
-          <xs:documentation>Localizable page title shown in SF.</xs:documentation>
+          <xs:documentation>localizable page title shown in SF</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="TaxClass" type="xs:string">
@@ -453,17 +453,17 @@
       </xs:element>
       <xs:element minOccurs="0" name="IsAvailable" type="xs:boolean">
         <xs:annotation>
-          <xs:documentation>Indicates that the product is for sale.</xs:documentation>
+          <xs:documentation>indicates that the product is for sale</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="AvailabilityComment" type="epagestypes:ListOfLocalizedValues">
         <xs:annotation>
-          <xs:documentation>Comment displayed if product is not available (see IsAvailable).</xs:documentation>
+          <xs:documentation>comment displayed if product is not available (see IsAvailable)</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="AvailabilityDate" type="xs:dateTime">
         <xs:annotation>
-          <xs:documentation>Date when the product is going to be available/is for sale.</xs:documentation>
+          <xs:documentation>date when the product is going to be available/is for sale</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="URI" type="epagestypes:ListOfLocalizedValues">
@@ -473,17 +473,17 @@
       </xs:element>
       <xs:element name="IsDownloadProduct" type="xs:boolean">
         <xs:annotation>
-          <xs:documentation>Indicates that the product have download files.</xs:documentation>
+          <xs:documentation>indicates that the product have download files</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="MaxDownloadTime" type="xs:integer">
         <xs:annotation>
-          <xs:documentation>Temporal delimitation for download.</xs:documentation>
+          <xs:documentation>temporal delimitation for download</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="MaxDownloadCount" type="xs:integer">
         <xs:annotation>
-          <xs:documentation>Number possible downloads.</xs:documentation>
+          <xs:documentation>number possible downloads</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="DownloadProductMaps" type="tns:ListOfDownloads">
@@ -533,12 +533,12 @@
       </xs:element>
       <xs:element minOccurs="0" name="PrepaymentType" type="xs:string">
         <xs:annotation>
-          <xs:documentation>Type of prepayment (percent, fix)</xs:documentation>
+          <xs:documentation>type of prepayment (percent, fix)</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="PrepaymentValue" type="xs:float">
         <xs:annotation>
-          <xs:documentation>Percental value of prepayment</xs:documentation>
+          <xs:documentation>percental value of prepayment</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="ShippingMethods" type="tns:ListOfShippingMethods">
@@ -619,7 +619,7 @@
       </xs:element>
       <xs:element minOccurs="0" name="Title" type="epagestypes:ListOfLocalizedValues">
         <xs:annotation>
-          <xs:documentation>Localizable page title shown in SF.</xs:documentation>
+          <xs:documentation>localizable page title shown in SF</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="TaxClass" type="xs:string">
@@ -714,12 +714,12 @@
       </xs:element>
       <xs:element minOccurs="0" name="AvailabilityComment" type="epagestypes:ListOfLocalizedValues">
         <xs:annotation>
-          <xs:documentation>Comment displayed if product is not available (see IsAvailable).</xs:documentation>
+          <xs:documentation>comment displayed if product is not available (see IsAvailable)</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="AvailabilityDate" type="xs:dateTime">
         <xs:annotation>
-          <xs:documentation>Date when the product is going to be available/is for sale.</xs:documentation>
+          <xs:documentation>date when the product is going to be available/is for sale</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="URI" type="epagestypes:ListOfLocalizedValues">
@@ -729,17 +729,17 @@
       </xs:element>
       <xs:element name="IsDownloadProduct" type="xs:boolean">
         <xs:annotation>
-          <xs:documentation>Indicates that the product have download files.</xs:documentation>
+          <xs:documentation>indicates that the product have download files</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="MaxDownloadTime" type="xs:integer">
         <xs:annotation>
-          <xs:documentation>Temporal delimitation for download.</xs:documentation>
+          <xs:documentation>temporal delimitation for download</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="MaxDownloadCount" type="xs:integer">
         <xs:annotation>
-          <xs:documentation>Number possible downloads.</xs:documentation>
+          <xs:documentation>number possible downloads</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="DownloadProductMaps" type="tns:ListOfDownloads">
@@ -802,12 +802,12 @@
       </xs:element>
       <xs:element minOccurs="0" name="PrepaymentType" type="xs:string">
         <xs:annotation>
-          <xs:documentation>Type of prepayment (percent, fix)</xs:documentation>
+          <xs:documentation>type of prepayment (percent, fix)</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="PrepaymentValue" type="xs:float">
         <xs:annotation>
-          <xs:documentation>Percental value of prepayment</xs:documentation>
+          <xs:documentation>percental value of prepayment</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="ShippingMethods" type="tns:ListOfShippingMethods">
@@ -938,7 +938,7 @@
       </xs:element>
       <xs:element name="IsExternal" type="xs:boolean">
         <xs:annotation>
-          <xs:documentation>True if file is saved on external server.</xs:documentation>
+          <xs:documentation>true if file is saved on external server</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="Position" type="xs:integer">
@@ -975,7 +975,7 @@
       </xs:element>
       <xs:element minOccurs="0" name="delete" type="xs:boolean">
         <xs:annotation>
-          <xs:documentation>True if shipping method have to delete during update.</xs:documentation>
+          <xs:documentation>true if shipping method have to delete during update</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:all>

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:tns="urn://epages.de/WebService/UserService/2006/07" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:usertypes="urn://epages.de/WebService/UserTypes/2006/07" xmlns="http://schemas.xmlsoap.org/wsdl/" name="UserService" targetNamespace="urn://epages.de/WebService/UserService/2006/07" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/UserService/2006/07" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:usertypes="urn://epages.de/WebService/UserTypes/2006/07" xmlns="http://schemas.xmlsoap.org/wsdl/" name="UserService" targetNamespace="urn://epages.de/WebService/UserService/2006/07" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <documentation>
     this is a web service for an epages e-commerce system.
     this service is a container for all methods in the user context.
+    needs ePages 5.04 or higher
   </documentation>
   <wsdl:types>
     <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/UserService/2006/07">
@@ -260,7 +261,7 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="UserService">
-    <documentation>epages5 User Service</documentation>
+    <documentation>epages User Service</documentation>
     <wsdl:port name="port_User" binding="tns:bind_User_SOAP">
       <soap:address location="http://localhost/epages/Store.soap" />
     </wsdl:port>

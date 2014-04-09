@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="urn://epages.de/WebService/ShopTypes/2011/01" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/ShopTypes/2011/01" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/ShopTypes/2011/01" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/ShopTypes/2011/01" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="EpagesTypes.xsd" namespace="urn://epages.de/WebService/EpagesTypes/2005/01" />
   <xs:complexType name="TAddress">
     <xs:annotation>
@@ -8,44 +8,242 @@
       </xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element minOccurs="0" name="DisplayName" type="xs:string" />
-      <xs:element minOccurs="0" name="AddressExtension" type="xs:string" />
-      <xs:element minOccurs="0" name="Street" type="xs:string" />
-      <xs:element minOccurs="0" name="Street2" type="xs:string" />
-      <xs:element minOccurs="0" name="CodePorte" type="xs:string" />
-      <xs:element minOccurs="0" name="Zipcode" type="xs:string" />
-      <xs:element minOccurs="0" name="City" type="xs:string" />
-      <xs:element minOccurs="0" name="State" type="xs:string" />
-      <xs:element minOccurs="0" name="CountryID" type="xs:integer" />
-      <xs:element minOccurs="0" name="EMail" type="xs:string" />
-      <xs:element minOccurs="0" name="Phone" type="xs:string" />
-      <xs:element minOccurs="0" name="Fax" type="xs:string" />
-      <xs:element minOccurs="0" name="VerifiedOn" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Salutation" type="xs:string" />
-      <xs:element minOccurs="0" name="Title" type="xs:string" />
-      <xs:element minOccurs="0" name="FirstName" type="xs:string" />
-      <xs:element minOccurs="0" name="MiddleName" type="xs:string" />
-      <xs:element minOccurs="0" name="LastName" type="xs:string" />
-      <xs:element minOccurs="0" name="EMailPrivate" type="xs:string" />
-      <xs:element minOccurs="0" name="EMailBusiness" type="xs:string" />
-      <xs:element minOccurs="0" name="PhonePrivate" type="xs:string" />
-      <xs:element minOccurs="0" name="PhoneBusiness" type="xs:string" />
-      <xs:element minOccurs="0" name="PhoneCell" type="xs:string" />
+      <xs:element minOccurs="0" name="DisplayName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            name of the address to display (e.g 'Shipping Address', 'Home Address')
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="AddressExtension" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            address extension (e.g PostBox etc.)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Street" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            street with number
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Street2" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            2nd street line for UK addresses
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="CodePorte" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            door code to get access to postboxes or doorbells
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Zipcode" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            zip code of the city
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="City" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            city name of the address
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="State" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            state, county, region
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="CountryID" type="xs:integer">
+        <xs:annotation>
+          <xs:documentation>
+            country identifier as ISO numberic code (see http://en.wikipedia.org/wiki/ISO_3166-1_numeric)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="EMail" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            E-mail address
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Phone" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            primary phone number
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Fax" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            primary fax number
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="VerifiedOn" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>
+            last verification of this content by merchant
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Salutation" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            salutation (e.g 'Herr', 'Mrs.')
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Title" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            title (e.g 'D.Prof', 'NPLQ', 'CEO')
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="FirstName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            first name
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="MiddleName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            middle name
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="LastName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            last name
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="EMailPrivate" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            private E-mail address
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="EMailBusiness" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            business E-mail address
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PhonePrivate" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            home phone
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PhoneBusiness" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            business phone number
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PhoneCell" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            mobile phone
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element minOccurs="0" name="Gender" type="xs:integer">
         <xs:annotation>
           <xs:documentation>1 = male;2 = female</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" name="Company" type="xs:string" />
-      <xs:element minOccurs="0" name="Department" type="xs:string" />
-      <xs:element minOccurs="0" name="JobTitle" type="xs:string" />
-      <xs:element minOccurs="0" name="Birthday" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="VATID" type="xs:string" />
-      <xs:element minOccurs="0" name="BankCode" type="xs:string" />
-      <xs:element minOccurs="0" name="BankName" type="xs:string" />
-      <xs:element minOccurs="0" name="BankAccountNo" type="xs:string" />
-      <xs:element minOccurs="0" name="BankAccountHolder" type="xs:string" />
-      <xs:element minOccurs="0" name="URL" type="xs:string" />
+      <xs:element minOccurs="0" name="Company" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            name of the company
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Department" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            name of the company department
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="JobTitle" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            job titel in the company
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Birthday" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>
+            date of birth in dateTime format e.g. 2001-10-26T12:00:00 (time needs to specify)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="VATID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            tax identification
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="BankCode" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            bank code of the bank account
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="BankName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            bank name of the account
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="BankAccountNo" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            bank account number
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="BankAccountHolder" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            full name of the bank account owner
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="URL" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            URL of related Website e.g. http://www.epages.com
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element minOccurs="0" name="Attributes" type="epagestypes:ListOfAttributes">
         <xs:annotation>
           <xs:documentation>list of requested attributes (see epagestypes:ListOfAttributes)</xs:documentation>
@@ -62,44 +260,242 @@
     </xs:annotation>
     <xs:all>
       <xs:element minOccurs="0" name="Alias" type="xs:string" />
-      <xs:element minOccurs="0" name="DisplayName" type="xs:string" />
-      <xs:element minOccurs="0" name="AddressExtension" type="xs:string" />
-      <xs:element minOccurs="0" name="Street" type="xs:string" />
-      <xs:element minOccurs="0" name="Street2" type="xs:string" />
-      <xs:element minOccurs="0" name="CodePorte" type="xs:string" />
-      <xs:element minOccurs="0" name="Zipcode" type="xs:string" />
-      <xs:element minOccurs="0" name="City" type="xs:string" />
-      <xs:element minOccurs="0" name="State" type="xs:string" />
-      <xs:element minOccurs="0" name="CountryID" type="xs:integer" />
-      <xs:element minOccurs="0" name="EMail" type="xs:string" />
-      <xs:element minOccurs="0" name="Phone" type="xs:string" />
-      <xs:element minOccurs="0" name="Fax" type="xs:string" />
-      <xs:element minOccurs="0" name="VerifiedOn" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Salutation" type="xs:string" />
-      <xs:element minOccurs="0" name="Title" type="xs:string" />
-      <xs:element minOccurs="0" name="FirstName" type="xs:string" />
-      <xs:element minOccurs="0" name="MiddleName" type="xs:string" />
-      <xs:element minOccurs="0" name="LastName" type="xs:string" />
-      <xs:element minOccurs="0" name="EMailPrivate" type="xs:string" />
-      <xs:element minOccurs="0" name="EMailBusiness" type="xs:string" />
-      <xs:element minOccurs="0" name="PhonePrivate" type="xs:string" />
-      <xs:element minOccurs="0" name="PhoneBusiness" type="xs:string" />
-      <xs:element minOccurs="0" name="PhoneCell" type="xs:string" />
+      <xs:element minOccurs="0" name="DisplayName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            name of the address to display (e.g 'Shipping Address', 'Home Address')
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="AddressExtension" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            address extension (e.g PostBox etc.)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Street" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            street with number
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Street2" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            2nd street line for UK addresses
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="CodePorte" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            door code to get access to postboxes or doorbells
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Zipcode" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            zip code of the city
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="City" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            city name of the address
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="State" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            state, county, region
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="CountryID" type="xs:integer">
+        <xs:annotation>
+          <xs:documentation>
+            country identifier as ISO numberic code (see http://en.wikipedia.org/wiki/ISO_3166-1_numeric)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="EMail" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            E-mail address
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Phone" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            primary phone number
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Fax" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            primary fax number
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="VerifiedOn" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>
+            last verification of this contant by merchant
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Salutation" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            salutation (e.g 'Herr', 'Mrs.')
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Title" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            title (e.g 'D.Prof', 'NPLQ', 'CEO')
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="FirstName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            first name
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="MiddleName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            middle name
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="LastName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            last name
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="EMailPrivate" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            private E-mail address
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="EMailBusiness" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            business E-mail address
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PhonePrivate" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            home phone
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PhoneBusiness" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            business phone number
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PhoneCell" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            mobile phone
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element minOccurs="0" name="Gender" type="xs:integer">
         <xs:annotation>
           <xs:documentation>1 = male;2 = female</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" name="Company" type="xs:string" />
-      <xs:element minOccurs="0" name="Department" type="xs:string" />
-      <xs:element minOccurs="0" name="JobTitle" type="xs:string" />
-      <xs:element minOccurs="0" name="Birthday" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="VATID" type="xs:string" />
-      <xs:element minOccurs="0" name="BankCode" type="xs:string" />
-      <xs:element minOccurs="0" name="BankName" type="xs:string" />
-      <xs:element minOccurs="0" name="BankAccountNo" type="xs:string" />
-      <xs:element minOccurs="0" name="BankAccountHolder" type="xs:string" />
-      <xs:element minOccurs="0" name="URL" type="xs:string" />
+      <xs:element minOccurs="0" name="Company" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            name of the company
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Department" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            name of the company department
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="JobTitle" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            job titel in the company
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Birthday" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>
+            date of birth in dateTime format e.g. 2001-10-26T12:00:00 (time needs to specify)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="VATID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            tax identification
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="BankCode" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            bank code of the bank account
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="BankName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            bank name of the account
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="BankAccountNo" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            bank account number
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="BankAccountHolder" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            full name of the bank account owner
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="URL" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            URL of related Website e.g. http://www.epages.com
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element minOccurs="0" name="Attributes" type="epagestypes:ListOfAttributes">
         <xs:annotation>
           <xs:documentation>list of requested attributes (see epagestypes:ListOfAttributes)</xs:documentation>

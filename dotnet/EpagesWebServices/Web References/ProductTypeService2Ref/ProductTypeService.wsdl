@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:tns="urn://epages.de/WebService/ProductTypeService2/2007/11" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:producttypetypes="urn://epages.de/WebService/ProductTypeTypes2/2007/11" xmlns="http://schemas.xmlsoap.org/wsdl/" name="ProductTypeService" targetNamespace="urn://epages.de/WebService/ProductTypeService2/2007/11" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/ProductTypeService2/2007/11" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:producttypetypes="urn://epages.de/WebService/ProductTypeTypes2/2007/11" xmlns="http://schemas.xmlsoap.org/wsdl/" name="ProductTypeService" targetNamespace="urn://epages.de/WebService/ProductTypeService2/2007/11" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <documentation>
     this is a web service for an epages e-commerce system.
     this service is a container for all methods in the product type context.
+    needs ePages 5.04 patch8 or higher
   </documentation>
   <wsdl:types>
     <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/ProductTypeService2/2007/11">
@@ -777,7 +778,7 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="ProductTypeService2">
-    <documentation>epages5 Product Type Service 2</documentation>
+    <documentation>epages Product Type Service 2</documentation>
     <wsdl:port name="port_ProductType" binding="tns:bind_ProductType_SOAP">
       <soap:address location="http://localhost/epages/Store.soap" />
     </wsdl:port>

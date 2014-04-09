@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:tns="urn://epages.de/WebService/UserService/2011/03" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:usertypes="urn://epages.de/WebService/UserTypes/2011/03" xmlns="http://schemas.xmlsoap.org/wsdl/" name="UserService" targetNamespace="urn://epages.de/WebService/UserService/2011/03" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/UserService/2011/03" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:usertypes="urn://epages.de/WebService/UserTypes/2011/03" xmlns="http://schemas.xmlsoap.org/wsdl/" name="UserService" targetNamespace="urn://epages.de/WebService/UserService/2011/03" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <documentation>
     this is a web service for an epages e-commerce system.
     this service is a container for all methods in the user context.
@@ -71,6 +71,33 @@
         <xs:complexContent mixed="false">
           <xs:restriction base="soapenc:Array">
             <xs:attribute wsdl:arrayType="usertypes:TExists_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_SendPassword_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an sendPassword() user call.
+            a simple list of user paths.
+            the user will get an email with a Url to enter a new password
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_SendPassword_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an sendPassword() user call.
+            see usertypes:TSendPassword_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="usertypes:TSendPassword_Return[]" ref="soapenc:arrayType" />
           </xs:restriction>
         </xs:complexContent>
       </xs:complexType>
@@ -216,6 +243,12 @@
   <wsdl:message name="msg_Exists_Output">
     <wsdl:part name="Users" type="tns:type_Exists_Out" />
   </wsdl:message>
+  <wsdl:message name="msg_SendPassword_Input">
+    <wsdl:part name="Users" type="tns:type_SendPassword_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_SendPassword_Output">
+    <wsdl:part name="Users" type="tns:type_SendPassword_Out" />
+  </wsdl:message>
   <wsdl:message name="msg_Delete_Input">
     <wsdl:part name="Users" type="tns:type_Delete_In" />
   </wsdl:message>
@@ -251,6 +284,11 @@
       <wsdl:input message="tns:msg_Exists_Input" />
       <wsdl:output message="tns:msg_Exists_Output" />
     </wsdl:operation>
+    <wsdl:operation name="sendPassword">
+      <documentation>send user a link to enter a new password.</documentation>
+      <wsdl:input message="tns:msg_SendPassword_Input" />
+      <wsdl:output message="tns:msg_SendPassword_Output" />
+    </wsdl:operation>
     <wsdl:operation name="delete">
       <documentation>delete a list of users</documentation>
       <wsdl:input message="tns:msg_Delete_Input" />
@@ -285,6 +323,15 @@
     </wsdl:operation>
     <wsdl:operation name="exists">
       <soap:operation soapAction="urn://epages.de/WebService/UserService/2011/03#exists" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/UserService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/UserService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendPassword">
+      <soap:operation soapAction="urn://epages.de/WebService/UserService/2011/03#sendPassword" />
       <wsdl:input>
         <soap:body use="encoded" namespace="urn://epages.de/WebService/UserService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>

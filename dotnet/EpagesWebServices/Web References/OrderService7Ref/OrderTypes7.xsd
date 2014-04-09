@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="urn://epages.de/WebService/OrderTypes/2010/10" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:shoptypes="urn://epages.de/WebService/ShopTypes/2006/07" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/OrderTypes/2010/10" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:shoptypes="urn://epages.de/WebService/ShopTypes/2006/07" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:tns="urn://epages.de/WebService/OrderTypes/2010/10" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/OrderTypes/2010/10" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="EpagesTypes.xsd" namespace="urn://epages.de/WebService/EpagesTypes/2005/01" />
   <xs:import schemaLocation="ShopTypes2.xsd" namespace="urn://epages.de/WebService/ShopTypes/2006/07" />
   <xs:complexType name="TGetInfo_Return">
@@ -593,6 +593,16 @@
           <xs:documentation>the container's basket discount line items</xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element minOccurs="0" name="PaymentDiscountLineItems" type="tns:TListOfPaymentDiscountLineItemsOut">
+        <xs:annotation>
+          <xs:documentation>the container's basket payment discount line items</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="EcoParticipationLineItems" type="tns:TListOfEcoParticipationLineItemsOut">
+        <xs:annotation>
+          <xs:documentation>the container's basket eco participation line items</xs:documentation>
+        </xs:annotation>
+      </xs:element>
     </xs:all>
   </xs:complexType>
   <xs:complexType name="TListOfProductLineItemsIn">
@@ -670,6 +680,32 @@
     <xs:complexContent mixed="false">
       <xs:restriction base="soapenc:Array">
         <xs:attribute wsdl:arrayType="tns:TGlobalValueDiscountLineItem[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TListOfPaymentDiscountLineItemsOut">
+    <xs:annotation>
+      <xs:documentation>
+        list of basket payment dicount line items.
+        see ordertypes:TPaymentDiscountLineItem
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TPaymentDiscountLineItem[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TListOfEcoParticipationLineItemsOut">
+    <xs:annotation>
+      <xs:documentation>
+        list of basket dicount line items.
+        see ordertypes:TEcoParticipationLineItem
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TEcoParticipationLineItem[]" ref="soapenc:arrayType" />
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
@@ -1190,6 +1226,136 @@
       <xs:element name="TaxAmount" type="xs:float">
         <xs:annotation>
           <xs:documentation>the tax amount of the basket discount line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Attributes" type="epagestypes:ListOfAttributes">
+        <xs:annotation>
+          <xs:documentation>list of requested attributes (see epagestypes:ListOfAttributes)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TPaymentDiscountLineItem">
+    <xs:annotation>
+      <xs:documentation>
+        return object of an basket payment discount line item.
+        contains information about a the basket payment discount of this order.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Class" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the class of the basket payment discount line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Name" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>name of the basket payment discount line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SKU" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>sku of the basket payment discount line item (couponcode short)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxClass" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the tax class of the basket payment discount line item (object path to tax class)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Quantity" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>quantity of the basket payment discount line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BasePrice" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the baseprice of the basket payment discount line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LineItemPrice" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the total price of the basket payment discount line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Discount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>possible discount of the basket payment discount line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxRate" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the tax rate of the basket payment discount line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxAmount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the tax amount of the basket payment discount line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Attributes" type="epagestypes:ListOfAttributes">
+        <xs:annotation>
+          <xs:documentation>list of requested attributes (see epagestypes:ListOfAttributes)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TEcoParticipationLineItem">
+    <xs:annotation>
+      <xs:documentation>
+        return object of an basket eco participation line item.
+        contains information about a the basket eco participation of this order.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Class" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the class of the basket eco participation line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Name" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>name of the basket eco participation line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SKU" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>sku of the basket eco participation line item (couponcode short)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxClass" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the tax class of the basket eco participation line item (object path to tax class)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Quantity" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>quantity of the basket eco participation line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BasePrice" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the baseprice of the basket eco participation line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LineItemPrice" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the total price of the basket eco participation line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Discount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>possible discount of the basket eco participation line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxRate" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the tax rate of the basket eco participation line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxAmount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the tax amount of the basket eco participation line item</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="Attributes" type="epagestypes:ListOfAttributes">

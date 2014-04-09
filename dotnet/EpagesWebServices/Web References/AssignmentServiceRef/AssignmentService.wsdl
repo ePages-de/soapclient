@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/AssignmentService/2005/01" xmlns:assignmenttypes="urn://epages.de/WebService/AssignmentTypes/2005/01" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" name="AssignmentService" targetNamespace="urn://epages.de/WebService/AssignmentService/2005/01" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:tns="urn://epages.de/WebService/AssignmentService/2005/01" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:assignmenttypes="urn://epages.de/WebService/AssignmentTypes/2005/01" xmlns="http://schemas.xmlsoap.org/wsdl/" name="AssignmentService" targetNamespace="urn://epages.de/WebService/AssignmentService/2005/01" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <documentation>
     this is a web service for an epages e-commerce system.
     this service is a container for all methods in the catalogassignment context.
+    needs ePages 5.04 or higher
   </documentation>
   <wsdl:types>
     <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/AssignmentService/2005/01">
@@ -243,7 +244,7 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="AssignmentService">
-    <documentation>epages5 Catalog Assignment Service</documentation>
+    <documentation>epages Catalog Assignment Service</documentation>
     <wsdl:port name="port_Assignment" binding="tns:bind_Assignment_SOAP">
       <soap:address location="http://localhost/epages/Store.soap" />
     </wsdl:port>

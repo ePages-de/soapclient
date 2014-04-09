@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/CrossSellingService/2006/05" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:crosssellingtypes="urn://epages.de/WebService/CrossSellingTypes/2006/05" xmlns="http://schemas.xmlsoap.org/wsdl/" name="CrossSellingService" targetNamespace="urn://epages.de/WebService/CrossSellingService/2006/05" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:tns="urn://epages.de/WebService/CrossSellingService/2006/05" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:crosssellingtypes="urn://epages.de/WebService/CrossSellingTypes/2006/05" xmlns="http://schemas.xmlsoap.org/wsdl/" name="CrossSellingService" targetNamespace="urn://epages.de/WebService/CrossSellingService/2006/05" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <documentation>
     this is a web service for an epages e-commerce system.
     this service is a container for all methods in the cross selling context.
+    needs ePages 5.04 or higher
   </documentation>
   <wsdl:types>
     <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/CrossSellingService/2006/05">
@@ -191,7 +192,7 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="CrossSellingService">
-    <documentation>epages5 Cross Selling Service</documentation>
+    <documentation>epages Cross Selling Service</documentation>
     <wsdl:port name="port_CrossSelling" binding="tns:bind_CrossSelling_SOAP">
       <soap:address location="http://localhost/epages/Store.soap" />
     </wsdl:port>

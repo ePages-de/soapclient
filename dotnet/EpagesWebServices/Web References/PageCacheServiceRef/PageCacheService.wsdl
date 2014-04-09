@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:tns="urn://epages.de/WebService/PageCacheService/2006/07" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="PageCacheService" targetNamespace="urn://epages.de/WebService/PageCacheService/2006/07" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/PageCacheService/2006/07" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="PageCacheService" targetNamespace="urn://epages.de/WebService/PageCacheService/2006/07" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <documentation>
     This is a web service for an epages e-commerce system.
     This service controls the page cache of a shop.
+    needs ePages 6.08 or higher
   </documentation>
   <wsdl:types />
   <wsdl:message name="msg_clear_Input" />
@@ -27,7 +28,7 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="PageCacheService">
-    <documentation>epages5 page cache service</documentation>
+    <documentation>epages page cache service</documentation>
     <wsdl:port name="port_PageCache" binding="tns:bind_PageCache_SOAP">
       <soap:address location="http://localhost/epages/Store.soap" />
     </wsdl:port>
