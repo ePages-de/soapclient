@@ -861,12 +861,24 @@ namespace EpagesWebServices
             Console.WriteLine("ProductTypeTest: testDeletePreDefAttribute end");
         }
 
+		/// <summary>
+		/// this is not an actual test.
+		/// delete may existing product types at the beginning of the test suite
+		/// </summary>
+		public void deleteIfExists()
+		{
+			productTypeService.delete(new String[] {
+				NET_TEST1_PATH, NET_TEST2_PATH
+			});
+		}
+
         /// <summary>
         /// test suite with all tests in correct order
         /// </summary>
         [Test]
         public void runAllTests()
         {
+			deleteIfExists();
             testGetBaseProductType();
             testCreate();
             testGetAllInfo();
