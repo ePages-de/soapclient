@@ -266,8 +266,17 @@ namespace EpagesWebServices
         public void testGetCategories()
         {
             string[] Catalogs_out = catalogService.getCategories();
-            Assert.AreEqual(13, Catalogs_out.GetLength(0), "count categories");
+			Assert.LessOrEqual(13, Catalogs_out.GetLength(0), "count categories");
         }
+
+		/// <summary>
+		/// this is not an actual test.
+		/// delete may existing data at the beginning of the test suite
+		/// </summary>
+		public void deleteIfExists()
+		{
+			catalogService.delete(new string[]{ path + "/" + alias, path + "/Tents/" + alias });
+		}
 
         /// <summary>
 		/// test suite with all tests in correct order
@@ -275,6 +284,7 @@ namespace EpagesWebServices
 		[Test]
 		public void runAllTests()
 		{
+			deleteIfExists();
             testGetCategories();
             testCreate();
             testExists(true);
