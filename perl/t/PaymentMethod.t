@@ -1,5 +1,5 @@
 use strict;
-use Test::More tests => 10;
+use Test::More tests => 1;
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD WEBSERVICE_SHOP_PATH);
 
