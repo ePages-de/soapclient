@@ -22,6 +22,7 @@ ext {
     'ShippingMethodService2',
     'TaxAreaService',
     'TaxClassService',
+    'UserService6',
     // for java this needs to come last due to a namespace mapping hack.
     'ProductService11'
     ]
