@@ -66,8 +66,7 @@ dependencies {
     axisGenTask "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
 }
 
-project.sourceCompatibility = rootProject.hasProperty("SOURCE_COMPATIBILITY") ?: "1.7"
-
+project.sourceCompatibility = rootProject.properties['SOURCE_COMPATIBILITY'] ?: '1.6'
 
 compileJava {
     options.with {
