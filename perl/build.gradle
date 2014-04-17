@@ -9,6 +9,8 @@ eclipse {
     }
 }
 
+description = 'perl SOAP client for epages6'
+
 project.ext.osDependantPerl = {String[] args ->
     List<String> newArgs = new ArrayList<String>()
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
+<!--
   Example LOGBACK Configuration File
   http://logback.qos.ch/manual/configuration.html
   -->
 <configuration scan="true" scanPeriod="10 seconds">
-  <!--  http://logback.qos.ch/manual/configuration.html#LevelChangePropagator --> 
+  <!--  http://logback.qos.ch/manual/configuration.html#LevelChangePropagator -->
   <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
     <resetJUL>true</resetJUL>
   </contextListener>
@@ -21,6 +21,6 @@
     <appender-ref ref="STDOUT" />
   </root>
   <!--  For printing out the low-level http communication
-  <logger name="org.apache.axis.transport.http" level="DEBUG" />
- 	-->
+  <logger name="httpclient.wire" level="DEBUG" />
+  -->
  </configuration>
