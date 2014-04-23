@@ -23,8 +23,8 @@ ext {
     'TaxAreaService',
     'TaxClassService',
     'UserService6',
-    // for java this needs to come last due to a namespace mapping hack.
-    'ProductService11'
+    // for java this needs to come last due to a namespace mapping hack
+    'ProductService12'
     ]
 
   /* previous versions of all supported services */
@@ -75,6 +75,7 @@ ext {
     'ProductService8',
     'ProductService9',
     'ProductService10',
+    'ProductService11',
     'ProductTypeService',
     'UserService',
     'UserService',
