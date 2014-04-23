@@ -1,4 +1,4 @@
-package src.test.java.de.epages.ws.product12;
+package de.epages.ws.product12;
 
 import static de.epages.ws.common.AssertNoError.assertNoError;
 import static org.junit.Assert.assertEquals;

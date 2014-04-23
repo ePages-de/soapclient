@@ -1,61 +1,63 @@
 /**
- * CustomerServiceLocator.java
+ * ProductServiceLocator.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-public class CustomerServiceLocator extends org.apache.axis.client.Service implements CustomerService {
+package de.epages.ws.product12.stub;
+
+public class ProductServiceLocator extends org.apache.axis.client.Service implements de.epages.ws.product12.stub.ProductService {
 
 /**
- * epages Customer Service
+ * epages Product Service
  */
 
-    public CustomerServiceLocator() {
+    public ProductServiceLocator() {
     }
 
 
-    public CustomerServiceLocator(org.apache.axis.EngineConfiguration config) {
+    public ProductServiceLocator(org.apache.axis.EngineConfiguration config) {
         super(config);
     }
 
-    public CustomerServiceLocator(java.lang.String wsdlLoc, javax.xml.namespace.QName sName) throws javax.xml.rpc.ServiceException {
+    public ProductServiceLocator(java.lang.String wsdlLoc, javax.xml.namespace.QName sName) throws javax.xml.rpc.ServiceException {
         super(wsdlLoc, sName);
     }
 
-    // Use to get a proxy class for port_Customer
-    private java.lang.String port_Customer_address = "http://localhost/epages/Store.soap";
+    // Use to get a proxy class for port_Product
+    private java.lang.String port_Product_address = "http://localhost/epages/Store.soap";
 
-    public java.lang.String getport_CustomerAddress() {
-        return port_Customer_address;
+    public java.lang.String getport_ProductAddress() {
+        return port_Product_address;
     }
 
     // The WSDD service name defaults to the port name.
-    private java.lang.String port_CustomerWSDDServiceName = "port_Customer";
+    private java.lang.String port_ProductWSDDServiceName = "port_Product";
 
-    public java.lang.String getport_CustomerWSDDServiceName() {
-        return port_CustomerWSDDServiceName;
+    public java.lang.String getport_ProductWSDDServiceName() {
+        return port_ProductWSDDServiceName;
     }
 
-    public void setport_CustomerWSDDServiceName(java.lang.String name) {
-        port_CustomerWSDDServiceName = name;
+    public void setport_ProductWSDDServiceName(java.lang.String name) {
+        port_ProductWSDDServiceName = name;
     }
 
-    public Port_Customer_PortType getport_Customer() throws javax.xml.rpc.ServiceException {
+    public de.epages.ws.product12.stub.Port_Product getport_Product() throws javax.xml.rpc.ServiceException {
        java.net.URL endpoint;
         try {
-            endpoint = new java.net.URL(port_Customer_address);
+            endpoint = new java.net.URL(port_Product_address);
         }
         catch (java.net.MalformedURLException e) {
             throw new javax.xml.rpc.ServiceException(e);
         }
-        return getport_Customer(endpoint);
+        return getport_Product(endpoint);
     }
 
-    public Port_Customer_PortType getport_Customer(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
+    public de.epages.ws.product12.stub.Port_Product getport_Product(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
         try {
-            Bind_Customer_SOAPStub _stub = new Bind_Customer_SOAPStub(portAddress, this);
-            _stub.setPortName(getport_CustomerWSDDServiceName());
+            de.epages.ws.product12.stub.Bind_Product_SOAPStub _stub = new de.epages.ws.product12.stub.Bind_Product_SOAPStub(portAddress, this);
+            _stub.setPortName(getport_ProductWSDDServiceName());
             return _stub;
         }
         catch (org.apache.axis.AxisFault e) {
@@ -63,8 +65,8 @@ public class CustomerServiceLocator extends org.apache.axis.client.Service imple
         }
     }
 
-    public void setport_CustomerEndpointAddress(java.lang.String address) {
-        port_Customer_address = address;
+    public void setport_ProductEndpointAddress(java.lang.String address) {
+        port_Product_address = address;
     }
 
     /**
@@ -74,9 +76,9 @@ public class CustomerServiceLocator extends org.apache.axis.client.Service imple
      */
     public java.rmi.Remote getPort(Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
         try {
-            if (Port_Customer_PortType.class.isAssignableFrom(serviceEndpointInterface)) {
-                Bind_Customer_SOAPStub _stub = new Bind_Customer_SOAPStub(new java.net.URL(port_Customer_address), this);
-                _stub.setPortName(getport_CustomerWSDDServiceName());
+            if (de.epages.ws.product12.stub.Port_Product.class.isAssignableFrom(serviceEndpointInterface)) {
+                de.epages.ws.product12.stub.Bind_Product_SOAPStub _stub = new de.epages.ws.product12.stub.Bind_Product_SOAPStub(new java.net.URL(port_Product_address), this);
+                _stub.setPortName(getport_ProductWSDDServiceName());
                 return _stub;
             }
         }
@@ -96,8 +98,8 @@ public class CustomerServiceLocator extends org.apache.axis.client.Service imple
             return getPort(serviceEndpointInterface);
         }
         java.lang.String inputPortName = portName.getLocalPart();
-        if ("port_Customer".equals(inputPortName)) {
-            return getport_Customer();
+        if ("port_Product".equals(inputPortName)) {
+            return getport_Product();
         }
         else  {
             java.rmi.Remote _stub = getPort(serviceEndpointInterface);
@@ -107,7 +109,7 @@ public class CustomerServiceLocator extends org.apache.axis.client.Service imple
     }
 
     public javax.xml.namespace.QName getServiceName() {
-        return new javax.xml.namespace.QName("urn://epages.de/WebService/CustomerService/2014/04", "CustomerService");
+        return new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2014/04", "ProductService");
     }
 
     private java.util.HashSet ports = null;
@@ -115,7 +117,7 @@ public class CustomerServiceLocator extends org.apache.axis.client.Service imple
     public java.util.Iterator getPorts() {
         if (ports == null) {
             ports = new java.util.HashSet();
-            ports.add(new javax.xml.namespace.QName("urn://epages.de/WebService/CustomerService/2014/04", "port_Customer"));
+            ports.add(new javax.xml.namespace.QName("urn://epages.de/WebService/ProductService/2014/04", "port_Product"));
         }
         return ports.iterator();
     }
@@ -125,8 +127,8 @@ public class CustomerServiceLocator extends org.apache.axis.client.Service imple
     */
     public void setEndpointAddress(java.lang.String portName, java.lang.String address) throws javax.xml.rpc.ServiceException {
         
-if ("port_Customer".equals(portName)) {
-            setport_CustomerEndpointAddress(address);
+if ("port_Product".equals(portName)) {
+            setport_ProductEndpointAddress(address);
         }
         else 
 { // Unknown Port Name

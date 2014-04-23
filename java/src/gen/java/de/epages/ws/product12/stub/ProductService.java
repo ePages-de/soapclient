@@ -5,6 +5,8 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
+package de.epages.ws.product12.stub;
+
 public interface ProductService extends javax.xml.rpc.Service {
 
 /**
@@ -12,7 +14,7 @@ public interface ProductService extends javax.xml.rpc.Service {
  */
     public java.lang.String getport_ProductAddress();
 
-    public Port_Product_PortType getport_Product() throws javax.xml.rpc.ServiceException;
+    public de.epages.ws.product12.stub.Port_Product getport_Product() throws javax.xml.rpc.ServiceException;
 
-    public Port_Product_PortType getport_Product(java.net.URL portAddress) throws javax.xml.rpc.ServiceException;
+    public de.epages.ws.product12.stub.Port_Product getport_Product(java.net.URL portAddress) throws javax.xml.rpc.ServiceException;
 }
