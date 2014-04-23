@@ -13,7 +13,7 @@ ext {
     'CatalogService8',
     'CrossSellingService2',
     'CustomerGroupService2',
-    'CustomerService4',
+    'CustomerService6',
     'OrderService12',
     'OrderDocumentService7',
     'PageCacheService',
@@ -24,7 +24,7 @@ ext {
     'TaxClassService',
     'UserService6',
     // for java this needs to come last due to a namespace mapping hack.
-    'ProductService11'
+    'ProductService12'
     ]
 
   /* previous versions of all supported services */
@@ -42,6 +42,7 @@ ext {
     'CustomerService',
     'CustomerService2',
     'CustomerService3',
+    'CustomerService4',
     'OrderDocumentService',
     'OrderDocumentService2',
     'OrderDocumentService3',
@@ -73,6 +74,7 @@ ext {
     'ProductService8',
     'ProductService9',
     'ProductService10',
+    'ProductService11',
     'ProductTypeService',
     'UserService',
     'UserService',
