@@ -1,6 +1,7 @@
 use utf8;
 use strict;
-use Test::More tests => 72;
+use Test::More tests => 76;
+use Data::Dumper qw (Dumper);
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_USER WEBSERVICE_SHOP_PATH WEBSERVICE_SHOP_NAME);
 use WebServiceTools qw( TAttributes hAttributes );
@@ -19,6 +20,10 @@ my $options = {
     'Password'  => 'epages',
     'Name_in'   => 'Klaus Klaussen',
     'Name_up'   => 'Hans Hanssen',
+    'LocaleID_in' => 'de_DE',
+    'LocaleID_up' => 'en_GB',
+    'LanguageCode_in' => 'fi',
+    'LanguageCode_up' => 'ru',
     'Address_in' => {
         'Alias'     => 'Adresse1',
         'EMail'     => 'test@epages.de',
@@ -75,6 +80,8 @@ my $user_in = {
     'Alias'             => $options->{'Alias'},
     'Password'          => $options->{'Password'},
     'Name'              => $options->{'Name_in'},
+    'LocaleID'          => $options->{'LocaleID_in'},
+    'LanguageCode'      => $options->{'LanguageCode_in'}, # will be ignored
     'BillingAddress'    => $options->{'Address_in'},
     'ShippingAddress'   => $options->{'Address_in'},
     'ShippingAddresses' => [
@@ -91,6 +98,8 @@ my $user_update = {
     'Name'              => $options->{'Name_up'},
     'BillingAddress'    => $options->{'Address_up'},
     'Attributes'        => TAttributes($options->{'Attributes_up'}),
+    'LocaleID'          => $options->{'LocaleID_up'},
+    'LanguageCode'      => $options->{'LanguageCode_up'}, # will be ignored
 };
 $user_update->{'BillingAddress'}->{'Attributes'} = TAttributes($options->{'AddressAttributes'});
 
@@ -106,8 +115,7 @@ sub testCreate {
     ok( scalar @$ahResults == 1, 'create result count' );
 
     my $hResult = $ahResults->[0];
-    ok( !$hResult->{'Error'}, 'create: no error' );
-    diag "Error: $hResult->{'Error'}\n" if $hResult->{'Error'};
+    ok( !$hResult->{'Error'}, 'create: no error' ) or diag Dumper($hResult->{'Error'});
 
     ok( $hResult->{'Alias'} eq $user_in->{'Alias'}, 'user alias' );
     ok( $hResult->{'created'} == 1, 'created?' );
@@ -127,8 +135,7 @@ sub testUpdate {
     ok( scalar @$ahResults == 1, 'udpate result count' );
 
     my $hResult = $ahResults->[0];
-    ok( !$hResult->{'Error'}, 'update: no error' );
-    diag "Error: $hResult->{'Error'}\n" if $hResult->{'Error'};
+    ok( !$hResult->{'Error'}, 'update: no error' ) or diag Dumper($hResult->{'Error'});
 
     ok( $hResult->{'Path'} eq $user_update->{'Path'}, 'user path' );
     ok( $hResult->{'updated'} == 1, 'updated?' );
@@ -144,10 +151,11 @@ sub testGetInfo {
     ok( scalar @$ahResults == 1, 'getInfo result count' );
 
     my $hResult = $ahResults->[0];
-    ok( !$hResult->{'Error'}, 'getInfo: no error' );
-    diag "Error: $hResult->{'Error'}\n" if $hResult->{'Error'};
+    ok( !$hResult->{'Error'}, 'getInfo: no error' ) or diag Dumper($hResult->{'Error'});
 
     ok( $hResult->{'Path'} eq WEBSERVICE_SHOP_PATH.$options->{'FullPath'}, 'user path' );
+    is $hResult->{'LocaleID'}, $options->{"LocaleID$ext"}, 'locale';
+    is $hResult->{'LanguageCode'}, (split /_/, $options->{"LocaleID$ext"})[0], 'language code';
 
     #--- check billing address
     my $bill  = $hResult->{'BillingAddress'};
@@ -198,8 +206,7 @@ sub testDelete {
     ok( scalar @$ahResults == 1, 'delete result count' );
 
     my $hResult = $ahResults->[0];
-    ok( !$hResult->{'Error'}, 'delete: no error' );
-    diag "Error: $hResult->{'Error'}\n" if $hResult->{'Error'};
+    ok( !$hResult->{'Error'}, 'delete: no error' ) or diag Dumper($hResult->{'Error'});
 
     ok( $hResult->{'Path'} eq $options->{'FullPath'}, 'user path' );
     ok( $hResult->{'deleted'} == 1, 'deleted?' );
@@ -213,8 +220,7 @@ sub testExists {
     ok( scalar @$ahResults == 1, 'exists result count' );
 
     my $hResult = $ahResults->[0];
-    ok( !$hResult->{'Error'}, 'exists: no error' );
-    diag "Error: $hResult->{'Error'}\n" if $hResult->{'Error'};
+    ok( !$hResult->{'Error'}, 'exists: no error' ) or diag Dumper($hResult->{'Error'});
 
     ok( $hResult->{'Path'} eq $options->{'FullPath'}, 'user path' );
     ok( $hResult->{'exists'} == $exists, 'exists?' );
@@ -227,8 +233,7 @@ sub testUpdate_onlyName {
     ok( scalar @$ahResults == 1, 'udpate result count' );
 
     my $hResult = $ahResults->[0];
-    ok( !$hResult->{'Error'}, 'update2: no error' );
-    diag "Error: $hResult->{'Error'}\n" if $hResult->{'Error'};
+    ok( !$hResult->{'Error'}, 'update2: no error' ) or diag Dumper($hResult->{'Error'});
 
     ok( $hResult->{'Path'} eq $user_update->{'Path'}, 'user path' );
     ok( $hResult->{'updated'} == 1, 'updated?' );
@@ -238,8 +243,7 @@ sub testUpdate_onlyName {
     ok( scalar @$ahResults == 1, 'getInfo updated2 result count' );
 
     $hResult = $ahResults->[0];
-    ok( !$hResult->{'Error'}, 'getInfo updated2: no error' );
-    diag "Error: $hResult->{'Error'}\n" if $hResult->{'Error'};
+    ok( !$hResult->{'Error'}, 'getInfo updated2: no error' ) or diag Dumper($hResult->{'Error'});
 
     ok( $hResult->{'Name'} eq $options->{'Name_up'}, 'updated2 user name' );
 
@@ -264,8 +268,7 @@ sub testSendPassword {
     ok( scalar @$ahResults == 1, 'sendPassword result count' );
 
     my $hResult = $ahResults->[0];
-    ok( !$hResult->{'Error'}, 'sendPassword: no error' );
-    diag "Error: $hResult->{'Error'}\n" if $hResult->{'Error'};
+    ok( !$hResult->{'Error'}, 'sendPassword: no error' ) or diag Dumper($hResult->{'Error'});
 
     ok( $hResult->{'Path'} eq $options->{'FullPath'}, 'sendPassword: user path' );
     ok( $hResult->{'sent'}, 'sent?' );
