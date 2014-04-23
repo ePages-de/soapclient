@@ -1,6 +1,6 @@
 use utf8;
 use strict;
-use Test::More tests => 48;
+use Test::More tests => 50;
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_USER WEBSERVICE_SHOP_PATH);
 use WebServiceTools qw( TAttributes hAttributes );
@@ -179,6 +179,15 @@ sub testFind {
     ok( $aResults->[0] eq WEBSERVICE_SHOP_PATH.$options->{'FullPath'}, "customer path" );
 }
 
+# Test if a customer is found by EMail
+sub testFindByLastUpdate {
+
+    my $aResults = $CustomerService->find( {'LastUpdate'=> '1976-09-25T11:22:33' } )->result;
+    ok( scalar @$aResults > 0, "find result count" );
+
+    ok( defined $aResults->[0], "customer path not undefined." );
+}
+
 sub _testGroups {
     my $CustomerGroupService = WebServiceClient
         ->uri( 'urn://epages.de/WebService/CustomerGroupService/2006/06' )
@@ -197,6 +206,7 @@ deleteIfExists();
 testCreate();
 testExists(1);
 testFind();
+testFindByLastUpdate();
 testGetInfo(0);
 testUpdate();
 testGetInfo(1);
