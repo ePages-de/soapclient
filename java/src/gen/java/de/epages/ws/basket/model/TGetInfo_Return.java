@@ -10,13 +10,13 @@ package de.epages.ws.basket.model;
 
 /**
  * a single return value of a getInfo() basket call.
- *         the path will be always returned.
+ *         the guid will be always returned.
  *         the error element will be returned in case of error.
  *         all other elements will be returned if no error has occured.
  */
 public class TGetInfo_Return  implements java.io.Serializable {
-    /* basket object path */
-    private java.lang.String path;
+    /* basket GUID */
+    private java.lang.String GUID;
 
     /* basket alias */
     private java.lang.String alias;
@@ -50,7 +50,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     }
 
     public TGetInfo_Return(
-           java.lang.String path,
+           java.lang.String GUID,
            java.lang.String alias,
            java.lang.String _class,
            java.lang.String customer,
@@ -61,7 +61,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
            de.epages.ws.shop3.model.TAddressNamed shippingAddress,
            de.epages.ws.common.model.TAttribute[] attributes,
            de.epages.ws.common.model.TError error) {
-           this.path = path;
+           this.GUID = GUID;
            this.alias = alias;
            this._class = _class;
            this.customer = customer;
@@ -76,22 +76,22 @@ public class TGetInfo_Return  implements java.io.Serializable {
 
 
     /**
-     * Gets the path value for this TGetInfo_Return.
+     * Gets the GUID value for this TGetInfo_Return.
      * 
-     * @return path   * basket object path
+     * @return GUID   * basket GUID
      */
-    public java.lang.String getPath() {
-        return path;
+    public java.lang.String getGUID() {
+        return GUID;
     }
 
 
     /**
-     * Sets the path value for this TGetInfo_Return.
+     * Sets the GUID value for this TGetInfo_Return.
      * 
-     * @param path   * basket object path
+     * @param GUID   * basket GUID
      */
-    public void setPath(java.lang.String path) {
-        this.path = path;
+    public void setGUID(java.lang.String GUID) {
+        this.GUID = GUID;
     }
 
 
@@ -306,9 +306,9 @@ public class TGetInfo_Return  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
-            ((this.path==null && other.getPath()==null) || 
-             (this.path!=null &&
-              this.path.equals(other.getPath()))) &&
+            ((this.GUID==null && other.getGUID()==null) || 
+             (this.GUID!=null &&
+              this.GUID.equals(other.getGUID()))) &&
             ((this.alias==null && other.getAlias()==null) || 
              (this.alias!=null &&
               this.alias.equals(other.getAlias()))) &&
@@ -350,8 +350,8 @@ public class TGetInfo_Return  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        if (getPath() != null) {
-            _hashCode += getPath().hashCode();
+        if (getGUID() != null) {
+            _hashCode += getGUID().hashCode();
         }
         if (getAlias() != null) {
             _hashCode += getAlias().hashCode();
@@ -402,8 +402,8 @@ public class TGetInfo_Return  implements java.io.Serializable {
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/BasketTypes/2013/11", "TGetInfo_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("path");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
+        elemField.setFieldName("GUID");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "GUID"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

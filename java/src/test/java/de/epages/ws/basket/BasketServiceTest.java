@@ -9,7 +9,6 @@ import static org.junit.Assert.assertTrue;
 import java.math.BigInteger;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import de.epages.ws.WebServiceTestConfiguration;
@@ -27,6 +26,7 @@ import de.epages.ws.basket.model.TUpdate_Input;
 import de.epages.ws.basket.model.TUpdate_Return;
 import de.epages.ws.common.model.TAttribute;
 import de.epages.ws.form.model.TFormError;
+import de.epages.ws.product11.ProductServiceClientImpl;
 import de.epages.ws.shop3.model.TAddressNamed;
 
 /**
@@ -34,7 +34,9 @@ import de.epages.ws.shop3.model.TAddressNamed;
  */
 public class BasketServiceTest {
 
+    private static final String GUID_ATTRIBUTE = "GUID";
     private static final BasketServiceClientImpl basketService = new BasketServiceClientImpl(new WebServiceTestConfiguration());
+    private static final ProductServiceClientImpl productService = new ProductServiceClientImpl(new WebServiceTestConfiguration());
     private TCreate_Input Basket_in;
     private TUpdate_Input Basket_up;
     private TAttribute BasketAttr_in;
@@ -42,7 +44,7 @@ public class BasketServiceTest {
     private TAddressNamed Address_in;
     private TAddressNamed Address_up;
 
-    private String BasketPath;
+    private String BasketGuid;
 
     private String[] Baskets;
     private String[] BasketAttributes = new String[] { "IsAddressOK", "WebUrl", "PickupToken" };
@@ -91,11 +93,10 @@ public class BasketServiceTest {
         lineItemContainer.setShippingMethod("/Shops/DemoShop/ShippingMethods/Express");
         lineItemContainer.setTaxArea("/TaxMatrixGermany/EU");
         lineItemContainer.setTaxModel("gross");
-        lineItemContainer.setProductLineItems(new TProductLineItemIn[] { new TProductLineItemIn("/Shops/DemoShop/Products/ho_1112105010",
-                (float) 10),
-        // new TProductLineItemIn("/Shops/DemoShop/Products/de_3203104010",
-        // (float)10),
-                });
+        lineItemContainer.setProductLineItems(new TProductLineItemIn[]{
+                new TProductLineItemIn(getProductGuidFromPath("/Shops/DemoShop/Products/ho_1112105010"), (float)10),
+                //new TProductLineItemIn("/Shops/DemoShop/Products/de_3203104010", (float)10),
+        });
         Basket_in.setLineItemContainer(lineItemContainer);
 
         // init order update data
@@ -103,11 +104,20 @@ public class BasketServiceTest {
         Basket_up.setAttributes(new TAttribute[] { BasketAttr_up });
 
         // delete the test order if it exists
-        TExists_Return[] Baskets_exists_out = basketService.exists(new String[] { BasketPath });
-        if (Baskets_exists_out[0].getExists()) {
-            TDelete_Return[] Baskets_delete_out = basketService.delete(new String[] { BasketPath });
+        TExists_Return[] Baskets_exists_out= basketService.exists(new String[]{BasketGuid});
+        if( Baskets_exists_out[0].getExists() ) {
+            TDelete_Return[] Baskets_delete_out = basketService.delete(new String[]{BasketGuid});
             assertNoError(Baskets_delete_out[0].getError());
         }
+    }
+
+    private String getProductGuidFromPath(String product) {
+        de.epages.ws.product11.model.TGetInfo_Return[] productInfos = productService.getInfo(new String[] {product}, new String[] {GUID_ATTRIBUTE});
+        de.epages.ws.product11.model.TGetInfo_Return productInfo = productInfos[0];
+        assertNoError(productInfo.getError());
+        TAttribute guidAttribute = productInfo.getAttributes()[0];
+        assertEquals("Is the passed Attribute a GUID?",GUID_ATTRIBUTE, guidAttribute.getName());
+        return guidAttribute.getValue();
     }
 
     /**
@@ -118,9 +128,9 @@ public class BasketServiceTest {
         assertNoError(Baskets_create_out[0].getError());
 
         assertNull("No FormErrors", Baskets_create_out[0].getFormErrors());
-        assertEquals("created?", true, Baskets_create_out[0].getCreated());
-        assertNotNull("Path not null", Baskets_create_out[0].getPath());
-        BasketPath = Baskets_create_out[0].getPath();
+        assertEquals("created?", new Boolean(true), Baskets_create_out[0].getCreated());
+        assertNotNull("GUID not null",Baskets_create_out[0].getGUID());
+        BasketGuid = Baskets_create_out[0].getGUID();
     }
 
     /**
@@ -132,16 +142,16 @@ public class BasketServiceTest {
         TCreate_Return[] Baskets_create_out = basketService.create(new TCreate_Input[] { basket_in });
         assertNoError(Baskets_create_out[0].getError());
         assertNull("No FormErrors", Baskets_create_out[0].getFormErrors());
-        assertEquals("created?", true, Baskets_create_out[0].getCreated());
-        assertNotNull("Path not null", Baskets_create_out[0].getPath());
+        assertEquals("created?", new Boolean(true), Baskets_create_out[0].getCreated());
+        assertNotNull("GUID not null",Baskets_create_out[0].getGUID());
     }
 
     /**
      * Update a Basket and check if the update was successful
      */
     public void testUpdate() {
-        Basket_up.setPath(BasketPath);
-        TUpdate_Return[] Baskets_update_out = basketService.update(new TUpdate_Input[] { Basket_up });
+        Basket_up.setGUID(BasketGuid);
+        TUpdate_Return[] Baskets_update_out = basketService.update(new TUpdate_Input[]{Basket_up});
         assertNoError(Baskets_update_out[0].getError());
         assertNull("No FormErrors", Baskets_update_out[0].getFormErrors());
         assertTrue("updated?", Baskets_update_out[0].getUpdated());
@@ -152,8 +162,8 @@ public class BasketServiceTest {
      * successful
      */
     public void testUpdateWithFormError() {
-        Basket_up.setPath(BasketPath);
-        TUpdate_Return[] Baskets_update_out = basketService.update(new TUpdate_Input[] { Basket_up });
+        Basket_up.setGUID(BasketGuid);
+        TUpdate_Return[] Baskets_update_out = basketService.update(new TUpdate_Input[]{Basket_up});
         Baskets_update_out[0].setFormErrors(new TFormError[] { new TFormError() });
         assertEquals("updateWithFormError resultset", Baskets_update_out[0].getFormErrors().length, 1);
     }
@@ -166,7 +176,7 @@ public class BasketServiceTest {
      *            if true check against update data, else against create data
      */
     public void testGetInfo(boolean isAlreadyUpdated) {
-        Baskets = new String[] { BasketPath };
+        Baskets = new String[]{BasketGuid};
         TGetInfo_Return[] Baskets_info_out = basketService.getInfo(Baskets, BasketAttributes, AddressAttributes, ItemAttributes, null);
         assertEquals("exists result set", 1, Baskets_info_out.length);
 
@@ -222,7 +232,7 @@ public class BasketServiceTest {
         assertNoError(Baskets_info_out[0].getError());
         String lineitemAlias = Baskets_info_out[0].getLineItemContainer().getProductLineItems()[0].getAlias();
         TUpdateLineItem_Input lineItem = new TUpdateLineItem_Input(lineitemAlias, 20f);
-        TUpdateLineItem_Return[] updateLineItem = basketService.updateLineItem(BasketPath, new TUpdateLineItem_Input[] { lineItem });
+        TUpdateLineItem_Return[] updateLineItem = basketService.updateLineItem(BasketGuid, new TUpdateLineItem_Input[] {lineItem});
         assertEquals("updateLineItem resultset", updateLineItem.length, 1);
         assertNoError(updateLineItem[0].getError());
         assertTrue("updated?", updateLineItem[0].getUpdated());
@@ -232,7 +242,7 @@ public class BasketServiceTest {
      * Delete a Basket and check if no error occured.
      */
     public void testDelete() {
-        TDelete_Return[] Basket_delete_out = basketService.delete(new String[] { BasketPath });
+        TDelete_Return[] Basket_delete_out = basketService.delete(new String[]{BasketGuid});
         assertNoError(Basket_delete_out[0].getError());
     }
 
@@ -243,7 +253,7 @@ public class BasketServiceTest {
      *            if false, test is successful if the Order does NOT exists
      */
     public void testExists(boolean expected) {
-        TExists_Return[] Baskets_exists_out = basketService.exists(new String[] { BasketPath });
+        TExists_Return[] Baskets_exists_out = basketService.exists(new String[]{BasketGuid});
         assertNoError(Baskets_exists_out[0].getError());
         assertEquals("exists?", expected, Baskets_exists_out[0].getExists());
     }
@@ -252,7 +262,6 @@ public class BasketServiceTest {
      * runs all tests
      */
     @Test
-    @Ignore
     public void testAll() {
         testCreate();
         testCreateWithDefaults();

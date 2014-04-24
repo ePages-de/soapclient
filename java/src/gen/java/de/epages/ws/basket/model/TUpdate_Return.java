@@ -10,12 +10,12 @@ package de.epages.ws.basket.model;
 
 /**
  * a single return value of a update() basket call.
- *         the path will be always returned.
+ *         the guid will be always returned.
  *         the error element will be returned in case of error.
  *         the updated flag will be returned if no error has occured.
  */
 public class TUpdate_Return  implements java.io.Serializable {
-    private java.lang.String path;
+    private java.lang.String GUID;
 
     /* a boolean flag indicating that this basket was updated */
     private java.lang.Boolean updated;
@@ -35,11 +35,11 @@ public class TUpdate_Return  implements java.io.Serializable {
     }
 
     public TUpdate_Return(
-           java.lang.String path,
+           java.lang.String GUID,
            java.lang.Boolean updated,
            de.epages.ws.common.model.TError error,
            de.epages.ws.form.model.TFormError[] formErrors) {
-           this.path = path;
+           this.GUID = GUID;
            this.updated = updated;
            this.error = error;
            this.formErrors = formErrors;
@@ -47,22 +47,22 @@ public class TUpdate_Return  implements java.io.Serializable {
 
 
     /**
-     * Gets the path value for this TUpdate_Return.
+     * Gets the GUID value for this TUpdate_Return.
      * 
-     * @return path
+     * @return GUID
      */
-    public java.lang.String getPath() {
-        return path;
+    public java.lang.String getGUID() {
+        return GUID;
     }
 
 
     /**
-     * Sets the path value for this TUpdate_Return.
+     * Sets the GUID value for this TUpdate_Return.
      * 
-     * @param path
+     * @param GUID
      */
-    public void setPath(java.lang.String path) {
-        this.path = path;
+    public void setGUID(java.lang.String GUID) {
+        this.GUID = GUID;
     }
 
 
@@ -147,9 +147,9 @@ public class TUpdate_Return  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
-            ((this.path==null && other.getPath()==null) || 
-             (this.path!=null &&
-              this.path.equals(other.getPath()))) &&
+            ((this.GUID==null && other.getGUID()==null) || 
+             (this.GUID!=null &&
+              this.GUID.equals(other.getGUID()))) &&
             ((this.updated==null && other.getUpdated()==null) || 
              (this.updated!=null &&
               this.updated.equals(other.getUpdated()))) &&
@@ -170,8 +170,8 @@ public class TUpdate_Return  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        if (getPath() != null) {
-            _hashCode += getPath().hashCode();
+        if (getGUID() != null) {
+            _hashCode += getGUID().hashCode();
         }
         if (getUpdated() != null) {
             _hashCode += getUpdated().hashCode();
@@ -201,8 +201,8 @@ public class TUpdate_Return  implements java.io.Serializable {
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/BasketTypes/2013/11", "TUpdate_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("path");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
+        elemField.setFieldName("GUID");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "GUID"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

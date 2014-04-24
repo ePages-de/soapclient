@@ -10,12 +10,12 @@ package de.epages.ws.basket.model;
 
 /**
  * a single return value of a updateLineItem() call.
- *         the path will be always returned.
+ *         the alias will be always returned.
  *         the error element will be returned in case of error.
  *         the updated flag will be returned if no error has occured.
  */
 public class TUpdateLineItem_Return  implements java.io.Serializable {
-    private java.lang.String path;
+    private java.lang.String alias;
 
     /* a boolean flag indicating that this lineitem was updated */
     private java.lang.Boolean updated;
@@ -27,32 +27,32 @@ public class TUpdateLineItem_Return  implements java.io.Serializable {
     }
 
     public TUpdateLineItem_Return(
-           java.lang.String path,
+           java.lang.String alias,
            java.lang.Boolean updated,
            de.epages.ws.common.model.TError error) {
-           this.path = path;
+           this.alias = alias;
            this.updated = updated;
            this.error = error;
     }
 
 
     /**
-     * Gets the path value for this TUpdateLineItem_Return.
+     * Gets the alias value for this TUpdateLineItem_Return.
      * 
-     * @return path
+     * @return alias
      */
-    public java.lang.String getPath() {
-        return path;
+    public java.lang.String getAlias() {
+        return alias;
     }
 
 
     /**
-     * Sets the path value for this TUpdateLineItem_Return.
+     * Sets the alias value for this TUpdateLineItem_Return.
      * 
-     * @param path
+     * @param alias
      */
-    public void setPath(java.lang.String path) {
-        this.path = path;
+    public void setAlias(java.lang.String alias) {
+        this.alias = alias;
     }
 
 
@@ -107,9 +107,9 @@ public class TUpdateLineItem_Return  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
-            ((this.path==null && other.getPath()==null) || 
-             (this.path!=null &&
-              this.path.equals(other.getPath()))) &&
+            ((this.alias==null && other.getAlias()==null) || 
+             (this.alias!=null &&
+              this.alias.equals(other.getAlias()))) &&
             ((this.updated==null && other.getUpdated()==null) || 
              (this.updated!=null &&
               this.updated.equals(other.getUpdated()))) &&
@@ -127,8 +127,8 @@ public class TUpdateLineItem_Return  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        if (getPath() != null) {
-            _hashCode += getPath().hashCode();
+        if (getAlias() != null) {
+            _hashCode += getAlias().hashCode();
         }
         if (getUpdated() != null) {
             _hashCode += getUpdated().hashCode();
@@ -147,8 +147,8 @@ public class TUpdateLineItem_Return  implements java.io.Serializable {
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/BasketTypes/2013/11", "TUpdateLineItem_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("path");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
+        elemField.setFieldName("alias");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "Alias"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
