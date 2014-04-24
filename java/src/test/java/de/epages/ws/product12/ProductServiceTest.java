@@ -169,6 +169,7 @@ public class ProductServiceTest {
         attr_update.setName("Manufacturer");
         attr_update.setValue("java WebService client tester again");
         Product_update.setAttributes(new TAttribute[]{attr_update});
+        Product_update.setExpiryDate(new GregorianCalendar(2020,01,01,00,00));
 
         Product_down.setAlias(alias);
         Product_down.set_class("/Shops/DemoShop/ProductTypes/Shoe");
@@ -330,6 +331,8 @@ public class ProductServiceTest {
             assertTrue("do not touch shipping path", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Post"));
             assertTrue("added new shipping path", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/PickupByCustomer"));
             assertTrue("deleted shipping path", !shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Express"));
+
+            assertEquals("expirydate", Product_update.getExpiryDate().getTime(), Product_info_out.getExpiryDate().getTime());
         }
         else {
             assertEquals("Manufacturer", Product_in.getAttributes()[0].getValue(), Product_info_out.getAttributes()[0].getValue()  );
