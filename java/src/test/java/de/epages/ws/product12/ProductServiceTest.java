@@ -363,6 +363,15 @@ public class ProductServiceTest {
         assertEquals("OrderUnit", Product_in.getOrderUnit(), Product_info_out.getOrderUnit());
         assertEquals("IsVisible", Product_in.getIsVisible(), Product_info_out.getIsVisible());
         assertEquals("class", Product_in.get_class(), Product_info_out.get_class());
+        assertFalse("IsMaster", Product_info_out.getIsMaster());
+    }
+
+    public void testGetInfoMasterProduct() {
+        TGetInfo_Return[] Products_info_out = serviceClient.getInfo(
+            new String[]{path + "ho_40407"}, new String[0], new String[0]
+        );
+        assertNoError(Products_info_out[0].getError());
+        assertTrue("IsMaster", Products_info_out[0].getIsMaster());
     }
 
     /**
@@ -501,6 +510,7 @@ public class ProductServiceTest {
         testFindByAlias();
         testFindByLastUpdate();
         testGetInfo(false);
+        testGetInfoMasterProduct();
         testUpdate();
         testGetInfo(true);
         testDelete();

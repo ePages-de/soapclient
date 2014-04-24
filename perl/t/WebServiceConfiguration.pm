@@ -17,7 +17,7 @@ sub _getWServer {
     };
 
     print "try to connect to server '$WServer'\n";
-    print "the server can be set via ENV variatble 'ep6HostName'\n";
+    print "the server can be set via ENV variable 'ep6HostName'\n";
 
     return $WServer;
 }

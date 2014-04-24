@@ -1,6 +1,6 @@
 use strict;
 use utf8;
-use Test::More tests => 176;
+use Test::More tests => 178;
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD WEBSERVICE_SHOP_PATH WEBSERVICE_SHOP_NAME);
 use WebServiceTools qw( cmpDateTime GetFileContent );
@@ -715,6 +715,7 @@ sub testGetInfoVariations {
 	is scalar @{ $hSub1->{'VariationAttributes'} }, 1, 'Sub.VariationAttributes count';
 	is $hSub1->{'VariationAttributes'}->[0]->{'Name'}, 'USSize', 'Sub.VariationAttribute name';
 	is $hSub1->{'VariationAttributes'}->[0]->{'Value'}, '10', 'Sub.VariationAttribute value';
+    is $hSub1->{'IsMaster'}, 0, 'IsMaster=0';
 
     my $hMaster = $ahResults->[2];
     is $hMaster->{'DefaultSubProduct'}, WEBSERVICE_SHOP_PATH."$hOptions->{'FullPath'}/SubProducts/$Product_var1->{'Alias'}", 'Master.DefaultSubProduct';
@@ -725,6 +726,7 @@ sub testGetInfoVariations {
 	is scalar @{ $hMaster->{'VariationAttributes'} }, 1, 'Master.VariationAttributes count';
 	is $hMaster->{'VariationAttributes'}->[0]->{'Name'}, 'USSize', 'Master.VariationAttribute name';
 	is $hMaster->{'VariationAttributes'}->[0]->{'Value'}, '6,10', 'Master.VariationAttribute value';
+	is $hMaster->{'IsMaster'}, 1, 'IsMaster=1';
 }
 
 sub testCreateVariations {
