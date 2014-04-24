@@ -3,6 +3,7 @@ package de.epages.ws.product12;
 import static de.epages.ws.common.AssertNoError.assertNoError;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
@@ -390,7 +391,7 @@ public class ProductServiceTest {
         assertEquals("exists?", expected, Products_exists_out[0].getExists());
     }
 
-    public void testFind() {
+    public void testFindByAlias() {
         TFind_Input parameters = new TFind_Input();
         parameters.setAlias(Product_in.getAlias());
 
@@ -400,6 +401,18 @@ public class ProductServiceTest {
         // test if find was successful
         assertEquals("find result set", 1, Products_find_out.length);
         assertEquals("found path", path + alias, Products_find_out[0]);
+    }
+
+    public void testFindByLastUpdate() {
+        TFind_Input parameters = new TFind_Input();
+        parameters.setLastUpdate(new GregorianCalendar(1976, 01, 01));
+
+        String[] Products_find_out = new String[]{};
+        Products_find_out = serviceClient.find(parameters);
+
+        // test if find was successful
+        assertTrue("find result set", Products_find_out.length > 0);
+        assertNotNull("found path", Products_find_out[0]);
     }
 
     public void testCreateDownload() {
@@ -485,7 +498,8 @@ public class ProductServiceTest {
     public void testAll() throws IOException {
         testCreate();
         testExists(true);
-        testFind();
+        testFindByAlias();
+        testFindByLastUpdate();
         testGetInfo(false);
         testUpdate();
         testGetInfo(true);
