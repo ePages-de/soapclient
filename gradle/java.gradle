@@ -116,6 +116,7 @@ configure(subprojects.findAll {it.name.contains("java/")}) {
         doLast {
             delete file('src/gen-old/java/de/epages/ws/shop3')
             delete file('src/gen-old/java/de/epages/ws/common')
+            delete file('src/gen/java/de/epages/ws/common')
         }
     }
 

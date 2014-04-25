@@ -27,7 +27,7 @@ ext {
     'ProductService12',
 
     //// provider services /////
-    'FeaturePackService'
+    'FeaturePackService',
     ]
 
   /* previous versions of all supported services */
@@ -84,7 +84,9 @@ ext {
     'UserService3',
     'UserService4',
     'UserService5',
-    'ShippingMethodService'
+    'ShippingMethodService',
+    /// provider
+    'ShopConfigService',
   ]
 
   onlyThisService = rootProject.properties["onlyThisService"]
