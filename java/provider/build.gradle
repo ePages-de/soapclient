@@ -1,5 +1,6 @@
 dependencies {
     compile project(':java/common')
+    testCompile project(path: ':java/common', configuration: 'testApi')
 }
 
 archivesBaseName = 'soapclient-provider'
