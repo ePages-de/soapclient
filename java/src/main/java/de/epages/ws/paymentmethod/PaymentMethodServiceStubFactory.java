@@ -1,8 +1,8 @@
 package de.epages.ws.paymentmethod;
 
 import de.epages.ws.WebServiceConfiguration;
-import de.epages.ws.paymentmethod.stub.Port_PaymentMethod;
 import de.epages.ws.paymentmethod.stub.PaymentMethodService;
+import de.epages.ws.paymentmethod.stub.Port_PaymentMethod;
 
 public interface PaymentMethodServiceStubFactory {
 

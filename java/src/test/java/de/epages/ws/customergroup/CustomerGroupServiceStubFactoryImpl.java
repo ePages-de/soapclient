@@ -13,11 +13,11 @@ import de.epages.ws.customergroup.stub.Port_CustomerGroup;
 
 final class CustomerGroupServiceStubFactoryImpl implements CustomerGroupServiceStubFactory {
 
-    private static final Logger log = LoggerFactory.getLogger(CustomerGroupServiceStubFactoryImpl.class);
+
 
     @Override
     public Port_CustomerGroup create(WebServiceConfiguration config, CustomerGroupService service) {
-        log.info("Using webservice URL: " + config.getWebserviceURL());
+        
         try {
             Bind_CustomerGroup_SOAPStub stub = (Bind_CustomerGroup_SOAPStub) service.getport_CustomerGroup(config.getWebserviceURL());
             if (stub == null) {

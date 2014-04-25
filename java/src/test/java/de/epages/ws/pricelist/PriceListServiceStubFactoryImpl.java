@@ -13,11 +13,11 @@ import de.epages.ws.pricelist.stub.PriceListService;
 
 final class PriceListServiceStubFactoryImpl implements PriceListServiceStubFactory {
 
-    private static final Logger log = LoggerFactory.getLogger(PriceListServiceStubFactoryImpl.class);
+
 
     @Override
     public Port_PriceList create(WebServiceConfiguration config, PriceListService service) {
-        log.info("Using webservice URL: " + config.getWebserviceURL());
+        
         try {
             Bind_PriceList_SOAPStub stub = (Bind_PriceList_SOAPStub) service.getport_PriceList(config.getWebserviceURL());
             if (stub == null) {

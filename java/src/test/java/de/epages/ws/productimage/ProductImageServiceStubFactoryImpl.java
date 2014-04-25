@@ -13,11 +13,11 @@ import de.epages.ws.productimage.stub.ProductImageService;
 
 final class ProductImageServiceStubFactoryImpl implements ProductImageServiceStubFactory {
 
-    private static final Logger log = LoggerFactory.getLogger(ProductImageServiceStubFactoryImpl.class);
+
 
     @Override
     public Port_ProductImage create(WebServiceConfiguration config, ProductImageService service) {
-        log.info("Using webservice URL: " + config.getWebserviceURL());
+        
         try {
             Bind_ProductImage_SOAPStub stub = (Bind_ProductImage_SOAPStub) service.getport_ProductImage(config.getWebserviceURL());
             if (stub == null) {

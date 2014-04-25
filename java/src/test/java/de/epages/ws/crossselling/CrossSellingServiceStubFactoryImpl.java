@@ -13,11 +13,11 @@ import de.epages.ws.crossselling.stub.Port_CrossSelling;
 
 final class CrossSellingServiceStubFactoryImpl implements CrossSellingServiceStubFactory {
 
-    private static final Logger log = LoggerFactory.getLogger(CrossSellingServiceStubFactoryImpl.class);
+
 
     @Override
     public Port_CrossSelling create(WebServiceConfiguration config, CrossSellingService service) {
-        log.info("Using webservice URL: " + config.getWebserviceURL());
+        
         try {
             Bind_CrossSelling_SOAPStub stub = (Bind_CrossSelling_SOAPStub) service.getport_CrossSelling(config.getWebserviceURL());
             if (stub == null) {

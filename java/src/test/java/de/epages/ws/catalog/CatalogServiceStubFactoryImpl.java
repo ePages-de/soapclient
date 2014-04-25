@@ -13,11 +13,11 @@ import de.epages.ws.catalog.stub.Port_Catalog;
 
 final class CatalogServiceStubFactoryImpl implements CatalogServiceStubFactory {
 
-    private static final Logger log = LoggerFactory.getLogger(CatalogServiceStubFactoryImpl.class);
+
 
     @Override
     public Port_Catalog create(WebServiceConfiguration config, CatalogService service) {
-        log.info("Using webservice URL: " + config.getWebserviceURL());
+        
         try {
             Bind_Catalog_SOAPStub stub = (Bind_Catalog_SOAPStub) service.getport_Catalog(config.getWebserviceURL());
             if (stub == null) {

@@ -22,7 +22,8 @@ public interface OrderServiceClient extends Port_Order {
     /**
      * get information about a list of orders
      */
-    public TGetInfo_Return[] getInfo(String[] orders, String[] attributes, String[] addressAttributes, String[] lineItemAttributes, String[] languageCodes);
+    public TGetInfo_Return[] getInfo(String[] orders, String[] attributes, String[] addressAttributes, String[] lineItemAttributes,
+            String[] languageCodes);
 
     /**
      * check if a list of orders exist.
@@ -35,14 +36,14 @@ public interface OrderServiceClient extends Port_Order {
     public TDelete_Return[] delete(String[] orders);
 
     /**
-     * update a list of orders. This function also sends order
-     *         status e-mails to customers if the e-mail events are enabled.
+     * update a list of orders. This function also sends order status e-mails to
+     * customers if the e-mail events are enabled.
      */
     public TUpdate_Return[] update(TUpdate_Input[] orders);
 
     /**
-     * create new orders. This function does not send order
-     *         confirmation e-mails to the customers.
+     * create new orders. This function does not send order confirmation e-mails
+     * to the customers.
      */
     public TCreate_Return[] create(TCreate_Input[] orders);
 

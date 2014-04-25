@@ -84,12 +84,14 @@ public interface ProductTypeServiceClient extends Port_ProductType {
     /**
      * update a list of product attributes
      */
-    TUpdateProductAttribute_Return[] updateProductAttribute(String productType, de.epages.ws.producttype2.model.TUpdateProductAttribute_Input[] productAttributes);
+    TUpdateProductAttribute_Return[] updateProductAttribute(String productType,
+            de.epages.ws.producttype2.model.TUpdateProductAttribute_Input[] productAttributes);
 
     /**
      * create a list of product attributes
      */
-    TCreateProductAttribute_Return[] createProductAttribute(String productType, de.epages.ws.producttype2.model.TCreateProductAttribute_Input[] productAttributes);
+    TCreateProductAttribute_Return[] createProductAttribute(String productType,
+            de.epages.ws.producttype2.model.TCreateProductAttribute_Input[] productAttributes);
 
     /**
      * get information about a list of predefined attributes
@@ -97,8 +99,7 @@ public interface ProductTypeServiceClient extends Port_ProductType {
     TGetPreDefAttributeInfo_Return[] getPreDefAttributeInfo(String productAttribute, String[] preDefAttributes, String[] languageCodes);
 
     /**
-     * get information about all predefined attibutes of a product
-     * attribute
+     * get information about all predefined attibutes of a product attribute
      */
     TGetPreDefAttributeInfo_Return[] getAllPreDefAttributesInfo(String productAttribute, String[] languageCodes);
 
@@ -115,11 +116,13 @@ public interface ProductTypeServiceClient extends Port_ProductType {
     /**
      * update a list of predefined attributes
      */
-    TUpdatePreDefAttribute_Return[] updatePreDefAttribute(String productAttribute, de.epages.ws.producttype2.model.TUpdatePreDefAttribute_Input[] preDefAttributes);
+    TUpdatePreDefAttribute_Return[] updatePreDefAttribute(String productAttribute,
+            de.epages.ws.producttype2.model.TUpdatePreDefAttribute_Input[] preDefAttributes);
 
     /**
      * create a list of predefined attributes
      */
-    TCreatePreDefAttribute_Return[] createPreDefAttribute(String productAttribute, de.epages.ws.producttype2.model.TCreatePreDefAttribute_Input[] preDefAttributes);
+    TCreatePreDefAttribute_Return[] createPreDefAttribute(String productAttribute,
+            de.epages.ws.producttype2.model.TCreatePreDefAttribute_Input[] preDefAttributes);
 
 }

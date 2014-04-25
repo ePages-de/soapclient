@@ -13,11 +13,11 @@ import de.epages.ws.user2.stub.UserService;
 
 final class UserServiceStubFactoryImpl implements UserServiceStubFactory {
 
-    private static final Logger log = LoggerFactory.getLogger(UserServiceStubFactoryImpl.class);
+
 
     @Override
     public Port_User create(WebServiceConfiguration config, UserService serviceLocator) {
-        log.info("Using webservice URL: " + config.getWebserviceURL());
+        
         try {
             Bind_User_SOAPStub stub = (Bind_User_SOAPStub) serviceLocator.getport_User(config
                     .getWebserviceURL());

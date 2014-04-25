@@ -92,6 +92,7 @@ public class WebServiceFactoryImpl implements WebServiceFactory {
         return new PriceListAssignmentServiceClientImpl(config);
 
     }
+
     @Override
     public PriceListServiceClient createPriceListServiceClient(WebServiceConfiguration config) {
         return new PriceListServiceClientImpl(config);

@@ -13,11 +13,11 @@ import de.epages.ws.product8.stub.ProductService;
 
 final class ProductServiceStubFactoryImpl implements ProductServiceStubFactory {
 
-    private static final Logger log = LoggerFactory.getLogger(ProductServiceStubFactoryImpl.class);
+
 
     @Override
     public Port_Product create(WebServiceConfiguration config, ProductService serviceLocator) {
-        log.info("Using webservice URL: " + config.getWebserviceURL());
+        
         try {
             Bind_Product_SOAPStub stub = (Bind_Product_SOAPStub) serviceLocator.getport_Product(config.getWebserviceURL());
             if (stub == null) {

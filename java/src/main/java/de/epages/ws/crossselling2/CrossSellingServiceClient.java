@@ -32,14 +32,12 @@ public interface CrossSellingServiceClient extends Port_CrossSelling {
     public TUpdate_Return[] update(TUpdate_Input[] crossSellings);
 
     /**
-     * delete a cross selling (delete assignment of target product
-     * to product)
+     * delete a cross selling (delete assignment of target product to product)
      */
     public TDelete_Return[] delete(TDelete_Input[] crossSellings);
 
     /**
-     * check if exists a cross selling (if target product assigned
-     * to product)
+     * check if exists a cross selling (if target product assigned to product)
      */
     public TExists_Return[] exists(TExists_Input[] crossSellings);
 
@@ -47,6 +45,5 @@ public interface CrossSellingServiceClient extends Port_CrossSelling {
      * get a cross selling (target products assigned to product)
      */
     public TGetInfo_Return[] getInfo(TGetInfo_Input[] crossSellings);
-
 
 }

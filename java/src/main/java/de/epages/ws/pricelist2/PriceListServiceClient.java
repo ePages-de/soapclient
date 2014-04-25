@@ -14,7 +14,6 @@ import de.epages.ws.pricelist2.model.TGetInfo_Return;
 import de.epages.ws.pricelist2.model.TUpdate_Return;
 import de.epages.ws.pricelist2.stub.Port_PriceList;
 
-
 public interface PriceListServiceClient extends Port_PriceList {
 
     /**

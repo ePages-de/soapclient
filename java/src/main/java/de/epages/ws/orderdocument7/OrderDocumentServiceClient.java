@@ -17,7 +17,8 @@ public interface OrderDocumentServiceClient extends Port_OrderDocument {
     /**
      * get information about a list of order documents
      */
-    public TGetInfo_Return[] getInfo(String[] orderDocuments, String[] attributes, String[] addressAttributes, String[] lineItemAttributes, String[] languageCodes);
+    public TGetInfo_Return[] getInfo(String[] orderDocuments, String[] attributes, String[] addressAttributes, String[] lineItemAttributes,
+            String[] languageCodes);
 
     /**
      * check if a list of order documents exist.

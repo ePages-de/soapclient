@@ -13,11 +13,11 @@ import de.epages.ws.order10.stub.Port_Order;
 
 final class OrderServiceStubFactoryImpl implements OrderServiceStubFactory {
 
-    private static final Logger log = LoggerFactory.getLogger(OrderServiceStubFactoryImpl.class);
+
 
     @Override
     public Port_Order create(WebServiceConfiguration config, OrderService service) {
-        log.info("Using webservice URL: " + config.getWebserviceURL());
+        
         try {
             Bind_Order_SOAPStub stub = (Bind_Order_SOAPStub) service.getport_Order(config.getWebserviceURL());
             if (stub == null) {

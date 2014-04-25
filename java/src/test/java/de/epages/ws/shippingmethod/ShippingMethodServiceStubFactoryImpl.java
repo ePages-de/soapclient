@@ -13,11 +13,11 @@ import de.epages.ws.shippingmethod.stub.ShippingMethodService;
 
 final class ShippingMethodServiceStubFactoryImpl implements ShippingMethodServiceStubFactory {
 
-    private static final Logger log = LoggerFactory.getLogger(ShippingMethodServiceStubFactoryImpl.class);
+
 
     @Override
     public Port_ShippingMethod create(WebServiceConfiguration config, ShippingMethodService serviceLocator) {
-        log.info("Using webservice URL: " + config.getWebserviceURL());
+        
         try {
             Bind_ShippingMethod_SOAPStub stub = (Bind_ShippingMethod_SOAPStub) serviceLocator.getport_ShippingMethod(config
                     .getWebserviceURL());

@@ -18,7 +18,6 @@ import de.epages.ws.pricelistassignment.model.TSetValueDiscounts_Input;
 import de.epages.ws.pricelistassignment.model.TSetValueDiscounts_Return;
 import de.epages.ws.pricelistassignment.stub.Port_PriceListAssignment;
 
-
 public interface PriceListAssignmentServiceClient extends Port_PriceListAssignment {
 
     /**
@@ -50,6 +49,5 @@ public interface PriceListAssignmentServiceClient extends Port_PriceListAssignme
      * update product's value discounts
      */
     TSetValueDiscounts_Return[] setValueDiscounts(TSetValueDiscounts_Input[] products);
-
 
 }
