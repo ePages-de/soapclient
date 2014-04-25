@@ -43,14 +43,13 @@ ext {
 dependencies {
     compile "org.apache.axis:axis:${axisVersion}"
     compile "org.apache.axis:axis-jaxrpc:${axisVersion}"
-    compile "org.slf4j:slf4j-api:${slf4jVersion}"
-
     runtime "org.apache.axis:axis-saaj:${axisVersion}"
     runtime "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
     runtime "wsdl4j:wsdl4j:${wsdl4jVersion}"
 
     testCompile "junit:junit:${junitVersion}"
 
+    testRuntime "org.slf4j:slf4j-api:${slf4jVersion}"
     testRuntime "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
     testRuntime "ch.qos.logback:logback-core:${logbackVersion}"
     testRuntime "ch.qos.logback:logback-classic:${logbackVersion}"

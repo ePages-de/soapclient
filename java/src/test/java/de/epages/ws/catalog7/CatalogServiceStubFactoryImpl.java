@@ -2,9 +2,6 @@ package de.epages.ws.catalog7;
 
 import javax.xml.rpc.ServiceException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import de.epages.ws.StubConfigurator;
 import de.epages.ws.WebServiceConfiguration;
 import de.epages.ws.catalog7.stub.Bind_Catalog_SOAPStub;

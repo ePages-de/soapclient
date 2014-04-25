@@ -2,9 +2,6 @@ package de.epages.ws.product10;
 
 import javax.xml.rpc.ServiceException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import de.epages.ws.StubConfigurator;
 import de.epages.ws.WebServiceConfiguration;
 import de.epages.ws.product10.stub.Bind_Product_SOAPStub;

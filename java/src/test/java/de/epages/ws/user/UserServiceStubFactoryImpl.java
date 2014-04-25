@@ -2,9 +2,6 @@ package de.epages.ws.user;
 
 import javax.xml.rpc.ServiceException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import de.epages.ws.StubConfigurator;
 import de.epages.ws.WebServiceConfiguration;
 import de.epages.ws.user.stub.Bind_User_SOAPStub;

@@ -2,9 +2,6 @@ package de.epages.ws.orderdocument6;
 
 import javax.xml.rpc.ServiceException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import de.epages.ws.StubConfigurator;
 import de.epages.ws.WebServiceConfiguration;
 import de.epages.ws.orderdocument6.stub.Bind_OrderDocument_SOAPStub;

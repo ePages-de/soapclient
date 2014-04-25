@@ -1,7 +1,14 @@
 package de.epages.ws.product6;
 
-import de.epages.ws.product6.model.*;
-import de.epages.ws.product6.stub.*;
+import de.epages.ws.product6.model.TCreate_Input;
+import de.epages.ws.product6.model.TCreate_Return;
+import de.epages.ws.product6.model.TDelete_Return;
+import de.epages.ws.product6.model.TExists_Return;
+import de.epages.ws.product6.model.TGetInfo_Return;
+import de.epages.ws.product6.model.TUpdate_Input;
+import de.epages.ws.product6.model.TUpdate_Return;
+import de.epages.ws.product6.stub.Port_Product;
+import de.epages.ws.product6.stub.TFind_Input;
 
 public interface ProductServiceClient extends Port_Product {
 
