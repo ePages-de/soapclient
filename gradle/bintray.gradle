@@ -21,23 +21,24 @@ configure(subprojects.findAll {it.name.contains("java/")}) {
 		}
 	}
 
+    def abn = project.archivesBaseName
+    def desc = project.description
+
 	publishing {
 		publications {
 			mavenJava(MavenPublication) {
 				from components.java
-				artifactId = 'soapclient'
+				artifactId = abn
 				artifact sourcesJar
 
 				pom.withXml {
 					def root = asNode()
-					root.appendNode('description', 'AXIS 1.x based SOAP client for epages6')
+					root.appendNode('description', desc)
 					root.children().last() + pomConfig
 				}
 			}
 		}
 	}
-    def abn = project.archivesBaseName
-    def desc = project.description
 
     bintray {
 		user = rootProject.properties['bintray.user']

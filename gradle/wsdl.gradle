@@ -24,7 +24,10 @@ ext {
     'TaxClassService',
     'UserService6',
     // for java this needs to come last due to a namespace mapping hack
-    'ProductService12'
+    'ProductService12',
+
+    //// provider services /////
+    'FeaturePackService'
     ]
 
   /* previous versions of all supported services */

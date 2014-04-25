@@ -92,7 +92,7 @@ configure(subprojects.findAll {it.name.contains("java/")}) {
 		}
 	}
 
-	task generateJava() {
+	task generate() {
 		doAxisGen(it, currentServices, 'src/gen/java')
 		// old services (from root project)
 		doAxisGen(it, oldServices, 'src/gen-old/java')

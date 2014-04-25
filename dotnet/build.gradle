@@ -47,7 +47,7 @@ project.ext.nUnit = {String[] args ->
     return newArgs.toArray(new String[newArgs.size()])
 }
 
-task runDotnetTests(type:Exec, dependsOn: assemble) {
+task runTests(type:Exec, dependsOn: assemble) {
     description = 'Runs all webservice tests'
     group = 'Test'
     // set ep6HostName
@@ -61,4 +61,4 @@ task runDotnetTests(type:Exec, dependsOn: assemble) {
 }
 
 assemble.dependsOn msbuild
-task check (dependsOn: runDotnetTests)
+task check (dependsOn: runTests)
