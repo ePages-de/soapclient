@@ -89,6 +89,7 @@ ext {
     'ShopConfigService',
     'ShopConfigService2',
     'ShopConfigService3',
+    'ShopConfigService4',
   ]
 
   onlyThisService = rootProject.properties["onlyThisService"]
