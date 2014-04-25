@@ -2,11 +2,12 @@ package de.epages.ws.customer6;
 
 import static de.epages.ws.common.AssertNoError.assertNoError;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.GregorianCalendar;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import de.epages.ws.WebServiceTestConfiguration;
@@ -21,27 +22,24 @@ import de.epages.ws.customer6.model.TUpdate_Return;
 import de.epages.ws.customer6.stub.TFind_Input;
 import de.epages.ws.shop3.model.TAddressNamed;
 
-/**
- * A JUnit TestSuite to test epages Customer WebServices.
- */
 public class CustomerServiceTest {
 
     private static final CustomerServiceClient customerService = new CustomerServiceClientImpl(new WebServiceTestConfiguration());
 
-    private TCreate_Input customer_in = new TCreate_Input();
-    private TUpdate_Input customer_update = new TUpdate_Input();
+    private static final TCreate_Input customer_in = new TCreate_Input();
+    private static final TUpdate_Input customer_update = new TUpdate_Input();
 
-    private String custpath = "/Shops/DemoShop/Customers/";
-    private String alias = "java_test-1";
-    private String path = custpath + alias;
-    private String email = "java_test-1@epages.de";
+    private static final String custpath = "/Shops/DemoShop/Customers/";
+    private static final String alias = "java_test-1";
+    private static final String path = custpath + alias;
+    private static final String email = "java_test-1@epages.de";
 
     /**
      * Sets all the required prerequisites for the tests. Will be called before
      * the test are run.
      */
-    @Before
-    public void setUp() {
+    @BeforeClass
+    public static void setUp() {
         // test data customer_in
         customer_in.setAlias(alias);
         customer_in.setCustomerGroup("/Shops/DemoShop/Groups/NewCustomer");
@@ -213,6 +211,19 @@ public class CustomerServiceTest {
     }
 
     /**
+     * Test if a customer is found by LastUpdate
+     */
+    public void testFindByLastUpdate() {
+        TFind_Input input = new TFind_Input();
+        input.setLastUpdate(new GregorianCalendar(1976, 9, 25, 11, 33));
+        String[] customers_out = customerService.find(input);
+
+        // test if find was successful
+        assertTrue("found some customers", customers_out.length > 0);
+        assertNotNull("found path", customers_out[0]);
+    }
+
+    /**
      * runs all tests
      */
     @Test
@@ -220,6 +231,7 @@ public class CustomerServiceTest {
         testCreate();
         testExists();
         testFind();
+        testFindByLastUpdate();
         testGetInfo(false);
         testUpdate();
         testGetInfo(true);
