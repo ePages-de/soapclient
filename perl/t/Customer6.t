@@ -179,7 +179,6 @@ sub testFind {
     ok( $aResults->[0] eq WEBSERVICE_SHOP_PATH.$options->{'FullPath'}, "customer path" );
 }
 
-# Test if a customer is found by EMail
 sub testFindByLastUpdate {
 
     my $aResults = $CustomerService->find( {'LastUpdate'=> '1976-09-25T11:22:33' } )->result;
