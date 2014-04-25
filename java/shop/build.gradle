@@ -1,0 +1,7 @@
+
+dependencies {
+    compile project(':java/common')
+}
+
+archivesBaseName = 'soapclient-shop'
+description = 'AXIS 1.x based SOAP client for epages6 ShopServices'

@@ -35,7 +35,7 @@ import de.epages.ws.shippingmethod2.ShippingMethodServiceClientImpl;
 import de.epages.ws.user6.UserServiceClient;
 import de.epages.ws.user6.UserServiceClientImpl;
 
-public class WebServiceFactoryImpl implements WebServiceFactory {
+public class ShopWebServiceFactoryImpl implements ShopWebServiceFactory {
 
     @Override
     public AssignmentServiceClient createAssignmentServiceClient(WebServiceConfiguration config) {

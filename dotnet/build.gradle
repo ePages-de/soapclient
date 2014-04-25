@@ -1,22 +1,9 @@
 import org.apache.tools.ant.taskdefs.condition.Os
 
-buildscript {
-    repositories {
-      mavenCentral()
-    }
-    dependencies {
-        classpath "com.ullink.gradle:gradle-msbuild-plugin:1.6"
-    }
-}
-
-apply plugin: "eclipse"
 apply plugin: 'msbuild'
 
-eclipse {
-    project {
-        name = 'soapclient-dotnet'
-    }
-}
+archivesBaseName = 'soapclient-shop'
+description = '.Net 2.0 based clients for epages6 ShopServices'
 
 msbuild {
   // mandatory
@@ -60,7 +47,7 @@ project.ext.nUnit = {String[] args ->
     return newArgs.toArray(new String[newArgs.size()])
 }
 
-task runTests(type:Exec, dependsOn: assemble) {
+task runDotnetTests(type:Exec, dependsOn: assemble) {
     description = 'Runs all webservice tests'
     group = 'Test'
     // set ep6HostName
@@ -72,5 +59,6 @@ task runTests(type:Exec, dependsOn: assemble) {
     workingDir projectDir.path
     commandLine nUnit("EpagesWebServices/EpagesWebServices.nunit")
 }
+
 assemble.dependsOn msbuild
-task check (dependsOn: runTests)
+task check (dependsOn: runDotnetTests)

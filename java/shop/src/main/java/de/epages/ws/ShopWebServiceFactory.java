@@ -21,7 +21,7 @@ import de.epages.ws.user6.UserServiceClient;
 /**
  * Interface to the latest implementations of the epages6 webservices.
  */
-public interface WebServiceFactory {
+public interface ShopWebServiceFactory {
 
     AssignmentServiceClient createAssignmentServiceClient(WebServiceConfiguration config);
 

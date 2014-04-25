@@ -1,6 +1,10 @@
 import org.apache.tools.ant.taskdefs.condition.Os
 
 include 'java'
+include 'java/common'
+include 'java/shop'
+include 'java/provider'
+
 include 'perl'
 
 if (Os.isFamily(Os.FAMILY_WINDOWS)) {
