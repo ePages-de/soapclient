@@ -87,7 +87,8 @@ ext {
     'ShippingMethodService',
     /// provider
     'ShopConfigService',
-    'ShopConfigService2'
+    'ShopConfigService2',
+    'ShopConfigService3',
   ]
 
   onlyThisService = rootProject.properties["onlyThisService"]
