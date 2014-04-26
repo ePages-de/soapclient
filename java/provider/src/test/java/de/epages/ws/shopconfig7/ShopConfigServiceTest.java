@@ -80,7 +80,7 @@ public class ShopConfigServiceTest {
         assertEquals("IsTrialShop", Shop_create.getIsTrialShop(), Shop_out.isIsTrialShop());
         assertEquals("IsInternalTestShop", Shop_create.getIsInternalTestShop(), Shop_out.isIsInternalTestShop());
         assertEquals("DomainName", Shop_create.getDomainName(), Shop_out.getDomainName());
-        assertEquals("SecondaryDomains", Shop_create.getSecondaryDomains(), Shop_out.getSecondaryDomains());
+        assertArrayEquals("SecondaryDomains", Shop_create.getSecondaryDomains(), Shop_out.getSecondaryDomains());
         assertEquals("Database", Shop_create.getDatabase(), Shop_out.getDatabase());
         assertEquals("MerchantLogin", Shop_create.getMerchantLogin(), Shop_out.getMerchantLogin());
         assertEquals("MerchantEMail", Shop_create.getMerchantEMail(), Shop_out.getMerchantEMail());
@@ -120,7 +120,7 @@ public class ShopConfigServiceTest {
         assertEquals("updated IsTrialShop", Shop_update.getIsTrialShop(), Shop_out.isIsTrialShop());
         assertEquals("updated IsInternalTestShop", Shop_update.getIsInternalTestShop(), Shop_out.isIsInternalTestShop());
         assertEquals("updated DomainName", Shop_update.getDomainName(), Shop_out.getDomainName());
-        assertEquals("updated SecondaryDomains", Shop_update.getSecondaryDomains(), Shop_out.getSecondaryDomains());
+        assertArrayEquals("updated SecondaryDomains", Shop_update.getSecondaryDomains(), Shop_out.getSecondaryDomains());
         assertEquals("updated Database", Shop_create.getDatabase(), Shop_out.getDatabase());
         assertEquals("updated ShopAlias", ALIAS2, Shop_out.getObjectAlias());
         assertEquals("updated ShopObjectPath", "/Shops/".concat(ALIAS2), Shop_out.getObjectPath());
@@ -169,7 +169,7 @@ public class ShopConfigServiceTest {
         String[] secondaryDomains = { "invaliddomain.com", "updateddomain.com" };
         shopConfigService.setSecondaryDomains(shopRef, secondaryDomains);
         Shop_out = shopConfigService.getInfo(shopInfo);
-        assertEquals("set SecondaryDomains", secondaryDomains, Shop_out.getSecondaryDomains());
+        assertArrayEquals("set SecondaryDomains", secondaryDomains, Shop_out.getSecondaryDomains());
 
         // delete the shop data (leaves the shop history in PBO)
 

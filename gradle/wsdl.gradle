@@ -30,6 +30,7 @@ ext {
     'FeaturePackService',
     'ShopConfigService6',
     'ShopConfigService7',
+    'ShopCountService',
     ]
 
   /* previous versions of all supported services */
