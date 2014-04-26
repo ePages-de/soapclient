@@ -23,5 +23,4 @@
   <!--  For printing out the low-level http communication
   <logger name="httpclient.wire" level="DEBUG" />
   -->
-  <logger name="httpclient.wire" level="DEBUG" />
  </configuration>
