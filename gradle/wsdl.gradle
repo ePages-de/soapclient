@@ -28,6 +28,8 @@ ext {
 
     //// provider services /////
     'FeaturePackService',
+    'ShopConfigService6',
+    'ShopConfigService7',
     ]
 
   /* previous versions of all supported services */
@@ -91,7 +93,6 @@ ext {
     'ShopConfigService3',
     'ShopConfigService4',
     'ShopConfigService5',
-    'ShopConfigService6',
   ]
 
   onlyThisService = rootProject.properties["onlyThisService"]
