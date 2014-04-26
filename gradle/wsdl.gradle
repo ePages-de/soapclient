@@ -31,6 +31,8 @@ ext {
     'ShopConfigService6',
     'ShopConfigService7',
     'ShopCountService',
+    'ShopTransferService',
+    'SimpleProvisioningService',
     ]
 
   /* previous versions of all supported services */
