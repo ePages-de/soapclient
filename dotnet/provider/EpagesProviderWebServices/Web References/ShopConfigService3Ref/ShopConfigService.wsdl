@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tns="urn://epages.de/WebService/ShopConfigService/2006/09" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="ShopConfigService" targetNamespace="urn://epages.de/WebService/ShopConfigService/2006/09" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <documentation>This web service allows internet service providers to create and delete shops</documentation>
+  <wsdl:types>
+    <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/ShopConfigService/2006/09">
+      <xs:complexType name="TImportFiles">
+        <xs:annotation>
+          <xs:documentation>list of full path names of XML files</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TCreateShop">
+        <xs:annotation>
+          <xs:documentation>shop data required to create a new shop</xs:documentation>
+        </xs:annotation>
+        <xs:all>
+          <xs:element name="Alias" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>unique shop name for the provider</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ShopType" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>shop type alias</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Database" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>store database identifier. If the database is
+                not specified, then the shop is created in the default database
+                of the provider.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ShopAlias" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>unique shop name for the database</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="ImportFiles" type="tns:TImportFiles">
+            <xs:annotation>
+              <xs:documentation>import file names for shop data, example products etc..
+                If this parameter is missing or an emptay array, then the import file
+                for the shop type (selected in PBO) is used. The files must be accessible
+                by the application server. (optional)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsClosed" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>set to true to keep the new shop closed by provider; defaults to false</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsTrialShop" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the shop is in trial period</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsInternalTestShop" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the shop is used for test or support purposes</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="DomainName" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>domain name to access the shop (optional)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="HasSSLCertificate" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if an SSL certificate is installed for DomainName</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="WebServerScriptNamePart" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>script name part that identifies the shop</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="PublicFilesDir" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>directory on the application server where image files
+                for the new shop are located. These files are copied to the public shop
+                directory. (optional)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:all>
+      </xs:complexType>
+      <xs:complexType name="TShopRef">
+        <xs:annotation>
+          <xs:documentation>shop data required to identify an existing shop</xs:documentation>
+        </xs:annotation>
+        <xs:all>
+          <xs:element name="Alias" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>unique shop name for the provider</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:all>
+      </xs:complexType>
+      <xs:complexType name="TUpdateShop">
+        <xs:annotation>
+          <xs:documentation>shop data to update an existing shop</xs:documentation>
+        </xs:annotation>
+        <xs:all>
+          <xs:element name="Alias" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>unique shop name for the provider</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="ShopType" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>shop type alias</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Database" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>(ignored)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="ShopAlias" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>(ignored)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="ImportFiles" type="tns:TImportFiles">
+            <xs:annotation>
+              <xs:documentation>import file names</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsClosed" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the shop is closed by provider</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsTrialShop" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the shop is in trial period</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsInternalTestShop" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the shop is used for test or support purposes</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="DomainName" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>domain name to access the shop</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="HasSSLCertificate" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the web server has an SSL certificate for the shop (optional)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="WebServerScriptNamePart" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>script name part that identifies the shop</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:all>
+      </xs:complexType>
+      <xs:complexType name="TInfoShop">
+        <xs:annotation>
+          <xs:documentation>shop data output by getInfo and getAllInfo operations</xs:documentation>
+        </xs:annotation>
+        <xs:all>
+          <xs:element name="Alias" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>unique shop name for the provider</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="ShopType" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>shop type alias</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Database" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>store database identifier</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Provider" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>provider of shop</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="ObjectPath" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>object path of the shop within the store database</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IsClosed" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the shop is closed by provider</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IsDeleted" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the shop is deleted in the store database</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IsTrialShop" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the shop is in trial period</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IsInternalTestShop" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the shop is used for test or support purposes</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DomainName" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>domain name to access the shop</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="HasSSLCertificate" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the web server has an SSL certificate for the shop</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WebServerScriptNamePart" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>script name part that identifies the shop</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:all>
+      </xs:complexType>
+      <xs:complexType name="TAllInfoShop">
+        <xs:annotation>
+          <xs:documentation>list of full path names of XML files</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="tns:TInfoShop[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="msg_CreateShop_Input">
+    <wsdl:part name="CreateShopData" type="tns:TCreateShop" />
+  </wsdl:message>
+  <wsdl:message name="msg_CreateShop_Output">
+    <wsdl:part name="ShopID" type="xs:int" />
+  </wsdl:message>
+  <wsdl:message name="msg_DeleteShop_Input">
+    <wsdl:part name="ShopRef" type="tns:TShopRef" />
+  </wsdl:message>
+  <wsdl:message name="msg_DeleteShop_Output" />
+  <wsdl:message name="msg_ExistsShop_Input">
+    <wsdl:part name="ShopRef" type="tns:TShopRef" />
+  </wsdl:message>
+  <wsdl:message name="msg_ExistsShop_Output">
+    <wsdl:part name="Exists" type="xs:boolean" />
+  </wsdl:message>
+  <wsdl:message name="msg_UpdateShop_Input">
+    <wsdl:part name="ShopData" type="tns:TUpdateShop" />
+  </wsdl:message>
+  <wsdl:message name="msg_UpdateShop_Output" />
+  <wsdl:message name="msg_GetInfoShop_Input">
+    <wsdl:part name="UpdateShopData" type="tns:TShopRef" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetInfoShop_Output">
+    <wsdl:part name="ShopInfo" type="tns:TInfoShop" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetAllInfoShop_Input" />
+  <wsdl:message name="msg_GetAllInfoShop_Output">
+    <wsdl:part name="ShopInfos" type="tns:TAllInfoShop" />
+  </wsdl:message>
+  <wsdl:message name="msg_DeleteShopRef_Input">
+    <wsdl:part name="ShopRef" type="tns:TShopRef" />
+  </wsdl:message>
+  <wsdl:message name="msg_DeleteShopRef_Output" />
+  <wsdl:portType name="port_ShopConfig">
+    <wsdl:operation name="create">
+      <documentation>creates a new shop with a given shop type and imports default data</documentation>
+      <wsdl:input message="tns:msg_CreateShop_Input" />
+      <wsdl:output message="tns:msg_CreateShop_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <documentation>deletes a shop from the store database</documentation>
+      <wsdl:input message="tns:msg_DeleteShop_Input" />
+      <wsdl:output message="tns:msg_DeleteShop_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <documentation>returns true if the shop alias exists for the provider</documentation>
+      <wsdl:input message="tns:msg_ExistsShop_Input" />
+      <wsdl:output message="tns:msg_ExistsShop_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <documentation>updates an existing shop in the site and store database</documentation>
+      <wsdl:input message="tns:msg_UpdateShop_Input" />
+      <wsdl:output message="tns:msg_UpdateShop_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="getInfo">
+      <documentation>returns information about an existing shop from the site database</documentation>
+      <wsdl:input message="tns:msg_GetInfoShop_Input" />
+      <wsdl:output message="tns:msg_GetInfoShop_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllInfo">
+      <documentation>returns information about all existing shops from the site database</documentation>
+      <wsdl:input message="tns:msg_GetAllInfoShop_Input" />
+      <wsdl:output message="tns:msg_GetAllInfoShop_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteShopRef">
+      <documentation>deletes a shop reference from the site database</documentation>
+      <wsdl:input message="tns:msg_DeleteShopRef_Input" />
+      <wsdl:output message="tns:msg_DeleteShopRef_Output" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="bind_ShopConfig_SOAP" type="tns:port_ShopConfig">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="create">
+      <soap:operation soapAction="urn://epages.de/WebService/ShopConfigService/2006/09#create" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShopConfigService/2006/09" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShopConfigService/2006/09" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="urn://epages.de/WebService/ShopConfigService/2006/09#delete" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShopConfigService/2006/09" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShopConfigService/2006/09" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <soap:operation soapAction="urn://epages.de/WebService/ShopConfigService/2006/09#exists" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShopConfigService/2006/09" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShopConfigService/2006/09" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <soap:operation soapAction="urn://epages.de/WebService/ShopConfigService/2006/09#update" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShopConfigService/2006/09" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShopConfigService/2006/09" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInfo">
+      <soap:operation soapAction="urn://epages.de/WebService/ShopConfigService/2006/09#getInfo" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShopConfigService/2006/09" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShopConfigService/2006/09" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllInfo">
+      <soap:operation soapAction="urn://epages.de/WebService/ShopConfigService/2006/09#getAllInfo" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShopConfigService/2006/09" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShopConfigService/2006/09" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteShopRef">
+      <soap:operation soapAction="urn://epages.de/WebService/ShopConfigService/2006/09#deleteShopRef" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShopConfigService/2006/09" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShopConfigService/2006/09" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ShopConfigService">
+    <documentation>ePages ShopConfig Service</documentation>
+    <wsdl:port name="port_ShopConfig" binding="tns:bind_ShopConfig_SOAP">
+      <soap:address location="http://localhost/epages/Site.soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

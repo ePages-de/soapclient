@@ -10,5 +10,6 @@ include 'perl/provider'
 
 if (Os.isFamily(Os.FAMILY_WINDOWS)) {
     // msbuild plugin only supported on windows
-    include 'dotnet'
+    include 'dotnet/shop'
+    include 'dotnet/provider'
 }
