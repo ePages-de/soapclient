@@ -1,0 +1,129 @@
+configure(subprojects.findAll {it.name.contains("java/")}) {
+    apply plugin: "java"
+
+    group = 'de.epages'
+    version = '1.4.14-SNAPSHOT'
+
+    repositories { mavenCentral() }
+
+    /// testApi
+    configurations { testApi }
+
+    task testJar(type: Jar) {
+        classifier = 'tests'
+        from sourceSets.test.output
+    }
+
+    artifacts { testApi testJar }
+
+    dependencies {
+        testApi sourceSets.main.output
+        testApi configurations.testCompile
+        testApi sourceSets.test.output
+        testApi configurations.testRuntime
+    }
+    ///// test api
+
+    configurations { axisGenTask }
+
+    // add src/gen/java
+    sourceSets.main.java.srcDirs 'src/gen/java'
+    sourceSets.test.java.srcDirs 'src/gen-old/java'
+
+    ///////////////////// dependencies ////////////////////
+    ext {
+        axisVersion = "1.4"
+        slf4jVersion = "1.7.5"
+        junitVersion = "4.11"
+        wsdl4jVersion = "1.6.3"
+        commonsDiscoveryVersion = "0.5"
+        logbackVersion = "1.0.13"
+        httpclientVersion = "3.1"
+    }
+
+    dependencies {
+        compile "org.apache.axis:axis:${axisVersion}"
+        compile "org.apache.axis:axis-jaxrpc:${axisVersion}"
+        runtime "org.apache.axis:axis-saaj:${axisVersion}"
+        runtime "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
+        runtime "wsdl4j:wsdl4j:${wsdl4jVersion}"
+
+        testCompile "junit:junit:${junitVersion}"
+
+        testRuntime "org.slf4j:slf4j-api:${slf4jVersion}"
+        testRuntime "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+        testRuntime "ch.qos.logback:logback-core:${logbackVersion}"
+        testRuntime "ch.qos.logback:logback-classic:${logbackVersion}"
+        testRuntime "commons-httpclient:commons-httpclient:${httpclientVersion}"
+
+        axisGenTask "org.apache.axis:axis-ant:${axisVersion}"
+        axisGenTask "org.apache.axis:axis:${axisVersion}"
+        axisGenTask "org.apache.axis:axis-jaxrpc:${axisVersion}"
+        axisGenTask "wsdl4j:wsdl4j:${wsdl4jVersion}"
+        axisGenTask "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+        axisGenTask "ch.qos.logback:logback-core:${logbackVersion}"
+        axisGenTask "ch.qos.logback:logback-classic:${logbackVersion}"
+        axisGenTask "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
+    }
+
+    project.sourceCompatibility = rootProject.properties['SOURCE_COMPATIBILITY'] ?: '1.6'
+
+    compileJava {
+        options.with {
+            compilerArgs << "-Xlint:unchecked"
+            options.encoding = 'UTF-8'
+        }
+    }
+
+    tasks.withType(Test) {
+        // pass ep6HostName down to test
+        if(properties["ep6HostName"] != null) {
+            systemProperty 'ep6HostName', properties["ep6HostName"]
+        }
+    }
+
+    //////////////// code generation ///////////////////
+    def doAxisGen = { currentTask, wsdls, outputDir ->
+        currentTask.outputs.dir file(outputDir)
+        currentTask.outputs.upToDateWhen({ false })
+        currentTask.ant.taskdef(
+                name: 'codegen',
+                classname: 'org.apache.axis.tools.ant.wsdl.Wsdl2javaAntTask',
+                classpath: configurations.axisGenTask.asPath,
+                )
+
+        currentTask.doLast {
+            file(outputDir).mkdirs()
+            wsdls.grep { serviceName -> onlyThisService != null ? serviceName.equals(onlyThisService) : true }
+            .each { def serviceName ->
+                def url = (properties["wsdlBaseUrl"] ?: "${System.env.EPAGES_WEBROOT}/WSDL/") + "${serviceName}.wsdl"
+                ant.echo(message: "Generating classes for ${serviceName} from ${url}")
+                ant.codegen(
+                        url: url,
+                        output: outputDir,
+                        verbose: true,
+                        helpergen: false,
+                        )
+            }
+        }
+    }
+
+    task generate() {
+        doAxisGen(it, currentServices, 'src/gen/java')
+        // old services (from root project)
+        doAxisGen(it, oldServices, 'src/gen-old/java')
+        // remove potential duplicates.
+        doLast {
+            delete file('src/gen-old/java/de/epages/ws/shop3')
+            delete file('src/gen-old/java/de/epages/ws/common')
+            delete file('src/gen/java/de/epages/ws/common')
+        }
+    }
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    artifacts { archives sourcesJar }
+}
