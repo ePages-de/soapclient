@@ -3,13 +3,13 @@ apply plugin: "eclipse"
 
 eclipse {
     project {
-        name = 'soapclient-perl'
+        name = 'soapclient-perl-provider'
         natures 'org.epic.perleditor.perlnature'
         buildCommand 'org.epic.perleditor.perlbuilder'
     }
 }
 
-description = 'perl SOAP client for epages6'
+description = 'perl SOAP client for epages6 Provider Webservices'
 
 project.ext.osDependantPerl = {String[] args ->
     List<String> newArgs = new ArrayList<String>()

@@ -5,7 +5,8 @@ include 'java/common'
 include 'java/shop'
 include 'java/provider'
 
-include 'perl'
+include 'perl/shop'
+include 'perl/provider'
 
 if (Os.isFamily(Os.FAMILY_WINDOWS)) {
     // msbuild plugin only supported on windows

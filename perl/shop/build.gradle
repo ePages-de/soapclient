@@ -1,0 +1,40 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+apply plugin: "eclipse"
+
+eclipse {
+    project {
+        name = 'soapclient-perl-shop'
+        natures 'org.epic.perleditor.perlnature'
+        buildCommand 'org.epic.perleditor.perlbuilder'
+    }
+}
+
+description = 'perl SOAP client for epages6 Shop Webservices'
+
+project.ext.osDependantPerl = {String[] args ->
+    List<String> newArgs = new ArrayList<String>()
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        newArgs.add("cmd.exe")
+        newArgs.add("/C")
+        newArgs.add("perl")
+        newArgs.addAll(args)
+    } else {
+        newArgs.add( System.env.PERL ?: "perl" )
+        newArgs.addAll(args)
+    }
+    return newArgs.toArray(new String[0])
+}
+
+task runTests(type:Exec) {
+    description = 'Runs all webservice tests'
+    group = 'Test'
+    if (ep6HostName != null) {
+        def mymap = ['ep6HostName' : project.properties["ep6HostName"] ]
+        environment mymap
+    }
+    logging.captureStandardOutput LogLevel.INFO
+    workingDir projectDir.path
+    commandLine osDependantPerl('runTests.pl')
+}
+
+task check (dependsOn: runTests)
