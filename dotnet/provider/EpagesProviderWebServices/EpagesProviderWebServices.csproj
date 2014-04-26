@@ -120,12 +120,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SimpleProvisioningTest.cs" />
-    <Compile Include="Web References\ShopConfigService2Ref\Reference.cs">
-      <DependentUpon>Reference.map</DependentUpon>
-      <SubType>code</SubType>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
     <Compile Include="Web References\ShopConfigService3Ref\Reference.cs">
       <DependentUpon>Reference.map</DependentUpon>
       <SubType>code</SubType>
@@ -152,18 +146,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
-    <Compile Include="Web References\ShopConfigServiceRef\Reference.cs">
-      <DependentUpon>Reference.map</DependentUpon>
-      <SubType>code</SubType>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="Web References\ShopCountServiceRef\Reference.cs">
-      <DependentUpon>Reference.map</DependentUpon>
-      <SubType>code</SubType>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
     <Compile Include="Web References\SimpleProvisioningServiceRef\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -177,95 +159,61 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\ShopConfigService2Ref\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\ShopConfigService2Ref\ShopConfigService.wsdl" />
-    <None Include="Web References\ShopConfigService2Ref\TInfoShop.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\ShopConfigService3Ref\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\ShopConfigService3Ref\ShopConfigService.wsdl" />
-    <None Include="Web References\ShopConfigService3Ref\TInfoShop.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\ShopConfigService4Ref\EpagesTypes.xsd" />
     <None Include="Web References\ShopConfigService4Ref\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\ShopConfigService4Ref\ShopConfigService.wsdl" />
-    <None Include="Web References\ShopConfigService4Ref\TInfoShop.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\ShopConfigService5Ref\EpagesTypes.xsd" />
     <None Include="Web References\ShopConfigService5Ref\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\ShopConfigService5Ref\ShopConfigService.wsdl" />
-    <None Include="Web References\ShopConfigService5Ref\TInfoShop.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\ShopConfigService6Ref\EpagesTypes.xsd" />
     <None Include="Web References\ShopConfigService6Ref\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\ShopConfigService6Ref\ShopConfigService.wsdl" />
-    <None Include="Web References\ShopConfigService6Ref\TInfoShop.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\ShopConfigService7Ref\EpagesTypes.xsd" />
     <None Include="Web References\ShopConfigService7Ref\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\ShopConfigService7Ref\ShopConfigService.wsdl" />
-    <None Include="Web References\ShopConfigService7Ref\TInfoShop.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ShopConfigServiceRef\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\ShopConfigServiceRef\ShopConfigService.wsdl" />
-    <None Include="Web References\ShopConfigServiceRef\TInfoShop.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ShopCountServiceRef\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\ShopCountServiceRef\ShopCountService.wsdl" />
-    <None Include="Web References\ShopCountServiceRef\TShopCount.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\SimpleProvisioningServiceRef\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\SimpleProvisioningServiceRef\ShopConfigService.wsdl" />
-    <None Include="Web References\SimpleProvisioningServiceRef\TInfoShop.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <Compile Include="STA_INIFile.cs" />
-    <WebReferenceUrl Include="C:\projects\WS_DemoClients_Provider\wsdl\ShopConfigService.wsdl">
-      <UrlBehavior>Static</UrlBehavior>
-      <RelPath>Web References\ShopConfigServiceRef\</RelPath>
-    </WebReferenceUrl>
-    <WebReferenceUrl Include="C:\projects\WS_DemoClients_Provider\wsdl\ShopConfigService2.wsdl">
-      <UrlBehavior>Static</UrlBehavior>
-      <RelPath>Web References\ShopConfigService2Ref\</RelPath>
-    </WebReferenceUrl>
-    <WebReferenceUrl Include="D:\checkout\B_patch_6_0\AllOS\WebServiceExamples\WS_DemoClients_Provider\wsdl\ShopConfigService4.wsdl">
+    <None Include="Web References\ShopConfigServiceRef\ShopConfigService.wsdl" />
+    <None Include="Web References\ShopConfigServiceRef\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Compile Include="Web References\ShopConfigServiceRef\Reference.cs">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <None Include="Web References\ShopCountServiceRef\ShopCountService.wsdl" />
+    <None Include="Web References\ShopCountServiceRef\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Compile Include="Web References\ShopCountServiceRef\Reference.cs">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ShopConfigService4.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\ShopConfigService4Ref\</RelPath>
-      <UpdateFromURL>D:\checkout\B_patch_6_0\AllOS\WebServiceExamples\WS_DemoClients_Provider\wsdl\ShopConfigService4.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ShopConfigService4.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -273,10 +221,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesProviderWebServices_ShopConfigService4Ref_ShopConfigService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="D:\checkout\B_Patch_6_0\AllOS\WebServiceExamples\WS_DemoClients_Provider\wsdl\ShopConfigService5.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ShopConfigService5.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\ShopConfigService5Ref\</RelPath>
-      <UpdateFromURL>D:\checkout\B_Patch_6_0\AllOS\WebServiceExamples\WS_DemoClients_Provider\wsdl\ShopConfigService5.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ShopConfigService5.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -284,10 +232,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesProviderWebServices_ShopConfigService5Ref_ShopConfigService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="D:\checkout\B_Patch_6_0\AllOS\WebServiceExamples\WS_DemoClients_Provider\wsdl\ShopConfigService3.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ShopConfigService3.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\ShopConfigService3Ref\</RelPath>
-      <UpdateFromURL>D:\checkout\B_Patch_6_0\AllOS\WebServiceExamples\WS_DemoClients_Provider\wsdl\ShopConfigService3.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ShopConfigService3.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -297,10 +245,10 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="D:\checkout\B_patch_6_0\AllOS\WebServiceExamples\WS_DemoClients_Provider\wsdl\ShopConfigService6.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ShopConfigService6.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\ShopConfigService6Ref\</RelPath>
-      <UpdateFromURL>D:\checkout\B_patch_6_0\AllOS\WebServiceExamples\WS_DemoClients_Provider\wsdl\ShopConfigService6.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ShopConfigService6.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -308,10 +256,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesProviderWebServices_ShopConfigService6Ref_ShopConfigService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="D:\checkout\B_patch_6_0_8\AllOS\WebServiceExamples\WS_DemoClients_Provider\wsdl\SimpleProvisioningService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/SimpleProvisioningService.wsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\SimpleProvisioningServiceRef\</RelPath>
-      <UpdateFromURL>D:\checkout\B_patch_6_0_8\AllOS\WebServiceExamples\WS_DemoClients_Provider\wsdl\SimpleProvisioningService.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/SimpleProvisioningService.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -319,15 +267,11 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesProviderWebServices_SimpleProvisioningServiceRef_SimpleProvisioningService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="D:\wolo\checkout\epages5\AllOS\WebServiceExamples\WS_DemoClients_Provider\wsdl\ShopCountService.wsdl">
-      <UrlBehavior>Static</UrlBehavior>
-      <RelPath>Web References\ShopCountServiceRef\</RelPath>
-    </WebReferenceUrl>
     <WebReferences Include="Web References\" />
-    <WebReferenceUrl Include="D:\src\WebServiceExamples\WS_DemoClients_Provider\wsdl\ShopConfigService7.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ShopConfigService7.wsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\ShopConfigService7Ref\</RelPath>
-      <UpdateFromURL>D:\src\WebServiceExamples\WS_DemoClients_Provider\wsdl\ShopConfigService7.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ShopConfigService7.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -335,6 +279,29 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>EpagesProviderWebServices_ShopConfigService7Ref_ShopConfigService</CachedSettingsPropName>
     </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ShopConfigService.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ShopConfigServiceRef</RelPath>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ShopConfigService.wsdl</UpdateFromURL>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ShopCountService.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ShopCountServiceRef</RelPath>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ShopCountService.wsdl</UpdateFromURL>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ShopConfigService2.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ShopConfigService2Ref</RelPath>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ShopConfigService2.wsdl</UpdateFromURL>
+    </WebReferenceUrl>
+    <None Include="Web References\ShopConfigService2Ref\ShopConfigService.wsdl" />
+    <None Include="Web References\ShopConfigService2Ref\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Compile Include="Web References\ShopConfigService2Ref\Reference.cs">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">

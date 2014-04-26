@@ -542,7 +542,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="setSecondaryDomains">
-      <soap:operation soapAction="urn://epages.de/WebService/ShopConfigService/2014/03#setSecondaryDomain" />
+      <soap:operation soapAction="urn://epages.de/WebService/ShopConfigService/2014/03#setSecondaryDomains" />
       <wsdl:input>
         <soap:body use="encoded" namespace="urn://epages.de/WebService/ShopConfigService/2014/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
