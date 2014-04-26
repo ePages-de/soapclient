@@ -23,8 +23,8 @@ namespace EpagesWebServices
 		string FName1 = "be_40401_blue.jpg";
 		
 		// for upload
-		string FileName  = "../../../../TestData/ProductImageService/cg_0100504001.jpg";
-		string FileName1 = "../../../../TestData/ProductImageService/be_40401_blue.jpg";
+		string FileName  = "../../../../../TestData/ProductImageService/cg_0100504001.jpg";
+		string FileName1 = "../../../../../TestData/ProductImageService/be_40401_blue.jpg";
 
 		string SCALE_BORDER_COLOR_h = "#FFFFFF";
 		string SCALE_BORDER_COLOR_m = "#FFFFFF";

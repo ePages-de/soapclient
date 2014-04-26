@@ -118,7 +118,7 @@ namespace EpagesWebServices
             Product_update.Path = path + alias;
 			TLocalizedValue name_de_update  = new TLocalizedValue();
 			    name_de_update.LanguageCode = "de";
-			    name_de_update.Value        = "ver‰ndertes Test-Hauptprodukt";
+			name_de_update.Value        = "ver√§ndertes Test-Hauptprodukt";
 			TLocalizedValue name_en_update  = new TLocalizedValue();
 			    name_en_update.LanguageCode = "en";
 			    name_en_update.Value        = "updated test master product";
@@ -241,7 +241,7 @@ namespace EpagesWebServices
             download_up.FileName = "image_download.jpg";
             download_up.Position = "10";
 
-            FileStream fs = File.OpenRead("../../../../TestData/ProductImageService/cg_0100504001.jpg");
+            FileStream fs = File.OpenRead("../../../../../TestData/ProductImageService/cg_0100504001.jpg");
             BinaryReader br = new BinaryReader(fs);
             download_up.FileContent = br.ReadBytes((int)fs.Length);
 

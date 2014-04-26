@@ -567,7 +567,7 @@ my $Product_down = { %Product,
     ],
 };
 
-my $Content = GetFileContent('../../TestData/ProductImageService/be_40401_blue.jpg');
+my $Content = GetFileContent('../../../TestData/ProductImageService/be_40401_blue.jpg');
 my $Product_down_upload = { %Product,
     'IsDownloadProduct' => SOAP::Data->type('boolean')->value(1),
     'MaxDownloadTime'   => 5,
