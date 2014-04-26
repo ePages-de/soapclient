@@ -1,5 +1,6 @@
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual C# Express 2008
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpagesProviderWebServices", "EpagesProviderWebServices.csproj", "{0375A8F5-8D12-4260-B9C2-2AE00E58FB4B}"
 EndProject
 Global
@@ -12,6 +13,9 @@ Global
 		{0375A8F5-8D12-4260-B9C2-2AE00E58FB4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0375A8F5-8D12-4260-B9C2-2AE00E58FB4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0375A8F5-8D12-4260-B9C2-2AE00E58FB4B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = EpagesProviderWebServices.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

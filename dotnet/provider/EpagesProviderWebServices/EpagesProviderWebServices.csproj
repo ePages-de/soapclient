@@ -11,8 +11,6 @@
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
     <AssemblyName>EpagesProviderWebServices</AssemblyName>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
     <DefaultClientScript>JScript</DefaultClientScript>
     <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
@@ -48,55 +46,36 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
-    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DocumentationFile>
-    </DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
-    <NoStdLib>false</NoStdLib>
-    <NoWarn>
-    </NoWarn>
     <Optimize>false</Optimize>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningLevel>4</WarningLevel>
     <DebugType>full</DebugType>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
-    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
     <DefineConstants>TRACE</DefineConstants>
-    <DocumentationFile>
-    </DocumentationFile>
-    <DebugSymbols>false</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
-    <NoStdLib>false</NoStdLib>
-    <NoWarn>
-    </NoWarn>
     <Optimize>true</Optimize>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningLevel>4</WarningLevel>
     <DebugType>none</DebugType>
     <ErrorReport>prompt</ErrorReport>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
+    <Reference Include="nunit.framework, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -274,13 +253,14 @@
     <None Include="Web References\SimpleProvisioningServiceRef\TInfoShop.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
+    <Compile Include="STA_INIFile.cs" />
     <WebReferenceUrl Include="C:\projects\WS_DemoClients_Provider\wsdl\ShopConfigService.wsdl">
-      <RelPath>Web References\ShopConfigServiceRef\</RelPath>
       <UrlBehavior>Static</UrlBehavior>
+      <RelPath>Web References\ShopConfigServiceRef\</RelPath>
     </WebReferenceUrl>
     <WebReferenceUrl Include="C:\projects\WS_DemoClients_Provider\wsdl\ShopConfigService2.wsdl">
-      <RelPath>Web References\ShopConfigService2Ref\</RelPath>
       <UrlBehavior>Static</UrlBehavior>
+      <RelPath>Web References\ShopConfigService2Ref\</RelPath>
     </WebReferenceUrl>
     <WebReferenceUrl Include="D:\checkout\B_patch_6_0\AllOS\WebServiceExamples\WS_DemoClients_Provider\wsdl\ShopConfigService4.wsdl">
       <UrlBehavior>Static</UrlBehavior>
@@ -305,8 +285,8 @@
       <CachedSettingsPropName>EpagesProviderWebServices_ShopConfigService5Ref_ShopConfigService</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="D:\checkout\B_Patch_6_0\AllOS\WebServiceExamples\WS_DemoClients_Provider\wsdl\ShopConfigService3.wsdl">
-      <RelPath>Web References\ShopConfigService3Ref\</RelPath>
       <UrlBehavior>Static</UrlBehavior>
+      <RelPath>Web References\ShopConfigService3Ref\</RelPath>
       <UpdateFromURL>D:\checkout\B_Patch_6_0\AllOS\WebServiceExamples\WS_DemoClients_Provider\wsdl\ShopConfigService3.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
@@ -340,8 +320,8 @@
       <CachedSettingsPropName>EpagesProviderWebServices_SimpleProvisioningServiceRef_SimpleProvisioningService</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="D:\wolo\checkout\epages5\AllOS\WebServiceExamples\WS_DemoClients_Provider\wsdl\ShopCountService.wsdl">
-      <RelPath>Web References\ShopCountServiceRef\</RelPath>
       <UrlBehavior>Static</UrlBehavior>
+      <RelPath>Web References\ShopCountServiceRef\</RelPath>
     </WebReferenceUrl>
     <WebReferences Include="Web References\" />
     <WebReferenceUrl Include="D:\src\WebServiceExamples\WS_DemoClients_Provider\wsdl\ShopConfigService7.wsdl">
