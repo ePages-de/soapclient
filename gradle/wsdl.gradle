@@ -33,6 +33,9 @@ ext {
     'ShopCountService',
     'ShopTransferService',
     'SimpleProvisioningService',
+
+    //// multistore services ////
+    'MultiStoreMasterService',
     ]
 
   /* previous versions of all supported services */
