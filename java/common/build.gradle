@@ -1,2 +1,4 @@
+apply plugin: 'maven-publish'
+
 archivesBaseName = 'soapclient-common'
 description = 'Base packages for AXIS 1.x based SOAP client for epages6'
