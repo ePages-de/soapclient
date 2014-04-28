@@ -1,5 +1,3 @@
-configure(subprojects.findAll()) {
-
 ext {
   /* latest version of all services (part of the wsdl filename) */
   currentServices = [
@@ -37,7 +35,7 @@ ext {
 
     //// multistore services ////
     'MultiStoreMasterService',
-    ]
+  ]
 
   /* previous versions of all supported services */
   oldServices = [
@@ -101,9 +99,36 @@ ext {
     'ShopConfigService4',
     'ShopConfigService5',
   ]
-
-  onlyThisService = rootProject.properties["onlyThisService"]
-  ep6HostName = rootProject.properties["ep6HostName"]
 }
 
+allprojects {
+    ext {
+        onlyThisService = rootProject.properties["onlyThisService"]
+        ep6HostName = rootProject.properties["ep6HostName"]
+        wsdlBaseUrl = rootProject.properties["wsdlBaseUrl"] ?: "${System.env.EPAGES_WEBROOT}/WSDL/"
+    }
 }
+
+////////// publish wsdls /////////////
+apply plugin: 'maven-publish'
+apply plugin: 'bintray'
+
+task wsdlsZip(type: Zip) {
+    destinationDir = project.buildDir
+    from(file("${System.env.EPAGES_WEBROOT}/WSDL/"))
+    baseName = "soapclient-wsdls-${rootProject.version}"
+    include '*.wsdl'
+    include '*.xsd'
+}
+
+artifacts { wsdlsZip }
+
+publishing {
+    publications {
+        mavenWsdl(MavenPublication) {
+            artifact wsdlsZip
+        }
+    }
+}
+
+bintray.publications 'mavenWsdl'

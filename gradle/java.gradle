@@ -2,7 +2,7 @@ configure(subprojects.findAll {it.name.contains("java/")}) {
     apply plugin: "java"
 
     group = 'de.epages'
-    version = '1.4.15-SNAPSHOT'
+    version = rootProject.version
 
     repositories { mavenCentral() }
 
@@ -70,7 +70,6 @@ configure(subprojects.findAll {it.name.contains("java/")}) {
 
     compileJava {
         options.with {
-            compilerArgs << "-Xlint:unchecked"
             options.encoding = 'UTF-8'
         }
     }
@@ -87,23 +86,23 @@ configure(subprojects.findAll {it.name.contains("java/")}) {
         currentTask.outputs.dir file(outputDir)
         currentTask.outputs.upToDateWhen({ false })
         currentTask.ant.taskdef(
-                name: 'codegen',
-                classname: 'org.apache.axis.tools.ant.wsdl.Wsdl2javaAntTask',
-                classpath: configurations.axisGenTask.asPath,
-                )
+            name: 'codegen',
+            classname: 'org.apache.axis.tools.ant.wsdl.Wsdl2javaAntTask',
+            classpath: configurations.axisGenTask.asPath,
+        )
 
         currentTask.doLast {
             file(outputDir).mkdirs()
             wsdls.grep { serviceName -> onlyThisService != null ? serviceName.equals(onlyThisService) : true }
             .each { def serviceName ->
-                def url = (properties["wsdlBaseUrl"] ?: "${System.env.EPAGES_WEBROOT}/WSDL/") + "${serviceName}.wsdl"
+                def url = wsdlBaseUrl + "${serviceName}.wsdl"
                 ant.echo(message: "Generating classes for ${serviceName} from ${url}")
                 ant.codegen(
-                        url: url,
-                        output: outputDir,
-                        verbose: true,
-                        helpergen: false,
-                        )
+                    url: url,
+                    output: outputDir,
+                    verbose: true,
+                    helpergen: false,
+                )
             }
         }
     }

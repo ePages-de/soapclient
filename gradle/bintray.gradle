@@ -1,9 +1,25 @@
+allprojects {
+    apply plugin: 'bintray'
+    apply plugin: 'maven-publish'
+}
+
+bintray {
+    user = rootProject.properties['bintray.user']
+    key = rootProject.properties['bintray.apiKey']
+    pkg {
+        repo = 'maven'
+        userOrg = 'epages' // an optional organization name when the repo belongs to one of the user's orgs
+        name = "epages-soapclient"
+        desc = "AXIS 1.x based SOAP clients for epages6"
+        licenses = ['Apache-2.0']
+        labels = ['soap','epages']
+    }
+    dryRun = rootProject.properties['bintray.dryRun'] ?: false // whether to run this as dry-run, without deploying
+}
+
 configure(subprojects.findAll { it.name.contains("java/") }) {
 
-	apply plugin: 'maven-publish'
-	apply plugin: 'bintray'
 	/////////////////////// publishing /////////////////////////
-
 	def pomConfig = {
 		licenses {
 			license {
@@ -20,8 +36,6 @@ configure(subprojects.findAll { it.name.contains("java/") }) {
 			}
 		}
 	}
-
-    def pomFile = file('build/' + archivesBaseName.replaceAll("java/","soapclient-") + '-' + version + '.pom')
 
     publishing {
         publications {
@@ -40,30 +54,5 @@ configure(subprojects.findAll { it.name.contains("java/") }) {
             }
         }
     }
-
-    model {
-        generatePomFileForMavenJavaPublication {
-            destination = pomFile
-        }
-    }
-
-    project.artifacts {
-        archives pomFile
-    }
-
-
-    bintray {
-		user = rootProject.properties['bintray.user']
-		key = rootProject.properties['bintray.apiKey']
-		publications = [ 'mavenJava' ]
-		pkg {
-			repo = 'maven'
-			userOrg = 'epages' // an optional organization name when the repo belongs to one of the user's orgs
-			name = "epages-soapclient"
-			desc = "AXIS 1.x based SOAP clients for epages6"
-			licenses = ['Apache-2.0']
-			labels = ['soap','epages']
-		}
-		dryRun = rootProject.properties['bintray.dryRun'] ?: false // whether to run this as dry-run, without deploying
-	}
+    bintray.publications 'mavenJava'
 }
