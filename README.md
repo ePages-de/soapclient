@@ -13,9 +13,9 @@
 
 ## Running tests with Gradle ##
 
-1. run "./gradlew check" (Linux) or "gradlew.bat check" (Windows) in project folder.
+1. run ```./gradlew check``` (Linux) or ```gradlew.bat check``` (Windows) in project folder.
 2. If epages6 is not installed locally, use the
-   gradle property "ep6HostName" to an epages6 installation (-Pep6HostName=somehost)
+   gradle property "ep6HostName" to an epages6 installation (```-Pep6HostName=somehost```)
 
 ## Development in Eclipse ##
 
@@ -25,7 +25,7 @@
 4. Select soapclient and all subprojects and click Finish
 5. If epages6 is not installed locally, use the
    system property "ep6HostName" in launch configuration to point
-   to an epages6 installation (-Dep6HostName=somehost)
+   to an epages6 installation (```-Dep6HostName=somehost```)
 
 ### The test cases use following configuration ###
 
@@ -33,8 +33,8 @@
 - The feature "Program Interface for Web Services" must be enabled in the shop.
 - Web service endpoint: http://$SystemDomainName/epages/Store.soap
   the SystemDomainName comes from epages/Shared/Config/epages.conf
-  but can be overridden via command-line parameter (for gradle: -Pep6HostName=somehost,
-  for running with eclipse: -Dep6HostName=someHost)
+  but can be overridden via command-line parameter (for gradle: ```-Pep6HostName=somehost```,
+  for running with eclipse: ```-Dep6HostName=someHost```)
 
 ### Note ###
 
@@ -101,10 +101,10 @@ dependencies {
 
 #### Regenerating stub classes ####
 
-1. run "./gradlew generate" (Linux) or "gradlew.cmd generate" (Windows) in java/$x subproject folder.
+1. run ```../../gradlew generate``` (Linux) or ```../../gradlew.cmd generate``` (Windows) in java/$x subproject folder.
 2. If epages6 is not installed locally, use the
    gradle property "wsdlBaseUrl" to point to a WSDL directory or an epages6
-   installation (-PwsdlBaseUrl=http://somehost/WebRoot/WSDL/)
+   installation (```-PwsdlBaseUrl=http://somehost/WebRoot/WSDL/```)
 3. You usually only want to regenerate stubs for a specific webservice, so pass
-   the gradle property "onlyThisService" (-PonlyThisService=ProductTypeService2)
+   the gradle property "onlyThisService" (```-PonlyThisService=ProductTypeService2```)
 
