@@ -91,11 +91,11 @@ repositories {
 ```
 dependencies {
     // dependency for shop webservices
-    compile 'de.epages:soapclient-shop:1.4.13'
+    compile 'de.epages:soapclient-shop:1.4.14'
     // dependency for provider webservices
-    compile 'de.epages:soapclient-provider:1.4.13'
+    compile 'de.epages:soapclient-provider:1.4.14'
     // dependency for multistore webservices
-    compile 'de.epages:soapclient-multistore:1.4.13'
+    compile 'de.epages:soapclient-multistore:1.4.14'
 }
 ```
 
