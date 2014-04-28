@@ -1,0 +1,9 @@
+apply plugin: 'maven-publish'
+
+dependencies {
+    compile project(':java/common')
+    testCompile project(path: ':java/common', configuration: 'testApi')
+}
+
+archivesBaseName = 'soapclient-provider'
+description = 'AXIS 1.x based SOAP client for epages6 ProviderServices'

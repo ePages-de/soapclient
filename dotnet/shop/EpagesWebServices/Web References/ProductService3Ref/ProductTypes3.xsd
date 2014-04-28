@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/ProductTypes/2008/09" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/ProductTypes/2008/09" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="EpagesTypes.xsd" namespace="urn://epages.de/WebService/EpagesTypes/2005/01" />
+  <xs:complexType name="TGetInfo_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a getInfo() product call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Alias" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product alias</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Class" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product class (object path)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Name" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product's name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Description" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product's description</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="LongDescription" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product's long description</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Keywords" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product's key words</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="TaxClass" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's tax class (object path to a tax class)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsVisible" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsNew" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsDailyPrice" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OrderUnit" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's main unit (object path to a unit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PriceQuantity" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's main quantity (all prices are based on this amount of OrderUnits)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="MinOrder" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's minimum order amount (minimum quantity in order)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IntervalOrder" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's interval amount (quantity step in order)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="WeightUnit" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's weight unit (object path to a unit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Weight" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's weight (in WeightUnit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="RefUnit" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's reference unit (object path to a unit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="RefAmount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's reference amount (in RefUnit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="RefContentAmount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's reference content amount (amount of RefUnit actually in the product)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="StockLevel" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's stock level (in OrderUnit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="StockLevelAlert" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's stock level alert (in OrderUnit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Manufacturer" type="xs:string" />
+      <xs:element minOccurs="0" name="ManufacturerSKU" type="xs:string" />
+      <xs:element minOccurs="0" name="DeliveryPeriod" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's delivery period as string</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Length" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's length (in millimeter)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Width" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's width (in millimeter)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Height" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's height (in millimeter)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="WebUrl" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's storefront web url</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IsAvailable" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>Indicates that the product is for sale.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="AvailabilityComment" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>Comment displayed if product is not available (see IsAvailable).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="AvailabilityDate" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>Date when the product is going to be available/is for sale.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="SuperProduct" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>object path to variation's super product (if this is a variation (sub product))</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="SubProducts" type="tns:ListOfSubProducts">
+        <xs:annotation>
+          <xs:documentation>
+            super product's variations (if this is a product with variations (super product))
+            (see producttypes:ListOfSubProducts)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="DefaultSubProduct" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's default sub product (if this is a product with variations (super product))</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsDefault" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>indicates, if this variation is the default one of the super product (if this is a variation (sub product))</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="HasSubOwnPrices" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>indicates, if own prices of sub product should be used (if this is a variation (sub product))</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="VariationAttributes" type="epagestypes:ListOfAttributes">
+        <xs:annotation>
+          <xs:documentation>
+            if this is a product with variations (super product): all possible attribute keys and all used values(comma seperated)
+            if this is a variation (sub product): the actual attribute keys and values of the variation
+            (see epagestypes:ListOfAttributes)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ProductPrices" type="tns:ListOfProductPrices">
+        <xs:annotation>
+          <xs:documentation>list of product prices (see producttypes:ListOfListOfProductPrices)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Attributes" type="epagestypes:ListOfAttributes">
+        <xs:annotation>
+          <xs:documentation>list of requested attributes (see epagestypes:ListOfAttributes)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TExists_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a exists() product call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        the exists flag will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="exists" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that this product exists</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TDelete_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a delete() product call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        the deleted flag will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="deleted" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that this product was deleted</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TUpdate_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input arguments of a single update() product call.
+        a set of optional product specific attributes that will be updated.
+        the path element is mandatory.
+        all others are optional.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Class" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's class (object path to a product type)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Name" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product's name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Description" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product's description</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="LongDescription" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product's long description</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Keywords" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product's key words</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="TaxClass" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's tax class (object path to a tax class)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsVisible" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsNew" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsDailyPrice" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OrderUnit" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's main unit (object path to a unit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PriceQuantity" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's main quantity (all prices are based on this amount of OrderUnits)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="MinOrder" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's minimum order amount (minimum quantity in order)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IntervalOrder" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's interval amount (quantity step in order)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="WeightUnit" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's weight unit (object path to a unit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Weight" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's weight (in WeightUnit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="RefUnit" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's reference unit (object path to a unit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="RefAmount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's reference amount (in RefUnit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="RefContentAmount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's reference content amount (amount of RefUnit actually in the product)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="StockLevel" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's stock level (in OrderUnit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="StockLevelAlert" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's stock level alert (in OrderUnit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Manufacturer" type="xs:string" />
+      <xs:element minOccurs="0" name="ManufacturerSKU" type="xs:string" />
+      <xs:element minOccurs="0" name="DeliveryPeriod" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's delivery period as string</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Length" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's length (in millimeter)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Width" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's width (in millimeter)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Height" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's height (in millimeter)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsAvailable" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>Indicates that the product is for sale.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="AvailabilityComment" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>Comment displayed if product is not available (see IsAvailable).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="AvailabilityDate" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>Date when the product is going to be available/is for sale.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="DefaultSubProduct" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's default sub product (if this is a product with variations (super product))</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsDefault" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>indicates, if this variation is the default one of the super product (if this is a variation (sub product))</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="HasSubOwnPrices" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>indicates, if own prices of sub product should be used (if this is a variation (sub product))</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ProductPrices" type="tns:ListOfProductPrices">
+        <xs:annotation>
+          <xs:documentation>list of product prices (see producttypes:ListOfListOfProductPrices)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Attributes" type="epagestypes:ListOfAttributes">
+        <xs:annotation>
+          <xs:documentation>list of requested attributes (see epagestypes:ListOfAttributes)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TUpdate_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a update() product call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        the updated flag will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="updated" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that this product was updated</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TCreate_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input arguments of a single create() product call.
+        a set of product specific attributes that will be used to create a product.
+        alias, tax class are mandatory.
+        variation attributes are mandatory for creation of sub products.
+        all others are optional.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product alias</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Class" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's class (object path to a product type)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Name" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product's name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Description" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product's description</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="LongDescription" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product's long description</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Keywords" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>product's key words</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxClass" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's tax class (object path to a tax class)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsVisible" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsNew" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsDailyPrice" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OrderUnit" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's main unit (object path to a unit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PriceQuantity" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's main quantity (all prices are based on this amount of OrderUnits)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="MinOrder" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's minimum order amount (minimum quantity in order)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IntervalOrder" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's interval amount (quantity step in order)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="WeightUnit" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's weight unit (object path to a unit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Weight" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's weight (in WeightUnit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="RefUnit" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's reference unit (object path to a unit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="RefAmount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's reference amount (in RefUnit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="RefContentAmount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's reference content amount (amount of RefUnit actually in the product)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="StockLevel" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's stock level (in OrderUnit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="StockLevelAlert" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's stock level alert (in OrderUnit)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Manufacturer" type="xs:string" />
+      <xs:element minOccurs="0" name="ManufacturerSKU" type="xs:string" />
+      <xs:element minOccurs="0" name="DeliveryPeriod" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's delivery period as string</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Length" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's length (in millimeter)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Width" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's width (in millimeter)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Height" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>product's height (in millimeter)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsAvailable" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>Indicates that the product is for sale.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="AvailabilityComment" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>Comment displayed if product is not available (see IsAvailable).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="AvailabilityDate" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>Date when the product is going to be available/is for sale.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="SuperProduct" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>object path to variation's super product (if this is a variation (sub product))</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="DefaultSubProduct" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product's default sub product (if this is a product with variations (super product))</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsDefault" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>indicates, if this variation is the default one of the super product (if this is a variation (sub product))</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="HasSubOwnPrices" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>indicates, if own prices of sub product should be used (if this is a variation (sub product))</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="VariationAttributes" type="epagestypes:ListOfAttributes">
+        <xs:annotation>
+          <xs:documentation>
+            if this is a variation (sub product): the actual attribute keys and values of the variation
+            (see epagestypes:ListOfAttributes)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ProductPrices" type="tns:ListOfProductPrices">
+        <xs:annotation>
+          <xs:documentation>list of product prices (see producttypes:ListOfListOfProductPrices)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Attributes" type="epagestypes:ListOfAttributes">
+        <xs:annotation>
+          <xs:documentation>list of requested attributes (see epagestypes:ListOfAttributes)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TCreate_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a create() product call.
+        the alias will be always returned.
+        the error element will be returned in case of error.
+        the created flag and path will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string" />
+      <xs:element minOccurs="0" name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="created" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that this product was created</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ListOfSubProducts">
+    <xs:annotation>
+      <xs:documentation>
+        list of product paths.
+        each element is a object path of a sub product.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ListOfProductPrices">
+    <xs:annotation>
+      <xs:documentation>
+        list of product prices.
+        (see producttypes:TProductPrice).
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TProductPrice[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TProductPrice">
+    <xs:annotation>
+      <xs:documentation>
+        a single product price for a currency and a tax model.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Price" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the actual price (in currency id)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CurrencyID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the currency id (e.g. 'USD')</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxModel" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the tax model ('gross' or 'net')</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+</xs:schema>

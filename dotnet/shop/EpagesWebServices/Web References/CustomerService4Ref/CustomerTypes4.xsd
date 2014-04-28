@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:shoptypes="urn://epages.de/WebService/ShopTypes/2011/01" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:tns="urn://epages.de/WebService/CustomerTypes/2011/01" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/CustomerTypes/2011/01" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="EpagesTypes.xsd" namespace="urn://epages.de/WebService/EpagesTypes/2005/01" />
+  <xs:import schemaLocation="ShopTypes3.xsd" namespace="urn://epages.de/WebService/ShopTypes/2011/01" />
+  <xs:complexType name="TGetInfo_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a getInfo() customer call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>customer object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Alias" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>customer alias</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Class" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>path to customer's class</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="CustomerGroup" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the customer's group (object path to group)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="TaxArea" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>customer's tax area (object path to tax area)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="TaxModel" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>customer's tax model ("gross" or "net")</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="CurrencyID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>customer's currency:   obsolete</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsHtmlEMailAllowed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsDoOrderAllowed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Comment" type="xs:string" />
+      <xs:element minOccurs="0" name="BillingAddress" type="shoptypes:TAddressNamed" />
+      <xs:element minOccurs="0" name="Users" type="tns:ListOfUserPaths">
+        <xs:annotation>
+          <xs:documentation>list of assigned users (see customertypes:ListOfUserPaths)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Attributes" type="epagestypes:ListOfAttributes">
+        <xs:annotation>
+          <xs:documentation>list of requested attributes (see epagestypes:ListOfAttributes)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TExists_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a exists() customer call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        the exists flag will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="exists" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that this customer exists</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TDelete_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a delete() customer call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        the deleted flag will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="deleted" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that this customer was deleted</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TUpdate_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input arguments of a single update() customer call.
+        a set of optional customer specific attributes that will be updated.
+        the path element is mandatory.
+        all others are optional.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>customer path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="CustomerGroup" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the customer's group (object path to group)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="TaxArea" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>customer's tax area (object path to tax area)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="TaxModel" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>customer's tax model ("gross" or "net")</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="CurrencyID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>customer's currency:   obsolete</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsHtmlEMailAllowed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsDoOrderAllowed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Comment" type="xs:string" />
+      <xs:element minOccurs="0" name="BillingAddress" type="shoptypes:TAddressNamed" />
+      <xs:element minOccurs="0" name="Users" type="tns:ListOfUserPaths">
+        <xs:annotation>
+          <xs:documentation>list of assigned users (see customertypes:ListOfUserPaths)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Attributes" type="epagestypes:ListOfAttributes">
+        <xs:annotation>
+          <xs:documentation>list of requested attributes (see epagestypes:ListOfAttributes)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TUpdate_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a update() customer call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        the updated flag will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="updated" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that this customer was updated</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TCreate_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input arguments of a single create() customer call.
+        a set of customer specific attributes that will be used to create a customer.
+        the alias element is optional, a new alias will be created if omitted.
+        customer group, tax area, tax model, currency, address are mandatory.
+        all others are optional.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element minOccurs="0" name="Alias" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>customer alias</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CustomerGroup" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the customer's group (object path to group)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxArea" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>customer's tax area (object path to tax area)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxModel" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>customer's tax model ("gross" or "net")</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CurrencyID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>customer's currency (e.g. "EUR" or "USD")</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsHtmlEMailAllowed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsDoOrderAllowed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Comment" type="xs:string" />
+      <xs:element name="BillingAddress" type="shoptypes:TAddressNamed" />
+      <xs:element minOccurs="0" name="Users" type="tns:ListOfUserPaths">
+        <xs:annotation>
+          <xs:documentation>list of assigned users (see customertypes:ListOfUserPaths)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Attributes" type="epagestypes:ListOfAttributes">
+        <xs:annotation>
+          <xs:documentation>list of requested attributes (see epagestypes:ListOfAttributes)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TCreate_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a create() customer call.
+        the alias will be always returned.
+        the error element will be returned in case of error.
+        the created flag and path will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string" />
+      <xs:element minOccurs="0" name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="created" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that this customer was created</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ListOfUserPaths">
+    <xs:annotation>
+      <xs:documentation>
+        list of user paths.
+        each element is a object path of a user.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

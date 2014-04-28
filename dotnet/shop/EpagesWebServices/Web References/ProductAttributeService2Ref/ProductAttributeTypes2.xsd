@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/ProductAttributeTypes/2007/01" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/ProductAttributeTypes/2007/01" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="EpagesTypes.xsd" namespace="urn://epages.de/WebService/EpagesTypes/2005/01" />
+  <xs:complexType name="TGetInfoList_Out">
+    <xs:annotation>
+      <xs:documentation>output structure of an getInfoList call.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TGetInfoList_Return[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TGetInfoList_Return">
+    <xs:annotation>
+      <xs:documentation>a single return value of a getInfoList call. the Alias will be always returned. the error element will be returned in case of error.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string" />
+      <xs:element name="Name" type="epagestypes:ListOfLocalizedValues" />
+      <xs:element name="Description" type="epagestypes:ListOfLocalizedValues" />
+      <xs:element name="Path" type="xs:string" />
+      <xs:element name="Type" type="xs:string" />
+      <xs:element name="IsVisible" type="xs:boolean" />
+      <xs:element name="IsHTML" type="xs:boolean" />
+      <xs:element name="IsUserDefined" type="xs:boolean" />
+      <xs:element name="IsVariationAttribute" type="xs:boolean" />
+      <xs:element name="ProductTypeAlias" type="xs:string" />
+      <xs:element name="ProductTypeName" type="epagestypes:ListOfLocalizedValues" />
+      <xs:element minOccurs="0" name="PreDefAttributes" type="tns:ListOfPreDefAttributes" />
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ListOfPreDefAttributes">
+    <xs:annotation>
+      <xs:documentation>
+        list of pre defined attributes with values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TPreDefAttribute[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TPreDefAttribute">
+    <xs:annotation>
+      <xs:documentation>an pre defined attribute value. Value will be used for not-localized attributes. LocalizedValues will be used for localized attributes.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>name of attribute (unique identifier)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Value" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>value of attribute. epages objects will be serialized with their object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="LocalizedValues" type="epagestypes:ListOfLocalizedValues">
+        <xs:annotation>
+          <xs:documentation>localized values of attribute. see epagestypes:ListOfLocalizedValues</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+</xs:schema>

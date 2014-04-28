@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:catalogtypes="urn://epages.de/WebService/CatalogTypes/2011/03" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:tns="urn://epages.de/WebService/CatalogService/2011/03" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="CatalogService" targetNamespace="urn://epages.de/WebService/CatalogService/2011/03" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <documentation>
+    this is a web service for an epages e-commerce system.
+    this service is a container for all methods in the catalog context.
+    needs ePages 6.11.3 or higher
+  </documentation>
+  <wsdl:types>
+    <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/CatalogService/2011/03">
+      <xs:import schemaLocation="CatalogTypes6.xsd" namespace="urn://epages.de/WebService/CatalogTypes/2011/03" />
+      <xs:import schemaLocation="EpagesTypes.xsd" namespace="urn://epages.de/WebService/EpagesTypes/2005/01" />
+      <xs:complexType name="type_GetInfo_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of a getInfo() catalog call.
+            a simple list of catalog pathes.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetInfo_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a getInfo() catalog call.
+            see catalogtypes:TGetInfo_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="catalogtypes:TGetInfo_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_AttributeNames_In">
+        <xs:annotation>
+          <xs:documentation>
+            additional input of a getInfo() catalog call.
+            a simple list of attribute names.
+            defines the content of the returned attribute name-value list.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_LanguageCodes_In">
+        <xs:annotation>
+          <xs:documentation>
+            additional input of a getInfo() catalog call.
+            a simple list of language codes (e.g. 'en').
+            defines the content of the returned localized values.
+            this list is optional (all shop languages will be used if not provided).
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Exists_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an exists() catalog call.
+            a simple list of catalog paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Exists_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an exists() catalog call.
+            see catalogtypes:TExists_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="catalogtypes:TExists_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Delete_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of a delete() catalog call.
+            a simple list of catalog paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Delete_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a delete() catalog call.
+            see catalogtypes:TDelete_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="catalogtypes:TDelete_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Update_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an update() catalog call.
+            see catalogtypes:TUpdate_Input
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="catalogtypes:TUpdate_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Update_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an update() catalog call.
+            see catalogtypes:TUpdate_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="catalogtypes:TUpdate_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Create_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of a create() catalog call.
+            see catalogtypes:TCreate_Input
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="catalogtypes:TCreate_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Create_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a create() catalog call.
+            see catalogtypes:TCreate_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="catalogtypes:TCreate_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TGetRoot_Return">
+        <xs:annotation>
+          <xs:documentation>
+            The return value of a getRoot() catalog call.
+            the error element will be returned in case of error.
+            the path element will be returned if no error has occured.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:all>
+          <xs:element minOccurs="0" name="Path" type="xs:string" />
+          <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+            <xs:annotation>
+              <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:all>
+      </xs:complexType>
+      <xs:complexType name="type_SortProducts_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an sortProducts() catalog call.
+            see catalogtypes:TSortProducts_Input
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="catalogtypes:TSortProducts_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_SortProducts_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an sortProducts() catalog call.
+            see catalogtypes:TSortProducts_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="catalogtypes:TSortProducts_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetCategories_Return">
+        <xs:annotation>
+          <xs:documentation>
+            The return value of a getCategories() catalog call.
+            returns a simple list of all catalog paths of the shop
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="msg_GetInfo_Input">
+    <wsdl:part name="Catalogs" type="tns:type_GetInfo_In" />
+    <wsdl:part name="Attributes" type="tns:type_AttributeNames_In" />
+    <wsdl:part name="LanguageCodes" type="tns:type_LanguageCodes_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetInfo_Output">
+    <wsdl:part name="Catalogs" type="tns:type_GetInfo_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Exists_Input">
+    <wsdl:part name="Catalogs" type="tns:type_Exists_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Exists_Output">
+    <wsdl:part name="Catalogs" type="tns:type_Exists_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Delete_Input">
+    <wsdl:part name="Catalogs" type="tns:type_Delete_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Delete_Output">
+    <wsdl:part name="Catalogs" type="tns:type_Delete_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Update_Input">
+    <wsdl:part name="Catalogs" type="tns:type_Update_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Update_Output">
+    <wsdl:part name="Catalogs" type="tns:type_Update_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Create_Input">
+    <wsdl:part name="Catalogs" type="tns:type_Create_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Create_Output">
+    <wsdl:part name="Catalogs" type="tns:type_Create_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetRoot_Input" />
+  <wsdl:message name="msg_GetRoot_Output">
+    <wsdl:part name="Root" type="tns:TGetRoot_Return" />
+  </wsdl:message>
+  <wsdl:message name="msg_SortProducts_Input">
+    <wsdl:part name="Catalogs" type="tns:type_SortProducts_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_SortProducts_Output">
+    <wsdl:part name="Catalogs" type="tns:type_SortProducts_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetCategories_Input" />
+  <wsdl:message name="msg_GetCategories_Output">
+    <wsdl:part name="Categories" type="tns:type_GetCategories_Return" />
+  </wsdl:message>
+  <wsdl:message name="msg_Upload_Input">
+    <wsdl:part name="TObjectPath" type="xs:string" />
+    <wsdl:part name="ImageData" type="catalogtypes:TUpload_Input" />
+  </wsdl:message>
+  <wsdl:message name="msg_Upload_Output">
+    <wsdl:part name="Files" type="catalogtypes:TUpload_Return" />
+  </wsdl:message>
+  <wsdl:portType name="port_Catalog">
+    <wsdl:operation name="getInfo">
+      <documentation>get information about a list of catalogs</documentation>
+      <wsdl:input message="tns:msg_GetInfo_Input" />
+      <wsdl:output message="tns:msg_GetInfo_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <documentation>check if a list of catalogs exist.</documentation>
+      <wsdl:input message="tns:msg_Exists_Input" />
+      <wsdl:output message="tns:msg_Exists_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <documentation>delete a list of catalogs</documentation>
+      <wsdl:input message="tns:msg_Delete_Input" />
+      <wsdl:output message="tns:msg_Delete_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <documentation>update a list of catalogs</documentation>
+      <wsdl:input message="tns:msg_Update_Input" />
+      <wsdl:output message="tns:msg_Update_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <documentation>create new catalogs</documentation>
+      <wsdl:input message="tns:msg_Create_Input" />
+      <wsdl:output message="tns:msg_Create_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="getRoot">
+      <documentation>get root catalog</documentation>
+      <wsdl:input message="tns:msg_GetRoot_Input" />
+      <wsdl:output message="tns:msg_GetRoot_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="sortProducts">
+      <documentation>sort products in each catalog of a list of catalogs</documentation>
+      <wsdl:input message="tns:msg_SortProducts_Input" />
+      <wsdl:output message="tns:msg_SortProducts_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="uploadImage">
+      <documentation>upload catalog related images.</documentation>
+      <wsdl:input message="tns:msg_Upload_Input" />
+      <wsdl:output message="tns:msg_Upload_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="getCategories">
+      <documentation>get all recursive categorie paths as simple flat list</documentation>
+      <wsdl:input message="tns:msg_GetCategories_Input" />
+      <wsdl:output message="tns:msg_GetCategories_Output" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="bind_Catalog_SOAP" type="tns:port_Catalog">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="getInfo">
+      <soap:operation soapAction="urn://epages.de/WebService/CatalogService/2011/03#getInfo" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CatalogService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CatalogService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <soap:operation soapAction="urn://epages.de/WebService/CatalogService/2011/03#exists" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CatalogService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CatalogService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="urn://epages.de/WebService/CatalogService/2011/03#delete" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CatalogService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CatalogService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <soap:operation soapAction="urn://epages.de/WebService/CatalogService/2011/03#update" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CatalogService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CatalogService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <soap:operation soapAction="urn://epages.de/WebService/CatalogService/2011/03#create" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CatalogService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CatalogService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRoot">
+      <soap:operation soapAction="urn://epages.de/WebService/CatalogService/2011/03#getRoot" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CatalogService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CatalogService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sortProducts">
+      <soap:operation soapAction="urn://epages.de/WebService/CatalogService/2011/03#sortProducts" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CatalogService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CatalogService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uploadImage">
+      <soap:operation soapAction="urn://epages.de/WebService/CatalogService/2011/03#uploadImage" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CatalogService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CatalogService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCategories">
+      <soap:operation soapAction="urn://epages.de/WebService/CatalogService/2011/03#uploadImage" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CatalogService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CatalogService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CatalogService">
+    <documentation>epages Catalog Service</documentation>
+    <wsdl:port name="port_Catalog" binding="tns:bind_Catalog_SOAP">
+      <soap:address location="http://localhost/epages/Store.soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

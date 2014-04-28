@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/CustomerGroupTypes/2006/06" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/CustomerGroupTypes/2006/06" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="EpagesTypes.xsd" namespace="urn://epages.de/WebService/EpagesTypes/2005/01" />
+  <xs:complexType name="type_GetList_Out">
+    <xs:annotation>
+      <xs:documentation>
+            output structure of an getList call.
+          </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TGetList_Return[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TGetList_Return">
+    <xs:annotation>
+      <xs:documentation>
+	        a single return value of a getList call.
+			the Alias will be always returned.
+			the error element will be returned in case of error.
+			</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string" />
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+</xs:schema>

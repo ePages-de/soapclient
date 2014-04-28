@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/PageCacheService/2006/07" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="PageCacheService" targetNamespace="urn://epages.de/WebService/PageCacheService/2006/07" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <documentation>
+    This is a web service for an epages e-commerce system.
+    This service controls the page cache of a shop.
+    needs ePages 6.08 or higher
+  </documentation>
+  <wsdl:types />
+  <wsdl:message name="msg_clear_Input" />
+  <wsdl:message name="msg_clear_Output" />
+  <wsdl:portType name="port_PageCache">
+    <wsdl:operation name="clear">
+      <documentation>deletes all cached pages of the shop</documentation>
+      <wsdl:input message="tns:msg_clear_Input" />
+      <wsdl:output message="tns:msg_clear_Output" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="bind_PageCache_SOAP" type="tns:port_PageCache">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="clear">
+      <soap:operation soapAction="urn://epages.de/WebService/PageCacheService/2006/07#clear" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/PageCacheService/2006/07" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/PageCacheService/2006/07" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PageCacheService">
+    <documentation>epages page cache service</documentation>
+    <wsdl:port name="port_PageCache" binding="tns:bind_PageCache_SOAP">
+      <soap:address location="http://localhost/epages/Store.soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

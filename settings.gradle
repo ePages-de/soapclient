@@ -1,1 +1,16 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
 include 'java'
+include 'java/common'
+include 'java/shop'
+include 'java/provider'
+include 'java/multistore'
+
+include 'perl/shop'
+include 'perl/provider'
+
+if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+    // msbuild plugin only supported on windows
+    include 'dotnet/shop'
+    include 'dotnet/provider'
+}

@@ -1,0 +1,64 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+apply plugin: 'msbuild'
+
+archivesBaseName = 'soapclient-shop'
+description = '.Net 2.0 based clients for epages6 ShopServices'
+
+msbuild {
+  // mandatory
+  projectFile = 'EpagesWebServices/EpagesWebServices.csproj'
+
+  // MsBuild project name (/p:Project=...)
+  projectName = project.name
+
+  // Verbosity (/v:detailed, by default uses gradle logging level)
+  //  verbosity = 'detailed'
+
+  // targets to execute (/t:Clean;Rebuild, no default)
+  targets = ['Clean', 'Rebuild']
+
+  // Below values can override settings from the project file
+
+  // overrides project OutputPath
+    destinationDir = 'EpagesWebServices/bin/Release'
+
+  // overrides project IntermediaryOutputPath
+    intermediateDir = 'EpagesWebServices/bin/obj'
+
+  // Generates XML documentation file (from javadoc through custom DocLet)
+  generateDoc = false
+
+  // Other msbuild options can be set:
+  // loggerAssembly, generateDoc, debugType, optimize, debugSymbols, configuration, platform, defineConstants ...
+
+  // you can also provide properties by name (/p:SomeProperty=Value)
+//   parameters.SomeProperty = 'Value'
+}
+
+project.ext.nUnit = {String[] args ->
+    List<String> newArgs = new ArrayList<String>()
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        newArgs.add("cmd.exe")
+        newArgs.add("/C")
+    }
+    newArgs.add("nunit-console")
+    newArgs.addAll(args)
+    return newArgs.toArray(new String[newArgs.size()])
+}
+
+task runTests(type:Exec, dependsOn: assemble) {
+    description = 'Runs all webservice tests'
+    group = 'Test'
+    // set ep6HostName
+    if (ep6HostName != null) {
+        def mymap = ['ep6HostName' : project.properties["ep6HostName"] ]
+        environment mymap
+    }
+    logging.captureStandardOutput LogLevel.INFO
+    workingDir projectDir.path
+    commandLine nUnit("EpagesWebServices/EpagesWebServices.nunit")
+}
+
+assemble.dependsOn msbuild
+task check (dependsOn: runTests)

@@ -1,0 +1,4 @@
+configure(subprojects.findAll()) {
+    apply plugin: "eclipse"
+    eclipse.project.name = "soapclient-${project.name.replaceAll("/","-")}"
+}

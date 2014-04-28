@@ -6,6 +6,7 @@ CVS/
 .settings/
 build/
 bin/
+*~
 *.class
 .idea
 **/logs/
@@ -16,3 +17,4 @@ target/
 .checkstyle
 logs/
 .sonar/
+*.userprefs

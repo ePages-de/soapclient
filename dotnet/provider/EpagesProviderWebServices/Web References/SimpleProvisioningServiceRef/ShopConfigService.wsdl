@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/SimpleProvisioningService/2009/10" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="ShopConfigService" targetNamespace="urn://epages.de/WebService/SimpleProvisioningService/2009/10" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <documentation>This web service allows internet service providers to create and update shops</documentation>
+  <wsdl:types>
+    <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/SimpleProvisioningService/2009/10">
+      <xs:complexType name="TCreateShop">
+        <xs:annotation>
+          <xs:documentation>shop data required to create a new shop</xs:documentation>
+        </xs:annotation>
+        <xs:all>
+          <xs:element name="Alias" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>unique shop identifier</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ShopType" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>shop type alias</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsClosed" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>set to true to keep the new shop closed by provider; defaults to false</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsTrialShop" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the shop is in trial period</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsInternalTestShop" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the shop is used for test or support purposes</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="DomainName" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>domain name to access the shop</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="HasSSLCertificate" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if an SSL certificate is installed for DomainName</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="MerchantLogin" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>merchant login name</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="MerchantPassword" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>merchant password in clear text</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="MerchantEMail" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>merchant email address</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:all>
+      </xs:complexType>
+      <xs:complexType name="TShopRef">
+        <xs:annotation>
+          <xs:documentation>shop data required to identify an existing shop</xs:documentation>
+        </xs:annotation>
+        <xs:all>
+          <xs:element name="Alias" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>unique shop identifier</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:all>
+      </xs:complexType>
+      <xs:complexType name="TUpdateShop">
+        <xs:annotation>
+          <xs:documentation>shop data to update an existing shop</xs:documentation>
+        </xs:annotation>
+        <xs:all>
+          <xs:element name="Alias" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>unique shop identifier</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="ShopType" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>shop type alias</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsClosed" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the shop is closed by provider</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsTrialShop" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the shop is in trial period</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsInternalTestShop" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the shop is used for test or support purposes</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="DomainName" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>domain name to access the shop</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="HasSSLCertificate" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the web server has an SSL certificate for the shop</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="MerchantLogin" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>merchant login name</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="MerchantPassword" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>merchant password in clear text</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="MerchantEMail" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>merchant email address</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:all>
+      </xs:complexType>
+      <xs:complexType name="TInfoShop">
+        <xs:annotation>
+          <xs:documentation>shop data output by getInfo operation</xs:documentation>
+        </xs:annotation>
+        <xs:all>
+          <xs:element name="Alias" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>unique shop identifier</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ShopType" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>shop type alias</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Database" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>store database identifier</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IsClosed" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the shop is closed by provider</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IsDeleted" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the shop is deleted in the store database</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IsTrialShop" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the shop is in trial period</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IsInternalTestShop" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the shop is used for test or support purposes</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DomainName" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>domain name to access the shop</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="HasSSLCertificate" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>true if the web server has an SSL certificate for the shop</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MerchantLogin" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>merchant login name</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MerchantEMail" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>merchant email address</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LastMerchantLoginDate" type="xs:dateTime">
+            <xs:annotation>
+              <xs:documentation>date of last merchant login</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IsMarkedForDel" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>shop is marked for deletion</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="StorefrontURL" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>URL of the shop</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BackofficeURL" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>URL of the back-office of the shop</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:all>
+      </xs:complexType>
+      <xs:complexType name="TRename_Input">
+        <xs:annotation>
+          <xs:documentation>shop data required to rename an existing shop</xs:documentation>
+        </xs:annotation>
+        <xs:all>
+          <xs:element name="Alias" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>unique shop identifier</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NewAlias" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>new shop alias</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:all>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="msg_CreateShop_Input">
+    <wsdl:part name="CreateShopData" type="tns:TCreateShop" />
+  </wsdl:message>
+  <wsdl:message name="msg_CreateShop_Output" />
+  <wsdl:message name="msg_UpdateShop_Input">
+    <wsdl:part name="ShopData" type="tns:TUpdateShop" />
+  </wsdl:message>
+  <wsdl:message name="msg_UpdateShop_Output" />
+  <wsdl:message name="msg_ExistsShop_Input">
+    <wsdl:part name="ShopRef" type="tns:TShopRef" />
+  </wsdl:message>
+  <wsdl:message name="msg_ExistsShop_Output">
+    <wsdl:part name="Exists" type="xs:boolean" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetInfoShop_Input">
+    <wsdl:part name="ShopRef" type="tns:TShopRef" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetInfoShop_Output">
+    <wsdl:part name="ShopInfo" type="tns:TInfoShop" />
+  </wsdl:message>
+  <wsdl:message name="msg_MarkForDeletion_Input">
+    <wsdl:part name="ShopRef" type="tns:TShopRef" />
+  </wsdl:message>
+  <wsdl:message name="msg_MarkForDeletion_Output" />
+  <wsdl:message name="msg_Rename_Input">
+    <wsdl:part name="ShopInfo" type="tns:TRename_Input" />
+  </wsdl:message>
+  <wsdl:message name="msg_Rename_Output" />
+  <wsdl:portType name="port_SimpleProvisioning">
+    <wsdl:operation name="create">
+      <documentation>creates a new shop with a given shop type and imports default data</documentation>
+      <wsdl:input message="tns:msg_CreateShop_Input" />
+      <wsdl:output message="tns:msg_CreateShop_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="markForDeletion">
+      <documentation>marks a shop for deletion</documentation>
+      <wsdl:input message="tns:msg_MarkForDeletion_Input" />
+      <wsdl:output message="tns:msg_MarkForDeletion_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <documentation>returns true if the shop alias exists for the provider</documentation>
+      <wsdl:input message="tns:msg_ExistsShop_Input" />
+      <wsdl:output message="tns:msg_ExistsShop_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <documentation>updates an existing shop in the site and store database</documentation>
+      <wsdl:input message="tns:msg_UpdateShop_Input" />
+      <wsdl:output message="tns:msg_UpdateShop_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="getInfo">
+      <documentation>returns information about an existing shop from the site database</documentation>
+      <wsdl:input message="tns:msg_GetInfoShop_Input" />
+      <wsdl:output message="tns:msg_GetInfoShop_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="rename">
+      <documentation>change the alias of an existing shop</documentation>
+      <wsdl:input message="tns:msg_Rename_Input" />
+      <wsdl:output message="tns:msg_Rename_Output" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="bind_SimpleProvisioning_SOAP" type="tns:port_SimpleProvisioning">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="create">
+      <soap:operation soapAction="urn://epages.de/WebService/SimpleProvisioningService/2009/10#create" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/SimpleProvisioningService/2009/10" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/SimpleProvisioningService/2009/10" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="markForDeletion">
+      <soap:operation soapAction="urn://epages.de/WebService/SimpleProvisioningService/2009/10#markForDeletion" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/SimpleProvisioningService/2009/10" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/SimpleProvisioningService/2009/10" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <soap:operation soapAction="urn://epages.de/WebService/SimpleProvisioningService/2009/10#exists" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/SimpleProvisioningService/2009/10" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/SimpleProvisioningService/2009/10" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <soap:operation soapAction="urn://epages.de/WebService/SimpleProvisioningService/2009/10#update" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/SimpleProvisioningService/2009/10" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/SimpleProvisioningService/2009/10" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInfo">
+      <soap:operation soapAction="urn://epages.de/WebService/SimpleProvisioningService/2009/10#getInfo" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/SimpleProvisioningService/2009/10" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/SimpleProvisioningService/2009/10" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rename">
+      <soap:operation soapAction="urn://epages.de/WebService/SimpleProvisioningService/2009/10#rename" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/SimpleProvisioningService/2009/10" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/SimpleProvisioningService/2009/10" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SimpleProvisioningService">
+    <documentation>ePages Consulting Provisioning Service</documentation>
+    <wsdl:port name="port_SimpleProvisioning" binding="tns:bind_SimpleProvisioning_SOAP">
+      <soap:address location="http://localhost/epages/Site.soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

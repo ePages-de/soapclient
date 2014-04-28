@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/CustomerGroupService/2011/03" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:customergrouptypes="urn://epages.de/WebService/CustomerGroupTypes/2011/03" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="CustomerGroupService" targetNamespace="urn://epages.de/WebService/CustomerGroupService/2011/03" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <documentation>
+    this is a web service for an epages e-commerce system.
+    this service is a container for all methods in the customergroup context.
+    needs ePages 6.11.3 or higher
+  </documentation>
+  <wsdl:types>
+    <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/CustomerGroupService/2011/03">
+      <xs:import schemaLocation="CustomerGroupTypes2.xsd" namespace="urn://epages.de/WebService/CustomerGroupTypes/2011/03" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="msg_GetList_Input" />
+  <wsdl:message name="msg_GetList_Output">
+    <wsdl:part name="Aliases" type="customergrouptypes:type_GetList_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Exists_Input">
+    <wsdl:part name="Groups" type="customergrouptypes:type_Exists_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Exists_Output">
+    <wsdl:part name="Groups" type="customergrouptypes:type_Exists_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Create_Input">
+    <wsdl:part name="Groups" type="customergrouptypes:type_Create_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Create_Output">
+    <wsdl:part name="Groups" type="customergrouptypes:type_Create_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Update_Input">
+    <wsdl:part name="Groups" type="customergrouptypes:type_Update_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Update_Output">
+    <wsdl:part name="Groups" type="customergrouptypes:type_Update_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Delete_Input">
+    <wsdl:part name="Groups" type="customergrouptypes:type_Delete_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Delete_Output">
+    <wsdl:part name="Groups" type="customergrouptypes:type_Delete_Out" />
+  </wsdl:message>
+  <wsdl:portType name="port_CustomerGroup">
+    <wsdl:operation name="getList">
+      <documentation>get the list of customergroups</documentation>
+      <wsdl:input message="tns:msg_GetList_Input" />
+      <wsdl:output message="tns:msg_GetList_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <documentation>check if a list of groups exist.</documentation>
+      <wsdl:input message="tns:msg_Exists_Input" />
+      <wsdl:output message="tns:msg_Exists_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <documentation>create a list of customer groups.</documentation>
+      <wsdl:input message="tns:msg_Create_Input" />
+      <wsdl:output message="tns:msg_Create_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <documentation>update a list of customer groups.</documentation>
+      <wsdl:input message="tns:msg_Update_Input" />
+      <wsdl:output message="tns:msg_Update_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <documentation>delete a list of customer groups.</documentation>
+      <wsdl:input message="tns:msg_Delete_Input" />
+      <wsdl:output message="tns:msg_Delete_Output" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="bind_CustomerGroup_SOAP" type="tns:port_CustomerGroup">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="getList">
+      <soap:operation soapAction="urn://epages.de/WebService/CustomerGroupService/2011/03#getList" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CustomerGroupService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CustomerGroupService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <soap:operation soapAction="urn://epages.de/WebService/CustomerGroupService/2011/03#exists" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CustomerGroupService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CustomerGroupService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <soap:operation soapAction="urn://epages.de/WebService/CustomerGroupService/2011/03#create" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CustomerGroupService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CustomerGroupService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <soap:operation soapAction="urn://epages.de/WebService/CustomerGroupService/2011/03#update" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CustomerGroupService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CustomerGroupService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="urn://epages.de/WebService/CustomerGroupService/2011/03#delete" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CustomerGroupService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/CustomerGroupService/2011/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CustomerGroupService">
+    <documentation>epages Customer Group Service</documentation>
+    <wsdl:port name="port_CustomerGroup" binding="tns:bind_CustomerGroup_SOAP">
+      <soap:address location="http://localhost/epages/Store.soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

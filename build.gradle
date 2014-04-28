@@ -2,85 +2,18 @@ wrapper {  gradleVersion = "1.11" }
 
 description = 'SOAP clients and webservice tests for epages6'
 
-ext {
-  /* latest version of all services (part of the wsdl filename) */
-  currentServices = [
-    'ProductTypeService2',
-    'PriceListService2',
-    'PriceListAssignmentService',
-    'AssignmentService',
-    'BasketService',
-    'CatalogService8',
-    'CrossSellingService2',
-    'CustomerGroupService2',
-    'CustomerService4',
-    'OrderService12',
-    'OrderDocumentService7',
-    'PageCacheService',
-    'PaymentMethodService',
-    'ProductBundleService',
-    'ShippingMethodService2',
-    'TaxAreaService',
-    'TaxClassService',
-    // for java this needs to come last due to a namespace mapping hack.
-    'ProductService11'
-    ]
-
-  /* previous versions of all supported services */
-  oldServices = [
-    'AppointmentService',
-    'CatalogService',
-    'CatalogService2',
-    'CatalogService3',
-    'CatalogService4',
-    'CatalogService5',
-    'CatalogService6',
-    'CatalogService7',
-    'CrossSellingService',
-    'CustomerGroupService',
-    'CustomerService',
-    'CustomerService2',
-    'CustomerService3',
-    'OrderDocumentService',
-    'OrderDocumentService2',
-    'OrderDocumentService3',
-    'OrderDocumentService4',
-    'OrderDocumentService5',
-    'OrderDocumentService6',
-    'OrderService',
-    'OrderService2',
-    'OrderService3',
-    'OrderService4',
-    'OrderService5',
-    'OrderService6',
-    'OrderService7',
-    'OrderService8',
-    'OrderService9',
-    'OrderService10',
-    'OrderService11',
-    'PriceListService',
-    'ProductAttributeService',
-    'ProductAttributeService2',
-    'ProductImageService',
-    'ProductService',
-    'ProductService2',
-    'ProductService3',
-    'ProductService4',
-    'ProductService5',
-    'ProductService6',
-    'ProductService7',
-    'ProductService8',
-    'ProductService9',
-    'ProductService10',
-    'ProductTypeService',
-    'UserService',
-    'UserService',
-    'UserService2',
-    'UserService3',
-    'UserService4',
-    'UserService5',
-    'ShippingMethodService'
-  ]
-
-  onlyThisService = project.properties["onlyThisService"]
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url 'http://jcenter.bintray.com' }
+    }
+    dependencies {
+        classpath "com.ullink.gradle:gradle-msbuild-plugin:1.6"
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.3'
+    }
 }
+
+apply from: './gradle/wsdl.gradle'
+apply from: './gradle/eclipse.gradle'
+apply from: './gradle/java.gradle'
+apply from: './gradle/bintray.gradle'

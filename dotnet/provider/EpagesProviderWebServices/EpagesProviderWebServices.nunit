@@ -1,0 +1,6 @@
+﻿<NUnitProject>
+  <Settings activeconfig="Debug" />
+  <Config name="Release" binpathtype="Auto">
+    <assembly path="bin\Release\EpagesProviderWebServices.exe" />
+  </Config>
+</NUnitProject>

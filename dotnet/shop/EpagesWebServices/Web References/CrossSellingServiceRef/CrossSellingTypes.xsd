@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/CrossSellingTypes/2006/05" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/CrossSellingTypes/2006/05" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="EpagesTypes.xsd" namespace="urn://epages.de/WebService/EpagesTypes/2005/01" />
+  <xs:complexType name="TInsertCrossSelling_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input value of a insert() call.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TargetProduct" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>target product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Type" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>cross selling type could be 'Accessory', 'ProductComparison' or 'CrossSelling' (default)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Position" type="xs:integer">
+        <xs:annotation>
+          <xs:documentation>position in the list of cross sellings (target products assigned to the product)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TInsertCrossSelling_Return">
+    <xs:annotation>
+      <xs:documentation>
+      return value of a insert() call.
+      Product and TargetProduct will be always returned.
+      the Error element will be returned in case of error.
+      all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TargetProduct" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>target product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Type" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>cross selling type could be 'Accessory', 'ProductComparison' or 'CrossSelling'</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="inserted" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>is cross selling inserted (target product assigned to product)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TDeleteCrossSelling_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input value of a delete() call.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TargetProduct" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>target product object path - may use '*' for all</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Type" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>cross selling type could be 'Accessory', 'ProductComparison' or 'CrossSelling'(default) - may use '*' for all</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TDeleteCrossSelling_Return">
+    <xs:annotation>
+      <xs:documentation>
+      return value of a delete() call.
+      Product and TargetProduct will be always returned.
+      the Error element will be returned in case of error.
+      all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TargetProduct" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>target product object path (use wildcard * to delete all related target products belong actual type)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Type" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>cross selling type could be 'Accessory', 'ProductComparison' or 'CrossSelling'</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>is cross selling deleteed (target product assigned to product)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TExistsCrossSelling_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input value of a exists() call.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TargetProduct" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>target product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Type" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>cross selling type could be 'Accessory', 'ProductComparison' or 'CrossSelling'(default) - may use '*' for all</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TExistsCrossSelling_Return">
+    <xs:annotation>
+      <xs:documentation>
+      return value of a exists() call.
+      Product and TargetProduct will be always returned.
+      the Error element will be returned in case of error.
+      all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TargetProduct" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>target product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Type" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>cross selling type could be 'Accessory', 'ProductComparison' or 'CrossSelling'</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="exists" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>is cross selling existsed (target product assigned to product)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TGetCrossSelling_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input value of a get() call.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Type" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>cross selling type could be 'Accessory', 'ProductComparison' or 'CrossSelling'(default) - may use '*' for all</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TGetCrossSelling_Return">
+    <xs:annotation>
+      <xs:documentation>
+      return value of a get() call.
+      Product and TargetProduct will be always returned.
+      the Error element will be returned in case of error.
+      all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TargetProduct" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>target product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Type" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>cross selling type could be 'Accessory', 'ProductComparison' or 'CrossSelling'</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Position" type="xs:integer">
+        <xs:annotation>
+          <xs:documentation>position in the list of cross sellings (target products assigned to the product)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+</xs:schema>

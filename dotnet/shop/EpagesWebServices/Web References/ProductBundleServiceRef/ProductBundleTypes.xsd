@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/ProductBundleTypes/2007/07" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/ProductBundleTypes/2007/07" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="EpagesTypes.xsd" namespace="urn://epages.de/WebService/EpagesTypes/2005/01" />
+  <xs:complexType name="TCreate_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input value of a create() call.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>bundle product object path, this object contains bundled products</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BundledProducts" type="tns:ListOfBundledProducts">
+        <xs:annotation>
+          <xs:documentation>list of product paths (incl. quantity and list position),
+            this products will bundled to the product bundle
+            see tns:ListOfBundledProducts
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TCreate_Return">
+    <xs:annotation>
+      <xs:documentation>
+        return value of a create() call.
+        Product will be always returned.
+        the Error element will be returned in case of error.
+        all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product bundle object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="created" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>is product has created bundled products</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TDelete_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input value of a delete() call.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>bundle product object path, this object contains bundled products</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BundledProductPaths" type="tns:ListOfBundledProductPaths">
+        <xs:annotation>
+          <xs:documentation>list of product paths,
+            this products will unassign to the product bundle
+            see tns:ListOfBundledProductPaths
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TDelete_Return">
+    <xs:annotation>
+      <xs:documentation>
+        return value of a create() call.
+        Product will be always returned.
+        the Error element will be returned in case of error.
+        all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product bundle object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>is product has deleted bundled products</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TExists_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input value of a exist() call.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BundledProduct" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>bundled product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TExists_Return">
+    <xs:annotation>
+      <xs:documentation>
+        return value of a exists() call.
+        Product and BundledProduct will be always returned.
+        the Error element will be returned in case of error.
+        all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BundledProduct" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>catalog object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="exists" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>is product assigned to catalog</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TGetInfo_Return">
+    <xs:annotation>
+      <xs:documentation>
+        return value of a getInfo() call.
+        Product will be always returned.
+        the Error element will be returned in case of error.
+        all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>product object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="BundledProducts" type="tns:ListOfBundledProducts">
+        <xs:annotation>
+          <xs:documentation>list of products assigned to the product bundle</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ListOfBundledProductPaths">
+    <xs:annotation>
+      <xs:documentation>
+        list of product paths bundled to a product bundle
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TBundledProductPath[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TBundledProductPath">
+    <xs:annotation>
+      <xs:documentation>
+        path of a product bundled to a product bundle
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ListOfBundledProducts">
+    <xs:annotation>
+      <xs:documentation>
+        list of products bundled to a product bundle
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TBundledProduct[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TBundledProduct">
+    <xs:annotation>
+      <xs:documentation>
+        a product bundled to a product bundle
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element name="Position" type="xs:integer" />
+      <xs:element name="Quantity" type="xs:float" />
+      <xs:element minOccurs="0" name="Alias" type="xs:string" />
+    </xs:all>
+  </xs:complexType>
+</xs:schema>

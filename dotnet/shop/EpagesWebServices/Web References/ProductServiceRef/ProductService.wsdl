@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:producttypes="urn://epages.de/WebService/ProductTypes/2005/01" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/ProductService/2005/01" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="ProductService" targetNamespace="urn://epages.de/WebService/ProductService/2005/01" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <documentation>
+    this is a web service for an epages e-commerce system.
+    this service is a container for all methods in the product context.
+    needs ePages 5.04 or higher
+  </documentation>
+  <wsdl:types>
+    <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/ProductService/2005/01">
+      <xs:import schemaLocation="ProductTypes.xsd" namespace="urn://epages.de/WebService/ProductTypes/2005/01" />
+      <xs:complexType name="type_GetInfo_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an getInfo() product call.
+            a simple list of product paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetInfo_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an getInfo() product call.
+            see producttypes:TGetInfo_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypes:TGetInfo_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_AttributeNames_In">
+        <xs:annotation>
+          <xs:documentation>
+            additional input of a getInfo() product call.
+            a simple list of attribute names.
+            defines the content of the returned attribute name-value list.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_LanguageCodes_In">
+        <xs:annotation>
+          <xs:documentation>
+            additional input of a getInfo() product call.
+            a simple list of language codes (e.g. 'en').
+            defines the content of the returned localized values.
+            this list is optional (all shop languages will be used if not provided).
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Exists_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an exists() product call.
+            a simple list of product paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Exists_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an exists() product call.
+            see producttypes:TExists_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypes:TExists_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Delete_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an delete() product call.
+            a simple list of product paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Delete_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an delete() product call.
+            see producttypes:TGetInfo_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypes:TDelete_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Update_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an update() product call.
+            see producttypes:TUpdate_Input
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypes:TUpdate_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Update_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an update() product call.
+            see producttypes:TUpdate_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypes:TUpdate_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Create_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an create() product call.
+            see producttypes:TCreate_Input
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypes:TCreate_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Create_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an create() product call.
+            see producttypes:TCreate_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="producttypes:TCreate_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TFind_Input">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an find() product call.
+            a set of optional search parameters.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:all>
+          <xs:element minOccurs="0" name="Text" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>search for part of product name, description, etc.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="LanguageCode" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>search in this language (e.g. 'en')</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Alias" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>search for a product alias</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Class" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>search for products with this class (a object path to a class)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:all>
+      </xs:complexType>
+      <xs:complexType name="type_Find_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an find() product call.
+            a simple list of product paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="msg_GetInfo_Input">
+    <wsdl:part name="Products" type="tns:type_GetInfo_In" />
+    <wsdl:part name="Attributes" type="tns:type_AttributeNames_In" />
+    <wsdl:part name="LanguageCodes" type="tns:type_LanguageCodes_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetInfo_Output">
+    <wsdl:part name="Products" type="tns:type_GetInfo_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Exists_Input">
+    <wsdl:part name="Products" type="tns:type_Exists_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Exists_Output">
+    <wsdl:part name="Products" type="tns:type_Exists_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Delete_Input">
+    <wsdl:part name="Products" type="tns:type_Delete_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Delete_Output">
+    <wsdl:part name="Products" type="tns:type_Delete_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Update_Input">
+    <wsdl:part name="Products" type="tns:type_Update_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Update_Output">
+    <wsdl:part name="Products" type="tns:type_Update_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Create_Input">
+    <wsdl:part name="Products" type="tns:type_Create_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Create_Output">
+    <wsdl:part name="Products" type="tns:type_Create_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Find_Input">
+    <wsdl:part name="SearchParameters" type="tns:TFind_Input" />
+  </wsdl:message>
+  <wsdl:message name="msg_Find_Output">
+    <wsdl:part name="Products" type="tns:type_Find_Out" />
+  </wsdl:message>
+  <wsdl:portType name="port_Product">
+    <wsdl:operation name="getInfo">
+      <documentation>get information about a list of products</documentation>
+      <wsdl:input message="tns:msg_GetInfo_Input" />
+      <wsdl:output message="tns:msg_GetInfo_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <documentation>check if a list of products exist.</documentation>
+      <wsdl:input message="tns:msg_Exists_Input" />
+      <wsdl:output message="tns:msg_Exists_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <documentation>delete a list of products</documentation>
+      <wsdl:input message="tns:msg_Delete_Input" />
+      <wsdl:output message="tns:msg_Delete_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <documentation>update a list of products</documentation>
+      <wsdl:input message="tns:msg_Update_Input" />
+      <wsdl:output message="tns:msg_Update_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <documentation>create new products</documentation>
+      <wsdl:input message="tns:msg_Create_Input" />
+      <wsdl:output message="tns:msg_Create_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="find">
+      <documentation>find products</documentation>
+      <wsdl:input message="tns:msg_Find_Input" />
+      <wsdl:output message="tns:msg_Find_Output" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="bind_Product_SOAP" type="tns:port_Product">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="getInfo">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductService/2005/01#getInfo" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductService/2005/01#exists" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductService/2005/01#delete" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductService/2005/01#update" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductService/2005/01#create" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="find">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductService/2005/01#find" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductService/2005/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProductService">
+    <documentation>epages Product Service</documentation>
+    <wsdl:port name="port_Product" binding="tns:bind_Product_SOAP">
+      <soap:address location="http://localhost/epages/Store.soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

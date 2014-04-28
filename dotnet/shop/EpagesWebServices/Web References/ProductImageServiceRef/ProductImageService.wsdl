@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:productimagetypes="urn://epages.de/WebService/ProductImageTypes/2006/03" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/ProductImageService/2006/03" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="ProductImageService" targetNamespace="urn://epages.de/WebService/ProductImageService/2006/03" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <documentation>
+    this is a web service for an epages e-commerce system.
+    this service is a container for all methods in the product context.
+    needs ePages 5.03 or higher
+  </documentation>
+  <wsdl:types>
+    <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/ProductImageService/2006/03">
+      <xs:import schemaLocation="ProductImageTypes.xsd" namespace="urn://epages.de/WebService/ProductImageTypes/2006/03" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="msg_Exists_Input">
+    <wsdl:part name="TObjectPath" type="xs:string" />
+    <wsdl:part name="TFileName" type="xs:string" />
+  </wsdl:message>
+  <wsdl:message name="msg_Exists_Output">
+    <wsdl:part name="Exists" type="xs:boolean" />
+  </wsdl:message>
+  <wsdl:message name="msg_Delete_Input">
+    <wsdl:part name="TObjectPath" type="xs:string" />
+    <wsdl:part name="TListOfFileNames" type="productimagetypes:TListOfFileNames" />
+  </wsdl:message>
+  <wsdl:message name="msg_Delete_Output">
+    <wsdl:part name="Files" type="productimagetypes:type_Delete_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Upload_Input">
+    <wsdl:part name="TObjectPath" type="xs:string" />
+    <wsdl:part name="ImageData" type="productimagetypes:TUpload_Input" />
+  </wsdl:message>
+  <wsdl:message name="msg_Upload_Output">
+    <wsdl:part name="Files" type="productimagetypes:TUploadOut" />
+  </wsdl:message>
+  <wsdl:message name="msg_UploadScale_Input">
+    <wsdl:part name="TObjectPath" type="xs:string" />
+    <wsdl:part name="ImageData" type="productimagetypes:TUploadScale_Input" />
+    <wsdl:part name="ScaleParams" type="productimagetypes:TScaleParams" />
+  </wsdl:message>
+  <wsdl:message name="msg_UploadScale_Output">
+    <wsdl:part name="Files" type="productimagetypes:TUploadScaleOut" />
+  </wsdl:message>
+  <wsdl:portType name="port_ProductImage">
+    <wsdl:operation name="exists">
+      <documentation>check if a product image exists.</documentation>
+      <wsdl:input message="tns:msg_Exists_Input" />
+      <wsdl:output message="tns:msg_Exists_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <documentation>delete a list of productimages.</documentation>
+      <wsdl:input message="tns:msg_Delete_Input" />
+      <wsdl:output message="tns:msg_Delete_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="upload">
+      <documentation>upload a lot of productimages.</documentation>
+      <wsdl:input message="tns:msg_Upload_Input" />
+      <wsdl:output message="tns:msg_Upload_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="uploadscale">
+      <documentation>upload a lot of productimages and scale the uploaded images.</documentation>
+      <wsdl:input message="tns:msg_UploadScale_Input" />
+      <wsdl:output message="tns:msg_UploadScale_Output" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="bind_ProductImage_SOAP" type="tns:port_ProductImage">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="upload">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductImageService/2006/03#upload" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductImageService/2006/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductImageService/2006/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uploadscale">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductImageService/2006/03#uploadscale" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductImageService/2006/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductImageService/2006/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductImageService/2006/03#exists" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductImageService/2006/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductImageService/2006/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="urn://epages.de/WebService/ProductImageService/2006/03#delete" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductImageService/2006/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ProductImageService/2006/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProductImageService">
+    <documentation>epages Product Image Service</documentation>
+    <wsdl:port name="port_ProductImage" binding="tns:bind_ProductImage_SOAP">
+      <soap:address location="http://localhost/epages/Store.soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

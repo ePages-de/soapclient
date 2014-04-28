@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:shoptypes="urn://epages.de/WebService/ShopTypes/2006/07" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:tns="urn://epages.de/WebService/OrderDocumentTypes/2006/07" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/OrderDocumentTypes/2006/07" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="EpagesTypes.xsd" namespace="urn://epages.de/WebService/EpagesTypes/2005/01" />
+  <xs:import schemaLocation="ShopTypes2.xsd" namespace="urn://epages.de/WebService/ShopTypes/2006/07" />
+  <xs:complexType name="TGetInfo_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a getInfo() call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        all other elements will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>order document object path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Alias" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>order document alias</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Class" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>path to order document's class</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Order" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>order document's order (object path to order)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Issued" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>document issued or not</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IssueDate" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>order document's issue date</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Address" type="shoptypes:TAddress" />
+      <xs:element minOccurs="0" name="ShopAddress" type="shoptypes:TAddress" />
+      <xs:element minOccurs="0" name="LineItemContainer" type="tns:TLineItemContainerOut">
+        <xs:annotation>
+          <xs:documentation>the products, payments, shipping etc. of this order document (see orderdocumenttypes:TLineItemContainerOut)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Attributes" type="epagestypes:ListOfAttributes">
+        <xs:annotation>
+          <xs:documentation>list of requested attributes (see epagestypes:ListOfAttributes)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TExists_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of an exists() call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        the exists flag will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="exists" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating whether or not this order document exists</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TDelete_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a delete() call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        the deleted flag will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="deleted" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating whether or not this order document has been deleted</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TCreate_Input">
+    <xs:annotation>
+      <xs:documentation>
+        input arguments of a create() call.
+        a set of order document specific attributes that will be used to create an order document.
+        the alias element is optional, a new alias will be created if omitted.
+        all others are optional.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element minOccurs="0" name="Alias" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>order alias</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Order" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>order document's order (object path to order)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Class" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>order document's class (object path to order document class)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Issued" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>indicates whether or not the order document has been issued</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IssueDate" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>order document's issue date. will be ignored if Issued indicates false. if Issued indicates true and IssueDate is omitted the current date will be used.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TCreate_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a create() call.
+        Alias, Class, and Order will be always returned.
+        the error element will be returned in case of error.
+        the created flag and path will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Alias" type="xs:string" />
+      <xs:element name="Class" type="xs:string" />
+      <xs:element name="Order" type="xs:string" />
+      <xs:element minOccurs="0" name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="created" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that this order document was created</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TGetInvoices_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a getInvoices() call.
+        The Order will be always returned.
+        The error element will be returned in case of error.
+        The Invoices element will be returned if no error occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Order" type="xs:string" />
+      <xs:element minOccurs="0" name="Invoices" type="tns:ListOfPaths">
+        <xs:annotation>
+          <xs:documentation>paths of all invoices of the order</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TGetPackingSlips_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a getPackingSlips() call.
+        The Order will be always returned.
+        The error element will be returned in case of error.
+        The PackingSlips element will be returned if no error occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Order" type="xs:string" />
+      <xs:element minOccurs="0" name="PackingSlips" type="tns:ListOfPaths">
+        <xs:annotation>
+          <xs:documentation>paths of all packing slips of the order</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TGetCreditNotes_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a getCreditNotes() call.
+        The Order will be always returned.
+        The error element will be returned in case of error.
+        The CreditNotes element will be returned if no error occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Order" type="xs:string" />
+      <xs:element minOccurs="0" name="CreditNotes" type="tns:ListOfPaths">
+        <xs:annotation>
+          <xs:documentation>paths of all credit notes of the order</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ListOfPaths">
+    <xs:annotation>
+      <xs:documentation>
+        A list of object paths.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TLineItemContainerOut">
+    <xs:annotation>
+      <xs:documentation>
+        return object of an line item container.
+        contains information about products, payments, shippings etc. of this order.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="LocaleID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the locale id of the container (e.g. 'en_US')</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LanguageCode" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the language of the container</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CurrencyID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the currency of the container (e.g. 'EUR' or 'USD')</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxArea" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the tax area of the container (path to tax area object)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxAreaName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the name of the tax area of the container</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxModel" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the tax model of the container (net or gross)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GrandTotal" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the total price of the container</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TotalBeforeTax" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the total price of the container (without tax)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TotalTax" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the total tax of the container</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ProductLineItems" type="tns:TListOfProductLineItemsOut">
+        <xs:annotation>
+          <xs:documentation>the container's product line items</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxLineItems" type="tns:TListOfTaxLineItems">
+        <xs:annotation>
+          <xs:documentation>the container's tax line items</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PaymentLineItem" type="tns:TPaymentLineItem">
+        <xs:annotation>
+          <xs:documentation>the container's payment line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ShippingLineItem" type="tns:TShippingLineItem">
+        <xs:annotation>
+          <xs:documentation>the container's shipping line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TListOfProductLineItemsOut">
+    <xs:annotation>
+      <xs:documentation>
+        list of product line items.
+        see ordertypes:TProductLineItemOut
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TProductLineItemOut[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TListOfTaxLineItems">
+    <xs:annotation>
+      <xs:documentation>
+        list of tax line items.
+        see ordertypes:TTaxLineItem
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TTaxLineItem[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TProductLineItemOut">
+    <xs:annotation>
+      <xs:documentation>
+        return object of an product line item.
+        contains information about a single product of this order.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Class" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the class of the product line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Name" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>name of the product line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SKU" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>sku of the product line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Product" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the product object path of the product line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxClass" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the tax class of the product line item (object path to tax class)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LineItemPrice" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the total price of the product line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BasePrice" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the price a single product</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Quantity" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>quantity of the product line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Discount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>possible discount of the product line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxRate" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the tax rate of the product line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxAmount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the tax amount of the product line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TShippingLineItem">
+    <xs:annotation>
+      <xs:documentation>
+        return object of an shipping line item.
+        contains information about a the shipping of this order.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Class" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the class of the shipping line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Name" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>name of the shipping line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SKU" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>sku of the shipping line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ShippingMethod" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the shipping method of the shipping line item (object path to shipping method)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxClass" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the tax class of the shipping line item (object path to tax class)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LineItemPrice" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the total price of the shipping line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BasePrice" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the baseprice of the shipping line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Quantity" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>quantity of the shipping line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Discount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>possible discount of the shipping line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxRate" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the tax rate of the shipping line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxAmount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the tax amount of the shipping line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TPaymentLineItem">
+    <xs:annotation>
+      <xs:documentation>
+        return object of an payment line item.
+        contains information about a the payment of this order.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Class" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the class of the payment line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Name" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>name of the payment line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SKU" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>sku of the payment line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PaymentMethod" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the payment method of the payment line item (object path to payment method)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PaymentType" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the payment type of the payment line item (object path to payment type)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxClass" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the tax class of the payment line item (object path to tax class)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LineItemPrice" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the total price of the payment line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BasePrice" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the baseprice of the payment line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Quantity" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>quantity of the payment line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Discount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>possible discount of the payment line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxRate" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the tax rate of the payment line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxAmount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the tax amount of the payment line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TTaxLineItem">
+    <xs:annotation>
+      <xs:documentation>
+        return object of an tax line item.
+        contains information about a single tax class of this order.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Class" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the class of the tax line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Name" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>name of the tax line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SKU" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>sku of the tax line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxArea" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the tax area of the tax line item (object path to tax area)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxMatrix" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the tax matrix of the tax line item (object path to tax matrix)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxClass" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the tax class of the tax line item (object path to tax class)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LineItemPrice" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the total price of the tax line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BasePrice" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the baseprice of the tax line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Quantity" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>quantity of the tax line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Discount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>possible discount of the tax line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxRate" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the tax rate of the tax line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxAmount" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>the tax amount of the tax line item</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+</xs:schema>

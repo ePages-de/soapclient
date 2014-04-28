@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/ShippingMethodService/2008/03" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:shippingmethodtypes="urn://epages.de/WebService/ShippingMethodTypes/2008/03" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="ShippingMethodService" targetNamespace="urn://epages.de/WebService/ShippingMethodService/2008/03" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <documentation>
+    this is a web service for an epages e-commerce system.
+    this service is a container for all methods in the shipping method context.
+    needs ePages 5.04 patch11 or higher
+  </documentation>
+  <wsdl:types>
+    <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/ShippingMethodService/2008/03">
+      <xs:import schemaLocation="ShippingMethodTypes.xsd" namespace="urn://epages.de/WebService/ShippingMethodTypes/2008/03" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="msg_GetList_Input" />
+  <wsdl:message name="msg_GetList_Output">
+    <wsdl:part name="ShippingMethods" type="shippingmethodtypes:type_GetList_Out" />
+  </wsdl:message>
+  <wsdl:portType name="port_ShippingMethod">
+    <wsdl:operation name="getList">
+      <documentation>get the list of shipping methods</documentation>
+      <wsdl:input message="tns:msg_GetList_Input" />
+      <wsdl:output message="tns:msg_GetList_Output" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="bind_ShippingMethod_SOAP" type="tns:port_ShippingMethod">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="getList">
+      <soap:operation soapAction="urn://epages.de/WebService/ShippingMethodService/2008/03#getList" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShippingMethodService/2008/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShippingMethodService/2008/03" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ShippingMethodService">
+    <documentation>epages Shipping Method Service</documentation>
+    <wsdl:port name="port_ShippingMethod" binding="tns:bind_ShippingMethod_SOAP">
+      <soap:address location="http://localhost/epages/Store.soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

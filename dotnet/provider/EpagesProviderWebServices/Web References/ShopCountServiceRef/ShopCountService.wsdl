@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/ShopCountService/2006/08" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="ShopCountService" targetNamespace="urn://epages.de/WebService/ShopCountService/2006/08" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <documentation>This web service count the number of shops of a provider</documentation>
+  <wsdl:types>
+    <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/ShopCountService/2006/08">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xs:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+      <xs:complexType name="type_GetCount_In">
+        <xs:annotation>
+          <xs:documentation>specifies the conditions for shops to be counted</xs:documentation>
+        </xs:annotation>
+        <xs:all>
+          <xs:element minOccurs="0" name="ShopType" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>shop type alias</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Database" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>store database identifier</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsClosed" type="xs:int">
+            <xs:annotation>
+              <xs:documentation>0 - do not count closed shops; 1 - count only closed shops; else - count both</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsTrialShop" type="xs:int">
+            <xs:annotation>
+              <xs:documentation>0 - do not count shops in trial period; 1 - count only shops in trial period; else - count both</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsInternalTestShop" type="xs:int">
+            <xs:annotation>
+              <xs:documentation>0 - do not count internal test shops; 1 - count only internal test shops; else - count both</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsPreCreated" type="xs:int">
+            <xs:annotation>
+              <xs:documentation>0 - do not count pre-created shops; 1 - count only pre-created shops; 2 - count both</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsDeleted" type="xs:int">
+            <xs:annotation>
+              <xs:documentation>0 - do not count deleted shops; 1 - count only deleted shops; 2 - count both</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:all>
+      </xs:complexType>
+      <xs:complexType name="TShopCount">
+        <xs:annotation>
+          <xs:documentation>number of shops in one database
+            having the same shop type
+            that are not deleted and not internal test shops</xs:documentation>
+        </xs:annotation>
+        <xs:all>
+          <xs:element name="ShopType" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>shop type alias</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Database" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>store database identifier</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Trial_Closed" type="xs:int">
+            <xs:annotation>
+              <xs:documentation>shop count (IsTrialShop &amp;&amp; IsClosed &amp;&amp; !IsPreCreated)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Trial_NotClosed" type="xs:int">
+            <xs:annotation>
+              <xs:documentation>shop count (IsTrialShop &amp;&amp; !IsClosed &amp;&amp; !IsPreCreated)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NotTrial_Closed" type="xs:int">
+            <xs:annotation>
+              <xs:documentation>shop count (!IsTrialShop &amp;&amp; IsClosed &amp;&amp; !IsPreCreated)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NotTrial_NotClosed" type="xs:int">
+            <xs:annotation>
+              <xs:documentation>shop count (!IsTrialShop &amp;&amp; !IsClosed &amp;&amp; !IsPreCreated)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PreCreated" type="xs:int">
+            <xs:annotation>
+              <xs:documentation>shop count (IsPreCreated)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:all>
+      </xs:complexType>
+      <xs:complexType name="type_GetAllCounts_Out">
+        <xs:annotation>
+          <xs:documentation>list of full path names of XML files</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="tns:TShopCount[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="msg_GetCount_Input">
+    <wsdl:part name="Filter" type="tns:type_GetCount_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetCount_Output">
+    <wsdl:part name="Count" type="xs:int" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetAllCounts_Input" />
+  <wsdl:message name="msg_GetAllCounts_Output">
+    <wsdl:part name="AllCounts" type="tns:type_GetAllCounts_Out" />
+  </wsdl:message>
+  <wsdl:portType name="port_ShopCount">
+    <wsdl:operation name="getCount">
+      <documentation>Returns the number of shops of a provider, filtered by shop type, database and flags.</documentation>
+      <wsdl:input message="tns:msg_GetCount_Input" />
+      <wsdl:output message="tns:msg_GetCount_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllCounts">
+      <documentation>Returns the number of shops of a provider from all databases. Deleted shops and internal test shops are not included.</documentation>
+      <wsdl:input message="tns:msg_GetAllCounts_Input" />
+      <wsdl:output message="tns:msg_GetAllCounts_Output" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="bind_ShopCount_SOAP" type="tns:port_ShopCount">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="getCount">
+      <soap:operation soapAction="urn://epages.de/WebService/ShopCountService/2006/08#getCount" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShopCountService/2006/08" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShopCountService/2006/08" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllCounts">
+      <soap:operation soapAction="urn://epages.de/WebService/ShopCountService/2006/08#getAllCounts" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShopCountService/2006/08" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/ShopCountService/2006/08" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ShopCountService">
+    <documentation>ePages ShopCount Service</documentation>
+    <wsdl:port name="port_ShopCount" binding="tns:bind_ShopCount_SOAP">
+      <soap:address location="http://localhost/epages/Site.soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

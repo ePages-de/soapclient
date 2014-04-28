@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn://epages.de/WebService/ProductImageTypes/2006/03" xmlns:epagestypes="urn://epages.de/WebService/EpagesTypes/2005/01" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn://epages.de/WebService/ProductImageTypes/2006/03" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="EpagesTypes.xsd" namespace="urn://epages.de/WebService/EpagesTypes/2005/01" />
+  <xs:complexType name="ListOfImageData">
+    <xs:annotation>
+      <xs:documentation>
+      the array for the image data (name and content)
+    </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TImageData[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TImageData">
+    <xs:annotation>
+      <xs:documentation>
+        the content and the filename of a product image
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="FileName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the filename without path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Content" type="xs:base64Binary">
+        <xs:annotation>
+          <xs:documentation>the binary filecontent</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="type_Delete_Out">
+    <xs:annotation>
+      <xs:documentation>
+            output structure of an delete() product image call.
+          </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TDelete_Return[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TListOfFileNames">
+    <xs:annotation>
+      <xs:documentation>
+            input structure of an delete() product file call.
+            a simple list of file names.
+          </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TDelete_Return">
+    <xs:annotation>
+      <xs:documentation>
+        a single return value of a delete() product image call.
+        the path will be always returned.
+        the error element will be returned in case of error.
+        the deleted flag will be returned if no error has occured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Path" type="xs:string" />
+      <xs:element minOccurs="0" name="deleted" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>a boolean flag indicating that this product image was deleted</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError">
+        <xs:annotation>
+          <xs:documentation>error object (see epagestypes:TError)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TUploadScaleOut">
+    <xs:annotation>
+      <xs:documentation>
+            output structure of an uploadscale() product image call.
+          </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TUploadScale_Return[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TUploadScale_Return">
+    <xs:annotation>
+      <xs:documentation>the output structure of an uploadscale() call</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element minOccurs="0" name="WriteOK" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ScaleOK" type="xs:boolean" />
+      <xs:element name="File" type="xs:string" />
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TUploadScale_Input">
+    <xs:annotation>
+      <xs:documentation>
+    the container for the uploadscale() params
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element minOccurs="0" name="ImageData" type="tns:ListOfImageData">
+        <xs:annotation>
+          <xs:documentation>list of filecontents and names</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ImagesSlideShowString" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the filenames for the slideshow, separated with ";" </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TScaleParams">
+    <xs:annotation>
+      <xs:documentation>
+          the params for scaling product images
+        </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element minOccurs="0" name="SCALE_BORDER_IMAGE_h" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>obsolete</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="SCALE_BORDER_IMAGE_m" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>obsolete</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SCALE_BORDER_COLOR_h" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>obsolete</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SCALE_BORDER_COLOR_m" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>obsolete</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SCALE_NAME_h" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>attribute name of the image with size 'h', for example: 'ImageHotDeal'</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SCALE_NAME_m" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>attribute name of the image with size 'm', for example: 'ImageMedium'</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SCALE_NAME_s" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>attribute name of the image with size 's', for example: 'ImageSmall'</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SCALE_SIZE_h" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>size in pixel of the hot-deal image</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SCALE_SIZE_m" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>size in pixel of the medium image</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SCALE_SIZE_s" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>size in pixel of the small image</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TUploadOut">
+    <xs:annotation>
+      <xs:documentation>
+            output structure of an upload() product image call.
+          </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:restriction base="soapenc:Array">
+        <xs:attribute wsdl:arrayType="tns:TUpload_Return[]" ref="soapenc:arrayType" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TUpload_Return">
+    <xs:all>
+      <xs:element minOccurs="0" name="WriteOK" type="xs:boolean" />
+      <xs:element name="File" type="xs:string" />
+      <xs:element minOccurs="0" name="Error" type="epagestypes:TError" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="TUpload_Input">
+    <xs:all>
+      <xs:element minOccurs="0" name="ImageData" type="tns:ListOfImageData">
+        <xs:annotation>
+          <xs:documentation>list of filecontents and filenames</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ImagesSlideShowString" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>the filenames for the slideshow, separated with ";" </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:simpleType name="TFileName">
+    <xs:annotation>
+      <xs:documentation>the FileName of an product image</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:simpleType name="TExists_Return">
+    <xs:annotation>
+      <xs:documentation>the return structure for an exists() call</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:boolean" />
+  </xs:simpleType>
+</xs:schema>

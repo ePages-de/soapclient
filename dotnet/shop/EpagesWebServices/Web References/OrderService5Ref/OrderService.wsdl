@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:OrderTypes="urn://epages.de/WebService/OrderTypes/2009/01" xmlns:tns="urn://epages.de/WebService/OrderService/2009/01" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="OrderService" targetNamespace="urn://epages.de/WebService/OrderService/2009/01" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <documentation>
+    this is a web service for an epages e-commerce system.
+    this service is a container for all methods in the order context.
+    needs ePages 6.04 or higher
+  </documentation>
+  <wsdl:types>
+    <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/OrderService/2009/01">
+      <xs:import schemaLocation="OrderTypes5.xsd" namespace="urn://epages.de/WebService/OrderTypes/2009/01" />
+      <xs:complexType name="type_GetInfo_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of a getInfo() order call.
+            a simple list of order paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_GetInfo_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a getInfo() order call.
+            see OrderTypes:TGetInfo_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="OrderTypes:TGetInfo_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_AttributeNames_In">
+        <xs:annotation>
+          <xs:documentation>
+            additional input of a getInfo() order call.
+            a simple list of attribute names.
+            defines the content of the returned attribute name-value list.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_LanguageCodes_In">
+        <xs:annotation>
+          <xs:documentation>
+            additional input of a getInfo() order call.
+            a simple list of language codes (e.g. 'en').
+            defines the content of the returned localized values.
+            this list is optional (all shop languages will be used if not provided).
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Exists_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an exists() order call.
+            a simple list of order paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Exists_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an exists() order call.
+            see OrderTypes:TExists_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="OrderTypes:TExists_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Delete_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of a delete() order call.
+            a simple list of order paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Delete_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a delete() order call.
+            see OrderTypes:TDelete_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="OrderTypes:TDelete_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Update_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of an update() order call.
+            see OrderTypes:TUpdate_Input
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="OrderTypes:TUpdate_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Update_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an update() order call.
+            see OrderTypes:TUpdate_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="OrderTypes:TUpdate_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Create_In">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of a create() order call.
+            see OrderTypes:TCreate_Input
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="OrderTypes:TCreate_Input[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="type_Create_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of a create() order call.
+            see OrderTypes:TCreate_Return
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="OrderTypes:TCreate_Return[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TFind_Input">
+        <xs:annotation>
+          <xs:documentation>
+            input structure of a find() order call.
+            a set of optional search parameters.
+            Note: to search for orders that don't have a specific status flag, set the
+            corresponding "Not(Status)" field to true. Setting "Is(Status)" to false has
+            no effect.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:all>
+          <xs:element minOccurs="0" name="Alias" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>search for part of order alias</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Product" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>search for a product alias that is part of the order</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="DateFrom" type="xs:dateTime">
+            <xs:annotation>
+              <xs:documentation>search for order beginning with this date</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="DateTo" type="xs:dateTime">
+            <xs:annotation>
+              <xs:documentation>search for order ending at this date</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsViewed" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for enabled order flag: IsViewed</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsCancelled" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for enabled order flag: IsCancelled</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsInProcess" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for enabled order flag: IsInProcess</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsPending" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for enabled order flag: IsPending</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsReadyForShipping" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for enabled order flag: IsReadyForShipping</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsPartlyDispatched" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for enabled order flag: IsPartlyDispatched</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsDispatched" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for enabled order flag: IsDispatched</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsShipped" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for enabled order flag: IsShipped</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsPartlyPaid" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for enabled order flag: IsPartlyPaid</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsPaid" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for enabled order flag: IsPaid</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsClosed" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for enabled order flag: IsClosed</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsArchived" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for enabled order flag: IsArchived</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsPartlyInvoiced" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for enabled order flag: IsPartlyInvoiced</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="IsInvoiced" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for enabled order flag: IsInvoiced</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="NotViewed" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for disabled order flag: IsViewed</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="NotCancelled" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for disabled order flag: IsCancelled</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="NotInProcess" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for disabled order flag: IsInProcess</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="NotPending" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for disabled order flag: IsPending</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="NotReadyForShipping" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for disabled order flag: IsReadyForShipping</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="NotPartlyDispatched" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for disabled order flag: IsPartlyDispatched</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="NotDispatched" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for disabled order flag: IsDispatched</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="NotShipped" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for disabled order flag: IsShipped</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="NotPartlyPaid" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for disabled order flag: IsPartlyPaid</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="NotPaid" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for disabled order flag: IsPaid</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="NotClosed" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for disabled order flag: IsClosed</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="NotArchived" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for disabled order flag: IsArchived</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="NotPartlyInvoiced" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for disabled order flag: IsPartlyInvoiced</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="NotInvoiced" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>search for disabled order flag: IsInvoiced</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:all>
+      </xs:complexType>
+      <xs:complexType name="type_Find_Out">
+        <xs:annotation>
+          <xs:documentation>
+            output structure of an find() order call.
+            a simple list of order paths.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:attribute wsdl:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="msg_GetInfo_Input">
+    <wsdl:part name="Orders" type="tns:type_GetInfo_In" />
+    <wsdl:part name="Attributes" type="tns:type_AttributeNames_In" />
+    <wsdl:part name="AddressAttributes" type="tns:type_AttributeNames_In" />
+    <wsdl:part name="LineItemAttributes" type="tns:type_AttributeNames_In" />
+    <wsdl:part name="LanguageCodes" type="tns:type_LanguageCodes_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_GetInfo_Output">
+    <wsdl:part name="Orders" type="tns:type_GetInfo_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Exists_Input">
+    <wsdl:part name="Orders" type="tns:type_Exists_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Exists_Output">
+    <wsdl:part name="Orders" type="tns:type_Exists_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Delete_Input">
+    <wsdl:part name="Orders" type="tns:type_Delete_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Delete_Output">
+    <wsdl:part name="Orders" type="tns:type_Delete_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Update_Input">
+    <wsdl:part name="Orders" type="tns:type_Update_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Update_Output">
+    <wsdl:part name="Orders" type="tns:type_Update_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Create_Input">
+    <wsdl:part name="Orders" type="tns:type_Create_In" />
+  </wsdl:message>
+  <wsdl:message name="msg_Create_Output">
+    <wsdl:part name="Orders" type="tns:type_Create_Out" />
+  </wsdl:message>
+  <wsdl:message name="msg_Find_Input">
+    <wsdl:part name="SearchParameters" type="tns:TFind_Input" />
+  </wsdl:message>
+  <wsdl:message name="msg_Find_Output">
+    <wsdl:part name="Orders" type="tns:type_Find_Out" />
+  </wsdl:message>
+  <wsdl:portType name="port_Order">
+    <wsdl:operation name="getInfo">
+      <documentation>get information about a list of orders</documentation>
+      <wsdl:input message="tns:msg_GetInfo_Input" />
+      <wsdl:output message="tns:msg_GetInfo_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <documentation>check if a list of orders exist.</documentation>
+      <wsdl:input message="tns:msg_Exists_Input" />
+      <wsdl:output message="tns:msg_Exists_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <documentation>delete a list of orders</documentation>
+      <wsdl:input message="tns:msg_Delete_Input" />
+      <wsdl:output message="tns:msg_Delete_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <documentation>update a list of orders. This function also sends order
+        status e-mails to customers if the e-mail events are enabled.</documentation>
+      <wsdl:input message="tns:msg_Update_Input" />
+      <wsdl:output message="tns:msg_Update_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <documentation>create new orders. This function does not send order
+        confirmation e-mails to the customers.</documentation>
+      <wsdl:input message="tns:msg_Create_Input" />
+      <wsdl:output message="tns:msg_Create_Output" />
+    </wsdl:operation>
+    <wsdl:operation name="find">
+      <documentation>find orders</documentation>
+      <wsdl:input message="tns:msg_Find_Input" />
+      <wsdl:output message="tns:msg_Find_Output" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="bind_Order_SOAP" type="tns:port_Order">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="getInfo">
+      <soap:operation soapAction="urn://epages.de/WebService/OrderService/2009/01#getInfo" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderService/2009/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderService/2009/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exists">
+      <soap:operation soapAction="urn://epages.de/WebService/OrderService/2009/01#exists" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderService/2009/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderService/2009/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="urn://epages.de/WebService/OrderService/2009/01#delete" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderService/2009/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderService/2009/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <soap:operation soapAction="urn://epages.de/WebService/OrderService/2009/01#update" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderService/2009/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderService/2009/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <soap:operation soapAction="urn://epages.de/WebService/OrderService/2009/01#create" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderService/2009/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderService/2009/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="find">
+      <soap:operation soapAction="urn://epages.de/WebService/OrderService/2009/01#find" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderService/2009/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn://epages.de/WebService/OrderService/2009/01" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OrderService">
+    <documentation>epages Order Service</documentation>
+    <wsdl:port name="port_Order" binding="tns:bind_Order_SOAP">
+      <soap:address location="http://localhost/epages/Store.soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
