@@ -6,12 +6,19 @@ import de.epages.ws.shopconfig6.ShopConfigServiceClient;
 import de.epages.ws.shopconfig6.ShopConfigServiceClientImpl;
 import de.epages.ws.shopcount.ShopCountServiceClient;
 import de.epages.ws.shopcount.ShopCountServiceClientImpl;
+import de.epages.ws.simpleprovisioning.SimpleProvisioningServiceClient;
+import de.epages.ws.simpleprovisioning.SimpleProvisioningServiceClientImpl;
 
 public class ProviderWebserviceFactoryImpl implements ProviderWebserviceFactory {
 
     @Override
     public FeaturePackServiceClient createFeaturePackServiceClient(WebServiceConfiguration config) {
         return new FeaturePackServiceClientImpl(config);
+    }
+
+    @Override
+    public SimpleProvisioningServiceClient createSimpleProvisioningServiceClient(WebServiceConfiguration config) {
+        return new SimpleProvisioningServiceClientImpl(config);
     }
 
     @Override
