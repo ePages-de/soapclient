@@ -21,7 +21,7 @@ configure(subprojects.findAll { it.name.contains("java/") }) {
 		}
 	}
 
-    def pomFile = file('build/publications/mavenJava/pom-default.xml')
+    def pomFile = file('build/' + archivesBaseName.replaceAll("java/","soapclient-") + '-' + version + '.pom')
 
     publishing {
         publications {
@@ -50,6 +50,7 @@ configure(subprojects.findAll { it.name.contains("java/") }) {
     project.artifacts {
         archives pomFile
     }
+
 
     bintray {
 		user = rootProject.properties['bintray.user']
