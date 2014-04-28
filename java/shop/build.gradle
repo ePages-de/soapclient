@@ -1,3 +1,4 @@
+apply plugin: 'maven-publish'
 
 dependencies {
     compile project(':java/common')
@@ -6,3 +7,4 @@ dependencies {
 
 archivesBaseName = 'soapclient-shop'
 description = 'AXIS 1.x based SOAP client for epages6 ShopServices'
+

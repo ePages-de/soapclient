@@ -13,7 +13,7 @@ msbuild {
   projectName = project.name
 
   // Verbosity (/v:detailed, by default uses gradle logging level)
-  verbosity = 'detailed'
+  //  verbosity = 'detailed'
 
   // targets to execute (/t:Clean;Rebuild, no default)
   targets = ['Clean', 'Rebuild']

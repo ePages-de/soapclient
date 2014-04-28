@@ -1,4 +1,4 @@
-configure(subprojects.findAll {it.name.contains("java/")}) {
+configure(subprojects.findAll { it.name.contains("java/") }) {
 
 	apply plugin: 'maven-publish'
 	apply plugin: 'bintray'
@@ -21,21 +21,36 @@ configure(subprojects.findAll {it.name.contains("java/")}) {
 		}
 	}
 
-	publishing {
-		publications {
-			mavenJava(MavenPublication) {
-				from components.java
-				artifactId = project.archivesBaseName
-				artifact sourcesJar
+    def pomFile = file('build/' + archivesBaseName + '-' + version + '.pom')
 
-				pom.withXml {
-					def root = asNode()
-					root.appendNode('description', project.description)
-					root.children().last() + pomConfig
-				}
-			}
-		}
-	}
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+                artifactId = project.archivesBaseName
+                artifact sourcesJar {
+                    classifier "sources"
+                }
+
+                pom.withXml {
+                    def root = asNode()
+                    root.appendNode('description', project.description)
+                    root.children().last() + pomConfig
+                }
+            }
+        }
+    }
+
+    model {
+        generatePomFileForMavenJavaPublication {
+            destination = pomFile
+        }
+    }
+
+    project.artifacts {
+        archives pomFile
+    }
+
 
     bintray {
 		user = rootProject.properties['bintray.user']
