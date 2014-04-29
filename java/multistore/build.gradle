@@ -3,6 +3,7 @@ apply plugin: 'maven-publish'
 dependencies {
     compile project(':java/common')
     testCompile project(path: ':java/common', configuration: 'testApi')
+    testCompile project(path: ':java/provider', configuration: 'testApi')
 }
 
 archivesBaseName = 'soapclient-multistore'

@@ -35,6 +35,7 @@ ext {
 
     //// multistore services ////
     'MultiStoreMasterService',
+    'MultiStoreConfigService',
   ]
 
   /* previous versions of all supported services */

@@ -11,6 +11,8 @@ import de.epages.ws.WebServiceConfiguration;
 
 public class ProviderWebServiceTestConfiguration implements WebServiceConfiguration {
 
+    // TODO: Refactor to move the ini parsing logic into commons.
+
     public final static String WEBSERVICE_LOGIN = "/Providers/Distributor/Users/admin";
     public final static String WEBSERVICE_PASSWORD = "admin";
     public final static URL WEBSERVICE_URL = new ProviderWebServiceTestConfiguration().doGetWebserviceURL();
