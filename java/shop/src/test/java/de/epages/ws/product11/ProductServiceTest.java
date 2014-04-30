@@ -3,6 +3,7 @@ package de.epages.ws.product11;
 import static de.epages.ws.common.AssertNoError.assertNoError;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
@@ -243,7 +244,7 @@ public class ProductServiceTest {
      *
      * @param isAlreadyUpdated if true check against update data, else against create data
      */
-    public void testGetInfo(boolean isAlreadyUpdated) {
+    public void getInfo(boolean isAlreadyUpdated) {
         TGetInfo_Return[] Products_info_out = serviceClient.getInfo(
             new String[]{path + alias},
             new String[]{"Manufacturer"},
@@ -362,6 +363,26 @@ public class ProductServiceTest {
         assertEquals("OrderUnit", Product_in.getOrderUnit(), Product_info_out.getOrderUnit());
         assertEquals("IsVisible", Product_in.getIsVisible(), Product_info_out.getIsVisible());
         assertEquals("class", Product_in.get_class(), Product_info_out.get_class());
+    }
+
+    public void testUnsetPrices() {
+        TProductPrice productPrice = new TProductPrice();
+        productPrice.setCurrencyID("EUR");
+        productPrice.setTaxModel("gross");
+        TUpdate_Input priceUpdate = new TUpdate_Input();
+        priceUpdate.setPath(path + alias);
+        priceUpdate.setProductPrices(new TProductPrice[] { productPrice });
+        TUpdate_Return[] Products_update_out = serviceClient.update(new TUpdate_Input[] {priceUpdate});
+        assertNoError(Products_update_out[0].getError());
+        TGetInfo_Return[] Products_info_out = serviceClient.getInfo(new String[] { priceUpdate.getPath() });
+        assertNoError(Products_info_out[0].getError());
+
+        TProductPrice[] productPrices = Products_info_out[0].getProductPrices();
+        for (TProductPrice tProductPrice : productPrices) {
+            if ("EUR".equals(tProductPrice.getCurrencyID())) {
+                assertNull(tProductPrice.getPrice());
+            }
+        }
     }
 
     /**
@@ -486,9 +507,10 @@ public class ProductServiceTest {
         testCreate();
         testExists(true);
         testFind();
-        testGetInfo(false);
+        getInfo(false);
         testUpdate();
-        testGetInfo(true);
+        getInfo(true);
+        testUnsetPrices();
         testDelete();
         testExists(false);
 
