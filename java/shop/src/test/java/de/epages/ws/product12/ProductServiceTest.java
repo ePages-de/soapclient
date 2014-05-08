@@ -307,6 +307,9 @@ public class ProductServiceTest {
         shippHash.put(Product_info_out.getShippingMethods()[0].getPath(), "1");
         shippHash.put(Product_info_out.getShippingMethods()[1].getPath(), "1");
 
+        assertEquals("/Units/gram", Product_info_out.getWeightUnit());
+        assertEquals(240f,Product_info_out.getWeight(),0.0f);
+
         if (isAlreadyUpdated) {
             assertEquals("updated Manufacturer", Product_update.getAttributes()[0].getValue(),
                     Product_info_out.getAttributes()[0].getValue());
