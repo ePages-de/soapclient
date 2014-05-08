@@ -4,6 +4,7 @@ import static de.epages.ws.common.AssertNoError.assertNoError;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
@@ -406,6 +407,26 @@ public class ProductServiceTest {
         assertTrue("IsMaster", Products_info_out[0].getIsMaster());
     }
 
+    public void testUnsetPrices() {
+        TProductPrice productPrice = new TProductPrice();
+        productPrice.setCurrencyID("EUR");
+        productPrice.setTaxModel("gross");
+        TUpdate_Input priceUpdate = new TUpdate_Input();
+        priceUpdate.setPath(path + alias);
+        priceUpdate.setProductPrices(new TProductPrice[] { productPrice });
+        TUpdate_Return[] Products_update_out = serviceClient.update(new TUpdate_Input[] {priceUpdate});
+        assertNoError(Products_update_out[0].getError());
+        TGetInfo_Return[] Products_info_out = serviceClient.getInfo(new String[] { priceUpdate.getPath() });
+        assertNoError(Products_info_out[0].getError());
+
+        TProductPrice[] productPrices = Products_info_out[0].getProductPrices();
+        for (TProductPrice tProductPrice : productPrices) {
+            if ("EUR".equals(tProductPrice.getCurrencyID())) {
+                assertNull(tProductPrice.getPrice());
+            }
+        }
+    }
+
     /**
      * Delete a Product and check if no error occured.
      */
@@ -583,6 +604,7 @@ public class ProductServiceTest {
         testGetInfo(true);
         testCreateVariations();
         testGetInfoVariations();
+        testUnsetPrices();
         testDelete();
         testExists(false);
 

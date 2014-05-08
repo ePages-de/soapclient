@@ -1,6 +1,6 @@
 use strict;
 use utf8;
-use Test::More tests => 174;
+use Test::More tests => 175;
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD WEBSERVICE_SHOP_PATH WEBSERVICE_SHOP_NAME);
 use WebServiceTools qw( cmpDateTime GetFileContent );
@@ -751,6 +751,25 @@ sub testCreateWrongVariations {
 
 }
 
+sub testUnsetPrices {
+    my $ahResults = $ProductService->update([
+    {
+        'Path' => $hOptions->{'FullPath'},
+        'ProductPrices' => [{ 'CurrencyID' => 'EUR', 'TaxModel' => 'gross', 'Price' => undef }],
+    }])->result;
+    my $hResult = $ahResults->[0];
+    diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
+
+    $ahResults = $ProductService->getInfo([$hOptions->{'FullPath'}])->result;
+    $hResult = $ahResults->[0];
+    diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
+
+    for my $hPriceInfo (@{$hResult->{'ProductPrices'}}) {
+        if($hPriceInfo->{'CurrencyID'} eq 'EUR') {
+            ok(!defined($hPriceInfo->{'Price'}), 'price is unset.');
+        }
+    }
+}
 
 
 # run test suite
@@ -765,6 +784,7 @@ testUpdateError();
 testCreateVariations();
 testGetInfoVariations();
 testCreateWrongVariations();
+testUnsetPrices();
 testDelete();
 testExists(0);
 testCreateDownload();
