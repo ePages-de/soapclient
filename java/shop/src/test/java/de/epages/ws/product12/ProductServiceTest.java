@@ -126,6 +126,8 @@ public class ProductServiceTest {
                 new TShippingMethod("ShippingMethods/Express", true), });
 
         Product_update.setDeliveryPeriod("as soon as possible");
+        Product_update.setWeight(1.0f);
+        Product_update.setWeightUnit("/Units/gram/kilogram");
 
         Product_update.setIsAvailable(false);
         Product_update.setAvailabilityComment(new TLocalizedValue[] { new TLocalizedValue("de", "wird gleich gelöscht"),
@@ -243,7 +245,7 @@ public class ProductServiceTest {
      * @param isAlreadyUpdated
      *            if true check against update data, else against create data
      */
-    public void testGetInfo(boolean isAlreadyUpdated) {
+    public void getInfo(boolean isAlreadyUpdated) {
         TGetInfo_Return[] Products_info_out = serviceClient.getInfo(new String[] { path + alias }, new String[] { "Manufacturer" },
                 new String[] { "de", "en" });
 
@@ -307,9 +309,6 @@ public class ProductServiceTest {
         shippHash.put(Product_info_out.getShippingMethods()[0].getPath(), "1");
         shippHash.put(Product_info_out.getShippingMethods()[1].getPath(), "1");
 
-        assertEquals("/Units/gram", Product_info_out.getWeightUnit());
-        assertEquals(240f,Product_info_out.getWeight(),0.0f);
-
         if (isAlreadyUpdated) {
             assertEquals("updated Manufacturer", Product_update.getAttributes()[0].getValue(),
                     Product_info_out.getAttributes()[0].getValue());
@@ -354,6 +353,9 @@ public class ProductServiceTest {
             assertTrue("added new shipping path", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/PickupByCustomer"));
             assertTrue("deleted shipping path", !shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Express"));
             assertEquals("expirydate", Product_update.getExpiryDate().getTime(), Product_info_out.getExpiryDate().getTime());
+
+            assertEquals("/Units/gram/kilogram", Product_update.getWeightUnit());
+            assertEquals(1f,Product_update.getWeight(),0.0f);
         } else {
             assertEquals("Manufacturer", Product_in.getAttributes()[0].getValue(), Product_info_out.getAttributes()[0].getValue());
             assertEquals("initial localized Name", Product_in.getName()[0].getValue(),
@@ -394,6 +396,8 @@ public class ProductServiceTest {
 
             assertTrue("shipping path 1", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Post"));
             assertTrue("shipping path 2", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Express"));
+            assertEquals("/Units/gram", Product_info_out.getWeightUnit());
+            assertEquals(240f,Product_info_out.getWeight(),0.0f);
         }
 
         assertEquals("TaxClass", Product_in.getTaxClass(), Product_info_out.getTaxClass());
@@ -580,10 +584,10 @@ public class ProductServiceTest {
         testExists(true);
         testFindByAlias();
         testFindByLastUpdate();
-        testGetInfo(false);
+        getInfo(false);
         testGetInfoMasterProduct();
         testUpdate();
-        testGetInfo(true);
+        getInfo(true);
         testCreateVariations();
         testGetInfoVariations();
         testDelete();
