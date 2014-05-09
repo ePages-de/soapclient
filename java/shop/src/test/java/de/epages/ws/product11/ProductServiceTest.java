@@ -87,6 +87,8 @@ public class ProductServiceTest {
         Product_in.setStockLevelAlert((float)100);
 
         Product_in.setDeliveryPeriod("asap");
+        Product_in.setWeightUnit("/Units/gram");
+        Product_in.setWeight((float) 240);
 
         Product_in.setProductPrices(new TProductPrice[]{
                     new TProductPrice((float)123, "EUR", "gross"),
@@ -157,6 +159,8 @@ public class ProductServiceTest {
         });
 
         Product_update.setDeliveryPeriod("as soon as possible");
+        Product_update.setWeight(1.0f);
+        Product_update.setWeightUnit("/Units/gram/kilogram");
 
         Product_update.setIsAvailable(false);
         Product_update.setAvailabilityComment(new TLocalizedValue[]{
@@ -330,6 +334,9 @@ public class ProductServiceTest {
             assertTrue("do not touch shipping path", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Post"));
             assertTrue("added new shipping path", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/PickupByCustomer"));
             assertTrue("deleted shipping path", !shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Express"));
+
+            assertEquals("updated weight unit", "/Units/gram/kilogram", Product_update.getWeightUnit());
+            assertEquals("updated weight", 1f, Product_update.getWeight(), 0.0f);
         }
         else {
             assertEquals("Manufacturer", Product_in.getAttributes()[0].getValue(), Product_info_out.getAttributes()[0].getValue()  );
@@ -356,6 +363,8 @@ public class ProductServiceTest {
 
             assertTrue("shipping path 1", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Post"));
             assertTrue("shipping path 2", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Express"));
+            assertEquals("weight unit", "/Units/gram", Product_info_out.getWeightUnit());
+            assertEquals("weight", 240f, Product_info_out.getWeight(),0.0f);
         }
 
         assertEquals("TaxClass", Product_in.getTaxClass(), Product_info_out.getTaxClass());
