@@ -127,6 +127,8 @@ public class ProductServiceTest {
                 new TShippingMethod("ShippingMethods/Express", true), });
 
         Product_update.setDeliveryPeriod("as soon as possible");
+        Product_update.setWeight(1.0f);
+        Product_update.setWeightUnit("/Units/gram/kilogram");
 
         Product_update.setIsAvailable(false);
         Product_update.setAvailabilityComment(new TLocalizedValue[] { new TLocalizedValue("de", "wird gleich gelöscht"),
@@ -224,6 +226,10 @@ public class ProductServiceTest {
         assertEquals("created?", true, Products_create_out[0].getCreated());
     }
 
+    public void testGetInfoBeforeUpdate() {
+        getInfo(false);
+    }
+
     /**
      * Update a Product and check if the update was successful
      */
@@ -237,14 +243,18 @@ public class ProductServiceTest {
         assertEquals("updated?", true, Products_update_out[0].getUpdated());
     }
 
+    public void testGetInfoAfterUpdate() {
+        getInfo(true);
+    }
+
     /**
-     * Retrieve information about an Product. Check if the returned data are
-     * equal to the data of create or update call
+     * Retrieves information about a product. Checks if the returned data is
+     * equal to the data of create or update call.
      *
      * @param isAlreadyUpdated
      *            if true check against update data, else against create data
      */
-    public void testGetInfo(boolean isAlreadyUpdated) {
+    private void getInfo(boolean isAlreadyUpdated) {
         TGetInfo_Return[] Products_info_out = serviceClient.getInfo(new String[] { path + alias }, new String[] { "Manufacturer" },
                 new String[] { "de", "en" });
 
@@ -352,6 +362,9 @@ public class ProductServiceTest {
             assertTrue("added new shipping path", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/PickupByCustomer"));
             assertTrue("deleted shipping path", !shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Express"));
             assertEquals("expirydate", Product_update.getExpiryDate().getTime(), Product_info_out.getExpiryDate().getTime());
+
+            assertEquals("updated weight unit", "/Units/gram/kilogram", Product_update.getWeightUnit());
+            assertEquals("updated weight", 1f, Product_update.getWeight(), 0.0f);
         } else {
             assertEquals("Manufacturer", Product_in.getAttributes()[0].getValue(), Product_info_out.getAttributes()[0].getValue());
             assertEquals("initial localized Name", Product_in.getName()[0].getValue(),
@@ -392,6 +405,8 @@ public class ProductServiceTest {
 
             assertTrue("shipping path 1", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Post"));
             assertTrue("shipping path 2", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Express"));
+            assertEquals("weight unit", "/Units/gram", Product_info_out.getWeightUnit());
+            assertEquals("weight", 240f, Product_info_out.getWeight(),0.0f);
         }
 
         assertEquals("TaxClass", Product_in.getTaxClass(), Product_info_out.getTaxClass());
@@ -598,10 +613,10 @@ public class ProductServiceTest {
         testExists(true);
         testFindByAlias();
         testFindByLastUpdate();
-        testGetInfo(false);
+        testGetInfoBeforeUpdate();
         testGetInfoMasterProduct();
         testUpdate();
-        testGetInfo(true);
+        testGetInfoAfterUpdate();
         testCreateVariations();
         testGetInfoVariations();
         testUnsetPrices();
