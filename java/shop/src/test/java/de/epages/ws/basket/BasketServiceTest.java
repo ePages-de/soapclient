@@ -177,6 +177,7 @@ public class BasketServiceTest {
         TAddressNamed Address_out = Basket_info_out.getBillingAddress();
         assertEquals("EMail", Address_in.getEMail(), Address_out.getEMail());
         TProductLineItemOut productLineItem = Basket_info_out.getLineItemContainer().getProductLineItems()[0];
+        assertEquals("/Units/piece", productLineItem.getOrderUnit());
 
         if (isAlreadyUpdated) {
             // check updated order data
