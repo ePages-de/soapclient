@@ -36,7 +36,7 @@ public class OrderServiceTest {
     private TAddressNamed Address_up = new TAddressNamed();
 
     String Alias = "java_test-1";
-    String Customer = "/Shops/DemoShop/Customers/1001"; /* mmustermann */
+    String Customer = "Customers/1001"; /* mmustermann */
     String OrderPath = Customer + "/Orders/" + Alias;
 
     String[] Orders = new String[]{OrderPath};
@@ -76,13 +76,13 @@ public class OrderServiceTest {
         Order_in.setAttributes(new TAttribute[]{OrderAttr_in});
         TLineItemContainerIn lineItemContainer = new TLineItemContainerIn();
         lineItemContainer.setCurrencyID("EUR");
-        lineItemContainer.setPaymentMethod("/Shops/DemoShop/PaymentMethods/Invoice");
-        lineItemContainer.setShippingMethod("/Shops/DemoShop/ShippingMethods/Express");
+        lineItemContainer.setPaymentMethod("PaymentMethods/Invoice");
+        lineItemContainer.setShippingMethod("ShippingMethods/Express");
         lineItemContainer.setTaxArea("/TaxMatrixGermany/EU");
         lineItemContainer.setTaxModel("gross");
         lineItemContainer.setProductLineItems(new TProductLineItemIn[]{
-                new TProductLineItemIn("/Shops/DemoShop/Products/ho_1112105010", (float)10),
-                //new TProductLineItemIn("/Shops/DemoShop/Products/de_3203104010", (float)10),
+                new TProductLineItemIn("Products/ho_1112105010", (float)10),
+                //new TProductLineItemIn("Products/de_3203104010", (float)10),
         });
         Order_in.setLineItemContainer(lineItemContainer);
 

@@ -26,7 +26,7 @@ public class OrderDocumentServiceTest {
 
     private OrderDocumentServiceClient orderDocService = new OrderDocumentServiceClientImpl(new WebServiceTestConfiguration());
 
-    private String Customer = "/Shops/DemoShop/Customers/1001"; /* mmustermann */
+    private String Customer = "Customers/1001"; /* mmustermann */
     private String Order = Customer + "/Orders/1002";
 
     private String I = "Invoice";

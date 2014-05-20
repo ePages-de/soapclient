@@ -26,7 +26,7 @@ public class OrderServiceTest {
     private final TCreate_Input Order_in = new TCreate_Input();
     private final TUpdate_Input Order_update = new TUpdate_Input();
 
-    private final String path = "/Shops/DemoShop/Customers/1001/Orders/";
+    private final String path = "Customers/1001/Orders/";
     private final String alias = "java_test-1";
 
     /**
@@ -39,13 +39,13 @@ public class OrderServiceTest {
         // methods
         Order_in.setAlias(alias);
         Order_in.setCreationDate(new GregorianCalendar(2006, 0, 1, 11, 11));
-        Order_in.setCustomer("/Shops/DemoShop/Customers/1001");
+        Order_in.setCustomer("Customers/1001");
 
-        TProductLineItemIn productLineItem = new TProductLineItemIn("/Shops/DemoShop/Products/ho_1112105010", (float) 10);
+        TProductLineItemIn productLineItem = new TProductLineItemIn("Products/ho_1112105010", (float) 10);
         TLineItemContainerIn lineItemContainer = new TLineItemContainerIn();
         lineItemContainer.setCurrencyID("EUR");
-        lineItemContainer.setPaymentMethod("/Shops/DemoShop/PaymentMethods/Invoice");
-        lineItemContainer.setShippingMethod("/Shops/DemoShop/ShippingMethods/Express");
+        lineItemContainer.setPaymentMethod("PaymentMethods/Invoice");
+        lineItemContainer.setShippingMethod("ShippingMethods/Express");
         lineItemContainer.setTaxArea("/TaxMatrixGermany/EU");
         lineItemContainer.setTaxModel("gross");
         lineItemContainer.setProductLineItems(new TProductLineItemIn[] { productLineItem });

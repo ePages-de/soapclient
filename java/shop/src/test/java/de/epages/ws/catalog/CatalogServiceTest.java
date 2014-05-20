@@ -28,7 +28,7 @@ public class CatalogServiceTest {
     private final TCreate_Input Catalog_in = new TCreate_Input();
     private final TUpdate_Input Catalog_update = new TUpdate_Input();
 
-    private final String path = "/Shops/DemoShop/Categories";
+    private final String path = "Categories";
     private final String alias = "java_test-1";
     private final String full = path + "/" + alias;
 

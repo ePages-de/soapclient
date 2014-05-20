@@ -24,12 +24,12 @@ public class OrderDocumentServiceTest {
     private final TCreate_Input creditnote_in = new TCreate_Input();
     private final TCreate_Input invoiceIssuedIn = new TCreate_Input();
 
-    private final String order = "/Shops/DemoShop/Customers/1001/Orders/1002";
-    private final String invoice_path = "/Shops/DemoShop/Customers/1001/Orders/1002/Invoices/";
+    private final String order = "Customers/1001/Orders/1002";
+    private final String invoice_path = "Customers/1001/Orders/1002/Invoices/";
     private final String invoice_alias = "myinvoice";
-    private final String packingslip_path = "/Shops/DemoShop/Customers/1001/Orders/1002/PackingSlips/";
+    private final String packingslip_path = "Customers/1001/Orders/1002/PackingSlips/";
     private final String packingslip_alias = "mypackingslip";
-    private final String creditnote_path = "/Shops/DemoShop/Customers/1001/Orders/1002/CreditNotes/";
+    private final String creditnote_path = "Customers/1001/Orders/1002/CreditNotes/";
     private final String creditnote_alias = "mycreditnote";
 
     /**

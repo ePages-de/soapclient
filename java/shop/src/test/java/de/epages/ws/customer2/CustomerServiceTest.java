@@ -30,7 +30,7 @@ public class CustomerServiceTest {
     private TCreate_Input customer_in = new TCreate_Input();
     private TUpdate_Input customer_update = new TUpdate_Input();
 
-    private String custpath = "/Shops/DemoShop/Customers/";
+    private String custpath = "Customers/";
     private String alias = "java_test-1";
     private String path = custpath + alias;
     private String email = "java_test-1@epages.de";
@@ -43,7 +43,7 @@ public class CustomerServiceTest {
     public void setUp() {
         // test data customer_in
         customer_in.setAlias(alias);
-        customer_in.setCustomerGroup("/Shops/DemoShop/Groups/NewCustomer");
+        customer_in.setCustomerGroup("Groups/NewCustomer");
         customer_in.setTaxArea("/TaxMatrixGermany/EU");
         customer_in.setTaxModel("gross");
         customer_in.setCurrencyID("EUR");

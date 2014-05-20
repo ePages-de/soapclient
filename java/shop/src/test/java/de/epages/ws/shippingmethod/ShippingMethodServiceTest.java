@@ -22,8 +22,8 @@ public class ShippingMethodServiceTest {
         int count = ShippingMethods.length;
 
         assertEquals("number of shipping methods", 3, count);
-        assertEquals("first shipping method", "/Shops/DemoShop/ShippingMethods/Post", ShippingMethods[0].getPath());
-        assertEquals("second shipping method", "/Shops/DemoShop/ShippingMethods/Express", ShippingMethods[1].getPath());
-        assertEquals("third shipping method", "/Shops/DemoShop/ShippingMethods/PickupByCustomer", ShippingMethods[2].getPath());
+        assertEquals("first shipping method", "ShippingMethods/Post", ShippingMethods[0].getPath());
+        assertEquals("second shipping method", "ShippingMethods/Express", ShippingMethods[1].getPath());
+        assertEquals("third shipping method", "ShippingMethods/PickupByCustomer", ShippingMethods[2].getPath());
     }
 }

@@ -19,7 +19,7 @@ import de.epages.ws.orderdocument5.model.TGetPackingSlips_Return;
 public class OrderDocumentServiceTest {
     private static final OrderDocumentServiceClientImpl orderDocService = new OrderDocumentServiceClientImpl(new WebServiceTestConfiguration());
 
-    private final String Customer = "/Shops/DemoShop/Customers/1001"; /* mmustermann */
+    private final String Customer = "Customers/1001"; /* mmustermann */
     private final String Order = Customer + "/Orders/1002";
 
     private final String I = "Invoice";

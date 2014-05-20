@@ -42,7 +42,7 @@ public class ProductTypeServiceTest {
 
     private static final ProductTypeServiceClientImpl productTypeService = new ProductTypeServiceClientImpl(new WebServiceTestConfiguration());
 
-    private static final String SHOP_PATH = "/Shops/DemoShop/";
+    private static final String SHOP_PATH = "";
     private static final String PRODUCTTYPES_PATH = SHOP_PATH + "ProductTypes/";
     private static final String NOT_EXISTING_ALIAS = "NotExisting";
     private static final String NOT_EXISTING_PATH = PRODUCTTYPES_PATH + NOT_EXISTING_ALIAS;

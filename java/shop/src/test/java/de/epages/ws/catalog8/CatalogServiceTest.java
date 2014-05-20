@@ -41,7 +41,7 @@ public class CatalogServiceTest {
     private TSortProducts_Input Catalog_sort2;
     private TSortProducts_Input Catalog_sort3;
 
-    private final String path = "/Shops/DemoShop/Categories";
+    private final String path = "Categories";
     private final String alias = "java_test-1";
     private final String full = path + "/" + alias;
 

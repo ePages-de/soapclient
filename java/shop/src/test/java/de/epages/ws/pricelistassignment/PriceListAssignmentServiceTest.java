@@ -25,8 +25,8 @@ public class PriceListAssignmentServiceTest {
     private static final PriceListAssignmentServiceClientImpl serviceClient = new PriceListAssignmentServiceClientImpl(
             new WebServiceTestConfiguration());
 
-    private final String product = "/Shops/DemoShop/Products/ho_1112105010";
-    private final String pricelist = "/Shops/DemoShop/PriceLists/RegularCustomer_EUR";
+    private final String product = "Products/ho_1112105010";
+    private final String pricelist = "PriceLists/RegularCustomer_EUR";
 
     private TQuantityDiscount[] quantityDiscounts;
     private TValueDiscount[] valueDiscounts;

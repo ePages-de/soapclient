@@ -26,7 +26,7 @@ public class UserServiceTest {
     private TCreate_Input user_in = new TCreate_Input();
     private TUpdate_Input user_update = new TUpdate_Input();
 
-    private String userpath = "/Shops/DemoShop/Users/";
+    private String userpath = "Users/";
     private String alias = "java_test-1";
     private String path = userpath + alias;
     private String email = "java_test-1@epages.de";

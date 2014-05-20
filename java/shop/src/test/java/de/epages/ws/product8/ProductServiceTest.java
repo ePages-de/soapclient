@@ -32,7 +32,7 @@ public class ProductServiceTest {
     private final TUpdate_Input Product_update = new TUpdate_Input();
     private final TCreate_Input Product_down = new TCreate_Input();
 
-    private final String path = "/Shops/DemoShop/Products/";
+    private final String path = "Products/";
     private final String alias = "java_test-1";
 
     /**
@@ -44,7 +44,7 @@ public class ProductServiceTest {
         // create test products that can be used with the create and update
         // methods
         Product_in.setAlias(alias);
-        Product_in.set_class("/Shops/DemoShop/ProductTypes/Shoe");
+        Product_in.set_class("ProductTypes/Shoe");
         Product_in.setName(new TLocalizedValue[] { new TLocalizedValue("de", "Test-Hauptprodukt"),
                 new TLocalizedValue("en", "test master product"), });
         Product_in.setText(new TLocalizedValue[] { new TLocalizedValue("de", "Test-Hauptprodukt Beschreibung"),
@@ -118,7 +118,7 @@ public class ProductServiceTest {
         Product_update.setAttributes(new TAttribute[] { attr_update });
 
         Product_down.setAlias(alias);
-        Product_down.set_class("/Shops/DemoShop/ProductTypes/Shoe");
+        Product_down.set_class("ProductTypes/Shoe");
         Product_down.setName(new TLocalizedValue[] { new TLocalizedValue("de", "Test-Downloadprodukt") });
         Product_down.setTaxClass("/TaxMatrixGermany/normal");
         Product_down.setIsAvailable(true);
@@ -263,9 +263,9 @@ public class ProductServiceTest {
                     .getTime());
 
             assertEquals("updated delivery period", Product_update.getDeliveryPeriod(), Product_info_out.getDeliveryPeriod());
-            assertTrue("do not touch shipping path", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Post"));
-            assertTrue("added new shipping path", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/PickupByCustomer"));
-            assertTrue("deleted shipping path", !shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Express"));
+            assertTrue("do not touch shipping path", shippHash.containsKey("ShippingMethods/Post"));
+            assertTrue("added new shipping path", shippHash.containsKey("ShippingMethods/PickupByCustomer"));
+            assertTrue("deleted shipping path", !shippHash.containsKey("ShippingMethods/Express"));
         } else {
             assertEquals("Manufacturer", Product_in.getAttributes()[0].getValue(), Product_info_out.getAttributes()[0].getValue());
             assertEquals("initial localized Name", Product_in.getName()[0].getValue(),
@@ -300,8 +300,8 @@ public class ProductServiceTest {
             assertEquals("AvailabilityDate", Product_in.getAvailabilityDate().getTime(), Product_info_out.getAvailabilityDate().getTime());
             assertEquals("delivery period", Product_in.getDeliveryPeriod(), Product_info_out.getDeliveryPeriod());
 
-            assertTrue("shipping path 1", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Post"));
-            assertTrue("shipping path 2", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Express"));
+            assertTrue("shipping path 1", shippHash.containsKey("ShippingMethods/Post"));
+            assertTrue("shipping path 2", shippHash.containsKey("ShippingMethods/Express"));
         }
 
         assertEquals("TaxClass", Product_in.getTaxClass(), Product_info_out.getTaxClass());

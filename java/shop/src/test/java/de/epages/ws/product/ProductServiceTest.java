@@ -29,7 +29,7 @@ public class ProductServiceTest {
     private final TCreate_Input Product_in = new TCreate_Input();
     private final TUpdate_Input Product_update = new TUpdate_Input();
 
-    private final String path = "/Shops/DemoShop/Products/";
+    private final String path = "Products/";
     private final String alias = "java_test-1";
 
     private final SimpleDateFormat sdf_in = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -44,7 +44,7 @@ public class ProductServiceTest {
         // create test products that can be used with the create and update
         // methods
         Product_in.setAlias(alias);
-        Product_in.set_class("/Shops/DemoShop/ProductTypes/Shoe");
+        Product_in.set_class("ProductTypes/Shoe");
         Product_in.setName(new TLocalizedValue[] { new TLocalizedValue("de", "Test-Hauptprodukt"),
                 new TLocalizedValue("en", "test master product"), });
         Product_in.setTaxClass("/TaxMatrixGermany/normal");

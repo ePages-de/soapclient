@@ -33,7 +33,7 @@ public class CustomerServiceTest {
     private final TCreate_Input customer_in = new TCreate_Input();
     private final TUpdate_Input customer_update = new TUpdate_Input();
 
-    private final String path = "/Shops/DemoShop/Customers/";
+    private final String path = "Customers/";
     private final String alias = "java_test-1";
 
     /**
@@ -47,7 +47,7 @@ public class CustomerServiceTest {
          * try to get customer groups at first, because they are different since
          * patch 7
          */
-        String customerGroupsPath = "/Shops/DemoShop/Groups/";
+        String customerGroupsPath = "Groups/";
         String[] customerGroups = new String[] { customerGroupsPath + "Neukunde", customerGroupsPath + "Stammkunde" };
 
         TGetList_Return[] retGroups = customerGroupService.getList();

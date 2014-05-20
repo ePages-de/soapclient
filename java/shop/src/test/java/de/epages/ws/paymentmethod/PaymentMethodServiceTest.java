@@ -22,6 +22,6 @@ public class PaymentMethodServiceTest {
         int count = PaymentMethods.length;
         assertTrue("found payment methods", count > 5);
         TGetList_Return firstPaymentMethod = PaymentMethods[0];
-        assertEquals("first payment method", "/Shops/DemoShop/PaymentMethods/CashInAdvance", firstPaymentMethod.getPath());
+        assertEquals("first payment method", "PaymentMethods/CashInAdvance", firstPaymentMethod.getPath());
     }
 }

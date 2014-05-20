@@ -37,7 +37,7 @@ public class ProductServiceTest {
     private TCreate_Input Product_down;
     private TCreate_Input Product_down_up;
 
-    private static final String path = "/Shops/DemoShop/Products/";
+    private static final String path = "Products/";
     private static final String alias = "java_test-1";
 
     /**
@@ -54,7 +54,7 @@ public class ProductServiceTest {
 
         // create test products that can be used with the create and update methods
         Product_in.setAlias(alias);
-        Product_in.set_class("/Shops/DemoShop/ProductTypes/Shoe");
+        Product_in.set_class("ProductTypes/Shoe");
         Product_in.setName(new TLocalizedValue[]{
                 new TLocalizedValue("de", "Test-Hauptprodukt"),
                 new TLocalizedValue("en", "test master product"),
@@ -176,7 +176,7 @@ public class ProductServiceTest {
         Product_update.setAttributes(new TAttribute[]{attr_update});
 
         Product_down.setAlias(alias);
-        Product_down.set_class("/Shops/DemoShop/ProductTypes/Shoe");
+        Product_down.set_class("ProductTypes/Shoe");
         Product_down.setName(new TLocalizedValue[]{new TLocalizedValue("de", "Test-Downloadprodukt")});
         Product_down.setTaxClass("/TaxMatrixGermany/normal");
         Product_down.setIsAvailable(true);
@@ -192,7 +192,7 @@ public class ProductServiceTest {
         Product_down.setDownloadProductMaps(new TDownload[]{download});
 
         Product_down_up.setAlias(alias);
-        Product_down_up.set_class("/Shops/DemoShop/ProductTypes/Shoe");
+        Product_down_up.set_class("ProductTypes/Shoe");
         Product_down_up.setName(new TLocalizedValue[]{new TLocalizedValue("de", "Test-Downloadprodukt")});
         Product_down_up.setTaxClass("/TaxMatrixGermany/normal");
         Product_down_up.setIsAvailable(true);
@@ -332,9 +332,9 @@ public class ProductServiceTest {
             assertEquals("updated AvailabilityDate", Product_update.getAvailabilityDate().getTime(), Product_info_out.getAvailabilityDate().getTime()   );
             assertEquals("updated delivery period", Product_update.getDeliveryPeriod(), Product_info_out.getDeliveryPeriod());
 
-            assertTrue("do not touch shipping path", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Post"));
-            assertTrue("added new shipping path", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/PickupByCustomer"));
-            assertTrue("deleted shipping path", !shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Express"));
+            assertTrue("do not touch shipping path", shippHash.containsKey("ShippingMethods/Post"));
+            assertTrue("added new shipping path", shippHash.containsKey("ShippingMethods/PickupByCustomer"));
+            assertTrue("deleted shipping path", !shippHash.containsKey("ShippingMethods/Express"));
 
             assertEquals("updated weight unit", "/Units/gram/kilogram", Product_update.getWeightUnit());
             assertEquals("updated weight", 1f, Product_update.getWeight(), 0.0f);
@@ -362,8 +362,8 @@ public class ProductServiceTest {
             assertEquals("AvailabilityDate", Product_in.getAvailabilityDate().getTime(), Product_info_out.getAvailabilityDate().getTime()   );
             assertEquals("delivery period", Product_in.getDeliveryPeriod(), Product_info_out.getDeliveryPeriod());
 
-            assertTrue("shipping path 1", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Post"));
-            assertTrue("shipping path 2", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Express"));
+            assertTrue("shipping path 1", shippHash.containsKey("ShippingMethods/Post"));
+            assertTrue("shipping path 2", shippHash.containsKey("ShippingMethods/Express"));
             assertEquals("weight unit", "/Units/gram", Product_info_out.getWeightUnit());
             assertEquals("weight", 240f, Product_info_out.getWeight(),0.0f);
         }

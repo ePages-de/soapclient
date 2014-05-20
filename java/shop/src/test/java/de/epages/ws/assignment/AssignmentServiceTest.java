@@ -24,8 +24,8 @@ import de.epages.ws.assignment.model.TRemoveProductFromCatalog_Return;
 public class AssignmentServiceTest {
     private AssignmentServiceClient serviceClient;
 
-    private static final String catalog = "/Shops/DemoShop/Categories/Jackets";
-    private static final String product = "/Shops/DemoShop/Products/ho_1112105010";
+    private static final String catalog = "Categories/Jackets";
+    private static final String product = "Products/ho_1112105010";
 
     /**
      * Sets all the required prerequisites for the tests. Will be called before
