@@ -1,7 +1,9 @@
 package de.epages.ws.product7;
 
+import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.math.BigInteger;
@@ -140,7 +142,7 @@ public class ProductServiceTest {
 
         // test if creation was successful
         assertEquals("create result set", 1, Products_create_out.length);
-        assertEquals("created?", true, Products_create_out[0].getCreated());
+        assertTrue(Products_create_out[0].getCreated());
     }
 
     /**
@@ -152,7 +154,7 @@ public class ProductServiceTest {
 
         // test if update was successful
         assertEquals("udpate result set", 1, Products_update_out.length);
-        assertEquals("updated?", true, Products_update_out[0].getUpdated());
+        assertTrue(Products_update_out[0].getUpdated());
     }
 
     /**
@@ -287,7 +289,7 @@ public class ProductServiceTest {
         assertEquals("TaxClass", Product_in.getTaxClass(), Product_info_out.getTaxClass());
         assertEquals("OrderUnit", Product_in.getOrderUnit(), Product_info_out.getOrderUnit());
         assertEquals("IsVisible", Product_in.getIsVisible(), Product_info_out.getIsVisible());
-        assertEquals("class", Product_in.get_class(), Product_info_out.get_class());
+        assertThat(Product_info_out.get_class(), endsWith(Product_in.get_class()));
     }
 
     /**
@@ -298,7 +300,7 @@ public class ProductServiceTest {
 
         // test if deletion was successful
         assertEquals("delete result set", 1, Products_delete_out.length);
-        assertEquals("deleted?", true, Products_delete_out[0].getDeleted());
+        assertTrue(Products_delete_out[0].getDeleted());
     }
 
     /**
@@ -324,7 +326,7 @@ public class ProductServiceTest {
 
         // test if find was successful
         assertEquals("find result set", 1, Products_find_out.length);
-        assertEquals("found path", path + alias, Products_find_out[0]);
+        assertThat(Products_find_out[0], endsWith(path + alias));
     }
 
     public void testCreateDownload() {
@@ -333,7 +335,7 @@ public class ProductServiceTest {
 
         // test if creation was successful
         assertEquals("create result set", 1, Products_create_out.length);
-        assertEquals("created?", true, Products_create_out[0].getCreated());
+        assertTrue(Products_create_out[0].getCreated());
     }
 
     public void testGetInfoDownload() {

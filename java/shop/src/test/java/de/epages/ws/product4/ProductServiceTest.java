@@ -1,7 +1,9 @@
 package de.epages.ws.product4;
 
+import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.GregorianCalendar;
@@ -195,7 +197,7 @@ public class ProductServiceTest {
         assertEquals("TaxClass", Product_in.getTaxClass(), Product_info_out.getTaxClass());
         assertEquals("OrderUnit", Product_in.getOrderUnit(), Product_info_out.getOrderUnit());
         assertEquals("IsVisible", Product_in.getIsVisible(), Product_info_out.getIsVisible());
-        assertEquals("class", Product_in.get_class(), Product_info_out.get_class());
+        assertThat(Product_info_out.get_class(), endsWith(Product_in.get_class()));
     }
 
     /**
@@ -206,7 +208,7 @@ public class ProductServiceTest {
 
         // test if deletion was successful
         assertEquals("delete result set", 1, Products_delete_out.length);
-        assertEquals("deleted?", true, Products_delete_out[0].getDeleted());
+        assertTrue(Products_delete_out[0].getDeleted());
     }
 
     /**
@@ -232,7 +234,7 @@ public class ProductServiceTest {
 
         // test if find was successful
         assertEquals("find result set", 1, Products_find_out.length);
-        assertEquals("found path", path + alias, Products_find_out[0]);
+        assertThat(Products_find_out[0], endsWith(path + alias));
     }
 
     /**

@@ -1,8 +1,10 @@
 package de.epages.ws.customer6;
 
 import static de.epages.ws.common.AssertNoError.assertNoError;
+import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.GregorianCalendar;
@@ -150,7 +152,7 @@ public class CustomerServiceTest {
 
         // check general data
         assertEquals("Alias", alias, customer_out.getAlias());
-        assertEquals("CustomerGroup", customer_in.getCustomerGroup(), customer_out.getCustomerGroup());
+        assertThat(customer_out.getCustomerGroup(), endsWith(customer_in.getCustomerGroup()));
         assertEquals("TaxArea", customer_in.getTaxArea(), customer_out.getTaxArea());
         assertEquals("TaxModel", customer_in.getTaxModel(), customer_out.getTaxModel());
 
@@ -207,7 +209,7 @@ public class CustomerServiceTest {
 
         // test if find was successful
         assertEquals("find result set", 1, customers_out.length);
-        assertEquals("found path", path, customers_out[0]);
+        assertThat(customers_out[0], endsWith(path));
     }
 
     /**

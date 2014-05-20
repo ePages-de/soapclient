@@ -1,6 +1,8 @@
 package de.epages.ws.shippingmethod;
 
+import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
@@ -22,8 +24,8 @@ public class ShippingMethodServiceTest {
         int count = ShippingMethods.length;
 
         assertEquals("number of shipping methods", 3, count);
-        assertEquals("first shipping method", "ShippingMethods/Post", ShippingMethods[0].getPath());
-        assertEquals("second shipping method", "ShippingMethods/Express", ShippingMethods[1].getPath());
-        assertEquals("third shipping method", "ShippingMethods/PickupByCustomer", ShippingMethods[2].getPath());
+        assertThat(ShippingMethods[0].getPath(), endsWith("ShippingMethods/Post"));
+        assertThat(ShippingMethods[1].getPath(), endsWith("ShippingMethods/Express"));
+        assertThat(ShippingMethods[2].getPath(), endsWith("ShippingMethods/PickupByCustomer"));
     }
 }

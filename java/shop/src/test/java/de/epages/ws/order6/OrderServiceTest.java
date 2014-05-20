@@ -1,6 +1,8 @@
 package de.epages.ws.order6;
 
+import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 import java.util.GregorianCalendar;
 
@@ -127,7 +129,7 @@ public class OrderServiceTest {
 
         TGetInfo_Return Order_info_out = Orders_info_out[0];
         assertEquals("Alias", Alias, Order_info_out.getAlias());
-        assertEquals("Customer", Order_in.getCustomer(), Order_info_out.getCustomer());
+        assertThat(Order_info_out.getCustomer(), endsWith(Order_in.getCustomer()));
 
         TAddressNamed Address_out = Order_info_out.getBillingAddress();
         assertEquals("EMail", Address_in.getEMail(), Address_out.getEMail());
@@ -190,7 +192,7 @@ public class OrderServiceTest {
 
         String[] Orders_find_out = orderService.find(searchParameters);
         assertEquals("find result set", 1, Orders_find_out.length);
-        assertEquals("found path", OrderPath, Orders_find_out[0]);
+        assertThat(Orders_find_out[0], endsWith(OrderPath));
     }
 
     /**
