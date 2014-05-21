@@ -31,10 +31,13 @@
 
 - shop "DemoShop" with user "admin" with password "admin" and default content
 - The feature "Program Interface for Web Services" must be enabled in the shop.
+  Username and password can be set via command-line (java only!) using system
+  properties ```-DwsUser=/Path/to/User``` and ```-DwsPassword=somePassword```.
+
 - Web service endpoint: http://$SystemDomainName/epages/Store.soap
   the SystemDomainName comes from epages/Shared/Config/epages.conf
-  but can be overridden via command-line parameter (for gradle: ```-Pep6HostName=somehost```,
-  for running with eclipse: ```-Dep6HostName=someHost```)
+  but can be overridden via system property
+  ```-DwsUrl=http://someUrl/epages/Store.soap``` (java only!)
 
 ### Note ###
 
@@ -87,7 +90,7 @@ repositories {
 }
 ```
 
-2. Add a dependency to epages-soapclient.
+2. Add a dependency to epages-soapclients.
 ```
 dependencies {
     // dependency for shop webservices

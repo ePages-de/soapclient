@@ -75,10 +75,7 @@ configure(subprojects.findAll {it.name.contains("java/")}) {
     }
 
     tasks.withType(Test) {
-        // pass ep6HostName down to test
-        if(properties["ep6HostName"] != null) {
-            systemProperty 'ep6HostName', properties["ep6HostName"]
-        }
+        systemProperties = System.getProperties()
     }
 
     //////////////// code generation ///////////////////
