@@ -1,6 +1,8 @@
 package de.epages.ws.catalog6;
 
+import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
@@ -37,7 +39,7 @@ public class CatalogServiceTest {
     private final TSortProducts_Input Catalog_sort2 = new TSortProducts_Input();
     private final TSortProducts_Input Catalog_sort3 = new TSortProducts_Input();
 
-    private final String path = "/Shops/DemoShop/Categories";
+    private final String path = "Categories";
     private final String alias = "java_test-1";
     private final String full = path + "/" + alias;
 
@@ -158,8 +160,9 @@ public class CatalogServiceTest {
      *
      * @param isAlreadyUpdated
      *            if true check against update data, else against create data
+     * @throws ParseException
      */
-    public void testGetInfo(boolean isAlreadyUpdated) {
+    public void testGetInfo(boolean isAlreadyUpdated) throws ParseException {
         TGetInfo_Return[] Catalogs_out = catalogService
                 .getInfo(new String[] { full }, new String[] { "Date" }, new String[] { "de", "en" });
 
@@ -173,31 +176,23 @@ public class CatalogServiceTest {
 
         if (isAlreadyUpdated) {
 
-            try {
-                Date date_in = sdf_in.parse(Catalog_up.getAttributes()[0].getValue());
-                Date date_out = sdf_out.parse(Catalogs_out[0].getAttributes()[0].getValue());
-                assertEquals("Date", date_in, date_out);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            Date date_in = sdf_in.parse(Catalog_up.getAttributes()[0].getValue());
+            Date date_out = sdf_out.parse(Catalogs_out[0].getAttributes()[0].getValue());
+            assertEquals("Date", date_in, date_out);
 
             assertEquals("updated localized Name", Catalog_up.getName()[0].getValue(), hash.get(Catalog_up.getName()[0].getLanguageCode()));
             assertEquals("updated localized Name", Catalog_up.getName()[1].getValue(), hash.get(Catalog_up.getName()[1].getLanguageCode()));
         } else {
 
-            try {
-                Date date_in = sdf_in.parse(Catalog_in.getAttributes()[0].getValue());
-                Date date_out = sdf_out.parse(Catalogs_out[0].getAttributes()[0].getValue());
-                assertEquals("Date", date_in, date_out);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            Date date_in = sdf_in.parse(Catalog_in.getAttributes()[0].getValue());
+            Date date_out = sdf_out.parse(Catalogs_out[0].getAttributes()[0].getValue());
+            assertEquals("Date", date_in, date_out);
 
             assertEquals("initial localized Name", Catalog_in.getName()[0].getValue(), hash.get(Catalog_up.getName()[0].getLanguageCode()));
             assertEquals("initial localized Name", Catalog_in.getName()[1].getValue(), hash.get(Catalog_up.getName()[1].getLanguageCode()));
         }
 
-        assertEquals("ParentCatalog", Catalog_in.getParentCatalog(), Catalogs_out[0].getParentCatalog());
+        assertThat(Catalogs_out[0].getParentCatalog(), endsWith(Catalog_in.getParentCatalog()));
         assertEquals("IsVisible", Catalog_in.getIsVisible(), Catalogs_out[0].getIsVisible());
     }
 
@@ -274,7 +269,7 @@ public class CatalogServiceTest {
      * </ol>
      */
     @Test
-    public void testAll() {
+    public void testAll() throws ParseException {
         testCreate();
         testExists(true);
         testGetInfo(false);

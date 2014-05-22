@@ -1,8 +1,15 @@
 package de.epages.ws.orderdocument2;
 
-import org.junit.Assert;
+import static de.epages.ws.common.AssertNoError.assertNoError;
+import static org.hamcrest.core.StringEndsWith.endsWith;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
+import org.junit.ClassRule;
 import org.junit.Test;
+import org.junit.rules.ExternalResource;
 
 import de.epages.ws.WebServiceTestConfiguration;
 import de.epages.ws.orderdocument2.model.TCreate_Input;
@@ -18,17 +25,31 @@ public class OrderDocumentServiceTest {
     private static final OrderDocumentServiceClientImpl serviceClient = new OrderDocumentServiceClientImpl(
             new WebServiceTestConfiguration());
 
-    private final TCreate_Input invoice_in = new TCreate_Input();
-    private final TCreate_Input packingslip_in = new TCreate_Input();
-    private final TCreate_Input creditnote_in = new TCreate_Input();
+    private static final TCreate_Input invoice_in = new TCreate_Input();
+    private static final TCreate_Input packingslip_in = new TCreate_Input();
+    private static final TCreate_Input creditnote_in = new TCreate_Input();
 
-    private final String order = "/Shops/DemoShop/Customers/1001/Orders/1002";
-    private final String invoice_path = "/Shops/DemoShop/Customers/1001/Orders/1002/Invoices/";
-    private final String invoice_alias = "myinvoice";
-    private final String packingslip_path = "/Shops/DemoShop/Customers/1001/Orders/1002/PackingSlips/";
-    private final String packingslip_alias = "mypackingslip";
-    private final String creditnote_path = "/Shops/DemoShop/Customers/1001/Orders/1002/CreditNotes/";
-    private final String creditnote_alias = "mycreditnote";
+    private static final String order = "Customers/1001/Orders/1002";
+    private static final String invoice_path = "Customers/1001/Orders/1002/Invoices/";
+    private static final String invoice_alias = "javaTest1-Invoice";
+    private static final String packingslip_path = "Customers/1001/Orders/1002/PackingSlips/";
+    private static final String packingslip_alias = "javaTest1-PackingSlip";
+    private static final String creditnote_path = "Customers/1001/Orders/1002/CreditNotes/";
+    private static final String creditnote_alias = "javaTest1-CreditNote";
+
+    @ClassRule
+    public static final ExternalResource setUpObjects = new ExternalResource() {
+        protected void before() throws Throwable {
+            cleanupObjects();
+        };
+        @Override
+        protected void after() {
+            cleanupObjects();
+        }
+        private void cleanupObjects() {
+            serviceClient.delete(new String[] { invoice_path + invoice_alias , packingslip_path + packingslip_alias , creditnote_path + creditnote_alias });
+        }
+    };
 
     /**
      * Sets all the required prerequisites for the tests. Will be called before
@@ -62,10 +83,13 @@ public class OrderDocumentServiceTest {
         TCreate_Return[] OrderDocuments_create_out = serviceClient.create(OrderDocuments_create_in);
 
         // test if creation was successful
-        Assert.assertEquals("create result set", 3, OrderDocuments_create_out.length);
-        Assert.assertEquals("invoice created?", true, OrderDocuments_create_out[0].getCreated());
-        Assert.assertEquals("packingslip created?", true, OrderDocuments_create_out[1].getCreated());
-        Assert.assertEquals("creditnote created?", true, OrderDocuments_create_out[2].getCreated());
+        assertEquals("create result set", 3, OrderDocuments_create_out.length);
+        assertNoError(OrderDocuments_create_out[0].getError());
+        assertTrue(OrderDocuments_create_out[0].getCreated());
+        assertNoError(OrderDocuments_create_out[1].getError());
+        assertTrue(OrderDocuments_create_out[1].getCreated());
+        assertNoError(OrderDocuments_create_out[2].getError());
+        assertTrue(OrderDocuments_create_out[2].getCreated());
     }
 
     /**
@@ -77,22 +101,22 @@ public class OrderDocumentServiceTest {
                 packingslip_path + packingslip_alias, creditnote_path + creditnote_alias });
 
         // test if getinfo was successful and if all data are equal to input
-        Assert.assertEquals("getinfo result set", 3, OrderDocuments_info_out.length);
+        assertEquals("getinfo result set", 3, OrderDocuments_info_out.length);
 
         TGetInfo_Return invoice_out = OrderDocuments_info_out[0];
-        Assert.assertEquals("order path", order, invoice_out.getOrder());
-        Assert.assertEquals("invoice class", invoice_in.get_class(), invoice_out.get_class());
-        Assert.assertEquals("invoice alias", invoice_in.getAlias(), invoice_out.getAlias());
+        assertThat(invoice_out.getOrder(), endsWith(order));
+        assertThat(invoice_out.get_class(), endsWith(invoice_in.get_class()));
+        assertEquals("invoice alias", invoice_in.getAlias(), invoice_out.getAlias());
 
         TGetInfo_Return packingslip_out = OrderDocuments_info_out[1];
-        Assert.assertEquals("order path", order, packingslip_out.getOrder());
-        Assert.assertEquals("packingslip class", packingslip_in.get_class(), packingslip_out.get_class());
-        Assert.assertEquals("packingslip alias", packingslip_in.getAlias(), packingslip_out.getAlias());
+        assertThat(packingslip_out.getOrder(), endsWith(order));
+        assertThat(packingslip_out.get_class(), endsWith(packingslip_in.get_class()));
+        assertEquals("packingslip alias", packingslip_in.getAlias(), packingslip_out.getAlias());
 
         TGetInfo_Return creditnote_out = OrderDocuments_info_out[2];
-        Assert.assertEquals("order path", order, creditnote_out.getOrder());
-        Assert.assertEquals("creditnote class", creditnote_in.get_class(), creditnote_out.get_class());
-        Assert.assertEquals("creditnote alias", creditnote_in.getAlias(), creditnote_out.getAlias());
+        assertThat(creditnote_out.getOrder(), endsWith(order));
+        assertEquals("creditnote class", creditnote_in.get_class(), creditnote_out.get_class());
+        assertEquals("creditnote alias", creditnote_in.getAlias(), creditnote_out.getAlias());
     }
 
     /**
@@ -103,13 +127,13 @@ public class OrderDocumentServiceTest {
         TGetInvoices_Return[] invoices_out = serviceClient.getInvoices(new String[] { order });
 
         // test if getinfo was successful and if all data are equal to input
-        Assert.assertEquals("getInvoices result set", 1, invoices_out.length);
+        assertEquals("getInvoices result set", 1, invoices_out.length);
 
         TGetInvoices_Return invoice_out = invoices_out[0];
 
-        Assert.assertEquals("alias", order, invoice_out.getOrder());
-        Assert.assertEquals("invoices result set", 1, invoice_out.getInvoices().length);
-        Assert.assertEquals("invoice path", invoice_path + invoice_alias, invoice_out.getInvoices()[0]);
+        assertThat(invoice_out.getOrder(), endsWith(order));
+        assertEquals("invoices result set", 1, invoice_out.getInvoices().length);
+        assertThat(invoice_out.getInvoices()[0], endsWith(invoice_path + invoice_alias));
     }
 
     /**
@@ -120,13 +144,13 @@ public class OrderDocumentServiceTest {
         TGetPackingSlips_Return[] packingslips_out = serviceClient.getPackingSlips(new String[] { order });
 
         // test if getinfo was successful and if all data are equal to input
-        Assert.assertEquals("getpackingslips result set", 1, packingslips_out.length);
+        assertEquals("getpackingslips result set", 1, packingslips_out.length);
 
         TGetPackingSlips_Return packingslip_out = packingslips_out[0];
 
-        Assert.assertEquals("alias", order, packingslip_out.getOrder());
-        Assert.assertEquals("packingslips result set", 1, packingslip_out.getPackingSlips().length);
-        Assert.assertEquals("packingslip path", packingslip_path + packingslip_alias, packingslip_out.getPackingSlips()[0]);
+        assertThat(packingslip_out.getOrder(), endsWith(order));
+        assertEquals("packingslips result set", 1, packingslip_out.getPackingSlips().length);
+        assertThat(packingslip_out.getPackingSlips()[0], endsWith(packingslip_path + packingslip_alias));
     }
 
     /**
@@ -137,13 +161,13 @@ public class OrderDocumentServiceTest {
         TGetCreditNotes_Return[] creditnotes_out = serviceClient.getCreditNotes(new String[] { order });
 
         // test if getinfo was successful and if all data are equal to input
-        Assert.assertEquals("getCreditNotes result set", 1, creditnotes_out.length);
+        assertEquals("getCreditNotes result set", 1, creditnotes_out.length);
 
         TGetCreditNotes_Return creditnote_out = creditnotes_out[0];
 
-        Assert.assertEquals("alias", order, creditnote_out.getOrder());
-        Assert.assertEquals("creditnotes result set", 1, creditnote_out.getCreditNotes().length);
-        Assert.assertEquals("creditnote path", creditnote_path + creditnote_alias, creditnote_out.getCreditNotes()[0]);
+        assertEquals("alias", order, creditnote_out.getOrder());
+        assertEquals("creditnotes result set", 1, creditnote_out.getCreditNotes().length);
+        assertThat(creditnote_out.getCreditNotes()[0], endsWith(creditnote_path + creditnote_alias));
     }
 
     /**
@@ -154,11 +178,14 @@ public class OrderDocumentServiceTest {
                 packingslip_path + packingslip_alias, creditnote_path + creditnote_alias });
 
         // test if deletion was successful
-        Assert.assertEquals("delete result set", 3, OrderDocuments_delete_out.length);
+        assertEquals("delete result set", 3, OrderDocuments_delete_out.length);
 
-        Assert.assertEquals("invoice deleted?", true, OrderDocuments_delete_out[0].getDeleted());
-        Assert.assertEquals("packingslip deleted?", true, OrderDocuments_delete_out[1].getDeleted());
-        Assert.assertEquals("creditnote deleted?", true, OrderDocuments_delete_out[2].getDeleted());
+        assertNoError(OrderDocuments_delete_out[0].getError());
+        assertTrue(OrderDocuments_delete_out[0].getDeleted());
+        assertNoError(OrderDocuments_delete_out[1].getError());
+        assertTrue(OrderDocuments_delete_out[1].getDeleted());
+        assertNoError(OrderDocuments_delete_out[2].getError());
+        assertTrue(OrderDocuments_delete_out[2].getDeleted());
     }
 
     /**
@@ -173,11 +200,11 @@ public class OrderDocumentServiceTest {
                 packingslip_path + packingslip_alias, creditnote_path + creditnote_alias });
 
         // test if exists check was successful
-        Assert.assertEquals("exists result set", 3, OrderDocuments_exists_out.length);
+        assertEquals("exists result set", 3, OrderDocuments_exists_out.length);
 
-        Assert.assertEquals("invoice exists?", expected, OrderDocuments_exists_out[0].getExists());
-        Assert.assertEquals("packingslip exists?", expected, OrderDocuments_exists_out[1].getExists());
-        Assert.assertEquals("creditnote exists?", expected, OrderDocuments_exists_out[2].getExists());
+        assertEquals("invoice exists?", expected, OrderDocuments_exists_out[0].getExists());
+        assertEquals("packingslip exists?", expected, OrderDocuments_exists_out[1].getExists());
+        assertEquals("creditnote exists?", expected, OrderDocuments_exists_out[2].getExists());
     }
 
     /**

@@ -3,25 +3,35 @@ package de.epages.ws;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 import java.util.Properties;
 
 /**
- * Common configuration data for all web services.
+ * Common configuration data for all web service tests.
  *
- * Tries to resolve an epages6 hostname by:
- *  - reading System property "ep6HostName"
- *  - reading epages.conf for value "SystemDomainName"
- *  - using a fallback on "localhost".
- *
- * Default credentials for DemoShop admin are used to authenticate the user.
+ * It can be configured by
+ *  - setting System property "wsUrl" (e.g. https://yourhost/epages/SomeShop.soap
+ *     default will be from reading "SystemDomainName" from epages.conf + /epages/Store.soap
+ *  - setting System property "wsUser" (e.g. /Shops/SomeShop/Users/someUser
+ *     default will be /Shops/DemoShop/Users/admin
+ *  - settign System property "wsPassword" (e.g. somPassXX)
+ *      default will be admin
  */
 public class WebServiceTestConfiguration implements WebServiceConfiguration {
 
-    public final static String WEBSERVICE_LOGIN = "/Shops/DemoShop/Users/admin";
-    public final static String WEBSERVICE_PASSWORD = "admin";
-    public final static URL WEBSERVICE_URL = new WebServiceTestConfiguration().doGetWebserviceURL();
+    private final String WEBSERVICE_LOGIN = System.getProperty("wsUser", "/Shops/DemoShop/Users/admin");
+
+    private final String WEBSERVICE_PASSWORD = System.getProperty("wsPassword", "admin");
+
+    private URL WEBSERVICE_URL;
+
+    public WebServiceTestConfiguration() {
+        try {
+            WEBSERVICE_URL = new URL(System.getProperty("wsUrl", getWebserviceUrlFromEpagesConf()));
+        } catch (MalformedURLException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
 
     @Override
     public URL getWebserviceURL() {
@@ -38,20 +48,7 @@ public class WebServiceTestConfiguration implements WebServiceConfiguration {
         return WEBSERVICE_PASSWORD;
     }
 
-    private String readSystemDomainName() {
-        String hostname = getHostnameFromSystemProperty();
-        if (hostname != null) {
-            return hostname;
-        }
-        hostname = getHostnameFromEpagesConf();
-        return hostname != null ? hostname : "localhost";
-    }
-
-    private String getHostnameFromSystemProperty() {
-        return System.getProperty("ep6HostName");
-    }
-
-    private String getHostnameFromEpagesConf() {
+    private static String getWebserviceUrlFromEpagesConf() {
         String confPath = System.getenv("EPAGES_CONFIG");
         if (confPath != null) {
             Properties p = new Properties();
@@ -60,18 +57,8 @@ public class WebServiceTestConfiguration implements WebServiceConfiguration {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            return p.getProperty("SystemDomainName");
+            return "http://" + p.getProperty("SystemDomainName") + "/epages/Store.soap";
         }
         throw new NullPointerException("EPAGES_CONFIG");
     }
-
-    private URL doGetWebserviceURL() {
-        String hostname = readSystemDomainName();
-        try {
-            return URI.create("http://" + hostname + "/epages/Store.soap").toURL(); // ?useGuidAsPath=1
-        } catch (MalformedURLException e) {
-            throw new IllegalArgumentException(e);
-        }
-    }
-
 }

@@ -1,10 +1,14 @@
 package de.epages.ws.orderdocument6;
 
+import static de.epages.ws.common.AssertNoError.assertNoError;
+import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
+import org.junit.ClassRule;
 import org.junit.Test;
+import org.junit.rules.ExternalResource;
 
 import de.epages.ws.WebServiceTestConfiguration;
 import de.epages.ws.orderdocument6.model.TCreate_Input;
@@ -19,54 +23,63 @@ import de.epages.ws.orderdocument6.model.TGetPackingSlips_Return;
 public class OrderDocumentServiceTest {
     private static final OrderDocumentServiceClientImpl orderDocService = new OrderDocumentServiceClientImpl(new WebServiceTestConfiguration());
 
-    private final String Customer = "/Shops/DemoShop/Customers/1001"; /* mmustermann */
-    private final String Order = Customer + "/Orders/1002";
+    private static final String Customer = "Customers/1001"; /* mmustermann */
+    private static final String Order = Customer + "/Orders/1002";
 
-    private final String I = "Invoice";
-    private final String P = "PackingSlip";
-    private final String C = "CreditNote";
+    private static final String I = "Invoice";
+    private static final String P = "PackingSlip";
+    private static final String C = "CreditNote";
 
-    private final String AliasI = "javaTest1-" + I;
-    private final String AliasP = "javaTest1-" + P;
-    private final String AliasC = "javaTest1-" + C;
+    private static final String AliasI = "javaTest1-" + I;
+    private static final String AliasP = "javaTest1-" + P;
+    private static final String AliasC = "javaTest1-" + C;
 
-    private final String ClassI = "/Classes/" + I;
-    private final String ClassP = "/Classes/" + P;
-    private final String ClassC = "/Classes/" + C;
+    private static final String ClassI = "/Classes/" + I;
+    private static final String ClassP = "/Classes/" + P;
+    private static final String ClassC = "/Classes/" + C;
 
-    private final String Invoices = Order + "/" + I + "s/";
-    private final String Packings = Order + "/" + P + "s/";
-    private final String Credites = Order + "/" + C + "s/";
+    private static final String Invoices = Order + "/" + I + "s/";
+    private static final String Packings = Order + "/" + P + "s/";
+    private static final String Credites = Order + "/" + C + "s/";
 
-    private final String Invoice = Invoices + AliasI;
-    private final String Packing = Packings + AliasP;
-    private final String Creditn = Credites + AliasC;
-    private final String[] Docs = new String[] { Invoice, Packing, Creditn };
+    private static final String Invoice = Invoices + AliasI;
+    private static final String Packing = Packings + AliasP;
+    private static final String Creditn = Credites + AliasC;
+    private static final String[] Docs = new String[] { Invoice, Packing, Creditn };
 
-    private final TCreate_Input Invoice_in = new TCreate_Input(AliasI, Order, ClassI, false, null);
-    private final TCreate_Input Packing_in = new TCreate_Input(AliasP, Order, ClassP, false, null);
-    private final TCreate_Input Creditn_in = new TCreate_Input(AliasC, Order, ClassC, false, null);
-    private final TCreate_Input[] Docs_in = new TCreate_Input[] { Invoice_in, Packing_in, Creditn_in };
+    private static final TCreate_Input Invoice_in = new TCreate_Input(AliasI, Order, ClassI, false, null);
+    private static final TCreate_Input Packing_in = new TCreate_Input(AliasP, Order, ClassP, false, null);
+    private static final TCreate_Input Creditn_in = new TCreate_Input(AliasC, Order, ClassC, false, null);
+    private static final TCreate_Input[] Docs_in = new TCreate_Input[] { Invoice_in, Packing_in, Creditn_in };
 
-    private final String[] OrderAttributes = new String[] { "Comment" };
-    private final String[] AddressAttributes = new String[] { "JobTitle" /* ,"Salutation" */};
-    private final String[] LineAttributes = new String[]{"Alias"};
+    private static final String[] OrderAttributes = new String[] { "Comment" };
+    private static final String[] AddressAttributes = new String[] { "JobTitle" /* ,"Salutation" */};
+    private static final String[] LineAttributes = new String[]{"Alias"};
 
     /**
-     * Sets all the required prerequisites for the tests. Will be called before
+     * Sets all the required prerequisites for the tests. Will be called before and after
      * the test are run.
      */
-    @Before
-    public void setUp() {
-        // delete the test order documents if it exists
-        TExists_Return[] Doc_exists_out = orderDocService.exists(Docs);
-        for (TExists_Return exist : Doc_exists_out) {
-            if (exist.getExists()) {
-                TDelete_Return[] Doc_delete_out = orderDocService.delete(new String[] { exist.getPath() });
-                assertEquals("delete result set", 1, Doc_delete_out.length);
+    @ClassRule
+    public static final ExternalResource setUpObjects = new ExternalResource() {
+        protected void before() throws Throwable {
+            cleanupObjects();
+        };
+        protected void after() {
+            cleanupObjects();
+        };
+        private void cleanupObjects() {
+            // delete the test order documents if they exist
+            TExists_Return[] Doc_exists_out = orderDocService.exists(Docs);
+            for (TExists_Return exist : Doc_exists_out) {
+                if (exist.getExists()) {
+                    TDelete_Return[] Doc_delete_out = orderDocService.delete(new String[] { exist.getPath() });
+                    assertEquals("delete result set", 1, Doc_delete_out.length);
+                    assertNoError(Doc_delete_out[0].getError());
+                }
             }
         }
-    }
+    };
 
     /**
      * Create Order Documents and check if the creation was successful
@@ -75,7 +88,8 @@ public class OrderDocumentServiceTest {
         TCreate_Return[] Doc_create_out = orderDocService.create(Docs_in);
         assertEquals("create result set", 3, Doc_create_out.length);
         for (TCreate_Return create : Doc_create_out) {
-            assertEquals("created?", true, create.getCreated());
+            assertNoError(create.getError());
+            assertTrue(create.getCreated());
         }
     }
 
@@ -86,7 +100,8 @@ public class OrderDocumentServiceTest {
         TDelete_Return[] Doc_delete_out = orderDocService.delete(Docs);
         assertEquals("delete result set", 3, Doc_delete_out.length);
         for (TDelete_Return del : Doc_delete_out) {
-            assertEquals("created?", true, del.getDeleted());
+            assertNoError(del.getError());
+            assertTrue(del.getDeleted());
         }
     }
 
@@ -98,18 +113,18 @@ public class OrderDocumentServiceTest {
         TGetInfo_Return[] Doc_out = orderDocService.getInfo(Docs, OrderAttributes, AddressAttributes, LineAttributes, null);
         assertEquals("get invoices result set", 3, Doc_out.length);
         for (TGetInfo_Return document : Doc_out) {
-            assertEquals("order path", Order, document.getOrder());
+            assertThat(document.getOrder(), endsWith(Order));
 
             String DocClass = document.get_class();
             assertTrue("check order class " + DocClass + " one of( " + ClassI + ", " + ClassP + ", " + ClassC + ")",
                     DocClass.equals(ClassI) || DocClass.equals(ClassP) || DocClass.equals(ClassC));
 
             if (DocClass.equals(ClassI)) {
-                assertEquals("invoice path", Invoice, document.getPath());
+                assertThat(document.getPath(), endsWith(Invoice));
             } else if (DocClass.equals(ClassP)) {
-                assertEquals("packing slip path", Packing, document.getPath());
+                assertThat(document.getPath(), endsWith(Packing));
             } else if (DocClass.equals(ClassC)) {
-                assertEquals("credit note path", Creditn, document.getPath());
+                assertThat(document.getPath(), endsWith(Creditn));
             }
         }
     }
@@ -122,9 +137,10 @@ public class OrderDocumentServiceTest {
         TGetInvoices_Return[] Invoice_out = orderDocService.getInvoices(new String[] { Order });
         assertEquals("get invoices result set", 1, Invoice_out.length);
         for (TGetInvoices_Return order : Invoice_out) {
-            assertEquals("order path", Order, order.getOrder());
+            assertNoError(order.getError());
+            assertThat(order.getOrder(), endsWith(Order));
             assertEquals("invoices result set", 1, order.getInvoices().length);
-            assertEquals("invoice path", Invoice, order.getInvoices()[0]);
+            assertThat(order.getInvoices()[0], endsWith(Invoice));
         }
     }
 
@@ -136,9 +152,10 @@ public class OrderDocumentServiceTest {
         TGetPackingSlips_Return[] Packing_out = orderDocService.getPackingSlips(new String[] { Order });
         assertEquals("get packing slips result set", 1, Packing_out.length);
         for (TGetPackingSlips_Return order : Packing_out) {
-            assertEquals("order path", Order, order.getOrder());
+            assertNoError(order.getError());
+            assertThat(order.getOrder(), endsWith(Order));
             assertEquals("packing slips result set", 1, order.getPackingSlips().length);
-            assertEquals("packing slip path", Packing, order.getPackingSlips()[0]);
+            assertThat(order.getPackingSlips()[0], endsWith(Packing));
         }
     }
 
@@ -150,9 +167,10 @@ public class OrderDocumentServiceTest {
         TGetCreditNotes_Return[] Credits_out = orderDocService.getCreditNotes(new String[] { Order });
         assertEquals("get packing slips result set", 1, Credits_out.length);
         for (TGetCreditNotes_Return order : Credits_out) {
-            assertEquals("order path", Order, order.getOrder());
+            assertNoError(order.getError());
+            assertThat(order.getOrder(), endsWith(Order));
             assertEquals("packing slips result set", 1, order.getCreditNotes().length);
-            assertEquals("packing slip path", Creditn, order.getCreditNotes()[0]);
+            assertThat(order.getCreditNotes()[0], endsWith(Creditn));
         }
     }
 
@@ -166,6 +184,7 @@ public class OrderDocumentServiceTest {
     public void testExists(boolean expected) {
         TExists_Return[] Doc_exists_out = orderDocService.exists(Docs);
         for (TExists_Return exist : Doc_exists_out) {
+            assertNoError(exist.getError());
             assertEquals("exists?", expected, exist.getExists());
         }
     }

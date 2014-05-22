@@ -1,7 +1,9 @@
 package de.epages.ws.customer5;
 
 import static de.epages.ws.common.AssertNoError.assertNoError;
+import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.GregorianCalendar;
@@ -31,7 +33,7 @@ public class CustomerServiceTest {
     private TCreate_Input customer_in = new TCreate_Input();
     private TUpdate_Input customer_update = new TUpdate_Input();
 
-    private String custpath = "/Shops/DemoShop/Customers/";
+    private String custpath = "Customers/";
     private String alias = "java_test-1";
     private String path = custpath + alias;
     private String email = "java_test-1@epages.de";
@@ -44,7 +46,7 @@ public class CustomerServiceTest {
     public void setUp() {
         // test data customer_in
         customer_in.setAlias(alias);
-        customer_in.setCustomerGroup("/Shops/DemoShop/Groups/NewCustomer");
+        customer_in.setCustomerGroup("Groups/NewCustomer");
         customer_in.setTaxArea("/TaxMatrixGermany/EU");
         customer_in.setTaxModel("gross");
         customer_in.setCurrencyID("EUR");
@@ -152,7 +154,7 @@ public class CustomerServiceTest {
 
         // check general data
         assertEquals("Alias", alias, customer_out.getAlias());
-        assertEquals("CustomerGroup", customer_in.getCustomerGroup(), customer_out.getCustomerGroup());
+        assertThat(customer_out.getCustomerGroup(), endsWith(customer_in.getCustomerGroup()));
         assertEquals("TaxArea", customer_in.getTaxArea(), customer_out.getTaxArea());
         assertEquals("TaxModel", customer_in.getTaxModel(), customer_out.getTaxModel());
 
@@ -209,7 +211,7 @@ public class CustomerServiceTest {
 
         // test if find was successful
         assertEquals("find result set", 1, customers_out.length);
-        assertEquals("found path", path, customers_out[0]);
+        assertThat(customers_out[0], endsWith(path));
     }
 
     /**

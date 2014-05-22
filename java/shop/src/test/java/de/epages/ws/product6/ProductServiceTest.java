@@ -1,7 +1,9 @@
 package de.epages.ws.product6;
 
+import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.math.BigInteger;
@@ -31,7 +33,7 @@ public class ProductServiceTest {
     private final TUpdate_Input Product_update = new TUpdate_Input();
     private final TCreate_Input Product_down = new TCreate_Input();
 
-    private final String path = "/Shops/DemoShop/Products/";
+    private final String path = "Products/";
     private final String alias = "java_test-1";
 
     /**
@@ -43,7 +45,7 @@ public class ProductServiceTest {
         // create test products that can be used with the create and update
         // methods
         Product_in.setAlias(alias);
-        Product_in.set_class("/Shops/DemoShop/ProductTypes/Shoe");
+        Product_in.set_class("ProductTypes/Shoe");
         Product_in.setName(new TLocalizedValue[] { new TLocalizedValue("de", "Test-Hauptprodukt"),
                 new TLocalizedValue("en", "test master product"), });
         Product_in.setLongDescription(new TLocalizedValue[] { new TLocalizedValue("de", "Test-Hauptprodukt Beschreibung"),
@@ -107,7 +109,7 @@ public class ProductServiceTest {
         Product_update.setAttributes(new TAttribute[] { attr_update });
 
         Product_down.setAlias(alias);
-        Product_down.set_class("/Shops/DemoShop/ProductTypes/Shoe");
+        Product_down.set_class("ProductTypes/Shoe");
         Product_down.setName(new TLocalizedValue[] { new TLocalizedValue("de", "Test-Downloadprodukt") });
         Product_down.setTaxClass("/TaxMatrixGermany/normal");
         Product_down.setIsAvailable(true);
@@ -277,7 +279,7 @@ public class ProductServiceTest {
         assertEquals("TaxClass", Product_in.getTaxClass(), Product_info_out.getTaxClass());
         assertEquals("OrderUnit", Product_in.getOrderUnit(), Product_info_out.getOrderUnit());
         assertEquals("IsVisible", Product_in.getIsVisible(), Product_info_out.getIsVisible());
-        assertEquals("class", Product_in.get_class(), Product_info_out.get_class());
+        assertThat(Product_info_out.get_class(), endsWith(Product_in.get_class()));
     }
 
     /**
@@ -314,7 +316,7 @@ public class ProductServiceTest {
 
         // test if find was successful
         assertEquals("find result set", 1, Products_find_out.length);
-        assertEquals("found path", path + alias, Products_find_out[0]);
+        assertThat(Products_find_out[0], endsWith(path + alias));
     }
 
     public void testCreateDownload() {

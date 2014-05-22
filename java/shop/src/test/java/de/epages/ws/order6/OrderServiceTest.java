@@ -1,6 +1,8 @@
 package de.epages.ws.order6;
 
+import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 import java.util.GregorianCalendar;
 
@@ -33,7 +35,7 @@ public class OrderServiceTest {
     private final TAddressNamed Address_up = new TAddressNamed();
 
     private final String Alias = "java_test-1";
-    private final String Customer = "/Shops/DemoShop/Customers/1001"; /* mmustermann */
+    private final String Customer = "Customers/1001"; /* mmustermann */
     private final String OrderPath = Customer + "/Orders/" + Alias;
 
     private final String[] Orders = new String[] { OrderPath };
@@ -70,13 +72,13 @@ public class OrderServiceTest {
         Order_in.setAttributes(new TAttribute[] { OrderAttr_in });
         TLineItemContainerIn lineItemContainer = new TLineItemContainerIn();
         lineItemContainer.setCurrencyID("EUR");
-        lineItemContainer.setPaymentMethod("/Shops/DemoShop/PaymentMethods/Invoice");
-        lineItemContainer.setShippingMethod("/Shops/DemoShop/ShippingMethods/Express");
+        lineItemContainer.setPaymentMethod("PaymentMethods/Invoice");
+        lineItemContainer.setShippingMethod("ShippingMethods/Express");
         lineItemContainer.setTaxArea("/TaxMatrixGermany/EU");
         lineItemContainer.setTaxModel("gross");
-        lineItemContainer.setProductLineItems(new TProductLineItemIn[] { new TProductLineItemIn("/Shops/DemoShop/Products/ho_1112105010",
+        lineItemContainer.setProductLineItems(new TProductLineItemIn[] { new TProductLineItemIn("Products/ho_1112105010",
                 (float) 10),
-        // new TProductLineItemIn("/Shops/DemoShop/Products/de_3203104010",
+        // new TProductLineItemIn("Products/de_3203104010",
         // (float)10),
                 });
         Order_in.setLineItemContainer(lineItemContainer);
@@ -127,7 +129,7 @@ public class OrderServiceTest {
 
         TGetInfo_Return Order_info_out = Orders_info_out[0];
         assertEquals("Alias", Alias, Order_info_out.getAlias());
-        assertEquals("Customer", Order_in.getCustomer(), Order_info_out.getCustomer());
+        assertThat(Order_info_out.getCustomer(), endsWith(Order_in.getCustomer()));
 
         TAddressNamed Address_out = Order_info_out.getBillingAddress();
         assertEquals("EMail", Address_in.getEMail(), Address_out.getEMail());
@@ -190,7 +192,7 @@ public class OrderServiceTest {
 
         String[] Orders_find_out = orderService.find(searchParameters);
         assertEquals("find result set", 1, Orders_find_out.length);
-        assertEquals("found path", OrderPath, Orders_find_out[0]);
+        assertThat(Orders_find_out[0], endsWith(OrderPath));
     }
 
     /**

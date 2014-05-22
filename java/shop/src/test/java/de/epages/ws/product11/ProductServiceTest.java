@@ -1,15 +1,19 @@
 package de.epages.ws.product11;
 
 import static de.epages.ws.common.AssertNoError.assertNoError;
+import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +41,7 @@ public class ProductServiceTest {
     private TCreate_Input Product_down;
     private TCreate_Input Product_down_up;
 
-    private static final String path = "/Shops/DemoShop/Products/";
+    private static final String path = "Products/";
     private static final String alias = "java_test-1";
 
     /**
@@ -54,7 +58,7 @@ public class ProductServiceTest {
 
         // create test products that can be used with the create and update methods
         Product_in.setAlias(alias);
-        Product_in.set_class("/Shops/DemoShop/ProductTypes/Shoe");
+        Product_in.set_class("ProductTypes/Shoe");
         Product_in.setName(new TLocalizedValue[]{
                 new TLocalizedValue("de", "Test-Hauptprodukt"),
                 new TLocalizedValue("en", "test master product"),
@@ -176,7 +180,7 @@ public class ProductServiceTest {
         Product_update.setAttributes(new TAttribute[]{attr_update});
 
         Product_down.setAlias(alias);
-        Product_down.set_class("/Shops/DemoShop/ProductTypes/Shoe");
+        Product_down.set_class("ProductTypes/Shoe");
         Product_down.setName(new TLocalizedValue[]{new TLocalizedValue("de", "Test-Downloadprodukt")});
         Product_down.setTaxClass("/TaxMatrixGermany/normal");
         Product_down.setIsAvailable(true);
@@ -192,7 +196,7 @@ public class ProductServiceTest {
         Product_down.setDownloadProductMaps(new TDownload[]{download});
 
         Product_down_up.setAlias(alias);
-        Product_down_up.set_class("/Shops/DemoShop/ProductTypes/Shoe");
+        Product_down_up.set_class("ProductTypes/Shoe");
         Product_down_up.setName(new TLocalizedValue[]{new TLocalizedValue("de", "Test-Downloadprodukt")});
         Product_down_up.setTaxClass("/TaxMatrixGermany/normal");
         Product_down_up.setIsAvailable(true);
@@ -305,9 +309,11 @@ public class ProductServiceTest {
         priceHash5.put(Product_info_out.getEcoParticipationPrices()[1].getCurrencyID(), Product_info_out.getEcoParticipationPrices()[1].getPrice());
 
         assertEquals("Number of shipping methods", 2, Product_info_out.getShippingMethods().length );
-        HashMap<String, String> shippHash = new HashMap<String, String>();
-        shippHash.put(Product_info_out.getShippingMethods()[0].getPath(), "1");
-        shippHash.put(Product_info_out.getShippingMethods()[1].getPath(), "1");
+        Set<String> shippingMethods = new HashSet<String>();
+        String method1 = Product_info_out.getShippingMethods()[0].getPath();
+        shippingMethods.add(method1.substring(method1.lastIndexOf("/")+1));
+        String method2 = Product_info_out.getShippingMethods()[1].getPath();
+        shippingMethods.add(method2.substring(method2.lastIndexOf("/")+1));
 
         if (isAlreadyUpdated) {
             assertEquals("updated Manufacturer", Product_update.getAttributes()[0].getValue(), Product_info_out.getAttributes()[0].getValue()  );
@@ -332,9 +338,9 @@ public class ProductServiceTest {
             assertEquals("updated AvailabilityDate", Product_update.getAvailabilityDate().getTime(), Product_info_out.getAvailabilityDate().getTime()   );
             assertEquals("updated delivery period", Product_update.getDeliveryPeriod(), Product_info_out.getDeliveryPeriod());
 
-            assertTrue("do not touch shipping path", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Post"));
-            assertTrue("added new shipping path", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/PickupByCustomer"));
-            assertTrue("deleted shipping path", !shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Express"));
+            assertTrue("do not touch shipping path", shippingMethods.contains("Post"));
+            assertTrue("added new shipping path", shippingMethods.contains("PickupByCustomer"));
+            assertTrue("deleted shipping path", !shippingMethods.contains("Express"));
 
             assertEquals("updated weight unit", "/Units/gram/kilogram", Product_update.getWeightUnit());
             assertEquals("updated weight", 1f, Product_update.getWeight(), 0.0f);
@@ -362,8 +368,8 @@ public class ProductServiceTest {
             assertEquals("AvailabilityDate", Product_in.getAvailabilityDate().getTime(), Product_info_out.getAvailabilityDate().getTime()   );
             assertEquals("delivery period", Product_in.getDeliveryPeriod(), Product_info_out.getDeliveryPeriod());
 
-            assertTrue("shipping path 1", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Post"));
-            assertTrue("shipping path 2", shippHash.containsKey("/Shops/DemoShop/ShippingMethods/Express"));
+            assertTrue("shipping path 1", shippingMethods.contains("Post"));
+            assertTrue("shipping path 2", shippingMethods.contains("Express"));
             assertEquals("weight unit", "/Units/gram", Product_info_out.getWeightUnit());
             assertEquals("weight", 240f, Product_info_out.getWeight(),0.0f);
         }
@@ -371,7 +377,7 @@ public class ProductServiceTest {
         assertEquals("TaxClass", Product_in.getTaxClass(), Product_info_out.getTaxClass());
         assertEquals("OrderUnit", Product_in.getOrderUnit(), Product_info_out.getOrderUnit());
         assertEquals("IsVisible", Product_in.getIsVisible(), Product_info_out.getIsVisible());
-        assertEquals("class", Product_in.get_class(), Product_info_out.get_class());
+        assertThat(Product_info_out.get_class(), endsWith(Product_in.get_class()));
     }
 
     public void testUnsetPrices() {
@@ -429,7 +435,7 @@ public class ProductServiceTest {
 
         // test if find was successful
         assertEquals("find result set", 1, Products_find_out.length);
-        assertEquals("found path", path + alias, Products_find_out[0]);
+        assertThat(Products_find_out[0], endsWith(path + alias));
     }
 
     public void testCreateDownload() {

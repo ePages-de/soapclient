@@ -1,6 +1,7 @@
 package de.epages.ws.paymentmethod;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.core.StringEndsWith.endsWith;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -22,6 +23,6 @@ public class PaymentMethodServiceTest {
         int count = PaymentMethods.length;
         assertTrue("found payment methods", count > 5);
         TGetList_Return firstPaymentMethod = PaymentMethods[0];
-        assertEquals("first payment method", "/Shops/DemoShop/PaymentMethods/CashInAdvance", firstPaymentMethod.getPath());
+        assertThat(firstPaymentMethod.getPath(), endsWith("PaymentMethods/CashInAdvance"));
     }
 }

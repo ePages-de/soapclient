@@ -1,6 +1,10 @@
 package de.epages.ws.pricelistassignment;
 
-import org.junit.Assert;
+import static org.hamcrest.core.StringEndsWith.endsWith;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,8 +29,8 @@ public class PriceListAssignmentServiceTest {
     private static final PriceListAssignmentServiceClientImpl serviceClient = new PriceListAssignmentServiceClientImpl(
             new WebServiceTestConfiguration());
 
-    private final String product = "/Shops/DemoShop/Products/ho_1112105010";
-    private final String pricelist = "/Shops/DemoShop/PriceLists/RegularCustomer_EUR";
+    private final String product = "Products/ho_1112105010";
+    private final String pricelist = "PriceLists/RegularCustomer_EUR";
 
     private TQuantityDiscount[] quantityDiscounts;
     private TValueDiscount[] valueDiscounts;
@@ -54,8 +58,8 @@ public class PriceListAssignmentServiceTest {
         TSetQuantityDiscounts_Return[] PriceListAssignments_out = serviceClient.setQuantityDiscounts(PriceListAssignments_in);
 
         // test if creation was successful
-        Assert.assertEquals("create result set", 1, PriceListAssignments_out.length);
-        Assert.assertEquals("created?", true, PriceListAssignments_out[0].getUpdated());
+        assertEquals("create result set", 1, PriceListAssignments_out.length);
+        assertTrue(PriceListAssignments_out[0].getUpdated());
     }
 
     /**
@@ -66,20 +70,20 @@ public class PriceListAssignmentServiceTest {
         TGetQuantityDiscounts_Return[] PriceListAssignments_out = serviceClient.getQuantityDiscounts(new String[] { product },
                 new String[] { pricelist });
 
-        Assert.assertEquals("product result set", 1, PriceListAssignments_out.length);
-        Assert.assertEquals("product path", product, PriceListAssignments_out[0].getProduct());
+        assertEquals("product result set", 1, PriceListAssignments_out.length);
+        assertThat(PriceListAssignments_out[0].getProduct(), endsWith(product));
 
         TPriceListQuantityDiscount[] priceLists = PriceListAssignments_out[0].getPriceLists();
-        Assert.assertEquals("pricelist result set", 1, priceLists.length);
-        Assert.assertEquals("pricelist path", pricelist, priceLists[0].getPriceList());
+        assertEquals("pricelist result set", 1, priceLists.length);
+        assertThat(priceLists[0].getPriceList(), endsWith(pricelist));
 
-        Assert.assertEquals("quantityDiscounts Quantity", quantityDiscounts[0].getQuantity(),
+        assertEquals("quantityDiscounts Quantity", quantityDiscounts[0].getQuantity(),
                 priceLists[0].getQuantityDiscounts()[0].getQuantity(), 0.0f);
-        Assert.assertEquals("quantityDiscounts Discount", quantityDiscounts[0].getDiscount(),
+        assertEquals("quantityDiscounts Discount", quantityDiscounts[0].getDiscount(),
                 priceLists[0].getQuantityDiscounts()[0].getDiscount(), 0.0f);
-        Assert.assertEquals("quantityDiscounts Quantity", quantityDiscounts[1].getQuantity(),
+        assertEquals("quantityDiscounts Quantity", quantityDiscounts[1].getQuantity(),
                 priceLists[0].getQuantityDiscounts()[1].getQuantity(), 0.0f);
-        Assert.assertEquals("quantityDiscounts Discount", quantityDiscounts[1].getDiscount(),
+        assertEquals("quantityDiscounts Discount", quantityDiscounts[1].getDiscount(),
                 priceLists[0].getQuantityDiscounts()[1].getDiscount(), 0.0f);
     }
 
@@ -92,8 +96,8 @@ public class PriceListAssignmentServiceTest {
         TSetValueDiscounts_Return[] PriceListAssignments_out = serviceClient.setValueDiscounts(PriceListAssignments_in);
 
         // test if creation was successful
-        Assert.assertEquals("create result set", 1, PriceListAssignments_out.length);
-        Assert.assertEquals("created?", true, PriceListAssignments_out[0].getUpdated());
+        assertEquals("create result set", 1, PriceListAssignments_out.length);
+        assertTrue(PriceListAssignments_out[0].getUpdated());
     }
 
     /**
@@ -103,17 +107,17 @@ public class PriceListAssignmentServiceTest {
 
         TGetValueDiscounts_Return[] PriceListAssignments_out = serviceClient.getValueDiscounts(new String[] { product }, new String[] { pricelist });
 
-        Assert.assertEquals("product result set", 1, PriceListAssignments_out.length);
-        Assert.assertEquals("product path", product, PriceListAssignments_out[0].getProduct());
+        assertEquals("product result set", 1, PriceListAssignments_out.length);
+        assertThat(PriceListAssignments_out[0].getProduct(), endsWith(product));
 
         TPriceListValueDiscount[] priceLists = PriceListAssignments_out[0].getPriceLists();
-        Assert.assertEquals("pricelist result set", 1, priceLists.length);
-        Assert.assertEquals("pricelist path", pricelist, priceLists[0].getPriceList());
+        assertEquals("pricelist result set", 1, priceLists.length);
+        assertThat(priceLists[0].getPriceList(), endsWith(pricelist));
 
-        Assert.assertEquals("valueDiscounts Value", valueDiscounts[0].getValue(), priceLists[0].getValueDiscounts()[0].getValue(), 0.0f);
-        Assert.assertEquals("valueDiscounts Discount", valueDiscounts[0].getDiscount(), priceLists[0].getValueDiscounts()[0].getDiscount(), 0.0f);
-        Assert.assertEquals("valueDiscounts Value", valueDiscounts[1].getValue(), priceLists[0].getValueDiscounts()[1].getValue(), 0.0f);
-        Assert.assertEquals("valueDiscounts Discount", valueDiscounts[1].getDiscount(), priceLists[0].getValueDiscounts()[1].getDiscount(), 0.0f);
+        assertEquals("valueDiscounts Value", valueDiscounts[0].getValue(), priceLists[0].getValueDiscounts()[0].getValue(), 0.0f);
+        assertEquals("valueDiscounts Discount", valueDiscounts[0].getDiscount(), priceLists[0].getValueDiscounts()[0].getDiscount(), 0.0f);
+        assertEquals("valueDiscounts Value", valueDiscounts[1].getValue(), priceLists[0].getValueDiscounts()[1].getValue(), 0.0f);
+        assertEquals("valueDiscounts Discount", valueDiscounts[1].getDiscount(), priceLists[0].getValueDiscounts()[1].getDiscount(), 0.0f);
     }
 
     /**
@@ -125,8 +129,8 @@ public class PriceListAssignmentServiceTest {
         TSetScalePrices_Return[] PriceListAssignments_out = serviceClient.setScalePrices(PriceListAssignments_in);
 
         // test if creation was successful
-        Assert.assertEquals("create result set", 1, PriceListAssignments_out.length);
-        Assert.assertEquals("created?", true, PriceListAssignments_out[0].getUpdated());
+        assertEquals("create result set", 1, PriceListAssignments_out.length);
+        assertTrue(PriceListAssignments_out[0].getUpdated());
     }
 
     /**
@@ -136,17 +140,17 @@ public class PriceListAssignmentServiceTest {
 
         TGetScalePrices_Return[] PriceListAssignments_out = serviceClient.getScalePrices(new String[] { product }, new String[] { pricelist });
 
-        Assert.assertEquals("product result set", 1, PriceListAssignments_out.length);
-        Assert.assertEquals("product path", product, PriceListAssignments_out[0].getProduct());
+        assertEquals("product result set", 1, PriceListAssignments_out.length);
+        assertThat(PriceListAssignments_out[0].getProduct(), endsWith(product));
 
         TPriceListScalePrice[] priceLists = PriceListAssignments_out[0].getPriceLists();
-        Assert.assertEquals("pricelist result set", 1, priceLists.length);
-        Assert.assertEquals("pricelist path", pricelist, priceLists[0].getPriceList());
+        assertEquals("pricelist result set", 1, priceLists.length);
+        assertThat(priceLists[0].getPriceList(), endsWith(pricelist));
 
-        Assert.assertEquals("scalePrices Quantity", scalePrices[0].getQuantity(), priceLists[0].getScalePrices()[0].getQuantity(), 0.0f);
-        Assert.assertEquals("scalePrices Price", scalePrices[0].getPrice(), priceLists[0].getScalePrices()[0].getPrice(), 0.0f);
-        Assert.assertEquals("scalePrices Quantity", scalePrices[1].getQuantity(), priceLists[0].getScalePrices()[1].getQuantity(), 0.0f);
-        Assert.assertEquals("scalePrices price", scalePrices[1].getPrice(), priceLists[0].getScalePrices()[1].getPrice(), 0.0f);
+        assertEquals("scalePrices Quantity", scalePrices[0].getQuantity(), priceLists[0].getScalePrices()[0].getQuantity(), 0.0f);
+        assertEquals("scalePrices Price", scalePrices[0].getPrice(), priceLists[0].getScalePrices()[0].getPrice(), 0.0f);
+        assertEquals("scalePrices Quantity", scalePrices[1].getQuantity(), priceLists[0].getScalePrices()[1].getQuantity(), 0.0f);
+        assertEquals("scalePrices price", scalePrices[1].getPrice(), priceLists[0].getScalePrices()[1].getPrice(), 0.0f);
     }
 
     /**

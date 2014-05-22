@@ -1,11 +1,13 @@
 package de.epages.ws.producttype2;
 
 import static de.epages.ws.common.AssertNoError.assertNoError;
+import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.math.BigInteger;
@@ -42,7 +44,7 @@ public class ProductTypeServiceTest {
 
     private static final ProductTypeServiceClientImpl productTypeService = new ProductTypeServiceClientImpl(new WebServiceTestConfiguration());
 
-    private static final String SHOP_PATH = "/Shops/DemoShop/";
+    private static final String SHOP_PATH = "";
     private static final String PRODUCTTYPES_PATH = SHOP_PATH + "ProductTypes/";
     private static final String NOT_EXISTING_ALIAS = "NotExisting";
     private static final String NOT_EXISTING_PATH = PRODUCTTYPES_PATH + NOT_EXISTING_ALIAS;
@@ -96,7 +98,7 @@ public class ProductTypeServiceTest {
 
     public void testGetBaseProductType() {
         String baseProductType = productTypeService.getBaseProductType();
-        assertEquals(SHOP_PATH + "ProductClass", baseProductType);
+        assertThat(baseProductType, endsWith("ProductClass"));
     }
 
     public void testGetAllInfo() {
@@ -144,7 +146,7 @@ public class ProductTypeServiceTest {
                 new String[] { "WebUrl" }, new String[] { "de", "en" });
 
         // check first created test product type
-        assertEquals(JAVA_TEST1_PATH, productTypes[0].getPath());
+        assertThat(productTypes[0].getPath(), endsWith(JAVA_TEST1_PATH));
         assertNoError(productTypes[0].getError());
         assertEquals(JAVA_TEST1_ALIAS, productTypes[0].getAlias());
         assertEquals(JAVA_TEST1_LAYOUT_BUNDLES, productTypes[0].getLayoutContentBundles());
@@ -162,7 +164,7 @@ public class ProductTypeServiceTest {
         assertNotNull(attributes[0].getValue());
 
         // check second created test product type
-        assertEquals(JAVA_TEST2_PATH, productTypes[1].getPath());
+        assertThat(productTypes[1].getPath(), endsWith(JAVA_TEST2_PATH));
         assertNoError(productTypes[1].getError());
         assertEquals(JAVA_TEST2_ALIAS, productTypes[1].getAlias());
         assertEquals(JAVA_TEST2_LAYOUT_BASE, productTypes[1].getLayoutContentBase());
@@ -232,12 +234,12 @@ public class ProductTypeServiceTest {
         assertEquals(JAVA_TEST1_ALIAS, productTypes[0].getAlias());
         assertNoError(productTypes[0].getError());
         assertTrue(productTypes[0].getCreated());
-        assertEquals(JAVA_TEST1_PATH, productTypes[0].getPath());
+        assertThat(productTypes[0].getPath(), endsWith(JAVA_TEST1_PATH));
 
         assertEquals(JAVA_TEST2_ALIAS, productTypes[1].getAlias());
         assertNoError(productTypes[1].getError());
         assertTrue(productTypes[1].getCreated());
-        assertEquals(JAVA_TEST2_PATH, productTypes[1].getPath());
+        assertThat(productTypes[1].getPath(), endsWith(JAVA_TEST2_PATH));
 
     }
 
@@ -253,7 +255,7 @@ public class ProductTypeServiceTest {
 
         TUpdate_Return[] productTypes = productTypeService.update(new TUpdate_Input[] { update1 });
         assertEquals(1, productTypes.length);
-        assertEquals(JAVA_TEST1_PATH, productTypes[0].getPath());
+        assertThat(productTypes[0].getPath(), endsWith(JAVA_TEST1_PATH));
         assertNoError(productTypes[0].getError());
         assertTrue(productTypes[0].getUpdated());
 
@@ -261,7 +263,7 @@ public class ProductTypeServiceTest {
                 new String[] { "de", "en" });
 
         assertEquals(1, result.length);
-        assertEquals(JAVA_TEST1_PATH, result[0].getPath());
+        assertThat(result[0].getPath(), endsWith(JAVA_TEST1_PATH));
         assertNoError(result[0].getError());
         assertEquals(JAVA_TEST1_ALIAS, result[0].getAlias());
         assertEquals(JAVA_TEST1_LAYOUT_BUNDLES, result[0].getLayoutContentBundles());
@@ -331,11 +333,11 @@ public class ProductTypeServiceTest {
         assertEquals(in.length, attributes.length);
         assertEquals(ATTRIBUTE1_ALIAS, attributes[0].getAlias());
         assertNoError(attributes[0].getError());
-        assertEquals(ATTRIBUTE1_PATH, attributes[0].getPath());
+        assertThat(attributes[0].getPath(), endsWith(ATTRIBUTE1_PATH));
         assertTrue(attributes[0].getCreated());
         assertEquals(ATTRIBUTE2_ALIAS, attributes[1].getAlias());
         assertNoError(attributes[1].getError());
-        assertEquals(ATTRIBUTE2_PATH, attributes[1].getPath());
+        assertThat(attributes[1].getPath(), endsWith(ATTRIBUTE2_PATH));
         assertTrue(attributes[1].getCreated());
         assertEquals("CurrencyID", attributes[2].getAlias());
         assertNotNull(attributes[2].getError());
@@ -363,7 +365,7 @@ public class ProductTypeServiceTest {
         for (TGetProductAttributeInfo_Return attribute : attributes) {
             if (ATTRIBUTE1_ALIAS.equals(attribute.getAlias())) {
                 attribute1Found = true;
-                assertEquals(ATTRIBUTE1_PATH, attribute.getPath());
+                assertThat(attribute.getPath(), endsWith(ATTRIBUTE1_PATH));
                 assertEquals(ATTRIBUTE1_TYPE, attribute.getType());
                 assertTrue(attribute.getIsVisible());
                 assertTrue(attribute.getIsHTML());
@@ -384,7 +386,7 @@ public class ProductTypeServiceTest {
             }
             if (ATTRIBUTE2_ALIAS.equals(attribute.getAlias())) {
                 attribute2Found = true;
-                assertEquals(ATTRIBUTE2_PATH, attribute.getPath());
+                assertThat(attribute.getPath(), endsWith(ATTRIBUTE2_PATH));
                 assertEquals(ATTRIBUTE2_TYPE, attribute.getType());
                 assertFalse(attribute.getIsVisible());
                 assertFalse(attribute.getIsHTML());
@@ -417,7 +419,7 @@ public class ProductTypeServiceTest {
 
         assertEquals(ATTRIBUTE1_ALIAS, attributes[0].getAlias());
         assertNoError(attributes[0].getError());
-        assertEquals(ATTRIBUTE1_PATH, attributes[0].getPath());
+        assertThat(attributes[0].getPath(), endsWith(ATTRIBUTE1_PATH));
         assertEquals(ATTRIBUTE1_TYPE, attributes[0].getType());
         assertTrue(attributes[0].getIsVisible());
         assertTrue(attributes[0].getIsHTML());
@@ -425,7 +427,7 @@ public class ProductTypeServiceTest {
 
         assertEquals(ATTRIBUTE2_ALIAS, attributes[1].getAlias());
         assertNoError(attributes[1].getError());
-        assertEquals(ATTRIBUTE2_PATH, attributes[1].getPath());
+        assertThat(attributes[1].getPath(), endsWith(ATTRIBUTE2_PATH));
         assertEquals(ATTRIBUTE2_TYPE, attributes[1].getType());
         assertFalse(attributes[1].getIsVisible());
         assertFalse(attributes[1].getIsHTML());
@@ -490,7 +492,7 @@ public class ProductTypeServiceTest {
 
         assertEquals(ATTRIBUTE1_ALIAS, attributes2[0].getAlias());
         assertNoError(attributes2[0].getError());
-        assertEquals(ATTRIBUTE1_PATH, attributes2[0].getPath());
+        assertThat(attributes2[0].getPath(), endsWith(ATTRIBUTE1_PATH));
         assertTrue(attributes2[0].getIsVisible());
         assertFalse(attributes2[0].getIsHTML());
         assertEquals(0, attributes2[0].getPosition().intValue() % 10);
@@ -505,7 +507,7 @@ public class ProductTypeServiceTest {
 
         assertEquals(ATTRIBUTE2_ALIAS, attributes2[1].getAlias());
         assertNoError(attributes2[1].getError());
-        assertEquals(ATTRIBUTE2_PATH, attributes2[1].getPath());
+        assertThat(attributes2[1].getPath(), endsWith(ATTRIBUTE2_PATH));
         assertTrue(attributes2[1].getIsVisible());
         assertFalse(attributes2[1].getIsHTML());
         assertEquals(0, attributes2[1].getPosition().intValue() % 10);
@@ -563,12 +565,12 @@ public class ProductTypeServiceTest {
 
         assertEquals(PREDEF_ATTRIBUTE1_ALIAS, predefs[0].getAlias());
         assertNoError(predefs[0].getError());
-        assertEquals(PREDEF_ATTRIBUTE1_PATH, predefs[0].getPath());
+        assertThat(predefs[0].getPath(), endsWith(PREDEF_ATTRIBUTE1_PATH));
         assertTrue(predefs[0].getCreated());
 
         assertEquals(PREDEF_ATTRIBUTE2_ALIAS, predefs[1].getAlias());
         assertNoError(predefs[1].getError());
-        assertEquals(PREDEF_ATTRIBUTE2_PATH, predefs[1].getPath());
+        assertThat(predefs[1].getPath(), endsWith(PREDEF_ATTRIBUTE2_PATH));
         assertTrue(predefs[1].getCreated());
 
         assertEquals(PREDEF_ATTRIBUTE2_ALIAS, predefs[2].getAlias());
@@ -584,12 +586,12 @@ public class ProductTypeServiceTest {
         for (TGetPreDefAttributeInfo_Return predef : predefs) {
             if (PREDEF_ATTRIBUTE1_ALIAS.equals(predef.getAlias())) {
                 predef1Found = true;
-                assertEquals(PREDEF_ATTRIBUTE1_PATH, predef.getPath());
+                assertThat(predef.getPath(), endsWith(PREDEF_ATTRIBUTE1_PATH));
                 assertEquals(PREDEF_ATTRIBUTE1_NAME, predef.getValueString());
                 assertNull(predef.getValueLocString());
             } else if (PREDEF_ATTRIBUTE2_ALIAS.equals(predef.getAlias())) {
                 predef2Found = true;
-                assertEquals(PREDEF_ATTRIBUTE2_PATH, predef.getPath());
+                assertThat(predef.getPath(), endsWith(PREDEF_ATTRIBUTE2_PATH));
                 assertEquals(PREDEF_ATTRIBUTE2_NAME, predef.getValueString());
                 assertNull(predef.getValueLocString());
             }
@@ -606,14 +608,14 @@ public class ProductTypeServiceTest {
 
         assertEquals(PREDEF_ATTRIBUTE1_ALIAS, predefs[0].getAlias());
         assertNoError(predefs[0].getError());
-        assertEquals(PREDEF_ATTRIBUTE1_PATH, predefs[0].getPath());
+        assertThat(predefs[0].getPath(), endsWith(PREDEF_ATTRIBUTE1_PATH));
         assertEquals(PREDEF_ATTRIBUTE1_NAME, predefs[0].getValueString());
         assertNull(predefs[0].getValueLocString());
         assertEquals(0, predefs[0].getPosition().intValue() % 10);
 
         assertEquals(PREDEF_ATTRIBUTE2_ALIAS, predefs[1].getAlias());
         assertNoError(predefs[1].getError());
-        assertEquals(PREDEF_ATTRIBUTE2_PATH, predefs[1].getPath());
+        assertThat(predefs[1].getPath(), endsWith(PREDEF_ATTRIBUTE2_PATH));
         assertEquals(PREDEF_ATTRIBUTE2_NAME, predefs[1].getValueString());
         assertNull(predefs[1].getValueLocString());
         assertEquals(0, predefs[1].getPosition().intValue() % 10);
