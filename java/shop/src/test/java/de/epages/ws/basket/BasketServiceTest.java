@@ -87,13 +87,13 @@ public class BasketServiceTest {
         Basket_in.setAttributes(new TAttribute[] { BasketAttr_in });
         TLineItemContainerIn lineItemContainer = new TLineItemContainerIn();
         lineItemContainer.setCurrencyID("EUR");
-        lineItemContainer.setPaymentMethod("/Shops/DemoShop/PaymentMethods/Invoice");
-        lineItemContainer.setShippingMethod("/Shops/DemoShop/ShippingMethods/Express");
+        lineItemContainer.setPaymentMethod("PaymentMethods/Invoice");
+        lineItemContainer.setShippingMethod("ShippingMethods/Express");
         lineItemContainer.setTaxArea("/TaxMatrixGermany/EU");
         lineItemContainer.setTaxModel("gross");
-        lineItemContainer.setProductLineItems(new TProductLineItemIn[] { new TProductLineItemIn("/Shops/DemoShop/Products/ho_1112105010",
+        lineItemContainer.setProductLineItems(new TProductLineItemIn[] { new TProductLineItemIn("Products/ho_1112105010",
                 (float) 10),
-        // new TProductLineItemIn("/Shops/DemoShop/Products/de_3203104010",
+        // new TProductLineItemIn("Products/de_3203104010",
         // (float)10),
                 });
         Basket_in.setLineItemContainer(lineItemContainer);
@@ -177,6 +177,7 @@ public class BasketServiceTest {
         TAddressNamed Address_out = Basket_info_out.getBillingAddress();
         assertEquals("EMail", Address_in.getEMail(), Address_out.getEMail());
         TProductLineItemOut productLineItem = Basket_info_out.getLineItemContainer().getProductLineItems()[0];
+        assertEquals("/Units/piece", productLineItem.getOrderUnit());
 
         if (isAlreadyUpdated) {
             // check updated order data

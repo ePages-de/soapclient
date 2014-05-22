@@ -39,14 +39,13 @@ sub testExistsByPath {
 
     ok( $hExists->{'Path'} eq $Path, 'exists: basket path' );
     ok( $hExists->{'exists'} == $exists, 'exists?' );
-    
 }
 
 # Create a Basket and check if the creation was successful
 sub testCreateBasket {
     my ($Basket) = @_;
 
-    my $ahResults = $BasketService->create( [$Basket] )->result; 
+    my $ahResults = $BasketService->create( [$Basket] )->result;
     ok( scalar @$ahResults == 1, 'create: result count' );
 
     my $hCreate = $ahResults->[0];
@@ -54,7 +53,7 @@ sub testCreateBasket {
     diag $hCreate->{'Error'}->{'Message'}."\n" if $hCreate->{'Error'};
 
     ok( $hCreate->{'created'} == 1, 'created?' );
-    
+
     return $hCreate->{'Path'};
 }
 
@@ -75,15 +74,15 @@ sub testGetInfoReference {
     ok( $hLineItemContainer->{'CurrencyID'} eq $hLineItemContainer2->{'CurrencyID'},    'currencyid' );
 
     ok( $hLineItemContainer->{'ProductLineItems'}, 'list of all product line items');
-    my @ProductLineItems = 
-        map {{$_->{Product},$_->{Quantity}}} sort {$a->{Product} le $b->{Product}} 
+    my @ProductLineItems =
+        map {{$_->{'Product'}, { 'Quantity' => $_->{'Quantity'}, 'OrderUnit' => $_->{'OrderUnit'}}}} sort {$a->{Product} le $b->{Product}}
         @{$hLineItemContainer->{'ProductLineItems'}};
-    my @ProductLineItemsRef = 
-        map {{$_->{Product},$_->{Quantity}}} sort {$a->{Product} le $b->{Product}} 
+    my @ProductLineItemsRef =
+        map {{$_->{'Product'},{ 'Quantity' => $_->{'Quantity'}, 'OrderUnit' => $_->{'OrderUnit'}}}} sort {$a->{Product} le $b->{Product}}
         @{$hLineItemContainer2->{'ProductLineItems'}};
 
     is_deeply( \@ProductLineItems, \@ProductLineItemsRef, 'product line items');
-    
+
     return $hInfo;
 }
 
@@ -176,7 +175,7 @@ my $basket1 = {
         'TaxArea'           => '/TaxMatrixGermany/EU',
         'TaxModel'          => 'gross',
         'ProductLineItems' => [
-            {'Product' => $GUID{ho_1112105010}, 'Quantity' => '10'},
+            {'Product' => $GUID{ho_1112105010}, 'Quantity' => '10', 'OrderUnit' => '/Units/piece'},
         ],
     },
 };
@@ -202,8 +201,8 @@ my $basket2 = {
         'TaxArea'           => '/TaxMatrixGermany/EU',
         'TaxModel'          => 'gross',
         'ProductLineItems' => [
-            {'Product' => $GUID{ho_1112105010}, 'Quantity' => '2'},
-            {'Product' => $GUID{eg_1000111010}, 'Quantity' => '3'},
+            {'Product' => $GUID{ho_1112105010}, 'Quantity' => '2', 'OrderUnit' => '/Units/piece'},
+            {'Product' => $GUID{eg_1000111010}, 'Quantity' => '3', 'OrderUnit' => '/Units/piece'},
         ],
     },
 };
@@ -241,7 +240,7 @@ testUpdateBasket( $basket2Path,  {
 
 #check info of basket2
 push @{$basket2->{LineItemContainer}->{ProductLineItems}},
-    {'Product' => $GUID{de_3201212002}, 'Quantity' => '1'};
+    {'Product' => $GUID{de_3201212002}, 'Quantity' => '1', 'OrderUnit' => '/Units/piece'};
 my $hBasket = testGetInfoReference( $basket2Path, $basket2 );
 
 #change first line item product to basket2
@@ -249,7 +248,7 @@ my $hContainer = $hBasket->{LineItemContainer};
 my $hLineItem = $hContainer->{'ProductLineItems'}->[0];
 my $changedProduct = $hLineItem->{Product};
 my $changedQuantity = 17;
-my $LineItem = { Alias=>$hLineItem->{Alias}, Quantity=>$changedQuantity};
+my $LineItem = { Alias=>$hLineItem->{Alias}, Quantity=>$changedQuantity, 'OrderUnit' => '/Units/piece'};
 testUpdateLineItem( $basket2Path, $LineItem,  $basket2 );
 
 #check info of basket2
@@ -269,12 +268,12 @@ $hBasket = testGetInfoReference( $basket2Path, $basket2 );
 
 
 #put this prodcut back to basket
-$LineItem = { GUID=>$changedProduct, Quantity=>$changedQuantity};
+$LineItem = { 'GUID'=>$changedProduct, 'Quantity'=>$changedQuantity, 'OrderUnit'=>'/Units/piece'};
 testAddProductLineItem( $basket2Path, $LineItem,  $basket2 );
 
 #check info of basket2
 push @{$basket2->{LineItemContainer}->{ProductLineItems}},
-    { Product=>$changedProduct, Quantity=>$changedQuantity};
+    { 'Product'=>$changedProduct, 'Quantity'=>$changedQuantity, 'OrderUnit'=>'/Units/piece'};
 testGetInfoReference( $basket2Path, $basket2 );
 
 
@@ -300,8 +299,8 @@ my $basket3 = {
         'TaxArea'           => '/TaxMatrixGermany/EU',
         'TaxModel'          => 'gross',
         'ProductLineItems' => [
-            {'Product' => $GUID{ho_1112105010}, 'Quantity' => '2'},
-            {'Product' => $GUID{eg_1000111010}, 'Quantity' => '3'},
+            {'Product' => $GUID{ho_1112105010}, 'Quantity' => '2', 'OrderUnit' => '/Units/piece'},
+            {'Product' => $GUID{eg_1000111010}, 'Quantity' => '3', 'OrderUnit' => '/Units/piece'},
         ],
     },
 };
@@ -318,7 +317,3 @@ testDeleteBasket( $basket3Path );
 
 #dont exists basket3?
 testExistsByPath( $basket3Path, 0 );
-
-
-
-

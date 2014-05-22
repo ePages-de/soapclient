@@ -33,7 +33,7 @@ public class PriceListServiceTest {
     private final TCreate_Input PriceList_in = new TCreate_Input();
     private final TUpdate_Input PriceList_update = new TUpdate_Input();
 
-    private final String path = "/Shops/DemoShop/PriceLists/";
+    private final String path = "PriceLists/";
     private final String alias = "java_test-1";
 
     private final SimpleDateFormat sdf_in = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -46,7 +46,7 @@ public class PriceListServiceTest {
     @Before
     public void setUp() {
         /* get customer groups at first */
-        String customerGroupsPath = "/Shops/DemoShop/Groups/";
+        String customerGroupsPath = "Groups/";
         String[] customerGroups = new String[] { customerGroupsPath + "Neukunde", customerGroupsPath + "Stammkunde" };
         TGetList_Return[] retGroups = customerGroupService.getList();
 
@@ -59,7 +59,7 @@ public class PriceListServiceTest {
         PriceList_in.setAlias(alias);
         PriceList_in.setCurrencyID("EUR");
         PriceList_in.setCustomerGroups(new String[] { customerGroups[1] });
-        PriceList_in.setCustomers(new String[] { "/Shops/DemoShop/Customers/1001" });
+        PriceList_in.setCustomers(new String[] { "Customers/1001" });
         PriceList_in.setName(new TLocalizedValue[] { new TLocalizedValue("de", "Meine Preisliste"),
                 new TLocalizedValue("en", "my price list") });
         PriceList_in.setValidFrom(new GregorianCalendar(2007, 12, 1));
@@ -83,7 +83,7 @@ public class PriceListServiceTest {
         attr_update.setValue(dateStr);
         PriceList_update.setAttributes(new TAttribute[] { attr_update });
         PriceList_update.setCustomerGroups(new String[] { customerGroups[1] });
-        PriceList_update.setCustomers(new String[] { "/Shops/DemoShop/Customers/1001" });
+        PriceList_update.setCustomers(new String[] { "Customers/1001" });
 
         // delete the test price list if it exists
         TExists_Return[] PriceLists_exists_out = priceListService.exists(new String[] { path + alias });

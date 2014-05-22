@@ -1,6 +1,8 @@
 package de.epages.ws.customer;
 
+import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.GregorianCalendar;
@@ -33,7 +35,7 @@ public class CustomerServiceTest {
     private final TCreate_Input customer_in = new TCreate_Input();
     private final TUpdate_Input customer_update = new TUpdate_Input();
 
-    private final String path = "/Shops/DemoShop/Customers/";
+    private final String path = "Customers/";
     private final String alias = "java_test-1";
 
     /**
@@ -47,7 +49,7 @@ public class CustomerServiceTest {
          * try to get customer groups at first, because they are different since
          * patch 7
          */
-        String customerGroupsPath = "/Shops/DemoShop/Groups/";
+        String customerGroupsPath = "Groups/";
         String[] customerGroups = new String[] { customerGroupsPath + "Neukunde", customerGroupsPath + "Stammkunde" };
 
         TGetList_Return[] retGroups = customerGroupService.getList();
@@ -157,7 +159,7 @@ public class CustomerServiceTest {
             assertEquals("Comment", customer_in.getAttributes()[0].getValue(), customer_info_out.getAttributes()[0].getValue());
         }
 
-        assertEquals("CustomerGroup", customer_in.getCustomerGroup(), customer_info_out.getCustomerGroup());
+        assertThat(customer_info_out.getCustomerGroup(), endsWith(customer_in.getCustomerGroup()));
         assertEquals("TaxArea", customer_in.getTaxArea(), customer_info_out.getTaxArea());
         assertEquals("TaxModel", customer_in.getTaxModel(), customer_info_out.getTaxModel());
 
@@ -204,7 +206,7 @@ public class CustomerServiceTest {
 
         // test if find was successful
         assertEquals("find result set", 1, customers_find_out.length);
-        assertEquals("found path", path + alias, customers_find_out[0]);
+        assertThat(customers_find_out[0], endsWith(path + alias));
     }
 
     /**

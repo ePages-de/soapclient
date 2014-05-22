@@ -1,6 +1,8 @@
 package de.epages.ws.catalog7;
 
+import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
@@ -37,7 +39,7 @@ public class CatalogServiceTest {
     private final TSortProducts_Input Catalog_sort2 = new TSortProducts_Input();
     private final TSortProducts_Input Catalog_sort3 = new TSortProducts_Input();
 
-    private final String path = "/Shops/DemoShop/Categories";
+    private final String path = "Categories";
     private final String alias = "java_test-1";
     private final String full = path + "/" + alias;
 
@@ -197,7 +199,7 @@ public class CatalogServiceTest {
             assertEquals("initial localized Name", Catalog_in.getName()[1].getValue(), hash.get(Catalog_up.getName()[1].getLanguageCode()));
         }
 
-        assertEquals("ParentCatalog", Catalog_in.getParentCatalog(), Catalogs_out[0].getParentCatalog());
+        assertThat(Catalogs_out[0].getParentCatalog(), endsWith(Catalog_in.getParentCatalog()));
         assertEquals("IsVisible", Catalog_in.getIsVisible(), Catalogs_out[0].getIsVisible());
     }
 

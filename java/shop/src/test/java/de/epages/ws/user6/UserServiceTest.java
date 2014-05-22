@@ -1,6 +1,8 @@
 package de.epages.ws.user6;
 
+import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.GregorianCalendar;
@@ -27,7 +29,7 @@ public class UserServiceTest {
     private TCreate_Input user_in = new TCreate_Input();
     private TUpdate_Input user_update = new TUpdate_Input();
 
-    private String userpath = "/Shops/DemoShop/Users/";
+    private String userpath = "Users/";
     private String alias = "java_test-1";
     private String path = userpath + alias;
     private String email = "java_test-1@epages.de";
@@ -205,7 +207,7 @@ public class UserServiceTest {
 
         // test if find was successful
         assertEquals("find result set", 1, users_out.length );
-        assertEquals("found path", path, users_out[0] );
+        assertThat(users_out[0] , endsWith(path));
     }
 
    /**

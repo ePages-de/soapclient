@@ -26,7 +26,7 @@ public class UserServiceTest {
     private final TCreate_Input user_in = new TCreate_Input();
     private final TUpdate_Input user_update = new TUpdate_Input();
 
-    private final String path = "/Shops/DemoShop/Users/";
+    private final String path = "Users/";
     private final String alias = "java_test-1";
 
     /**

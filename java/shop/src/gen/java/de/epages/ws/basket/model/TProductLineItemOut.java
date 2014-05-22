@@ -41,6 +41,9 @@ public class TProductLineItemOut  implements java.io.Serializable {
     /* quantity of the product line item */
     private float quantity;
 
+    /* Unit of Measurement (path) */
+    private java.lang.String orderUnit;
+
     /* possible discount of the product line item */
     private float discount;
 
@@ -66,6 +69,7 @@ public class TProductLineItemOut  implements java.io.Serializable {
            float lineItemPrice,
            float basePrice,
            float quantity,
+           java.lang.String orderUnit,
            float discount,
            float taxRate,
            float taxAmount,
@@ -79,6 +83,7 @@ public class TProductLineItemOut  implements java.io.Serializable {
            this.lineItemPrice = lineItemPrice;
            this.basePrice = basePrice;
            this.quantity = quantity;
+           this.orderUnit = orderUnit;
            this.discount = discount;
            this.taxRate = taxRate;
            this.taxAmount = taxAmount;
@@ -269,6 +274,26 @@ public class TProductLineItemOut  implements java.io.Serializable {
 
 
     /**
+     * Gets the orderUnit value for this TProductLineItemOut.
+     * 
+     * @return orderUnit   * Unit of Measurement (path)
+     */
+    public java.lang.String getOrderUnit() {
+        return orderUnit;
+    }
+
+
+    /**
+     * Sets the orderUnit value for this TProductLineItemOut.
+     * 
+     * @param orderUnit   * Unit of Measurement (path)
+     */
+    public void setOrderUnit(java.lang.String orderUnit) {
+        this.orderUnit = orderUnit;
+    }
+
+
+    /**
      * Gets the discount value for this TProductLineItemOut.
      * 
      * @return discount   * possible discount of the product line item
@@ -380,6 +405,9 @@ public class TProductLineItemOut  implements java.io.Serializable {
             this.lineItemPrice == other.getLineItemPrice() &&
             this.basePrice == other.getBasePrice() &&
             this.quantity == other.getQuantity() &&
+            ((this.orderUnit==null && other.getOrderUnit()==null) || 
+             (this.orderUnit!=null &&
+              this.orderUnit.equals(other.getOrderUnit()))) &&
             this.discount == other.getDiscount() &&
             this.taxRate == other.getTaxRate() &&
             this.taxAmount == other.getTaxAmount() &&
@@ -418,6 +446,9 @@ public class TProductLineItemOut  implements java.io.Serializable {
         _hashCode += new Float(getLineItemPrice()).hashCode();
         _hashCode += new Float(getBasePrice()).hashCode();
         _hashCode += new Float(getQuantity()).hashCode();
+        if (getOrderUnit() != null) {
+            _hashCode += getOrderUnit().hashCode();
+        }
         _hashCode += new Float(getDiscount()).hashCode();
         _hashCode += new Float(getTaxRate()).hashCode();
         _hashCode += new Float(getTaxAmount()).hashCode();
@@ -494,6 +525,13 @@ public class TProductLineItemOut  implements java.io.Serializable {
         elemField.setFieldName("quantity");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Quantity"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "float"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("orderUnit");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "OrderUnit"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();

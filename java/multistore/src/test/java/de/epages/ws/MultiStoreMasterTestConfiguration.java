@@ -7,11 +7,11 @@ import java.net.URI;
 import java.net.URL;
 import java.util.Properties;
 
-public class MultiStoreMasterWebServiceTestConfiguration implements WebServiceConfiguration {
+public class MultiStoreMasterTestConfiguration implements WebServiceConfiguration {
 
     public final static String WEBSERVICE_LOGIN = "/Shops/MasterShop/Users/admin";
     public final static String WEBSERVICE_PASSWORD = "admin";
-    public final static URL WEBSERVICE_URL = new MultiStoreMasterWebServiceTestConfiguration().doGetWebserviceURL();
+    public final static URL WEBSERVICE_URL = new MultiStoreMasterTestConfiguration().doGetWebserviceURL();
 
     @Override
     public URL getWebserviceURL() {
