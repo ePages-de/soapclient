@@ -338,9 +338,9 @@ public class ProductServiceTest {
             assertEquals("updated AvailabilityDate", Product_update.getAvailabilityDate().getTime(), Product_info_out.getAvailabilityDate().getTime()   );
             assertEquals("updated delivery period", Product_update.getDeliveryPeriod(), Product_info_out.getDeliveryPeriod());
 
-            assertTrue("do not touch shipping path", shippingMethods.contains("ShippingMethods/Post"));
-            assertTrue("added new shipping path", shippingMethods.contains("ShippingMethods/PickupByCustomer"));
-            assertTrue("deleted shipping path", !shippingMethods.contains("ShippingMethods/Express"));
+            assertTrue("do not touch shipping path", shippingMethods.contains("Post"));
+            assertTrue("added new shipping path", shippingMethods.contains("PickupByCustomer"));
+            assertTrue("deleted shipping path", !shippingMethods.contains("Express"));
 
             assertEquals("updated weight unit", "/Units/gram/kilogram", Product_update.getWeightUnit());
             assertEquals("updated weight", 1f, Product_update.getWeight(), 0.0f);
