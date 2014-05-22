@@ -1,20 +1,20 @@
 allprojects {
     apply plugin: 'bintray'
     apply plugin: 'maven-publish'
-}
 
-bintray {
-    user = rootProject.properties['bintray.user']
-    key = rootProject.properties['bintray.apiKey']
-    pkg {
-        repo = 'maven'
-        userOrg = 'epages' // an optional organization name when the repo belongs to one of the user's orgs
-        name = "epages-soapclient"
-        desc = "AXIS 1.x based SOAP clients for epages6"
-        licenses = ['Apache-2.0']
-        labels = ['soap','epages']
+    bintray {
+        user = rootProject.properties['bintray.user']
+        key = rootProject.properties['bintray.apiKey']
+        pkg {
+            repo = 'maven'
+            userOrg = 'epages' // an optional organization name when the repo belongs to one of the user's orgs
+            name = "epages-soapclient"
+            desc = "AXIS 1.x based SOAP clients for epages6"
+            licenses = ['Apache-2.0']
+            labels = ['soap','epages']
+        }
+        dryRun = rootProject.properties['bintray.dryRun'] ?: false // whether to run this as dry-run, without deploying
     }
-    dryRun = rootProject.properties['bintray.dryRun'] ?: false // whether to run this as dry-run, without deploying
 }
 
 configure(subprojects.findAll { it.name.contains("java/") }) {

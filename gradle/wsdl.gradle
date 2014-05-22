@@ -122,14 +122,5 @@ task wsdlsZip(type: Zip) {
     include '*.xsd'
 }
 
-artifacts { wsdlsZip }
-
-publishing {
-    publications {
-        mavenWsdl(MavenPublication) {
-            artifact wsdlsZip
-        }
-    }
-}
-
-bintray.publications 'mavenWsdl'
+// artifacts { wsdlsZip }
+// bintray.configurations { 'wsdlsZip' }
