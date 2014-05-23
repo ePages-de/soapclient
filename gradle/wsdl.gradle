@@ -122,5 +122,8 @@ task wsdlsZip(type: Zip) {
     include '*.xsd'
 }
 
-// artifacts { wsdlsZip }
-// bintray.configurations { 'wsdlsZip' }
+configurations { wsdlDist }
+artifacts { wsdlDist wsdlsZip }
+
+tasks['bintrayUpload'].dependsOn wsdlsZip
+bintray.configurations = [ 'wsdlDist' ]
