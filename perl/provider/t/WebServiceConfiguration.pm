@@ -26,12 +26,10 @@ sub WEBSERVICE_SERVER {
     return _getWServer();
 }
 
-sub WEBSERVICE_URL {
-    return 'http://'.WEBSERVICE_SERVER.'/epages/Site.soap';
-}
-
-use constant WEBSERVICE_LOGIN     => "/Providers/Distributor/Users/admin";
-use constant WEBSERVICE_PASSWORD  => "admin";
+use constant WEBSERVICE_SERVER    => _getWServer();
+use constant WEBSERVICE_URL       => $ENV{'wsUrl'}  // 'http://'.WEBSERVICE_SERVER.'/epages/Site.soap';
+use constant WEBSERVICE_LOGIN     => $ENV{'wsUser'} // "/Providers/Distributor/Users/admin";
+use constant WEBSERVICE_PASSWORD  => $ENV{'wsPassword'} // "admin";
 use constant WEBSERVICE_USER      => WEBSERVICE_LOGIN.':'.WEBSERVICE_PASSWORD;
 
 1;

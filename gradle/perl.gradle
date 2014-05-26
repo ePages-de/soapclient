@@ -1,0 +1,46 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+configure(subprojects.findAll {it.name.contains("perl/")}) {
+
+    apply plugin: "eclipse"
+
+    project.ext.osDependantPerl = {String[] args ->
+        List<String> newArgs = new ArrayList<String>()
+        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            newArgs.add("cmd.exe")
+            newArgs.add("/C")
+            newArgs.add("perl")
+            newArgs.addAll(args)
+        } else {
+            newArgs.add( System.env.PERL ?: "perl" )
+            newArgs.addAll(args)
+        }
+        return newArgs.toArray(new String[0])
+    }
+
+    def putIfExists = { mymap, prop ->
+        if(project.properties[prop] != null) {
+            mymap.put(prop, project.properties[prop])
+        }
+    }
+
+    task runTests(type:Exec) {
+        description = 'Runs all webservice tests'
+        group = 'Test'
+        def mymap = [:]
+
+        putIfExists(mymap, 'ep6HostName')
+        putIfExists(mymap, 'wsUrl')
+        putIfExists(mymap, 'wsShop')
+        putIfExists(mymap, 'wsUser')
+        putIfExists(mymap, 'wsPassword')
+
+        environment mymap
+        logging.captureStandardOutput LogLevel.INFO
+        workingDir projectDir.path
+        commandLine osDependantPerl('runTests.pl')
+    }
+
+    task check (dependsOn: runTests)
+
+}

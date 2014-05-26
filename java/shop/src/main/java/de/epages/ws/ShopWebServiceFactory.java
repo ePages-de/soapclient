@@ -4,7 +4,7 @@ import de.epages.ws.assignment.AssignmentServiceClient;
 import de.epages.ws.basket.BasketServiceClient;
 import de.epages.ws.catalog8.CatalogServiceClient;
 import de.epages.ws.crossselling2.CrossSellingServiceClient;
-import de.epages.ws.customer4.CustomerServiceClient;
+import de.epages.ws.customer5.CustomerServiceClient;
 import de.epages.ws.customergroup2.CustomerGroupServiceClient;
 import de.epages.ws.order12.OrderServiceClient;
 import de.epages.ws.orderdocument7.OrderDocumentServiceClient;

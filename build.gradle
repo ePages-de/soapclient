@@ -16,4 +16,5 @@ buildscript {
 apply from: './gradle/wsdl.gradle'
 apply from: './gradle/eclipse.gradle'
 apply from: './gradle/java.gradle'
+apply from: './gradle/perl.gradle'
 apply from: './gradle/bintray.gradle'
