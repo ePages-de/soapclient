@@ -22,10 +22,6 @@ sub _getWServer {
     return $WServer;
 }
 
-sub WEBSERVICE_SERVER {
-    return _getWServer();
-}
-
 use constant WEBSERVICE_SERVER    => _getWServer();
 use constant WEBSERVICE_URL       => $ENV{'wsUrl'}  // 'http://'.WEBSERVICE_SERVER.'/epages/Site.soap';
 use constant WEBSERVICE_LOGIN     => $ENV{'wsUser'} // "/Providers/Distributor/Users/admin";
