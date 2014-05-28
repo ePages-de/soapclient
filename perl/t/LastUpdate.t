@@ -12,9 +12,15 @@ my $UpdateService = WebServiceClient
 
 # clear page cache
 sub testfindDeletes {
-    my $results = $UpdateService->findDeletes('2013-04-14T03:44:55');
+    my $results = $UpdateService->findDeletes('2013-04-14T03:44:55', 'Product');
     ok( !$results->fault, 'findDeletes called' );
+}
+
+sub testfindUpdatesStock {
+    my $results = $UpdateService->findUpdates('2013-04-14T03:44:55', 'Product', 'StockLevel');
+    ok( !$results->fault, 'findUpdates called' );
 }
 
 # run test suite
 testfindDeletes();
+testfindUpdatesStock();
