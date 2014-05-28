@@ -3,7 +3,6 @@ import org.apache.tools.ant.taskdefs.condition.Os
 include 'java/common'
 include 'java/shop'
 include 'java/provider'
-include 'java/multistore'
 include 'perl/shop'
 include 'perl/provider'
 
