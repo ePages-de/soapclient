@@ -10,12 +10,13 @@ my $UpdateService = WebServiceClient
     ->userinfo( WEBSERVICE_USER )
     ->xmlschema('2001');
 
-# clear page cache
+# find deleted products
 sub testfindDeletes {
     my $results = $UpdateService->findDeletes('2013-04-14T03:44:55', 'Product');
     ok( !$results->fault, 'findDeletes called' );
 }
 
+# find updated products
 sub testfindUpdatesStock {
     my $results = $UpdateService->findUpdates('2013-04-14T03:44:55', 'Product', 'StockLevel');
     ok( !$results->fault, 'findUpdates called' );
