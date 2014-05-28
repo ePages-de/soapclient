@@ -22,6 +22,28 @@ sub testfindUpdatesStock {
     ok( !$results->fault, 'findUpdates called' );
 }
 
+sub createTestProducts() {
+}
+
+sub updateStockLevel() {
+}
+
+sub removeTestProducts() {
+}
+
 # run test suite
-testfindDeletes();
-testfindUpdatesStock();
+my @TestProducts = qw(Alias-01 Alias-02 Alias-03);
+createTestProducts(@TestProducts);      #create some test products
+testfindUpdatesStock(0,@TestProducts);  #find no updates related to test products
+testfindDeletes(0,@TestProducts);       #find no deletes related to test products
+updateStockLevel($TestProducts[0]);     #update stock level
+testfindUpdatesStock(1,@TestProducts);  #find 1 updated product
+updateStockLevel($TestProducts[1]);     #update another stock level
+testfindUpdatesStock(2,@TestProducts);  #find 2 updated products
+updateStockLevel($TestProducts[0]);     #update a stock level again
+testfindUpdatesStock(2,@TestProducts);  #still find only 2 updated products
+removeTestProducts($TestProducts[0]);   #delete a product
+testfindDeletes(1,@TestProducts);       #find 1 deleted product
+removeTestProducts(@TestProducts);      #delete all product
+testfindDeletes(3,@TestProducts);       #find 1 deleted product
+
