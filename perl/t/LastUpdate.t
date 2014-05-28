@@ -10,6 +10,12 @@ my $UpdateService = WebServiceClient
     ->userinfo( WEBSERVICE_USER )
     ->xmlschema('2001');
 
+my $ProductService = WebServiceClient
+    ->uri( 'urn://epages.de/WebService/ProductService/2013/01' )
+    ->proxy( WEBSERVICE_URL )
+    ->userinfo( WEBSERVICE_USER )
+    ->xmlschema('2001');
+
 # find deleted products
 sub testfindDeletes {
     my $results = $UpdateService->findDeletes('2013-04-14T03:44:55', 'Product');
@@ -23,12 +29,35 @@ sub testfindUpdatesStock {
 }
 
 sub createTestProducts() {
+   my @Aliases = @_;
+   foreach my $Alias (@Aliases) {
+       $ProductService->create([{
+           Alias => $Alias,
+           Name  => [{
+             LanguageCode => 'de',
+             'Value' => SOAP::Data->type('string')->value("TestProduct $Alias")
+           }],
+           StockLevel => 1,
+           ProductPrices => [{CurrencyID => 'EUR', Price => 1, TaxModel => 'gross', }],
+       }]);
+   }
 }
 
 sub updateStockLevel() {
+   my @Aliases = @_;
+   foreach my $Alias (@Aliases) {
+       $ProductService->update([{
+           Path => "Products/$Alias",
+           StockLevel => 2,
+       }]);
+   }
 }
 
 sub removeTestProducts() {
+   my @Aliases = @_;
+   foreach my $Alias (@Aliases) {
+       $ProductService->delete(["Products/$Alias"]);
+   }
 }
 
 # run test suite
