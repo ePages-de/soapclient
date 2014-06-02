@@ -1,5 +1,5 @@
 use strict;
-use Test::More tests => 17;
+use Test::More tests => 20;
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_USER );
 
@@ -108,24 +108,29 @@ sleep(1);
 updateContent($TestProducts[0]);
 $response = $UpdateService->findUpdates($LastSync, 'Product', 'Content');
 ok( !$response->fault, 'findUpdates Content called' );
-ok( 1 == @{$response->result->{Updates}}, '1 Content update');
+my $ahUpdates = $response->result->{Updates};
+ok( 1 == @$ahUpdates, '1 Content update');
+ok( $ahUpdates->[0]->{Path} =~ m|Products/$TestProducts[0]$|, 'Path of Content update');
 
 #update stock level of next test product
 updateStockLevel($TestProducts[1]);
 $response = $UpdateService->findUpdates($LastSync, 'Product', 'StockLevel');
 ok( !$response->fault, 'findUpdates StockLevel called' );
-ok( 1 == @{$response->result->{Updates}}, '1 StockLevel update');
+$ahUpdates = $response->result->{Updates};
+ok( 1 == @$ahUpdates, '1 StockLevel update');
+ok( $ahUpdates->[0]->{Path} =~ m|Products/$TestProducts[1]$|, 'Path of StockLevel update');
 
 #update price of last test product
 updateListPrice($TestProducts[2]);
 $response = $UpdateService->findUpdates($LastSync, 'Product', 'ListPrice');
 ok( !$response->fault, 'findUpdates ListPrice called' );
-ok( 1 == @{$response->result->{Updates}}, '1 ListPrice update');
+$ahUpdates = $response->result->{Updates};
+ok( 1 == @$ahUpdates, '1 ListPrice update');
+ok( $ahUpdates->[0]->{Path} =~ m|Products/$TestProducts[2]$|, 'Path of ListPrice update');
 
 #remove
 removeTestProducts(@TestProducts);
 $response = $UpdateService->findDeletes( $LastSync, 'Product' );
 ok( !$response->fault, 'findDeletes called' );
 ok( 3 == @{$response->result}, '3 deletes now');
-
 
