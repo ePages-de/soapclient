@@ -28,7 +28,7 @@ sub testfindUpdatesStock {
     ok( !$results->fault, 'findUpdates called' );
 }
 
-sub createTestProducts() {
+sub createTestProducts {
    my @Aliases = @_;
    foreach my $Alias (@Aliases) {
        $ProductService->create([{
@@ -43,7 +43,7 @@ sub createTestProducts() {
    }
 }
 
-sub updateStockLevel() {
+sub updateStockLevel {
    my @Aliases = @_;
    foreach my $Alias (@Aliases) {
        $ProductService->update([{
@@ -53,7 +53,7 @@ sub updateStockLevel() {
    }
 }
 
-sub removeTestProducts() {
+sub removeTestProducts {
    my @Aliases = @_;
    foreach my $Alias (@Aliases) {
        $ProductService->delete(["Products/$Alias"]);
