@@ -15,5 +15,6 @@ public interface UpdateServiceClient extends Port_Update {
 
     /**
      * find updated objects
-     */ public TFindUpdates_Return findUpdates(Calendar updatedAfter, String _class, String profile);
+     */
+    public TFindUpdates_Return findUpdates(Calendar updatedAfter, String _class, String profile);
 }
