@@ -100,7 +100,7 @@ ok( 0 == @{$response->result->{Updates}}, 'no ListPrice updates jet');
 #get deletes after last sync
 $response = $UpdateService->findDeletes( $LastSync, 'Product' );
 ok( !$response->fault, 'findDeletes called' );
-ok( 0 == @{$response->result}, 'no deletes jet');
+ok( 0 == @{$response->result->{Deletes}}, 'no deletes jet');
 
 sleep(1);
 
@@ -132,5 +132,5 @@ ok( $ahUpdates->[0]->{Path} =~ m|Products/$TestProducts[2]$|, 'Path of ListPrice
 removeTestProducts(@TestProducts);
 $response = $UpdateService->findDeletes( $LastSync, 'Product' );
 ok( !$response->fault, 'findDeletes called' );
-ok( 3 == @{$response->result}, '3 deletes now');
+ok( 3 == @{$response->result->{Deletes}}, '3 deletes now');
 
