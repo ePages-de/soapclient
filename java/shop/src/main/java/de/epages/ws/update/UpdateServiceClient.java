@@ -11,7 +11,7 @@ public interface UpdateServiceClient extends Port_Update {
     /**
      * find deleted objects
      */
-    public TFindDeletes_Return[] findDeletes(Calendar deletedAfter, String _class);
+    public TFindDeletes_Return findDeletes(Calendar deletedAfter, String _class);
 
     /**
      * find updated objects

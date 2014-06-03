@@ -12,10 +12,10 @@ public interface Port_Update extends java.rmi.Remote {
     /**
      * find deleted objects
      */
-    public de.epages.ws.update.stub.TFindDeletes_Return[] findDeletes(java.util.Calendar deletedAfter, java.lang.String _class) throws java.rmi.RemoteException;
+    public de.epages.ws.update.stub.TFindDeletes_Return findDeletes(java.util.Calendar deletedAfter, java.lang.String _class) throws java.rmi.RemoteException;
 
     /**
-     * find deleted objects
+     * find updated objects
      */
     public de.epages.ws.update.stub.TFindUpdates_Return findUpdates(java.util.Calendar updatedAfter, java.lang.String _class, java.lang.String profile) throws java.rmi.RemoteException;
 }

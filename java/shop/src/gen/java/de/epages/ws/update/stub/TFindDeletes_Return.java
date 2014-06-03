@@ -8,82 +8,58 @@
 package de.epages.ws.update.stub;
 
 public class TFindDeletes_Return  implements java.io.Serializable {
-    private java.lang.String path;
+    private de.epages.ws.update.stub.TFindDeletes[] deletes;
 
-    private java.lang.String GUID;
-
-    private java.util.Calendar deletedOn;
+    private java.util.Calendar latestDelete;
 
     public TFindDeletes_Return() {
     }
 
     public TFindDeletes_Return(
-           java.lang.String path,
-           java.lang.String GUID,
-           java.util.Calendar deletedOn) {
-           this.path = path;
-           this.GUID = GUID;
-           this.deletedOn = deletedOn;
+           de.epages.ws.update.stub.TFindDeletes[] deletes,
+           java.util.Calendar latestDelete) {
+           this.deletes = deletes;
+           this.latestDelete = latestDelete;
     }
 
 
     /**
-     * Gets the path value for this TFindDeletes_Return.
+     * Gets the deletes value for this TFindDeletes_Return.
      * 
-     * @return path
+     * @return deletes
      */
-    public java.lang.String getPath() {
-        return path;
+    public de.epages.ws.update.stub.TFindDeletes[] getDeletes() {
+        return deletes;
     }
 
 
     /**
-     * Sets the path value for this TFindDeletes_Return.
+     * Sets the deletes value for this TFindDeletes_Return.
      * 
-     * @param path
+     * @param deletes
      */
-    public void setPath(java.lang.String path) {
-        this.path = path;
+    public void setDeletes(de.epages.ws.update.stub.TFindDeletes[] deletes) {
+        this.deletes = deletes;
     }
 
 
     /**
-     * Gets the GUID value for this TFindDeletes_Return.
+     * Gets the latestDelete value for this TFindDeletes_Return.
      * 
-     * @return GUID
+     * @return latestDelete
      */
-    public java.lang.String getGUID() {
-        return GUID;
+    public java.util.Calendar getLatestDelete() {
+        return latestDelete;
     }
 
 
     /**
-     * Sets the GUID value for this TFindDeletes_Return.
+     * Sets the latestDelete value for this TFindDeletes_Return.
      * 
-     * @param GUID
+     * @param latestDelete
      */
-    public void setGUID(java.lang.String GUID) {
-        this.GUID = GUID;
-    }
-
-
-    /**
-     * Gets the deletedOn value for this TFindDeletes_Return.
-     * 
-     * @return deletedOn
-     */
-    public java.util.Calendar getDeletedOn() {
-        return deletedOn;
-    }
-
-
-    /**
-     * Sets the deletedOn value for this TFindDeletes_Return.
-     * 
-     * @param deletedOn
-     */
-    public void setDeletedOn(java.util.Calendar deletedOn) {
-        this.deletedOn = deletedOn;
+    public void setLatestDelete(java.util.Calendar latestDelete) {
+        this.latestDelete = latestDelete;
     }
 
     private java.lang.Object __equalsCalc = null;
@@ -98,15 +74,12 @@ public class TFindDeletes_Return  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
-            ((this.path==null && other.getPath()==null) || 
-             (this.path!=null &&
-              this.path.equals(other.getPath()))) &&
-            ((this.GUID==null && other.getGUID()==null) || 
-             (this.GUID!=null &&
-              this.GUID.equals(other.getGUID()))) &&
-            ((this.deletedOn==null && other.getDeletedOn()==null) || 
-             (this.deletedOn!=null &&
-              this.deletedOn.equals(other.getDeletedOn())));
+            ((this.deletes==null && other.getDeletes()==null) || 
+             (this.deletes!=null &&
+              java.util.Arrays.equals(this.deletes, other.getDeletes()))) &&
+            ((this.latestDelete==null && other.getLatestDelete()==null) || 
+             (this.latestDelete!=null &&
+              this.latestDelete.equals(other.getLatestDelete())));
         __equalsCalc = null;
         return _equals;
     }
@@ -118,14 +91,19 @@ public class TFindDeletes_Return  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        if (getPath() != null) {
-            _hashCode += getPath().hashCode();
+        if (getDeletes() != null) {
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getDeletes());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getDeletes(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
         }
-        if (getGUID() != null) {
-            _hashCode += getGUID().hashCode();
-        }
-        if (getDeletedOn() != null) {
-            _hashCode += getDeletedOn().hashCode();
+        if (getLatestDelete() != null) {
+            _hashCode += getLatestDelete().hashCode();
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -138,24 +116,15 @@ public class TFindDeletes_Return  implements java.io.Serializable {
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TFindDeletes_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("path");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
+        elemField.setFieldName("deletes");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "Deletes"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TFindDeletes"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("GUID");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "GUID"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("deletedOn");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "DeletedOn"));
+        elemField.setFieldName("latestDelete");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "LatestDelete"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"));
-        elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
     }

@@ -26,7 +26,7 @@ public final class UpdateServiceClientImpl implements UpdateServiceClient {
     }
 
     @Override
-    public TFindDeletes_Return[] findDeletes(Calendar deletedAfter, String _class) {
+    public TFindDeletes_Return findDeletes(Calendar deletedAfter, String _class) {
         try {
             return stub.findDeletes(deletedAfter, _class);
         } catch (RemoteException e) {

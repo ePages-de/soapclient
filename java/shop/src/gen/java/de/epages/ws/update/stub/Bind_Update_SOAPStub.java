@@ -29,9 +29,9 @@ public class Bind_Update_SOAPStub extends org.apache.axis.client.Stub implements
         oper.addParameter(param);
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Class"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TListOfFindDeletes"));
-        oper.setReturnClass(de.epages.ws.update.stub.TFindDeletes_Return[].class);
-        oper.setReturnQName(new javax.xml.namespace.QName("", "Deletes"));
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TFindDeletes_Return"));
+        oper.setReturnClass(de.epages.ws.update.stub.TFindDeletes_Return.class);
+        oper.setReturnQName(new javax.xml.namespace.QName("", "DeleteSet"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.ENCODED);
         _operations[0] = oper;
@@ -82,6 +82,13 @@ public class Bind_Update_SOAPStub extends org.apache.axis.client.Stub implements
             java.lang.Class simpledf = org.apache.axis.encoding.ser.SimpleDeserializerFactory.class;
             java.lang.Class simplelistsf = org.apache.axis.encoding.ser.SimpleListSerializerFactory.class;
             java.lang.Class simplelistdf = org.apache.axis.encoding.ser.SimpleListDeserializerFactory.class;
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TFindDeletes");
+            cachedSerQNames.add(qName);
+            cls = de.epages.ws.update.stub.TFindDeletes.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TFindDeletes_Return");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.update.stub.TFindDeletes_Return.class;
@@ -105,9 +112,9 @@ public class Bind_Update_SOAPStub extends org.apache.axis.client.Stub implements
 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TListOfFindDeletes");
             cachedSerQNames.add(qName);
-            cls = de.epages.ws.update.stub.TFindDeletes_Return[].class;
+            cls = de.epages.ws.update.stub.TFindDeletes[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TFindDeletes_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TFindDeletes");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
@@ -188,7 +195,7 @@ public class Bind_Update_SOAPStub extends org.apache.axis.client.Stub implements
         }
     }
 
-    public de.epages.ws.update.stub.TFindDeletes_Return[] findDeletes(java.util.Calendar deletedAfter, java.lang.String _class) throws java.rmi.RemoteException {
+    public de.epages.ws.update.stub.TFindDeletes_Return findDeletes(java.util.Calendar deletedAfter, java.lang.String _class) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -209,9 +216,9 @@ public class Bind_Update_SOAPStub extends org.apache.axis.client.Stub implements
         else {
             extractAttachments(_call);
             try {
-                return (de.epages.ws.update.stub.TFindDeletes_Return[]) _resp;
+                return (de.epages.ws.update.stub.TFindDeletes_Return) _resp;
             } catch (java.lang.Exception _exception) {
-                return (de.epages.ws.update.stub.TFindDeletes_Return[]) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.ws.update.stub.TFindDeletes_Return[].class);
+                return (de.epages.ws.update.stub.TFindDeletes_Return) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.ws.update.stub.TFindDeletes_Return.class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
