@@ -80,5 +80,8 @@
     <Setting Name="EpagesWebServices_ProductService9Ref_ProductService" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
     </Setting>
+    <Setting Name="EpagesWebServices_UpdateService_UpdateService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/epages/Store.soap</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
