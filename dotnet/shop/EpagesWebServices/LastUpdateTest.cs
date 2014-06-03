@@ -165,17 +165,15 @@ namespace EpagesWebServices
             TFindUpdates[] updates = updateData.Updates;
             object productUpdate = Array.Find(updates, x => x.Path.EndsWith(productPaths[0]));
             Assert.AreNotEqual(null, productUpdate);
+            Assert.AreEqual(1, updates.Length);
 
-            ArrayList infoData = productServiceClient.getInfo(productPaths);
+            ArrayList infoData = productServiceClient.getInfo(new string[]{productPaths[0]});
             Assert.AreEqual(1, infoData.Count);
-            foreach (object product in infoData)
+            foreach (TLocalizedValue name in ((TGetInfo_Return)infoData[0]).Name)
             {
-                foreach (TLocalizedValue name in ((TGetInfo_Return)product).Name)
+                if (name.LanguageCode == "de")
                 {
-                    if (name.LanguageCode == "de")
-                    {
-                        Assert.AreEqual(name.Value, "Updated DotNetTestProduct " + productPaths[0]);
-                    }
+                    Assert.AreEqual(name.Value, "Updated DotNetTestProduct " + productPaths[0]);
                 }
             }
 
