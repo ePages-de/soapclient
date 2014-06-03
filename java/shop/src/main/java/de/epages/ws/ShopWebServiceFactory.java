@@ -16,6 +16,7 @@ import de.epages.ws.product11.ProductServiceClient;
 import de.epages.ws.productbundle.ProductBundleServiceClient;
 import de.epages.ws.producttype2.ProductTypeServiceClient;
 import de.epages.ws.shippingmethod2.ShippingMethodServiceClient;
+import de.epages.ws.update.UpdateServiceClient;
 import de.epages.ws.user6.UserServiceClient;
 
 /**
@@ -55,5 +56,8 @@ public interface ShopWebServiceFactory {
 
     ShippingMethodServiceClient createShippingMethodServiceClient(WebServiceConfiguration config);
 
+    UpdateServiceClient createUpdateServiceClient(WebServiceConfiguration config);
+
     UserServiceClient createUserServiceClient(WebServiceConfiguration config);
+
 }

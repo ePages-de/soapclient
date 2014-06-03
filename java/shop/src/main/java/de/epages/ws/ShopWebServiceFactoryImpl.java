@@ -32,6 +32,8 @@ import de.epages.ws.producttype2.ProductTypeServiceClient;
 import de.epages.ws.producttype2.ProductTypeServiceClientImpl;
 import de.epages.ws.shippingmethod2.ShippingMethodServiceClient;
 import de.epages.ws.shippingmethod2.ShippingMethodServiceClientImpl;
+import de.epages.ws.update.UpdateServiceClient;
+import de.epages.ws.update.UpdateServiceClientImpl;
 import de.epages.ws.user6.UserServiceClient;
 import de.epages.ws.user6.UserServiceClientImpl;
 
@@ -116,6 +118,11 @@ public class ShopWebServiceFactoryImpl implements ShopWebServiceFactory {
     @Override
     public ShippingMethodServiceClient createShippingMethodServiceClient(WebServiceConfiguration config) {
         return new ShippingMethodServiceClientImpl(config);
+    }
+
+    @Override
+    public UpdateServiceClient createUpdateServiceClient(WebServiceConfiguration config) {
+        return new UpdateServiceClientImpl(config);
     }
 
     @Override

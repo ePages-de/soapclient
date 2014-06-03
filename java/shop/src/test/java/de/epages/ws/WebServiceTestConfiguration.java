@@ -26,8 +26,9 @@ public class WebServiceTestConfiguration implements WebServiceConfiguration {
     private URL WEBSERVICE_URL;
 
     public WebServiceTestConfiguration() {
+        String wsUrl = System.getProperty("wsUrl");
         try {
-            WEBSERVICE_URL = new URL(System.getProperty("wsUrl", getWebserviceUrlFromEpagesConf()));
+            WEBSERVICE_URL = wsUrl != null ? new URL(wsUrl) : new URL(getWebserviceUrlFromEpagesConf());
         } catch (MalformedURLException e) {
             throw new IllegalArgumentException(e);
         }
