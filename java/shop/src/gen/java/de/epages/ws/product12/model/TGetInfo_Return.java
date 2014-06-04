@@ -115,12 +115,9 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /* Date when the product is going to be available/is for sale. */
     private java.util.Calendar availabilityDate;
 
-    /* Date when the product is going to be not longer available/is
+    /* The day and time on which the product stops being available
      * for sale. */
     private java.util.Calendar expiryDate;
-
-    /* Date and Time when the product was updated last time. */
-    private java.util.Calendar lastUpdate;
 
     /* short uri (unique part of short URL, see CanonicalURL) */
     private de.epages.ws.common.model.TLocalizedValue[] URI;
@@ -141,7 +138,8 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /* list of product download files */
     private de.epages.ws.product12.model.TDownload[] downloadProductMaps;
 
-    /* indicates, if this product a master of some sub products */
+    /* Indicates if this product can be used as the master for a sub
+     * product. */
     private java.lang.Boolean isMaster;
 
     /* object path to variation's super product (if this is a variation
@@ -241,7 +239,6 @@ public class TGetInfo_Return  implements java.io.Serializable {
            de.epages.ws.common.model.TLocalizedValue[] availabilityComment,
            java.util.Calendar availabilityDate,
            java.util.Calendar expiryDate,
-           java.util.Calendar lastUpdate,
            de.epages.ws.common.model.TLocalizedValue[] URI,
            de.epages.ws.common.model.TLocalizedValue[] canonicalURL,
            boolean isDownloadProduct,
@@ -300,7 +297,6 @@ public class TGetInfo_Return  implements java.io.Serializable {
            this.availabilityComment = availabilityComment;
            this.availabilityDate = availabilityDate;
            this.expiryDate = expiryDate;
-           this.lastUpdate = lastUpdate;
            this.URI = URI;
            this.canonicalURL = canonicalURL;
            this.isDownloadProduct = isDownloadProduct;
@@ -1016,7 +1012,7 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Gets the expiryDate value for this TGetInfo_Return.
      * 
-     * @return expiryDate   * Date when the product is going to be not longer available/is
+     * @return expiryDate   * The day and time on which the product stops being available
      * for sale.
      */
     public java.util.Calendar getExpiryDate() {
@@ -1027,31 +1023,11 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Sets the expiryDate value for this TGetInfo_Return.
      * 
-     * @param expiryDate   * Date when the product is going to be not longer available/is
+     * @param expiryDate   * The day and time on which the product stops being available
      * for sale.
      */
     public void setExpiryDate(java.util.Calendar expiryDate) {
         this.expiryDate = expiryDate;
-    }
-
-
-    /**
-     * Gets the lastUpdate value for this TGetInfo_Return.
-     * 
-     * @return lastUpdate   * Date and Time when the product was updated last time.
-     */
-    public java.util.Calendar getLastUpdate() {
-        return lastUpdate;
-    }
-
-
-    /**
-     * Sets the lastUpdate value for this TGetInfo_Return.
-     * 
-     * @param lastUpdate   * Date and Time when the product was updated last time.
-     */
-    public void setLastUpdate(java.util.Calendar lastUpdate) {
-        this.lastUpdate = lastUpdate;
     }
 
 
@@ -1180,7 +1156,8 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Gets the isMaster value for this TGetInfo_Return.
      * 
-     * @return isMaster   * indicates, if this product a master of some sub products
+     * @return isMaster   * Indicates if this product can be used as the master for a sub
+     * product.
      */
     public java.lang.Boolean getIsMaster() {
         return isMaster;
@@ -1190,7 +1167,8 @@ public class TGetInfo_Return  implements java.io.Serializable {
     /**
      * Sets the isMaster value for this TGetInfo_Return.
      * 
-     * @param isMaster   * indicates, if this product a master of some sub products
+     * @param isMaster   * Indicates if this product can be used as the master for a sub
+     * product.
      */
     public void setIsMaster(java.lang.Boolean isMaster) {
         this.isMaster = isMaster;
@@ -1651,9 +1629,6 @@ public class TGetInfo_Return  implements java.io.Serializable {
             ((this.expiryDate==null && other.getExpiryDate()==null) || 
              (this.expiryDate!=null &&
               this.expiryDate.equals(other.getExpiryDate()))) &&
-            ((this.lastUpdate==null && other.getLastUpdate()==null) || 
-             (this.lastUpdate!=null &&
-              this.lastUpdate.equals(other.getLastUpdate()))) &&
             ((this.URI==null && other.getURI()==null) || 
              (this.URI!=null &&
               java.util.Arrays.equals(this.URI, other.getURI()))) &&
@@ -1890,9 +1865,6 @@ public class TGetInfo_Return  implements java.io.Serializable {
         }
         if (getExpiryDate() != null) {
             _hashCode += getExpiryDate().hashCode();
-        }
-        if (getLastUpdate() != null) {
-            _hashCode += getLastUpdate().hashCode();
         }
         if (getURI() != null) {
             for (int i=0;
@@ -2304,13 +2276,6 @@ public class TGetInfo_Return  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("expiryDate");
         elemField.setXmlName(new javax.xml.namespace.QName("", "ExpiryDate"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("lastUpdate");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "LastUpdate"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

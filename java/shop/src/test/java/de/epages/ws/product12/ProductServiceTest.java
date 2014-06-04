@@ -489,18 +489,6 @@ public class ProductServiceTest {
         // "found path", path + alias, Products_find_out[0]);
     }
 
-    public void testFindByLastUpdate() {
-        TFind_Input parameters = new TFind_Input();
-        parameters.setLastUpdate(new GregorianCalendar(1976, 01, 01));
-
-        String[] Products_find_out = new String[] {};
-        Products_find_out = serviceClient.find(parameters);
-
-        // test if find was successful
-        assertTrue("find result set", Products_find_out.length > 0);
-        assertNotNull("found path", Products_find_out[0]);
-    }
-
     public void testCreateDownload() {
         TCreate_Input[] Products_create_in = new TCreate_Input[] { Product_down };
         TCreate_Return[] Products_create_out = serviceClient.create(Products_create_in);
