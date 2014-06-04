@@ -70,13 +70,13 @@ public class UpdateProductServiceTest {
         Calendar latestUpdate = updateService.findUpdates(LAST_YEAR, "Product", "Content").getLatestUpdate();
 
         TFindUpdates_Return updateSet = updateService.findUpdates(latestUpdate, "Product", "Content");
-        assertEquals(0, updateSet.getUpdates().length);
+        int existingUpdates = updateSet.getUpdates().length;
 
         Thread.sleep(1000);
         updateProductContent(PRODUCT_ALIAS);
 
         updateSet = updateService.findUpdates(latestUpdate, "Product", "Content");
-        assertEquals(1, updateSet.getUpdates().length);
+        assertEquals(existingUpdates + 1, updateSet.getUpdates().length);
         assertAfterOrSame(latestUpdate, updateSet.getLatestUpdate());
         assertTrue("Actual: " + updateSet.getUpdates()[0].getPath(),
                 updateSet.getUpdates()[0].getPath().endsWith("/Products/" + PRODUCT_ALIAS));
@@ -87,13 +87,13 @@ public class UpdateProductServiceTest {
         Calendar latestUpdate = updateService.findUpdates(LAST_YEAR, "Product", "StockLevel").getLatestUpdate();
 
         TFindUpdates_Return updateSet = updateService.findUpdates(latestUpdate, "Product", "StockLevel");
-        assertEquals(0, updateSet.getUpdates().length);
+        int existingUpdates = updateSet.getUpdates().length;
 
         Thread.sleep(1000);
         updateProductStockLevel(PRODUCT_ALIAS);
 
         updateSet = updateService.findUpdates(latestUpdate, "Product", "StockLevel");
-        assertEquals(1, updateSet.getUpdates().length);
+        assertEquals(existingUpdates + 1, updateSet.getUpdates().length);
         assertAfterOrSame(latestUpdate, updateSet.getLatestUpdate());
         assertTrue("Actual: " + updateSet.getUpdates()[0].getPath(),
                 updateSet.getUpdates()[0].getPath().endsWith("/Products/" + PRODUCT_ALIAS));
@@ -104,13 +104,13 @@ public class UpdateProductServiceTest {
         Calendar latestUpdate = updateService.findUpdates(LAST_YEAR, "Product", "ListPrice").getLatestUpdate();
 
         TFindUpdates_Return updateSet = updateService.findUpdates(latestUpdate, "Product", "ListPrice");
-        assertEquals(0, updateSet.getUpdates().length);
+        int existingUpdates = updateSet.getUpdates().length;
 
         Thread.sleep(1000);
         updateProductPrice(PRODUCT_ALIAS);
 
         updateSet = updateService.findUpdates(latestUpdate, "Product", "ListPrice");
-        assertEquals(1, updateSet.getUpdates().length);
+        assertEquals(existingUpdates + 1, updateSet.getUpdates().length);
         assertAfterOrSame(latestUpdate, updateSet.getLatestUpdate());
         assertTrue("Actual: " + updateSet.getUpdates()[0].getPath(),
                 updateSet.getUpdates()[0].getPath().endsWith("/Products/" + PRODUCT_ALIAS));
