@@ -607,7 +607,6 @@ public class ProductServiceTest {
         testCreate();
         testExists(true);
         testFindByAlias();
-        testFindByLastUpdate();
         testGetInfoBeforeUpdate();
         testGetInfoMasterProduct();
         testUpdate();
