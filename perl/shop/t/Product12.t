@@ -535,12 +535,6 @@ sub testFindByAlias {
     is( $aResults->[0], WEBSERVICE_SHOP_PATH.$hOptions->{'FullPath'}, "product path" );
 }
 
-sub testFindByLastUpdate {
-    my $aResults = $ProductService->find( {'LastUpdate' => '1976-01-01T00:00:00'} )->result;
-    ok( scalar @$aResults > 0, "find result count" );
-    ok( defined $aResults->[0], "product path" );
-}
-
 sub testFindAll {
 
     my $aResults = $ProductService->find()->result;
@@ -784,7 +778,6 @@ deleteIfExists();
 testCreate();
 testExists(1);
 testFindByAlias();
-testFindByLastUpdate();
 testGetInfo(0);
 testUpdate();
 testGetInfo(1);
