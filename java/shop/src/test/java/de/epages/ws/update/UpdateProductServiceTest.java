@@ -1,7 +1,9 @@
 package de.epages.ws.update;
 
 import static de.epages.ws.update.Assert.assertAfterOrSame;
-import static org.junit.Assert.assertEquals;
+import static de.epages.ws.update.Assert.assertGreaterOrEquals;
+import static org.hamcrest.core.StringEndsWith.endsWith;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
@@ -60,9 +62,9 @@ public class UpdateProductServiceTest {
 
         deleteSet = updateService.findDeletes(latestDelete, "Product");
 
-        assertEquals(existingDeletes + 1, deleteSet.getDeletes().length);
+        assertGreaterOrEquals(existingDeletes + 1, deleteSet.getDeletes().length);
         assertAfterOrSame(latestDelete, deleteSet.getLatestDelete());
-        assertEquals("Products/" + PRODUCT_ALIAS, deleteSet.getDeletes()[0].getPath());
+        assertThat("Expecting absolute path", deleteSet.getDeletes()[0].getPath(), endsWith("/Products/" + PRODUCT_ALIAS));
     }
 
     @Test
@@ -76,10 +78,9 @@ public class UpdateProductServiceTest {
         updateProductContent(PRODUCT_ALIAS);
 
         updateSet = updateService.findUpdates(latestUpdate, "Product", "Content");
-        assertEquals(existingUpdates + 1, updateSet.getUpdates().length);
+        assertGreaterOrEquals(existingUpdates + 1, updateSet.getUpdates().length);
         assertAfterOrSame(latestUpdate, updateSet.getLatestUpdate());
-        assertTrue("Actual: " + updateSet.getUpdates()[0].getPath(),
-                updateSet.getUpdates()[0].getPath().endsWith("/Products/" + PRODUCT_ALIAS));
+        assertThat("Expecting absolute path", updateSet.getUpdates()[0].getPath(), endsWith("/Products/" + PRODUCT_ALIAS));
     }
 
     @Test
@@ -93,10 +94,9 @@ public class UpdateProductServiceTest {
         updateProductStockLevel(PRODUCT_ALIAS);
 
         updateSet = updateService.findUpdates(latestUpdate, "Product", "StockLevel");
-        assertEquals(existingUpdates + 1, updateSet.getUpdates().length);
+        assertGreaterOrEquals(existingUpdates + 1, updateSet.getUpdates().length);
         assertAfterOrSame(latestUpdate, updateSet.getLatestUpdate());
-        assertTrue("Actual: " + updateSet.getUpdates()[0].getPath(),
-                updateSet.getUpdates()[0].getPath().endsWith("/Products/" + PRODUCT_ALIAS));
+        assertThat("Expecting absolute path", updateSet.getUpdates()[0].getPath(), endsWith("/Products/" + PRODUCT_ALIAS));
     }
 
     @Test
@@ -110,10 +110,9 @@ public class UpdateProductServiceTest {
         updateProductPrice(PRODUCT_ALIAS);
 
         updateSet = updateService.findUpdates(latestUpdate, "Product", "ListPrice");
-        assertEquals(existingUpdates + 1, updateSet.getUpdates().length);
+        assertGreaterOrEquals(existingUpdates + 1, updateSet.getUpdates().length);
         assertAfterOrSame(latestUpdate, updateSet.getLatestUpdate());
-        assertTrue("Actual: " + updateSet.getUpdates()[0].getPath(),
-                updateSet.getUpdates()[0].getPath().endsWith("/Products/" + PRODUCT_ALIAS));
+        assertThat("Expecting absolute path", updateSet.getUpdates()[0].getPath(), endsWith("/Products/" + PRODUCT_ALIAS));
     }
 
     private void createProduct(String alias) {

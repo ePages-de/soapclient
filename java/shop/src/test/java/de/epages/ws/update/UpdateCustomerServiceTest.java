@@ -1,7 +1,9 @@
 package de.epages.ws.update;
 
 import static de.epages.ws.update.Assert.assertAfterOrSame;
-import static org.junit.Assert.assertEquals;
+import static de.epages.ws.update.Assert.assertGreaterOrEquals;
+import static org.hamcrest.core.StringEndsWith.endsWith;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
@@ -59,9 +61,9 @@ public class UpdateCustomerServiceTest {
 
         deleteSet = updateService.findDeletes(latestDelete, "Customer");
 
-        assertEquals(existingDeletes + 1, deleteSet.getDeletes().length);
+        assertGreaterOrEquals(existingDeletes + 1, deleteSet.getDeletes().length);
         assertAfterOrSame(latestDelete, deleteSet.getLatestDelete());
-        assertEquals("Customers/" + CUSTOMER_ALIAS, deleteSet.getDeletes()[0].getPath());
+        assertThat("Expecting absolute path", deleteSet.getDeletes()[0].getPath(), endsWith("/Customers/" + CUSTOMER_ALIAS));
     }
 
     @Test
@@ -75,10 +77,9 @@ public class UpdateCustomerServiceTest {
         updateCustomerAddress(CUSTOMER_ALIAS);
 
         updateSet = updateService.findUpdates(latestUpdate, "Customer", "Address");
-        assertEquals(existingUpdates + 1, updateSet.getUpdates().length);
+        assertGreaterOrEquals(existingUpdates + 1, updateSet.getUpdates().length);
         assertAfterOrSame(latestUpdate, updateSet.getLatestUpdate());
-        assertTrue("Actual: " + updateSet.getUpdates()[0].getPath(),
-                updateSet.getUpdates()[0].getPath().endsWith("Customers/" + CUSTOMER_ALIAS));
+        assertThat("Expecting absolute path", updateSet.getUpdates()[0].getPath(), endsWith("/Customers/" + CUSTOMER_ALIAS));
     }
 
     private void createCustomer(String alias) {
