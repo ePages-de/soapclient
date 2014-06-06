@@ -146,7 +146,6 @@
     <Compile Include="EpagesWebServices.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LastUpdateTest.cs" />
     <Compile Include="Order2Test.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -244,7 +243,6 @@
     <Compile Include="TaxClassTest.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UpdateServiceClient.cs" />
     <Compile Include="User2Test.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -489,11 +487,6 @@
       <SubType>code</SubType>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="Web References\UpdateServiceRef\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Compile Include="Web References\UserService2Ref\Reference.cs">
       <DependentUpon>Reference.map</DependentUpon>
@@ -830,17 +823,6 @@
     </None>
     <None Include="Web References\TaxClassServiceRef\TaxClassService.wsdl" />
     <None Include="Web References\TaxClassServiceRef\TaxClassTypes.xsd" />
-    <None Include="Web References\UpdateServiceRef\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\UpdateServiceRef\TFindDeletes_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\UpdateServiceRef\TFindUpdates_Return1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\UpdateServiceRef\UpdateService.wsdl" />
     <None Include="Web References\UserService2Ref\EpagesTypes.xsd" />
     <None Include="Web References\UserService2Ref\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -880,6 +862,22 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Web References\ProductService8Ref\ProductService.wsdl" />
+    <None Include="Web References\ProductService9Ref\ProductService.wsdl" />
+    <None Include="Web References\ProductService6Ref\ProductService.wsdl" />
+    <None Include="Web References\ProductService7Ref\ProductService.wsdl" />
+    <None Include="Web References\ProductService3Ref\ProductService.wsdl" />
+    <None Include="Web References\ProductService5Ref\ProductService.wsdl" />
+    <None Include="Web References\ChangeLogServiceRef\ChangeLogService.wsdl" />
+    <None Include="Web References\ChangeLogServiceRef\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Compile Include="Web References\ChangeLogServiceRef\Reference.cs">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeLogServiceClient.cs" />
+    <Compile Include="ChangeLogTest.cs" />
     <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/CatalogService6.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\CatalogService6Ref\</RelPath>
@@ -1440,22 +1438,10 @@
       <CachedSettingsPropName>EpagesWebServices_OrderService7Ref_OrderService</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferences Include="Web References\" />
-    <None Include="Web References\ProductService8Ref\ProductService.wsdl" />
-    <None Include="Web References\ProductService9Ref\ProductService.wsdl" />
-    <None Include="Web References\ProductService6Ref\ProductService.wsdl" />
-    <None Include="Web References\ProductService7Ref\ProductService.wsdl" />
-    <None Include="Web References\ProductService3Ref\ProductService.wsdl" />
-    <None Include="Web References\ProductService5Ref\ProductService.wsdl" />
-    <WebReferenceUrl Include="http://wloch/WebRoot/WSDL/UpdateService.wsdl">
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ChangeLogService.wsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\UpdateServiceRef\</RelPath>
-      <UpdateFromURL>http://wloch/WebRoot/WSDL/UpdateService.wsdl</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>EpagesWebServices_UpdateService_UpdateService</CachedSettingsPropName>
+      <RelPath>Web References\ChangeLogServiceRef</RelPath>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ChangeLogService.wsdl</UpdateFromURL>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
