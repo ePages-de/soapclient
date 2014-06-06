@@ -19,23 +19,23 @@ configure(subprojects.findAll {it.name.contains("perl/")}) {
     }
 
     def putIfExists = { mymap, prop ->
-        if(project.properties[prop] != null) {
-            mymap.put(prop, project.properties[prop])
+        if(System.properties[prop] != null) {
+            mymap.put(prop, System.properties[prop])
         }
     }
 
     task runTests(type:Exec) {
         description = 'Runs all webservice tests'
         group = 'Test'
-        def mymap = [:]
+        def envmap = [:]
 
-        putIfExists(mymap, 'ep6HostName')
-        putIfExists(mymap, 'wsUrl')
-        putIfExists(mymap, 'wsShop')
-        putIfExists(mymap, 'wsUser')
-        putIfExists(mymap, 'wsPassword')
+        putIfExists(envmap, 'wsHostName')
+        putIfExists(envmap, 'wsUrl')
+        putIfExists(envmap, 'wsShop')
+        putIfExists(envmap, 'wsUser')
+        putIfExists(envmap, 'wsPassword')
 
-        environment mymap
+        environment envmap
         logging.captureStandardOutput LogLevel.INFO
         workingDir projectDir.path
         commandLine osDependantPerl('runTests.pl')

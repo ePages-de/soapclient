@@ -28,7 +28,7 @@ public class WebServiceTestConfiguration implements WebServiceConfiguration {
     public WebServiceTestConfiguration() {
         String wsUrl = System.getProperty("wsUrl");
         try {
-            WEBSERVICE_URL = wsUrl != null ? new URL(wsUrl) : new URL(getWebserviceUrlFromEpagesConf());
+            WEBSERVICE_URL = wsUrl != null ? new URL(wsUrl) : new URL(getWebserviceUrl());
         } catch (MalformedURLException e) {
             throw new IllegalArgumentException(e);
         }
@@ -49,7 +49,13 @@ public class WebServiceTestConfiguration implements WebServiceConfiguration {
         return WEBSERVICE_PASSWORD;
     }
 
-    private static String getWebserviceUrlFromEpagesConf() {
+    private static String getWebserviceUrl() {
+        String ep6HostName = System.getProperty("wsHostName", getHostNameFromEpagesConf());
+        return String.format("http://{}/epages/Store.soap", ep6HostName);
+    }
+
+    private static String getHostNameFromEpagesConf() {
+
         String confPath = System.getenv("EPAGES_CONFIG");
         if (confPath != null) {
             Properties p = new Properties();
@@ -58,8 +64,8 @@ public class WebServiceTestConfiguration implements WebServiceConfiguration {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            return "http://" + p.getProperty("SystemDomainName") + "/epages/Store.soap";
+            return p.getProperty("SystemDomainName");
         }
-        throw new NullPointerException("EPAGES_CONFIG");
+        throw new IllegalStateException("Cannot find local epages6 installation. Pass wsUrl or ep6HostName");
     }
 }
