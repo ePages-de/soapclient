@@ -26,45 +26,54 @@ public interface CatalogServiceClient extends Port_Catalog {
     /**
      * get information about a list of catalogs
      */
+    @Override
     TGetInfo_Return[] getInfo(String[] catalogs, String[] attributes, String[] languageCodes);
 
     /**
      * check if a list of catalogs exist.
      */
+    @Override
     TExists_Return[] exists(String[] catalogs);
 
     /**
      * delete a list of catalogs
      */
+    @Override
     TDelete_Return[] delete(String[] catalogs);
 
     /**
      * update a list of catalogs
      */
+    @Override
     TUpdate_Return[] update(TUpdate_Input[] catalogs);
 
     /**
      * create new catalogs
      */
+    @Override
     TCreate_Return[] create(TCreate_Input[] catalogs);
 
     /**
      * get root catalog
      */
+    @Override
     TGetRoot_Return getRoot();
 
     /**
      * sort products in each catalog of a list of catalogs
      */
+    @Override
     TSortProducts_Return[] sortProducts(TSortProducts_Input[] catalogs);
 
     /**
      * upload catalog related images.
      */
+    @Override
     TUpload_Return uploadImage(String TObjectPath, TUpload_Input imageData);
 
     /**
      * get all recursive categorie paths as simple flat list
      */
+    @Override
     String[] getCategories();
 }

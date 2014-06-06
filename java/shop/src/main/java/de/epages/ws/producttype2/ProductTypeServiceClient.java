@@ -29,56 +29,67 @@ public interface ProductTypeServiceClient extends Port_ProductType {
     /**
      * get the base product type
      */
+    @Override
     String getBaseProductType();
 
     /**
      * get information about a list of product types
      */
+    @Override
     TGetInfo_Return[] getInfo(String[] productTypes, String[] attributes, String[] languageCodes);
 
     /**
      * get information about all product types
      */
+    @Override
     TGetInfo_Return[] getAllInfo(String[] attributes, String[] languageCodes);
 
     /**
      * check if a list of product types exist
      */
+    @Override
     TExists_Return[] exists(String[] productTypes);
 
     /**
      * delete a list of product types
      */
+    @Override
     TDelete_Return[] delete(String[] productTypes);
 
     /**
      * update a list of product types
      */
+    @Override
     TUpdate_Return[] update(de.epages.ws.producttype2.model.TUpdate_Input[] productTypes);
 
     /**
      * create new product types
      */
+    @Override
     TCreate_Return[] create(de.epages.ws.producttype2.model.TCreate_Input[] productTypes);
 
     /**
      * get information about a list of product attributes
      */
+    @Override
     TGetProductAttributeInfo_Return[] getProductAttributeInfo(String productType, String[] productAttributes, String[] languageCodes);
 
     /**
      * get information about all product attibutes of a product type
      */
+    @Override
     TGetProductAttributeInfo_Return[] getAllProductAttributesInfo(String productType, String[] languageCodes);
 
     /**
      * check if a list of product attributes exist
      */
+    @Override
     TExistsProductAttribute_Return[] existsProductAttribute(String productType, String[] productAttributes);
 
     /**
      * delete a list of product attributes
      */
+    @Override
     TDeleteProductAttribute_Return[] deleteProductAttribute(String productType, String[] productAttributes);
 
     /**

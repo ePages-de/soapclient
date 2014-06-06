@@ -8,5 +8,6 @@ public interface TaxClassServiceClient extends Port_TaxClass {
     /**
      * get the list of taxclasses
      */
+    @Override
     TGetList_Return[] getList();
 }

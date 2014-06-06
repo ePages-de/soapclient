@@ -8,6 +8,7 @@ public interface PaymentMethodServiceClient extends Port_PaymentMethod {
     /**
      * get the list of payment methods
      */
+    @Override
     TGetList_Return[] getList();
 
 }

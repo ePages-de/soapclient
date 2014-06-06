@@ -8,6 +8,7 @@ public interface TaxAreaServiceClient extends Port_TaxArea {
     /**
      * get the list of tax areas
      */
+    @Override
     TGetList_Return[] getList();
 
 }

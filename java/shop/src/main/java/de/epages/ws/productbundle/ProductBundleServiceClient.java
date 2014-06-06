@@ -21,21 +21,25 @@ public interface ProductBundleServiceClient extends Port_ProductBundle {
     /**
      * assign a product to a product bundle
      */
+    @Override
     TCreate_Return[] create(TCreate_Input[] productBundles);
 
     /**
      * unassign a product from a product bundle
      */
+    @Override
     TDelete_Return[] delete(TDelete_Input[] productBundles);
 
     /**
      * check if a product is assigned to a product bundle
      */
+    @Override
     TExists_Return[] exists(TExists_Input[] productBundles);
 
     /**
      * get bundled products assigned to a product bundle
      */
+    @Override
     TGetInfo_Return[] getInfo(String[] products);
 
 }

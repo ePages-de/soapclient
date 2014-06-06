@@ -19,26 +19,31 @@ public interface PriceListServiceClient extends Port_PriceList {
     /**
      * get information about a list of pricelists
      */
+    @Override
     TGetInfo_Return[] getInfo(String[] priceLists, String[] attributes, String[] languageCodes);
 
     /**
      * check if a list of pricelists exist.
      */
+    @Override
     TExists_Return[] exists(String[] priceLists);
 
     /**
      * delete a list of pricelists
      */
+    @Override
     TDelete_Return[] delete(String[] priceLists);
 
     /**
      * update a list of pricelists
      */
+    @Override
     TUpdate_Return[] update(de.epages.ws.pricelist2.model.TUpdate_Input[] priceLists);
 
     /**
      * create new pricelists
      */
+    @Override
     TCreate_Return[] create(de.epages.ws.pricelist2.model.TCreate_Input[] priceLists);
 
 }
