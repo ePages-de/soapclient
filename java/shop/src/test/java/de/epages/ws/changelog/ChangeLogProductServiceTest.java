@@ -1,6 +1,6 @@
-package de.epages.ws.update;
+package de.epages.ws.changelog;
 
-import static de.epages.ws.update.Assert.assertAfterOrSame;
+import static de.epages.ws.changelog.Assert.assertAfterOrSame;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -14,6 +14,10 @@ import org.junit.Test;
 
 import de.epages.ws.WebServiceConfiguration;
 import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.changelog.ChangeLogServiceClient;
+import de.epages.ws.changelog.ChangeLogServiceClientImpl;
+import de.epages.ws.changelog.stub.TFindDeletes_Return;
+import de.epages.ws.changelog.stub.TFindUpdates_Return;
 import de.epages.ws.common.model.TLocalizedValue;
 import de.epages.ws.product12.ProductServiceClient;
 import de.epages.ws.product12.ProductServiceClientImpl;
@@ -24,10 +28,8 @@ import de.epages.ws.product12.model.TExists_Return;
 import de.epages.ws.product12.model.TProductPrice;
 import de.epages.ws.product12.model.TUpdate_Input;
 import de.epages.ws.product12.model.TUpdate_Return;
-import de.epages.ws.update.stub.TFindDeletes_Return;
-import de.epages.ws.update.stub.TFindUpdates_Return;
 
-public class UpdateProductServiceTest {
+public class ChangeLogProductServiceTest {
 
     private static final String PRODUCT_ALIAS = "javatest-sync-product";
 
@@ -35,7 +37,7 @@ public class UpdateProductServiceTest {
 
     private static final ProductServiceClient productService = new ProductServiceClientImpl(config);
 
-    private static final UpdateServiceClient updateService = new UpdateServiceClientImpl(config);
+    private static final ChangeLogServiceClient changeLogService = new ChangeLogServiceClientImpl(config);
 
     private static final GregorianCalendar LAST_YEAR = DateTime.now().minusYears(1).toGregorianCalendar();
 
@@ -51,14 +53,14 @@ public class UpdateProductServiceTest {
 
     @Test
     public void testFindDeletes() {
-        Calendar latestDelete = updateService.findDeletes(LAST_YEAR, "Product").getLatestDelete();
+        Calendar latestDelete = changeLogService.findDeletes(LAST_YEAR, "Product").getLatestDelete();
         latestDelete = new DateTime(latestDelete.getTimeInMillis()).plusMillis(1000).toGregorianCalendar();
-        TFindDeletes_Return deleteSet = updateService.findDeletes(latestDelete, "Product");
+        TFindDeletes_Return deleteSet = changeLogService.findDeletes(latestDelete, "Product");
         int existingDeletes = deleteSet.getDeletes().length;
 
         deleteProduct(PRODUCT_ALIAS);
 
-        deleteSet = updateService.findDeletes(latestDelete, "Product");
+        deleteSet = changeLogService.findDeletes(latestDelete, "Product");
 
         assertEquals(existingDeletes + 1, deleteSet.getDeletes().length);
         assertAfterOrSame(latestDelete, deleteSet.getLatestDelete());
@@ -67,15 +69,15 @@ public class UpdateProductServiceTest {
 
     @Test
     public void testFindProductContentUpdates() throws InterruptedException {
-        Calendar latestUpdate = updateService.findUpdates(LAST_YEAR, "Product", "Content").getLatestUpdate();
+        Calendar latestUpdate = changeLogService.findUpdates(LAST_YEAR, "Product", "Content").getLatestUpdate();
 
-        TFindUpdates_Return updateSet = updateService.findUpdates(latestUpdate, "Product", "Content");
+        TFindUpdates_Return updateSet = changeLogService.findUpdates(latestUpdate, "Product", "Content");
         int existingUpdates = updateSet.getUpdates().length;
 
         Thread.sleep(1000);
         updateProductContent(PRODUCT_ALIAS);
 
-        updateSet = updateService.findUpdates(latestUpdate, "Product", "Content");
+        updateSet = changeLogService.findUpdates(latestUpdate, "Product", "Content");
         assertEquals(existingUpdates + 1, updateSet.getUpdates().length);
         assertAfterOrSame(latestUpdate, updateSet.getLatestUpdate());
         assertTrue("Actual: " + updateSet.getUpdates()[0].getPath(),
@@ -84,15 +86,15 @@ public class UpdateProductServiceTest {
 
     @Test
     public void testFindProductStockLevelUpdates() throws InterruptedException {
-        Calendar latestUpdate = updateService.findUpdates(LAST_YEAR, "Product", "StockLevel").getLatestUpdate();
+        Calendar latestUpdate = changeLogService.findUpdates(LAST_YEAR, "Product", "StockLevel").getLatestUpdate();
 
-        TFindUpdates_Return updateSet = updateService.findUpdates(latestUpdate, "Product", "StockLevel");
+        TFindUpdates_Return updateSet = changeLogService.findUpdates(latestUpdate, "Product", "StockLevel");
         int existingUpdates = updateSet.getUpdates().length;
 
         Thread.sleep(1000);
         updateProductStockLevel(PRODUCT_ALIAS);
 
-        updateSet = updateService.findUpdates(latestUpdate, "Product", "StockLevel");
+        updateSet = changeLogService.findUpdates(latestUpdate, "Product", "StockLevel");
         assertEquals(existingUpdates + 1, updateSet.getUpdates().length);
         assertAfterOrSame(latestUpdate, updateSet.getLatestUpdate());
         assertTrue("Actual: " + updateSet.getUpdates()[0].getPath(),
@@ -101,15 +103,15 @@ public class UpdateProductServiceTest {
 
     @Test
     public void testFindProductListPriceUpdates() throws InterruptedException {
-        Calendar latestUpdate = updateService.findUpdates(LAST_YEAR, "Product", "ListPrice").getLatestUpdate();
+        Calendar latestUpdate = changeLogService.findUpdates(LAST_YEAR, "Product", "ListPrice").getLatestUpdate();
 
-        TFindUpdates_Return updateSet = updateService.findUpdates(latestUpdate, "Product", "ListPrice");
+        TFindUpdates_Return updateSet = changeLogService.findUpdates(latestUpdate, "Product", "ListPrice");
         int existingUpdates = updateSet.getUpdates().length;
 
         Thread.sleep(1000);
         updateProductPrice(PRODUCT_ALIAS);
 
-        updateSet = updateService.findUpdates(latestUpdate, "Product", "ListPrice");
+        updateSet = changeLogService.findUpdates(latestUpdate, "Product", "ListPrice");
         assertEquals(existingUpdates + 1, updateSet.getUpdates().length);
         assertAfterOrSame(latestUpdate, updateSet.getLatestUpdate());
         assertTrue("Actual: " + updateSet.getUpdates()[0].getPath(),
