@@ -23,10 +23,4 @@ public interface Port_ChangeLog extends java.rmi.Remote {
      * find updated objects
      */
     public de.epages.ws.changelog.stub.TFindUpdates_Return findUpdates(java.util.Calendar updatedAfter, java.lang.String _class, java.lang.String profile) throws java.rmi.RemoteException;
-
-    /**
-     * find created, deleted and updated objects (updated object may
-     * includes created)
-     */
-    public de.epages.ws.changelog.stub.TFindChanges_Return findChanges(java.util.Calendar changedAfter, java.lang.String _class, java.lang.String profile) throws java.rmi.RemoteException;
 }

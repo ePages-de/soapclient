@@ -53,13 +53,4 @@ public final class ChangeLogServiceClientImpl implements ChangeLogServiceClient 
             throw new WebServiceException(e);
         }
     }
-
-    @Override
-    public TFindChanges_Return findChanges(Calendar changedAfter, String _class, String profile) {
-        try {
-            return stub.findChanges(changedAfter, _class, profile);
-        } catch (RemoteException e) {
-            throw new WebServiceException(e);
-        }
-    }
 }
