@@ -1,13 +1,13 @@
 /**
- * Bind_Update_SOAPStub.java
+ * Bind_ChangeLog_SOAPStub.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package de.epages.ws.update.stub;
+package de.epages.ws.changelog.stub;
 
-public class Bind_Update_SOAPStub extends org.apache.axis.client.Stub implements de.epages.ws.update.stub.Port_Update {
+public class Bind_ChangeLog_SOAPStub extends org.apache.axis.client.Stub implements de.epages.ws.changelog.stub.Port_ChangeLog {
     private java.util.Vector cachedSerClasses = new java.util.Vector();
     private java.util.Vector cachedSerQNames = new java.util.Vector();
     private java.util.Vector cachedSerFactories = new java.util.Vector();
@@ -16,7 +16,7 @@ public class Bind_Update_SOAPStub extends org.apache.axis.client.Stub implements
     static org.apache.axis.description.OperationDesc [] _operations;
 
     static {
-        _operations = new org.apache.axis.description.OperationDesc[2];
+        _operations = new org.apache.axis.description.OperationDesc[3];
         _initOperationDesc1();
     }
 
@@ -24,17 +24,30 @@ public class Bind_Update_SOAPStub extends org.apache.axis.client.Stub implements
         org.apache.axis.description.OperationDesc oper;
         org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("findCreates");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "CreatedAfter"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"), java.util.Calendar.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Class"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindCreates_Return"));
+        oper.setReturnClass(de.epages.ws.changelog.stub.TFindCreates_Return.class);
+        oper.setReturnQName(new javax.xml.namespace.QName("", "CreateSet"));
+        oper.setStyle(org.apache.axis.constants.Style.RPC);
+        oper.setUse(org.apache.axis.constants.Use.ENCODED);
+        _operations[0] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
         oper.setName("findDeletes");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "DeletedAfter"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"), java.util.Calendar.class, false, false);
         oper.addParameter(param);
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Class"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TFindDeletes_Return"));
-        oper.setReturnClass(de.epages.ws.update.stub.TFindDeletes_Return.class);
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindDeletes_Return"));
+        oper.setReturnClass(de.epages.ws.changelog.stub.TFindDeletes_Return.class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "DeleteSet"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.ENCODED);
-        _operations[0] = oper;
+        _operations[1] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("findUpdates");
@@ -44,25 +57,25 @@ public class Bind_Update_SOAPStub extends org.apache.axis.client.Stub implements
         oper.addParameter(param);
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Profile"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TFindUpdates_Return"));
-        oper.setReturnClass(de.epages.ws.update.stub.TFindUpdates_Return.class);
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindUpdates_Return"));
+        oper.setReturnClass(de.epages.ws.changelog.stub.TFindUpdates_Return.class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "UpdateSet"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.ENCODED);
-        _operations[1] = oper;
+        _operations[2] = oper;
 
     }
 
-    public Bind_Update_SOAPStub() throws org.apache.axis.AxisFault {
+    public Bind_ChangeLog_SOAPStub() throws org.apache.axis.AxisFault {
          this(null);
     }
 
-    public Bind_Update_SOAPStub(java.net.URL endpointURL, javax.xml.rpc.Service service) throws org.apache.axis.AxisFault {
+    public Bind_ChangeLog_SOAPStub(java.net.URL endpointURL, javax.xml.rpc.Service service) throws org.apache.axis.AxisFault {
          this(service);
          super.cachedEndpoint = endpointURL;
     }
 
-    public Bind_Update_SOAPStub(javax.xml.rpc.Service service) throws org.apache.axis.AxisFault {
+    public Bind_ChangeLog_SOAPStub(javax.xml.rpc.Service service) throws org.apache.axis.AxisFault {
         if (service == null) {
             super.service = new org.apache.axis.client.Service();
         } else {
@@ -82,48 +95,71 @@ public class Bind_Update_SOAPStub extends org.apache.axis.client.Stub implements
             java.lang.Class simpledf = org.apache.axis.encoding.ser.SimpleDeserializerFactory.class;
             java.lang.Class simplelistsf = org.apache.axis.encoding.ser.SimpleListSerializerFactory.class;
             java.lang.Class simplelistdf = org.apache.axis.encoding.ser.SimpleListDeserializerFactory.class;
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TFindDeletes");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindCreates");
             cachedSerQNames.add(qName);
-            cls = de.epages.ws.update.stub.TFindDeletes.class;
+            cls = de.epages.ws.changelog.stub.TFindCreates.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TFindDeletes_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindCreates_Return");
             cachedSerQNames.add(qName);
-            cls = de.epages.ws.update.stub.TFindDeletes_Return.class;
+            cls = de.epages.ws.changelog.stub.TFindCreates_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TFindUpdates");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindDeletes");
             cachedSerQNames.add(qName);
-            cls = de.epages.ws.update.stub.TFindUpdates.class;
+            cls = de.epages.ws.changelog.stub.TFindDeletes.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TFindUpdates_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindDeletes_Return");
             cachedSerQNames.add(qName);
-            cls = de.epages.ws.update.stub.TFindUpdates_Return.class;
+            cls = de.epages.ws.changelog.stub.TFindDeletes_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TListOfFindDeletes");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindUpdates");
             cachedSerQNames.add(qName);
-            cls = de.epages.ws.update.stub.TFindDeletes[].class;
+            cls = de.epages.ws.changelog.stub.TFindUpdates.class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TFindDeletes");
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindUpdates_Return");
+            cachedSerQNames.add(qName);
+            cls = de.epages.ws.changelog.stub.TFindUpdates_Return.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TListOfFindCreates");
+            cachedSerQNames.add(qName);
+            cls = de.epages.ws.changelog.stub.TFindCreates[].class;
+            cachedSerClasses.add(cls);
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindCreates");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TListOfFindUpdates");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TListOfFindDeletes");
             cachedSerQNames.add(qName);
-            cls = de.epages.ws.update.stub.TFindUpdates[].class;
+            cls = de.epages.ws.changelog.stub.TFindDeletes[].class;
             cachedSerClasses.add(cls);
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TFindUpdates");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindDeletes");
+            qName2 = null;
+            cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
+            cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
+
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TListOfFindUpdates");
+            cachedSerQNames.add(qName);
+            cls = de.epages.ws.changelog.stub.TFindUpdates[].class;
+            cachedSerClasses.add(cls);
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindUpdates");
             qName2 = null;
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
@@ -195,16 +231,47 @@ public class Bind_Update_SOAPStub extends org.apache.axis.client.Stub implements
         }
     }
 
-    public de.epages.ws.update.stub.TFindDeletes_Return findDeletes(java.util.Calendar deletedAfter, java.lang.String _class) throws java.rmi.RemoteException {
+    public de.epages.ws.changelog.stub.TFindCreates_Return findCreates(java.util.Calendar createdAfter, java.lang.String _class) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
         _call.setOperation(_operations[0]);
         _call.setUseSOAPAction(true);
-        _call.setSOAPActionURI("urn://epages.de/WebService/UpdateService/2014/06#findDeletes");
+        _call.setSOAPActionURI("urn://epages.de/WebService/ChangeLogService/2014/06#findCreates");
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "findDeletes"));
+        _call.setOperationName(new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "findCreates"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {createdAfter, _class});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (de.epages.ws.changelog.stub.TFindCreates_Return) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (de.epages.ws.changelog.stub.TFindCreates_Return) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.ws.changelog.stub.TFindCreates_Return.class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
+    public de.epages.ws.changelog.stub.TFindDeletes_Return findDeletes(java.util.Calendar deletedAfter, java.lang.String _class) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[1]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("urn://epages.de/WebService/ChangeLogService/2014/06#findDeletes");
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "findDeletes"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
@@ -216,9 +283,9 @@ public class Bind_Update_SOAPStub extends org.apache.axis.client.Stub implements
         else {
             extractAttachments(_call);
             try {
-                return (de.epages.ws.update.stub.TFindDeletes_Return) _resp;
+                return (de.epages.ws.changelog.stub.TFindDeletes_Return) _resp;
             } catch (java.lang.Exception _exception) {
-                return (de.epages.ws.update.stub.TFindDeletes_Return) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.ws.update.stub.TFindDeletes_Return.class);
+                return (de.epages.ws.changelog.stub.TFindDeletes_Return) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.ws.changelog.stub.TFindDeletes_Return.class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -226,16 +293,16 @@ public class Bind_Update_SOAPStub extends org.apache.axis.client.Stub implements
 }
     }
 
-    public de.epages.ws.update.stub.TFindUpdates_Return findUpdates(java.util.Calendar updatedAfter, java.lang.String _class, java.lang.String profile) throws java.rmi.RemoteException {
+    public de.epages.ws.changelog.stub.TFindUpdates_Return findUpdates(java.util.Calendar updatedAfter, java.lang.String _class, java.lang.String profile) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[1]);
+        _call.setOperation(_operations[2]);
         _call.setUseSOAPAction(true);
-        _call.setSOAPActionURI("urn://epages.de/WebService/UpdateService/2014/06#findUpdates");
+        _call.setSOAPActionURI("urn://epages.de/WebService/ChangeLogService/2014/06#findUpdates");
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "findUpdates"));
+        _call.setOperationName(new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "findUpdates"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
@@ -247,9 +314,9 @@ public class Bind_Update_SOAPStub extends org.apache.axis.client.Stub implements
         else {
             extractAttachments(_call);
             try {
-                return (de.epages.ws.update.stub.TFindUpdates_Return) _resp;
+                return (de.epages.ws.changelog.stub.TFindUpdates_Return) _resp;
             } catch (java.lang.Exception _exception) {
-                return (de.epages.ws.update.stub.TFindUpdates_Return) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.ws.update.stub.TFindUpdates_Return.class);
+                return (de.epages.ws.changelog.stub.TFindUpdates_Return) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.ws.changelog.stub.TFindUpdates_Return.class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {

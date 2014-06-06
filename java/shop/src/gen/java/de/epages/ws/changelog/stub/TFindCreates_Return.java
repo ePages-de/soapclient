@@ -1,71 +1,71 @@
 /**
- * TFindUpdates_Return.java
+ * TFindCreates_Return.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package de.epages.ws.update.stub;
+package de.epages.ws.changelog.stub;
 
-public class TFindUpdates_Return  implements java.io.Serializable {
-    private de.epages.ws.update.stub.TFindUpdates[] updates;
+public class TFindCreates_Return  implements java.io.Serializable {
+    private de.epages.ws.changelog.stub.TFindCreates[] deletes;
 
-    private java.util.Calendar latestUpdate;
+    private java.util.Calendar latestCreate;
 
-    public TFindUpdates_Return() {
+    public TFindCreates_Return() {
     }
 
-    public TFindUpdates_Return(
-           de.epages.ws.update.stub.TFindUpdates[] updates,
-           java.util.Calendar latestUpdate) {
-           this.updates = updates;
-           this.latestUpdate = latestUpdate;
-    }
-
-
-    /**
-     * Gets the updates value for this TFindUpdates_Return.
-     * 
-     * @return updates
-     */
-    public de.epages.ws.update.stub.TFindUpdates[] getUpdates() {
-        return updates;
+    public TFindCreates_Return(
+           de.epages.ws.changelog.stub.TFindCreates[] deletes,
+           java.util.Calendar latestCreate) {
+           this.deletes = deletes;
+           this.latestCreate = latestCreate;
     }
 
 
     /**
-     * Sets the updates value for this TFindUpdates_Return.
+     * Gets the deletes value for this TFindCreates_Return.
      * 
-     * @param updates
+     * @return deletes
      */
-    public void setUpdates(de.epages.ws.update.stub.TFindUpdates[] updates) {
-        this.updates = updates;
+    public de.epages.ws.changelog.stub.TFindCreates[] getDeletes() {
+        return deletes;
     }
 
 
     /**
-     * Gets the latestUpdate value for this TFindUpdates_Return.
+     * Sets the deletes value for this TFindCreates_Return.
      * 
-     * @return latestUpdate
+     * @param deletes
      */
-    public java.util.Calendar getLatestUpdate() {
-        return latestUpdate;
+    public void setDeletes(de.epages.ws.changelog.stub.TFindCreates[] deletes) {
+        this.deletes = deletes;
     }
 
 
     /**
-     * Sets the latestUpdate value for this TFindUpdates_Return.
+     * Gets the latestCreate value for this TFindCreates_Return.
      * 
-     * @param latestUpdate
+     * @return latestCreate
      */
-    public void setLatestUpdate(java.util.Calendar latestUpdate) {
-        this.latestUpdate = latestUpdate;
+    public java.util.Calendar getLatestCreate() {
+        return latestCreate;
+    }
+
+
+    /**
+     * Sets the latestCreate value for this TFindCreates_Return.
+     * 
+     * @param latestCreate
+     */
+    public void setLatestCreate(java.util.Calendar latestCreate) {
+        this.latestCreate = latestCreate;
     }
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof TFindUpdates_Return)) return false;
-        TFindUpdates_Return other = (TFindUpdates_Return) obj;
+        if (!(obj instanceof TFindCreates_Return)) return false;
+        TFindCreates_Return other = (TFindCreates_Return) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -74,12 +74,12 @@ public class TFindUpdates_Return  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
-            ((this.updates==null && other.getUpdates()==null) || 
-             (this.updates!=null &&
-              java.util.Arrays.equals(this.updates, other.getUpdates()))) &&
-            ((this.latestUpdate==null && other.getLatestUpdate()==null) || 
-             (this.latestUpdate!=null &&
-              this.latestUpdate.equals(other.getLatestUpdate())));
+            ((this.deletes==null && other.getDeletes()==null) || 
+             (this.deletes!=null &&
+              java.util.Arrays.equals(this.deletes, other.getDeletes()))) &&
+            ((this.latestCreate==null && other.getLatestCreate()==null) || 
+             (this.latestCreate!=null &&
+              this.latestCreate.equals(other.getLatestCreate())));
         __equalsCalc = null;
         return _equals;
     }
@@ -91,19 +91,19 @@ public class TFindUpdates_Return  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        if (getUpdates() != null) {
+        if (getDeletes() != null) {
             for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getUpdates());
+                 i<java.lang.reflect.Array.getLength(getDeletes());
                  i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getUpdates(), i);
+                java.lang.Object obj = java.lang.reflect.Array.get(getDeletes(), i);
                 if (obj != null &&
                     !obj.getClass().isArray()) {
                     _hashCode += obj.hashCode();
                 }
             }
         }
-        if (getLatestUpdate() != null) {
-            _hashCode += getLatestUpdate().hashCode();
+        if (getLatestCreate() != null) {
+            _hashCode += getLatestCreate().hashCode();
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -111,19 +111,19 @@ public class TFindUpdates_Return  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(TFindUpdates_Return.class, true);
+        new org.apache.axis.description.TypeDesc(TFindCreates_Return.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TFindUpdates_Return"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindCreates_Return"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("updates");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "Updates"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TFindUpdates"));
+        elemField.setFieldName("deletes");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "Deletes"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindCreates"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("latestUpdate");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "LatestUpdate"));
+        elemField.setFieldName("latestCreate");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "LatestCreate"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

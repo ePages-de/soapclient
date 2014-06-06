@@ -1,4 +1,4 @@
-package de.epages.ws.update;
+package de.epages.ws.changelog;
 
 import static org.junit.Assert.assertTrue;
 
