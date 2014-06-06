@@ -1,21 +1,21 @@
 /**
- * TFindDeletes.java
+ * TFindUpdates.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package de.epages.ws.update.stub;
+package de.epages.ws.changelog.stub;
 
-public class TFindDeletes  implements java.io.Serializable {
+public class TFindUpdates  implements java.io.Serializable {
     private java.lang.String path;
 
     private java.lang.String GUID;
 
-    public TFindDeletes() {
+    public TFindUpdates() {
     }
 
-    public TFindDeletes(
+    public TFindUpdates(
            java.lang.String path,
            java.lang.String GUID) {
            this.path = path;
@@ -24,7 +24,7 @@ public class TFindDeletes  implements java.io.Serializable {
 
 
     /**
-     * Gets the path value for this TFindDeletes.
+     * Gets the path value for this TFindUpdates.
      * 
      * @return path
      */
@@ -34,7 +34,7 @@ public class TFindDeletes  implements java.io.Serializable {
 
 
     /**
-     * Sets the path value for this TFindDeletes.
+     * Sets the path value for this TFindUpdates.
      * 
      * @param path
      */
@@ -44,7 +44,7 @@ public class TFindDeletes  implements java.io.Serializable {
 
 
     /**
-     * Gets the GUID value for this TFindDeletes.
+     * Gets the GUID value for this TFindUpdates.
      * 
      * @return GUID
      */
@@ -54,7 +54,7 @@ public class TFindDeletes  implements java.io.Serializable {
 
 
     /**
-     * Sets the GUID value for this TFindDeletes.
+     * Sets the GUID value for this TFindUpdates.
      * 
      * @param GUID
      */
@@ -64,8 +64,8 @@ public class TFindDeletes  implements java.io.Serializable {
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof TFindDeletes)) return false;
-        TFindDeletes other = (TFindDeletes) obj;
+        if (!(obj instanceof TFindUpdates)) return false;
+        TFindUpdates other = (TFindUpdates) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -103,10 +103,10 @@ public class TFindDeletes  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(TFindDeletes.class, true);
+        new org.apache.axis.description.TypeDesc(TFindUpdates.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/UpdateService/2014/06", "TFindDeletes"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindUpdates"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("path");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Path"));

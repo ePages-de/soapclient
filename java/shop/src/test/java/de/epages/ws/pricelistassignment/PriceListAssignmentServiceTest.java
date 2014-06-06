@@ -1,5 +1,6 @@
 package de.epages.ws.pricelistassignment;
 
+import static de.epages.ws.common.AssertNoError.assertNoError;
 import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -130,6 +131,7 @@ public class PriceListAssignmentServiceTest {
 
         // test if creation was successful
         assertEquals("create result set", 1, PriceListAssignments_out.length);
+        assertNoError(PriceListAssignments_out[0].getError());
         assertTrue(PriceListAssignments_out[0].getUpdated());
     }
 
