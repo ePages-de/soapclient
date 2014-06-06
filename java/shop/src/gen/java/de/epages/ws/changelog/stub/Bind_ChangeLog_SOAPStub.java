@@ -16,7 +16,7 @@ public class Bind_ChangeLog_SOAPStub extends org.apache.axis.client.Stub impleme
     static org.apache.axis.description.OperationDesc [] _operations;
 
     static {
-        _operations = new org.apache.axis.description.OperationDesc[4];
+        _operations = new org.apache.axis.description.OperationDesc[3];
         _initOperationDesc1();
     }
 
@@ -64,21 +64,6 @@ public class Bind_ChangeLog_SOAPStub extends org.apache.axis.client.Stub impleme
         oper.setUse(org.apache.axis.constants.Use.ENCODED);
         _operations[2] = oper;
 
-        oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("findChanges");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ChangedAfter"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"), java.util.Calendar.class, false, false);
-        oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Class"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
-        oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Profile"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
-        oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindChanges_Return"));
-        oper.setReturnClass(de.epages.ws.changelog.stub.TFindChanges_Return.class);
-        oper.setReturnQName(new javax.xml.namespace.QName("", "ChangeLog"));
-        oper.setStyle(org.apache.axis.constants.Style.RPC);
-        oper.setUse(org.apache.axis.constants.Use.ENCODED);
-        _operations[3] = oper;
-
     }
 
     public Bind_ChangeLog_SOAPStub() throws org.apache.axis.AxisFault {
@@ -110,13 +95,6 @@ public class Bind_ChangeLog_SOAPStub extends org.apache.axis.client.Stub impleme
             java.lang.Class simpledf = org.apache.axis.encoding.ser.SimpleDeserializerFactory.class;
             java.lang.Class simplelistsf = org.apache.axis.encoding.ser.SimpleListSerializerFactory.class;
             java.lang.Class simplelistdf = org.apache.axis.encoding.ser.SimpleListDeserializerFactory.class;
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindChanges_Return");
-            cachedSerQNames.add(qName);
-            cls = de.epages.ws.changelog.stub.TFindChanges_Return.class;
-            cachedSerClasses.add(cls);
-            cachedSerFactories.add(beansf);
-            cachedDeserFactories.add(beandf);
-
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindCreates");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.changelog.stub.TFindCreates.class;
@@ -339,37 +317,6 @@ public class Bind_ChangeLog_SOAPStub extends org.apache.axis.client.Stub impleme
                 return (de.epages.ws.changelog.stub.TFindUpdates_Return) _resp;
             } catch (java.lang.Exception _exception) {
                 return (de.epages.ws.changelog.stub.TFindUpdates_Return) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.ws.changelog.stub.TFindUpdates_Return.class);
-            }
-        }
-  } catch (org.apache.axis.AxisFault axisFaultException) {
-  throw axisFaultException;
-}
-    }
-
-    public de.epages.ws.changelog.stub.TFindChanges_Return findChanges(java.util.Calendar changedAfter, java.lang.String _class, java.lang.String profile) throws java.rmi.RemoteException {
-        if (super.cachedEndpoint == null) {
-            throw new org.apache.axis.NoEndPointException();
-        }
-        org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[3]);
-        _call.setUseSOAPAction(true);
-        _call.setSOAPActionURI("urn://epages.de/WebService/ChangeLogService/2014/06#findChanges");
-        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "findChanges"));
-
-        setRequestHeaders(_call);
-        setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {changedAfter, _class, profile});
-
-        if (_resp instanceof java.rmi.RemoteException) {
-            throw (java.rmi.RemoteException)_resp;
-        }
-        else {
-            extractAttachments(_call);
-            try {
-                return (de.epages.ws.changelog.stub.TFindChanges_Return) _resp;
-            } catch (java.lang.Exception _exception) {
-                return (de.epages.ws.changelog.stub.TFindChanges_Return) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.ws.changelog.stub.TFindChanges_Return.class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
