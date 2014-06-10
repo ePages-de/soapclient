@@ -116,14 +116,41 @@ use Data::Dumper;
 
 my @TestProducts = qw(Alias-01 Alias-02 Alias-03);
 removeTestProducts(@TestProducts);      #remove old values
+
+#get last sync time and number of created products
+my $response = $UpdateService->findCreates('2013-04-14T03:44:55', 'Product');
+ok( !$response->fault, 'findCreates called to get sync date' );
+my $LastSync = $response->result->{LatestCreate};
+my $LastSyncNumber = scalar @{$response->result->{Creates}};
+ok( $LastSyncNumber >= 0, "$LastSyncNumber created Products initial");
+
+#get creates products again only since last sync
+$response = $UpdateService->findCreates($LastSync, 'Product');
+ok( !$response->fault, "findCreates($LastSync,'Product') called" );
+my $ahCreates = $response->result->{Creates};
+$LastSyncNumber = scalar @$ahCreates;
+ok( $LastSyncNumber >= 0, "$LastSyncNumber created Products at last sync time $LastSync");
+#check if nothing of test products in the result
+foreach my $Alias (@TestProducts) {
+    ok( (0 == grep {$_->{Path} =~ m|Products/$Alias$|} @$ahCreates), "$Alias not in findCreates call before create TestProducts" );   
+};
+
 createTestProducts(@TestProducts);      #create some test products
 
-#get last sync time and number of products
-my $response = $UpdateService->findUpdates('2013-04-14T03:44:55', 'Product', 'Content');
-ok( !$response->fault, 'findUpdates Content called to get sync date' );
-my $LastSync = $response->result->{LatestUpdate};
-my $LastSyncNumber = scalar @{$response->result->{Updates}};
-ok( $LastSyncNumber > 0, 'some Content updates initial');
+#get last sync time and number of created products
+$response = $UpdateService->findCreates($LastSync, 'Product');
+ok( !$response->fault, "findCreates($LastSync,'Product') called" );
+$LastSync = $response->result->{LatestCreate};
+$ahCreates = $response->result->{Creates};
+ok( 3+$LastSyncNumber == @$ahCreates, '3 more created Products');
+#check if nothing of test products in the result
+foreach my $Alias (@TestProducts) {
+    ok( (1 == grep {$_->{Path} =~ m|Products/$Alias$|} @$ahCreates), "$Alias in findCreates call after create TestProducts" );   
+};
+
+
+
+exit;
 
 #get content updates after first sync
 $response = $UpdateService->findUpdates(  $LastSync, 'Product', 'Content');
