@@ -51,7 +51,7 @@ public class WebServiceTestConfiguration implements WebServiceConfiguration {
 
     private static String getWebserviceUrl() {
         String ep6HostName = System.getProperty("wsHostName", getHostNameFromEpagesConf());
-        return String.format("http://{}/epages/Store.soap", ep6HostName);
+        return String.format("http://%1$s/epages/Store.soap", ep6HostName);
     }
 
     private static String getHostNameFromEpagesConf() {
