@@ -5,7 +5,7 @@ use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_USER );
 
 # Create a SOAP::Lite client object
 my $UpdateService = WebServiceClient
-    ->uri( 'urn://epages.de/WebService/UpdateService/2014/06' )
+    ->uri( 'urn://epages.de/WebService/ChangeLogService/2014/06' )
     ->proxy( WEBSERVICE_URL )
     ->userinfo( WEBSERVICE_USER )
     ->xmlschema('2001');
@@ -118,15 +118,29 @@ my @TestProducts = qw(Alias-01 Alias-02 Alias-03);
 removeTestProducts(@TestProducts);      #remove old values
 createTestProducts(@TestProducts);      #create some test products
 
-#get last sync time
+#get last sync time and number of products
 my $response = $UpdateService->findUpdates('2013-04-14T03:44:55', 'Product', 'Content');
 ok( !$response->fault, 'findUpdates Content called to get sync date' );
 my $LastSync = $response->result->{LatestUpdate};
+my $LastSyncNumber = scalar @{$response->result->{Updates}};
+ok( $LastSyncNumber > 0, 'some Content updates initial');
 
-#get content updates after last sync
-$response = $UpdateService->findUpdates( $LastSync, 'Product', 'Content');
+#get content updates after first sync
+$response = $UpdateService->findUpdates(  $LastSync, 'Product', 'Content');
 ok( !$response->fault, 'findUpdates Content called to check sync date' );
-ok( 0 == @{$response->result->{Updates}}, 'no Content updates jet');
+$LastSync = $response->result->{LatestUpdate};
+$LastSyncNumber = scalar @{$response->result->{Updates}};
+ok( 1, "have $LastSyncNumber Content updates after $LastSync");
+
+#update content of first test product
+updateContent($TestProducts[0]);
+$response = $UpdateService->findUpdates( $LastSync, 'Product', 'Content');
+ok( !$response->fault, 'findUpdates Content called' );
+my $ahUpdates = $response->result->{Updates};
+ok( $LastSyncNumber == @$ahUpdates, '1 Content update');
+ok( (1 == grep {$_->{Path} =~ m|Products/$TestProducts[0]$|} @$ahUpdates), 'Path of Content update is in results');
+
+exit;
 
 #get stock level updates after last sync
 $response = $UpdateService->findUpdates( $LastSync, 'Product', 'StockLevel');
@@ -142,16 +156,6 @@ ok( 0 == @{$response->result->{Updates}}, 'no ListPrice updates jet');
 $response = $UpdateService->findDeletes( $LastSync, 'Product' );
 ok( !$response->fault, 'findDeletes called' );
 ok( 0 == @{$response->result->{Deletes}}, 'no deletes jet');
-
-sleep(1);
-
-#update content of first test product
-updateContent($TestProducts[0]);
-$response = $UpdateService->findUpdates($LastSync, 'Product', 'Content');
-ok( !$response->fault, 'findUpdates Content called' );
-my $ahUpdates = $response->result->{Updates};
-ok( 1 == @$ahUpdates, '1 Content update');
-ok( $ahUpdates->[0]->{Path} =~ m|Products/$TestProducts[0]$|, 'Path of Content update');
 
 #update stock level of next test product
 updateStockLevel($TestProducts[1]);
@@ -196,7 +200,7 @@ $response = $UpdateService->findDeletes( $LastSync, 'Customer' );
 ok( !$response->fault, 'findDeletes Customer called' );
 ok( 0 == @{$response->result->{Deletes}}, 'no customer deletes jet');
 
-sleep(1);
+sleep(3);
 
 #update Address of first test customer
 updateAddress($TestCustomers[0]);
