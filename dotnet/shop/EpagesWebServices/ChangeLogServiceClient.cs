@@ -18,19 +18,19 @@ namespace EpagesWebServices
 			stub.Url = WSConfig.WEBSERVICE_URL;
         }
 
-		public TFindCreates_Return findCreates(System.DateTime CreatedAfter, string Class)
+		public TFindCreatedObjects_Return findCreatedObjects(System.DateTime CreatedAfter, string Class)
 		{
-			return stub.findCreates(CreatedAfter, Class);
+			return stub.findCreatedObjects(CreatedAfter, Class);
 		}
 
-        public TFindUpdates_Return findUpdates(System.DateTime UpdatedAfter, string Class, string Profile)
+		public TFindUpdatedObjects_Return findUpdatedObjects(System.DateTime UpdatedAfter, string Class, string Profile)
         {
-            return stub.findUpdates(UpdatedAfter, Class, Profile);
+			return stub.findUpdatedObjects(UpdatedAfter, Class, Profile);
         }
 
-        public TFindDeletes_Return findDeletes(System.DateTime DeletedAfter, string Class)
+		public TFindDeletedObjects_Return findDeletedObjects(System.DateTime DeletedAfter, string Class)
         {
-            return stub.findDeletes(DeletedAfter, Class);
+			return stub.findDeletedObjects(DeletedAfter, Class);
         }
     }
 }

@@ -7,60 +7,58 @@
   </documentation>
   <wsdl:types>
     <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://epages.de/WebService/ChangeLogService/2014/06">
-      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
-      <xs:import namespace="http://schemas.xmlsoap.org/wsdl/" />
-      <xs:complexType name="TFindCreates_Return">
+      <xs:complexType name="TFindCreatedObjects_Return">
         <xs:all>
-          <xs:element name="Deletes" type="tns:TListOfFindCreates" />
+          <xs:element name="CreatedObjects" type="tns:TListOfFindCreatedObjects" />
           <xs:element name="LatestCreate" type="xs:dateTime" />
         </xs:all>
       </xs:complexType>
-      <xs:complexType name="TListOfFindCreates">
+      <xs:complexType name="TListOfFindCreatedObjects">
         <xs:complexContent mixed="false">
           <xs:restriction base="soapenc:Array">
-            <xs:attribute wsdl:arrayType="tns:TFindCreates[]" ref="soapenc:arrayType" />
+            <xs:attribute wsdl:arrayType="tns:TFindCreatedObject[]" ref="soapenc:arrayType" />
           </xs:restriction>
         </xs:complexContent>
       </xs:complexType>
-      <xs:complexType name="TFindCreates">
+      <xs:complexType name="TFindCreatedObject">
         <xs:all>
           <xs:element minOccurs="0" name="Path" type="xs:string" />
           <xs:element minOccurs="0" name="GUID" type="xs:string" />
         </xs:all>
       </xs:complexType>
-      <xs:complexType name="TFindDeletes_Return">
+      <xs:complexType name="TFindDeletedObjects_Return">
         <xs:all>
-          <xs:element name="Deletes" type="tns:TListOfFindDeletes" />
+          <xs:element name="DeletedObjects" type="tns:TListOfFindDeletedObject" />
           <xs:element name="LatestDelete" type="xs:dateTime" />
         </xs:all>
       </xs:complexType>
-      <xs:complexType name="TListOfFindDeletes">
+      <xs:complexType name="TListOfFindDeletedObject">
         <xs:complexContent mixed="false">
           <xs:restriction base="soapenc:Array">
-            <xs:attribute wsdl:arrayType="tns:TFindDeletes[]" ref="soapenc:arrayType" />
+            <xs:attribute wsdl:arrayType="tns:TFindDeletedObject[]" ref="soapenc:arrayType" />
           </xs:restriction>
         </xs:complexContent>
       </xs:complexType>
-      <xs:complexType name="TFindDeletes">
+      <xs:complexType name="TFindDeletedObject">
         <xs:all>
           <xs:element minOccurs="0" name="Path" type="xs:string" />
           <xs:element minOccurs="0" name="GUID" type="xs:string" />
         </xs:all>
       </xs:complexType>
-      <xs:complexType name="TFindUpdates_Return">
+      <xs:complexType name="TFindUpdatedObjects_Return">
         <xs:all>
-          <xs:element name="Updates" type="tns:TListOfFindUpdates" />
+          <xs:element name="UpdatedObjects" type="tns:TListOfFindUpdatedObjects" />
           <xs:element name="LatestUpdate" type="xs:dateTime" />
         </xs:all>
       </xs:complexType>
-      <xs:complexType name="TListOfFindUpdates">
+      <xs:complexType name="TListOfFindUpdatedObjects">
         <xs:complexContent mixed="false">
           <xs:restriction base="soapenc:Array">
-            <xs:attribute wsdl:arrayType="tns:TFindUpdates[]" ref="soapenc:arrayType" />
+            <xs:attribute wsdl:arrayType="tns:TFindUpdatedObject[]" ref="soapenc:arrayType" />
           </xs:restriction>
         </xs:complexContent>
       </xs:complexType>
-      <xs:complexType name="TFindUpdates">
+      <xs:complexType name="TFindUpdatedObject">
         <xs:all>
           <xs:element minOccurs="0" name="Path" type="xs:string" />
           <xs:element minOccurs="0" name="GUID" type="xs:string" />
@@ -68,49 +66,49 @@
       </xs:complexType>
     </xs:schema>
   </wsdl:types>
-  <wsdl:message name="msg_findDeletes_Input">
-    <wsdl:part name="DeletedAfter" type="xs:dateTime" />
+  <wsdl:message name="msg_findDeletedObject_Input">
+    <wsdl:part name="DeletedSince" type="xs:dateTime" />
     <wsdl:part name="Class" type="xs:string" />
   </wsdl:message>
-  <wsdl:message name="msg_findDeletes_Output">
-    <wsdl:part name="DeleteSet" type="tns:TFindDeletes_Return" />
+  <wsdl:message name="msg_findDeletedObject_Output">
+    <wsdl:part name="DeletedSet" type="tns:TFindDeletedObjects_Return" />
   </wsdl:message>
-  <wsdl:message name="msg_findCreates_Input">
-    <wsdl:part name="CreatedAfter" type="xs:dateTime" />
+  <wsdl:message name="msg_findCreatedObjects_Input">
+    <wsdl:part name="CreatedSince" type="xs:dateTime" />
     <wsdl:part name="Class" type="xs:string" />
   </wsdl:message>
-  <wsdl:message name="msg_findCreates_Output">
-    <wsdl:part name="CreateSet" type="tns:TFindCreates_Return" />
+  <wsdl:message name="msg_findCreatedObjects_Output">
+    <wsdl:part name="CreatedSet" type="tns:TFindCreatedObjects_Return" />
   </wsdl:message>
-  <wsdl:message name="msg_findUpdates_Input">
-    <wsdl:part name="UpdatedAfter" type="xs:dateTime" />
+  <wsdl:message name="msg_findUpdatedObjects_Input">
+    <wsdl:part name="UpdatedSince" type="xs:dateTime" />
     <wsdl:part name="Class" type="xs:string" />
     <wsdl:part name="Profile" type="xs:string" />
   </wsdl:message>
-  <wsdl:message name="msg_findUpdates_Output">
-    <wsdl:part name="UpdateSet" type="tns:TFindUpdates_Return" />
+  <wsdl:message name="msg_findUpdatedObjects_Output">
+    <wsdl:part name="UpdatedSet" type="tns:TFindUpdatedObjects_Return" />
   </wsdl:message>
   <wsdl:portType name="port_ChangeLog">
-    <wsdl:operation name="findCreates">
-      <documentation>find new created objects</documentation>
-      <wsdl:input message="tns:msg_findCreates_Input" />
-      <wsdl:output message="tns:msg_findCreates_Output" />
+    <wsdl:operation name="findCreatedObjects">
+      <documentation>find newly created objects</documentation>
+      <wsdl:input message="tns:msg_findCreatedObjects_Input" />
+      <wsdl:output message="tns:msg_findCreatedObjects_Output" />
     </wsdl:operation>
-    <wsdl:operation name="findDeletes">
+    <wsdl:operation name="findDeletedObjects">
       <documentation>find deleted objects</documentation>
-      <wsdl:input message="tns:msg_findDeletes_Input" />
-      <wsdl:output message="tns:msg_findDeletes_Output" />
+      <wsdl:input message="tns:msg_findDeletedObject_Input" />
+      <wsdl:output message="tns:msg_findDeletedObject_Output" />
     </wsdl:operation>
-    <wsdl:operation name="findUpdates">
-      <documentation>find updated objects</documentation>
-      <wsdl:input message="tns:msg_findUpdates_Input" />
-      <wsdl:output message="tns:msg_findUpdates_Output" />
+    <wsdl:operation name="findUpdatedObjects">
+      <documentation>find updated objects (includes created objects if data set related to profile)</documentation>
+      <wsdl:input message="tns:msg_findUpdatedObjects_Input" />
+      <wsdl:output message="tns:msg_findUpdatedObjects_Output" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="bind_ChangeLog_SOAP" type="tns:port_ChangeLog">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
-    <wsdl:operation name="findCreates">
-      <soap:operation soapAction="urn://epages.de/WebService/ChangeLogService/2014/06#findCreates" />
+    <wsdl:operation name="findCreatedObjects">
+      <soap:operation soapAction="urn://epages.de/WebService/ChangeLogService/2014/06#findCreatedObjects" />
       <wsdl:input>
         <soap:body use="encoded" namespace="urn://epages.de/WebService/ChangeLogService/2014/06" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
@@ -118,8 +116,8 @@
         <soap:body use="encoded" namespace="urn://epages.de/WebService/ChangeLogService/2014/06" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="findDeletes">
-      <soap:operation soapAction="urn://epages.de/WebService/ChangeLogService/2014/06#findDeletes" />
+    <wsdl:operation name="findDeletedObjects">
+      <soap:operation soapAction="urn://epages.de/WebService/ChangeLogService/2014/06#findDeletedObjects" />
       <wsdl:input>
         <soap:body use="encoded" namespace="urn://epages.de/WebService/ChangeLogService/2014/06" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
@@ -127,8 +125,8 @@
         <soap:body use="encoded" namespace="urn://epages.de/WebService/ChangeLogService/2014/06" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="findUpdates">
-      <soap:operation soapAction="urn://epages.de/WebService/ChangeLogService/2014/06#findUpdates" />
+    <wsdl:operation name="findUpdatedObjects">
+      <soap:operation soapAction="urn://epages.de/WebService/ChangeLogService/2014/06#findUpdatedObjects" />
       <wsdl:input>
         <soap:body use="encoded" namespace="urn://epages.de/WebService/ChangeLogService/2014/06" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>

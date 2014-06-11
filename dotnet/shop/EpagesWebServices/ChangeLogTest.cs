@@ -43,7 +43,7 @@ namespace EpagesWebServices
         public void runAllTests()
         {
             ArrayList products = createTestProducts(productAliases);
-            TFindUpdates_Return updates = testCreatedProducts();
+            TFindUpdatedObjects_Return updates = testCreatedProducts();
             DateTime dt = updates.LatestUpdate;
 
             updateStockLevels(2);
@@ -55,10 +55,10 @@ namespace EpagesWebServices
             deleteTestProducts();
         }
 
-        private TFindUpdates_Return testCreatedProducts()
+        private TFindUpdatedObjects_Return testCreatedProducts()
         {
-            TFindUpdates_Return updateData = serviceClient.findUpdates(new DateTime(2013, 4, 14, 3, 44, 55), "Product", "Content");
-            TFindUpdates[] updates = updateData.Updates;
+            TFindUpdatedObjects_Return updateData = serviceClient.findUpdatedObjects(new DateTime(2013, 4, 14, 3, 44, 55), "Product", "Content");
+            TFindUpdatedObject[] updates = updateData.UpdatedObjects;
 
             // the newly created products should be in the updated set
             foreach (string path in productPaths)
@@ -72,28 +72,28 @@ namespace EpagesWebServices
             return updateData;
         }
 
-        private TFindUpdates_Return testNoUpdates(string profile, DateTime since)
+        private TFindUpdatedObjects_Return testNoUpdates(string profile, DateTime since)
         {
-            TFindUpdates_Return updateData = serviceClient.findUpdates(since, "Product", profile);
-            TFindUpdates[] updates = updateData.Updates;
+            TFindUpdatedObjects_Return updateData = serviceClient.findUpdatedObjects(since, "Product", profile);
+			TFindUpdatedObject[] updates = updateData.UpdatedObjects;
             Assert.AreEqual(null, updates);
 
             return updateData;
         }
 
-        private TFindDeletes_Return testNoDeletes(DateTime since)
+        private TFindDeletedObjects_Return testNoDeletes(DateTime since)
         {
-            TFindDeletes_Return deleteData = serviceClient.findDeletes(since, "Product");
-            TFindDeletes[] deletes = deleteData.Deletes;
+            TFindDeletedObjects_Return deleteData = serviceClient.findDeletedObjects(since, "Product");
+			TFindDeletedObject[] deletes = deleteData.DeletedObjects;
             Assert.AreEqual(null, deletes);
 
             return deleteData;
         }
 
-        private TFindUpdates_Return testStockLevels(DateTime since, int level)
+        private TFindUpdatedObjects_Return testStockLevels(DateTime since, int level)
         {
-            TFindUpdates_Return updateData = serviceClient.findUpdates(since, "Product", "StockLevel");
-            TFindUpdates[] updates = updateData.Updates;
+            TFindUpdatedObjects_Return updateData = serviceClient.findUpdatedObjects(since, "Product", "StockLevel");
+			TFindUpdatedObject[] updates = updateData.UpdatedObjects;
             foreach (string path in productPaths)
             {
                 object product = Array.Find(updates, x => x.Path.EndsWith(path));
@@ -159,10 +159,10 @@ namespace EpagesWebServices
             return productServiceClient.update(updates.ToArray());
         }
 
-        private TFindUpdates_Return testContent(DateTime since)
+        private TFindUpdatedObjects_Return testContent(DateTime since)
         {
-            TFindUpdates_Return updateData = serviceClient.findUpdates(since, "Product", "Content");
-            TFindUpdates[] updates = updateData.Updates;
+            TFindUpdatedObjects_Return updateData = serviceClient.findUpdatedObjects(since, "Product", "Content");
+			TFindUpdatedObject[] updates = updateData.UpdatedObjects;
             object productUpdate = Array.Find(updates, x => x.Path.EndsWith(productPaths[0]));
             Assert.AreNotEqual(null, productUpdate);
             Assert.AreEqual(1, updates.Length);

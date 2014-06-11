@@ -22,9 +22,9 @@ namespace EpagesWebServices.ChangeLogServiceRef {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="bind_ChangeLog_SOAP", Namespace="urn://epages.de/WebService/ChangeLogService/2014/06")]
-    [System.Xml.Serialization.SoapIncludeAttribute(typeof(TFindUpdates))]
-    [System.Xml.Serialization.SoapIncludeAttribute(typeof(TFindDeletes))]
-    [System.Xml.Serialization.SoapIncludeAttribute(typeof(TFindCreates))]
+    [System.Xml.Serialization.SoapIncludeAttribute(typeof(TFindUpdatedObject))]
+    [System.Xml.Serialization.SoapIncludeAttribute(typeof(TFindDeletedObject))]
+    [System.Xml.Serialization.SoapIncludeAttribute(typeof(TFindCreatedObject))]
     public partial class ChangeLogService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         /// <remarks/>
@@ -37,74 +37,74 @@ namespace EpagesWebServices.ChangeLogServiceRef {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapRpcMethodAttribute("urn://epages.de/WebService/ChangeLogService/2014/06#findCreates", RequestNamespace="urn://epages.de/WebService/ChangeLogService/2014/06", ResponseNamespace="urn://epages.de/WebService/ChangeLogService/2014/06")]
-        [return: System.Xml.Serialization.SoapElementAttribute("CreateSet")]
-        public TFindCreates_Return findCreates(System.DateTime CreatedAfter, string Class) {
-            object[] results = this.Invoke("findCreates", new object[] {
-                        CreatedAfter,
+        [System.Web.Services.Protocols.SoapRpcMethodAttribute("urn://epages.de/WebService/ChangeLogService/2014/06#findCreatedObjects", RequestNamespace="urn://epages.de/WebService/ChangeLogService/2014/06", ResponseNamespace="urn://epages.de/WebService/ChangeLogService/2014/06")]
+        [return: System.Xml.Serialization.SoapElementAttribute("CreatedSet")]
+        public TFindCreatedObjects_Return findCreatedObjects(System.DateTime CreatedSince, string Class) {
+            object[] results = this.Invoke("findCreatedObjects", new object[] {
+                        CreatedSince,
                         Class});
-            return ((TFindCreates_Return)(results[0]));
+            return ((TFindCreatedObjects_Return)(results[0]));
         }
         
         /// <remarks/>
-        public System.IAsyncResult BeginfindCreates(System.DateTime CreatedAfter, string Class, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("findCreates", new object[] {
-                        CreatedAfter,
+        public System.IAsyncResult BeginfindCreatedObjects(System.DateTime CreatedSince, string Class, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("findCreatedObjects", new object[] {
+                        CreatedSince,
                         Class}, callback, asyncState);
         }
         
         /// <remarks/>
-        public TFindCreates_Return EndfindCreates(System.IAsyncResult asyncResult) {
+        public TFindCreatedObjects_Return EndfindCreatedObjects(System.IAsyncResult asyncResult) {
             object[] results = this.EndInvoke(asyncResult);
-            return ((TFindCreates_Return)(results[0]));
+            return ((TFindCreatedObjects_Return)(results[0]));
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapRpcMethodAttribute("urn://epages.de/WebService/ChangeLogService/2014/06#findDeletes", RequestNamespace="urn://epages.de/WebService/ChangeLogService/2014/06", ResponseNamespace="urn://epages.de/WebService/ChangeLogService/2014/06")]
-        [return: System.Xml.Serialization.SoapElementAttribute("DeleteSet")]
-        public TFindDeletes_Return findDeletes(System.DateTime DeletedAfter, string Class) {
-            object[] results = this.Invoke("findDeletes", new object[] {
-                        DeletedAfter,
+        [System.Web.Services.Protocols.SoapRpcMethodAttribute("urn://epages.de/WebService/ChangeLogService/2014/06#findDeletedObjects", RequestNamespace="urn://epages.de/WebService/ChangeLogService/2014/06", ResponseNamespace="urn://epages.de/WebService/ChangeLogService/2014/06")]
+        [return: System.Xml.Serialization.SoapElementAttribute("DeletedSet")]
+        public TFindDeletedObjects_Return findDeletedObjects(System.DateTime DeletedSince, string Class) {
+            object[] results = this.Invoke("findDeletedObjects", new object[] {
+                        DeletedSince,
                         Class});
-            return ((TFindDeletes_Return)(results[0]));
+            return ((TFindDeletedObjects_Return)(results[0]));
         }
         
         /// <remarks/>
-        public System.IAsyncResult BeginfindDeletes(System.DateTime DeletedAfter, string Class, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("findDeletes", new object[] {
-                        DeletedAfter,
+        public System.IAsyncResult BeginfindDeletedObjects(System.DateTime DeletedSince, string Class, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("findDeletedObjects", new object[] {
+                        DeletedSince,
                         Class}, callback, asyncState);
         }
         
         /// <remarks/>
-        public TFindDeletes_Return EndfindDeletes(System.IAsyncResult asyncResult) {
+        public TFindDeletedObjects_Return EndfindDeletedObjects(System.IAsyncResult asyncResult) {
             object[] results = this.EndInvoke(asyncResult);
-            return ((TFindDeletes_Return)(results[0]));
+            return ((TFindDeletedObjects_Return)(results[0]));
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapRpcMethodAttribute("urn://epages.de/WebService/ChangeLogService/2014/06#findUpdates", RequestNamespace="urn://epages.de/WebService/ChangeLogService/2014/06", ResponseNamespace="urn://epages.de/WebService/ChangeLogService/2014/06")]
-        [return: System.Xml.Serialization.SoapElementAttribute("UpdateSet")]
-        public TFindUpdates_Return findUpdates(System.DateTime UpdatedAfter, string Class, string Profile) {
-            object[] results = this.Invoke("findUpdates", new object[] {
-                        UpdatedAfter,
+        [System.Web.Services.Protocols.SoapRpcMethodAttribute("urn://epages.de/WebService/ChangeLogService/2014/06#findUpdatedObjects", RequestNamespace="urn://epages.de/WebService/ChangeLogService/2014/06", ResponseNamespace="urn://epages.de/WebService/ChangeLogService/2014/06")]
+        [return: System.Xml.Serialization.SoapElementAttribute("UpdatedSet")]
+        public TFindUpdatedObjects_Return findUpdatedObjects(System.DateTime UpdatedSince, string Class, string Profile) {
+            object[] results = this.Invoke("findUpdatedObjects", new object[] {
+                        UpdatedSince,
                         Class,
                         Profile});
-            return ((TFindUpdates_Return)(results[0]));
+            return ((TFindUpdatedObjects_Return)(results[0]));
         }
         
         /// <remarks/>
-        public System.IAsyncResult BeginfindUpdates(System.DateTime UpdatedAfter, string Class, string Profile, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("findUpdates", new object[] {
-                        UpdatedAfter,
+        public System.IAsyncResult BeginfindUpdatedObjects(System.DateTime UpdatedSince, string Class, string Profile, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("findUpdatedObjects", new object[] {
+                        UpdatedSince,
                         Class,
                         Profile}, callback, asyncState);
         }
         
         /// <remarks/>
-        public TFindUpdates_Return EndfindUpdates(System.IAsyncResult asyncResult) {
+        public TFindUpdatedObjects_Return EndfindUpdatedObjects(System.IAsyncResult asyncResult) {
             object[] results = this.EndInvoke(asyncResult);
-            return ((TFindUpdates_Return)(results[0]));
+            return ((TFindUpdatedObjects_Return)(results[0]));
         }
     }
     
@@ -114,10 +114,10 @@ namespace EpagesWebServices.ChangeLogServiceRef {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace="urn://epages.de/WebService/ChangeLogService/2014/06")]
-    public partial class TFindCreates_Return {
+    public partial class TFindCreatedObjects_Return {
         
         /// <remarks/>
-        public TFindCreates[] Deletes;
+        public TFindCreatedObject[] CreatedObjects;
         
         /// <remarks/>
         public System.DateTime LatestCreate;
@@ -129,7 +129,7 @@ namespace EpagesWebServices.ChangeLogServiceRef {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace="urn://epages.de/WebService/ChangeLogService/2014/06")]
-    public partial class TFindCreates {
+    public partial class TFindCreatedObject {
         
         /// <remarks/>
         public string Path;
@@ -144,7 +144,7 @@ namespace EpagesWebServices.ChangeLogServiceRef {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace="urn://epages.de/WebService/ChangeLogService/2014/06")]
-    public partial class TFindUpdates {
+    public partial class TFindUpdatedObject {
         
         /// <remarks/>
         public string Path;
@@ -159,10 +159,10 @@ namespace EpagesWebServices.ChangeLogServiceRef {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace="urn://epages.de/WebService/ChangeLogService/2014/06")]
-    public partial class TFindUpdates_Return {
+    public partial class TFindUpdatedObjects_Return {
         
         /// <remarks/>
-        public TFindUpdates[] Updates;
+        public TFindUpdatedObject[] UpdatedObjects;
         
         /// <remarks/>
         public System.DateTime LatestUpdate;
@@ -174,7 +174,7 @@ namespace EpagesWebServices.ChangeLogServiceRef {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace="urn://epages.de/WebService/ChangeLogService/2014/06")]
-    public partial class TFindDeletes {
+    public partial class TFindDeletedObject {
         
         /// <remarks/>
         public string Path;
@@ -189,10 +189,10 @@ namespace EpagesWebServices.ChangeLogServiceRef {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace="urn://epages.de/WebService/ChangeLogService/2014/06")]
-    public partial class TFindDeletes_Return {
+    public partial class TFindDeletedObjects_Return {
         
         /// <remarks/>
-        public TFindDeletes[] Deletes;
+        public TFindDeletedObject[] DeletedObjects;
         
         /// <remarks/>
         public System.DateTime LatestDelete;
