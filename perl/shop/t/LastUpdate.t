@@ -199,7 +199,6 @@ createTestCustomers(@TestCustomers);      #create some test customers
 #get last sync time and number of created products
 $response = $UpdateService->findCreatedObjects($LastSync, 'Product');
 ok( !$response->fault, "findCreatedObjects($LastSync,'Product') called" );
-$LastSync = $response->result->{LatestCreate};
 $ahCreates = $response->result->{CreatedObjects};
 ok( 3+$LastCreateNumber == @$ahCreates, '3 more created Products');
 #check if all test products in the result
@@ -207,7 +206,7 @@ foreach my $Alias (@TestProducts) {
     ok( (1 == grep {$_->{Path} =~ m|Products/$Alias$|} @$ahCreates), "$Alias in findCreatedObjects call after create TestProducts" );   
 };
 
-sleep( 2 );
+sleep( 3 );
 
 #update content, and get new sync time
 updateContent($TestProducts[0]);
