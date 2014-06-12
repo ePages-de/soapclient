@@ -10,17 +10,18 @@ package de.epages.ws.changelog.stub;
 public interface Port_ChangeLog extends java.rmi.Remote {
 
     /**
-     * find new created objects
+     * find newly created objects
      */
-    public de.epages.ws.changelog.stub.TFindCreates_Return findCreates(java.util.Calendar createdAfter, java.lang.String _class) throws java.rmi.RemoteException;
+    public de.epages.ws.changelog.stub.TFindCreatedObjects_Return findCreatedObjects(java.util.Calendar createdSince, java.lang.String _class) throws java.rmi.RemoteException;
 
     /**
      * find deleted objects
      */
-    public de.epages.ws.changelog.stub.TFindDeletes_Return findDeletes(java.util.Calendar deletedAfter, java.lang.String _class) throws java.rmi.RemoteException;
+    public de.epages.ws.changelog.stub.TFindDeletedObject_Return findDeletedObjects(java.util.Calendar deletedSince, java.lang.String _class) throws java.rmi.RemoteException;
 
     /**
-     * find updated objects
+     * find updated objects (includes created objects if data set
+     * related to profile)
      */
-    public de.epages.ws.changelog.stub.TFindUpdates_Return findUpdates(java.util.Calendar updatedAfter, java.lang.String _class, java.lang.String profile) throws java.rmi.RemoteException;
+    public de.epages.ws.changelog.stub.TFindUpdatedObjects_Return findUpdatedObjects(java.util.Calendar updatedSince, java.lang.String _class, java.lang.String profile) throws java.rmi.RemoteException;
 }
