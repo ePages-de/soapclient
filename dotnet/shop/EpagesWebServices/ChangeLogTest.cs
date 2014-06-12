@@ -42,7 +42,14 @@ namespace EpagesWebServices
         [Test]
         public void runAllTests()
         {
+            TFindCreatedObjects_Return creates = testPreCreatedProducts();
+            int NumberOfProducts = creates.CreatedObjects.Length;
+
             ArrayList products = createTestProducts(productAliases);
+
+            creates = testPostCreatedProducts();
+            Assert.AreEqual(creates.CreatedObjects.Length, NumberOfProducts + 3);
+            
             TFindUpdatedObjects_Return updates = testCreatedProducts();
             DateTime dt = updates.LatestUpdate;
 
@@ -53,6 +60,30 @@ namespace EpagesWebServices
             testContent(dt);
 
             deleteTestProducts();
+        }
+
+        private TFindCreatedObjects_Return testPreCreatedProducts()
+        {
+            TFindCreatedObjects_Return createdData = serviceClient.findCreatedObjects(new DateTime(2013, 4, 14, 3, 44, 55), "Product");
+            TFindCreatedObject[] creates = createdData.CreatedObjects;
+
+            // the newly created products must NOT be in the creation set
+            foreach (string path in productPaths)
+                Assert.AreEqual(null, Array.Find(creates, x => x.Path.EndsWith(path)));
+
+            return createdData;
+        }
+
+        private TFindCreatedObjects_Return testPostCreatedProducts()
+        {
+            TFindCreatedObjects_Return createdData = serviceClient.findCreatedObjects(new DateTime(2013, 4, 14, 3, 44, 55), "Product");
+            TFindCreatedObject[] creates = createdData.CreatedObjects;
+
+            // the newly created products need to be in the creation set
+            foreach (string path in productPaths)
+                Assert.AreEqual(null, Array.Find(creates, x => x.Path.EndsWith(path)));
+
+            return createdData;
         }
 
         private TFindUpdatedObjects_Return testCreatedProducts()
