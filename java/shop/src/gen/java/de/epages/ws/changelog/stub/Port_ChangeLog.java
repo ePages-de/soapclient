@@ -17,7 +17,7 @@ public interface Port_ChangeLog extends java.rmi.Remote {
     /**
      * find deleted objects
      */
-    public de.epages.ws.changelog.stub.TFindDeletedObject_Return findDeletedObjects(java.util.Calendar deletedSince, java.lang.String _class) throws java.rmi.RemoteException;
+    public de.epages.ws.changelog.stub.TFindDeletedObjects_Return findDeletedObjects(java.util.Calendar deletedSince, java.lang.String _class) throws java.rmi.RemoteException;
 
     /**
      * find updated objects (includes created objects if data set

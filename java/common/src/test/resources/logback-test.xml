@@ -13,14 +13,12 @@
     <!-- encoders are assigned the type
          ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
     <encoder>
-      <pattern>%d{HH:mm:ss.SSS} [%thread] %level %logger{80} - %msg%n</pattern>
+      <pattern>%msg%n</pattern>
     </encoder>
   </appender>
 
   <root level="INFO">
     <appender-ref ref="STDOUT" />
   </root>
-  <!--  For printing out the low-level http communication
   <logger name="httpclient.wire" level="DEBUG" />
-  -->
  </configuration>

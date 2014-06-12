@@ -2,29 +2,24 @@ package de.epages.ws.changelog;
 
 import java.util.Calendar;
 
-import de.epages.ws.changelog.stub.Port_ChangeLog;
-import de.epages.ws.changelog.stub.TFindCreates_Return;
-import de.epages.ws.changelog.stub.TFindDeletes_Return;
-import de.epages.ws.changelog.stub.TFindUpdates_Return;
+import de.epages.ws.changelog.stub.*;
 
 public interface ChangeLogServiceClient extends Port_ChangeLog {
 
     /**
-     * find new created objects
+     * find newly created objects
      */
-    @Override
-    TFindCreates_Return findCreates(Calendar createdAfter, String _class);
+    TFindCreatedObjects_Return findCreatedObjects(java.util.Calendar createdSince, java.lang.String _class);
 
     /**
      * find deleted objects
      */
-    @Override
-    TFindDeletes_Return findDeletes(Calendar deletedAfter, String _class);
+    TFindDeletedObjects_Return findDeletedObjects(java.util.Calendar deletedSince, java.lang.String _class);
 
     /**
-     * find updated objects
+     * find updated objects (includes created objects if data set
+     * related to profile)
      */
-    @Override
-    TFindUpdates_Return findUpdates(Calendar updatedAfter, String _class, String profile);
+    TFindUpdatedObjects_Return findUpdatedObjects(java.util.Calendar updatedSince, java.lang.String _class, java.lang.String profile);
 
 }

@@ -42,8 +42,8 @@ public class Bind_ChangeLog_SOAPStub extends org.apache.axis.client.Stub impleme
         oper.addParameter(param);
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Class"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindDeletedObject_Return"));
-        oper.setReturnClass(de.epages.ws.changelog.stub.TFindDeletedObject_Return.class);
+        oper.setReturnType(new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindDeletedObjects_Return"));
+        oper.setReturnClass(de.epages.ws.changelog.stub.TFindDeletedObjects_Return.class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "DeletedSet"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.ENCODED);
@@ -116,9 +116,9 @@ public class Bind_ChangeLog_SOAPStub extends org.apache.axis.client.Stub impleme
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindDeletedObject_Return");
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/ChangeLogService/2014/06", "TFindDeletedObjects_Return");
             cachedSerQNames.add(qName);
-            cls = de.epages.ws.changelog.stub.TFindDeletedObject_Return.class;
+            cls = de.epages.ws.changelog.stub.TFindDeletedObjects_Return.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
@@ -262,7 +262,7 @@ public class Bind_ChangeLog_SOAPStub extends org.apache.axis.client.Stub impleme
 }
     }
 
-    public de.epages.ws.changelog.stub.TFindDeletedObject_Return findDeletedObjects(java.util.Calendar deletedSince, java.lang.String _class) throws java.rmi.RemoteException {
+    public de.epages.ws.changelog.stub.TFindDeletedObjects_Return findDeletedObjects(java.util.Calendar deletedSince, java.lang.String _class) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -283,9 +283,9 @@ public class Bind_ChangeLog_SOAPStub extends org.apache.axis.client.Stub impleme
         else {
             extractAttachments(_call);
             try {
-                return (de.epages.ws.changelog.stub.TFindDeletedObject_Return) _resp;
+                return (de.epages.ws.changelog.stub.TFindDeletedObjects_Return) _resp;
             } catch (java.lang.Exception _exception) {
-                return (de.epages.ws.changelog.stub.TFindDeletedObject_Return) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.ws.changelog.stub.TFindDeletedObject_Return.class);
+                return (de.epages.ws.changelog.stub.TFindDeletedObjects_Return) org.apache.axis.utils.JavaUtils.convert(_resp, de.epages.ws.changelog.stub.TFindDeletedObjects_Return.class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {

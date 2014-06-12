@@ -14,10 +14,8 @@ import org.junit.Test;
 
 import de.epages.ws.WebServiceConfiguration;
 import de.epages.ws.WebServiceTestConfiguration;
-import de.epages.ws.changelog.ChangeLogServiceClient;
-import de.epages.ws.changelog.ChangeLogServiceClientImpl;
-import de.epages.ws.changelog.stub.TFindDeletes_Return;
-import de.epages.ws.changelog.stub.TFindUpdates_Return;
+import de.epages.ws.changelog.stub.TFindDeletedObjects_Return;
+import de.epages.ws.changelog.stub.TFindUpdatedObjects_Return;
 import de.epages.ws.common.model.TLocalizedValue;
 import de.epages.ws.product12.ProductServiceClient;
 import de.epages.ws.product12.ProductServiceClientImpl;
@@ -29,7 +27,7 @@ import de.epages.ws.product12.model.TProductPrice;
 import de.epages.ws.product12.model.TUpdate_Input;
 import de.epages.ws.product12.model.TUpdate_Return;
 
-public class ChangeLogProductServiceTest {
+public class ChangeLogServiceTest {
 
     private static final String PRODUCT_ALIAS = "javatest-sync-product";
 
@@ -52,70 +50,70 @@ public class ChangeLogProductServiceTest {
     }
 
     @Test
-    public void testFindDeletes() {
-        Calendar latestDelete = changeLogService.findDeletes(LAST_YEAR, "Product").getLatestDelete();
+    public void testFindDeletedObjects() {
+        Calendar latestDelete = changeLogService.findDeletedObjects(LAST_YEAR, "Product").getLatestDelete();
         latestDelete = new DateTime(latestDelete.getTimeInMillis()).plusMillis(1000).toGregorianCalendar();
-        TFindDeletes_Return deleteSet = changeLogService.findDeletes(latestDelete, "Product");
-        int existingDeletes = deleteSet.getDeletes().length;
+        TFindDeletedObjects_Return deleteSet = changeLogService.findDeletedObjects(latestDelete, "Product");
+        int existingDeletes = deleteSet.getDeletedObjects().length;
 
         deleteProduct(PRODUCT_ALIAS);
 
-        deleteSet = changeLogService.findDeletes(latestDelete, "Product");
+        deleteSet = changeLogService.findDeletedObjects(latestDelete, "Product");
 
-        assertEquals(existingDeletes + 1, deleteSet.getDeletes().length);
+        assertEquals(existingDeletes + 1, deleteSet.getDeletedObjects().length);
         assertAfterOrSame(latestDelete, deleteSet.getLatestDelete());
-        assertEquals("Products/" + PRODUCT_ALIAS, deleteSet.getDeletes()[0].getPath());
+        assertEquals("Products/" + PRODUCT_ALIAS, deleteSet.getDeletedObjects()[0].getPath());
     }
 
     @Test
     public void testFindProductContentUpdates() throws InterruptedException {
-        Calendar latestUpdate = changeLogService.findUpdates(LAST_YEAR, "Product", "Content").getLatestUpdate();
+        Calendar latestUpdate = changeLogService.findUpdatedObjects(LAST_YEAR, "Product", "Content").getLatestUpdate();
 
-        TFindUpdates_Return updateSet = changeLogService.findUpdates(latestUpdate, "Product", "Content");
-        int existingUpdates = updateSet.getUpdates().length;
+        TFindUpdatedObjects_Return updateSet = changeLogService.findUpdatedObjects(latestUpdate, "Product", "Content");
+        int existingUpdates = updateSet.getUpdatedObjects().length;
 
         Thread.sleep(1000);
         updateProductContent(PRODUCT_ALIAS);
 
-        updateSet = changeLogService.findUpdates(latestUpdate, "Product", "Content");
-        assertEquals(existingUpdates + 1, updateSet.getUpdates().length);
+        updateSet = changeLogService.findUpdatedObjects(latestUpdate, "Product", "Content");
+        assertEquals(existingUpdates + 1, updateSet.getUpdatedObjects().length);
         assertAfterOrSame(latestUpdate, updateSet.getLatestUpdate());
-        assertTrue("Actual: " + updateSet.getUpdates()[0].getPath(),
-                updateSet.getUpdates()[0].getPath().endsWith("/Products/" + PRODUCT_ALIAS));
+        assertTrue("Actual: " + updateSet.getUpdatedObjects()[0].getPath(),
+                updateSet.getUpdatedObjects()[0].getPath().endsWith("/Products/" + PRODUCT_ALIAS));
     }
 
     @Test
     public void testFindProductStockLevelUpdates() throws InterruptedException {
-        Calendar latestUpdate = changeLogService.findUpdates(LAST_YEAR, "Product", "StockLevel").getLatestUpdate();
+        Calendar latestUpdate = changeLogService.findUpdatedObjects(LAST_YEAR, "Product", "StockLevel").getLatestUpdate();
 
-        TFindUpdates_Return updateSet = changeLogService.findUpdates(latestUpdate, "Product", "StockLevel");
-        int existingUpdates = updateSet.getUpdates().length;
+        TFindUpdatedObjects_Return updateSet = changeLogService.findUpdatedObjects(latestUpdate, "Product", "StockLevel");
+        int existingUpdates = updateSet.getUpdatedObjects().length;
 
         Thread.sleep(1000);
         updateProductStockLevel(PRODUCT_ALIAS);
 
-        updateSet = changeLogService.findUpdates(latestUpdate, "Product", "StockLevel");
-        assertEquals(existingUpdates + 1, updateSet.getUpdates().length);
+        updateSet = changeLogService.findUpdatedObjects(latestUpdate, "Product", "StockLevel");
+        assertEquals(existingUpdates + 1, updateSet.getUpdatedObjects().length);
         assertAfterOrSame(latestUpdate, updateSet.getLatestUpdate());
-        assertTrue("Actual: " + updateSet.getUpdates()[0].getPath(),
-                updateSet.getUpdates()[0].getPath().endsWith("/Products/" + PRODUCT_ALIAS));
+        assertTrue("Actual: " + updateSet.getUpdatedObjects()[0].getPath(),
+                updateSet.getUpdatedObjects()[0].getPath().endsWith("/Products/" + PRODUCT_ALIAS));
     }
 
     @Test
     public void testFindProductListPriceUpdates() throws InterruptedException {
-        Calendar latestUpdate = changeLogService.findUpdates(LAST_YEAR, "Product", "ListPrice").getLatestUpdate();
+        Calendar latestUpdate = changeLogService.findUpdatedObjects(LAST_YEAR, "Product", "ListPrice").getLatestUpdate();
 
-        TFindUpdates_Return updateSet = changeLogService.findUpdates(latestUpdate, "Product", "ListPrice");
-        int existingUpdates = updateSet.getUpdates().length;
+        TFindUpdatedObjects_Return updateSet = changeLogService.findUpdatedObjects(latestUpdate, "Product", "ListPrice");
+        int existingUpdates = updateSet.getUpdatedObjects().length;
 
         Thread.sleep(1000);
         updateProductPrice(PRODUCT_ALIAS);
 
-        updateSet = changeLogService.findUpdates(latestUpdate, "Product", "ListPrice");
-        assertEquals(existingUpdates + 1, updateSet.getUpdates().length);
+        updateSet = changeLogService.findUpdatedObjects(latestUpdate, "Product", "ListPrice");
+        assertEquals(existingUpdates + 1, updateSet.getUpdatedObjects().length);
         assertAfterOrSame(latestUpdate, updateSet.getLatestUpdate());
-        assertTrue("Actual: " + updateSet.getUpdates()[0].getPath(),
-                updateSet.getUpdates()[0].getPath().endsWith("/Products/" + PRODUCT_ALIAS));
+        assertTrue("Actual: " + updateSet.getUpdatedObjects()[0].getPath(),
+                updateSet.getUpdatedObjects()[0].getPath().endsWith("/Products/" + PRODUCT_ALIAS));
     }
 
     private void createProduct(String alias) {

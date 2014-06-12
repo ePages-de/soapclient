@@ -6,12 +6,11 @@ import java.util.Calendar;
 import javax.xml.ws.WebServiceException;
 
 import de.epages.ws.WebServiceConfiguration;
-import de.epages.ws.changelog.stub.Port_ChangeLog;
-import de.epages.ws.changelog.stub.TFindChanges_Return;
-import de.epages.ws.changelog.stub.TFindCreates_Return;
-import de.epages.ws.changelog.stub.TFindDeletes_Return;
-import de.epages.ws.changelog.stub.TFindUpdates_Return;
 import de.epages.ws.changelog.stub.ChangeLogServiceLocator;
+import de.epages.ws.changelog.stub.Port_ChangeLog;
+import de.epages.ws.changelog.stub.TFindCreatedObjects_Return;
+import de.epages.ws.changelog.stub.TFindDeletedObjects_Return;
+import de.epages.ws.changelog.stub.TFindUpdatedObjects_Return;
 
 public final class ChangeLogServiceClientImpl implements ChangeLogServiceClient {
 
@@ -28,27 +27,27 @@ public final class ChangeLogServiceClientImpl implements ChangeLogServiceClient 
     }
 
     @Override
-    public TFindCreates_Return findCreates(Calendar createdAfter, String _class) {
+    public TFindCreatedObjects_Return findCreatedObjects(Calendar createdSince, String _class) {
         try {
-            return stub.findCreates(createdAfter, _class);
+            return stub.findCreatedObjects(createdSince, _class);
         } catch (RemoteException e) {
             throw new WebServiceException(e);
         }
     }
 
     @Override
-    public TFindDeletes_Return findDeletes(Calendar deletedAfter, String _class) {
+    public TFindDeletedObjects_Return findDeletedObjects(Calendar deletedSince, String _class) {
         try {
-            return stub.findDeletes(deletedAfter, _class);
+            return stub.findDeletedObjects(deletedSince, _class);
         } catch (RemoteException e) {
             throw new WebServiceException(e);
         }
     }
 
     @Override
-    public TFindUpdates_Return findUpdates(Calendar updatedAfter, String _class, String profile) {
+    public TFindUpdatedObjects_Return findUpdatedObjects(Calendar updatedSince, String _class, String profile) {
         try {
-            return stub.findUpdates(updatedAfter, _class, profile);
+            return stub.findUpdatedObjects(updatedSince, _class, profile);
         } catch (RemoteException e) {
             throw new WebServiceException(e);
         }
