@@ -69,7 +69,7 @@ public class ChangeLogServiceTest {
         createProduct(PRODUCT_ALIAS);
 
         createdObjects = changeLogService.findCreatedObjects(latestCreate, "Product");
-        assertTrue("product found in StockLevel createset", findProductInCreateSet(PRODUCT_ALIAS, createdObjects));
+        assertTrue("product found in createset", findProductInCreateSet(PRODUCT_ALIAS, createdObjects));
 
     }
 
