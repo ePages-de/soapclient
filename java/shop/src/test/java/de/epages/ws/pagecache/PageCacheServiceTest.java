@@ -4,11 +4,11 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 
 public class PageCacheServiceTest {
 
-    private static final PageCacheServiceClientImpl pageCacheService = new PageCacheServiceClientImpl(new WebServiceTestConfiguration());
+    private static final PageCacheServiceClientImpl pageCacheService = new PageCacheServiceClientImpl(new ShopWebServiceTestConfiguration());
 
     /**
      * Delete all cached pages of the shop

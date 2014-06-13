@@ -7,12 +7,12 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.taxarea.model.TGetList_Return;
 
 public class TaxAreaServiceTest {
 
-    private static final TaxAreaServiceClientImpl taxAreaService = new TaxAreaServiceClientImpl(new WebServiceTestConfiguration());
+    private static final TaxAreaServiceClientImpl taxAreaService = new TaxAreaServiceClientImpl(new ShopWebServiceTestConfiguration());
 
     /**
      * Get a list of all tax areas

@@ -5,11 +5,11 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.customergroup.model.TGetList_Return;
 
 public class CustomerGroupServiceTest {
-    private static final CustomerGroupServiceClientImpl customerGroupService = new CustomerGroupServiceClientImpl(new WebServiceTestConfiguration());
+    private static final CustomerGroupServiceClientImpl customerGroupService = new CustomerGroupServiceClientImpl(new ShopWebServiceTestConfiguration());
 
     /**
      * Get a list of all customer groups

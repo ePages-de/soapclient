@@ -9,7 +9,7 @@ import java.math.BigInteger;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.crossselling.model.TDeleteCrossSelling_Input;
 import de.epages.ws.crossselling.model.TDeleteCrossSelling_Return;
 import de.epages.ws.crossselling.model.TExistsCrossSelling_Input;
@@ -22,7 +22,7 @@ import de.epages.ws.crossselling.model.TInsertCrossSelling_Return;
 public class CrossSellingServiceTest {
 
     private static final CrossSellingServiceClientImpl crossSellingService = new CrossSellingServiceClientImpl(
-            new WebServiceTestConfiguration());
+            new ShopWebServiceTestConfiguration());
 
     private final String product = "Products/de_3203104010";
     private final String target_product = "Products/de_3206199010";

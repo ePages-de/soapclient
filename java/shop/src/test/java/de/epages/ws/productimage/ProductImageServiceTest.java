@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.epages.ws.FileUtil;
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.product11.ProductServiceClientImpl;
 import de.epages.ws.product11.model.TCreate_Input;
 import de.epages.ws.productimage.model.TDelete_Return;
@@ -27,9 +27,9 @@ import de.epages.ws.productimage.model.TUpload_Return;
  */
 public class ProductImageServiceTest {
 
-    private static final ProductServiceClientImpl productService = new ProductServiceClientImpl(new WebServiceTestConfiguration());
+    private static final ProductServiceClientImpl productService = new ProductServiceClientImpl(new ShopWebServiceTestConfiguration());
     private static final ProductImageServiceClientImpl productImageService = new ProductImageServiceClientImpl(
-            new WebServiceTestConfiguration());
+            new ShopWebServiceTestConfiguration());
 
     private final String alias = "java_test-1";
     private final String path = "Products/";

@@ -9,7 +9,7 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.common.model.TAttribute;
 import de.epages.ws.shop2.model.TAddressNamed;
 import de.epages.ws.user2.model.TCreate_Input;
@@ -21,7 +21,7 @@ import de.epages.ws.user2.model.TUpdate_Input;
 import de.epages.ws.user2.model.TUpdate_Return;
 
 public class UserServiceTest {
-    private static final UserServiceClientImpl serviceClient = new UserServiceClientImpl(new WebServiceTestConfiguration());
+    private static final UserServiceClientImpl serviceClient = new UserServiceClientImpl(new ShopWebServiceTestConfiguration());
     private final TCreate_Input user_in = new TCreate_Input();
     private final TUpdate_Input user_update = new TUpdate_Input();
 

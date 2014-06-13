@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.common.model.TLocalizedValue;
 import de.epages.ws.customergroup2.model.TCreate_Input;
 import de.epages.ws.customergroup2.model.TCreate_Return;
@@ -21,7 +21,7 @@ import de.epages.ws.customergroup2.model.TUpdate_Return;
  */
 public class CustomerGroupServiceTest {
     private static final CustomerGroupServiceClientImpl customerGroupService = new CustomerGroupServiceClientImpl(
-            new WebServiceTestConfiguration());
+            new ShopWebServiceTestConfiguration());
 
     private final TCreate_Input group_in = new TCreate_Input();
     private final TUpdate_Input group_up = new TUpdate_Input();

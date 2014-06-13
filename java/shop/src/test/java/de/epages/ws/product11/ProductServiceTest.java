@@ -19,7 +19,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.epages.ws.FileUtil;
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.common.model.TAttribute;
 import de.epages.ws.common.model.TLocalizedValue;
 import de.epages.ws.product11.model.TCreate_Input;
@@ -49,7 +49,7 @@ public class ProductServiceTest {
      */
     @Before
     public void setUp() throws IOException {
-        serviceClient = new ProductServiceClientImpl(new WebServiceTestConfiguration());
+        serviceClient = new ProductServiceClientImpl(new ShopWebServiceTestConfiguration());
 
         Product_in = new TCreate_Input();
         Product_update = new TUpdate_Input();

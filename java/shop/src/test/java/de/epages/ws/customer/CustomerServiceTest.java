@@ -12,7 +12,7 @@ import junit.framework.TestSuite;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.common.model.TAttribute;
 import de.epages.ws.customer.model.TCreate_Input;
 import de.epages.ws.customer.model.TCreate_Return;
@@ -27,10 +27,10 @@ import de.epages.ws.customergroup.model.TGetList_Return;
 import de.epages.ws.shop.model.TAddress;
 
 public class CustomerServiceTest {
-    private static final CustomerServiceClientImpl serviceClient = new CustomerServiceClientImpl(new WebServiceTestConfiguration());
+    private static final CustomerServiceClientImpl serviceClient = new CustomerServiceClientImpl(new ShopWebServiceTestConfiguration());
 
     private static final CustomerGroupServiceClientImpl customerGroupService = new CustomerGroupServiceClientImpl(
-            new WebServiceTestConfiguration());
+            new ShopWebServiceTestConfiguration());
 
     private final TCreate_Input customer_in = new TCreate_Input();
     private final TUpdate_Input customer_update = new TUpdate_Input();

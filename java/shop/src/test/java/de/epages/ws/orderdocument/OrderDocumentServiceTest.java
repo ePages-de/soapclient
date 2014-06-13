@@ -10,7 +10,7 @@ import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.rules.ExternalResource;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.orderdocument.model.TCreate_Input;
 import de.epages.ws.orderdocument.model.TCreate_Return;
 import de.epages.ws.orderdocument.model.TDelete_Return;
@@ -22,7 +22,7 @@ import de.epages.ws.orderdocument.model.TGetPackingSlips_Return;
 
 public class OrderDocumentServiceTest {
     private static final OrderDocumentServiceClientImpl serviceClient = new OrderDocumentServiceClientImpl(
-            new WebServiceTestConfiguration());
+            new ShopWebServiceTestConfiguration());
     private static final TCreate_Input invoice_in = new TCreate_Input();
     private static final TCreate_Input packingslip_in = new TCreate_Input();
     private static final TCreate_Input creditnote_in = new TCreate_Input();

@@ -7,7 +7,7 @@ import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.shippingmethod2.model.TGetList_Return;
 
 public class ShippingMethodServiceClientImplTest {
@@ -16,7 +16,7 @@ public class ShippingMethodServiceClientImplTest {
 
     @Before
     public void setUp() {
-        shippingMethodService = new ShippingMethodServiceClientImpl(new WebServiceTestConfiguration());
+        shippingMethodService = new ShippingMethodServiceClientImpl(new ShopWebServiceTestConfiguration());
     }
 
     @Test

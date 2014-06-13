@@ -13,7 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.epages.ws.WebServiceConfiguration;
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.changelog.stub.TFindDeletedObjects_Return;
 import de.epages.ws.changelog.stub.TFindUpdatedObjects_Return;
 import de.epages.ws.common.model.TLocalizedValue;
@@ -31,7 +31,7 @@ public class ChangeLogServiceTest {
 
     private static final String PRODUCT_ALIAS = "javatest-sync-product";
 
-    private static final WebServiceConfiguration config = new WebServiceTestConfiguration();
+    private static final WebServiceConfiguration config = new ShopWebServiceTestConfiguration();
 
     private static final ProductServiceClient productService = new ProductServiceClientImpl(config);
 

@@ -14,7 +14,7 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.catalog6.model.TCreate_Input;
 import de.epages.ws.catalog6.model.TCreate_Return;
 import de.epages.ws.catalog6.model.TDelete_Return;
@@ -29,7 +29,7 @@ import de.epages.ws.common.model.TLocalizedValue;
 
 public class CatalogServiceTest {
 
-    private static final CatalogServiceClientImpl catalogService = new CatalogServiceClientImpl(new WebServiceTestConfiguration());
+    private static final CatalogServiceClientImpl catalogService = new CatalogServiceClientImpl(new ShopWebServiceTestConfiguration());
 
     private final TCreate_Input Catalog_in = new TCreate_Input();
     private final TUpdate_Input Catalog_up = new TUpdate_Input();

@@ -17,7 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.epages.ws.FileUtil;
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.common.model.TAttribute;
 import de.epages.ws.common.model.TLocalizedValue;
 import de.epages.ws.product9.model.TCreate_Input;
@@ -33,7 +33,7 @@ import de.epages.ws.product9.model.TUpdate_Return;
 import de.epages.ws.product9.stub.TFind_Input;
 
 public class ProductServiceTest {
-    private static final ProductServiceClientImpl serviceClient = new ProductServiceClientImpl(new WebServiceTestConfiguration());
+    private static final ProductServiceClientImpl serviceClient = new ProductServiceClientImpl(new ShopWebServiceTestConfiguration());
     private final TCreate_Input Product_in = new TCreate_Input();
     private final TUpdate_Input Product_update = new TUpdate_Input();
     private final TCreate_Input Product_down = new TCreate_Input();

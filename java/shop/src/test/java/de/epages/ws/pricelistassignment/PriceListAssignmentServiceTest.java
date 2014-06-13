@@ -9,7 +9,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.pricelistassignment.model.TGetQuantityDiscounts_Return;
 import de.epages.ws.pricelistassignment.model.TGetScalePrices_Return;
 import de.epages.ws.pricelistassignment.model.TGetValueDiscounts_Return;
@@ -28,7 +28,7 @@ import de.epages.ws.pricelistassignment.model.TValueDiscount;
 
 public class PriceListAssignmentServiceTest {
     private static final PriceListAssignmentServiceClientImpl serviceClient = new PriceListAssignmentServiceClientImpl(
-            new WebServiceTestConfiguration());
+            new ShopWebServiceTestConfiguration());
 
     private final String product = "Products/ho_1112105010";
     private final String pricelist = "PriceLists/RegularCustomer_EUR";

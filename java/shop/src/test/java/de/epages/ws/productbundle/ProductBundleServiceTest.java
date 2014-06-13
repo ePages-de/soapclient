@@ -8,7 +8,7 @@ import java.math.BigInteger;
 
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.productbundle.model.TBundledProduct;
 import de.epages.ws.productbundle.model.TBundledProductPath;
 import de.epages.ws.productbundle.model.TCreate_Input;
@@ -22,7 +22,7 @@ import de.epages.ws.productbundle.model.TGetInfo_Return;
 public class ProductBundleServiceTest {
 
     private static final ProductBundleServiceClientImpl productBundleService = new ProductBundleServiceClientImpl(
-            new WebServiceTestConfiguration());
+            new ShopWebServiceTestConfiguration());
 
     private final String product = "Products/cg_0100504001";
     private final String bundled_product = "Products/de_3203104010"; // Deuter

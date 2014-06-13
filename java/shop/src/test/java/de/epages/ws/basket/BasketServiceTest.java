@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.basket.model.TCreate_Input;
 import de.epages.ws.basket.model.TCreate_Return;
 import de.epages.ws.basket.model.TDelete_Return;
@@ -34,7 +34,7 @@ import de.epages.ws.shop3.model.TAddressNamed;
  */
 public class BasketServiceTest {
 
-    private static final BasketServiceClientImpl basketService = new BasketServiceClientImpl(new WebServiceTestConfiguration());
+    private static final BasketServiceClientImpl basketService = new BasketServiceClientImpl(new ShopWebServiceTestConfiguration());
     private TCreate_Input Basket_in;
     private TUpdate_Input Basket_up;
     private TAttribute BasketAttr_in;
