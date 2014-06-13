@@ -49,7 +49,10 @@ public class ShopWebServiceTestConfiguration implements WebServiceConfiguration 
     }
 
     private static String deriveWebserviceUrl() {
-        String ep6HostName = System.getProperty("wsHostName", LocalEpagesConfReader.getHostNameFromEpagesConf());
+        String ep6HostName = System.getProperty("wsHostName");
+        if (ep6HostName == null) {
+            ep6HostName = LocalEpagesConfReader.getHostNameFromEpagesConf();
+        }
         return String.format("http://%1$s/epages/Store.soap", ep6HostName);
     }
 
