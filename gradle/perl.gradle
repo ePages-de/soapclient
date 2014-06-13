@@ -24,7 +24,7 @@ configure(subprojects.findAll {it.name.contains("perl/")}) {
         }
     }
 
-    task runTests(type:Exec) {
+    task test(type:Exec) {
         description = 'Runs all webservice tests'
         group = 'Test'
         def envmap = [:]
@@ -41,6 +41,6 @@ configure(subprojects.findAll {it.name.contains("perl/")}) {
         commandLine osDependantPerl('runTests.pl')
     }
 
-    task check (dependsOn: runTests)
+    task check (dependsOn: test)
 
 }

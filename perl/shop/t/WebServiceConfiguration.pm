@@ -4,6 +4,7 @@ use base Exporter;
 our @EXPORT = qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD WEBSERVICE_USER WEBSERVICE_SHOP_PATH WEBSERVICE_SHOP_NAME );
 
 use Config::IniFiles;
+use IO::File;
 use Test::More;
 
 #get server from epages/Shared/Config/epages.conf SystemDomainName
@@ -12,7 +13,8 @@ sub _getWServer {
 
     eval{
         if (!defined($WServer) && -e $ENV{EPAGES_CONFIG}.'/epages.conf' ) {
-            my $cfg = Config::IniFiles->new( -file => $ENV{EPAGES_CONFIG}.'/epages.conf' );
+            my $file = IO::File->new( $ENV{EPAGES_CONFIG}.'/epages.conf' );
+            my $cfg = Config::IniFiles->new( -file => $file );
             $WServer = $cfg->val('DE_EPAGES::Object', 'SystemDomainName');
         }
     };
@@ -25,8 +27,6 @@ sub _getWServer {
 
 # Common configuration data for all web services
 use constant WEBSERVICE_SERVER     => _getWServer();
-    #use explicit servername and port for tracing
-    #use constant WEBSERVICE_SERVER     => 'hmoye:8080';
 use constant WEBSERVICE_URL       => $ENV{'wsUrl'}  // 'http://'.WEBSERVICE_SERVER.'/epages/Store.soap';
 use constant WEBSERVICE_SHOP_NAME => $ENV{'wsShop'} // 'DemoShop';
 use constant WEBSERVICE_SHOP_PATH => '/Shops/'.WEBSERVICE_SHOP_NAME.'/';

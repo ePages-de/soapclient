@@ -135,7 +135,7 @@ my $LastCreateNumber = scalar @$ahCreates;
 ok( $LastCreateNumber >= 0, "$LastCreateNumber created Products at last sync time $LastSync");
 #check if nothing of test products in the result
 foreach my $Alias (@TestProducts) {
-    ok( (0 == grep {$_->{Path} =~ m|Products/$Alias$|} @$ahCreates), "$Alias not in findCreatedObjects call before create TestProducts" );   
+    ok( (0 == grep {$_->{Path} =~ m|Products/$Alias$|} @$ahCreates), "$Alias not in findCreatedObjects call before create TestProducts" );
 };
 
 #get creates customers since last sync
@@ -146,7 +146,7 @@ my $LastCreateCustNumber = scalar @$ahCreates;
 ok( $LastCreateCustNumber >= 0, "$LastCreateCustNumber created Customer at last sync time $LastSync");
 #check if nothing of test customer in the result
 foreach my $Alias (@TestCustomers) {
-    ok( (0 == grep {$_->{Path} =~ m|Customers/$Alias$|} @$ahCreates), "$Alias not in findCreatedObjects call before create TestCustomers" );   
+    ok( (0 == grep {$_->{Path} =~ m|Customers/$Alias$|} @$ahCreates), "$Alias not in findCreatedObjects call before create TestCustomers" );
 };
 
 #get products since last sync which updated Content,StockLevel,ListPrice
@@ -157,7 +157,7 @@ my $LastUpdateNumber = scalar @$ahUpdates;
 ok( $LastUpdateNumber >= 0, "$LastUpdateNumber Content updated Products at last sync time $LastSync");
 #check if nothing of test products in the result
 foreach my $Alias (@TestProducts) {
-    ok( (0 == grep {$_->{Path} =~ m|Products/$Alias$|} @$ahUpdates), "$Alias not in findUpdatedObjects Content call" );   
+    ok( (0 == grep {$_->{Path} =~ m|Products/$Alias$|} @$ahUpdates), "$Alias not in findUpdatedObjects Content call" );
 };
 
 $response = $UpdateService->findUpdatedObjects($LastSync, 'Product', 'StockLevel');
@@ -167,7 +167,7 @@ my $LastStockNumber = scalar @$ahUpdates;
 ok( $LastStockNumber >= 0, "$LastStockNumber StockLevel updated Products at last sync time $LastSync");
 #check if nothing of test products in the result
 foreach my $Alias (@TestProducts) {
-    ok( (0 == grep {$_->{Path} =~ m|Products/$Alias$|} @$ahUpdates), "$Alias not in findUpdatedObjects StockLevel call" );   
+    ok( (0 == grep {$_->{Path} =~ m|Products/$Alias$|} @$ahUpdates), "$Alias not in findUpdatedObjects StockLevel call" );
 };
 
 $response = $UpdateService->findUpdatedObjects($LastSync, 'Product', 'ListPrice');
@@ -177,7 +177,7 @@ my $LastPriceNumber = scalar @$ahUpdates;
 ok( $LastPriceNumber >= 0, "$LastPriceNumber Content updated Products at last sync time $LastSync");
 #check if nothing of test products in the result
 foreach my $Alias (@TestProducts) {
-    ok( (0 == grep {$_->{Path} =~ m|Products/$Alias$|} @$ahUpdates), "$Alias not in findUpdatedObjects ListPrice call" );   
+    ok( (0 == grep {$_->{Path} =~ m|Products/$Alias$|} @$ahUpdates), "$Alias not in findUpdatedObjects ListPrice call" );
 };
 
 #get customers since last sync which updated Address
@@ -188,7 +188,7 @@ my $LastUpdateCustNumber = scalar @$ahUpdates;
 ok( $LastUpdateCustNumber >= 0, "$LastUpdateCustNumber Address updated Customer at last sync time $LastSync");
 #check if nothing of test customers in the result
 foreach my $Alias (@TestCustomers) {
-    ok( (0 == grep {$_->{Path} =~ m|Customers/$Alias$|} @$ahUpdates), "$Alias not in findUpdatedObjects Address call" );   
+    ok( (0 == grep {$_->{Path} =~ m|Customers/$Alias$|} @$ahUpdates), "$Alias not in findUpdatedObjects Address call" );
 };
 
 
@@ -203,7 +203,7 @@ $ahCreates = $response->result->{CreatedObjects};
 ok( 3+$LastCreateNumber == @$ahCreates, '3 more created Products');
 #check if all test products in the result
 foreach my $Alias (@TestProducts) {
-    ok( (1 == grep {$_->{Path} =~ m|Products/$Alias$|} @$ahCreates), "$Alias in findCreatedObjects call after create TestProducts" );   
+    ok( (1 == grep {$_->{Path} =~ m|Products/$Alias$|} @$ahCreates), "$Alias in findCreatedObjects call after create TestProducts" );
 };
 
 sleep( 3 );
@@ -251,12 +251,12 @@ ok( $ahUpdates->[0]->{Path} =~ m|Customers/$TestCustomers[0]$|, 'Path of Address
 #get deletes after last sync
 $response = $UpdateService->findDeletedObjects( $NewSync, 'Product' );
 ok( !$response->fault, 'findDeletedObjects Product called' );
-my $ahDeletes = $response->result->{DeletedObjetcs};
+my $ahDeletes = $response->result->{DeletedObjects};
 ok( 0 == scalar @$ahDeletes, 'no product deletes jet');
 
 $response = $UpdateService->findDeletedObjects( $NewSync, 'Customer' );
 ok( !$response->fault, 'findDeletedObjects Customer called' );
-$ahDeletes = $response->result->{DeletedObjetcs};
+$ahDeletes = $response->result->{DeletedObjects};
 ok( 0 == scalar @$ahDeletes, 'no customer deletes jet');
 
 #remove
@@ -266,18 +266,18 @@ removeTestCustomers(@TestCustomers);
 #check remove
 $response = $UpdateService->findDeletedObjects( $NewSync, 'Product' );
 ok( !$response->fault, 'findDeletedObjects called' );
-$ahDeletes = $response->result->{DeletedObjetcs};
+$ahDeletes = $response->result->{DeletedObjects};
 ok( 3 == @$ahDeletes, '3 product deletes now');
 #check if all test products in the result
 foreach my $Alias (@TestProducts) {
-    ok( (1 == grep {$_->{Path} =~ m|Products/$Alias$|} @$ahDeletes), "$Alias in findDeletedObjects call after remove TestProducts" );   
+    ok( (1 == grep {$_->{Path} =~ m|Products/$Alias$|} @$ahDeletes), "$Alias in findDeletedObjects call after remove TestProducts" );
 };
 $response = $UpdateService->findDeletedObjects( $NewSync, 'Customer' );
 ok( !$response->fault, 'findDeletedObjects called' );
-$ahDeletes = $response->result->{DeletedObjetcs};
+$ahDeletes = $response->result->{DeletedObjects};
 ok( 2 == @$ahDeletes, '2 customer deletes now');
 #check if all test customers in the result
 foreach my $Alias (@TestCustomers) {
-    ok( (1 == grep {$_->{Path} =~ m|Customers/$Alias$|} @$ahDeletes), "$Alias in findDeletedObjects call after remove TestCustomers" );   
+    ok( (1 == grep {$_->{Path} =~ m|Customers/$Alias$|} @$ahDeletes), "$Alias in findDeletedObjects call after remove TestCustomers" );
 };
 

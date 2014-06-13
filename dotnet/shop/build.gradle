@@ -53,7 +53,7 @@ def putIfExists = { mymap, prop ->
     }
 }
 
-task runTests(type:Exec, dependsOn: assemble) {
+task test(type:Exec, dependsOn: assemble) {
     description = 'Runs all webservice tests'
     group = 'Test'
     def envmap = [:]
@@ -71,4 +71,4 @@ task runTests(type:Exec, dependsOn: assemble) {
 }
 
 assemble.dependsOn msbuild
-task check (dependsOn: runTests)
+task check (dependsOn: test)
