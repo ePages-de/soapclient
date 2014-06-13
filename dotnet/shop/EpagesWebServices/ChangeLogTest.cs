@@ -33,7 +33,6 @@ namespace EpagesWebServices
 			serviceClient = new ChangeLogServiceClient(new WebServiceConfiguration());
             productServiceClient = new ProductService9Client();
             deleteTestProducts();
-            Thread.Sleep(2000);
         }
 
         /// <summary>
@@ -42,104 +41,95 @@ namespace EpagesWebServices
         [Test]
         public void runAllTests()
         {
-            TFindCreatedObjects_Return creates = testPreCreatedProducts();
-            int NumberOfProducts = creates.CreatedObjects.Length;
 
+
+            //#get last sync time and number of created products
+            TFindCreatedObjects_Return createdData = serviceClient.findCreatedObjects(new DateTime(2013, 4, 14, 3, 44, 55), "Product");
+            DateTime LastSync = createdData.LatestCreate;
+            int LastSyncNumber = createdData.CreatedObjects.Length;
+            string output = String.Format("{0} products created initial", LastSyncNumber);
+            Assert.GreaterOrEqual(LastSyncNumber, 0, output );
+            Console.WriteLine(output);
+
+            //#get created products again only since last sync
+            createdData = serviceClient.findCreatedObjects(LastSync, "Product");
+            int LastCreateNumber = createdData.CreatedObjects.Length;
+            output = String.Format("{0} products created since {1}", LastCreateNumber, LastSync);
+            Assert.GreaterOrEqual(LastSyncNumber, 0, output);
+            Console.WriteLine(output);
+            //#check if nothing of the test products in the result
+            foreach (string path in productPaths)
+                Assert.AreEqual(null, Array.Find(createdData.CreatedObjects, x => x.Path.EndsWith(path)));
+
+            //#get products since last sync which updated Content,StockLevel
+            TFindUpdatedObjects_Return updatedData = serviceClient.findUpdatedObjects(LastSync, "Product", "Content");
+            int LastUpdateNumber = updatedData.UpdatedObjects.Length;
+            output = String.Format("{0} products updated since {1}", LastUpdateNumber, LastSync);
+            Assert.GreaterOrEqual(LastUpdateNumber, 0, output);
+            Console.WriteLine(output);
+            //#check if nothing of the test products in the result
+            foreach (string path in productPaths)
+                Assert.AreEqual(null, Array.Find(updatedData.UpdatedObjects, x => x.Path.EndsWith(path)));
+
+            updatedData = serviceClient.findUpdatedObjects(LastSync, "Product", "StockLevel");
+            int LastStockNumber = updatedData.UpdatedObjects.Length;
+            output = String.Format("{0} products updated stock since {1}", LastUpdateNumber, LastSync);
+            Assert.GreaterOrEqual(LastUpdateNumber, 0, output);
+            Console.WriteLine(output);
+            //#check if nothing of the test products in the result
+            foreach (string path in productPaths)
+                Assert.AreEqual(null, Array.Find(updatedData.UpdatedObjects, x => x.Path.EndsWith(path)));
+
+
+
+            //#create some test products
             ArrayList products = createTestProducts(productAliases);
+            Console.WriteLine("test products created");
 
-            creates = testPostCreatedProducts();
-            Assert.AreEqual(creates.CreatedObjects.Length, NumberOfProducts + 3);
-            
-            TFindUpdatedObjects_Return updates = testCreatedProducts();
-            DateTime dt = updates.LatestUpdate;
 
-            updateStockLevels(2);
-            testStockLevels(dt, 2);
+            //#get last sync time and number of created products
+            createdData = serviceClient.findCreatedObjects(LastSync, "Product");
+            int NowCreateNumber = createdData.CreatedObjects.Length;
+            output = String.Format("now {0} (3 more then {1}) products created since {2}",
+                NowCreateNumber, LastCreateNumber, LastSync);
+            Assert.AreEqual(NowCreateNumber, LastCreateNumber+3, output);
+            Console.WriteLine(output);
+            //#check if all test products in the result
+            foreach (string path in productPaths)
+                Assert.AreNotEqual(null, Array.Find(createdData.CreatedObjects, x => x.Path.EndsWith(path)));
 
+
+            Thread.Sleep(2000);
+
+            //#update content, and get new sync time
             updateContent();
-            testContent(dt);
+            //#get products since last sync which updated Content,StockLevel
+            updatedData = serviceClient.findUpdatedObjects(LastSync, "Product", "Content");
+            DateTime NewSync = updatedData.LatestUpdate;
+            LastSyncNumber = updatedData.UpdatedObjects.Length;
+            output = String.Format("have {0} products updated since {1}", LastSyncNumber, LastSync);
+            Assert.GreaterOrEqual(LastSyncNumber, 0, output);
+            Console.WriteLine(output);
+            updatedData = serviceClient.findUpdatedObjects(NewSync, "Product", "Content");
+            LastSyncNumber = updatedData.UpdatedObjects.Length;
+            output = String.Format("have {0} products updated since {1}", LastSyncNumber, NewSync);
+            Assert.AreEqual(LastSyncNumber, 1, output);
+            Console.WriteLine(output);
 
+            //#update stock
+            updateStockLevels(2);
+            updatedData = serviceClient.findUpdatedObjects(NewSync, "Product", "StockLevel");
+            LastSyncNumber = updatedData.UpdatedObjects.Length;
+            output = String.Format("have {0} products updated stock since {1}", LastSyncNumber, NewSync);
+            Assert.AreEqual(LastSyncNumber, 3, output);
+            Console.WriteLine(output);
+
+
+
+            
+            //#remove
             deleteTestProducts();
-        }
 
-        private TFindCreatedObjects_Return testPreCreatedProducts()
-        {
-            TFindCreatedObjects_Return createdData = serviceClient.findCreatedObjects(new DateTime(2013, 4, 14, 3, 44, 55), "Product");
-            TFindCreatedObject[] creates = createdData.CreatedObjects;
-
-            // the newly created products must NOT be in the creation set
-            foreach (string path in productPaths)
-                Assert.AreEqual(null, Array.Find(creates, x => x.Path.EndsWith(path)));
-
-            return createdData;
-        }
-
-        private TFindCreatedObjects_Return testPostCreatedProducts()
-        {
-            TFindCreatedObjects_Return createdData = serviceClient.findCreatedObjects(new DateTime(2013, 4, 14, 3, 44, 55), "Product");
-            TFindCreatedObject[] creates = createdData.CreatedObjects;
-
-            // the newly created products need to be in the creation set
-            foreach (string path in productPaths)
-                Assert.AreEqual(null, Array.Find(creates, x => x.Path.EndsWith(path)));
-
-            return createdData;
-        }
-
-        private TFindUpdatedObjects_Return testCreatedProducts()
-        {
-            TFindUpdatedObjects_Return updateData = serviceClient.findUpdatedObjects(new DateTime(2013, 4, 14, 3, 44, 55), "Product", "Content");
-            TFindUpdatedObject[] updates = updateData.UpdatedObjects;
-
-            // the newly created products should be in the updated set
-            foreach (string path in productPaths)
-                Assert.AreNotEqual(null, Array.Find(updates, x => x.Path.EndsWith(path)));
-
-            // there must be no updates since creation
-            foreach (string profile in new string[] { "Content", "StockLevel", "ListPrice" })
-                testNoUpdates(profile, updateData.LatestUpdate);
-            testNoDeletes(updateData.LatestUpdate);
-
-            return updateData;
-        }
-
-        private TFindUpdatedObjects_Return testNoUpdates(string profile, DateTime since)
-        {
-            TFindUpdatedObjects_Return updateData = serviceClient.findUpdatedObjects(since, "Product", profile);
-			TFindUpdatedObject[] updates = updateData.UpdatedObjects;
-            Assert.AreEqual(null, updates);
-
-            return updateData;
-        }
-
-        private TFindDeletedObjects_Return testNoDeletes(DateTime since)
-        {
-            TFindDeletedObjects_Return deleteData = serviceClient.findDeletedObjects(since, "Product");
-			TFindDeletedObject[] deletes = deleteData.DeletedObjects;
-            Assert.AreEqual(null, deletes);
-
-            return deleteData;
-        }
-
-        private TFindUpdatedObjects_Return testStockLevels(DateTime since, int level)
-        {
-            TFindUpdatedObjects_Return updateData = serviceClient.findUpdatedObjects(since, "Product", "StockLevel");
-			TFindUpdatedObject[] updates = updateData.UpdatedObjects;
-            foreach (string path in productPaths)
-            {
-                object product = Array.Find(updates, x => x.Path.EndsWith(path));
-                Assert.AreNotEqual(null, product);
-            }
-
-            ArrayList infoData = productServiceClient.getInfo(productPaths);
-            Assert.AreEqual(productPaths.Length, infoData.Count);
-            foreach (object product in infoData)
-            {
-                Assert.AreEqual(level, ((TGetInfo_Return)product).StockLevel);
-            }
-            foreach (string profile in new string[] { "Content", "ListPrice" })
-                testNoUpdates(profile, since);
-            return updateData;
         }
 
         private ArrayList createTestProducts(string[] aliases)
@@ -188,27 +178,6 @@ namespace EpagesWebServices
             updates.Add(update);
 
             return productServiceClient.update(updates.ToArray());
-        }
-
-        private TFindUpdatedObjects_Return testContent(DateTime since)
-        {
-            TFindUpdatedObjects_Return updateData = serviceClient.findUpdatedObjects(since, "Product", "Content");
-			TFindUpdatedObject[] updates = updateData.UpdatedObjects;
-            object productUpdate = Array.Find(updates, x => x.Path.EndsWith(productPaths[0]));
-            Assert.AreNotEqual(null, productUpdate);
-            Assert.AreEqual(1, updates.Length);
-
-            ArrayList infoData = productServiceClient.getInfo(new string[]{productPaths[0]});
-            Assert.AreEqual(1, infoData.Count);
-            foreach (TLocalizedValue name in ((TGetInfo_Return)infoData[0]).Name)
-            {
-                if (name.LanguageCode == "de")
-                {
-                    Assert.AreEqual(name.Value, "Updated DotNetTestProduct " + productPaths[0]);
-                }
-            }
-
-            return updateData;
         }
 
         private ArrayList updateStockLevels(int newVal)
