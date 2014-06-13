@@ -17,4 +17,8 @@ public class Assert {
     static void assertAfterOrSame(Calendar actual, Calendar after) {
         assertTrue(printDate("Actual", actual) + "," + printDate("After", after), after.getTimeInMillis() >= actual.getTimeInMillis());
     }
+
+    static void assertGreaterOrEquals(long actual, long greaterOrEqual) {
+        assertTrue("Actual: " + actual + "; GreaterOrEquals: " + greaterOrEqual, greaterOrEqual >= actual);
+    }
 }

@@ -1,7 +1,9 @@
 package de.epages.ws.changelog;
 
 import static de.epages.ws.changelog.Assert.assertAfterOrSame;
+import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
@@ -12,8 +14,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.epages.ws.WebServiceConfiguration;
 import de.epages.ws.ShopWebServiceTestConfiguration;
+import de.epages.ws.WebServiceConfiguration;
 import de.epages.ws.changelog.stub.TFindDeletedObjects_Return;
 import de.epages.ws.changelog.stub.TFindUpdatedObjects_Return;
 import de.epages.ws.common.model.TLocalizedValue;
@@ -62,7 +64,7 @@ public class ChangeLogServiceTest {
 
         assertEquals(existingDeletes + 1, deleteSet.getDeletedObjects().length);
         assertAfterOrSame(latestDelete, deleteSet.getLatestDelete());
-        assertEquals("Products/" + PRODUCT_ALIAS, deleteSet.getDeletedObjects()[0].getPath());
+        assertThat("Expecting absolute path", deleteSet.getDeletedObjects()[0].getPath(), endsWith("/Products/" + PRODUCT_ALIAS));
     }
 
     @Test
@@ -78,8 +80,7 @@ public class ChangeLogServiceTest {
         updateSet = changeLogService.findUpdatedObjects(latestUpdate, "Product", "Content");
         assertEquals(existingUpdates + 1, updateSet.getUpdatedObjects().length);
         assertAfterOrSame(latestUpdate, updateSet.getLatestUpdate());
-        assertTrue("Actual: " + updateSet.getUpdatedObjects()[0].getPath(),
-                updateSet.getUpdatedObjects()[0].getPath().endsWith("/Products/" + PRODUCT_ALIAS));
+        assertThat("Expecting absolute path", updateSet.getUpdatedObjects()[0].getPath(), endsWith("/Products/" + PRODUCT_ALIAS));
     }
 
     @Test
@@ -95,8 +96,7 @@ public class ChangeLogServiceTest {
         updateSet = changeLogService.findUpdatedObjects(latestUpdate, "Product", "StockLevel");
         assertEquals(existingUpdates + 1, updateSet.getUpdatedObjects().length);
         assertAfterOrSame(latestUpdate, updateSet.getLatestUpdate());
-        assertTrue("Actual: " + updateSet.getUpdatedObjects()[0].getPath(),
-                updateSet.getUpdatedObjects()[0].getPath().endsWith("/Products/" + PRODUCT_ALIAS));
+        assertThat("Expecting absolute path", updateSet.getUpdatedObjects()[0].getPath(), endsWith("/Products/" + PRODUCT_ALIAS));
     }
 
     @Test
@@ -112,8 +112,7 @@ public class ChangeLogServiceTest {
         updateSet = changeLogService.findUpdatedObjects(latestUpdate, "Product", "ListPrice");
         assertEquals(existingUpdates + 1, updateSet.getUpdatedObjects().length);
         assertAfterOrSame(latestUpdate, updateSet.getLatestUpdate());
-        assertTrue("Actual: " + updateSet.getUpdatedObjects()[0].getPath(),
-                updateSet.getUpdatedObjects()[0].getPath().endsWith("/Products/" + PRODUCT_ALIAS));
+        assertThat("Expecting absolute path", updateSet.getUpdatedObjects()[0].getPath(), endsWith("/Products/" + PRODUCT_ALIAS));
     }
 
     private void createProduct(String alias) {
