@@ -3,11 +3,11 @@ package de.epages.ws.changelog;
 import static de.epages.ws.changelog.Assert.assertAfterOrSame;
 import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import org.joda.time.DateTime;
 import org.junit.After;
@@ -16,9 +16,11 @@ import org.junit.Test;
 
 import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.WebServiceConfiguration;
+import de.epages.ws.changelog.stub.TFindCreatedObject;
+import de.epages.ws.changelog.stub.TFindCreatedObjects_Return;
 import de.epages.ws.changelog.stub.TFindDeletedObjects_Return;
+import de.epages.ws.changelog.stub.TFindUpdatedObject;
 import de.epages.ws.changelog.stub.TFindUpdatedObjects_Return;
-import de.epages.ws.common.model.TLocalizedValue;
 import de.epages.ws.product12.ProductServiceClient;
 import de.epages.ws.product12.ProductServiceClientImpl;
 import de.epages.ws.product12.model.TCreate_Input;
@@ -39,7 +41,8 @@ public class ChangeLogServiceTest {
 
     private static final ChangeLogServiceClient changeLogService = new ChangeLogServiceClientImpl(config);
 
-    private static final GregorianCalendar LAST_YEAR = DateTime.now().minusYears(1).toGregorianCalendar();
+    // use 1 day time frame to be safe against mis-aligned system clocks
+    private static final Calendar START = DateTime.now().minusDays(1).toGregorianCalendar();
 
     @Before
     public void before() {
@@ -52,14 +55,31 @@ public class ChangeLogServiceTest {
     }
 
     @Test
+    public void testFindCreatedObjects() throws InterruptedException {
+        Calendar latestCreate = changeLogService.findCreatedObjects(START, "Product").getLatestCreate();
+
+        // wait 2 seconds to be safe that we're outside of the old timeframe
+        Thread.sleep(2000);
+        latestCreate.add(Calendar.SECOND, 2);
+
+        TFindCreatedObjects_Return createdObjects = changeLogService.findCreatedObjects(latestCreate, "Product");
+        assertFalse("product not found in createset", findProductInCreateSet(PRODUCT_ALIAS, createdObjects));
+
+        deleteProduct(PRODUCT_ALIAS);
+        createProduct(PRODUCT_ALIAS);
+
+        createdObjects = changeLogService.findCreatedObjects(latestCreate, "Product");
+        assertTrue("product found in StockLevel createset", findProductInCreateSet(PRODUCT_ALIAS, createdObjects));
+
+    }
+
+    @Test
     public void testFindDeletedObjects() {
-        Calendar latestDelete = changeLogService.findDeletedObjects(LAST_YEAR, "Product").getLatestDelete();
-        latestDelete = new DateTime(latestDelete.getTimeInMillis()).plusMillis(1000).toGregorianCalendar();
+        Calendar latestDelete = changeLogService.findDeletedObjects(START, "Product").getLatestDelete();
         TFindDeletedObjects_Return deleteSet = changeLogService.findDeletedObjects(latestDelete, "Product");
         int existingDeletes = deleteSet.getDeletedObjects().length;
 
         deleteProduct(PRODUCT_ALIAS);
-
         deleteSet = changeLogService.findDeletedObjects(latestDelete, "Product");
 
         assertEquals(existingDeletes + 1, deleteSet.getDeletedObjects().length);
@@ -68,51 +88,38 @@ public class ChangeLogServiceTest {
     }
 
     @Test
-    public void testFindProductContentUpdates() throws InterruptedException {
-        Calendar latestUpdate = changeLogService.findUpdatedObjects(LAST_YEAR, "Product", "Content").getLatestUpdate();
+    public void testFindProductUpdates() {
+        TFindUpdatedObjects_Return listPriceUpdateSet = changeLogService.findUpdatedObjects(START, "Product", "ListPrice");
+        assertTrue("product found in ListPrice update set", findProductInUpdateSet(PRODUCT_ALIAS, listPriceUpdateSet));
 
-        TFindUpdatedObjects_Return updateSet = changeLogService.findUpdatedObjects(latestUpdate, "Product", "Content");
-        int existingUpdates = updateSet.getUpdatedObjects().length;
+        TFindUpdatedObjects_Return stockLevelUpdateSet = changeLogService.findUpdatedObjects(listPriceUpdateSet.getLatestUpdate(), "Product", "StockLevel");
+        assertFalse("product not found in StockLevel update set yet", findProductInUpdateSet(PRODUCT_ALIAS, stockLevelUpdateSet));
 
-        Thread.sleep(1000);
-        updateProductContent(PRODUCT_ALIAS);
-
-        updateSet = changeLogService.findUpdatedObjects(latestUpdate, "Product", "Content");
-        assertEquals(existingUpdates + 1, updateSet.getUpdatedObjects().length);
-        assertAfterOrSame(latestUpdate, updateSet.getLatestUpdate());
-        assertThat("Expecting absolute path", updateSet.getUpdatedObjects()[0].getPath(), endsWith("/Products/" + PRODUCT_ALIAS));
-    }
-
-    @Test
-    public void testFindProductStockLevelUpdates() throws InterruptedException {
-        Calendar latestUpdate = changeLogService.findUpdatedObjects(LAST_YEAR, "Product", "StockLevel").getLatestUpdate();
-
-        TFindUpdatedObjects_Return updateSet = changeLogService.findUpdatedObjects(latestUpdate, "Product", "StockLevel");
-        int existingUpdates = updateSet.getUpdatedObjects().length;
-
-        Thread.sleep(1000);
         updateProductStockLevel(PRODUCT_ALIAS);
+        TFindUpdatedObjects_Return stockLevelUpdateSet2 = changeLogService.findUpdatedObjects(listPriceUpdateSet.getLatestUpdate(), "Product", "ListPrice");
+        assertTrue("product found in StockLevel update set", findProductInUpdateSet(PRODUCT_ALIAS, stockLevelUpdateSet2));
 
-        updateSet = changeLogService.findUpdatedObjects(latestUpdate, "Product", "StockLevel");
-        assertEquals(existingUpdates + 1, updateSet.getUpdatedObjects().length);
-        assertAfterOrSame(latestUpdate, updateSet.getLatestUpdate());
-        assertThat("Expecting absolute path", updateSet.getUpdatedObjects()[0].getPath(), endsWith("/Products/" + PRODUCT_ALIAS));
+        assertAfterOrSame(listPriceUpdateSet.getLatestUpdate(), stockLevelUpdateSet2.getLatestUpdate());
     }
 
-    @Test
-    public void testFindProductListPriceUpdates() throws InterruptedException {
-        Calendar latestUpdate = changeLogService.findUpdatedObjects(LAST_YEAR, "Product", "ListPrice").getLatestUpdate();
+    private boolean findProductInUpdateSet(String alias, TFindUpdatedObjects_Return updateSet) {
+        boolean found = false;
+        for (TFindUpdatedObject element : updateSet.getUpdatedObjects()) {
+            if (element.getPath().endsWith("/Products/" + alias)) {
+                found = true;
+            }
+        }
+        return found;
+    }
 
-        TFindUpdatedObjects_Return updateSet = changeLogService.findUpdatedObjects(latestUpdate, "Product", "ListPrice");
-        int existingUpdates = updateSet.getUpdatedObjects().length;
-
-        Thread.sleep(1000);
-        updateProductPrice(PRODUCT_ALIAS);
-
-        updateSet = changeLogService.findUpdatedObjects(latestUpdate, "Product", "ListPrice");
-        assertEquals(existingUpdates + 1, updateSet.getUpdatedObjects().length);
-        assertAfterOrSame(latestUpdate, updateSet.getLatestUpdate());
-        assertThat("Expecting absolute path", updateSet.getUpdatedObjects()[0].getPath(), endsWith("/Products/" + PRODUCT_ALIAS));
+    private boolean findProductInCreateSet(String alias, TFindCreatedObjects_Return createSet) {
+        boolean found = false;
+        for (TFindCreatedObject element : createSet.getCreatedObjects()) {
+            if (element.getPath().endsWith("/Products/" + alias)) {
+                found = true;
+            }
+        }
+        return found;
     }
 
     private void createProduct(String alias) {
@@ -122,7 +129,8 @@ public class ChangeLogServiceTest {
         TCreate_Input Product_in = new TCreate_Input();
         Product_in.setAlias(alias);
         Product_in.setTaxClass("/TaxMatrixGermany/normal");
-        Product_in.setStockLevel(140f);
+        // do not set stocklevel yet.
+        // Product_in.setStockLevel(140f);
         Product_in.setProductPrices(new TProductPrice[] { new TProductPrice(123f, "EUR", "gross"), });
         TCreate_Return[] created = productService.create(new TCreate_Input[] { Product_in });
         assertTrue(created[0].getCreated());
@@ -141,26 +149,10 @@ public class ChangeLogServiceTest {
         return Products_exists_out[0].getExists();
     }
 
-    private void updateProductContent(String alias) {
-        TUpdate_Input Product_update = new TUpdate_Input();
-        Product_update.setPath("Products/" + alias);
-        Product_update.setDescription(new TLocalizedValue[] { new TLocalizedValue("de", "new description") });
-        TUpdate_Return[] updated = productService.update(new TUpdate_Input[] { Product_update });
-        assertTrue(updated[0].getUpdated());
-    }
-
     private void updateProductStockLevel(String alias) {
         TUpdate_Input Product_update = new TUpdate_Input();
         Product_update.setPath("Products/" + alias);
         Product_update.setStockLevel(3f);
-        TUpdate_Return[] updated = productService.update(new TUpdate_Input[] { Product_update });
-        assertTrue(updated[0].getUpdated());
-    }
-
-    private void updateProductPrice(String alias) {
-        TUpdate_Input Product_update = new TUpdate_Input();
-        Product_update.setPath("Products/" + alias);
-        Product_update.setProductPrices(new TProductPrice[] { new TProductPrice(150f, "EUR", "gross"), });
         TUpdate_Return[] updated = productService.update(new TUpdate_Input[] { Product_update });
         assertTrue(updated[0].getUpdated());
     }
