@@ -1,6 +1,6 @@
 use strict;
 use utf8;
-use Test::More tests => 179;
+use Test::More tests => 177;
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD WEBSERVICE_SHOP_PATH WEBSERVICE_SHOP_NAME);
 use WebServiceTools qw( cmpDateTime GetFileContent );
