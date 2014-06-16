@@ -9,7 +9,7 @@ use Test::More;
 
 #get server from epages/Shared/Config/epages.conf SystemDomainName
 sub _getWServer {
-    my $WServer = $ENV{'ep6HostName'};
+    my $WServer = $ENV{'wsHostName'};
 
     eval{
         if (!defined($WServer) && -e $ENV{EPAGES_CONFIG}.'/epages.conf' ) {
@@ -20,7 +20,7 @@ sub _getWServer {
     };
 
     print "try to connect to server '$WServer'\n";
-    print "the server can be set via ENV variable 'ep6HostName'\n";
+    print "the server can be set via ENV variable 'wsHostName'\n";
 
     return $WServer;
 }
