@@ -244,9 +244,7 @@ public class CatalogServiceTest {
      */
     public void testGetCategories() {
         String[] Catalogs_out = catalogService.getCategories();
-
-        // test if creation was successful
-        assertEquals("create result set", 13, Catalogs_out.length);
+        assertTrue("categories found.", Catalogs_out.length > 12);
     }
 
     /**
