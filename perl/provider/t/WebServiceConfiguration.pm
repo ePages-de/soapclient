@@ -6,6 +6,15 @@ our @EXPORT = qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD WEBSERVICE
 use Config::IniFiles;
 use IO::File;
 use Test::More;
+use Log::Log4perl;
+Log::Log4perl->init_once('../../conf/log4perl.conf');
+
+BEGIN {
+    eval "use SOAP::Transport::HTTP::Log4perl logger => 'COMMUNICATION';";
+    if ($@) {
+        warn 'install SOAP::Transport::HTTP::Log4perl for communications logging';
+    }
+}
 
 #get server from epages/Shared/Config/epages.conf SystemDomainName
 sub _getWServer {
@@ -31,6 +40,8 @@ use constant WEBSERVICE_LOGIN     => $ENV{'wsUser'} // "/Providers/Distributor/U
 use constant WEBSERVICE_PASSWORD  => $ENV{'wsPassword'} // "admin";
 use constant WEBSERVICE_USER      => WEBSERVICE_LOGIN.':'.WEBSERVICE_PASSWORD;
 
-diag("Running with these settings: " . WEBSERVICE_SERVER . " " . WEBSERVICE_URL . " " . WEBSERVICE_LOGIN . ":" . WEBSERVICE_PASSWORD);
+my $log = Log::Log4perl->get_logger('COMMUNICATION');
+$log->debug("Running with these settings: " . WEBSERVICE_SERVER . " " . WEBSERVICE_URL . " " . WEBSERVICE_LOGIN . ":" . WEBSERVICE_PASSWORD);
+
 
 1;
