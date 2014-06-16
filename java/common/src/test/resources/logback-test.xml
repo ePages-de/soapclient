@@ -4,21 +4,22 @@
   http://logback.qos.ch/manual/configuration.html
   -->
 <configuration scan="true" scanPeriod="10 seconds">
+  <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
   <!--  http://logback.qos.ch/manual/configuration.html#LevelChangePropagator -->
   <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
     <resetJUL>true</resetJUL>
   </contextListener>
 
-  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-    <!-- encoders are assigned the type
-         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <file>logs/communication.log</file>
+
     <encoder>
-      <pattern>%msg%n</pattern>
+      <pattern>%d{HH:mm:ss.SSS} %level - %msg%n</pattern>
     </encoder>
   </appender>
 
   <root level="INFO">
-    <appender-ref ref="STDOUT" />
+    <appender-ref ref="FILE" />
   </root>
   <logger name="httpclient.wire" level="DEBUG" />
  </configuration>

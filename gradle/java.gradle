@@ -124,4 +124,9 @@ configure(subprojects.findAll {it.name.contains("java/")}) {
     }
 
     artifacts { archives sourcesJar }
+
+    clean {
+        delete "logs"
+    }
+
 }

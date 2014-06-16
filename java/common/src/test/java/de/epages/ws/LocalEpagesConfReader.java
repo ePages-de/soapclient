@@ -21,6 +21,6 @@ public class LocalEpagesConfReader {
             }
             return p.getProperty("SystemDomainName");
         }
-        throw new IllegalStateException("Cannot find local epages6 installation. Pass wsUrl or ep6HostName");
+        throw new IllegalStateException("Cannot find local epages6 installation. Pass wsUrl or wsHostName");
     }
 }
