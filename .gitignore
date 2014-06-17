@@ -9,12 +9,10 @@ bin/
 *~
 *.class
 .idea
-**/logs/
 *.log
 target/
 *.bak
 .pmd
 .checkstyle
-logs/
 .sonar/
 *.userprefs

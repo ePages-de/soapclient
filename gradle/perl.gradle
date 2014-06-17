@@ -44,7 +44,7 @@ configure(subprojects.findAll {it.name.contains("perl/")}) {
     task check (dependsOn: test)
 
     task clean << {
-        delete "logs"
+        delete "logs/communication.log"
     }
 
 }
