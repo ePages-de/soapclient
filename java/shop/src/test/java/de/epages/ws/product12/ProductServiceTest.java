@@ -4,7 +4,6 @@ import static de.epages.ws.common.AssertNoError.assertNoError;
 import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -464,7 +463,7 @@ public class ProductServiceTest {
         TProductPrice[] productPrices = Products_info_out[0].getProductPrices();
         for (TProductPrice tProductPrice : productPrices) {
             if ("EUR".equals(tProductPrice.getCurrencyID())) {
-                assertEqual(tProductPrice.getPrice(), (float) 123);
+                assertEquals(tProductPrice.getPrice(), 123f, 0.0f);
             }
         }
     }
