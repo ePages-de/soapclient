@@ -291,6 +291,15 @@ public class Bind_Order_SOAPStub extends org.apache.axis.client.Stub implements 
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/OrderTypes/2013/01", "ListOfShippingTaxes");
+            cachedSerQNames.add(qName);
+            cls = de.epages.ws.order11.model.TShippingTax[].class;
+            cachedSerClasses.add(cls);
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/OrderTypes/2013/01", "TShippingTax");
+            qName2 = null;
+            cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
+            cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
+
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/OrderTypes/2013/01", "TBaseLineItem");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.order11.model.TBaseLineItem.class;
@@ -503,6 +512,13 @@ public class Bind_Order_SOAPStub extends org.apache.axis.client.Stub implements 
             qName = new javax.xml.namespace.QName("urn://epages.de/WebService/OrderTypes/2013/01", "TShippingOptionLineItem");
             cachedSerQNames.add(qName);
             cls = de.epages.ws.order11.model.TShippingOptionLineItem.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("urn://epages.de/WebService/OrderTypes/2013/01", "TShippingTax");
+            cachedSerQNames.add(qName);
+            cls = de.epages.ws.order11.model.TShippingTax.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
