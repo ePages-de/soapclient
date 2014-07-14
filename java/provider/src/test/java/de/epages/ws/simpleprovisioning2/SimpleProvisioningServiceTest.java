@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import de.epages.ws.ProviderWebServiceTestConfiguration;
@@ -61,7 +60,6 @@ public class SimpleProvisioningServiceTest {
     }
 
     @Test
-    @Ignore("bug in service2 impl!")
     public void testSuite() {
         // create a shop
         TCreateShop Shop_create = new TCreateShop();
@@ -160,7 +158,6 @@ public class SimpleProvisioningServiceTest {
     }
 
     @Test
-    @Ignore("bug in service2 impl!")
     public void testDefaults() {
         // create a new shop with a minimum amount of data
         TCreateShop Shop_create = new TCreateShop();
@@ -191,3 +188,4 @@ public class SimpleProvisioningServiceTest {
         deleteIfExists(ALIAS);
     }
 }
+ 
