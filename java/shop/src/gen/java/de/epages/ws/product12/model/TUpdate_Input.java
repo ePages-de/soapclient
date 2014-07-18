@@ -118,7 +118,7 @@ public class TUpdate_Input  implements java.io.Serializable {
     private de.epages.ws.common.model.TLocalizedValue[] URI;
 
     /* Indicates that the product have download files. */
-    private boolean isDownloadProduct;
+    private java.lang.Boolean isDownloadProduct;
 
     /* Temporal delimitation for download. */
     private java.math.BigInteger maxDownloadTime;
@@ -206,7 +206,7 @@ public class TUpdate_Input  implements java.io.Serializable {
            java.util.Calendar availabilityDate,
            java.util.Calendar expiryDate,
            de.epages.ws.common.model.TLocalizedValue[] URI,
-           boolean isDownloadProduct,
+           java.lang.Boolean isDownloadProduct,
            java.math.BigInteger maxDownloadTime,
            java.math.BigInteger maxDownloadCount,
            de.epages.ws.product12.model.TDownload[] downloadProductMaps,
@@ -968,7 +968,7 @@ public class TUpdate_Input  implements java.io.Serializable {
      * 
      * @return isDownloadProduct   * Indicates that the product have download files.
      */
-    public boolean isIsDownloadProduct() {
+    public java.lang.Boolean getIsDownloadProduct() {
         return isDownloadProduct;
     }
 
@@ -978,7 +978,7 @@ public class TUpdate_Input  implements java.io.Serializable {
      * 
      * @param isDownloadProduct   * Indicates that the product have download files.
      */
-    public void setIsDownloadProduct(boolean isDownloadProduct) {
+    public void setIsDownloadProduct(java.lang.Boolean isDownloadProduct) {
         this.isDownloadProduct = isDownloadProduct;
     }
 
@@ -1402,7 +1402,9 @@ public class TUpdate_Input  implements java.io.Serializable {
             ((this.URI==null && other.getURI()==null) || 
              (this.URI!=null &&
               java.util.Arrays.equals(this.URI, other.getURI()))) &&
-            this.isDownloadProduct == other.isIsDownloadProduct() &&
+            ((this.isDownloadProduct==null && other.getIsDownloadProduct()==null) || 
+             (this.isDownloadProduct!=null &&
+              this.isDownloadProduct.equals(other.getIsDownloadProduct()))) &&
             ((this.maxDownloadTime==null && other.getMaxDownloadTime()==null) || 
              (this.maxDownloadTime!=null &&
               this.maxDownloadTime.equals(other.getMaxDownloadTime()))) &&
@@ -1625,7 +1627,9 @@ public class TUpdate_Input  implements java.io.Serializable {
                 }
             }
         }
-        _hashCode += (isIsDownloadProduct() ? Boolean.TRUE : Boolean.FALSE).hashCode();
+        if (getIsDownloadProduct() != null) {
+            _hashCode += getIsDownloadProduct().hashCode();
+        }
         if (getMaxDownloadTime() != null) {
             _hashCode += getMaxDownloadTime().hashCode();
         }
@@ -1986,6 +1990,7 @@ public class TUpdate_Input  implements java.io.Serializable {
         elemField.setFieldName("isDownloadProduct");
         elemField.setXmlName(new javax.xml.namespace.QName("", "IsDownloadProduct"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "boolean"));
+        elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
