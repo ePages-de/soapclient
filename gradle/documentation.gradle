@@ -1,0 +1,61 @@
+////////// documentatiaon tasks /////////////
+configurations { xslt }
+
+repositories { mavenCentral() }
+
+dependencies { xslt "net.sf.saxon:saxon:8.7" }
+
+task wsdlCopy(type: Copy) {
+    def doc = project.file('build/doc')
+    destinationDir = doc
+    from(file("${System.env.EPAGES_WEBROOT}/WSDL/"))
+    include '*.wsdl'
+    include '*.xsd'
+    into doc
+    filter { String line ->
+        line.replaceAll("schemaLocation=\"","schemaLocation=\"" + project.file('build/doc').path + "/")
+    }
+}
+
+def transform = { basedir, service -> 
+    ant.xslt(
+        in:        basedir.path + '/' + service + '.wsdl',
+        style:     project.file('gradle/wsdl-viewer.xsl'),
+        out:       project.file('build/doc/' + service + '.html'),
+        classpath: configurations.xslt.asPath
+   )
+}
+
+task htmlDocumentation(dependsOn: wsdlCopy) {
+    def doc = project.file('build/doc')
+    outputs.dir doc
+	doLast {
+		currentServices.each() { service ->
+			transform(doc, service)
+		}
+	}
+}
+
+////////// publishing /////////////
+apply plugin: 'maven-publish'
+apply plugin: 'bintray'
+
+task documentationZip(type: Zip) {
+    def fileName =  "soapclient-documentation-${rootProject.version}"
+    destinationDir = project.file('build/distribution')
+    from(htmlDocumentation)
+    into fileName
+    baseName = fileName
+}
+
+configurations { docDist }
+artifacts { docDist documentationZip }
+
+tasks['bintrayUpload'].dependsOn documentationZip
+bintray.configurations = [ 'docDist' ]
+
+////////// cleanup /////////////
+task clean(type: Delete) {
+	delete "build/doc"
+	delete "build/distribution"
+}
