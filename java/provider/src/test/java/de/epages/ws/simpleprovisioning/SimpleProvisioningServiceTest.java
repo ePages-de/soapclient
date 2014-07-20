@@ -22,7 +22,6 @@ import de.epages.ws.simpleprovisioning.stub.TUpdateShop;
 /**
  * A JUnit TestSuite to test epages SimpleProvisioningService.
  */
-@Ignore("bug in service impl!")
 public class SimpleProvisioningServiceTest {
 
     private static final SimpleProvisioningServiceClient simpleProvisioningService = new SimpleProvisioningServiceClientImpl(
@@ -71,7 +70,7 @@ public class SimpleProvisioningServiceTest {
         Shop_create.setAlias(ALIAS);
         Shop_create.setShopType("ECom100");
         Shop_create.setDomainName("mydomain.com");
-        Shop_create.setHasSSLCertificate(true);
+        Shop_create.setHasSSLCertificate(false);
         Shop_create.setIsClosed(false);
         Shop_create.setIsTrialShop(true);
         Shop_create.setIsInternalTestShop(false);
