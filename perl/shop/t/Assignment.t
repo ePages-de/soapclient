@@ -25,21 +25,21 @@ my $hAssignment_in = {
 sub testAssignProductToCatalog {
 
     my $ahResults = $AssignmentService->assignProductToCatalog( [ $hAssignment_in ] )->result;
-    ok( scalar @$ahResults == 1, "assignProductToCatalog result count" );
+    is( scalar @$ahResults, 1, "assignProductToCatalog result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "assignProductToCatalog: no error" );
     diag "Error: $hResult->{'Error'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Product'} eq $options->{'Product'}, "product path" );
-    ok( $hResult->{'assigned'} == 1, "assigned?" );
+    is( $hResult->{'assigned'}, 1, "assigned?" );
 }
 
 # get Catalogs assign to Product and check result
 sub testGetCatalogsAssignedToProduct {
 
     my $ahResults = $AssignmentService->getCatalogsAssignedToProduct( [$options->{'Product'}] )->result;
-    ok( scalar @$ahResults == 1, "getCatalogsAssignedToProduct result count" );
+    is( scalar @$ahResults, 1, "getCatalogsAssignedToProduct result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "getCatalogsAssignedToProduct: no error" );
@@ -52,14 +52,14 @@ sub testGetCatalogsAssignedToProduct {
     foreach (@{$hResult->{'Catalogs'}}) {
         $found = 1 if $_->{'Path'} eq $options->{'Catalog'};
     }
-    ok( $found == 1, "is Catalog assigned?" );
+    is( $found, 1, "is Catalog assigned?" );
 }
 
 # get Products assign to Catalog and check result
 sub testGetProductsAssignedToCatalog {
 
     my $ahResults = $AssignmentService->getProductsAssignedToCatalog( [$options->{'Catalog'}] )->result;
-    ok( scalar @$ahResults == 1, "getProductsAssignedToCatalog result count" );
+    is( scalar @$ahResults, 1, "getProductsAssignedToCatalog result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "getProductsAssignedToCatalog: no error" );
@@ -72,21 +72,21 @@ sub testGetProductsAssignedToCatalog {
     foreach (@{$hResult->{'Products'}}) {
         $found = 1 if $_->{'Path'} eq $options->{'Product'};
     }
-    ok( $found == 1, "is Product assigned?" );
+    is( $found, 1, "is Product assigned?" );
 }
 
 # Remove an Assignment and check if no error occured.
 sub testRemoveProductFromCatalog {
 
     my $ahResults = $AssignmentService->removeProductFromCatalog( [$hAssignment_in] )->result;
-    ok( scalar @$ahResults == 1, "removeProductFromCatalog result count" );
+    is( scalar @$ahResults, 1, "removeProductFromCatalog result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "removeProductFromCatalog: no error" );
     diag "Error: $hResult->{'Error'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Product'} eq $options->{'Product'}, "product path" );
-    ok( $hResult->{'removed'} == 1, "removed?" );
+    is( $hResult->{'removed'}, 1, "removed?" );
 }
 
 # Test if a Assignment exists or not
@@ -94,14 +94,14 @@ sub testIsProductAssignedToCatalog {
     my ($expected) = @_;
 
     my $ahResults = $AssignmentService->isProductAssignedToCatalog( [$hAssignment_in] )->result;
-    ok( scalar @$ahResults == 1, "isProductAssignedToCatalog result set" );
+    is( scalar @$ahResults, 1, "isProductAssignedToCatalog result set" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "isProductAssignedToCatalog: no error" );
     diag "Error: $hResult->{'Error'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Product'} eq $options->{'Product'}, "product path" );
-    ok( $hResult->{'assigned'} == $expected, "exists?" );
+    is( $hResult->{'assigned'}, $expected, "exists?" );
 }
 
 # run test suite

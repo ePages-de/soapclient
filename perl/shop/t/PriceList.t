@@ -62,28 +62,28 @@ my $PriceList_update = {
 sub testCreate {
 
     my $ahResults = $PriceListService->create( [$PriceList_in] )->result;
-    ok( scalar @$ahResults == 1, 'create result count' );
+    is( scalar @$ahResults, 1, 'create result count' );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, 'create: no error' );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Alias'} eq $Options{'Alias'}, 'pricelist alias' );
-    ok( $hResult->{'created'} == 1, 'created?' );
+    is( $hResult->{'created'}, 1, 'created?' );
 }
 
 # Update a PriceList and check if the update was successful
 sub testUpdate {
 
     my $ahResults = $PriceListService->update( [$PriceList_update] )->result;
-    ok( scalar @$ahResults == 1, 'update result count' );
+    is( scalar @$ahResults, 1, 'update result count' );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, 'update: no error' );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Path'} eq $Options{'FullPath'}, 'pricelist path' );
-    ok( $hResult->{'updated'} == 1, 'updated?' );
+    is( $hResult->{'updated'}, 1, 'updated?' );
 }
 
 # Retrieve information about an PriceList. Check if the returned data are equal to
@@ -93,7 +93,7 @@ sub testGetInfo {
     my $ext = $alreadyUpdated ? '_up' : '_in';
 
     my $ahResults = $PriceListService->getInfo( [$Options{'FullPath'}], ['CreationDate'] )->result;
-    ok( scalar @$ahResults == 1, 'getInfo result count' );
+    is( scalar @$ahResults, 1, 'getInfo result count' );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, 'getInfo: no error' );
@@ -102,17 +102,17 @@ sub testGetInfo {
     ok( $hResult->{'Path'}       eq WEBSERVICE_SHOP_PATH.$Options{'FullPath'},           'pricelist path' );
     ok( $hResult->{'CurrencyID'} eq $PriceList_in->{'CurrencyID'},  'currencyid' );
     ok( $hResult->{'TaxModel'}   eq $PriceList_in->{'TaxModel'},    'tax model' );
-    ok( 0 == cmpDateTime($hResult->{'ValidFrom'}, $PriceList_in->{'ValidFrom'}),   'valid from' );
-    ok( 0 == cmpDateTime($hResult->{'ValidTo'},   $PriceList_in->{'ValidTo'}),     'valid to' );
-    ok( scalar @{$hResult->{'CustomerGroups'}}  == 1, 'number of customer groups' );
-    ok( scalar @{$hResult->{'Customers'}}       == 1, 'number of customers' );
+    is( 0, cmpDateTime($hResult->{'ValidFrom'}, $PriceList_in->{'ValidFrom'}),   'valid from' );
+    is( 0, cmpDateTime($hResult->{'ValidTo'},   $PriceList_in->{'ValidTo'}),     'valid to' );
+    is( scalar @{$hResult->{'CustomerGroups'}}, 1, 'number of customer groups' );
+    is( scalar @{$hResult->{'Customers'}}, 1, 'number of customers' );
 
     my $hName = hLocalizedString($hResult->{'Name'});
     ok( $hName->{'de'} eq $Options{"Name$ext"}{'de'},   'name (de)' );
     ok( $hName->{'en'} eq $Options{"Name$ext"}{'en'},   'name (en)' );
 
     my  $hAttributes = hAttributes($hResult->{'Attributes'});
-    ok( 0 == cmpDateTime($hAttributes->{'CreationDate'}, $Options{"Attr$ext"}{'CreationDate'}), 'attribute value (CreationDate)' );
+    is( 0, cmpDateTime($hAttributes->{'CreationDate'}, $Options{"Attr$ext"}{'CreationDate'}), 'attribute value (CreationDate)' );
 }
 
 sub deleteIfExists {
@@ -129,14 +129,14 @@ sub deleteIfExists {
 sub testDelete {
 
     my $ahResults = $PriceListService->delete( [$Options{'FullPath'}] )->result;
-    ok( scalar @$ahResults == 1, 'delete result count' );
+    is( scalar @$ahResults, 1, 'delete result count' );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, 'delete: no error' );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Path'} eq $Options{'FullPath'}, 'pricelist path' );
-    ok( $hResult->{'deleted'} == 1, 'deleted?' );
+    is( $hResult->{'deleted'}, 1, 'deleted?' );
 }
 
 # Test if a PriceList exists or not
@@ -144,20 +144,20 @@ sub testExists {
     my ($exists) = @_;
 
     my $ahResults = $PriceListService->exists( [$Options{'FullPath'}] )->result;
-    ok( scalar @$ahResults == 1, 'exists result count' );
+    is( scalar @$ahResults, 1, 'exists result count' );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, 'exists: no error' );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Path'} eq $Options{'FullPath'}, 'pricelist path' );
-    ok( $hResult->{'exists'} == $exists, 'exists?' );
+    is( $hResult->{'exists'}, $exists, 'exists?' );
 }
 
 # Retrieve all PriceLists of the connected shop
 sub testGetAllInfo {
     my $ahResults = $PriceListService->getInfo( ['*'] )->result;
-    ok( scalar @$ahResults == 2, 'getAllInfo result count' );
+    is( scalar @$ahResults, 2, 'getAllInfo result count' );
 }
 
 sub _testGroups {

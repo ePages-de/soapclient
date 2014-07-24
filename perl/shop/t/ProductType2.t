@@ -79,7 +79,7 @@ sub testCreate {
     );
 
     my $ahResults = $ProductTypeService->create(\@ProductTypes)->result;
-    ok(scalar @$ahResults == 2, "create: results count");
+    is(scalar @$ahResults, 2, "create: results count");
 
     foreach my $hResult(@$ahResults) {
         diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
@@ -147,7 +147,7 @@ sub testGetInfo {
         ['de', 'en']
     )->result;
 
-    ok(3 == scalar(@$ahResults), 'getInfo: results count');
+    is(3, scalar(@$ahResults), 'getInfo: results count');
 
     # check first created test product type
     ok(!$ahResults->[0]->{'Error'},                                              PERL_TEST1_ALIAS . ' getInfo: no error');
@@ -164,7 +164,7 @@ sub testGetInfo {
         }
     }
     my $ahAttributes = $ahResults->[0]->{'Attributes'};
-    ok(scalar(@$ahAttributes) == 1,              PERL_TEST1_ALIAS . ' getInfo: Attributes');
+    is(scalar(@$ahAttributes), 1,              PERL_TEST1_ALIAS . ' getInfo: Attributes');
     ok($ahAttributes->[0]->{'Name'} eq 'WebUrl', PERL_TEST1_ALIAS . ' getInfo: WebUrl Name');
     ok($ahAttributes->[0]->{'Value'} =~ /^http/, PERL_TEST1_ALIAS . ' getInfo: WebUrl Value');
 
@@ -183,7 +183,7 @@ sub testGetInfo {
         }
     }
     $ahAttributes = $ahResults->[1]->{'Attributes'};
-    ok(scalar(@$ahAttributes) == 1,              PERL_TEST2_ALIAS . ' getInfo: Attributes');
+    is(scalar(@$ahAttributes), 1,              PERL_TEST2_ALIAS . ' getInfo: Attributes');
     ok($ahAttributes->[0]->{'Name'} eq 'WebUrl', PERL_TEST2_ALIAS . ' getInfo: WebUrl Name');
     ok($ahAttributes->[0]->{'Value'} =~ /^http/, PERL_TEST2_ALIAS . ' getInfo: WebUrl Value');
 
@@ -195,7 +195,7 @@ sub testGetInfo {
 sub testExists {
     my $ahResults = $ProductTypeService->exists([PERL_TEST1_PATH, PERL_TEST2_PATH, NOT_EXISTING_PATH])->result;
 
-    ok(3 == scalar(@$ahResults), 'exists: results count');
+    is(3, scalar(@$ahResults), 'exists: results count');
     foreach my $hResult (@$ahResults) {
         ok(!$hResult->{'Error'}, 'exists: no error');
     }
@@ -219,20 +219,20 @@ sub testUpdate {
         }
     );
     my $ahResults = $ProductTypeService->update(\@Update)->result;
-    ok(2 == scalar(@$ahResults), 'update: results count');
+    is(2, scalar(@$ahResults), 'update: results count');
     ok(!$ahResults->[0]->{'Error'}, PERL_TEST1_ALIAS . ' update: no error');
     ok(PERL_TEST1_PATH eq $ahResults->[0]->{'Path'}, PERL_TEST1_ALIAS . ' update: Path');
     ok($ahResults->[1]->{'Error'}, NOT_EXISTING_ALIAS . ' update: error');
 
     $ahResults = $ProductTypeService->getInfo([PERL_TEST1_PATH], [], ['de', 'en'])->result;
-    ok(1 == scalar(@$ahResults), 'getInfo results count');
+    is(1, scalar(@$ahResults), 'getInfo results count');
 
     ok(PERL_TEST1_PATH eq $ahResults->[0]->{'Path'},                                            PERL_TEST1_ALIAS . ' getInfo: Path');
     ok(PERL_TEST1_ALIAS eq $ahResults->[0]->{'Alias'},                                          PERL_TEST1_ALIAS . ' getInfo: Alias');
     ok('BundlesList' eq $ahResults->[0]->{'Layout.Content-Bundles'}, PERL_TEST1_ALIAS . ' getInfo: Layout.Content-Bundles');
 
     my $ahNames = $ahResults->[0]->{'Name'};
-    ok(2 == scalar(@$ahNames),                                     PERL_TEST1_ALIAS . ' getInfo: Names count');
+    is(2, scalar(@$ahNames),                                     PERL_TEST1_ALIAS . ' getInfo: Names count');
     ok('de' eq $ahNames->[0]->{'LanguageCode'},                    PERL_TEST1_ALIAS . ' getInfo: language code de');
     ok(PERL_TEST1_NAME_DE . 'updated' eq $ahNames->[0]->{'Value'}, PERL_TEST1_ALIAS . ' getInfo: value de');
     ok('en' eq $ahNames->[1]->{'LanguageCode'},                    PERL_TEST1_ALIAS . ' getInfo: language code en');
@@ -242,7 +242,7 @@ sub testUpdate {
 sub testDelete {
     my $ahResults = $ProductTypeService->delete([PERL_TEST1_PATH, PERL_TEST2_PATH, NOT_EXISTING_PATH])->result;
 
-    ok(3 == scalar(@$ahResults), 'delete: results count');
+    is(3, scalar(@$ahResults), 'delete: results count');
 
     ok(PERL_TEST1_PATH eq $ahResults->[0]->{'Path'}, PERL_TEST1_ALIAS . ' delete: Path');
     ok(!$ahResults->[0]->{'Error'},                  PERL_TEST1_ALIAS . ' delete: no error');
@@ -257,7 +257,7 @@ sub testDelete {
 
 
     $ahResults = $ProductTypeService->exists([PERL_TEST1_PATH, PERL_TEST2_PATH])->result;
-    ok(2 == scalar(@$ahResults), 'exists: results count');
+    is(2, scalar(@$ahResults), 'exists: results count');
 
     ok(PERL_TEST1_PATH eq $ahResults->[0]->{'Path'}, PERL_TEST1_ALIAS . ' exists: Path');
     ok(!$ahResults->[0]->{'Error'},                  PERL_TEST1_ALIAS . ' exists: no error');
@@ -303,7 +303,7 @@ sub testCreateProductAttribute {
     );
 
     my $ahAttributes = $ProductTypeService->createProductAttribute(PERL_TEST1_PATH, \@Create)->result;
-    ok(4 == scalar(@$ahAttributes), 'createProductAttribute: results count');
+    is(4, scalar(@$ahAttributes), 'createProductAttribute: results count');
 
     ok(ATTRIBUTE1_ALIAS eq $ahAttributes->[0]->{'Alias'}, ATTRIBUTE1_ALIAS . ' createProductAttribute: Alias');
     ok(!$ahAttributes->[0]->{'Error'},                    ATTRIBUTE1_ALIAS . ' createProductAttribute: no error');
@@ -395,7 +395,7 @@ sub testGetProductAttributeInfo {
         ["en", "de"]
     )->result;
 
-    ok(3 == scalar(@$ahAttributes), 'getProductAttributeInfo: results count');
+    is(3, scalar(@$ahAttributes), 'getProductAttributeInfo: results count');
 
     ok(ATTRIBUTE1_ALIAS eq $ahAttributes->[0]->{'Alias'}, ATTRIBUTE1_ALIAS . ' getProductAttributeInfo: Alias');
     ok(!$ahAttributes->[0]->{'Error'},                    ATTRIBUTE1_ALIAS . ' getProductAttributeInfo: no error');
@@ -403,7 +403,7 @@ sub testGetProductAttributeInfo {
     ok(ATTRIBUTE1_TYPE eq $ahAttributes->[0]->{'Type'},   ATTRIBUTE1_ALIAS . ' getProductAttributeInfo: Type');
     ok($ahAttributes->[0]->{'IsVisible'},                 ATTRIBUTE1_ALIAS . ' getProductAttributeInfo: IsVisible');
     ok($ahAttributes->[0]->{'IsHTML'},                    ATTRIBUTE1_ALIAS . ' getProductAttributeInfo: IsHTML');
-    ok(0 == $ahAttributes->[0]->{'Position'} % 10,        ATTRIBUTE1_ALIAS . ' getProductAttributeInfo: Position');
+    is(0, $ahAttributes->[0]->{'Position'} % 10,        ATTRIBUTE1_ALIAS . ' getProductAttributeInfo: Position');
 
     ok(ATTRIBUTE2_ALIAS eq $ahAttributes->[1]->{'Alias'}, ATTRIBUTE2_ALIAS . ' getProductAttributeInfo: Alias');
     ok(!$ahAttributes->[1]->{'Error'},                    ATTRIBUTE2_ALIAS . ' getProductAttributeInfo: no error');
@@ -411,7 +411,7 @@ sub testGetProductAttributeInfo {
     ok(ATTRIBUTE2_TYPE eq $ahAttributes->[1]->{'Type'},   ATTRIBUTE2_ALIAS . ' getProductAttributeInfo: Type');
     ok(!$ahAttributes->[1]->{'IsVisible'},                ATTRIBUTE2_ALIAS . ' getProductAttributeInfo: IsVisible');
     ok(!$ahAttributes->[1]->{'IsHTML'},                   ATTRIBUTE2_ALIAS . ' getProductAttributeInfo: IsHTML');
-    ok(0 == $ahAttributes->[1]->{'Position'} % 10,        ATTRIBUTE2_ALIAS . ' getProductAttributeInfo: Position');
+    is(0, $ahAttributes->[1]->{'Position'} % 10,        ATTRIBUTE2_ALIAS . ' getProductAttributeInfo: Position');
 
     ok($ahAttributes->[0]->{'Position'} > $ahAttributes->[1]->{'Position'}, 'getProductAttributeInfo: attributes order');
 
@@ -426,7 +426,7 @@ sub testExistsProductAttribute {
         [ATTRIBUTE1_ALIAS, ATTRIBUTE2_ALIAS, NOT_EXISTING_ALIAS]
     )->result;
 
-    ok(3 == scalar(@$ahAttributes), 'existsProductAttribute: results count');
+    is(3, scalar(@$ahAttributes), 'existsProductAttribute: results count');
 
     ok(ATTRIBUTE1_ALIAS eq $ahAttributes->[0]->{'Alias'},   ATTRIBUTE1_ALIAS . ' existsProductAttribute: Alias');
     ok($ahAttributes->[0]->{'exists'},                      ATTRIBUTE1_ALIAS . ' existsProductAttribute: exists true');
@@ -453,7 +453,7 @@ sub testUpdateProductAttribute {
     );
 
     my $ahAttributes = $ProductTypeService->updateProductAttribute(PERL_TEST1_PATH, \@Update)->result;
-    ok(3 == scalar(@$ahAttributes), 'updateProductAttribute: results count');
+    is(3, scalar(@$ahAttributes), 'updateProductAttribute: results count');
 
     ok(ATTRIBUTE1_ALIAS eq $ahAttributes->[0]->{'Alias'}, ATTRIBUTE1_ALIAS . ' updateProductAttribute: Alias');
     ok(!$ahAttributes->[0]->{'Error'},                    ATTRIBUTE1_ALIAS . ' updateProductAttribute: no error');
@@ -473,14 +473,14 @@ sub testUpdateProductAttribute {
         ['en', 'de']
     )->result;
 
-    ok(2 == scalar(@$ahAttributes), 'getProductAttributeInfo: results count');
+    is(2, scalar(@$ahAttributes), 'getProductAttributeInfo: results count');
 
     ok(ATTRIBUTE1_ALIAS eq $ahAttributes->[0]->{'Alias'}, ATTRIBUTE1_ALIAS . ' getProductAttributeInfo: Alias');
     ok(!$ahAttributes->[0]->{'Error'},                    ATTRIBUTE1_ALIAS . ' getProductAttributeInfo: no error');
     ok(ATTRIBUTE1_PATH eq $ahAttributes->[0]->{'Path'},   ATTRIBUTE1_ALIAS . ' getProductAttributeInfo: Path');
     ok($ahAttributes->[0]->{'IsVisible'},                 ATTRIBUTE1_ALIAS . ' getProductAttributeInfo: IsVisible');
     ok(!$ahAttributes->[0]->{'IsHTML'},                   ATTRIBUTE1_ALIAS . ' getProductAttributeInfo: IsHTML');
-    ok(0 == $ahAttributes->[0]->{'Position'} % 10,        ATTRIBUTE1_ALIAS . ' getProductAttributeInfo: Position');
+    is(0, $ahAttributes->[0]->{'Position'} % 10,        ATTRIBUTE1_ALIAS . ' getProductAttributeInfo: Position');
     foreach my $hDescription(@{$ahAttributes->[0]->{'Description'}}) {
         if ('de' eq $hDescription->{'LanguageCode'}) {
             ok(ATTRIBUTE1_DESCR_DE eq $hDescription->{'Value'}, ATTRIBUTE1_ALIAS . ' getProductAttributeInfo: Description de');
@@ -495,7 +495,7 @@ sub testUpdateProductAttribute {
     ok(ATTRIBUTE2_PATH eq $ahAttributes->[1]->{'Path'},   ATTRIBUTE2_ALIAS . ' getProductAttributeInfo: Path');
     ok($ahAttributes->[1]->{'IsVisible'},                 ATTRIBUTE2_ALIAS . ' getProductAttributeInfo: IsVisible');
     ok(!$ahAttributes->[1]->{'IsHTML'},                   ATTRIBUTE2_ALIAS . ' getProductAttributeInfo: IsHTML');
-    ok(0 == $ahAttributes->[1]->{'Position'} % 10,        ATTRIBUTE2_ALIAS . ' getProductAttributeInfo: Position');
+    is(0, $ahAttributes->[1]->{'Position'} % 10,        ATTRIBUTE2_ALIAS . ' getProductAttributeInfo: Position');
     foreach my $hName(@{$ahAttributes->[1]->{'Name'}}) {
         if ('de' eq $hName->{'LanguageCode'}) {
             ok(ATTRIBUTE2_NAME_DE . 'updated' eq $hName->{'Value'}, ATTRIBUTE2_ALIAS . ' getProductAttributeInfo: Name de');
@@ -511,7 +511,7 @@ sub testUpdateProductAttribute {
 #---------------------------------------------------------------------------------------------------
 sub testDeleteProductAttribute {
     my $ahAttributes = $ProductTypeService->deleteProductAttribute(PERL_TEST1_PATH, [ATTRIBUTE1_ALIAS, NOT_EXISTING_ALIAS])->result;
-    ok(2 == scalar(@$ahAttributes), 'deleteProductAttribute: results count');
+    is(2, scalar(@$ahAttributes), 'deleteProductAttribute: results count');
 
     ok(ATTRIBUTE1_ALIAS eq $ahAttributes->[0]->{'Alias'}, ATTRIBUTE1_ALIAS . ' deleteProductAttribute: Alias');
     ok(!$ahAttributes->[0]->{'Error'},                    ATTRIBUTE1_ALIAS . ' deleteProductAttribute: no error');
@@ -522,7 +522,7 @@ sub testDeleteProductAttribute {
 
 
     $ahAttributes = $ProductTypeService->existsProductAttribute(PERL_TEST1_PATH, [ATTRIBUTE1_ALIAS])->result;
-    ok(1 == scalar(@$ahAttributes),                       'existsProductAttribute: results count');
+    is(1, scalar(@$ahAttributes),                       'existsProductAttribute: results count');
     ok(ATTRIBUTE1_ALIAS eq $ahAttributes->[0]->{'Alias'}, ATTRIBUTE1_ALIAS . ' existsProductAttribute: Alias');
     ok(!$ahAttributes->[0]->{'exists'},                   ATTRIBUTE1_ALIAS . ' existsProductAttribute: exists false');
 }
@@ -543,7 +543,7 @@ sub testCreatePreDefAttribute {
     );
 
     my $ahPreDefs = $ProductTypeService->createPreDefAttribute(ATTRIBUTE2_PATH, \@Create)->result;
-    ok(3 == scalar(@$ahPreDefs), 'createPreDefAttribute: results count');
+    is(3, scalar(@$ahPreDefs), 'createPreDefAttribute: results count');
 
     ok(PREDEF_ATTRIBUTE1_ALIAS eq $ahPreDefs->[0]->{'Alias'}, PREDEF_ATTRIBUTE1_ALIAS . ' createPreDefAttribute: Alias');
     ok(!$ahPreDefs->[0]->{'Error'},                           PREDEF_ATTRIBUTE1_ALIAS . ' createPreDefAttribute: no error');
@@ -590,14 +590,14 @@ sub testGetPreDefAttributeInfo {
         [PREDEF_ATTRIBUTE1_ALIAS, PREDEF_ATTRIBUTE2_ALIAS, NOT_EXISTING_ALIAS],
         []
     )->result;
-    ok(3 == scalar(@$ahPreDefs), 'getPreDefAttributeInfo: results count');
+    is(3, scalar(@$ahPreDefs), 'getPreDefAttributeInfo: results count');
 
     ok(PREDEF_ATTRIBUTE1_ALIAS eq $ahPreDefs->[0]->{'Alias'},      PREDEF_ATTRIBUTE1_ALIAS . ' getPreDefAttributeInfo: Alias');
     ok(!$ahPreDefs->[0]->{'Error'},                                PREDEF_ATTRIBUTE1_ALIAS . ' getPreDefAttributeInfo: no error');
     ok(PREDEF_ATTRIBUTE1_PATH eq $ahPreDefs->[0]->{'Path'},        PREDEF_ATTRIBUTE1_ALIAS . ' getPreDefAttributeInfo: Path');
     ok(PREDEF_ATTRIBUTE1_NAME eq $ahPreDefs->[0]->{'ValueString'}, PREDEF_ATTRIBUTE1_ALIAS . ' getPreDefAttributeInfo: ValueString');
     ok(!defined($ahPreDefs->[0]->{'ValueLocString'}),              PREDEF_ATTRIBUTE1_ALIAS . ' getPreDefAttributeInfo: ValueLocString');
-    ok(0 == $ahPreDefs->[0]->{'Position'} % 10,                    PREDEF_ATTRIBUTE1_ALIAS . ' getPreDefAttributeInfo: Position');
+    is(0, $ahPreDefs->[0]->{'Position'} % 10,                    PREDEF_ATTRIBUTE1_ALIAS . ' getPreDefAttributeInfo: Position');
 
 
     ok(PREDEF_ATTRIBUTE2_ALIAS eq $ahPreDefs->[1]->{'Alias'},      PREDEF_ATTRIBUTE2_ALIAS . ' getPreDefAttributeInfo: Alias');
@@ -605,7 +605,7 @@ sub testGetPreDefAttributeInfo {
     ok(PREDEF_ATTRIBUTE2_PATH eq $ahPreDefs->[1]->{'Path'},        PREDEF_ATTRIBUTE2_ALIAS . ' getPreDefAttributeInfo: Path');
     ok(PREDEF_ATTRIBUTE2_NAME eq $ahPreDefs->[1]->{'ValueString'}, PREDEF_ATTRIBUTE2_ALIAS . ' getPreDefAttributeInfo: ValueString');
     ok(!defined($ahPreDefs->[1]->{'ValueLocString'}),              PREDEF_ATTRIBUTE2_ALIAS . ' getPreDefAttributeInfo: ValueLocString');
-    ok(0 == $ahPreDefs->[1]->{'Position'} % 10,                    PREDEF_ATTRIBUTE2_ALIAS . ' getPreDefAttributeInfo: Position');
+    is(0, $ahPreDefs->[1]->{'Position'} % 10,                    PREDEF_ATTRIBUTE2_ALIAS . ' getPreDefAttributeInfo: Position');
 
     ok($ahPreDefs->[0]->{'Position'} < $ahPreDefs->[1]->{'Position'}, 'getPreDefAttributeInfo: predefs order');
 
@@ -618,7 +618,7 @@ sub testExistsPreDefAttribute {
         ATTRIBUTE2_PATH,
         [PREDEF_ATTRIBUTE1_ALIAS, PREDEF_ATTRIBUTE2_ALIAS, NOT_EXISTING_ALIAS]
     )->result;
-    ok(3 == scalar(@$ahPreDefs), 'existsPreDefAttribute: results count');
+    is(3, scalar(@$ahPreDefs), 'existsPreDefAttribute: results count');
 
     ok(PREDEF_ATTRIBUTE1_ALIAS eq $ahPreDefs->[0]->{'Alias'}, PREDEF_ATTRIBUTE1_ALIAS . ' existsPreDefAttribute: Alias');
     ok($ahPreDefs->[0]->{'exists'},                           PREDEF_ATTRIBUTE1_ALIAS . ' existsPreDefAttribute: exists true');
@@ -642,7 +642,7 @@ sub testUpdatePreDefAttibute {
     );
 
     my $ahPreDefs = $ProductTypeService->updatePreDefAttribute(ATTRIBUTE2_PATH, \@Update)->result;
-    ok(2 == scalar(@$ahPreDefs), 'updatePreDefAttribute: results count');
+    is(2, scalar(@$ahPreDefs), 'updatePreDefAttribute: results count');
 
     ok(PREDEF_ATTRIBUTE1_ALIAS eq $ahPreDefs->[0]->{'Alias'}, PREDEF_ATTRIBUTE1_ALIAS . ' updatePreDefAttribute: Alias');
     ok(!$ahPreDefs->[0]->{'Error'},                           PREDEF_ATTRIBUTE1_ALIAS . ' updatePreDefAttribute: no error');
@@ -656,19 +656,19 @@ sub testUpdatePreDefAttibute {
         [PREDEF_ATTRIBUTE1_ALIAS, PREDEF_ATTRIBUTE2_ALIAS],
         []
     )->result;
-    ok(2 == scalar(@$ahPreDefs), 'getPreDefAttributeInfo: results count');
+    is(2, scalar(@$ahPreDefs), 'getPreDefAttributeInfo: results count');
 
     ok(PREDEF_ATTRIBUTE1_ALIAS eq $ahPreDefs->[0]->{'Alias'},                  PREDEF_ATTRIBUTE1_ALIAS . ' getPreDefAttributeInfo: Alias');
     ok(!$ahPreDefs->[0]->{'Error'},                                            PREDEF_ATTRIBUTE1_ALIAS . ' getPreDefAttributeInfo: no error');
     ok(PREDEF_ATTRIBUTE1_NAME . 'updated' eq $ahPreDefs->[0]->{'ValueString'}, PREDEF_ATTRIBUTE1_ALIAS . ' getPreDefAttributeInfo: ValueString');
     ok(!defined($ahPreDefs->[0]->{'ValueLocString'}),                          PREDEF_ATTRIBUTE1_ALIAS . ' getPreDefAttributeInfo: ValueLocString');
-    ok(0 == $ahPreDefs->[0]->{'Position'} % 10,                                PREDEF_ATTRIBUTE1_ALIAS . ' getPreDefAttributeInfo: Position');
+    is(0, $ahPreDefs->[0]->{'Position'} % 10,                                PREDEF_ATTRIBUTE1_ALIAS . ' getPreDefAttributeInfo: Position');
 
     ok(PREDEF_ATTRIBUTE2_ALIAS eq $ahPreDefs->[1]->{'Alias'},                  PREDEF_ATTRIBUTE2_ALIAS . ' getPreDefAttributeInfo: Alias');
     ok(!$ahPreDefs->[1]->{'Error'},                                            PREDEF_ATTRIBUTE2_ALIAS . ' getPreDefAttributeInfo: no error');
     ok(PREDEF_ATTRIBUTE2_NAME eq $ahPreDefs->[1]->{'ValueString'},             PREDEF_ATTRIBUTE2_ALIAS . ' getPreDefAttributeInfo: ValueString');
     ok(!defined($ahPreDefs->[1]->{'ValueLocString'}),                          PREDEF_ATTRIBUTE2_ALIAS . ' getPreDefAttributeInfo: ValueLocString');
-    ok(0 == $ahPreDefs->[1]->{'Position'} % 10,                                PREDEF_ATTRIBUTE2_ALIAS . ' getPreDefAttributeInfo: Position');
+    is(0, $ahPreDefs->[1]->{'Position'} % 10,                                PREDEF_ATTRIBUTE2_ALIAS . ' getPreDefAttributeInfo: Position');
 
     ok($ahPreDefs->[0]->{'Position'} > $ahPreDefs->[1]->{'Position'}, 'getPreDefAttributeInfo: predefs order');
 }
@@ -679,7 +679,7 @@ sub testDeletePreDefAttribute {
         ATTRIBUTE2_PATH,
         [PREDEF_ATTRIBUTE2_ALIAS, NOT_EXISTING_ALIAS]
     )->result;
-    ok(2 == scalar(@$ahPreDefs), 'deletePreDefAttribute: results count');
+    is(2, scalar(@$ahPreDefs), 'deletePreDefAttribute: results count');
 
     ok(PREDEF_ATTRIBUTE2_ALIAS eq $ahPreDefs->[0]->{'Alias'}, PREDEF_ATTRIBUTE2_ALIAS . ' deletePreDefAttribute: Alias');
     ok(!$ahPreDefs->[0]->{'Error'},                           PREDEF_ATTRIBUTE2_ALIAS . ' deletePreDefAttribute: no error');
@@ -690,7 +690,7 @@ sub testDeletePreDefAttribute {
 
 
     $ahPreDefs = $ProductTypeService->existsPreDefAttribute(ATTRIBUTE2_PATH, [PREDEF_ATTRIBUTE2_ALIAS])->result;
-    ok(1 == scalar(@$ahPreDefs), 'existsPreDefAttribute: results count');
+    is(1, scalar(@$ahPreDefs), 'existsPreDefAttribute: results count');
 
     ok(PREDEF_ATTRIBUTE2_ALIAS eq $ahPreDefs->[0]->{'Alias'}, PREDEF_ATTRIBUTE2_ALIAS . ' existsPreDefAttribute: Alias');
     ok(!$ahPreDefs->[0]->{'Error'},                           PREDEF_ATTRIBUTE2_ALIAS . ' existsPreDefAttribute: no error');

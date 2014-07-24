@@ -43,14 +43,14 @@ sub testCreate {
     my $aAppointments = [$Appointment_in];
 
     my $ahResults = $AppointmentService->create( $aAppointments )->result;
-    ok( scalar @$ahResults == 1, 'create result count' );
+    is( scalar @$ahResults, 1, 'create result count' );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( !$hResult->{'Error'}, 'create: no error' );
 
     ok( $hResult->{'Alias'} eq $hOptions->{'Alias'}, 'appointment alias' );
-    ok( $hResult->{'created'} == 1, 'created?' );
+    is( $hResult->{'created'}, 1, 'created?' );
 }
 
 sub testUpdate {
@@ -58,21 +58,21 @@ sub testUpdate {
     my $aAppointments = [$Appointment_update];
 
     my $ahResults = $AppointmentService->update( $aAppointments )->result;
-    ok( scalar @$ahResults == 1, 'update result count' );
+    is( scalar @$ahResults, 1, 'update result count' );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( !$hResult->{'Error'}, 'update: no error' );
 
     ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, 'appointment path' );
-    ok( $hResult->{'updated'} == 1, 'updated?' );
+    is( $hResult->{'updated'}, 1, 'updated?' );
 }
 
 sub testGetInfo {
     my ($alreadyUpdated) = @_;
 
     my $ahResults = $AppointmentService->getInfo( [$hOptions->{'FullPath'}], [], ['de', 'en'] )->result;
-    ok( scalar @$ahResults == 1, 'getInfo result count' );
+    is( scalar @$ahResults, 1, 'getInfo result count' );
 
     diag "Error: $ahResults->[0]->{'Error'}->{'Message'}\n" if $ahResults->[0]->{'Error'};
     ok( !$ahResults->[0]->{'Error'}, 'getInfo: no error' );
@@ -81,8 +81,8 @@ sub testGetInfo {
     my $hResult = $ahResults->[0];
     my $hReference = $alreadyUpdated ? $Appointment_update : $Appointment_in;
 
-    ok( 0 == cmpDateTime($hResult->{'StartDate'}, $hReference->{'StartDate'}), 'start date' );
-    ok( 0 == cmpDateTime($hResult->{'EndDate'}, $hReference->{'EndDate'}), 'end date' );
+    is( 0, cmpDateTime($hResult->{'StartDate'}, $hReference->{'StartDate'}), 'start date' );
+    is( 0, cmpDateTime($hResult->{'EndDate'}, $hReference->{'EndDate'}), 'end date' );
 }
 
 sub deleteIfExists {
@@ -97,28 +97,28 @@ sub deleteIfExists {
 sub testDelete {
 
     my $ahResults = $AppointmentService->delete( [$hOptions->{'FullPath'}] )->result;
-    ok( scalar @$ahResults == 1, 'delete result count' );
+    is( scalar @$ahResults, 1, 'delete result count' );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( !$hResult->{'Error'}, 'delete: no error' );
 
     ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, 'appointment path' );
-    ok( $hResult->{'deleted'} == 1, 'deleted?' );
+    is( $hResult->{'deleted'}, 1, 'deleted?' );
 }
 
 sub testExists {
     my ($exists) = @_;
 
     my $ahResults = $AppointmentService->exists( [$hOptions->{'FullPath'}] )->result;
-    ok( scalar @$ahResults == 1, 'exists result count' );
+    is( scalar @$ahResults, 1, 'exists result count' );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( !$hResult->{'Error'}, 'exists: no error' );
 
     ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, 'appointment path' );
-    ok( $hResult->{'exists'} == $exists, 'exists?' );
+    is( $hResult->{'exists'}, $exists, 'exists?' );
 }
 
 #handle test ressource

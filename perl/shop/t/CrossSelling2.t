@@ -14,7 +14,7 @@ my $CrossSellingService = WebServiceClient
 # Sets all the required prerequisites for the tests. Will be called before the test are run.
 my $options = {
     'Product'       => 'Products/de_3203104010', #Deuter Kangaroo
-    'TargetProduct' => 'Products/de_3206199010', #Deuter Schmusebär
+    'TargetProduct' => 'Products/de_3206199010', #Deuter Schmusebï¿½r
     'TargetProduct2'=> 'Products/de_3201212002', #Deuter Hydro 2.0
     'TargetProduct3'=> 'Products/eg_1000111010', #Eureka El Capitan IV
     'Comment'       => {
@@ -94,7 +94,7 @@ sub testClean {
 sub testCreate {
 
     my $ahResults = $CrossSellingService->create( [$CrossSelling_in] )->result;
-    ok( scalar @$ahResults == 1, "create: result count" );
+    is( scalar @$ahResults, 1, "create: result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "create: no error" );
@@ -103,14 +103,14 @@ sub testCreate {
     ok( $hResult->{'Product'}       eq $CrossSelling_in->{'Product'},       "create: product path" );
     ok( $hResult->{'TargetProduct'} eq $CrossSelling_in->{'TargetProduct'}, "create: target product path" );
     ok( $hResult->{'Type'}          eq $CrossSelling_in->{'Type'},          "create: default type" );
-    ok( $hResult->{'created'} == 1, "created?" );
+    is( $hResult->{'created'}, 1, "created?" );
 }
 
 # insert more cross selling different types and check if the creation was successful
 sub testCreate2 {
 
     my $ahResults = $CrossSellingService->create( $aCrossSelling_in2 )->result;
-    ok( scalar @$ahResults == scalar @$aCrossSelling_in2, "create2: result count" );
+    is( scalar @$ahResults, scalar @$aCrossSelling_in2, "create2: result count" );
 
     for my $i (0..scalar @$ahResults -1) {
         my $CrossSelling_in = $aCrossSelling_in2->[$i];
@@ -121,7 +121,7 @@ sub testCreate2 {
         ok( $hResult->{'Product'}       eq $CrossSelling_in->{'Product'},       "create2: product path" );
         ok( $hResult->{'TargetProduct'} eq $CrossSelling_in->{'TargetProduct'}, "create2: target product path" );
         ok( $hResult->{'Type'}          eq $CrossSelling_in->{'Type'},          "create2: type" );
-        ok( $hResult->{'created'} == 1, "created?" );
+        is( $hResult->{'created'}, 1, "created?" );
     }
 }
 
@@ -129,7 +129,7 @@ sub testCreate2 {
 sub testUpdate {
 
     my $ahResults = $CrossSellingService->update( [$CrossSelling_update] )->result;
-    ok( scalar @$ahResults == 1, "update: result count" );
+    is( scalar @$ahResults, 1, "update: result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "update: no error" );
@@ -138,14 +138,14 @@ sub testUpdate {
     ok( $hResult->{'Product'}       eq $CrossSelling_update->{'Product'},       "update: product path" );
     ok( $hResult->{'TargetProduct'} eq $CrossSelling_update->{'TargetProduct'}, "update: target product path" );
     ok( $hResult->{'Type'}          eq $CrossSelling_update->{'Type'},          "update: type" );
-    ok( $hResult->{'updated'} == 1, "updated?" );
+    is( $hResult->{'updated'}, 1, "updated?" );
 }
 
 # update a cross selling with an empty comment (de)
 sub testUpdate2 {
 
     my $ahResults = $CrossSellingService->update( [$CrossSelling_update2] )->result;
-    ok( scalar @$ahResults == 1, "update2: result count" );
+    is( scalar @$ahResults, 1, "update2: result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "update2: no error" );
@@ -154,14 +154,14 @@ sub testUpdate2 {
     ok( $hResult->{'Product'}       eq $CrossSelling_update2->{'Product'},       "update2: product path" );
     ok( $hResult->{'TargetProduct'} eq $CrossSelling_update2->{'TargetProduct'}, "update2: target product path" );
     ok( $hResult->{'Type'}          eq $CrossSelling_update2->{'Type'},          "update2: type" );
-    ok( $hResult->{'updated'} == 1, "updated?" );
+    is( $hResult->{'updated'}, 1, "updated?" );
 }
 
 # delete a cross selling and check if the deletion was successful
 sub testDelete {
 
     my $ahResults = $CrossSellingService->delete( [$CrossSelling_in] )->result;
-    ok( scalar @$ahResults == 1, "delete: result count" );
+    is( scalar @$ahResults, 1, "delete: result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "delete: no error" );
@@ -169,13 +169,13 @@ sub testDelete {
 
     ok( $hResult->{'Product'}       eq $CrossSelling_in->{'Product'},       "delete: product path" );
     ok( $hResult->{'TargetProduct'} eq $CrossSelling_in->{'TargetProduct'}, "delete: target product path" );
-    ok( $hResult->{'deleted'} == 1, "deleted?" );
+    is( $hResult->{'deleted'}, 1, "deleted?" );
 }
 
 sub testDelete2 {
 
     my $ahResults = $CrossSellingService->delete( $aCrossSelling_in2 )->result;
-    ok( scalar @$ahResults == @$aCrossSelling_in2, "delete2: result count" );
+    is( scalar @$ahResults, @$aCrossSelling_in2, "delete2: result count" );
 
     for my $i (0..scalar @$ahResults -1) {
         my $CrossSelling = $aCrossSelling_in2->[$i];
@@ -185,7 +185,7 @@ sub testDelete2 {
 
         ok( $hResult->{'Product'}       eq $CrossSelling->{'Product'},       "delete2: product path" );
         ok( $hResult->{'TargetProduct'} eq $CrossSelling->{'TargetProduct'}, "delete2: target product path" );
-        ok( $hResult->{'deleted'} == 1, "deleted?" );
+        is( $hResult->{'deleted'}, 1, "deleted?" );
     }
 }
 
@@ -194,7 +194,7 @@ sub testExists {
     my ($expected) = @_;
 
     my $ahResults = $CrossSellingService->exists( [$CrossSelling_in] )->result;
-    ok( scalar @$ahResults == 1, "exists: result count" );
+    is( scalar @$ahResults, 1, "exists: result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "exists: no error" );
@@ -202,7 +202,7 @@ sub testExists {
 
     ok( $hResult->{'Product'}       eq $CrossSelling_in->{'Product'},       "exists: product path" );
     ok( $hResult->{'TargetProduct'} eq $CrossSelling_in->{'TargetProduct'}, "exists: target product path" );
-    ok( $hResult->{'exists'} == $expected, "exists?" );
+    is( $hResult->{'exists'}, $expected, "exists?" );
 }
 
 # check if a cross selling exists
@@ -210,7 +210,7 @@ sub testExists2 {
     my ($expected) = @_;
 
     my $ahResults = $CrossSellingService->exists( $aCrossSelling_in2 )->result;
-    ok( scalar @$ahResults == @$aCrossSelling_in2, "exists2: result count" );
+    is( scalar @$ahResults, @$aCrossSelling_in2, "exists2: result count" );
 
     for my $i (0..scalar @$ahResults -1) {
         my $CrossSelling = $aCrossSelling_in2->[$i];
@@ -220,7 +220,7 @@ sub testExists2 {
 
         ok( $hResult->{'Product'}       eq $CrossSelling->{'Product'},       "exists2: product path" );
         ok( $hResult->{'TargetProduct'} eq $CrossSelling->{'TargetProduct'}, "exists2: target product path" );
-        ok( $hResult->{'exists'} == $expected, "exists?" );
+        is( $hResult->{'exists'}, $expected, "exists?" );
     }
 }
 
@@ -228,7 +228,7 @@ sub testExists2 {
 sub testGetInfo {
 
     my $ahResults = $CrossSellingService->getInfo( [$CrossSelling_Get_in], ['de','en'] )->result;
-    ok( scalar @$ahResults == 1, "getInfo: result count" );
+    is( scalar @$ahResults, 1, "getInfo: result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "getInfo: no error" );
@@ -246,7 +246,7 @@ sub testGetInfo {
 sub testGetInfoInvalid {
 
     my $ahResults = $CrossSellingService->getInfo( [$CrossSelling_Get_invalid] )->result;
-    ok( scalar @$ahResults == 1, "getInfo invalid: result count" );
+    is( scalar @$ahResults, 1, "getInfo invalid: result count" );
 
     my $hResult = $ahResults->[0];
     ok( $hResult->{'Error'}, "getInfo invalid: error" );
@@ -257,7 +257,7 @@ sub testGetInfoInvalid {
 sub testGetInfo2 {
 
     my $ahResults = $CrossSellingService->getInfo( [$CrossSelling_Get_in], ['de','en'] )->result;
-    ok( scalar @$ahResults == 1, "getInfo2: result count" );
+    is( scalar @$ahResults, 1, "getInfo2: result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "getInfo2: no error" );
@@ -275,7 +275,7 @@ sub testGetInfo2 {
 sub testGetInfo3 {
 
     my $ahResults = $CrossSellingService->getInfo( [$CrossSelling_Get_in], ['de','en'] )->result;
-    ok( scalar @$ahResults == 1, "getInfo2: result count" );
+    is( scalar @$ahResults, 1, "getInfo2: result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "getInfo2: no error" );
@@ -292,7 +292,7 @@ sub testGetInfo3 {
 sub testGetAllInfo {
 
     my $ahResults = $CrossSellingService->getInfo([{'Product'=>$options->{'Product'},'Type'=>'*'}])->result;
-    ok( scalar @$ahResults == 3, "getInfo: result count" );
+    is( scalar @$ahResults, 3, "getInfo: result count" );
 
 }
 

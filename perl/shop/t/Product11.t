@@ -334,14 +334,14 @@ sub testCreate {
     my $aProducts = [$Product_in];
 
     my $ahResults = $ProductService->create( $aProducts )->result;
-    ok( scalar @$ahResults == 1, "create result count" );
+    is( scalar @$ahResults, 1, "create result count" );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( !$hResult->{'Error'}, "create: no error" );
 
     ok( $hResult->{'Alias'} eq $hOptions->{'Alias'}, "product alias" );
-    ok( $hResult->{'created'} == 1, "created?" );
+    is( $hResult->{'created'}, 1, "created?" );
 }
 
 sub testUpdate {
@@ -349,14 +349,14 @@ sub testUpdate {
     my $aProducts = [$Product_update];
 
     my $ahResults = $ProductService->update( $aProducts )->result;
-    ok( scalar @$ahResults == 1, "update result count" );
+    is( scalar @$ahResults, 1, "update result count" );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( !$hResult->{'Error'}, "update: no error" );
 
     ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, "product path" );
-    ok( $hResult->{'updated'} == 1, "updated?" );
+    is( $hResult->{'updated'}, 1, "updated?" );
 }
 
 sub testUpdateError {
@@ -365,7 +365,7 @@ sub testUpdateError {
     $aProducts->[0]->{'StockLevelAlert'} = 0;
 
     my $ahResults = $ProductService->update( $aProducts )->result;
-    ok( scalar @$ahResults == 1, "update result count" );
+    is( scalar @$ahResults, 1, "update result count" );
 
     my $hResult = $ahResults->[0];
     ok( $hResult->{'Error'}, "update: error" );
@@ -377,7 +377,7 @@ sub testGetInfo {
     my ($alreadyUpdated) = @_;
 
     my $ahResults = $ProductService->getInfo( [$hOptions->{'FullPath'}], ['AvailabilityDate','Date'], ['de', 'en'] )->result;
-    ok( scalar @$ahResults == 1, "getInfo result count" );
+    is( scalar @$ahResults, 1, "getInfo result count" );
 
     diag "Error: $ahResults->[0]->{'Error'}->{'Message'}\n" if $ahResults->[0]->{'Error'};
     ok( !$ahResults->[0]->{'Error'}, "getInfo: no error" );
@@ -469,7 +469,7 @@ sub testGetInfo {
 
     ok( $hResult->{'DeliveryPeriod'} eq $hReference->{'DeliveryPeriod'}, "product delivery period" );
 
-    ok( scalar @{$hResult->{'ShippingMethods'}} == 2, "result count shipping methods" );
+    is( scalar @{$hResult->{'ShippingMethods'}}, 2, "result count shipping methods" );
     my %shippingPaths;
     @shippingPaths{map{$_->{'Path'}}@{$hResult->{'ShippingMethods'}}} = (1,1);
 
@@ -479,15 +479,15 @@ sub testGetInfo {
         ok( $shippingPaths{WEBSERVICE_SHOP_PATH.'ShippingMethods/PickupByCustomer'}, 'added new shipping path' );
         ok( !$shippingPaths{WEBSERVICE_SHOP_PATH.'ShippingMethods/Express'}, 'deleted shipping path' );
     } else {
-        ok( 0 == cmpDateTime($hResult->{'AvailabilityDate'}, $hReference->{'AvailabilityDate'}), "created date attribute" );
+        is( 0, cmpDateTime($hResult->{'AvailabilityDate'}, $hReference->{'AvailabilityDate'}), "created date attribute" );
         ok( $shippingPaths{WEBSERVICE_SHOP_PATH.'ShippingMethods/Post'}, 'created shipping path 1' );
         ok( $shippingPaths{WEBSERVICE_SHOP_PATH.'ShippingMethods/Express'}, 'created shipping path 2' );
     }
 
-    ok( $hResult->{'IsAvailable'} == $Product_in->{'IsAvailable'}->value, "attribute IsAvailable is correct" );
+    is( $hResult->{'IsAvailable'}, $Product_in->{'IsAvailable'}->value, "attribute IsAvailable is correct" );
 
     ok( $hResult->{'TaxClass'}  eq $Product_in->{'TaxClass'}, "tax class" );
-    ok( $hResult->{'IsVisible'} == $Product_in->{'IsVisible'}->value, "is visible" );
+    is( $hResult->{'IsVisible'}, $Product_in->{'IsVisible'}->value, "is visible" );
     ok( $hResult->{'OrderUnit'} eq $Product_in->{'OrderUnit'}, "order unit" );
 }
 
@@ -503,28 +503,28 @@ sub deleteIfExists {
 sub testDelete {
 
     my $ahResults = $ProductService->delete( [$hOptions->{'FullPath'}] )->result;
-    ok( scalar @$ahResults == 1, "delete result count" );
+    is( scalar @$ahResults, 1, "delete result count" );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( !$hResult->{'Error'}, "delete: no error" );
 
     ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, "product path" );
-    ok( $hResult->{'deleted'} == 1, "deleted?" );
+    is( $hResult->{'deleted'}, 1, "deleted?" );
 }
 
 sub testExists {
     my ($exists) = @_;
 
     my $ahResults = $ProductService->exists( [$hOptions->{'FullPath'}] )->result;
-    ok( scalar @$ahResults == 1, "exists result count" );
+    is( scalar @$ahResults, 1, "exists result count" );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( !$hResult->{'Error'}, "exists: no error" );
 
     ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, "product path" );
-    ok( $hResult->{'exists'} == $exists, "exists?" );
+    is( $hResult->{'exists'}, $exists, "exists?" );
 }
 
 sub testFind {
@@ -589,14 +589,14 @@ sub testCreateDownload {
     my $aProducts = [$Product_down];
 
     my $ahResults = $ProductService->create( $aProducts )->result;
-    ok( scalar @$ahResults == 1, "create result count" );
+    is( scalar @$ahResults, 1, "create result count" );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( !$hResult->{'Error'}, "create: no error" );
 
     ok( $hResult->{'Alias'} eq $hOptions->{'Alias'}, "product alias" );
-    ok( $hResult->{'created'} == 1, "created?" );
+    is( $hResult->{'created'}, 1, "created?" );
 
 }
 
@@ -604,7 +604,7 @@ sub testCreateDownload {
 sub testGetInfoDownload {
 
     my $ahResults = $ProductService->getInfo( [$hOptions->{'FullPath'}], [], ['de', 'en'] )->result;
-    ok( scalar @$ahResults == 1, "getInfo result count" );
+    is( scalar @$ahResults, 1, "getInfo result count" );
 
     diag "Error: $ahResults->[0]->{'Error'}->{'Message'}\n" if $ahResults->[0]->{'Error'};
     ok( !$ahResults->[0]->{'Error'}, "getInfo: no error" );
@@ -614,11 +614,11 @@ sub testGetInfoDownload {
     my $hReference = $Product_down;
 
     foreach my $Attr qw(IsDownloadProduct) {
-        ok( $hResult->{$Attr} == $hReference->{$Attr}->value, "soap attribute $Attr is correct" );
+        is( $hResult->{$Attr}, $hReference->{$Attr}->value, "soap attribute $Attr is correct" );
     }
 
     foreach my $Attr qw(MaxDownloadTime MaxDownloadCount) {
-        ok( $hResult->{$Attr} == $hReference->{$Attr}, "int attribute $Attr is correct" );
+        is( $hResult->{$Attr}, $hReference->{$Attr}, "int attribute $Attr is correct" );
     }
 
     my $hRefeMap = $hReference->{'DownloadProductMaps'}->[0];
@@ -636,21 +636,21 @@ sub testCreateDownload_empty {
     my $aProducts = [$Product_down_empty];
 
     my $ahResults = $ProductService->create( $aProducts )->result;
-    ok( scalar @$ahResults == 1, "create result count" );
+    is( scalar @$ahResults, 1, "create result count" );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( !$hResult->{'Error'}, "create: no error" );
 
     ok( $hResult->{'Alias'} eq $hOptions->{'Alias'}, "product alias" );
-    ok( $hResult->{'created'} == 1, "created?" );
+    is( $hResult->{'created'}, 1, "created?" );
 
 }
 
 sub testGetInfoDownload_empty {
 
     my $ahResults = $ProductService->getInfo( [$hOptions->{'FullPath'}], [], ['de', 'en'] )->result;
-    ok( scalar @$ahResults == 1, "getInfo result count" );
+    is( scalar @$ahResults, 1, "getInfo result count" );
 
     diag "Error: $ahResults->[0]->{'Error'}->{'Message'}\n" if $ahResults->[0]->{'Error'};
     ok( !$ahResults->[0]->{'Error'}, "getInfo: no error" );
@@ -666,14 +666,14 @@ sub testCreateDownload_upload {
     my $aProducts = [$Product_down_upload];
 
     my $ahResults = $ProductService->create( $aProducts )->result;
-    ok( scalar @$ahResults == 1, "create result count" );
+    is( scalar @$ahResults, 1, "create result count" );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( !$hResult->{'Error'}, "create: no error" );
 
     ok( $hResult->{'Alias'} eq $hOptions->{'Alias'}, "product alias" );
-    ok( $hResult->{'created'} == 1, "created?" );
+    is( $hResult->{'created'}, 1, "created?" );
 
 }
 
@@ -681,7 +681,7 @@ sub testCreateDownload_upload {
 sub testGetInfoDownload_upload {
 
     my $ahResults = $ProductService->getInfo( [$hOptions->{'FullPath'}], [], ['de', 'en'] )->result;
-    ok( scalar @$ahResults == 1, "getInfo result count" );
+    is( scalar @$ahResults, 1, "getInfo result count" );
 
     diag "Error: $ahResults->[0]->{'Error'}->{'Message'}\n" if $ahResults->[0]->{'Error'};
     ok( !$ahResults->[0]->{'Error'}, "getInfo: no error" );
@@ -726,7 +726,7 @@ sub testCreateVariations {
     my $aProducts = [$Product_var1, $Product_var2];
 
     my $ahResults = $ProductService->create( $aProducts )->result;
-    ok( scalar @$ahResults == 2, "create variation result count" );
+    is( scalar @$ahResults, 2, "create variation result count" );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
@@ -738,13 +738,13 @@ sub testCreateWrongVariations {
 
     #try to create a variation with another variation as parent
     my $ahResults = $ProductService->create([$Product_var3])->result;
-    ok( scalar @$ahResults == 1, "create wrong variation result count" );
+    is( scalar @$ahResults, 1, "create wrong variation result count" );
     ok( $ahResults->[0]->{'Error'}, "create wrong variation: error" );
     ok( $ahResults->[0]->{'Error'}->{'Message'} =~ /is a variation.*can't be a master product/, "create wrong variation: error message = variation can't be a master product" );
 
     #try to set a master product (within variation) as an sub product
     $ahResults = $ProductService->update([$Product_var4])->result;
-    ok( scalar @$ahResults == 1, "update wrong variation result count" );
+    is( scalar @$ahResults, 1, "update wrong variation result count" );
     #check super product
     $ahResults = $ProductService->getInfo([$Product_var4->{'Path'}])->result;
     ok( !$ahResults->[0]->{'SuperProduct'}, "super product not changed" );

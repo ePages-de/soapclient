@@ -1,5 +1,5 @@
 use strict;
-use Test::Simple tests => 20;
+use Test::More tests => 20;
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD );
 
@@ -113,7 +113,7 @@ sub testExists {
 
     my $result = $ShopConfigService->exists( { 'Alias' => $options->{'Alias'} } )->result;
 
-    ok( $result == $expected, "exists?" );
+    is( $result, $expected, "exists?" );
 }
 
 sub testExistsUpdated {
@@ -121,7 +121,7 @@ sub testExistsUpdated {
 
     my $result = $ShopConfigService->exists( { 'Alias' => $Shop_update->{'NewAlias'} } )->result;
 
-    ok( $result == $expected, "exists?" );
+    is( $result, $expected, "exists?" );
 }
 
 sub testDefaultDatabase {

@@ -138,7 +138,7 @@ sub testExists {
 
     my $result = $ShopConfigService->exists( { 'Alias' => $options->{'Alias'} } )->result;
 
-    ok( $result == $expected, 'exists?' );
+    is( $result, $expected, 'exists?' );
 }
 
 sub testExistsUpdated {
@@ -146,7 +146,7 @@ sub testExistsUpdated {
 
     my $result = $ShopConfigService->exists( { 'Alias' => $Shop_update->{'NewAlias'} } )->result;
 
-    ok( $result == $expected, 'exists?' );
+    is( $result, $expected, 'exists?' );
 }
 
 sub testDefaultDatabase {

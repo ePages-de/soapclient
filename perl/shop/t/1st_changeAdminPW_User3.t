@@ -18,14 +18,14 @@ sub testUpdate_onlyPw {
         'Path'      => 'Users/admin',
         'Password'  => 'admin',
     }] )->result;
-    ok( scalar @$ahResults == 1, "udpate result count" );
+    is( scalar @$ahResults, 1, "udpate result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "update2: no error" );
     diag "Error: $hResult->{'Error'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Path'} eq 'Users/admin', "user path" );
-    ok( $hResult->{'updated'} == 1, "updated?" );
+    is( $hResult->{'updated'}, 1, "updated?" );
 
 }
 

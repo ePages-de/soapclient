@@ -96,28 +96,28 @@ my $user_update2 = {
 sub testCreate {
 
     my $ahResults = $UserService->create( [$user_in] )->result;
-    ok( scalar @$ahResults == 1, "create result count" );
+    is( scalar @$ahResults, 1, "create result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "create: no error" );
     diag "Error: $hResult->{'Error'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Alias'} eq $user_in->{'Alias'}, "user alias" );
-    ok( $hResult->{'created'} == 1, "created?" );
+    is( $hResult->{'created'}, 1, "created?" );
 }
 
 # Update a User and check if the update was successful
 sub testUpdate {
 
     my $ahResults = $UserService->update( [$user_update] )->result;
-    ok( scalar @$ahResults == 1, "udpate result count" );
+    is( scalar @$ahResults, 1, "udpate result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "update: no error" );
     diag "Error: $hResult->{'Error'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Path'} eq $user_update->{'Path'}, "user path" );
-    ok( $hResult->{'updated'} == 1, "updated?" );
+    is( $hResult->{'updated'}, 1, "updated?" );
 }
 
 # Retrieve information about an User. Check if the returned data are equal to
@@ -127,7 +127,7 @@ sub testGetInfo {
     my $ext = $alreadyUpdated ? '_up' : '_in';
 
     my $ahResults = $UserService->getInfo( [$options->{'FullPath'}], ['ChallengePhrase'], ['JobTitle'] )->result;
-    ok( scalar @$ahResults == 1, "getInfo result count" );
+    is( scalar @$ahResults, 1, "getInfo result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "getInfo: no error" );
@@ -166,14 +166,14 @@ sub deleteIfExists {
 sub testDelete {
 
     my $ahResults = $UserService->delete( [$options->{'FullPath'}] )->result;
-    ok( scalar @$ahResults == 1, "delete result count" );
+    is( scalar @$ahResults, 1, "delete result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "delete: no error" );
     diag "Error: $hResult->{'Error'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Path'} eq $options->{'FullPath'}, "user path" );
-    ok( $hResult->{'deleted'} == 1, "deleted?" );
+    is( $hResult->{'deleted'}, 1, "deleted?" );
 }
 
 # Test if a User exists or not
@@ -181,32 +181,32 @@ sub testExists {
     my ($exists) = @_;
 
     my $ahResults = $UserService->exists( [$options->{'FullPath'}] )->result;
-    ok( scalar @$ahResults == 1, "exists result count" );
+    is( scalar @$ahResults, 1, "exists result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "exists: no error" );
     diag "Error: $hResult->{'Error'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Path'} eq $options->{'FullPath'}, "user path" );
-    ok( $hResult->{'exists'} == $exists, "exists?" );
+    is( $hResult->{'exists'}, $exists, "exists?" );
 }
 
 # Update a User and check if the update was successful
 sub testUpdate_onlyName {
 
     my $ahResults = $UserService->update( [$user_update2] )->result;
-    ok( scalar @$ahResults == 1, "udpate result count" );
+    is( scalar @$ahResults, 1, "udpate result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "update2: no error" );
     diag "Error: $hResult->{'Error'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Path'} eq $user_update->{'Path'}, "user path" );
-    ok( $hResult->{'updated'} == 1, "updated?" );
+    is( $hResult->{'updated'}, 1, "updated?" );
 
     #check name
     $ahResults = $UserService->getInfo( [$options->{'FullPath'}], [], [] )->result;
-    ok( scalar @$ahResults == 1, "getInfo updated2 result count" );
+    is( scalar @$ahResults, 1, "getInfo updated2 result count" );
 
     $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "getInfo updated2: no error" );
