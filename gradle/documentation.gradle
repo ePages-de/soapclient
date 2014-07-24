@@ -41,7 +41,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'bintray'
 
 task documentationZip(type: Zip) {
-    def fileName =  "soapclient-documentation-${rootProject.version}"
+    def fileName =  "de.epages.soapclient-documentation"
     destinationDir = project.file('build/distribution')
     from(htmlDocumentation)
     into fileName

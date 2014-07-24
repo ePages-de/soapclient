@@ -50,7 +50,6 @@ web service, i.e. the one with the highest version number.
 
 - $clientLanguage/shop : Shop Webservices
 - $clientLanguage/provider : Provider Webservices
-- $clientLanguage/multistore : Multistore Webservices
 
 ## Avaiable clients ##
 
@@ -95,11 +94,9 @@ repositories {
 ```
 dependencies {
     // dependency for shop webservices
-    compile 'de.epages:soapclient-shop:1.4.15'
+    compile 'de.epages:soapclient-shop:1.4.16'
     // dependency for provider webservices
-    compile 'de.epages:soapclient-provider:1.4.15'
-    // dependency for multistore webservices
-    compile 'de.epages:soapclient-multistore:1.4.15'
+    compile 'de.epages:soapclient-provider:1.4.16'
 }
 ```
 

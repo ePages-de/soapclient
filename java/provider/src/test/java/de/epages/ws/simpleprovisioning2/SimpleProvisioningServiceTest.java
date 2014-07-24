@@ -66,7 +66,7 @@ public class SimpleProvisioningServiceTest {
         Shop_create.setAlias(ALIAS);
         Shop_create.setShopType("ECom100");
         Shop_create.setDomainName("mydomain.com");
-        Shop_create.setHasSSLCertificate(true);
+        Shop_create.setHasSSLCertificate(false);
         Shop_create.setIsClosed(false);
         Shop_create.setIsTrialShop(true);
         Shop_create.setIsInternalTestShop(false);
@@ -188,4 +188,3 @@ public class SimpleProvisioningServiceTest {
         deleteIfExists(ALIAS);
     }
 }
- 
