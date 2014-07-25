@@ -36,7 +36,7 @@ namespace EpagesWebServices
             WebServiceConfiguration WSConfig = new WebServiceConfiguration();
 
             CustomerGroupService custService = new CustomerGroupService();
-            custService.Credentials = new System.Net.NetworkCredential(WebServiceConfiguration.WEBSERVICE_LOGIN, WebServiceConfiguration.WEBSERVICE_PASSWORD);
+			custService.Credentials = new System.Net.NetworkCredential(WSConfig.WEBSERVICE_LOGIN, WSConfig.WEBSERVICE_PASSWORD);
             custService.PreAuthenticate = true;
             custService.Url = WSConfig.WEBSERVICE_URL;
             TGetList_Return[] retGroups = custService.getList();

@@ -1,11 +1,11 @@
-wrapper {  gradleVersion = "1.11" }
+wrapper {  gradleVersion = "2.0" }
 
 description = 'SOAP clients and webservice tests for epages6'
 
 buildscript {
     repositories {
         mavenCentral()
-        maven { url 'http://jcenter.bintray.com' }
+        jcenter()
     }
     dependencies {
         classpath "com.ullink.gradle:gradle-msbuild-plugin:1.6"
@@ -16,4 +16,6 @@ buildscript {
 apply from: './gradle/wsdl.gradle'
 apply from: './gradle/eclipse.gradle'
 apply from: './gradle/java.gradle'
+apply from: './gradle/documentation.gradle'
+apply from: './gradle/perl.gradle'
 apply from: './gradle/bintray.gradle'

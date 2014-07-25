@@ -15,7 +15,7 @@ import java.math.BigInteger;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.common.model.TAttribute;
 import de.epages.ws.common.model.TLocalizedValue;
 import de.epages.ws.producttype2.model.TCreatePreDefAttribute_Input;
@@ -42,7 +42,7 @@ import de.epages.ws.producttype2.model.TUpdate_Return;
 
 public class ProductTypeServiceTest {
 
-    private static final ProductTypeServiceClientImpl productTypeService = new ProductTypeServiceClientImpl(new WebServiceTestConfiguration());
+    private static final ProductTypeServiceClientImpl productTypeService = new ProductTypeServiceClientImpl(new ShopWebServiceTestConfiguration());
 
     private static final String SHOP_PATH = "";
     private static final String PRODUCTTYPES_PATH = SHOP_PATH + "ProductTypes/";

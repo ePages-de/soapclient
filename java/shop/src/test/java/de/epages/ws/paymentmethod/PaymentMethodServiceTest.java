@@ -6,13 +6,13 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.paymentmothod.model.TGetList_Return;
 
 public class PaymentMethodServiceTest {
 
     private static final PaymentMethodServiceClientImpl paymentMethodService = new PaymentMethodServiceClientImpl(
-            new WebServiceTestConfiguration());
+            new ShopWebServiceTestConfiguration());
 
     /**
      * Get a list of all payment methods

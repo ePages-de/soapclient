@@ -111,7 +111,7 @@ public class TCreate_Input  implements java.io.Serializable {
     /* Date when the product is going to be available/is for sale. */
     private java.util.Calendar availabilityDate;
 
-    /* Date when the product is going to be not longer available/is
+    /* The day and time on which the product stops being available
      * for sale. */
     private java.util.Calendar expiryDate;
 
@@ -938,7 +938,7 @@ public class TCreate_Input  implements java.io.Serializable {
     /**
      * Gets the expiryDate value for this TCreate_Input.
      * 
-     * @return expiryDate   * Date when the product is going to be not longer available/is
+     * @return expiryDate   * The day and time on which the product stops being available
      * for sale.
      */
     public java.util.Calendar getExpiryDate() {
@@ -949,7 +949,7 @@ public class TCreate_Input  implements java.io.Serializable {
     /**
      * Sets the expiryDate value for this TCreate_Input.
      * 
-     * @param expiryDate   * Date when the product is going to be not longer available/is
+     * @param expiryDate   * The day and time on which the product stops being available
      * for sale.
      */
     public void setExpiryDate(java.util.Calendar expiryDate) {

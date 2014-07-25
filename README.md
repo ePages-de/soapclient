@@ -15,7 +15,7 @@
 
 1. run ```./gradlew check``` (Linux) or ```gradlew.bat check``` (Windows) in project folder.
 2. If epages6 is not installed locally, use the
-   gradle property "ep6HostName" to an epages6 installation (```-Pep6HostName=somehost```)
+   system property "wsHostName" to an epages6 installation (```-DwsHostName=somehost```)
 
 ## Development in Eclipse ##
 
@@ -24,8 +24,8 @@
 3. Select location of soapclient source, and run "Build model"
 4. Select soapclient and all subprojects and click Finish
 5. If epages6 is not installed locally, use the
-   system property "ep6HostName" in launch configuration to point
-   to an epages6 installation (```-Dep6HostName=somehost```)
+   system property "wsHostName" in launch configuration to point
+   to an epages6 installation (```-DwsHostName=somehost```)
 
 ### The test cases use following configuration ###
 
@@ -33,11 +33,12 @@
 - The feature "Program Interface for Web Services" must be enabled in the shop.
   Username and password can be set via command-line (java only!) using system
   properties ```-DwsUser=/Path/to/User``` and ```-DwsPassword=somePassword```.
-
-- Web service endpoint: http://$SystemDomainName/epages/Store.soap
-  the SystemDomainName comes from epages/Shared/Config/epages.conf
-  but can be overridden via system property
-  ```-DwsUrl=http://someUrl/epages/Store.soap``` (java only!)
+- Mind that passing a different user, e.g. from a shop not equal to "DemoShop"
+  is not supported by the C# client yet.
+- Web service endpoint defaults to http://$wsHostName/epages/Store.soap and
+  can be overwritten via system property
+  ```-DwsUrl=http://someUrl/epages/Store.soap```. If epages6 is installed locally,
+  there is a fallback to the SystemDomainName defined in $EPAGES_CONFIG/epages.conf
 
 ### Note ###
 
@@ -49,7 +50,6 @@ web service, i.e. the one with the highest version number.
 
 - $clientLanguage/shop : Shop Webservices
 - $clientLanguage/provider : Provider Webservices
-- $clientLanguage/multistore : Multistore Webservices
 
 ## Avaiable clients ##
 
@@ -94,11 +94,9 @@ repositories {
 ```
 dependencies {
     // dependency for shop webservices
-    compile 'de.epages:soapclient-shop:1.4.14'
+    compile 'de.epages:soapclient-shop:1.4.16'
     // dependency for provider webservices
-    compile 'de.epages:soapclient-provider:1.4.14'
-    // dependency for multistore webservices
-    compile 'de.epages:soapclient-multistore:1.4.14'
+    compile 'de.epages:soapclient-provider:1.4.16'
 }
 ```
 

@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import de.epages.ws.ProviderWebServiceTestConfiguration;
@@ -69,7 +70,7 @@ public class SimpleProvisioningServiceTest {
         Shop_create.setAlias(ALIAS);
         Shop_create.setShopType("ECom100");
         Shop_create.setDomainName("mydomain.com");
-        Shop_create.setHasSSLCertificate(true);
+        Shop_create.setHasSSLCertificate(false);
         Shop_create.setIsClosed(false);
         Shop_create.setIsTrialShop(true);
         Shop_create.setIsInternalTestShop(false);

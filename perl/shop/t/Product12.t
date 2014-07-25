@@ -1,6 +1,6 @@
 use strict;
 use utf8;
-use Test::More tests => 179;
+use Test::More tests => 178;
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD WEBSERVICE_SHOP_PATH WEBSERVICE_SHOP_NAME);
 use WebServiceTools qw( cmpDateTime GetFileContent );
@@ -535,12 +535,6 @@ sub testFindByAlias {
     is( $aResults->[0], WEBSERVICE_SHOP_PATH.$hOptions->{'FullPath'}, "product path" );
 }
 
-sub testFindByLastUpdate {
-    my $aResults = $ProductService->find( {'LastUpdate' => '1976-01-01T00:00:00'} )->result;
-    ok( scalar @$aResults > 0, "find result count" );
-    ok( defined $aResults->[0], "product path" );
-}
-
 sub testFindAll {
 
     my $aResults = $ProductService->find()->result;
@@ -779,12 +773,32 @@ sub testUnsetPrices {
     }
 }
 
+sub testSetPrice {
+    my $Price = 17.5;
+    my $ahResults = $ProductService->update([
+    {
+        'Path' => $hOptions->{'FullPath'},
+        'ProductPrices' => [{ 'CurrencyID' => 'EUR', 'TaxModel' => 'gross', 'Price' => $Price }],
+    }])->result;
+    my $hResult = $ahResults->[0];
+    diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
+
+    $ahResults = $ProductService->getInfo([$hOptions->{'FullPath'}])->result;
+    $hResult = $ahResults->[0];
+    diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
+
+    for my $hPriceInfo (@{$hResult->{'ProductPrices'}}) {
+        if($hPriceInfo->{'CurrencyID'} eq 'EUR') {
+            ok($hPriceInfo->{'Price'} == $Price, "price is $Price");
+        }
+    }
+}
+
 # run test suite
 deleteIfExists();
 testCreate();
 testExists(1);
 testFindByAlias();
-testFindByLastUpdate();
 testGetInfo(0);
 testUpdate();
 testGetInfo(1);
@@ -793,6 +807,7 @@ testCreateVariations();
 testGetInfoVariations();
 testCreateWrongVariations();
 testUnsetPrices();
+testSetPrice();
 testDelete();
 testExists(0);
 testCreateDownload();

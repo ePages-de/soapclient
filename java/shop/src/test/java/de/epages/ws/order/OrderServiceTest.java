@@ -9,7 +9,7 @@ import java.util.GregorianCalendar;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.common.model.TAttribute;
 import de.epages.ws.order.model.TCreate_Input;
 import de.epages.ws.order.model.TCreate_Return;
@@ -24,7 +24,7 @@ import de.epages.ws.order.stub.TFind_Input;
 import de.epages.ws.shop.model.TAddress;
 
 public class OrderServiceTest {
-    private static final OrderServiceClientImpl serviceClient = new OrderServiceClientImpl(new WebServiceTestConfiguration());
+    private static final OrderServiceClientImpl serviceClient = new OrderServiceClientImpl(new ShopWebServiceTestConfiguration());
     private final TCreate_Input Order_in = new TCreate_Input();
     private final TUpdate_Input Order_update = new TUpdate_Input();
 

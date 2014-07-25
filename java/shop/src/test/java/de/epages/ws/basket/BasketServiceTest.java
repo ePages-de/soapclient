@@ -9,10 +9,9 @@ import static org.junit.Assert.assertTrue;
 import java.math.BigInteger;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.basket.model.TCreate_Input;
 import de.epages.ws.basket.model.TCreate_Return;
 import de.epages.ws.basket.model.TDelete_Return;
@@ -27,6 +26,7 @@ import de.epages.ws.basket.model.TUpdate_Input;
 import de.epages.ws.basket.model.TUpdate_Return;
 import de.epages.ws.common.model.TAttribute;
 import de.epages.ws.form.model.TFormError;
+import de.epages.ws.product12.ProductServiceClientImpl;
 import de.epages.ws.shop3.model.TAddressNamed;
 
 /**
@@ -34,7 +34,10 @@ import de.epages.ws.shop3.model.TAddressNamed;
  */
 public class BasketServiceTest {
 
-    private static final BasketServiceClientImpl basketService = new BasketServiceClientImpl(new WebServiceTestConfiguration());
+    private static final BasketServiceClientImpl basketService = new BasketServiceClientImpl(new ShopWebServiceTestConfiguration());
+
+    private static final ProductServiceClientImpl productService = new ProductServiceClientImpl(new ShopWebServiceTestConfiguration());
+
     private TCreate_Input Basket_in;
     private TUpdate_Input Basket_up;
     private TAttribute BasketAttr_in;
@@ -91,11 +94,9 @@ public class BasketServiceTest {
         lineItemContainer.setShippingMethod("ShippingMethods/Express");
         lineItemContainer.setTaxArea("/TaxMatrixGermany/EU");
         lineItemContainer.setTaxModel("gross");
-        lineItemContainer.setProductLineItems(new TProductLineItemIn[] { new TProductLineItemIn("Products/ho_1112105010",
-                (float) 10),
-        // new TProductLineItemIn("Products/de_3203104010",
-        // (float)10),
-                });
+        String productGuid = productService.getInfo(new String[]{"Products/ho_1112105010"}, new String[]{"GUID"})[0].getAttributes()[0].getValue();
+        assertNotNull(productGuid);
+        lineItemContainer.setProductLineItems(new TProductLineItemIn[] { new TProductLineItemIn(productGuid, (float) 10) });
         Basket_in.setLineItemContainer(lineItemContainer);
 
         // init order update data
@@ -253,7 +254,6 @@ public class BasketServiceTest {
      * runs all tests
      */
     @Test
-    @Ignore
     public void testAll() {
         testCreate();
         testCreateWithDefaults();

@@ -21,26 +21,31 @@ public interface CustomerGroupServiceClient extends Port_CustomerGroup {
     /**
      * get the list of customergroups
      */
+    @Override
     public TGetList_Return[] getList();
 
     /**
      * check if a list of groups exist.
      */
+    @Override
     public TExists_Return[] exists(java.lang.String[] groups);
 
     /**
      * create a list of customer groups.
      */
+    @Override
     public TCreate_Return[] create(TCreate_Input[] groups);
 
     /**
      * update a list of customer groups.
      */
+    @Override
     public TUpdate_Return[] update(TUpdate_Input[] groups);
 
     /**
      * delete a list of customer groups.
      */
+    @Override
     public TDelete_Return[] delete(java.lang.String[] groups);
 
 }

@@ -862,6 +862,22 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Web References\ProductService8Ref\ProductService.wsdl" />
+    <None Include="Web References\ProductService9Ref\ProductService.wsdl" />
+    <None Include="Web References\ProductService6Ref\ProductService.wsdl" />
+    <None Include="Web References\ProductService7Ref\ProductService.wsdl" />
+    <None Include="Web References\ProductService3Ref\ProductService.wsdl" />
+    <None Include="Web References\ProductService5Ref\ProductService.wsdl" />
+    <None Include="Web References\ChangeLogServiceRef\ChangeLogService.wsdl" />
+    <None Include="Web References\ChangeLogServiceRef\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Compile Include="Web References\ChangeLogServiceRef\Reference.cs">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeLogServiceClient.cs" />
+    <Compile Include="ChangeLogTest.cs" />
     <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/CatalogService6.wsdl">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\CatalogService6Ref\</RelPath>
@@ -1422,12 +1438,11 @@
       <CachedSettingsPropName>EpagesWebServices_OrderService7Ref_OrderService</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferences Include="Web References\" />
-    <None Include="Web References\ProductService8Ref\ProductService.wsdl" />
-    <None Include="Web References\ProductService9Ref\ProductService.wsdl" />
-    <None Include="Web References\ProductService6Ref\ProductService.wsdl" />
-    <None Include="Web References\ProductService7Ref\ProductService.wsdl" />
-    <None Include="Web References\ProductService3Ref\ProductService.wsdl" />
-    <None Include="Web References\ProductService5Ref\ProductService.wsdl" />
+    <WebReferenceUrl Include="http://localhost/WebRoot/WSDL/ChangeLogService.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ChangeLogServiceRef</RelPath>
+      <UpdateFromURL>http://localhost/WebRoot/WSDL/ChangeLogService.wsdl</UpdateFromURL>
+    </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

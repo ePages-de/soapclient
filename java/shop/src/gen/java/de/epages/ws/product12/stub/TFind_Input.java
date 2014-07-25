@@ -25,9 +25,6 @@ public class TFind_Input  implements java.io.Serializable {
     /* search for products with this class (a object path to a class) */
     private java.lang.String _class;
 
-    /* search for products updated only AFTER this Date and Time */
-    private java.util.Calendar lastUpdate;
-
     public TFind_Input() {
     }
 
@@ -35,13 +32,11 @@ public class TFind_Input  implements java.io.Serializable {
            java.lang.String text,
            java.lang.String languageCode,
            java.lang.String alias,
-           java.lang.String _class,
-           java.util.Calendar lastUpdate) {
+           java.lang.String _class) {
            this.text = text;
            this.languageCode = languageCode;
            this.alias = alias;
            this._class = _class;
-           this.lastUpdate = lastUpdate;
     }
 
 
@@ -124,26 +119,6 @@ public class TFind_Input  implements java.io.Serializable {
         this._class = _class;
     }
 
-
-    /**
-     * Gets the lastUpdate value for this TFind_Input.
-     * 
-     * @return lastUpdate   * search for products updated only AFTER this Date and Time
-     */
-    public java.util.Calendar getLastUpdate() {
-        return lastUpdate;
-    }
-
-
-    /**
-     * Sets the lastUpdate value for this TFind_Input.
-     * 
-     * @param lastUpdate   * search for products updated only AFTER this Date and Time
-     */
-    public void setLastUpdate(java.util.Calendar lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
         if (!(obj instanceof TFind_Input)) return false;
@@ -167,10 +142,7 @@ public class TFind_Input  implements java.io.Serializable {
               this.alias.equals(other.getAlias()))) &&
             ((this._class==null && other.get_class()==null) || 
              (this._class!=null &&
-              this._class.equals(other.get_class()))) &&
-            ((this.lastUpdate==null && other.getLastUpdate()==null) || 
-             (this.lastUpdate!=null &&
-              this.lastUpdate.equals(other.getLastUpdate())));
+              this._class.equals(other.get_class())));
         __equalsCalc = null;
         return _equals;
     }
@@ -193,9 +165,6 @@ public class TFind_Input  implements java.io.Serializable {
         }
         if (get_class() != null) {
             _hashCode += get_class().hashCode();
-        }
-        if (getLastUpdate() != null) {
-            _hashCode += getLastUpdate().hashCode();
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -232,13 +201,6 @@ public class TFind_Input  implements java.io.Serializable {
         elemField.setFieldName("_class");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Class"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("lastUpdate");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "LastUpdate"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

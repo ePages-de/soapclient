@@ -39,6 +39,7 @@ configure(subprojects.findAll {it.name.contains("java/")}) {
         commonsDiscoveryVersion = "0.5"
         logbackVersion = "1.0.13"
         httpclientVersion = "3.1"
+        jodaTimeVersion = "2.3"
     }
 
     dependencies {
@@ -49,6 +50,7 @@ configure(subprojects.findAll {it.name.contains("java/")}) {
         runtime "wsdl4j:wsdl4j:${wsdl4jVersion}"
 
         testCompile "junit:junit:${junitVersion}"
+        testCompile "joda-time:joda-time:${jodaTimeVersion}"
 
         testRuntime "org.slf4j:slf4j-api:${slf4jVersion}"
         testRuntime "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
@@ -122,4 +124,9 @@ configure(subprojects.findAll {it.name.contains("java/")}) {
     }
 
     artifacts { archives sourcesJar }
+
+    clean {
+        delete "logs"
+    }
+
 }

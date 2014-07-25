@@ -1,5 +1,5 @@
 use strict;
-use Test::More tests => 78;
+use Test::More tests => 75;
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD );
 
@@ -47,7 +47,7 @@ sub TestSuite {
         'IsTrialShop' => 1,
         'IsInternalTestShop' => 1,
         'DomainName' => 'test-domain-1',
-        'HasSSLCertificate' => 1,
+        'HasSSLCertificate' => 0,
         'MerchantLogin' => 'max',
         'MerchantPassword' => '123456',
         'MerchantEMail' => 'max@nowhere.de',
@@ -83,7 +83,7 @@ sub TestSuite {
         'IsTrialShop' => 1,
         'IsInternalTestShop' => 1,
         'DomainName' => 'test-domain-1-new',
-        'HasSSLCertificate' => 1,
+        'HasSSLCertificate' => 0,
         'MerchantLogin' => 'gabi',
         'MerchantPassword' => '654321',
         'MerchantEMail' => 'gabi@nowhere.de',
@@ -99,7 +99,6 @@ sub TestSuite {
     ok( $hResult->{'IsTrialShop'}, "IsTrialShop updated");
     ok( $hResult->{'IsInternalTestShop'}, "IsInternalTestShop updated");
     is( $hResult->{'DomainName'}, $Shop_update->{'DomainName'}, "DomainName updated" );
-    ok( $hResult->{'HasSSLCertificate'}, "HasSSLCertificate updated" );
     is( $hResult->{'MerchantLogin'}, $Shop_update->{'MerchantLogin'}, "MerchantLogin updated");
     is( $hResult->{'MerchantEMail'}, $Shop_update->{'MerchantEMail'}, "MerchantEMail updated");
     is( $hResult->{'LastMerchantLoginDate'}, undef, "LastMerchantLoginDate updated");
@@ -129,7 +128,6 @@ sub TestSuite {
     ok( $hResult->{'IsTrialShop'}, "IsTrialShop renamed");
     ok( $hResult->{'IsInternalTestShop'}, "IsInternalTestShop renamed");
     is( $hResult->{'DomainName'}, $Shop_update->{'DomainName'}, "DomainName renamed" );
-    ok( $hResult->{'HasSSLCertificate'}, "HasSSLCertificate renamed" );
     is( $hResult->{'MerchantLogin'}, $Shop_update->{'MerchantLogin'}, "MerchantLogin renamed");
     is( $hResult->{'MerchantEMail'}, $Shop_update->{'MerchantEMail'}, "MerchantEMail renamed");
     is( $hResult->{'LastMerchantLoginDate'}, undef, "LastMerchantLoginDate created");
@@ -152,7 +150,6 @@ sub TestSuite {
     ok( $hResult->{'IsTrialShop'}, "IsTrialShop deleted");
     ok( $hResult->{'IsInternalTestShop'}, "IsInternalTestShop deleted");
     is( $hResult->{'DomainName'}, $Shop_update->{'DomainName'}, "DomainName deleted" );
-    ok( $hResult->{'HasSSLCertificate'}, "HasSSLCertificate deleted" );
     is( $hResult->{'MerchantLogin'}, $Shop_update->{'MerchantLogin'}, "MerchantLogin deleted");
     is( $hResult->{'MerchantEMail'}, $Shop_update->{'MerchantEMail'}, "MerchantEMail deleted");
     ok( $hResult->{'IsMarkedForDel'}, "IsMarkedForDel deleted");

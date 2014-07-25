@@ -47,14 +47,24 @@ project.ext.nUnit = {String[] args ->
     return newArgs.toArray(new String[newArgs.size()])
 }
 
+def putIfExists = { mymap, prop ->
+    if(System.properties[prop] != null) {
+        mymap.put(prop, System.properties[prop])
+    }
+}
+
 task runTests(type:Exec, dependsOn: assemble) {
     description = 'Runs all webservice tests'
     group = 'Test'
-    // set ep6HostName
-    if (ep6HostName != null) {
-        def mymap = ['ep6HostName' : project.properties["ep6HostName"] ]
-        environment mymap
-    }
+    def envmap = [:]
+
+    putIfExists(envmap, 'wsHostName')
+    putIfExists(envmap, 'wsUrl')
+    putIfExists(envmap, 'wsShop')
+    putIfExists(envmap, 'wsUser')
+    putIfExists(envmap, 'wsPassword')
+
+    environment envmap
     logging.captureStandardOutput LogLevel.INFO
     workingDir projectDir.path
     commandLine nUnit("EpagesProviderWebServices/EpagesProviderWebServices.nunit")

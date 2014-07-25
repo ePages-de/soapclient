@@ -23,31 +23,37 @@ public interface PriceListAssignmentServiceClient extends Port_PriceListAssignme
     /**
      * get information about a product's scale prices
      */
+    @Override
     TGetScalePrices_Return[] getScalePrices(String[] products, String[] priceLists);
 
     /**
      * update product's scale prices
      */
+    @Override
     TSetScalePrices_Return[] setScalePrices(TSetScalePrices_Input[] products);
 
     /**
      * get information about a product's quantity discounts
      */
+    @Override
     TGetQuantityDiscounts_Return[] getQuantityDiscounts(String[] products, String[] priceLists);
 
     /**
      * update product's quantity discounts
      */
+    @Override
     TSetQuantityDiscounts_Return[] setQuantityDiscounts(TSetQuantityDiscounts_Input[] products);
 
     /**
      * get information about a product's value discounts
      */
+    @Override
     TGetValueDiscounts_Return[] getValueDiscounts(String[] products, String[] priceLists);
 
     /**
      * update product's value discounts
      */
+    @Override
     TSetValueDiscounts_Return[] setValueDiscounts(TSetValueDiscounts_Input[] products);
 
 }

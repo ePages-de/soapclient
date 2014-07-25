@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import de.epages.ws.ProviderWebServiceTestConfiguration;
@@ -61,14 +60,13 @@ public class SimpleProvisioningServiceTest {
     }
 
     @Test
-    @Ignore("bug in service2 impl!")
     public void testSuite() {
         // create a shop
         TCreateShop Shop_create = new TCreateShop();
         Shop_create.setAlias(ALIAS);
         Shop_create.setShopType("ECom100");
         Shop_create.setDomainName("mydomain.com");
-        Shop_create.setHasSSLCertificate(true);
+        Shop_create.setHasSSLCertificate(false);
         Shop_create.setIsClosed(false);
         Shop_create.setIsTrialShop(true);
         Shop_create.setIsInternalTestShop(false);
@@ -160,7 +158,6 @@ public class SimpleProvisioningServiceTest {
     }
 
     @Test
-    @Ignore("bug in service2 impl!")
     public void testDefaults() {
         // create a new shop with a minimum amount of data
         TCreateShop Shop_create = new TCreateShop();

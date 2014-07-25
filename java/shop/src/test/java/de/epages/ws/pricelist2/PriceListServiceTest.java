@@ -13,7 +13,7 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.common.model.TAttribute;
 import de.epages.ws.common.model.TLocalizedValue;
 import de.epages.ws.customergroup.CustomerGroupServiceClientImpl;
@@ -27,9 +27,9 @@ import de.epages.ws.pricelist2.model.TUpdate_Input;
 import de.epages.ws.pricelist2.model.TUpdate_Return;
 
 public class PriceListServiceTest {
-    private static final PriceListServiceClientImpl priceListService = new PriceListServiceClientImpl(new WebServiceTestConfiguration());
+    private static final PriceListServiceClientImpl priceListService = new PriceListServiceClientImpl(new ShopWebServiceTestConfiguration());
     private static final CustomerGroupServiceClientImpl customerGroupService = new CustomerGroupServiceClientImpl(
-            new WebServiceTestConfiguration());
+            new ShopWebServiceTestConfiguration());
     private final TCreate_Input PriceList_in = new TCreate_Input();
     private final TUpdate_Input PriceList_update = new TUpdate_Input();
 

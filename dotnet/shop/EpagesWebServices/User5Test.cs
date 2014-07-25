@@ -261,7 +261,7 @@ namespace EpagesWebServices
 			Assert.AreEqual(1, Users_out.Count, "delete result set");
 
 			TDelete_Return User_out = (TDelete_Return)Users_out.ToArray()[0];
-			Assert.AreEqual(path + alias, User_out.Path, "user path");
+			Assert.That(User_out.Path.Contains(path + alias), "user path: " + User_out.Path);
 			Assert.AreEqual(true, User_out.deleted, "deleted?");
 		}
 
@@ -278,7 +278,7 @@ namespace EpagesWebServices
 			Assert.AreEqual(1, Users_out.Count, "exists result set");
 
 			TExists_Return User_out = (TExists_Return)Users_out.ToArray()[0];
-			Assert.AreEqual(path + alias, User_out.Path, "user path");
+			Assert.That(User_out.Path.Contains(path + alias), "user path: " + User_out.Path);
 			Assert.AreEqual(exists, User_out.exists, "exists?");
 		}
 
@@ -293,7 +293,7 @@ namespace EpagesWebServices
 
             // test if find was successful
             Assert.AreEqual(1, userPaths.Length, "find result set");
-            Assert.AreEqual("/Shops/DemoShop/" + path + alias, userPaths[0], "user path");
+			Assert.That(userPaths[0].Contains(path + alias), "user path: " + userPaths[0]);
         }
 
         /// <summary>

@@ -12,7 +12,7 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.common.model.TLocalizedValue;
 import de.epages.ws.crossselling2.model.TCreate_Input;
 import de.epages.ws.crossselling2.model.TCreate_Return;
@@ -27,7 +27,7 @@ import de.epages.ws.crossselling2.model.TUpdate_Return;
 
 public class CrossSellingServiceTest {
     private static final CrossSellingServiceClientImpl crossSellingService = new CrossSellingServiceClientImpl(
-            new WebServiceTestConfiguration());
+            new ShopWebServiceTestConfiguration());
 
     private final String product = "Products/de_3203104010"; // Deuter Kangaroo
     private final String target_product = "Products/de_3206199010"; // Deuter

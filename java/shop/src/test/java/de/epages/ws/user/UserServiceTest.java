@@ -8,7 +8,7 @@ import java.util.GregorianCalendar;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.common.model.TAttribute;
 import de.epages.ws.shop.model.TAddress;
 import de.epages.ws.user.model.TCreate_Input;
@@ -21,7 +21,7 @@ import de.epages.ws.user.model.TUpdate_Return;
 
 public class UserServiceTest {
 
-    private static final UserServiceClientImpl serviceClient = new UserServiceClientImpl(new WebServiceTestConfiguration());
+    private static final UserServiceClientImpl serviceClient = new UserServiceClientImpl(new ShopWebServiceTestConfiguration());
 
     private final TCreate_Input user_in = new TCreate_Input();
     private final TUpdate_Input user_update = new TUpdate_Input();

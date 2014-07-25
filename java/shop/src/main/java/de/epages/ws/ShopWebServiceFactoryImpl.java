@@ -6,10 +6,12 @@ import de.epages.ws.basket.BasketServiceClient;
 import de.epages.ws.basket.BasketServiceClientImpl;
 import de.epages.ws.catalog8.CatalogServiceClient;
 import de.epages.ws.catalog8.CatalogServiceClientImpl;
+import de.epages.ws.changelog.ChangeLogServiceClient;
+import de.epages.ws.changelog.ChangeLogServiceClientImpl;
 import de.epages.ws.crossselling2.CrossSellingServiceClient;
 import de.epages.ws.crossselling2.CrossSellingServiceClientImpl;
-import de.epages.ws.customer4.CustomerServiceClient;
-import de.epages.ws.customer4.CustomerServiceClientImpl;
+import de.epages.ws.customer5.CustomerServiceClient;
+import de.epages.ws.customer5.CustomerServiceClientImpl;
 import de.epages.ws.customergroup2.CustomerGroupServiceClient;
 import de.epages.ws.customergroup2.CustomerGroupServiceClientImpl;
 import de.epages.ws.order12.OrderServiceClient;
@@ -116,6 +118,11 @@ public class ShopWebServiceFactoryImpl implements ShopWebServiceFactory {
     @Override
     public ShippingMethodServiceClient createShippingMethodServiceClient(WebServiceConfiguration config) {
         return new ShippingMethodServiceClientImpl(config);
+    }
+
+    @Override
+    public ChangeLogServiceClient createUpdateServiceClient(WebServiceConfiguration config) {
+        return new ChangeLogServiceClientImpl(config);
     }
 
     @Override

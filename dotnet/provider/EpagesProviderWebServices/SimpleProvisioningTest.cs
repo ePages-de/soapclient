@@ -81,7 +81,7 @@ namespace EpagesProviderWebServices
             Shop_create.IsInternalTestShop = false;
             Shop_create.DomainName = "mydomain.com";
             Shop_create.HasSSLCertificateSpecified = true;
-            Shop_create.HasSSLCertificate = true;
+            Shop_create.HasSSLCertificate = false;
             Shop_create.MerchantLogin = "max";
             Shop_create.MerchantPassword = "123456";
             Shop_create.MerchantEMail = "max@nowhere.de";
@@ -128,8 +128,6 @@ namespace EpagesProviderWebServices
             Shop_update.IsInternalTestShopSpecified = true;
             Shop_update.IsInternalTestShop = true;
             Shop_update.DomainName = "yourdomain.com";
-            Shop_update.HasSSLCertificateSpecified = true;
-            Shop_update.HasSSLCertificate = false;
             Shop_update.MerchantLogin = "gabi";
             Shop_update.MerchantPassword = "654321";
             Shop_update.MerchantEMail = "gabi@nowhere.de";
@@ -144,7 +142,6 @@ namespace EpagesProviderWebServices
 			Assert.AreEqual(Shop_update.IsTrialShop, Shop_out.IsTrialShop, "updated IsTrialShop");
 			Assert.AreEqual(Shop_update.IsInternalTestShop, Shop_out.IsInternalTestShop, "updated IsInternalTestShop");
 			Assert.AreEqual(Shop_update.DomainName, Shop_out.DomainName, "updated DomainName");
-            Assert.AreEqual(Shop_update.HasSSLCertificate, Shop_out.HasSSLCertificate, "updated HasSSLCertificate");
             Assert.AreEqual(DATABASE, Shop_out.Database, "updated Database");
             Assert.AreEqual(Shop_update.MerchantLogin, Shop_out.MerchantLogin, "updated MerchantLogin");
             Assert.AreEqual(Shop_update.MerchantEMail, Shop_out.MerchantEMail, "updated MerchantEMail");

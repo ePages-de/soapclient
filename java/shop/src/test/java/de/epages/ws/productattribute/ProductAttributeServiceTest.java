@@ -4,12 +4,12 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.productattribute.model.TGetInfoList_Return;
 
 public class ProductAttributeServiceTest {
 
-    private static final ProductAttributeServiceClientImpl productAttributeService = new ProductAttributeServiceClientImpl(new WebServiceTestConfiguration());
+    private static final ProductAttributeServiceClientImpl productAttributeService = new ProductAttributeServiceClientImpl(new ShopWebServiceTestConfiguration());
 
     /**
      * Get a list of all product attributes

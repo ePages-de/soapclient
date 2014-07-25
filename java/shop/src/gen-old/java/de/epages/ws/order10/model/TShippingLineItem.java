@@ -48,7 +48,7 @@ public class TShippingLineItem  implements java.io.Serializable {
     /* the tax amount of the shipping line item */
     private float taxAmount;
 
-    private de.epages.ws.order10.model.ListOfShippingTaxes taxes;
+    private de.epages.ws.order10.model.TShippingTax[] taxes;
 
     /* list of requested attributes (see epagestypes:ListOfAttributes) */
     private de.epages.ws.common.model.TAttribute[] attributes;
@@ -68,7 +68,7 @@ public class TShippingLineItem  implements java.io.Serializable {
            float discount,
            float taxRate,
            float taxAmount,
-           de.epages.ws.order10.model.ListOfShippingTaxes taxes,
+           de.epages.ws.order10.model.TShippingTax[] taxes,
            de.epages.ws.common.model.TAttribute[] attributes) {
            this._class = _class;
            this.name = name;
@@ -315,7 +315,7 @@ public class TShippingLineItem  implements java.io.Serializable {
      * 
      * @return taxes
      */
-    public de.epages.ws.order10.model.ListOfShippingTaxes getTaxes() {
+    public de.epages.ws.order10.model.TShippingTax[] getTaxes() {
         return taxes;
     }
 
@@ -325,7 +325,7 @@ public class TShippingLineItem  implements java.io.Serializable {
      * 
      * @param taxes
      */
-    public void setTaxes(de.epages.ws.order10.model.ListOfShippingTaxes taxes) {
+    public void setTaxes(de.epages.ws.order10.model.TShippingTax[] taxes) {
         this.taxes = taxes;
     }
 
@@ -384,7 +384,7 @@ public class TShippingLineItem  implements java.io.Serializable {
             this.taxAmount == other.getTaxAmount() &&
             ((this.taxes==null && other.getTaxes()==null) || 
              (this.taxes!=null &&
-              this.taxes.equals(other.getTaxes()))) &&
+              java.util.Arrays.equals(this.taxes, other.getTaxes()))) &&
             ((this.attributes==null && other.getAttributes()==null) || 
              (this.attributes!=null &&
               java.util.Arrays.equals(this.attributes, other.getAttributes())));
@@ -421,7 +421,15 @@ public class TShippingLineItem  implements java.io.Serializable {
         _hashCode += new Float(getTaxRate()).hashCode();
         _hashCode += new Float(getTaxAmount()).hashCode();
         if (getTaxes() != null) {
-            _hashCode += getTaxes().hashCode();
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getTaxes());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getTaxes(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
         }
         if (getAttributes() != null) {
             for (int i=0;
@@ -513,7 +521,7 @@ public class TShippingLineItem  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("taxes");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Taxes"));
-        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/OrderTypes/2011/11", "ListOfShippingTaxes"));
+        elemField.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/OrderTypes/2011/11", "TShippingTax"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

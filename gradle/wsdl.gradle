@@ -9,9 +9,7 @@ ext {
     'CatalogService8',
     'CrossSellingService2',
     'CustomerGroupService2',
-    'CustomerService4',
     'CustomerService5',
-    'CustomerService6',
     'OrderService12',
     'OrderDocumentService7',
     'PageCacheService',
@@ -21,6 +19,7 @@ ext {
     'TaxAreaService',
     'TaxClassService',
     'UserService6',
+    'ChangeLogService',
     // for java this needs to come last due to a namespace mapping hack
     'ProductService12',
 
@@ -34,8 +33,8 @@ ext {
     'SimpleProvisioningService2',
 
     //// multistore services ////
-    'MultiStoreMasterService',
-    'MultiStoreConfigService',
+//    'MultiStoreMasterService',
+//    'MultiStoreConfigService',
   ]
 
   /* previous versions of all supported services */
@@ -53,6 +52,7 @@ ext {
     'CustomerService',
     'CustomerService2',
     'CustomerService3',
+    'CustomerService4',
     'OrderDocumentService',
     'OrderDocumentService2',
     'OrderDocumentService3',
@@ -109,18 +109,3 @@ allprojects {
         wsdlBaseUrl = rootProject.properties["wsdlBaseUrl"] ?: "${System.env.EPAGES_WEBROOT}/WSDL/"
     }
 }
-
-////////// publish wsdls /////////////
-apply plugin: 'maven-publish'
-apply plugin: 'bintray'
-
-task wsdlsZip(type: Zip) {
-    destinationDir = project.buildDir
-    from(file("${System.env.EPAGES_WEBROOT}/WSDL/"))
-    baseName = "soapclient-wsdls-${rootProject.version}"
-    include '*.wsdl'
-    include '*.xsd'
-}
-
-// artifacts { wsdlsZip }
-// bintray.configurations { 'wsdlsZip' }

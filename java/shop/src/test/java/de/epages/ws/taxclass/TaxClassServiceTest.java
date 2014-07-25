@@ -7,12 +7,12 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.taxclass.model.TGetList_Return;
 
 public class TaxClassServiceTest {
 
-    private TaxClassServiceClientImpl taxClassService = new TaxClassServiceClientImpl(new WebServiceTestConfiguration());
+    private TaxClassServiceClientImpl taxClassService = new TaxClassServiceClientImpl(new ShopWebServiceTestConfiguration());
 
     /**
      * Get a list of all tax classes

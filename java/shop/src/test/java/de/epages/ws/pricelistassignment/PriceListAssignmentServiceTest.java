@@ -1,5 +1,6 @@
 package de.epages.ws.pricelistassignment;
 
+import static de.epages.ws.common.AssertNoError.assertNoError;
 import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -8,7 +9,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.pricelistassignment.model.TGetQuantityDiscounts_Return;
 import de.epages.ws.pricelistassignment.model.TGetScalePrices_Return;
 import de.epages.ws.pricelistassignment.model.TGetValueDiscounts_Return;
@@ -27,7 +28,7 @@ import de.epages.ws.pricelistassignment.model.TValueDiscount;
 
 public class PriceListAssignmentServiceTest {
     private static final PriceListAssignmentServiceClientImpl serviceClient = new PriceListAssignmentServiceClientImpl(
-            new WebServiceTestConfiguration());
+            new ShopWebServiceTestConfiguration());
 
     private final String product = "Products/ho_1112105010";
     private final String pricelist = "PriceLists/RegularCustomer_EUR";
@@ -130,6 +131,7 @@ public class PriceListAssignmentServiceTest {
 
         // test if creation was successful
         assertEquals("create result set", 1, PriceListAssignments_out.length);
+        assertNoError(PriceListAssignments_out[0].getError());
         assertTrue(PriceListAssignments_out[0].getUpdated());
     }
 

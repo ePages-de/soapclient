@@ -11,7 +11,7 @@ import java.math.BigInteger;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.assignment.model.TAssignProductToCatalog_Input;
 import de.epages.ws.assignment.model.TAssignProductToCatalog_Return;
 import de.epages.ws.assignment.model.TAssignedCatalog;
@@ -35,7 +35,7 @@ public class AssignmentServiceTest {
      */
     @Before
     public void setUp() {
-        serviceClient = new AssignmentServiceClientImpl(new WebServiceTestConfiguration());
+        serviceClient = new AssignmentServiceClientImpl(new ShopWebServiceTestConfiguration());
     }
 
     /**

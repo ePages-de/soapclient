@@ -4,7 +4,6 @@ import static de.epages.ws.common.AssertNoError.assertNoError;
 import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -20,7 +19,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.epages.ws.FileUtil;
-import de.epages.ws.WebServiceTestConfiguration;
+import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.common.model.TAttribute;
 import de.epages.ws.common.model.TLocalizedValue;
 import de.epages.ws.product12.model.TCreate_Input;
@@ -63,7 +62,7 @@ public class ProductServiceTest {
      */
     @Before
     public void setUp() throws IOException {
-        serviceClient = new ProductServiceClientImpl(new WebServiceTestConfiguration());
+        serviceClient = new ProductServiceClientImpl(new ShopWebServiceTestConfiguration());
 
         Product_in = new TCreate_Input();
         Product_update = new TUpdate_Input();
@@ -448,6 +447,27 @@ public class ProductServiceTest {
         }
     }
 
+    public void testSetPrice() {
+        TProductPrice productPrice = new TProductPrice();
+        productPrice.setCurrencyID("EUR");
+        productPrice.setTaxModel("gross");
+        productPrice.setPrice((float) 123);
+        TUpdate_Input priceUpdate = new TUpdate_Input();
+        priceUpdate.setPath(path + alias);
+        priceUpdate.setProductPrices(new TProductPrice[] { productPrice });
+        TUpdate_Return[] Products_update_out = serviceClient.update(new TUpdate_Input[] {priceUpdate});
+        assertNoError(Products_update_out[0].getError());
+        TGetInfo_Return[] Products_info_out = serviceClient.getInfo(new String[] { priceUpdate.getPath() });
+        assertNoError(Products_info_out[0].getError());
+
+        TProductPrice[] productPrices = Products_info_out[0].getProductPrices();
+        for (TProductPrice tProductPrice : productPrices) {
+            if ("EUR".equals(tProductPrice.getCurrencyID())) {
+                assertEquals(tProductPrice.getPrice(), 123f, 0.0f);
+            }
+        }
+    }
+
     /**
      * Delete a Product and check if no error occured.
      */
@@ -487,18 +507,6 @@ public class ProductServiceTest {
         assertEquals("find result set", 1, Products_find_out.length);
         assertThat(Products_find_out[0], endsWith(path + alias));
         // "found path", path + alias, Products_find_out[0]);
-    }
-
-    public void testFindByLastUpdate() {
-        TFind_Input parameters = new TFind_Input();
-        parameters.setLastUpdate(new GregorianCalendar(1976, 01, 01));
-
-        String[] Products_find_out = new String[] {};
-        Products_find_out = serviceClient.find(parameters);
-
-        // test if find was successful
-        assertTrue("find result set", Products_find_out.length > 0);
-        assertNotNull("found path", Products_find_out[0]);
     }
 
     public void testCreateDownload() {
@@ -619,7 +627,6 @@ public class ProductServiceTest {
         testCreate();
         testExists(true);
         testFindByAlias();
-        testFindByLastUpdate();
         testGetInfoBeforeUpdate();
         testGetInfoMasterProduct();
         testUpdate();
@@ -627,6 +634,7 @@ public class ProductServiceTest {
         testCreateVariations();
         testGetInfoVariations();
         testUnsetPrices();
+        testSetPrice();
         testDelete();
         testExists(false);
 
