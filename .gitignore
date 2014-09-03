@@ -9,6 +9,7 @@ bin/
 *~
 *.class
 .idea
+logs/
 *.log
 target/
 *.bak
