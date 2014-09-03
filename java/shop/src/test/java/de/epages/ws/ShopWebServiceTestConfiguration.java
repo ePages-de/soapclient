@@ -13,21 +13,34 @@ import java.net.URL;
  *     default will be from reading "SystemDomainName" from epages.conf
  *  - setting System property "wsUser" (e.g. /Shops/SomeShop/Users/someUser
  *     default will be /Shops/DemoShop/Users/admin
- *  - settign System property "wsPassword" (e.g. somPassXX)
+ *  - setting System property "wsPassword" (e.g. somPassXX)
  *      default will be admin
+ *  - setting System property "wsAppName" (e.g. somApp)
+ *      default will be none
+ *  - setting System property "wsAppPassword" (e.g. somAppPassword)
+ *      default will be none
  */
 public class ShopWebServiceTestConfiguration implements WebServiceConfiguration {
 
-    private final String WEBSERVICE_LOGIN = System.getProperty("wsUser", "/Shops/DemoShop/Users/admin");
+    private String wsLogin;
 
-    private final String WEBSERVICE_PASSWORD = System.getProperty("wsPassword", "admin");
+    private String wsPassword;
 
-    private final URL WEBSERVICE_URL;
+    private final URL wsUrl;
 
     public ShopWebServiceTestConfiguration() {
         String wsUrl = System.getProperty("wsUrl");
+        wsLogin = System.getProperty("wsUser", "/Shops/DemoShop/Users/admin");
+        wsPassword = System.getProperty("wsPassword", "admin");
+        if (System.getProperty("wsAppName") != null) {
+        	wsLogin += (char)1 + System.getProperty("wsAppName");
+        }
+        if (System.getProperty("wsAppPassword") != null) {
+        	wsPassword += (char)1 + System.getProperty("wsAppPassword");
+        }
+        
         try {
-            WEBSERVICE_URL = wsUrl != null ? new URL(wsUrl) : new URL(deriveWebserviceUrl());
+            this.wsUrl = wsUrl != null ? new URL(wsUrl) : new URL(deriveWebserviceUrl());
         } catch (MalformedURLException e) {
             throw new IllegalArgumentException("could not derive webservice url (tried wsUrl and wsHostName properties, and reading local epages.conf)", e);
         }
@@ -35,17 +48,17 @@ public class ShopWebServiceTestConfiguration implements WebServiceConfiguration 
 
     @Override
     public URL getWebserviceURL() {
-        return WEBSERVICE_URL;
+        return wsUrl;
     }
 
     @Override
     public String getUsername() {
-        return WEBSERVICE_LOGIN;
+        return wsLogin;
     }
 
     @Override
     public String getPassword() {
-        return WEBSERVICE_PASSWORD;
+        return wsPassword;
     }
 
     private static String deriveWebserviceUrl() {

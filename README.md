@@ -27,14 +27,19 @@
    system property "wsHostName" in launch configuration to point
    to an epages6 installation (```-DwsHostName=somehost```)
 
-### The test cases use following configuration ###
+### Configuration ###
+
+The tests can be run with either default configuration, or by specifying system
+properties, changed to alternative URLs, or using alternative login credentials.
 
 - shop "DemoShop" with user "admin" with password "admin" and default content
 - The feature "Program Interface for Web Services" must be enabled in the shop.
-  Username and password can be set via command-line (java only!) using system
+  Username and password can be set via command-line (java and perl only!) using system
   properties ```-DwsUser=/Path/to/User``` and ```-DwsPassword=somePassword```.
-- Mind that passing a different user, e.g. from a shop not equal to "DemoShop"
-  is not supported by the C# client yet.
+- Adding application key/password to the credentials can be achieved by specifying
+  the properties ```-DwsAppName=``` for the application name, and ```-DwsAppPassword=```
+  for the password.  
+- Mind that passing a different credentials is not supported by the C# client yet.
 - Web service endpoint defaults to http://$wsHostName/epages/Store.soap and
   can be overwritten via system property
   ```-DwsUrl=http://someUrl/epages/Store.soap```. If epages6 is installed locally,

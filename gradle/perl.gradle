@@ -33,7 +33,9 @@ configure(subprojects.findAll {it.name.contains("perl/")}) {
         putIfExists(envmap, 'wsUrl')
         putIfExists(envmap, 'wsShop')
         putIfExists(envmap, 'wsUser')
+        putIfExists(envmap, 'wsAppName')
         putIfExists(envmap, 'wsPassword')
+        putIfExists(envmap, 'wsAppPassword')
 
         environment envmap
         logging.captureStandardOutput LogLevel.INFO
