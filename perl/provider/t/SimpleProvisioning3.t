@@ -126,6 +126,8 @@ sub TestSuite {
     ok( !$hResult->{'IsMarkedForDel'}, "IsMarkedForDel updated");
     is( $hResult->{'StorefrontURL'}, "http://$Shop_update->{'DomainName'}/epages/$Shop_update->{'Alias'}.sf", "StorefrontURL updated");
     like( $hResult->{'BackofficeURL'}, qr!http(s?)://$Shop_update->{'DomainName'}/epages/$Shop_update->{'Alias'}.admin!, "BackofficeURL updated");
+
+diag explain $hResult;
 exit;
 
     # rename
