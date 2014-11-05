@@ -51,16 +51,16 @@ sub TestSuite {
         'MerchantLogin' => 'max',
         'MerchantPassword' => '123456',
         'MerchantEMail' => 'max@nowhere.de',
-        'Attributes' => [
-            {   'Name' => 'Channel',
-                'Type' => 'String',
-                'Value' => 'MailingCampaign'
-            },
-            {   'Name' => 'SetupFee',
-                'Type' => 'Float',
-                'Value' => 12.67
-            }
-        ]
+#        'Attributes' => [
+#            {   'Name' => 'Channel',
+#                'Type' => 'String',
+#                'Value' => 'MailingCampaign'
+#            },
+#            {   'Name' => 'SetupFee',
+#                'Type' => 'Float',
+#                'Value' => 12.67
+#            }
+#        ]
     };
     my $Result = $SimpleProvisioningService->create( $Shop_in )->result;
     is( $Result, undef, "create" );
@@ -97,6 +97,17 @@ sub TestSuite {
         'MerchantLogin' => 'gabi',
         'MerchantPassword' => '654321',
         'MerchantEMail' => 'gabi@nowhere.de',
+
+        'Attributes' => [
+            {   'Name' => 'Channel',
+                'Type' => 'String',
+                'Value' => 'MailingCampaign'
+            },
+            {   'Name' => 'SetupFee',
+                'Type' => 'Float',
+                'Value' => 12.67
+            }
+        ]
     };
     $SimpleProvisioningService->update( $Shop_update );
 
@@ -115,6 +126,7 @@ sub TestSuite {
     ok( !$hResult->{'IsMarkedForDel'}, "IsMarkedForDel updated");
     is( $hResult->{'StorefrontURL'}, "http://$Shop_update->{'DomainName'}/epages/$Shop_update->{'Alias'}.sf", "StorefrontURL updated");
     like( $hResult->{'BackofficeURL'}, qr!http(s?)://$Shop_update->{'DomainName'}/epages/$Shop_update->{'Alias'}.admin!, "BackofficeURL updated");
+exit;
 
     # rename
     my $Shop_rename = {
