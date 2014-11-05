@@ -34,7 +34,7 @@ sub TestSuite {
 
     # Create a SOAP::Lite client object
     my $SimpleProvisioningService = WebServiceClient
-        ->uri( 'urn://epages.de/WebService/SimpleProvisioningService/2013/05' )
+        ->uri( 'urn://epages.de/WebService/SimpleProvisioningService/2014/11' )
         ->proxy( WEBSERVICE_URL )
         ->xmlschema( '2001' );
     $SimpleProvisioningService->userinfo( WEBSERVICE_LOGIN.':'.WEBSERVICE_PASSWORD );
