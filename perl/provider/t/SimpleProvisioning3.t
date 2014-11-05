@@ -51,6 +51,16 @@ sub TestSuite {
         'MerchantLogin' => 'max',
         'MerchantPassword' => '123456',
         'MerchantEMail' => 'max@nowhere.de',
+        'Attributes' => [
+            {   'Name' => 'Channel',
+                'Type' => 'String',
+                'Value' => 'MailingCampaign'
+            },
+            {   'Name' => 'SetupFee',
+                'Type' => 'Float',
+                'Value' => 12.67
+            }
+        ]
     };
     my $Result = $SimpleProvisioningService->create( $Shop_in )->result;
     is( $Result, undef, "create" );
