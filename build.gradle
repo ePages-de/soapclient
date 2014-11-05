@@ -1,4 +1,4 @@
-wrapper {  gradleVersion = "2.0" }
+wrapper {  gradleVersion = "2.2-rc-2" }
 
 description = 'SOAP clients and webservice tests for epages6'
 
