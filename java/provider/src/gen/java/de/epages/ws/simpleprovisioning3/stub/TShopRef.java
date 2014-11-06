@@ -6,6 +6,8 @@
  */
 
 
+package de.epages.ws.simpleprovisioning3.stub;
+
 /**
  * shop data required to identify an existing shop
  */
@@ -24,7 +26,7 @@ public class TShopRef  implements java.io.Serializable {
 
     /**
      * Gets the alias value for this TShopRef.
-     * 
+     *
      * @return alias   * unique shop identifier
      */
     public java.lang.String getAlias() {
@@ -34,7 +36,7 @@ public class TShopRef  implements java.io.Serializable {
 
     /**
      * Sets the alias value for this TShopRef.
-     * 
+     *
      * @param alias   * unique shop identifier
      */
     public void setAlias(java.lang.String alias) {
@@ -52,8 +54,8 @@ public class TShopRef  implements java.io.Serializable {
         }
         __equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.alias==null && other.getAlias()==null) || 
+        _equals = true &&
+            ((this.alias==null && other.getAlias()==null) ||
              (this.alias!=null &&
               this.alias.equals(other.getAlias())));
         __equalsCalc = null;
@@ -99,10 +101,10 @@ public class TShopRef  implements java.io.Serializable {
      * Get Custom Serializer
      */
     public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
+           java.lang.String mechType,
+           java.lang.Class _javaType,
            javax.xml.namespace.QName _xmlType) {
-        return 
+        return
           new  org.apache.axis.encoding.ser.BeanSerializer(
             _javaType, _xmlType, typeDesc);
     }
@@ -111,10 +113,10 @@ public class TShopRef  implements java.io.Serializable {
      * Get Custom Deserializer
      */
     public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
+           java.lang.String mechType,
+           java.lang.Class _javaType,
            javax.xml.namespace.QName _xmlType) {
-        return 
+        return
           new  org.apache.axis.encoding.ser.BeanDeserializer(
             _javaType, _xmlType, typeDesc);
     }

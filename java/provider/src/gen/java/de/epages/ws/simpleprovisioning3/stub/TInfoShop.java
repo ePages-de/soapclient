@@ -6,6 +6,8 @@
  */
 
 
+package de.epages.ws.simpleprovisioning3.stub;
+
 /**
  * shop data output by getInfo operation
  */
@@ -99,7 +101,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Gets the alias value for this TInfoShop.
-     * 
+     *
      * @return alias   * unique shop identifier
      */
     public java.lang.String getAlias() {
@@ -109,7 +111,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Sets the alias value for this TInfoShop.
-     * 
+     *
      * @param alias   * unique shop identifier
      */
     public void setAlias(java.lang.String alias) {
@@ -119,7 +121,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Gets the shopType value for this TInfoShop.
-     * 
+     *
      * @return shopType   * shop type alias
      */
     public java.lang.String getShopType() {
@@ -129,7 +131,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Sets the shopType value for this TInfoShop.
-     * 
+     *
      * @param shopType   * shop type alias
      */
     public void setShopType(java.lang.String shopType) {
@@ -139,7 +141,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Gets the database value for this TInfoShop.
-     * 
+     *
      * @return database   * store database identifier
      */
     public java.lang.String getDatabase() {
@@ -149,7 +151,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Sets the database value for this TInfoShop.
-     * 
+     *
      * @param database   * store database identifier
      */
     public void setDatabase(java.lang.String database) {
@@ -159,7 +161,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Gets the isClosed value for this TInfoShop.
-     * 
+     *
      * @return isClosed   * true if the shop is closed by provider
      */
     public boolean isIsClosed() {
@@ -169,7 +171,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Sets the isClosed value for this TInfoShop.
-     * 
+     *
      * @param isClosed   * true if the shop is closed by provider
      */
     public void setIsClosed(boolean isClosed) {
@@ -179,7 +181,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Gets the isDeleted value for this TInfoShop.
-     * 
+     *
      * @return isDeleted   * true if the shop is deleted in the store database
      */
     public boolean isIsDeleted() {
@@ -189,7 +191,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Sets the isDeleted value for this TInfoShop.
-     * 
+     *
      * @param isDeleted   * true if the shop is deleted in the store database
      */
     public void setIsDeleted(boolean isDeleted) {
@@ -199,7 +201,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Gets the isTrialShop value for this TInfoShop.
-     * 
+     *
      * @return isTrialShop   * true if the shop is in trial period
      */
     public boolean isIsTrialShop() {
@@ -209,7 +211,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Sets the isTrialShop value for this TInfoShop.
-     * 
+     *
      * @param isTrialShop   * true if the shop is in trial period
      */
     public void setIsTrialShop(boolean isTrialShop) {
@@ -219,7 +221,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Gets the isInternalTestShop value for this TInfoShop.
-     * 
+     *
      * @return isInternalTestShop   * true if the shop is used for test or support purposes
      */
     public boolean isIsInternalTestShop() {
@@ -229,7 +231,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Sets the isInternalTestShop value for this TInfoShop.
-     * 
+     *
      * @param isInternalTestShop   * true if the shop is used for test or support purposes
      */
     public void setIsInternalTestShop(boolean isInternalTestShop) {
@@ -239,7 +241,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Gets the domainName value for this TInfoShop.
-     * 
+     *
      * @return domainName   * domain name to access the shop
      */
     public java.lang.String getDomainName() {
@@ -249,7 +251,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Sets the domainName value for this TInfoShop.
-     * 
+     *
      * @param domainName   * domain name to access the shop
      */
     public void setDomainName(java.lang.String domainName) {
@@ -259,7 +261,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Gets the hasSSLCertificate value for this TInfoShop.
-     * 
+     *
      * @return hasSSLCertificate   * true if the web server has an SSL certificate for the shop
      */
     public boolean isHasSSLCertificate() {
@@ -269,7 +271,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Sets the hasSSLCertificate value for this TInfoShop.
-     * 
+     *
      * @param hasSSLCertificate   * true if the web server has an SSL certificate for the shop
      */
     public void setHasSSLCertificate(boolean hasSSLCertificate) {
@@ -279,7 +281,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Gets the merchantLogin value for this TInfoShop.
-     * 
+     *
      * @return merchantLogin   * merchant login name
      */
     public java.lang.String getMerchantLogin() {
@@ -289,7 +291,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Sets the merchantLogin value for this TInfoShop.
-     * 
+     *
      * @param merchantLogin   * merchant login name
      */
     public void setMerchantLogin(java.lang.String merchantLogin) {
@@ -299,7 +301,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Gets the merchantEMail value for this TInfoShop.
-     * 
+     *
      * @return merchantEMail   * merchant email address
      */
     public java.lang.String getMerchantEMail() {
@@ -309,7 +311,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Sets the merchantEMail value for this TInfoShop.
-     * 
+     *
      * @param merchantEMail   * merchant email address
      */
     public void setMerchantEMail(java.lang.String merchantEMail) {
@@ -319,7 +321,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Gets the lastMerchantLoginDate value for this TInfoShop.
-     * 
+     *
      * @return lastMerchantLoginDate   * date of last merchant login
      */
     public java.util.Calendar getLastMerchantLoginDate() {
@@ -329,7 +331,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Sets the lastMerchantLoginDate value for this TInfoShop.
-     * 
+     *
      * @param lastMerchantLoginDate   * date of last merchant login
      */
     public void setLastMerchantLoginDate(java.util.Calendar lastMerchantLoginDate) {
@@ -339,7 +341,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Gets the isMarkedForDel value for this TInfoShop.
-     * 
+     *
      * @return isMarkedForDel   * shop is marked for deletion
      */
     public boolean isIsMarkedForDel() {
@@ -349,7 +351,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Sets the isMarkedForDel value for this TInfoShop.
-     * 
+     *
      * @param isMarkedForDel   * shop is marked for deletion
      */
     public void setIsMarkedForDel(boolean isMarkedForDel) {
@@ -359,7 +361,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Gets the storefrontURL value for this TInfoShop.
-     * 
+     *
      * @return storefrontURL   * URL of the shop
      */
     public java.lang.String getStorefrontURL() {
@@ -369,7 +371,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Sets the storefrontURL value for this TInfoShop.
-     * 
+     *
      * @param storefrontURL   * URL of the shop
      */
     public void setStorefrontURL(java.lang.String storefrontURL) {
@@ -379,7 +381,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Gets the backofficeURL value for this TInfoShop.
-     * 
+     *
      * @return backofficeURL   * URL of the back-office of the shop
      */
     public java.lang.String getBackofficeURL() {
@@ -389,7 +391,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Sets the backofficeURL value for this TInfoShop.
-     * 
+     *
      * @param backofficeURL   * URL of the back-office of the shop
      */
     public void setBackofficeURL(java.lang.String backofficeURL) {
@@ -399,7 +401,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Gets the additionalAttributes value for this TInfoShop.
-     * 
+     *
      * @return additionalAttributes   * list of additional attributes (see epagestypes:ListOfAttributes)
      */
     public de.epages.ws.common.model.TAttribute[] getAdditionalAttributes() {
@@ -409,7 +411,7 @@ public class TInfoShop  implements java.io.Serializable {
 
     /**
      * Sets the additionalAttributes value for this TInfoShop.
-     * 
+     *
      * @param additionalAttributes   * list of additional attributes (see epagestypes:ListOfAttributes)
      */
     public void setAdditionalAttributes(de.epages.ws.common.model.TAttribute[] additionalAttributes) {
@@ -427,41 +429,41 @@ public class TInfoShop  implements java.io.Serializable {
         }
         __equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.alias==null && other.getAlias()==null) || 
+        _equals = true &&
+            ((this.alias==null && other.getAlias()==null) ||
              (this.alias!=null &&
               this.alias.equals(other.getAlias()))) &&
-            ((this.shopType==null && other.getShopType()==null) || 
+            ((this.shopType==null && other.getShopType()==null) ||
              (this.shopType!=null &&
               this.shopType.equals(other.getShopType()))) &&
-            ((this.database==null && other.getDatabase()==null) || 
+            ((this.database==null && other.getDatabase()==null) ||
              (this.database!=null &&
               this.database.equals(other.getDatabase()))) &&
             this.isClosed == other.isIsClosed() &&
             this.isDeleted == other.isIsDeleted() &&
             this.isTrialShop == other.isIsTrialShop() &&
             this.isInternalTestShop == other.isIsInternalTestShop() &&
-            ((this.domainName==null && other.getDomainName()==null) || 
+            ((this.domainName==null && other.getDomainName()==null) ||
              (this.domainName!=null &&
               this.domainName.equals(other.getDomainName()))) &&
             this.hasSSLCertificate == other.isHasSSLCertificate() &&
-            ((this.merchantLogin==null && other.getMerchantLogin()==null) || 
+            ((this.merchantLogin==null && other.getMerchantLogin()==null) ||
              (this.merchantLogin!=null &&
               this.merchantLogin.equals(other.getMerchantLogin()))) &&
-            ((this.merchantEMail==null && other.getMerchantEMail()==null) || 
+            ((this.merchantEMail==null && other.getMerchantEMail()==null) ||
              (this.merchantEMail!=null &&
               this.merchantEMail.equals(other.getMerchantEMail()))) &&
-            ((this.lastMerchantLoginDate==null && other.getLastMerchantLoginDate()==null) || 
+            ((this.lastMerchantLoginDate==null && other.getLastMerchantLoginDate()==null) ||
              (this.lastMerchantLoginDate!=null &&
               this.lastMerchantLoginDate.equals(other.getLastMerchantLoginDate()))) &&
             this.isMarkedForDel == other.isIsMarkedForDel() &&
-            ((this.storefrontURL==null && other.getStorefrontURL()==null) || 
+            ((this.storefrontURL==null && other.getStorefrontURL()==null) ||
              (this.storefrontURL!=null &&
               this.storefrontURL.equals(other.getStorefrontURL()))) &&
-            ((this.backofficeURL==null && other.getBackofficeURL()==null) || 
+            ((this.backofficeURL==null && other.getBackofficeURL()==null) ||
              (this.backofficeURL!=null &&
               this.backofficeURL.equals(other.getBackofficeURL()))) &&
-            ((this.additionalAttributes==null && other.getAdditionalAttributes()==null) || 
+            ((this.additionalAttributes==null && other.getAdditionalAttributes()==null) ||
              (this.additionalAttributes!=null &&
               java.util.Arrays.equals(this.additionalAttributes, other.getAdditionalAttributes())));
         __equalsCalc = null;
@@ -639,10 +641,10 @@ public class TInfoShop  implements java.io.Serializable {
      * Get Custom Serializer
      */
     public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
+           java.lang.String mechType,
+           java.lang.Class _javaType,
            javax.xml.namespace.QName _xmlType) {
-        return 
+        return
           new  org.apache.axis.encoding.ser.BeanSerializer(
             _javaType, _xmlType, typeDesc);
     }
@@ -651,10 +653,10 @@ public class TInfoShop  implements java.io.Serializable {
      * Get Custom Deserializer
      */
     public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
+           java.lang.String mechType,
+           java.lang.Class _javaType,
            javax.xml.namespace.QName _xmlType) {
-        return 
+        return
           new  org.apache.axis.encoding.ser.BeanDeserializer(
             _javaType, _xmlType, typeDesc);
     }

@@ -1,23 +1,24 @@
 /**
- * TCreateShop.java
+ * TUpdateShop.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
 
+package de.epages.ws.simpleprovisioning3.stub;
+
 /**
- * shop data required to create a new shop
+ * shop data to update an existing shop
  */
-public class TCreateShop  implements java.io.Serializable {
+public class TUpdateShop  implements java.io.Serializable {
     /* unique shop identifier */
     private java.lang.String alias;
 
     /* shop type alias */
     private java.lang.String shopType;
 
-    /* set to true to keep the new shop closed by provider; defaults
-     * to false */
+    /* true if the shop is closed by provider */
     private java.lang.Boolean isClosed;
 
     /* true if the shop is in trial period */
@@ -29,7 +30,7 @@ public class TCreateShop  implements java.io.Serializable {
     /* domain name to access the shop */
     private java.lang.String domainName;
 
-    /* true if an SSL certificate is installed for DomainName */
+    /* true if the web server has an SSL certificate for the shop */
     private java.lang.Boolean hasSSLCertificate;
 
     /* merchant login name */
@@ -44,10 +45,10 @@ public class TCreateShop  implements java.io.Serializable {
     /* list of additional attributes (see epagestypes:ListOfAttributes) */
     private de.epages.ws.common.model.TAttribute[] additionalAttributes;
 
-    public TCreateShop() {
+    public TUpdateShop() {
     }
 
-    public TCreateShop(
+    public TUpdateShop(
            java.lang.String alias,
            java.lang.String shopType,
            java.lang.Boolean isClosed,
@@ -74,8 +75,8 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Gets the alias value for this TCreateShop.
-     * 
+     * Gets the alias value for this TUpdateShop.
+     *
      * @return alias   * unique shop identifier
      */
     public java.lang.String getAlias() {
@@ -84,8 +85,8 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Sets the alias value for this TCreateShop.
-     * 
+     * Sets the alias value for this TUpdateShop.
+     *
      * @param alias   * unique shop identifier
      */
     public void setAlias(java.lang.String alias) {
@@ -94,8 +95,8 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Gets the shopType value for this TCreateShop.
-     * 
+     * Gets the shopType value for this TUpdateShop.
+     *
      * @return shopType   * shop type alias
      */
     public java.lang.String getShopType() {
@@ -104,8 +105,8 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Sets the shopType value for this TCreateShop.
-     * 
+     * Sets the shopType value for this TUpdateShop.
+     *
      * @param shopType   * shop type alias
      */
     public void setShopType(java.lang.String shopType) {
@@ -114,10 +115,9 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Gets the isClosed value for this TCreateShop.
-     * 
-     * @return isClosed   * set to true to keep the new shop closed by provider; defaults
-     * to false
+     * Gets the isClosed value for this TUpdateShop.
+     *
+     * @return isClosed   * true if the shop is closed by provider
      */
     public java.lang.Boolean getIsClosed() {
         return isClosed;
@@ -125,10 +125,9 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Sets the isClosed value for this TCreateShop.
-     * 
-     * @param isClosed   * set to true to keep the new shop closed by provider; defaults
-     * to false
+     * Sets the isClosed value for this TUpdateShop.
+     *
+     * @param isClosed   * true if the shop is closed by provider
      */
     public void setIsClosed(java.lang.Boolean isClosed) {
         this.isClosed = isClosed;
@@ -136,8 +135,8 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Gets the isTrialShop value for this TCreateShop.
-     * 
+     * Gets the isTrialShop value for this TUpdateShop.
+     *
      * @return isTrialShop   * true if the shop is in trial period
      */
     public java.lang.Boolean getIsTrialShop() {
@@ -146,8 +145,8 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Sets the isTrialShop value for this TCreateShop.
-     * 
+     * Sets the isTrialShop value for this TUpdateShop.
+     *
      * @param isTrialShop   * true if the shop is in trial period
      */
     public void setIsTrialShop(java.lang.Boolean isTrialShop) {
@@ -156,8 +155,8 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Gets the isInternalTestShop value for this TCreateShop.
-     * 
+     * Gets the isInternalTestShop value for this TUpdateShop.
+     *
      * @return isInternalTestShop   * true if the shop is used for test or support purposes
      */
     public java.lang.Boolean getIsInternalTestShop() {
@@ -166,8 +165,8 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Sets the isInternalTestShop value for this TCreateShop.
-     * 
+     * Sets the isInternalTestShop value for this TUpdateShop.
+     *
      * @param isInternalTestShop   * true if the shop is used for test or support purposes
      */
     public void setIsInternalTestShop(java.lang.Boolean isInternalTestShop) {
@@ -176,8 +175,8 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Gets the domainName value for this TCreateShop.
-     * 
+     * Gets the domainName value for this TUpdateShop.
+     *
      * @return domainName   * domain name to access the shop
      */
     public java.lang.String getDomainName() {
@@ -186,8 +185,8 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Sets the domainName value for this TCreateShop.
-     * 
+     * Sets the domainName value for this TUpdateShop.
+     *
      * @param domainName   * domain name to access the shop
      */
     public void setDomainName(java.lang.String domainName) {
@@ -196,9 +195,9 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Gets the hasSSLCertificate value for this TCreateShop.
-     * 
-     * @return hasSSLCertificate   * true if an SSL certificate is installed for DomainName
+     * Gets the hasSSLCertificate value for this TUpdateShop.
+     *
+     * @return hasSSLCertificate   * true if the web server has an SSL certificate for the shop
      */
     public java.lang.Boolean getHasSSLCertificate() {
         return hasSSLCertificate;
@@ -206,9 +205,9 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Sets the hasSSLCertificate value for this TCreateShop.
-     * 
-     * @param hasSSLCertificate   * true if an SSL certificate is installed for DomainName
+     * Sets the hasSSLCertificate value for this TUpdateShop.
+     *
+     * @param hasSSLCertificate   * true if the web server has an SSL certificate for the shop
      */
     public void setHasSSLCertificate(java.lang.Boolean hasSSLCertificate) {
         this.hasSSLCertificate = hasSSLCertificate;
@@ -216,8 +215,8 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Gets the merchantLogin value for this TCreateShop.
-     * 
+     * Gets the merchantLogin value for this TUpdateShop.
+     *
      * @return merchantLogin   * merchant login name
      */
     public java.lang.String getMerchantLogin() {
@@ -226,8 +225,8 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Sets the merchantLogin value for this TCreateShop.
-     * 
+     * Sets the merchantLogin value for this TUpdateShop.
+     *
      * @param merchantLogin   * merchant login name
      */
     public void setMerchantLogin(java.lang.String merchantLogin) {
@@ -236,8 +235,8 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Gets the merchantPassword value for this TCreateShop.
-     * 
+     * Gets the merchantPassword value for this TUpdateShop.
+     *
      * @return merchantPassword   * merchant password in clear text
      */
     public java.lang.String getMerchantPassword() {
@@ -246,8 +245,8 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Sets the merchantPassword value for this TCreateShop.
-     * 
+     * Sets the merchantPassword value for this TUpdateShop.
+     *
      * @param merchantPassword   * merchant password in clear text
      */
     public void setMerchantPassword(java.lang.String merchantPassword) {
@@ -256,8 +255,8 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Gets the merchantEMail value for this TCreateShop.
-     * 
+     * Gets the merchantEMail value for this TUpdateShop.
+     *
      * @return merchantEMail   * merchant email address
      */
     public java.lang.String getMerchantEMail() {
@@ -266,8 +265,8 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Sets the merchantEMail value for this TCreateShop.
-     * 
+     * Sets the merchantEMail value for this TUpdateShop.
+     *
      * @param merchantEMail   * merchant email address
      */
     public void setMerchantEMail(java.lang.String merchantEMail) {
@@ -276,8 +275,8 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Gets the additionalAttributes value for this TCreateShop.
-     * 
+     * Gets the additionalAttributes value for this TUpdateShop.
+     *
      * @return additionalAttributes   * list of additional attributes (see epagestypes:ListOfAttributes)
      */
     public de.epages.ws.common.model.TAttribute[] getAdditionalAttributes() {
@@ -286,8 +285,8 @@ public class TCreateShop  implements java.io.Serializable {
 
 
     /**
-     * Sets the additionalAttributes value for this TCreateShop.
-     * 
+     * Sets the additionalAttributes value for this TUpdateShop.
+     *
      * @param additionalAttributes   * list of additional attributes (see epagestypes:ListOfAttributes)
      */
     public void setAdditionalAttributes(de.epages.ws.common.model.TAttribute[] additionalAttributes) {
@@ -296,8 +295,8 @@ public class TCreateShop  implements java.io.Serializable {
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof TCreateShop)) return false;
-        TCreateShop other = (TCreateShop) obj;
+        if (!(obj instanceof TUpdateShop)) return false;
+        TUpdateShop other = (TUpdateShop) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -305,38 +304,38 @@ public class TCreateShop  implements java.io.Serializable {
         }
         __equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.alias==null && other.getAlias()==null) || 
+        _equals = true &&
+            ((this.alias==null && other.getAlias()==null) ||
              (this.alias!=null &&
               this.alias.equals(other.getAlias()))) &&
-            ((this.shopType==null && other.getShopType()==null) || 
+            ((this.shopType==null && other.getShopType()==null) ||
              (this.shopType!=null &&
               this.shopType.equals(other.getShopType()))) &&
-            ((this.isClosed==null && other.getIsClosed()==null) || 
+            ((this.isClosed==null && other.getIsClosed()==null) ||
              (this.isClosed!=null &&
               this.isClosed.equals(other.getIsClosed()))) &&
-            ((this.isTrialShop==null && other.getIsTrialShop()==null) || 
+            ((this.isTrialShop==null && other.getIsTrialShop()==null) ||
              (this.isTrialShop!=null &&
               this.isTrialShop.equals(other.getIsTrialShop()))) &&
-            ((this.isInternalTestShop==null && other.getIsInternalTestShop()==null) || 
+            ((this.isInternalTestShop==null && other.getIsInternalTestShop()==null) ||
              (this.isInternalTestShop!=null &&
               this.isInternalTestShop.equals(other.getIsInternalTestShop()))) &&
-            ((this.domainName==null && other.getDomainName()==null) || 
+            ((this.domainName==null && other.getDomainName()==null) ||
              (this.domainName!=null &&
               this.domainName.equals(other.getDomainName()))) &&
-            ((this.hasSSLCertificate==null && other.getHasSSLCertificate()==null) || 
+            ((this.hasSSLCertificate==null && other.getHasSSLCertificate()==null) ||
              (this.hasSSLCertificate!=null &&
               this.hasSSLCertificate.equals(other.getHasSSLCertificate()))) &&
-            ((this.merchantLogin==null && other.getMerchantLogin()==null) || 
+            ((this.merchantLogin==null && other.getMerchantLogin()==null) ||
              (this.merchantLogin!=null &&
               this.merchantLogin.equals(other.getMerchantLogin()))) &&
-            ((this.merchantPassword==null && other.getMerchantPassword()==null) || 
+            ((this.merchantPassword==null && other.getMerchantPassword()==null) ||
              (this.merchantPassword!=null &&
               this.merchantPassword.equals(other.getMerchantPassword()))) &&
-            ((this.merchantEMail==null && other.getMerchantEMail()==null) || 
+            ((this.merchantEMail==null && other.getMerchantEMail()==null) ||
              (this.merchantEMail!=null &&
               this.merchantEMail.equals(other.getMerchantEMail()))) &&
-            ((this.additionalAttributes==null && other.getAdditionalAttributes()==null) || 
+            ((this.additionalAttributes==null && other.getAdditionalAttributes()==null) ||
              (this.additionalAttributes!=null &&
               java.util.Arrays.equals(this.additionalAttributes, other.getAdditionalAttributes())));
         __equalsCalc = null;
@@ -397,10 +396,10 @@ public class TCreateShop  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(TCreateShop.class, true);
+        new org.apache.axis.description.TypeDesc(TUpdateShop.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/SimpleProvisioningService/2014/11", "TCreateShop"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("urn://epages.de/WebService/SimpleProvisioningService/2014/11", "TUpdateShop"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("alias");
         elemField.setXmlName(new javax.xml.namespace.QName("", "Alias"));
@@ -411,6 +410,7 @@ public class TCreateShop  implements java.io.Serializable {
         elemField.setFieldName("shopType");
         elemField.setXmlName(new javax.xml.namespace.QName("", "ShopType"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
@@ -489,10 +489,10 @@ public class TCreateShop  implements java.io.Serializable {
      * Get Custom Serializer
      */
     public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
+           java.lang.String mechType,
+           java.lang.Class _javaType,
            javax.xml.namespace.QName _xmlType) {
-        return 
+        return
           new  org.apache.axis.encoding.ser.BeanSerializer(
             _javaType, _xmlType, typeDesc);
     }
@@ -501,10 +501,10 @@ public class TCreateShop  implements java.io.Serializable {
      * Get Custom Deserializer
      */
     public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
+           java.lang.String mechType,
+           java.lang.Class _javaType,
            javax.xml.namespace.QName _xmlType) {
-        return 
+        return
           new  org.apache.axis.encoding.ser.BeanDeserializer(
             _javaType, _xmlType, typeDesc);
     }

@@ -5,6 +5,8 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
+package de.epages.ws.simpleprovisioning3.stub;
+
 public class SimpleProvisioningServiceLocator extends org.apache.axis.client.Service implements SimpleProvisioningService {
 
 /**
@@ -124,11 +126,11 @@ public class SimpleProvisioningServiceLocator extends org.apache.axis.client.Ser
     * Set the endpoint address for the specified port name.
     */
     public void setEndpointAddress(java.lang.String portName, java.lang.String address) throws javax.xml.rpc.ServiceException {
-        
+
 if ("port_SimpleProvisioning".equals(portName)) {
             setport_SimpleProvisioningEndpointAddress(address);
         }
-        else 
+        else
 { // Unknown Port Name
             throw new javax.xml.rpc.ServiceException(" Cannot set Endpoint Address for Unknown Port" + portName);
         }
