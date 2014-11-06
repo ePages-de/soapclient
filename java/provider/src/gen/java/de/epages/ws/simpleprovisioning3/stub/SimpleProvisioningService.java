@@ -14,7 +14,7 @@ public interface SimpleProvisioningService extends javax.xml.rpc.Service {
  */
     public java.lang.String getport_SimpleProvisioningAddress();
 
-    public Port_SimpleProvisioning_PortType getport_SimpleProvisioning() throws javax.xml.rpc.ServiceException;
+    public Port_SimpleProvisioning getport_SimpleProvisioning() throws javax.xml.rpc.ServiceException;
 
-    public Port_SimpleProvisioning_PortType getport_SimpleProvisioning(java.net.URL portAddress) throws javax.xml.rpc.ServiceException;
+    public Port_SimpleProvisioning getport_SimpleProvisioning(java.net.URL portAddress) throws javax.xml.rpc.ServiceException;
 }

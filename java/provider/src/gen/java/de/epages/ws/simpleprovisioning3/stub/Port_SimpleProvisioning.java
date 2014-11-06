@@ -7,7 +7,7 @@
 
 package de.epages.ws.simpleprovisioning3.stub;
 
-public interface Port_SimpleProvisioning_PortType extends java.rmi.Remote {
+public interface Port_SimpleProvisioning extends java.rmi.Remote {
 
     /**
      * creates a new shop with a given shop type and imports default
