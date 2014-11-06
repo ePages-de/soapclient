@@ -43,7 +43,7 @@ public class SimpleProvisioningServiceLocator extends org.apache.axis.client.Ser
         port_SimpleProvisioningWSDDServiceName = name;
     }
 
-    public Port_SimpleProvisioning_PortType getport_SimpleProvisioning() throws javax.xml.rpc.ServiceException {
+    public Port_SimpleProvisioning getport_SimpleProvisioning() throws javax.xml.rpc.ServiceException {
        java.net.URL endpoint;
         try {
             endpoint = new java.net.URL(port_SimpleProvisioning_address);
@@ -54,7 +54,7 @@ public class SimpleProvisioningServiceLocator extends org.apache.axis.client.Ser
         return getport_SimpleProvisioning(endpoint);
     }
 
-    public Port_SimpleProvisioning_PortType getport_SimpleProvisioning(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
+    public Port_SimpleProvisioning getport_SimpleProvisioning(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
         try {
             Bind_SimpleProvisioning_SOAPStub _stub = new Bind_SimpleProvisioning_SOAPStub(portAddress, this);
             _stub.setPortName(getport_SimpleProvisioningWSDDServiceName());
@@ -76,7 +76,7 @@ public class SimpleProvisioningServiceLocator extends org.apache.axis.client.Ser
      */
     public java.rmi.Remote getPort(Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
         try {
-            if (Port_SimpleProvisioning_PortType.class.isAssignableFrom(serviceEndpointInterface)) {
+            if (Port_SimpleProvisioning.class.isAssignableFrom(serviceEndpointInterface)) {
                 Bind_SimpleProvisioning_SOAPStub _stub = new Bind_SimpleProvisioning_SOAPStub(new java.net.URL(port_SimpleProvisioning_address), this);
                 _stub.setPortName(getport_SimpleProvisioningWSDDServiceName());
                 return _stub;

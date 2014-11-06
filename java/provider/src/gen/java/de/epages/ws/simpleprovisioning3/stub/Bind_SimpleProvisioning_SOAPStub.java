@@ -7,7 +7,7 @@
 
 package de.epages.ws.simpleprovisioning3.stub;
 
-public class Bind_SimpleProvisioning_SOAPStub extends org.apache.axis.client.Stub implements Port_SimpleProvisioning_PortType {
+public class Bind_SimpleProvisioning_SOAPStub extends org.apache.axis.client.Stub implements Port_SimpleProvisioning {
     private java.util.Vector cachedSerClasses = new java.util.Vector();
     private java.util.Vector cachedSerQNames = new java.util.Vector();
     private java.util.Vector cachedSerFactories = new java.util.Vector();
