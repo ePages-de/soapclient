@@ -1,5 +1,5 @@
 use strict;
-use Test::More tests => 75;
+use Test::More tests => 86;
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD );
 
@@ -51,16 +51,12 @@ sub TestSuite {
         'MerchantLogin' => 'max',
         'MerchantPassword' => '123456',
         'MerchantEMail' => 'max@nowhere.de',
-#        'Attributes' => [
-#            {   'Name' => 'Channel',
-#                'Type' => 'String',
-#                'Value' => 'MailingCampaign'
-#            },
-#            {   'Name' => 'SetupFee',
-#                'Type' => 'Float',
-#                'Value' => 12.67
-#            }
-#        ]
+        'AdditionalAttributes' => [
+            {   'Name' => 'Channel',
+                'Type' => 'String',
+                'Value' => 'MailingCampaign'
+            },
+        ]
     };
     my $Result = $SimpleProvisioningService->create( $Shop_in )->result;
     is( $Result, undef, "create" );
@@ -84,6 +80,13 @@ sub TestSuite {
     is( $hResult->{'StorefrontURL'}, "http://$Shop_in->{'DomainName'}/epages/$Shop_in->{'Alias'}.sf", "StorefrontURL created");
     like( $hResult->{'BackofficeURL'}, qr!http(s?)://$Shop_in->{'DomainName'}/epages/$Shop_in->{'Alias'}.admin!, "BackofficeURL created");
     is( $hResult->{'LastMerchantLoginDate'}, undef, "LastMerchantLoginDate created");
+    #check additional attribute
+    ok( scalar $hResult->{'AdditionalAttributes'} > 0, "AdditionalAttributes");
+    my $hRefAttr = $Shop_in->{AdditionalAttributes}->[0];
+    my($hAttr) = grep {$_->{Name} eq $hRefAttr->{Name}} @{$hResult->{'AdditionalAttributes'}};
+    ok( $hAttr->{Name} eq $hRefAttr->{Name} , "AdditionalAttributes $hAttr->{Name} created");
+    ok( $hAttr->{Value} eq $hRefAttr->{Value} , "AdditionalAttributes $hAttr->{Value}");
+    ok( $hAttr->{Type} eq $hRefAttr->{Type} , "AdditionalAttributes $hAttr->{Type}");
 
     # update the shop
     my $Shop_update = {
@@ -98,10 +101,10 @@ sub TestSuite {
         'MerchantPassword' => '654321',
         'MerchantEMail' => 'gabi@nowhere.de',
 
-        'Attributes' => [
+        'AdditionalAttributes' => [
             {   'Name' => 'Channel',
                 'Type' => 'String',
-                'Value' => 'MailingCampaign'
+                'Value' => 'Phone-Campaign'
             },
             {   'Name' => 'SetupFee',
                 'Type' => 'Float',
@@ -127,8 +130,20 @@ sub TestSuite {
     is( $hResult->{'StorefrontURL'}, "http://$Shop_update->{'DomainName'}/epages/$Shop_update->{'Alias'}.sf", "StorefrontURL updated");
     like( $hResult->{'BackofficeURL'}, qr!http(s?)://$Shop_update->{'DomainName'}/epages/$Shop_update->{'Alias'}.admin!, "BackofficeURL updated");
 
-diag explain $hResult;
-exit;
+    #check added additional attribute
+    ok( scalar $hResult->{'AdditionalAttributes'} > 1, "AdditionalAttributes > 1");
+    $hRefAttr = $Shop_update->{AdditionalAttributes}->[1];
+    ($hAttr) = grep {$_->{Name} eq $hRefAttr->{Name}} @{$hResult->{'AdditionalAttributes'}};
+    ok( $hAttr->{Name} eq $hRefAttr->{Name} , "AdditionalAttributes $hAttr->{Name} added");
+    ok( $hAttr->{Value} eq $hRefAttr->{Value} , "AdditionalAttributes $hAttr->{Value}");
+    ok( $hAttr->{Type} eq $hRefAttr->{Type} , "AdditionalAttributes $hAttr->{Type}");
+
+    #check changed additional attribute
+    $hRefAttr = $Shop_update->{AdditionalAttributes}->[0];
+    ($hAttr) = grep {$_->{Name} eq $hRefAttr->{Name}} @{$hResult->{'AdditionalAttributes'}};
+    ok( $hAttr->{Name} eq $hRefAttr->{Name} , "AdditionalAttributes $hAttr->{Name} changed");
+    ok( $hAttr->{Value} eq $hRefAttr->{Value} , "AdditionalAttributes $hAttr->{Value}");
+    ok( $hAttr->{Type} eq $hRefAttr->{Type} , "AdditionalAttributes $hAttr->{Type}");
 
     # rename
     my $Shop_rename = {
