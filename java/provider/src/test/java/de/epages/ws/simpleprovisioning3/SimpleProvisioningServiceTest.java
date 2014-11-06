@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.epages.ws.ProviderWebServiceTestConfiguration;
+import de.epages.ws.common.model.TAttribute;
 import de.epages.ws.shopconfig6.ShopConfigServiceClient;
 import de.epages.ws.shopconfig6.ShopConfigServiceClientImpl;
 import de.epages.ws.simpleprovisioning3.stub.TCreateShop;
@@ -73,6 +74,8 @@ public class SimpleProvisioningServiceTest {
         Shop_create.setMerchantLogin("max");
         Shop_create.setMerchantPassword("123456");
         Shop_create.setMerchantEMail("max@nowhere.de");
+        TAttribute strAttributeChannel = new TAttribute("Channel","mail campaign",null,"String");
+		Shop_create.setAdditionalAttributes( new TAttribute[]{strAttributeChannel} );
 
         simpleProvisioningService.create(Shop_create);
 
@@ -102,6 +105,17 @@ public class SimpleProvisioningServiceTest {
                 Shop_out.getStorefrontURL());
         assertTrue("BackofficeURL",
                 Shop_out.getBackofficeURL().endsWith("://" + Shop_create.getDomainName() + "/epages/" + Shop_create.getAlias() + ".admin"));
+        //check created channel attribute
+        assertTrue("additionalAttributes", Shop_out.getAdditionalAttributes().length > 1 );
+        TAttribute strAttributeChannel_out = new TAttribute();
+        for(TAttribute t: Shop_out.getAdditionalAttributes()) {
+        	if( t.getName() == strAttributeChannel.getName() ) {
+        		strAttributeChannel_out = t;
+        	}
+        }
+        assertTrue("channel attribute Name", strAttributeChannel_out.getName() == strAttributeChannel.getName() );
+        assertTrue("channel attribute Value", strAttributeChannel_out.getValue() == strAttributeChannel.getValue() );
+        assertTrue("channel attribute Type", strAttributeChannel_out.getType() == strAttributeChannel.getType() );
 
         // update the shop (all attributes are optional)
         TUpdateShop Shop_update = new TUpdateShop();
@@ -114,6 +128,9 @@ public class SimpleProvisioningServiceTest {
         Shop_update.setMerchantLogin("gabi");
         Shop_update.setMerchantPassword("654321");
         Shop_update.setMerchantEMail("gabi@nowhere.de");
+        TAttribute strAttributeSetupFee = new TAttribute("SetupFee","17.33",null,"Float");
+        strAttributeChannel.setValue("phone campaign");
+		Shop_create.setAdditionalAttributes( new TAttribute[]{strAttributeChannel,strAttributeSetupFee} );
 
         simpleProvisioningService.update(Shop_update);
         // get information about the updated shop
@@ -132,6 +149,23 @@ public class SimpleProvisioningServiceTest {
         assertFalse("updated IsMarkedForDel", Shop_out.isIsMarkedForDel());
         assertEquals("updated StorefrontURL", "http://" + Shop_update.getDomainName() + "/epages/" + ALIAS + ".sf",
                 Shop_out.getStorefrontURL());
+        //check changed/created attributes
+        assertTrue("additionalAttributes", Shop_out.getAdditionalAttributes().length > 2 );
+        TAttribute strAttributeSetupFee_out = new TAttribute();
+        for(TAttribute t: Shop_out.getAdditionalAttributes()) {
+        	if( t.getName() == strAttributeChannel.getName() ) {
+        		strAttributeChannel_out = t;
+        	} else if ( t.getName() == strAttributeSetupFee.getName()) {
+        		strAttributeSetupFee_out = t;
+			}
+        }
+        assertTrue("channel attribute Name", strAttributeChannel_out.getName() == strAttributeChannel.getName() );
+        assertTrue("channel attribute Value", strAttributeChannel_out.getValue() == strAttributeChannel.getValue() );
+        assertTrue("channel attribute Type", strAttributeChannel_out.getType() == strAttributeChannel.getType() );
+        assertTrue("setup fee attribute Name", strAttributeSetupFee_out.getName() == strAttributeSetupFee.getName() );
+        assertTrue("setup fee attribute Value", strAttributeSetupFee_out.getValue() == strAttributeSetupFee.getValue() );
+        assertTrue("setup fee attribute Type", strAttributeSetupFee_out.getType() == strAttributeSetupFee.getType() );
+
 
         // change the shop alias
         TRename_Input Shop_rename = new TRename_Input();
