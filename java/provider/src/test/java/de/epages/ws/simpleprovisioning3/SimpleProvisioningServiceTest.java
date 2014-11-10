@@ -5,7 +5,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,7 +39,7 @@ public class SimpleProvisioningServiceTest {
         cleanUp();
     }
 
-    @After
+    //After
     public void cleanUp() {
         // delete the shop if it still/already exists
         deleteIfExists(ALIAS);
@@ -75,7 +74,7 @@ public class SimpleProvisioningServiceTest {
         Shop_create.setMerchantPassword("123456");
         Shop_create.setMerchantEMail("max@nowhere.de");
         TAttribute strAttributeChannel = new TAttribute("Channel","mail campaign",null,"String");
-        TAttribute strAttributeAquiration = new TAttribute("Aquiration","7",null,"Integer");
+        TAttribute strAttributeAquiration = new TAttribute("CountAquiration","7",null,"Integer");
 		Shop_create.setAdditionalAttributes( new TAttribute[]{strAttributeChannel,strAttributeAquiration} );
 
         simpleProvisioningService.create(Shop_create);
@@ -107,22 +106,18 @@ public class SimpleProvisioningServiceTest {
         assertTrue("BackofficeURL",
                 Shop_out.getBackofficeURL().endsWith("://" + Shop_create.getDomainName() + "/epages/" + Shop_create.getAlias() + ".admin"));
         //check created channel attribute
-        assertTrue("additionalAttributes", Shop_out.getAdditionalAttributes().length > 1 );
-        TAttribute strAttributeChannel_out = new TAttribute();
-        TAttribute strAttributeAquiration_out = new TAttribute();
+        assertTrue("additionalAttributes", Shop_out.getAdditionalAttributes().length > 2 );
         for(TAttribute t: Shop_out.getAdditionalAttributes()) {
         	if( t.getName() == strAttributeChannel.getName() ) {
-        		strAttributeChannel_out = t;
+                assertEquals("channel attribute Name", t.getName(), strAttributeChannel.getName() );
+                assertEquals("channel attribute Value", t.getValue(), strAttributeChannel.getValue() );
+                assertEquals("channel attribute Type", t.getType(), strAttributeChannel.getType() );
         	} else if ( t.getName() == strAttributeAquiration.getName()) {
-        		strAttributeAquiration_out = t;
+                assertEquals("aquiration attribute Name", t.getName(), strAttributeAquiration.getName() );
+                assertEquals("aquiration attribute Value", t.getValue(), strAttributeAquiration.getValue() );
+                assertEquals("aquiration attribute Type", t.getType(), strAttributeAquiration.getType() );
 			}
         }
-        assertTrue("channel attribute Name", strAttributeChannel_out.getName() == strAttributeChannel.getName() );
-        assertTrue("channel attribute Value", strAttributeChannel_out.getValue() == strAttributeChannel.getValue() );
-        assertTrue("channel attribute Type", strAttributeChannel_out.getType() == strAttributeChannel.getType() );
-        assertTrue("aquiration attribute Name", strAttributeAquiration_out.getName() == strAttributeAquiration.getName() );
-        assertTrue("aquiration attribute Value", strAttributeAquiration_out.getValue() == strAttributeAquiration.getValue() );
-        assertTrue("aquiration attribute Type", strAttributeAquiration_out.getType() == strAttributeAquiration.getType() );
 
         // update the shop (all attributes are optional)
         TUpdateShop Shop_update = new TUpdateShop();
@@ -137,7 +132,8 @@ public class SimpleProvisioningServiceTest {
         Shop_update.setMerchantEMail("gabi@nowhere.de");
         TAttribute strAttributeSetupFee = new TAttribute("SetupFee","17.33",null,"Float");
         strAttributeChannel.setValue("phone campaign");
-		Shop_create.setAdditionalAttributes( new TAttribute[]{strAttributeChannel,strAttributeSetupFee} );
+        strAttributeChannel.setValue("3");
+		Shop_create.setAdditionalAttributes( new TAttribute[]{strAttributeChannel,strAttributeChannel,strAttributeSetupFee} );
 
         simpleProvisioningService.update(Shop_update);
         // get information about the updated shop
@@ -158,26 +154,21 @@ public class SimpleProvisioningServiceTest {
                 Shop_out.getStorefrontURL());
         //check changed/created attributes
         assertTrue("additionalAttributes", Shop_out.getAdditionalAttributes().length > 2 );
-        TAttribute strAttributeSetupFee_out = new TAttribute();
         for(TAttribute t: Shop_out.getAdditionalAttributes()) {
         	if( t.getName() == strAttributeChannel.getName() ) {
-        		strAttributeChannel_out = t;
+                assertEquals("channel attribute Name", t.getName(), strAttributeChannel.getName() );
+                assertEquals("channel attribute Value", t.getValue(), strAttributeChannel.getValue() );
+                assertEquals("channel attribute Type", t.getType(), strAttributeChannel.getType() );
         	} else if ( t.getName() == strAttributeAquiration.getName()) {
-        		strAttributeAquiration_out = t;
+                assertEquals("aquiration attribute Name", t.getName(), strAttributeAquiration.getName() );
+                assertEquals("aquiration attribute Value", t.getValue(), strAttributeAquiration.getValue() );
+                assertEquals("aquiration attribute Type", t.getType(), strAttributeAquiration.getType() );
         	} else if ( t.getName() == strAttributeSetupFee.getName()) {
-        		strAttributeSetupFee_out = t;
+                assertEquals("setup fee attribute Name", t.getName(), strAttributeSetupFee.getName() );
+                assertEquals("setup fee attribute Value", t.getValue(), strAttributeSetupFee.getValue() );
+                assertEquals("setup fee attribute Type", t.getType(), strAttributeSetupFee.getType() );
 			}
         }
-        assertTrue("channel attribute Name", strAttributeChannel_out.getName() == strAttributeChannel.getName() );
-        assertTrue("channel attribute Value", strAttributeChannel_out.getValue() == strAttributeChannel.getValue() );
-        assertTrue("channel attribute Type", strAttributeChannel_out.getType() == strAttributeChannel.getType() );
-        assertTrue("aquiration attribute Name", strAttributeAquiration_out.getName() == strAttributeAquiration.getName() );
-        assertTrue("aquiration attribute Value", strAttributeAquiration_out.getValue() == strAttributeAquiration.getValue() );
-        assertTrue("aquiration attribute Type", strAttributeAquiration_out.getType() == strAttributeAquiration.getType() );
-        assertTrue("setup fee attribute Name", strAttributeSetupFee_out.getName() == strAttributeSetupFee.getName() );
-        assertTrue("setup fee attribute Value", strAttributeSetupFee_out.getValue() == strAttributeSetupFee.getValue() );
-        assertTrue("setup fee attribute Type", strAttributeSetupFee_out.getType() == strAttributeSetupFee.getType() );
-
 
         // change the shop alias
         TRename_Input Shop_rename = new TRename_Input();
