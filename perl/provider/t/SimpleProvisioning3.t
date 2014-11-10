@@ -1,5 +1,5 @@
 use strict;
-use Test::More tests => 86;
+use Test::More tests => 92;
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD );
 
@@ -56,6 +56,10 @@ sub TestSuite {
                 'Type' => 'String',
                 'Value' => 'MailingCampaign'
             },
+            {   'Name' => 'CountAquiration',
+                'Type' => 'Integer',
+                'Value' => '7'
+            },
         ]
     };
     my $Result = $SimpleProvisioningService->create( $Shop_in )->result;
@@ -80,10 +84,19 @@ sub TestSuite {
     is( $hResult->{'StorefrontURL'}, "http://$Shop_in->{'DomainName'}/epages/$Shop_in->{'Alias'}.sf", "StorefrontURL created");
     like( $hResult->{'BackofficeURL'}, qr!http(s?)://$Shop_in->{'DomainName'}/epages/$Shop_in->{'Alias'}.admin!, "BackofficeURL created");
     is( $hResult->{'LastMerchantLoginDate'}, undef, "LastMerchantLoginDate created");
-    #check additional attribute
-    ok( scalar $hResult->{'AdditionalAttributes'} > 0, "AdditionalAttributes");
+
+    ok( scalar $hResult->{'AdditionalAttributes'} > 1, "AdditionalAttributes");
+
+    #check additional existing system attribute
     my $hRefAttr = $Shop_in->{AdditionalAttributes}->[0];
     my($hAttr) = grep {$_->{Name} eq $hRefAttr->{Name}} @{$hResult->{'AdditionalAttributes'}};
+    ok( $hAttr->{Name} eq $hRefAttr->{Name} , "AdditionalAttributes $hAttr->{Name} used");
+    ok( $hAttr->{Value} eq $hRefAttr->{Value} , "AdditionalAttributes $hAttr->{Value}");
+    ok( $hAttr->{Type} eq $hRefAttr->{Type} , "AdditionalAttributes $hAttr->{Type}");
+
+    #check additional added provider attribute
+    $hRefAttr = $Shop_in->{AdditionalAttributes}->[1];
+    ($hAttr) = grep {$_->{Name} eq $hRefAttr->{Name}} @{$hResult->{'AdditionalAttributes'}};
     ok( $hAttr->{Name} eq $hRefAttr->{Name} , "AdditionalAttributes $hAttr->{Name} created");
     ok( $hAttr->{Value} eq $hRefAttr->{Value} , "AdditionalAttributes $hAttr->{Value}");
     ok( $hAttr->{Type} eq $hRefAttr->{Type} , "AdditionalAttributes $hAttr->{Type}");
@@ -106,9 +119,13 @@ sub TestSuite {
                 'Type' => 'String',
                 'Value' => 'Phone-Campaign'
             },
+            {   'Name' => 'CountAquiration',
+                'Type' => 'Integer',
+                'Value' => '3'
+            },
             {   'Name' => 'SetupFee',
                 'Type' => 'Float',
-                'Value' => 12.67
+                'Value' => 3.67
             }
         ]
     };
@@ -131,17 +148,23 @@ sub TestSuite {
     like( $hResult->{'BackofficeURL'}, qr!http(s?)://$Shop_update->{'DomainName'}/epages/$Shop_update->{'Alias'}.admin!, "BackofficeURL updated");
 
     #check added additional attribute
-    ok( scalar $hResult->{'AdditionalAttributes'} > 1, "AdditionalAttributes > 1");
-    $hRefAttr = $Shop_update->{AdditionalAttributes}->[1];
+    ok( scalar $hResult->{'AdditionalAttributes'} > 2, "AdditionalAttributes > 1");
+    $hRefAttr = $Shop_update->{AdditionalAttributes}->[2];
     ($hAttr) = grep {$_->{Name} eq $hRefAttr->{Name}} @{$hResult->{'AdditionalAttributes'}};
     ok( $hAttr->{Name} eq $hRefAttr->{Name} , "AdditionalAttributes $hAttr->{Name} added");
     ok( $hAttr->{Value} eq $hRefAttr->{Value} , "AdditionalAttributes $hAttr->{Value}");
     ok( $hAttr->{Type} eq $hRefAttr->{Type} , "AdditionalAttributes $hAttr->{Type}");
 
-    #check changed additional attribute
+    #check changed additional attributes
+    $hRefAttr = $Shop_update->{AdditionalAttributes}->[1];
+    ($hAttr) = grep {$_->{Name} eq $hRefAttr->{Name}} @{$hResult->{'AdditionalAttributes'}};
+    ok( $hAttr->{Name} eq $hRefAttr->{Name} , "AdditionalAttributes $hAttr->{Name} changed on provider");
+    ok( $hAttr->{Value} eq $hRefAttr->{Value} , "AdditionalAttributes $hAttr->{Value}");
+    ok( $hAttr->{Type} eq $hRefAttr->{Type} , "AdditionalAttributes $hAttr->{Type}");
+
     $hRefAttr = $Shop_update->{AdditionalAttributes}->[0];
     ($hAttr) = grep {$_->{Name} eq $hRefAttr->{Name}} @{$hResult->{'AdditionalAttributes'}};
-    ok( $hAttr->{Name} eq $hRefAttr->{Name} , "AdditionalAttributes $hAttr->{Name} changed");
+    ok( $hAttr->{Name} eq $hRefAttr->{Name} , "AdditionalAttributes $hAttr->{Name} changed on system");
     ok( $hAttr->{Value} eq $hRefAttr->{Value} , "AdditionalAttributes $hAttr->{Value}");
     ok( $hAttr->{Type} eq $hRefAttr->{Type} , "AdditionalAttributes $hAttr->{Type}");
 
