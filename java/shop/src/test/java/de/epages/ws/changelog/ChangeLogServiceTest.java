@@ -1,7 +1,7 @@
 package de.epages.ws.changelog;
 
 import static de.epages.ws.changelog.Assert.assertAfterOrSame;
-import static org.hamcrest.core.StringEndsWith.endsWith;
+import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
@@ -18,6 +18,7 @@ import de.epages.ws.ShopWebServiceTestConfiguration;
 import de.epages.ws.WebServiceConfiguration;
 import de.epages.ws.changelog.stub.TFindCreatedObject;
 import de.epages.ws.changelog.stub.TFindCreatedObjects_Return;
+import de.epages.ws.changelog.stub.TFindDeletedObject;
 import de.epages.ws.changelog.stub.TFindDeletedObjects_Return;
 import de.epages.ws.changelog.stub.TFindUpdatedObject;
 import de.epages.ws.changelog.stub.TFindUpdatedObjects_Return;
@@ -74,17 +75,25 @@ public class ChangeLogServiceTest {
     }
 
     @Test
-    public void testFindDeletedObjects() {
+    public void testFindDeletedObjects() throws InterruptedException {
         Calendar latestDelete = changeLogService.findDeletedObjects(START, "Product").getLatestDelete();
         TFindDeletedObjects_Return deleteSet = changeLogService.findDeletedObjects(latestDelete, "Product");
         int existingDeletes = deleteSet.getDeletedObjects().length;
 
-        deleteProduct(PRODUCT_ALIAS);
+        String productToDelete = PRODUCT_ALIAS + "_del";
+		createProduct(productToDelete);
+        deleteProduct(productToDelete);
+        Thread.sleep(1000);
         deleteSet = changeLogService.findDeletedObjects(latestDelete, "Product");
 
         assertEquals(existingDeletes + 1, deleteSet.getDeletedObjects().length);
         assertAfterOrSame(latestDelete, deleteSet.getLatestDelete());
-        assertThat("Expecting absolute path", deleteSet.getDeletedObjects()[0].getPath(), endsWith("/Products/" + PRODUCT_ALIAS));
+        StringBuilder allPaths = new StringBuilder();
+        for (int i = 0; i < deleteSet.getDeletedObjects().length; i++) {
+        	TFindDeletedObject tFindDeletedObject = deleteSet.getDeletedObjects()[i];
+        	allPaths.append(tFindDeletedObject.getPath() + ",");
+		}
+        assertThat("Expecting absolute path", allPaths.toString(), containsString("/Products/" + productToDelete));
     }
 
     @Test
@@ -131,7 +140,7 @@ public class ChangeLogServiceTest {
         Product_in.setTaxClass("/TaxMatrixGermany/normal");
         // do not set stocklevel yet.
         // Product_in.setStockLevel(140f);
-        Product_in.setProductPrices(new TProductPrice[] { new TProductPrice(123f, "EUR", "gross"), });
+        Product_in.setProductPrices(new TProductPrice[] { new TProductPrice(123f, "GBP", "gross"), });
         TCreate_Return[] created = productService.create(new TCreate_Input[] { Product_in });
         assertTrue(created[0].getCreated());
     }

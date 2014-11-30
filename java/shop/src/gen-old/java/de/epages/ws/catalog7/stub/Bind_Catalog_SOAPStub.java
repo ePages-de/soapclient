@@ -760,7 +760,7 @@ public class Bind_Catalog_SOAPStub extends org.apache.axis.client.Stub implement
         org.apache.axis.client.Call _call = createCall();
         _call.setOperation(_operations[8]);
         _call.setUseSOAPAction(true);
-        _call.setSOAPActionURI("urn://epages.de/WebService/CatalogService/2011/03#uploadImage");
+        _call.setSOAPActionURI("urn://epages.de/WebService/CatalogService/2011/03#getCategories");
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
         _call.setOperationName(new javax.xml.namespace.QName("urn://epages.de/WebService/CatalogService/2011/03", "getCategories"));
 
