@@ -13,7 +13,7 @@ $PaymentmethodService->userinfo( WEBSERVICE_LOGIN.':'.WEBSERVICE_PASSWORD );
 # Retrieve a list of PaymentMethods from the shop
 sub testGetList {
     my $ahResult = $PaymentmethodService->getList()->result;
-    cmp_ok( scalar @$ahResult, '>=', 8, "getList result set" );
+    cmp_ok( scalar @$ahResult, '>=', 5, "getList result set" );
     my %Methods = map { $_->{'Path'} => 1 } @$ahResult;
 }
 
