@@ -1,6 +1,6 @@
 use strict;
 use utf8;
-use Test::More tests => 98;
+use Test::More tests => 107;
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD WEBSERVICE_SHOP_PATH WEBSERVICE_SHOP_NAME);
 use WebServiceTools qw( cmpDateTime );
@@ -188,6 +188,13 @@ my $Product_update = {
     ],
 };
 
+my $Product_update_man = {
+    'Path' => $hOptions->{'FullPath'},
+    'ManufacturerPrices' => [
+        { 'CurrencyID' => 'EUR', 'Price' => undef, 'TaxModel' => 'gross', },
+    ],
+};
+
 my $Product_var1 = {
     'Alias' => $hOptions->{'Alias'}.'-var1',
     'Class' => 'ProductTypes/Shoe',
@@ -292,6 +299,38 @@ sub testUpdate {
 
     ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, "product path" );
     is( $hResult->{'updated'}, 1, "updated?" );
+}
+
+sub testDeleteManufacturerPrice {
+
+    my($ahResults, $hResult); 
+    $ahResults = $ProductService->update( [$Product_update_man] )->result;
+    is( scalar @$ahResults, 1, "update result count" );
+
+    $hResult = $ahResults->[0];
+    diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
+    ok( !$hResult->{'Error'}, "update for delete manufacturer price: no error" );
+
+    ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, "product path" );
+    is( $hResult->{'updated'}, 1, "updated?" );
+    
+    #check delete
+    $ahResults = $ProductService->getInfo( [$hOptions->{'FullPath'}] )->result;
+    is( scalar @$ahResults, 1, "getInfo result count" );
+
+    diag "Error: $ahResults->[0]->{'Error'}->{'Message'}\n" if $ahResults->[0]->{'Error'};
+    ok( !$ahResults->[0]->{'Error'}, "getInfo: no error" );
+    ok( $ahResults->[0]->{'Path'} eq WEBSERVICE_SHOP_PATH.$hOptions->{'FullPath'}, "product path" );
+
+    $hResult = $ahResults->[0];
+
+    #manufacturer price should be deletetd
+    my($manPriceEUR) = grep {$_->{CurrencyID} eq 'EUR'} @{$hResult->{'ManufacturerPrices'}};
+    ok( !defined($manPriceEUR->{Price}), "manufacturer price deleted" );
+
+    #list price must be NOT deleted
+    my($listPriceEUR) = grep {$_->{CurrencyID} eq 'EUR'} @{$hResult->{'ProductPrices'}};
+    ok( $listPriceEUR->{Price}, "list price NOT deleted" );
 }
 
 sub testGetInfo {
@@ -519,6 +558,7 @@ testFind();
 testGetInfo(0);
 testUpdate();
 testGetInfo(1);
+testDeleteManufacturerPrice();
 testCreateVariations();
 testDelete();
 testExists(0);
