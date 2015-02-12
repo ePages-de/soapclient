@@ -23,6 +23,7 @@ ext {
     // for java this needs to come last due to a namespace mapping hack
     'ProductService12',
     'ProductService13',
+    'ProductService14',
 
     //// provider services /////
     'FeaturePackService',
