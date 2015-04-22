@@ -1,5 +1,5 @@
 use strict;
-use Test::Simple tests => 14;
+use Test::More tests => 14;
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD );
 
@@ -93,7 +93,7 @@ sub testExists {
 
     my $result = $ShopConfigService-> exists( { 'Alias' => $options->{'Alias'} } )->result;
 
-    ok( $result == $expected, "exists?" );
+    is( $result, $expected, "exists?" );
 }
 
 # run test suite

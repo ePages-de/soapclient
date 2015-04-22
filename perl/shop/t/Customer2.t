@@ -62,28 +62,28 @@ my $customer_update = {
 sub testCreate {
 
     my $ahResults = $CustomerService->create( [$customer_in] )->result;
-    ok( scalar @$ahResults == 1, 'create result count' );
+    is( scalar @$ahResults, 1, 'create result count' );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, 'create: no error' );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Alias'} eq $customer_in->{'Alias'}, 'customer alias' );
-    ok( $hResult->{'created'} == 1, 'created?' );
+    is( $hResult->{'created'}, 1, 'created?' );
 }
 
 # Update a Customer and check if the update was successful
 sub testUpdate {
 
     my $ahResults = $CustomerService->update( [$customer_update] )->result;
-    ok( scalar @$ahResults == 1, 'udpate result count' );
+    is( scalar @$ahResults, 1, 'udpate result count' );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, 'update: no error' );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Path'} eq $customer_update->{'Path'}, 'customer path' );
-    ok( $hResult->{'updated'} == 1, 'updated?' );
+    is( $hResult->{'updated'}, 1, 'updated?' );
 }
 
 # Retrieve information about a Customer. Check if the returned data are equal to
@@ -93,7 +93,7 @@ sub testGetInfo {
     my $ext = $alreadyUpdated ? '_up' : '_in';
 
     my $ahResults = $CustomerService->getInfo( [$options->{'FullPath'}], ['Comment'] )->result;
-    ok( scalar @$ahResults == 1, 'getInfo result count' );
+    is( scalar @$ahResults, 1, 'getInfo result count' );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, 'getInfo: no error' );
@@ -127,14 +127,14 @@ sub deleteIfExists {
 sub testDelete {
 
     my $ahResults = $CustomerService->delete( [$options->{'FullPath'}] )->result;
-    ok( scalar @$ahResults == 1, 'delete result count' );
+    is( scalar @$ahResults, 1, 'delete result count' );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, 'delete: no error' );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Path'} eq $options->{'FullPath'}, 'customer path' );
-    ok( $hResult->{'deleted'} == 1, 'deleted?' );
+    is( $hResult->{'deleted'}, 1, 'deleted?' );
 }
 
 # Test if a Customer exists or not
@@ -142,21 +142,21 @@ sub testExists {
     my ($exists) = @_;
 
     my $ahResults = $CustomerService->exists( [$options->{'FullPath'}] )->result;
-    ok( scalar @$ahResults == 1, 'exists result count' );
+    is( scalar @$ahResults, 1, 'exists result count' );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, 'exists: no error' );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Path'} eq $options->{'FullPath'}, 'customer path' );
-    ok( $hResult->{'exists'} == $exists, 'exists?' );
+    is( $hResult->{'exists'}, $exists, 'exists?' );
 }
 
 # Test if a customer is found by EMail
 sub testFind {
 
     my $aResults = $CustomerService->find( {'EMail'=>$options->{'Address_in'}->{'EMail'}} )->result;
-    ok( scalar @$aResults == 1, 'find result count' );
+    is( scalar @$aResults, 1, 'find result count' );
 
     ok( $aResults->[0] eq WEBSERVICE_SHOP_PATH.$options->{'FullPath'}, 'customer path' );
 }

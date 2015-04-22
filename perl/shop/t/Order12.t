@@ -191,31 +191,31 @@ sub testCreate {
     $Order = $Order_in unless $Order;
 
     my $ahResults = $OrderService->create( [$Order] )->result;
-    ok( scalar @$ahResults == 1, 'create: result count' );
+    is( scalar @$ahResults, 1, 'create: result count' );
 
     my $hCreate = $ahResults->[0];
     ok( !$hCreate->{'Error'}, 'create: no error' );
     diag $hCreate->{'Error'}->{'Message'}."\n" if $hCreate->{'Error'};
 
     ok( $hCreate->{'Alias'} eq $Order_in->{'Alias'}, 'order alias' );
-    ok( $hCreate->{'created'} == 1, 'created?' );
+    is( $hCreate->{'created'}, 1, 'created?' );
 }
 
 # Update a Order and check if the update was successful
 sub testUpdate {
 
     my $ahResults = $OrderService->update( [$Order_update] )->result;
-    ok( scalar @$ahResults == 1, 'update: result count' );
+    is( scalar @$ahResults, 1, 'update: result count' );
 
     my $hUpdate = $ahResults->[0];
     ok( !$hUpdate->{'Error'}, 'update: no error' );
     diag $hUpdate->{'Error'}->{'Message'}."\n" if $hUpdate->{'Error'};
 
     ok( $hUpdate->{'Path'} eq $Order_update->{'Path'}, 'order path' );
-    ok( $hUpdate->{'updated'} == 1, 'updated?' );
+    is( $hUpdate->{'updated'}, 1, 'updated?' );
 
     $ahResults= $OrderService->update( [$Order_update_with_empty_CreationDate] )->result;
-    ok( scalar @$ahResults == 1, 'update: result count' );
+    is( scalar @$ahResults, 1, 'update: result count' );
 
     $hUpdate = $ahResults->[0];
     ok( $hUpdate->{'Error'}, 'Update resulting in eror, because clearing the \'CreationDate\' is not allowed.' );
@@ -229,7 +229,7 @@ sub testGetInfo {
     my $ext = $alreadyUpdated ? '_up' : '_in';
 
     my $ahResults = $OrderService->getInfo( [$options->{'FullPath'}], ['Comment'], [] )->result;
-    ok( scalar @$ahResults == 1, 'getInfo result set' );
+    is( scalar @$ahResults, 1, 'getInfo result set' );
 
     my $hInfo = $ahResults->[0];
     ok( !$hInfo->{'Error'}, 'getInfo: no error' );
@@ -237,8 +237,8 @@ sub testGetInfo {
 
     ok( $hInfo->{'Path'}     eq WEBSERVICE_SHOP_PATH.$options->{'FullPath'},      'order path' );
     ok( $hInfo->{'Customer'} eq WEBSERVICE_SHOP_PATH.$Order_in->{'Customer'}, 'customer' );
-    ok( 0 == cmpDateTime($hInfo->{'CreationDate'}, $options->{'CreationDate'}),  'CreationDate' );
-    ok( 0 == cmpDateTime($hInfo->{'ViewedOn'}, $options->{'ViewedOn'}),  'ViewedOn' );
+    is( 0, cmpDateTime($hInfo->{'CreationDate'}, $options->{'CreationDate'}),  'CreationDate' );
+    is( 0, cmpDateTime($hInfo->{'ViewedOn'}, $options->{'ViewedOn'}),  'ViewedOn' );
 
     my $hLineItemContainer  = $hInfo->{'LineItemContainer'};
     my $hLineItemContainer2 = $options->{'LineItemContainer'};
@@ -282,18 +282,18 @@ sub testGetInfo {
 sub testUpdateStatusReturned {
 
     my $ahResults = $OrderService->update( [$Order_update2] )->result;
-    ok( scalar @$ahResults == 1, 'update: result count' );
+    is( scalar @$ahResults, 1, 'update: result count' );
 
     my $hUpdate = $ahResults->[0];
     ok( !$hUpdate->{'Error'}, 'update: no error' );
     diag $hUpdate->{'Error'}->{'Message'}."\n" if $hUpdate->{'Error'};
 
     ok( $hUpdate->{'Path'} eq $Order_update->{'Path'}, 'order path' );
-    ok( $hUpdate->{'updated'} == 1, 'updated?' );
+    is( $hUpdate->{'updated'}, 1, 'updated?' );
 
     #check update result
     $ahResults = $OrderService->getInfo( [$options->{'FullPath'}] )->result;
-    ok( scalar @$ahResults == 1, 'getInfo result set' );
+    is( scalar @$ahResults, 1, 'getInfo result set' );
 
     my $hInfo = $ahResults->[0];
     ok( !$hInfo->{'Error'}, 'getInfo: no error' );
@@ -301,7 +301,7 @@ sub testUpdateStatusReturned {
 
     ok( $hInfo->{'Path'}     eq WEBSERVICE_SHOP_PATH.$options->{'FullPath'},      'order path' );
 
-    ok( 0 == cmpDateTime($hInfo->{'ReturnedOn'}, $options->{'ReturnedOn'}),  'ReturnedOn' );
+    is( 0, cmpDateTime($hInfo->{'ReturnedOn'}, $options->{'ReturnedOn'}),  'ReturnedOn' );
 }
 
 # Retrieve information about an Order.
@@ -452,14 +452,14 @@ sub deleteIfExists {
 sub testDelete {
 
     my $ahResults = $OrderService->delete( [$options->{'FullPath'}] )->result;
-    ok( scalar @$ahResults == 1, 'delete: result count' );
+    is( scalar @$ahResults, 1, 'delete: result count' );
 
     my $hDelete = $ahResults->[0];
     ok( !$hDelete->{'Error'}, 'delete: no error' );
     diag $hDelete->{'Error'}->{'Message'}."\n" if $hDelete->{'Error'};
 
     ok( $hDelete->{'Path'} eq $options->{'FullPath'}, 'delete: order path' );
-    ok( $hDelete->{'deleted'} == 1, 'deleted?' );
+    is( $hDelete->{'deleted'}, 1, 'deleted?' );
 }
 
 # Test if a Order exists or not
@@ -467,20 +467,20 @@ sub testExists {
     my ($exists) = @_;
 
     my $ahResults = $OrderService->exists( [$options->{'FullPath'}] )->result;
-    ok( scalar @$ahResults == 1, 'exists: result count' );
+    is( scalar @$ahResults, 1, 'exists: result count' );
 
     my $hExists = $ahResults->[0];
     ok( !$hExists->{'Error'}, 'exists: no error' );
     diag $hExists->{'Error'}->{'Message'}."\n" if $hExists->{'Error'};
 
     ok( $hExists->{'Path'} eq $options->{'FullPath'}, 'exists: order path' );
-    ok( $hExists->{'exists'} == $exists, 'exists?' );
+    is( $hExists->{'exists'}, $exists, 'exists?' );
 }
 
 sub testFind {
 
     my $ahResults = $OrderService->find( {'Alias'=>$options->{'Alias'}, 'IsViewed'=>1} )->result;
-    ok( scalar @$ahResults == 1, 'find: result count' );
+    is( scalar @$ahResults, 1, 'find: result count' );
 
     ok( $ahResults->[0] eq WEBSERVICE_SHOP_PATH.$options->{'FullPath'}, 'find: order path' );
 }
@@ -506,7 +506,7 @@ sub testShippingTaxes {
         'Path'  => $ProductPath,
         'TaxClass' => '/TaxMatrixGermany/reduced',
     }])->result;
-    ok( scalar @$ahResults == 1, "product update result count" );
+    is( scalar @$ahResults, 1, "product update result count" );
 
     #create an order within 2 product of different tax rates
     my $OrderAlias = $options->{'Alias'}.'_shipTaxes';
@@ -531,7 +531,7 @@ sub testShippingTaxes {
 
 
     $ahResults = $OrderService->getInfo( [$OrderPath], [], [] )->result;
-    ok( scalar @$ahResults == 1, 'getInfo result set' );
+    is( scalar @$ahResults, 1, 'getInfo result set' );
 
     my $hInfo = $ahResults->[0];
     ok( !$hInfo->{'Error'}, 'getInfo: no error' );
@@ -545,19 +545,19 @@ sub testShippingTaxes {
     foreach my $hShippingTax (@{$ahShippingTaxes}) {
         $hResultShippingTaxeValue->{$hShippingTax->{'TaxClass'}} = $hShippingTax->{'Value'};
     }
-    ok( $hResultShippingTaxeValue->{'normal'} == 8.18, 'shipping tax normal '.$hResultShippingTaxeValue->{'normal'});
-    ok( $hResultShippingTaxeValue->{'reduced'} == 3.82, 'shipping tax reduced '.$hResultShippingTaxeValue->{'reduced'});
+    is( $hResultShippingTaxeValue->{'normal'}, 8.18, 'shipping tax normal '.$hResultShippingTaxeValue->{'normal'});
+    is( $hResultShippingTaxeValue->{'reduced'}, 3.82, 'shipping tax reduced '.$hResultShippingTaxeValue->{'reduced'});
 
 
     $ahResults = $OrderService->delete( [$OrderPath] )->result;
-    ok( scalar @$ahResults == 1, 'delete: result count' );
+    is( scalar @$ahResults, 1, 'delete: result count' );
 
     #turn back the tax class
     $ahResults = $ProductService->update([{
         'Path'  => $ProductPath,
         'TaxClass' => '/TaxMatrixGermany/normal',
     }])->result;
-    ok( scalar @$ahResults == 1, "product update result count" );
+    is( scalar @$ahResults, 1, "product update result count" );
 
 }
 

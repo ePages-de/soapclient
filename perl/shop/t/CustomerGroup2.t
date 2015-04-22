@@ -54,28 +54,28 @@ sub testGetList {
 sub testCreate {
 
     my $ahResults = $CustomerGroupService->create( [$group_in] )->result;
-    ok( scalar @$ahResults == 1, "create result count" );
+    is( scalar @$ahResults, 1, "create result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "create: no error" );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Alias'} eq $group_in->{'Alias'}, "customer group alias" );
-    ok( $hResult->{'created'} == 1, "created?" );
+    is( $hResult->{'created'}, 1, "created?" );
 }
 
 # Create a Customer and check if the creation was successful
 sub testUpdate {
 
     my $ahResults = $CustomerGroupService->update( [$group_up] )->result;
-    ok( scalar @$ahResults == 1, "update result count" );
+    is( scalar @$ahResults, 1, "update result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "create: no error" );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Alias'} eq $group_in->{'Alias'}, "customer group alias" );
-    ok( $hResult->{'updated'} == 1, "updated?" );
+    is( $hResult->{'updated'}, 1, "updated?" );
 }
 
 # Test if a Customer exists or not
@@ -83,36 +83,36 @@ sub testExists {
     my ($exists) = @_;
 
     my $ahResults = $CustomerGroupService->exists( [$Options->{'Alias'}] )->result;
-    ok( scalar @$ahResults == 1, "exists result count" );
+    is( scalar @$ahResults, 1, "exists result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "exists: no error" );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
 
-    ok( $hResult->{'exists'} == $exists, "exists?" );
+    is( $hResult->{'exists'}, $exists, "exists?" );
 }
 
 # Delete a Customer and check if no error occured.
 sub testDelete {
 
     my $ahResults = $CustomerGroupService->delete( [$Options->{'Alias'}] )->result;
-    ok( scalar @$ahResults == 1, "delete result count" );
+    is( scalar @$ahResults, 1, "delete result count" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "delete: no error" );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
 
-    ok( $hResult->{'deleted'} == 1, "deleted?" );
+    is( $hResult->{'deleted'}, 1, "deleted?" );
 }
 
 sub testDeleteRegular {
     my $ahResults = $CustomerGroupService->delete( ['RegularCustomer'] )->result;
-    ok( scalar @$ahResults == 1, "delete result count" );
+    is( scalar @$ahResults, 1, "delete result count" );
 }
 
 sub testCreateRegular {
     my $ahResults = $CustomerGroupService->create( [{'Alias'=>'RegularCustomer'}] )->result;
-    ok( scalar @$ahResults == 1, "create result count" );
+    is( scalar @$ahResults, 1, "create result count" );
 }
 
 

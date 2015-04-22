@@ -66,28 +66,28 @@ my $Catalog_sort3    = {
 sub testCreate {
 
     my $ahResults = $CatalogService->create( [$Catalog_in] )->result;
-    ok( scalar @$ahResults == 1, 'create result count' );
+    is( scalar @$ahResults, 1, 'create result count' );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, 'create: no error' );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Alias'} eq $Options{'Alias'}, 'catalog alias' );
-    ok( $hResult->{'created'} == 1, 'created?' );
+    is( $hResult->{'created'}, 1, 'created?' );
 }
 
 # Update a Catalog and check if the update was successful
 sub testUpdate {
 
     my $ahResults = $CatalogService->update( [$Catalog_update] )->result;
-    ok( scalar @$ahResults == 1, 'update result count' );
+    is( scalar @$ahResults, 1, 'update result count' );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, 'update: no error' );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Path'} eq $Options{'FullPath'}, 'catalog path' );
-    ok( $hResult->{'updated'} == 1, 'updated?' );
+    is( $hResult->{'updated'}, 1, 'updated?' );
 }
 
 # Retrieve information about an Catalog. Check if the returned data are equal to
@@ -97,7 +97,7 @@ sub testGetInfo {
     my $ext = $alreadyUpdated ? '_up' : '_in';
 
     my $ahResults = $CatalogService->getInfo( [$Options{'FullPath'}], ['Date'] )->result;
-    ok( scalar @$ahResults == 1, 'getInfo result count' );
+    is( scalar @$ahResults, 1, 'getInfo result count' );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, 'getInfo: no error' );
@@ -111,7 +111,7 @@ sub testGetInfo {
     ok( $hName->{'en'} eq $Options{"Name$ext"}{'en'},   'name (en)' );
 
     my  $hAttributes = hAttributes($hResult->{'Attributes'});
-    ok( 0 == cmpDateTime($hAttributes->{'Date'}, $Options{"Attr$ext"}{'Date'}), 'attribute value (Date)' );
+    is( 0, cmpDateTime($hAttributes->{'Date'}, $Options{"Attr$ext"}{'Date'}), 'attribute value (Date)' );
 }
 
 sub deleteIfExists {
@@ -128,14 +128,14 @@ sub deleteIfExists {
 sub testDelete {
 
     my $ahResults = $CatalogService->delete( [$Options{'FullPath'}] )->result;
-    ok( scalar @$ahResults == 1, 'delete result count' );
+    is( scalar @$ahResults, 1, 'delete result count' );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, 'delete: no error' );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Path'} eq $Options{'FullPath'}, 'catalog path' );
-    ok( $hResult->{'deleted'} == 1, 'deleted?' );
+    is( $hResult->{'deleted'}, 1, 'deleted?' );
 }
 
 # Test if a Catalog exists or not
@@ -143,14 +143,14 @@ sub testExists {
     my ($exists) = @_;
 
     my $ahResults = $CatalogService->exists( [$Options{'FullPath'}] )->result;
-    ok( scalar @$ahResults == 1, 'exists result count' );
+    is( scalar @$ahResults, 1, 'exists result count' );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, 'exists: no error' );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
 
     ok( $hResult->{'Path'} eq $Options{'FullPath'}, 'catalog path' );
-    ok( $hResult->{'exists'} == $exists, 'exists?' );
+    is( $hResult->{'exists'}, $exists, 'exists?' );
 }
 
 # Sort a Catalog and check if the sort was successful
@@ -162,13 +162,13 @@ sub testSort {
     $Catalog_sort = $Catalog_sort2 if $run==2;
 
     my $ahResults = $CatalogService->sortProducts( [$Catalog_sort] )->result;
-    ok( scalar @$ahResults == 1, 'sort result count' );
+    is( scalar @$ahResults, 1, 'sort result count' );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, 'sort: no error' );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
 
-    ok( $hResult->{'sorted'} == 1, 'sorted?' );
+    is( $hResult->{'sorted'}, 1, 'sorted?' );
 }
 
 

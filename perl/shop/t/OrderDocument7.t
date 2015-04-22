@@ -64,28 +64,28 @@ sub testCreate {
     my $aOrderDocuments = [$invoice_in, $packingslip_in, $creditnote_in];
 
     my $ahResults = $OrderDocService->create( $aOrderDocuments )->result;
-    ok( scalar @$ahResults == @$aOrderDocuments, "create result set" );
+    is( scalar @$ahResults, @$aOrderDocuments, "create result set" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "invoice create: no error" );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( $hResult->{'Order'} eq $invoice_in->{'Order'}, "invoice order path" );
     ok( $hResult->{'Alias'} eq $invoice_in->{'Alias'}, "invoice" );
-    ok( $hResult->{'created'} == 1, "created?" );
+    is( $hResult->{'created'}, 1, "created?" );
 
     $hResult = $ahResults->[1];
     ok( !$hResult->{'Error'}, "packingslip create: no error" );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( $hResult->{'Order'} eq $packingslip_in->{'Order'}, "packingslip order path" );
     ok( $hResult->{'Alias'} eq $packingslip_in->{'Alias'}, "packingslip" );
-    ok( $hResult->{'created'} == 1, "created?" );
+    is( $hResult->{'created'}, 1, "created?" );
 
     $hResult = $ahResults->[2];
     ok( !$hResult->{'Error'}, "creditnote create: no error" );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( $hResult->{'Order'} eq $creditnote_in->{'Order'}, "creditnote order path" );
     ok( $hResult->{'Alias'} eq $creditnote_in->{'Alias'}, "creditnote" );
-    ok( $hResult->{'created'} == 1, "created?" );
+    is( $hResult->{'created'}, 1, "created?" );
 }
 
 # Retrieve information about an OrderDocument. Check if the returned data are equal to
@@ -93,7 +93,7 @@ sub testCreate {
 sub testGetInfo {
 
     my $ahResults = $OrderDocService->getInfo( $aDocumentPaths )->result;
-    ok( scalar @$ahResults == @$aDocumentPaths, "getInfo result set" );
+    is( scalar @$ahResults, @$aDocumentPaths, "getInfo result set" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "invoice getInfo: no error" );
@@ -122,7 +122,7 @@ sub testGetInfo {
 sub testGetInvoices {
 
     my $ahResults = $OrderDocService->getInvoices( [$invoice_in->{'Order'}] )->result;
-    ok( scalar @$ahResults == 1, "getInvoices result set" );
+    is( scalar @$ahResults, 1, "getInvoices result set" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "getInvoices: no error" );
@@ -131,7 +131,7 @@ sub testGetInvoices {
     ok( $hResult->{'Order'} eq $invoice_in->{'Order'}, "invoices order path" );
 
     my $aDocumentPaths = $hResult->{'Invoices'};
-    ok( scalar @$aDocumentPaths == 1, "number of invoices" );
+    is( scalar @$aDocumentPaths, 1, "number of invoices" );
     ok( $aDocumentPaths->[0] eq WEBSERVICE_SHOP_PATH.$options->{'invoice_path'}.$options->{'invoice_alias'}, "invoice path" );
 }
 
@@ -140,7 +140,7 @@ sub testGetInvoices {
 sub testGetPackingSlips {
 
     my $ahResults = $OrderDocService->getPackingSlips( [$packingslip_in->{'Order'}] )->result;
-    ok( scalar @$ahResults == 1, "getPackingSlips result set" );
+    is( scalar @$ahResults, 1, "getPackingSlips result set" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "getPackingSlips: no error" );
@@ -149,7 +149,7 @@ sub testGetPackingSlips {
     ok( $hResult->{'Order'} eq $packingslip_in->{'Order'}, "packingslips order path" );
 
     my $aDocumentPaths = $hResult->{'PackingSlips'};
-    ok( scalar @$aDocumentPaths == 1, "number of packingslips" );
+    is( scalar @$aDocumentPaths, 1, "number of packingslips" );
     ok( $aDocumentPaths->[0] eq WEBSERVICE_SHOP_PATH.$options->{'packingslip_path'}.$options->{'packingslip_alias'}, "packingslip path" );
 }
 
@@ -158,7 +158,7 @@ sub testGetPackingSlips {
 sub testGetCreditNotes {
 
     my $ahResults = $OrderDocService->getCreditNotes( [$creditnote_in->{'Order'}] )->result;
-    ok( scalar @$ahResults == 1, "getPackingSlips result set" );
+    is( scalar @$ahResults, 1, "getPackingSlips result set" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "getCreditNote: no error" );
@@ -167,7 +167,7 @@ sub testGetCreditNotes {
     ok( $hResult->{'Order'} eq $creditnote_in->{'Order'}, "creditnotes order path" );
 
     my $aDocumentPaths = $hResult->{'CreditNotes'};
-    ok( scalar @$aDocumentPaths == 1, "number of creditnotes" );
+    is( scalar @$aDocumentPaths, 1, "number of creditnotes" );
     ok( $aDocumentPaths->[0] eq WEBSERVICE_SHOP_PATH.$options->{'creditnote_path'}.$options->{'creditnote_alias'}, "packingslip path" );
 }
 
@@ -175,25 +175,25 @@ sub testGetCreditNotes {
 sub testDelete {
 
     my $ahResults = $OrderDocService->delete( $aDocumentPaths )->result;
-    ok( scalar @$ahResults == @$aDocumentPaths, "delete result set" );
+    is( scalar @$ahResults, @$aDocumentPaths, "delete result set" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "invoice delete: no error" );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( $hResult->{'Path'} eq $options->{'invoice_path'}.$options->{'invoice_alias'}, "invoice path" );
-    ok( $hResult->{'deleted'} == 1, "deleted?" );
+    is( $hResult->{'deleted'}, 1, "deleted?" );
 
     $hResult = $ahResults->[1];
     ok( !$hResult->{'Error'}, "packingslip delete: no error" );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( $hResult->{'Path'} eq $options->{'packingslip_path'}.$options->{'packingslip_alias'}, "packingslip path" );
-    ok( $hResult->{'deleted'} == 1, "deleted?" );
+    is( $hResult->{'deleted'}, 1, "deleted?" );
 
     $hResult = $ahResults->[2];
     ok( !$hResult->{'Error'}, "creditnote delete: no error" );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( $hResult->{'Path'} eq $options->{'creditnote_path'}.$options->{'creditnote_alias'}, "creditnote path" );
-    ok( $hResult->{'deleted'} == 1, "deleted?" );
+    is( $hResult->{'deleted'}, 1, "deleted?" );
 }
 
 # Test if a OrderDocument exists or not
@@ -201,25 +201,25 @@ sub testExists {
     my ($exists) = @_;
 
     my $ahResults = $OrderDocService->exists( $aDocumentPaths )->result;
-    ok( scalar @$ahResults == @$aDocumentPaths, "exists result set" );
+    is( scalar @$ahResults, @$aDocumentPaths, "exists result set" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "invoice exists: no error" );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( $hResult->{'Path'} eq $options->{'invoice_path'}.$options->{'invoice_alias'}, "invoice path" );
-    ok( $hResult->{'exists'} == $exists, "exists?" );
+    is( $hResult->{'exists'}, $exists, "exists?" );
 
     $hResult = $ahResults->[1];
     ok( !$hResult->{'Error'}, "packingslip exists: no error" );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( $hResult->{'Path'} eq $options->{'packingslip_path'}.$options->{'packingslip_alias'}, "packingslip path" );
-    ok( $hResult->{'exists'} == $exists, "exists?" );
+    is( $hResult->{'exists'}, $exists, "exists?" );
 
     $hResult = $ahResults->[2];
     ok( !$hResult->{'Error'}, "creditnote exists: no error" );
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( $hResult->{'Path'} eq $options->{'creditnote_path'}.$options->{'creditnote_alias'}, "creditnote path" );
-    ok( $hResult->{'exists'} == $exists, "exists?" );
+    is( $hResult->{'exists'}, $exists, "exists?" );
 }
 
 sub deleteIfExists {
@@ -235,7 +235,7 @@ sub deleteIfExists {
 
 sub updateCreditNote {
     my $ahResults = $OrderDocService->update( [$creditnote_up] )->result;
-    ok( scalar @$ahResults == 1, "update result set" );
+    is( scalar @$ahResults, 1, "update result set" );
 
     my $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "creditNote update: no error" );
@@ -243,7 +243,7 @@ sub updateCreditNote {
 
     #check update
     $ahResults = $OrderDocService->getInfo( [$creditnote_up->{'Path'}] )->result;
-    ok( scalar @$ahResults == 1, "getInfo after update result set" );
+    is( scalar @$ahResults, 1, "getInfo after update result set" );
 
     $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "getInfo after update: no error" );
@@ -254,7 +254,7 @@ sub updateCreditNote {
 
     #reset issed flag
     $ahResults = $OrderDocService->update( [$creditnote_up2] )->result;
-    ok( scalar @$ahResults == 1, "update result set" );
+    is( scalar @$ahResults, 1, "update result set" );
 
     $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "creditNote update: no error" );
@@ -262,7 +262,7 @@ sub updateCreditNote {
 
     #check resetted issued flag
     $ahResults = $OrderDocService->getInfo( [$creditnote_up2->{'Path'}] )->result;
-    ok( scalar @$ahResults == 1, "getInfo after update result set" );
+    is( scalar @$ahResults, 1, "getInfo after update result set" );
 
     $hResult = $ahResults->[0];
     ok( !$hResult->{'Error'}, "getInfo after update: no error" );

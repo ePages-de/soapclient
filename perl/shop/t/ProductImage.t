@@ -84,7 +84,7 @@ sub testExists {
   my $FileName = $hOptions->{'TestExistsFileName'};
     my $result = $ProductImageService->exists( $ObjectPath, $FileName )->result;
 
-    ok( $result == $exists, 'exists?' );
+    is( $result, $exists, 'exists?' );
 }
 
 sub testUpload {
@@ -112,7 +112,7 @@ sub testUpload {
                                 'ImagesSlideShowString' => $ImagesSlideShowStringUpload
                                   })->result;
 
-    ok( scalar @$ahResults == 2, 'upload result count' );
+    is( scalar @$ahResults, 2, 'upload result count' );
 
     foreach my $hResult (@$ahResults) {
       ok( !$hResult->{Error}, 'upload: no error' );
@@ -147,7 +147,7 @@ sub testUploadScale {
                                    'ImagesSlideShowString' => $ImagesSlideShowStringScale,
                                     }, $hScaleParams )->result;
 
-    ok( scalar @$ahResults == 2, 'uploadscale result count' );
+    is( scalar @$ahResults, 2, 'uploadscale result count' );
 
     foreach my $hResult (@$ahResults) {
       ok( !$hResult->{Error}, 'uploadscale: no error' );
@@ -178,7 +178,7 @@ sub testDelete {
   my $ObjectPath = $hOptions->{'Path'} . $hOptions->{'Alias'};
     my $ahResults = $ProductImageService->delete( $ObjectPath, \@ProductImage_delete )->result;
 
-    ok( scalar @$ahResults == 2, 'delete result count' );
+    is( scalar @$ahResults, 2, 'delete result count' );
     foreach my $hResult (@$ahResults) {
       ok( !$hResult->{Error}, 'delete: no error' );
       ok( $hResult->{'deleted'}, "$hResult->{'Path'} deleted?" );

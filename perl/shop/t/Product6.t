@@ -1,6 +1,6 @@
 use strict;
 use utf8;
-use Test::More tests => 98;
+use Test::More tests => 107;
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD WEBSERVICE_SHOP_PATH WEBSERVICE_SHOP_NAME);
 use WebServiceTools qw( cmpDateTime );
@@ -188,6 +188,13 @@ my $Product_update = {
     ],
 };
 
+my $Product_update_man = {
+    'Path' => $hOptions->{'FullPath'},
+    'ManufacturerPrices' => [
+        { 'CurrencyID' => 'EUR', 'Price' => undef, 'TaxModel' => 'gross', },
+    ],
+};
+
 my $Product_var1 = {
     'Alias' => $hOptions->{'Alias'}.'-var1',
     'Class' => 'ProductTypes/Shoe',
@@ -269,14 +276,14 @@ sub testCreate {
     my $aProducts = [$Product_in];
 
     my $ahResults = $ProductService->create( $aProducts )->result;
-    ok( scalar @$ahResults == 1, "create result count" );
+    is( scalar @$ahResults, 1, "create result count" );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( !$hResult->{'Error'}, "create: no error" );
 
     ok( $hResult->{'Alias'} eq $hOptions->{'Alias'}, "product alias" );
-    ok( $hResult->{'created'} == 1, "created?" );
+    is( $hResult->{'created'}, 1, "created?" );
 }
 
 sub testUpdate {
@@ -284,21 +291,53 @@ sub testUpdate {
     my $aProducts = [$Product_update];
 
     my $ahResults = $ProductService->update( $aProducts )->result;
-    ok( scalar @$ahResults == 1, "update result count" );
+    is( scalar @$ahResults, 1, "update result count" );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( !$hResult->{'Error'}, "update: no error" );
 
     ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, "product path" );
-    ok( $hResult->{'updated'} == 1, "updated?" );
+    is( $hResult->{'updated'}, 1, "updated?" );
+}
+
+sub testDeleteManufacturerPrice {
+
+    my($ahResults, $hResult); 
+    $ahResults = $ProductService->update( [$Product_update_man] )->result;
+    is( scalar @$ahResults, 1, "update result count" );
+
+    $hResult = $ahResults->[0];
+    diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
+    ok( !$hResult->{'Error'}, "update for delete manufacturer price: no error" );
+
+    ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, "product path" );
+    is( $hResult->{'updated'}, 1, "updated?" );
+    
+    #check delete
+    $ahResults = $ProductService->getInfo( [$hOptions->{'FullPath'}] )->result;
+    is( scalar @$ahResults, 1, "getInfo result count" );
+
+    diag "Error: $ahResults->[0]->{'Error'}->{'Message'}\n" if $ahResults->[0]->{'Error'};
+    ok( !$ahResults->[0]->{'Error'}, "getInfo: no error" );
+    ok( $ahResults->[0]->{'Path'} eq WEBSERVICE_SHOP_PATH.$hOptions->{'FullPath'}, "product path" );
+
+    $hResult = $ahResults->[0];
+
+    #manufacturer price should be deletetd
+    my($manPriceEUR) = grep {$_->{CurrencyID} eq 'EUR'} @{$hResult->{'ManufacturerPrices'}};
+    ok( !defined($manPriceEUR->{Price}), "manufacturer price deleted" );
+
+    #list price must be NOT deleted
+    my($listPriceEUR) = grep {$_->{CurrencyID} eq 'EUR'} @{$hResult->{'ProductPrices'}};
+    ok( $listPriceEUR->{Price}, "list price NOT deleted" );
 }
 
 sub testGetInfo {
     my ($alreadyUpdated) = @_;
 
     my $ahResults = $ProductService->getInfo( [$hOptions->{'FullPath'}], ['AvailabilityDate','Date'], ['de', 'en'] )->result;
-    ok( scalar @$ahResults == 1, "getInfo result count" );
+    is( scalar @$ahResults, 1, "getInfo result count" );
 
     diag "Error: $ahResults->[0]->{'Error'}->{'Message'}\n" if $ahResults->[0]->{'Error'};
     ok( !$ahResults->[0]->{'Error'}, "getInfo: no error" );
@@ -381,13 +420,13 @@ sub testGetInfo {
     if ( $alreadyUpdated ) {
         ok( !$hResult->{'AvailabilityDate'}, "deleted date attribute" );
     } else {
-        ok( 0 == cmpDateTime($hResult->{'AvailabilityDate'}, $hReference->{'AvailabilityDate'}), "created date attribute" );
+        is( 0, cmpDateTime($hResult->{'AvailabilityDate'}, $hReference->{'AvailabilityDate'}), "created date attribute" );
     }
 
-    ok( $hResult->{'IsAvailable'} == $Product_in->{'IsAvailable'}->value, "attribute IsAvailable is correct" );
+    is( $hResult->{'IsAvailable'}, $Product_in->{'IsAvailable'}->value, "attribute IsAvailable is correct" );
 
     ok( $hResult->{'TaxClass'}  eq $Product_in->{'TaxClass'}, "tax class" );
-    ok( $hResult->{'IsVisible'} == $Product_in->{'IsVisible'}->value, "is visible" );
+    is( $hResult->{'IsVisible'}, $Product_in->{'IsVisible'}->value, "is visible" );
     ok( $hResult->{'OrderUnit'} eq $Product_in->{'OrderUnit'}, "order unit" );
 }
 
@@ -403,34 +442,34 @@ sub deleteIfExists {
 sub testDelete {
 
     my $ahResults = $ProductService->delete( [$hOptions->{'FullPath'}] )->result;
-    ok( scalar @$ahResults == 1, "delete result count" );
+    is( scalar @$ahResults, 1, "delete result count" );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( !$hResult->{'Error'}, "delete: no error" );
 
     ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, "product path" );
-    ok( $hResult->{'deleted'} == 1, "deleted?" );
+    is( $hResult->{'deleted'}, 1, "deleted?" );
 }
 
 sub testExists {
     my ($exists) = @_;
 
     my $ahResults = $ProductService->exists( [$hOptions->{'FullPath'}] )->result;
-    ok( scalar @$ahResults == 1, "exists result count" );
+    is( scalar @$ahResults, 1, "exists result count" );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( !$hResult->{'Error'}, "exists: no error" );
 
     ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, "product path" );
-    ok( $hResult->{'exists'} == $exists, "exists?" );
+    is( $hResult->{'exists'}, $exists, "exists?" );
 }
 
 sub testFind {
 
     my $aResults = $ProductService->find( {'Alias' => $hOptions->{'Alias'}} )->result;
-    ok( scalar @$aResults == 1, "find result count" );
+    is( scalar @$aResults, 1, "find result count" );
 
     ok( $aResults->[0] eq WEBSERVICE_SHOP_PATH.$hOptions->{'FullPath'}, "product path" );
 }
@@ -456,21 +495,21 @@ sub testCreateDownload {
     my $aProducts = [$Product_down];
 
     my $ahResults = $ProductService->create( $aProducts )->result;
-    ok( scalar @$ahResults == 1, "create result count" );
+    is( scalar @$ahResults, 1, "create result count" );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( !$hResult->{'Error'}, "create: no error" );
 
     ok( $hResult->{'Alias'} eq $hOptions->{'Alias'}, "product alias" );
-    ok( $hResult->{'created'} == 1, "created?" );
+    is( $hResult->{'created'}, 1, "created?" );
 }
 
 
 sub testGetInfoDownload {
 
     my $ahResults = $ProductService->getInfo( [$hOptions->{'FullPath'}], [], ['de', 'en'] )->result;
-    ok( scalar @$ahResults == 1, "getInfo result count" );
+    is( scalar @$ahResults, 1, "getInfo result count" );
 
     diag "Error: $ahResults->[0]->{'Error'}->{'Message'}\n" if $ahResults->[0]->{'Error'};
     ok( !$ahResults->[0]->{'Error'}, "getInfo: no error" );
@@ -480,11 +519,11 @@ sub testGetInfoDownload {
     my $hReference = $Product_down;
 
     foreach my $Attr qw(IsDownloadProduct) {
-        ok( $hResult->{$Attr} == $hReference->{$Attr}->value, "soap attribute $Attr is correct" );
+        is( $hResult->{$Attr}, $hReference->{$Attr}->value, "soap attribute $Attr is correct" );
     }
 
     foreach my $Attr qw(MaxDownloadTime MaxDownloadCount) {
-        ok( $hResult->{$Attr} == $hReference->{$Attr}, "int attribute $Attr is correct" );
+        is( $hResult->{$Attr}, $hReference->{$Attr}, "int attribute $Attr is correct" );
     }
 
     my $hRefeMap = $hReference->{'DownloadProductMaps'}->[0];
@@ -500,7 +539,7 @@ sub testCreateVariations {
     my $aProducts = [$Product_var1, $Product_var2];
 
     my $ahResults = $ProductService->create( $aProducts )->result;
-    ok( scalar @$ahResults == 2, "create variation result count" );
+    is( scalar @$ahResults, 2, "create variation result count" );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
@@ -519,6 +558,7 @@ testFind();
 testGetInfo(0);
 testUpdate();
 testGetInfo(1);
+testDeleteManufacturerPrice();
 testCreateVariations();
 testDelete();
 testExists(0);

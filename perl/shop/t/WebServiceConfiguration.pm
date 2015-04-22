@@ -39,11 +39,13 @@ use constant WEBSERVICE_SERVER     => _getWServer();
 use constant WEBSERVICE_URL       => $ENV{'wsUrl'}  // 'http://'.WEBSERVICE_SERVER.'/epages/Store.soap';
 use constant WEBSERVICE_SHOP_NAME => $ENV{'wsShop'} // 'DemoShop';
 use constant WEBSERVICE_SHOP_PATH => '/Shops/'.WEBSERVICE_SHOP_NAME.'/';
-use constant WEBSERVICE_LOGIN     => $ENV{'wsUser'} // WEBSERVICE_SHOP_PATH . "Users/admin";
-use constant WEBSERVICE_PASSWORD  => $ENV{'wsPassword'} // "admin";
-use constant WEBSERVICE_USER      => WEBSERVICE_LOGIN.':'.WEBSERVICE_PASSWORD;
+use constant WEBSERVICE_LOGIN => ($ENV{'wsUser'} // WEBSERVICE_SHOP_PATH . "Users/admin")
+    .(defined $ENV{'wsAppName'} ? "\x{1}".$ENV{'wsAppName'} : '');
+use constant WEBSERVICE_PASSWORD  => ($ENV{'wsPassword'} // 'admin')
+    .(defined $ENV{'wsAppPassword'} ? "\x{1}".$ENV{'wsAppPassword'} : '');
+use constant WEBSERVICE_USER => WEBSERVICE_LOGIN.':'.WEBSERVICE_PASSWORD;
 
 my $log = Log::Log4perl->get_logger('COMMUNICATION');
-$log->debug("Running with these settings: " . WEBSERVICE_SERVER . " " . WEBSERVICE_URL . " " . WEBSERVICE_LOGIN . ":" . WEBSERVICE_PASSWORD);
+$log->debug("Running with these settings: " . WEBSERVICE_SERVER . " " . WEBSERVICE_URL . " " . WEBSERVICE_USER);
 
 1;

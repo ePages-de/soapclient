@@ -31,14 +31,14 @@ sub testExistsByPath {
     my ( $Path, $exists ) = @_;
 
     my $ahResults = $BasketService->exists( [$Path] )->result;
-    ok( scalar @$ahResults == 1, 'exists: result count' );
+    is( scalar @$ahResults, 1, 'exists: result count' );
 
     my $hExists = $ahResults->[0];
     ok( !$hExists->{'Error'}, 'exists: no error' );
     diag $hExists->{'Error'}->{'Message'}."\n" if $hExists->{'Error'};
 
     ok( $hExists->{'Path'} eq $Path, 'exists: basket path' );
-    ok( $hExists->{'exists'} == $exists, 'exists?' );
+    is( $hExists->{'exists'}, $exists, 'exists?' );
 }
 
 # Create a Basket and check if the creation was successful
@@ -46,13 +46,13 @@ sub testCreateBasket {
     my ($Basket) = @_;
 
     my $ahResults = $BasketService->create( [$Basket] )->result;
-    ok( scalar @$ahResults == 1, 'create: result count' );
+    is( scalar @$ahResults, 1, 'create: result count' );
 
     my $hCreate = $ahResults->[0];
     ok( !$hCreate->{'Error'}, 'create: no error' );
     diag $hCreate->{'Error'}->{'Message'}."\n" if $hCreate->{'Error'};
 
-    ok( $hCreate->{'created'} == 1, 'created?' );
+    is( $hCreate->{'created'}, 1, 'created?' );
 
     return $hCreate->{'Path'};
 }
@@ -61,7 +61,7 @@ sub testGetInfoReference {
     my ( $basketPath, $basketRef ) = @_;
 
     my $ahResults = $BasketService->getInfo( [$basketPath], [], [] )->result;
-    ok( scalar @$ahResults == 1, 'getInfo result set' );
+    is( scalar @$ahResults, 1, 'getInfo result set' );
 
     my $hInfo = $ahResults->[0];
     ok( !$hInfo->{'Error'}, 'getInfo: no error' );
@@ -90,14 +90,14 @@ sub testDeleteBasket {
     my ( $basketPath ) = @_;
 
     my $ahResults = $BasketService->delete( [$basketPath] )->result;
-    ok( scalar @$ahResults == 1, 'delete: result count' );
+    is( scalar @$ahResults, 1, 'delete: result count' );
 
     my $hDelete = $ahResults->[0];
     ok( !$hDelete->{'Error'}, 'delete: no error' );
     diag $hDelete->{'Error'}->{'Message'}."\n" if $hDelete->{'Error'};
 
     ok( $hDelete->{'Path'} eq $basketPath, 'delete: order path' );
-    ok( $hDelete->{'deleted'} == 1, 'deleted?' );
+    is( $hDelete->{'deleted'}, 1, 'deleted?' );
 }
 
 sub testUpdateBasket {
@@ -105,14 +105,14 @@ sub testUpdateBasket {
     $Basket->{Path} = $Path;
 
     my $ahResults = $BasketService->update( [$Basket] )->result;
-    ok( scalar @$ahResults == 1, 'update: result count' );
+    is( scalar @$ahResults, 1, 'update: result count' );
 
     my $hUpdate = $ahResults->[0];
     ok( !$hUpdate->{'Error'}, 'update: no error' );
     diag $hUpdate->{'Error'}->{'Message'}."\n" if $hUpdate->{'Error'};
 
     ok( $hUpdate->{'Path'} eq $Path, 'path path' );
-    ok( $hUpdate->{'updated'} == 1, 'updated?' );
+    is( $hUpdate->{'updated'}, 1, 'updated?' );
 
 }
 
@@ -121,14 +121,14 @@ sub testAddProductLineItem {
     $Basket->{Path} = $Path;
 
     my $ahResults = $BasketService->addProductLineItem( $Path, [$LineItem] )->result;
-    ok( scalar @$ahResults == 1, 'add product: result count' );
+    is( scalar @$ahResults, 1, 'add product: result count' );
 
     my $hUpdate = $ahResults->[0];
     ok( !$hUpdate->{'Error'}, 'add product: no error' );
     diag $hUpdate->{'Error'}->{'Message'}."\n" if $hUpdate->{'Error'};
 
     ok( $hUpdate->{'GUID'} eq $LineItem->{GUID}, 'product GUID' );
-    ok( $hUpdate->{'added'} == 1, 'added?' );
+    is( $hUpdate->{'added'}, 1, 'added?' );
 }
 
 sub testUpdateLineItem {
@@ -136,7 +136,7 @@ sub testUpdateLineItem {
     $Basket->{Path} = $Path;
 
     my $ahResults = $BasketService->updateLineItem( $Path, [$LineItem] )->result;
-    ok( scalar @$ahResults == 1, 'update: result count' );
+    is( scalar @$ahResults, 1, 'update: result count' );
 
     my $hUpdate = $ahResults->[0];
     ok( !$hUpdate->{'Error'}, 'update: no error' );
@@ -144,7 +144,7 @@ sub testUpdateLineItem {
 
     my $LineItemPath = "$Path/LineItemContainer/$LineItem->{Alias}";
     ok( $hUpdate->{'Path'} eq $LineItemPath, 'line item path' );
-    ok( $hUpdate->{'updated'} == 1, 'updated?' );
+    is( $hUpdate->{'updated'}, 1, 'updated?' );
 }
 
 sub testDeleteLineItem {
@@ -152,7 +152,7 @@ sub testDeleteLineItem {
     $Basket->{Path} = $Path;
 
     my $ahResults = $BasketService->deleteLineItem( $Path, [$LineItemAlias] )->result;
-    ok( scalar @$ahResults == 1, 'delete: result count' );
+    is( scalar @$ahResults, 1, 'delete: result count' );
 
     my $hDelete = $ahResults->[0];
     ok( !$hDelete->{'Error'}, 'delete: no error' );
@@ -160,7 +160,7 @@ sub testDeleteLineItem {
 
     my $LineItemPath = "$Path/LineItemContainer/$LineItemAlias";
     ok( $hDelete->{'Path'} eq $LineItemPath, 'line item path' );
-    ok( $hDelete->{'deleted'} == 1, 'deleted?' );
+    is( $hDelete->{'deleted'}, 1, 'deleted?' );
 }
 
 
