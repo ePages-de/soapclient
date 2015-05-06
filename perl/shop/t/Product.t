@@ -175,7 +175,7 @@ sub testUpdate2 {
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
-    ok( !$hResult->{'Error'}, 'update1: no error' );
+    ok( !$hResult->{'Error'}, 'update2: no error' );
 
     ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, 'product path' );
     is( $hResult->{'updated'}, 1, 'updated?' );
