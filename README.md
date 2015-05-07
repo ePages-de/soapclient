@@ -89,21 +89,19 @@ Either run via gradle using ``gradle check`` in the subproject, or call ``perl r
 
 1. Include jCenter to your maven repository resolution (http://jcenter.bintray.com)
    For gradle this could look like:
-``
-repositories {
-    maven { url 'http://jcenter.bintray.com' }
-}
-``
+
+	repositories {
+	    maven { url 'http://jcenter.bintray.com' }
+	}
 
 2. Add a dependency to epages-soapclients.
-``
-dependencies {
-    // dependency for shop webservices
-    compile 'de.epages:soapclient-shop:1.4.16'
-    // dependency for provider webservices
-    compile 'de.epages:soapclient-provider:1.4.16'
-}
-``
+
+	dependencies {
+	    // dependency for shop webservices
+	    compile 'de.epages:soapclient-shop:1.4.17'
+	    // dependency for provider webservices
+	    compile 'de.epages:soapclient-provider:1.4.17'
+	}
 
 #### Regenerating stub classes ####
 
