@@ -45,7 +45,6 @@ configure(subprojects.findAll {it.name.contains("java/")}) {
     dependencies {
         compile "org.apache.axis:axis:${axisVersion}"
         compile "org.apache.axis:axis-jaxrpc:${axisVersion}"
-        runtime "org.apache.axis:axis-saaj:${axisVersion}"
         runtime "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
         runtime "wsdl4j:wsdl4j:${wsdl4jVersion}"
 
@@ -68,7 +67,7 @@ configure(subprojects.findAll {it.name.contains("java/")}) {
         axisGenTask "commons-discovery:commons-discovery:${commonsDiscoveryVersion}"
     }
 
-    project.sourceCompatibility = rootProject.properties['SOURCE_COMPATIBILITY'] ?: '1.6'
+    project.sourceCompatibility = '1.7'
 
     compileJava {
         options.with {
