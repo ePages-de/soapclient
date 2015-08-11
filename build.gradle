@@ -23,4 +23,4 @@ apply from: './gradle/documentation.gradle'
 apply from: './gradle/perl.gradle'
 apply from: './gradle/bintray.gradle'
 
-wrapper {  gradleVersion = "2.4" }
+wrapper {  gradleVersion = "2.6" }
