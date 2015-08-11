@@ -5,13 +5,13 @@ buildscript {
     }
     dependencies {
         classpath 'com.ullink.gradle:gradle-msbuild-plugin:2.4'
-		classpath 'com.github.ben-manes:gradle-versions-plugin:0.9'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.9'
     }
 }
 
 plugins {
-	id "com.jfrog.bintray" version '1.2'
-	id 'com.github.ben-manes.versions' version '0.9'
+    id "com.jfrog.bintray" version '1.2'
+    id 'com.github.ben-manes.versions' version '0.9'
 }
 
 description = 'SOAP clients and webservice tests for epages6'
