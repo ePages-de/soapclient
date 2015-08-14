@@ -1,6 +1,6 @@
 use strict;
 use utf8;
-use Test::More tests => 42;
+use Test::More;
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD WEBSERVICE_SHOP_PATH);
 use WebServiceTools qw( cmpDateTime );
@@ -311,3 +311,5 @@ testUpdate3();
 testGetInfo(1);
 testDelete();
 testExists(0);
+
+done_testing();
