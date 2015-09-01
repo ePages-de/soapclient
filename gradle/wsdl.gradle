@@ -33,6 +33,7 @@ ext {
     'ShopTransferService',
     'SimpleProvisioningService',
     'SimpleProvisioningService2',
+    'SimpleProvisioningService3',
 
     //// multistore services ////
 //    'MultiStoreMasterService',
