@@ -100,8 +100,11 @@ public class SimpleProvisioningServiceTest {
         assertEquals("IsMarkedForDel", false, Shop_out.isIsMarkedForDel());
         assertEquals("StorefrontURL", "http://" + Shop_create.getDomainName() + "/epages/" + Shop_create.getAlias() + ".sf",
                 Shop_out.getStorefrontURL());
-        assertTrue("BackofficeURL",
-                Shop_out.getBackofficeURL().endsWith("://" + Shop_create.getDomainName() + "/epages/" + Shop_create.getAlias() + ".admin"));
+        String BackofficeURL = Shop_out.getBackofficeURL();
+        //distinguish between provider with and without SSL (AD-7592)
+        assertTrue("BackofficeURL", BackofficeURL.endsWith("://"
+        		+ (BackofficeURL.startsWith("https") ? System.getProperty("wsHostName") : Shop_create.getDomainName())
+        		+ "/epages/" + Shop_create.getAlias() + ".admin"));
 
         // update the shop (all attributes are optional)
         TUpdateShop Shop_update = new TUpdateShop();
