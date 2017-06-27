@@ -106,9 +106,18 @@ public class SimpleProvisioningServiceTest {
                 Shop_out.getStorefrontURL());
         String BackofficeURL = Shop_out.getBackofficeURL();
         //distinguish between provider with and without SSL (AD-7592)
-        assertTrue("BackofficeURL", BackofficeURL.endsWith("://"
-        		+ (BackofficeURL.startsWith("https") ? System.getProperty("wsHostName") : Shop_create.getDomainName())
-        		+ "/epages/" + Shop_create.getAlias() + ".admin"));
+        if (BackofficeURL.startsWith("https")) {
+        	String wsHostName = System.getProperty("wsHostName");
+        	if (wsHostName.equals("localhost")) {
+        		assertTrue("BackofficeURL", BackofficeURL.endsWith("/epages/" + Shop_create.getAlias() + ".admin"));
+        	} else {
+        		assertTrue("BackofficeURL", BackofficeURL.endsWith("://" + System.getProperty("wsHostName")
+    	        		+ "/epages/" + Shop_create.getAlias() + ".admin"));
+        	}
+        } else {
+	        assertTrue("BackofficeURL", BackofficeURL.endsWith("://" + Shop_create.getDomainName()
+	        		+ "/epages/" + Shop_create.getAlias() + ".admin"));
+        }
 
         // update the shop (all attributes are optional)
         TUpdateShop Shop_update = new TUpdateShop();

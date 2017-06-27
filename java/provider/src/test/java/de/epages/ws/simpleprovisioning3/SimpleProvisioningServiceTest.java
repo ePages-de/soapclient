@@ -103,10 +103,22 @@ public class SimpleProvisioningServiceTest {
         assertEquals("IsMarkedForDel", false, Shop_out.isIsMarkedForDel());
         assertEquals("StorefrontURL", "http://" + Shop_create.getDomainName() + "/epages/" + Shop_create.getAlias() + ".sf",
                 Shop_out.getStorefrontURL());
-        assertTrue("BackofficeURL",
-                Shop_out.getBackofficeURL().endsWith("://" + Shop_create.getDomainName() + "/epages/" + Shop_create.getAlias() + ".admin"));
+        String BackofficeURL = Shop_out.getBackofficeURL();
+        //distinguish between provider with and without SSL (AD-7592)
+        if (BackofficeURL.startsWith("https")) {
+        	String wsHostName = System.getProperty("wsHostName");
+        	if (wsHostName.equals("localhost")) {
+        		assertTrue("BackofficeURL", BackofficeURL.endsWith("/epages/" + Shop_create.getAlias() + ".admin"));
+        	} else {
+        		assertTrue("BackofficeURL", BackofficeURL.endsWith("://" + System.getProperty("wsHostName")
+    	        		+ "/epages/" + Shop_create.getAlias() + ".admin"));
+        	}
+        } else {
+	        assertTrue("BackofficeURL", BackofficeURL.endsWith("://" + Shop_create.getDomainName()
+	        		+ "/epages/" + Shop_create.getAlias() + ".admin"));
+        }
         //check created channel attribute
-        assertTrue("additionalAttributes", Shop_out.getAdditionalAttributes().length > 2 );
+        assertTrue("additionalAttributes", Shop_out.getAdditionalAttributes().length >= 2 );
         for(TAttribute t: Shop_out.getAdditionalAttributes()) {
         	if( t.getName() == strAttributeChannel.getName() ) {
                 assertEquals("channel attribute Name", t.getName(), strAttributeChannel.getName() );
@@ -153,7 +165,7 @@ public class SimpleProvisioningServiceTest {
         assertEquals("updated StorefrontURL", "http://" + Shop_update.getDomainName() + "/epages/" + ALIAS + ".sf",
                 Shop_out.getStorefrontURL());
         //check changed/created attributes
-        assertTrue("additionalAttributes", Shop_out.getAdditionalAttributes().length > 2 );
+        assertTrue("additionalAttributes", Shop_out.getAdditionalAttributes().length >= 2 );
         for(TAttribute t: Shop_out.getAdditionalAttributes()) {
         	if( t.getName() == strAttributeChannel.getName() ) {
                 assertEquals("channel attribute Name", t.getName(), strAttributeChannel.getName() );
