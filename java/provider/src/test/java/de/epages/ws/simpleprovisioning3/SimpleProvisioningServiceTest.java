@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.epages.ws.LocalEpagesConfReader;
 import de.epages.ws.ProviderWebServiceTestConfiguration;
 import de.epages.ws.common.model.TAttribute;
 import de.epages.ws.shopconfig6.ShopConfigServiceClient;
@@ -106,13 +107,12 @@ public class SimpleProvisioningServiceTest {
         String BackofficeURL = Shop_out.getBackofficeURL();
         //distinguish between provider with and without SSL (AD-7592)
         if (BackofficeURL.startsWith("https")) {
-        	String wsHostName = System.getProperty("wsHostName");
-        	if (wsHostName.equals("localhost")) {
-        		assertTrue("BackofficeURL", BackofficeURL.endsWith("/epages/" + Shop_create.getAlias() + ".admin"));
-        	} else {
-        		assertTrue("BackofficeURL", BackofficeURL.endsWith("://" + System.getProperty("wsHostName")
-    	        		+ "/epages/" + Shop_create.getAlias() + ".admin"));
-        	}
+            String ep6HostName = System.getProperty("wsHostName");
+            if (ep6HostName == null) {
+                ep6HostName = LocalEpagesConfReader.getHostNameFromEpagesConf();
+            }
+        	assertTrue("BackofficeURL", BackofficeURL.endsWith("://" + ep6HostName
+        			+ "/epages/" + Shop_create.getAlias() + ".admin"));
         } else {
 	        assertTrue("BackofficeURL", BackofficeURL.endsWith("://" + Shop_create.getDomainName()
 	        		+ "/epages/" + Shop_create.getAlias() + ".admin"));
