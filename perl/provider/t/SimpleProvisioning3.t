@@ -1,7 +1,7 @@
 use strict;
 use Test::More tests => 92;
 use WebServiceClient;
-use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD );
+use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD getBackofficeDomain );
 
 my $ALIAS = 'perl_test-1';
 my $NEW_ALIAS = 'perl_test-1-new';
@@ -82,7 +82,8 @@ sub TestSuite {
     is( $hResult->{'MerchantEMail'}, $Shop_in->{'MerchantEMail'}, "MerchantEMail created");
     ok( !$hResult->{'IsMarkedForDel'}, "IsMarkedForDel created");
     is( $hResult->{'StorefrontURL'}, "http://$Shop_in->{'DomainName'}/epages/$Shop_in->{'Alias'}.sf", "StorefrontURL created");
-    like( $hResult->{'BackofficeURL'}, qr!http(s?)://$Shop_in->{'DomainName'}/epages/$Shop_in->{'Alias'}.admin!, "BackofficeURL created");
+    my $BackofficeDomain = getBackofficeDomain($hResult->{'BackofficeURL'}, $Shop_in->{'DomainName'});
+    like( $hResult->{'BackofficeURL'}, qr!$BackofficeDomain/epages/$Shop_in->{'Alias'}.admin!, "BackofficeURL created");
     is( $hResult->{'LastMerchantLoginDate'}, undef, "LastMerchantLoginDate created");
 
     ok( scalar $hResult->{'AdditionalAttributes'} > 1, "AdditionalAttributes");
@@ -145,7 +146,8 @@ sub TestSuite {
     is( $hResult->{'LastMerchantLoginDate'}, undef, "LastMerchantLoginDate updated");
     ok( !$hResult->{'IsMarkedForDel'}, "IsMarkedForDel updated");
     is( $hResult->{'StorefrontURL'}, "http://$Shop_update->{'DomainName'}/epages/$Shop_update->{'Alias'}.sf", "StorefrontURL updated");
-    like( $hResult->{'BackofficeURL'}, qr!http(s?)://$Shop_update->{'DomainName'}/epages/$Shop_update->{'Alias'}.admin!, "BackofficeURL updated");
+    $BackofficeDomain = getBackofficeDomain($hResult->{'BackofficeURL'}, $Shop_update->{'DomainName'});
+    like( $hResult->{'BackofficeURL'}, qr!$BackofficeDomain/epages/$Shop_update->{'Alias'}.admin!, "BackofficeURL updated");
 
     #check added additional attribute
     ok( scalar $hResult->{'AdditionalAttributes'} > 2, "AdditionalAttributes > 1");
@@ -195,7 +197,8 @@ sub TestSuite {
     is( $hResult->{'LastMerchantLoginDate'}, undef, "LastMerchantLoginDate created");
     ok( !$hResult->{'IsMarkedForDel'}, "IsMarkedForDel renamed");
     is( $hResult->{'StorefrontURL'}, "http://$Shop_update->{'DomainName'}/epages/$Shop_rename->{'NewAlias'}.sf", "StorefrontURL renamed");
-    like( $hResult->{'BackofficeURL'}, qr!http(s?)://$Shop_update->{'DomainName'}/epages/$Shop_rename->{'NewAlias'}.admin!, "BackofficeURL renamed");
+    $BackofficeDomain = getBackofficeDomain($hResult->{'BackofficeURL'}, $Shop_update->{'DomainName'});
+    like( $hResult->{'BackofficeURL'}, qr!$BackofficeDomain/epages/$Shop_rename->{'NewAlias'}.admin!, "BackofficeURL renamed");
 
     # delete
     $SimpleProvisioningService->markForDeletion( { 'Alias' => $NEW_ALIAS } );
