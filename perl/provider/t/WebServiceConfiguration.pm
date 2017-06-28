@@ -1,7 +1,7 @@
 package WebServiceConfiguration;
 use base Exporter;
 
-our @EXPORT = qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD WEBSERVICE_USER WEBSERVICE_SHOP_PATH WEBSERVICE_SHOP_NAME WEBSERVICE_SERVER );
+our @EXPORT = qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD WEBSERVICE_USER WEBSERVICE_SHOP_PATH WEBSERVICE_SHOP_NAME getBackofficeDomain );
 
 use Config::IniFiles;
 use IO::File;
@@ -52,7 +52,7 @@ sub getBackofficeDomain {
         $BackofficeDomain = 'http://' . $DomainName;
     }
 
-    return $BackofficeURL;
+    return $BackofficeDomain;
 }
 
 
