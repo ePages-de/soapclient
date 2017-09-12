@@ -44,11 +44,11 @@ sub test {
     testCreateBasket();
     testExistsBasket();
     testDeleteBasket();
-    testaddProductLineItem();
-    testGetInfoReference();
+    testAddProductLineItem();
     testUpdateProductLineItem();
     testDeleteProductLineItem();
     testUpdateBasket();
+    testGetInfoReference();
 }
 
 sub testCreateBasket {
@@ -64,37 +64,6 @@ sub testCreateBasket {
     my $BasketPath = $hCreate->{'Path'};
     my $ExistsBasketResult = $BasketService->exists( [$BasketPath] )->result;
     is( $ExistsBasketResult->[0]->{'exists'}, 1, 'testCreateBasket: basket exists' );
-}
-
-sub testDeleteProductLineItem {
-    my $BasketPath = _setupTestBasketInDB();
-
-    _deleteProductsIfExists( [$ProductAlias1] );
-    _createProductsInDB(     [$ProductIn1] );
-    my $ProductGUID = _fetchProductGuid($ProductAlias1);
-
-    my $ProductLineItem = {
-        'GUID'     => $ProductGUID,
-        'Quantity' => 50,
-    };
-    $BasketService->addProductLineItem( $BasketPath, [$ProductLineItem] )->result;
-
-    my $hBasketInfo   = _getInfo($BasketPath);
-    my $LineItemAlias = $hBasketInfo->{LineItemContainer}->{'ProductLineItems'}->[0]->{'Alias'};
-
-    my $ahResultDelete = $BasketService->deleteLineItem( $BasketPath, [$LineItemAlias] )->result;
-    is( scalar @$ahResultDelete, 1, 'testDeleteProductLineItem: result count' );
-    my $hResultDelete = $ahResultDelete->[0];
-    ok( !$hResultDelete->{'Error'}, 'testDeleteProductLineItem: check error' );
-    diag $hResultDelete->{'Error'}->{'Message'} . "\n" if $hResultDelete->{'Error'};
-
-    my $LineItemPath = "$BasketPath/LineItemContainer/$LineItemAlias";
-    is( $hResultDelete->{'Path'},    $LineItemPath, 'testDeleteProductLineItem: line item path' );
-    is( $hResultDelete->{'deleted'}, 1,             'testDeleteProductLineItem: deleted' );
-
-    $hBasketInfo = _getInfo($BasketPath);
-    is( scalar( @{ $hBasketInfo->{'LineItemContainer'}->{'ProductLineItems'} } ),
-        0, 'testDeleteProductLineItem: no ProductLineItems' );
 }
 
 sub testExistsBasket {
@@ -128,7 +97,7 @@ sub testDeleteBasket {
     is( $ExistsBasketResult->[0]->{'exists'}, 0, 'testCreateBasket: basket exists' );
 }
 
-sub testaddProductLineItem {
+sub testAddProductLineItem {
     my $BasketPath = _setupTestBasketInDB();
     my $Quantity   = 200;
 
@@ -142,54 +111,19 @@ sub testaddProductLineItem {
     };
 
     my $ahResultAddLineItem = $BasketService->addProductLineItem( $BasketPath, [$LineItem] )->result;
-    is( scalar @$ahResultAddLineItem, 1, 'testaddProductLineItem: result count' );
+    is( scalar @$ahResultAddLineItem, 1, 'testAddProductLineItem: result count' );
 
     my $hResultAddLineItem = $ahResultAddLineItem->[0];
-    ok( !$hResultAddLineItem->{'Error'}, 'testaddProductLineItem: check error' );
+    ok( !$hResultAddLineItem->{'Error'}, 'testAddProductLineItem: check error' );
     diag $hResultAddLineItem->{'Error'}->{'Message'} . "\n"
       if $hResultAddLineItem->{'Error'};
 
-    is( $hResultAddLineItem->{'GUID'}, $LineItem->{GUID}, 'testaddProductLineItem: product GUID' );
-    is( $hResultAddLineItem->{'added'}, 1, 'testaddProductLineItem: added' );
+    is( $hResultAddLineItem->{'GUID'}, $LineItem->{GUID}, 'testAddProductLineItem: product GUID' );
+    is( $hResultAddLineItem->{'added'}, 1, 'testAddProductLineItem: added' );
 
     my $hBasketInfo = _getInfo($BasketPath);
     is( scalar( @{ $hBasketInfo->{'LineItemContainer'}->{'ProductLineItems'} } ),
-        1, 'testaddProductLineItem: additional ProductLineItem' );
-}
-
-sub testGetInfoReference {
-    my $BasketPath = _setupTestBasketInDB();
-    my $hExpBasket = _setupTestBasketHash();
-    my $Quantity   = '170';
-
-    _deleteProductsIfExists( [$ProductAlias1] );
-    _createProductsInDB(     [$ProductIn1] );
-    my $ProductGUID = _fetchProductGuid($ProductAlias1);
-
-    _addProductToBasketHash( $hExpBasket, $ProductGUID, $Quantity );
-
-    my $LineItem = {
-        'GUID'     => $ProductGUID,
-        'Quantity' => $Quantity
-    };
-    $BasketService->addProductLineItem( $BasketPath, [$LineItem] );
-
-    my $ahBasketInfo = $BasketService->getInfo( [$BasketPath], [], [] )->result;
-    is( scalar @$ahBasketInfo, 1, 'testGetInfoReference: result set' );
-
-    my $hBasket = $ahBasketInfo->[0];
-    ok( !$hBasket->{'Error'}, 'testGetInfoReference: check error' );
-    diag "Error: $hBasket->{'Error'}\n" if $hBasket->{'Error'};
-
-    my $hLineItemContainer    = $hBasket->{'LineItemContainer'};
-    my $hExpLineItemContainer = $hExpBasket->{'LineItemContainer'};
-    is( $hLineItemContainer->{'TaxArea'},  $hExpLineItemContainer->{'TaxArea'},  'testGetInfoReference: tax area', );
-    is( $hLineItemContainer->{'TaxModel'}, $hExpLineItemContainer->{'TaxModel'}, 'testGetInfoReference: tax model' );
-    is(
-        $hLineItemContainer->{'CurrencyID'},
-        $hExpLineItemContainer->{'CurrencyID'},
-        'testGetInfoReference: currencyid'
-    );
+        1, 'testAddProductLineItem: additional ProductLineItem' );
 }
 
 sub testUpdateProductLineItem {
@@ -236,6 +170,37 @@ sub testUpdateProductLineItem {
         $ChangeQuantity, 'testUpdateProductLineItem: additional ProductLineItem' );
 }
 
+sub testDeleteProductLineItem {
+    my $BasketPath = _setupTestBasketInDB();
+
+    _deleteProductsIfExists( [$ProductAlias1] );
+    _createProductsInDB(     [$ProductIn1] );
+    my $ProductGUID = _fetchProductGuid($ProductAlias1);
+
+    my $ProductLineItem = {
+        'GUID'     => $ProductGUID,
+        'Quantity' => 50,
+    };
+    $BasketService->addProductLineItem( $BasketPath, [$ProductLineItem] )->result;
+
+    my $hBasketInfo   = _getInfo($BasketPath);
+    my $LineItemAlias = $hBasketInfo->{LineItemContainer}->{'ProductLineItems'}->[0]->{'Alias'};
+
+    my $ahResultDelete = $BasketService->deleteLineItem( $BasketPath, [$LineItemAlias] )->result;
+    is( scalar @$ahResultDelete, 1, 'testDeleteProductLineItem: result count' );
+    my $hResultDelete = $ahResultDelete->[0];
+    ok( !$hResultDelete->{'Error'}, 'testDeleteProductLineItem: check error' );
+    diag $hResultDelete->{'Error'}->{'Message'} . "\n" if $hResultDelete->{'Error'};
+
+    my $LineItemPath = "$BasketPath/LineItemContainer/$LineItemAlias";
+    is( $hResultDelete->{'Path'},    $LineItemPath, 'testDeleteProductLineItem: line item path' );
+    is( $hResultDelete->{'deleted'}, 1,             'testDeleteProductLineItem: deleted' );
+
+    $hBasketInfo = _getInfo($BasketPath);
+    is( scalar( @{ $hBasketInfo->{'LineItemContainer'}->{'ProductLineItems'} } ),
+        0, 'testDeleteProductLineItem: no ProductLineItems' );
+}
+
 sub testUpdateBasket {
     my $BasketPath = _setupTestBasketInDB();
 
@@ -270,6 +235,41 @@ sub testUpdateBasket {
     my $hBasketInfoUpdated = _getInfo($BasketPath);
     is( scalar( @{ $hBasketInfoUpdated->{'LineItemContainer'}->{'ProductLineItems'} } ),
         2, 'testUpdateBasket: Expected quantity and result quantity' );
+}
+
+sub testGetInfoReference {
+    my $BasketPath = _setupTestBasketInDB();
+    my $hExpBasket = _setupTestBasketHash();
+    my $Quantity   = '170';
+
+    _deleteProductsIfExists( [$ProductAlias1] );
+    _createProductsInDB(     [$ProductIn1] );
+    my $ProductGUID = _fetchProductGuid($ProductAlias1);
+
+    _addProductToBasketHash( $hExpBasket, $ProductGUID, $Quantity );
+
+    my $LineItem = {
+        'GUID'     => $ProductGUID,
+        'Quantity' => $Quantity
+    };
+    $BasketService->addProductLineItem( $BasketPath, [$LineItem] );
+
+    my $ahBasketInfo = $BasketService->getInfo( [$BasketPath], [], [] )->result;
+    is( scalar @$ahBasketInfo, 1, 'testGetInfoReference: result set' );
+
+    my $hBasket = $ahBasketInfo->[0];
+    ok( !$hBasket->{'Error'}, 'testGetInfoReference: check error' );
+    diag "Error: $hBasket->{'Error'}\n" if $hBasket->{'Error'};
+
+    my $hLineItemContainer    = $hBasket->{'LineItemContainer'};
+    my $hExpLineItemContainer = $hExpBasket->{'LineItemContainer'};
+    is( $hLineItemContainer->{'TaxArea'},  $hExpLineItemContainer->{'TaxArea'},  'testGetInfoReference: tax area', );
+    is( $hLineItemContainer->{'TaxModel'}, $hExpLineItemContainer->{'TaxModel'}, 'testGetInfoReference: tax model' );
+    is(
+        $hLineItemContainer->{'CurrencyID'},
+        $hExpLineItemContainer->{'CurrencyID'},
+        'testGetInfoReference: currencyid'
+    );
 }
 
 sub _setupTestBasketInDB {
