@@ -1,319 +1,356 @@
 use strict;
-use Test::More tests => 122;
-use Data::Dumper;
+use Test::More;
 use WebServiceClient;
-use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_USER WEBSERVICE_SHOP_PATH);
-use WebServiceTools qw( TAttributes hAttributes cmpDateTime );
+use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_USER );
 
 # Create a SOAP::Lite client object
-my $BasketService = WebServiceClient
-    ->uri( 'urn://epages.de/WebService/BasketService/2013/11' )
-    ->proxy( WEBSERVICE_URL )
-    ->userinfo( WEBSERVICE_USER )
-    ->xmlschema('2001');
+my $BasketService =
+  WebServiceClient->uri('urn://epages.de/WebService/BasketService/2013/11')->proxy(WEBSERVICE_URL)
+  ->userinfo(WEBSERVICE_USER)->xmlschema('2001');
 
 # use product service to get GUIDs by given object paths of demo products
-my $ProductService = WebServiceClient
-    ->uri( 'urn://epages.de/WebService/ProductService/2013/01' )
-    ->proxy( WEBSERVICE_URL )
-    ->userinfo( WEBSERVICE_USER )
-    ->xmlschema('2001');
+my $ProductService =
+  WebServiceClient->uri('urn://epages.de/WebService/ProductService/2013/01')->proxy(WEBSERVICE_URL)
+  ->userinfo(WEBSERVICE_USER)->xmlschema('2001');
 
-# array of product paths that involved in basket tests
-my @ProductPaths = map "Products/$_", qw(ho_1112105010 eg_1000111010 de_3201212002);
-my $prodInfoResult = $ProductService->getInfo(\@ProductPaths,['GUID'])->result;
-    ok( !$prodInfoResult->[0]->{'Error'}, "getInfo product GUIDs: no error" );
-# store GUID for easy acces via $GUID{$Alias}
-my %GUID = map { $_->{Alias} => $_->{Attributes}->[0]->{Value} } @$prodInfoResult;
+my $ProductAlias1 = "productalias1";
+my $ProductAlias2 = "productalias2";
 
+# create test products
+my $ProductIn1 = {
+    'Alias'         => $ProductAlias1,
+    'StockLevel'    => 200,
+    'ProductPrices' => [ { 'CurrencyID' => 'EUR', 'Price' => 123, 'TaxModel' => 'gross', }, ],
+    'IsAvailable'   => SOAP::Data->type('boolean')->value(1)
+};
+my $ProductIn2 = {
+    'Alias'         => $ProductAlias2,
+    'StockLevel'    => 300,
+    'ProductPrices' => [ { 'CurrencyID' => 'EUR', 'Price' => 1234, 'TaxModel' => 'gross', }, ],
+    'IsAvailable'   => SOAP::Data->type('boolean')->value(1)
+};
 
-sub testExistsByPath {
-    my ( $Path, $exists ) = @_;
-
-    my $ahResults = $BasketService->exists( [$Path] )->result;
-    is( scalar @$ahResults, 1, 'exists: result count' );
-
-    my $hExists = $ahResults->[0];
-    ok( !$hExists->{'Error'}, 'exists: no error' );
-    diag $hExists->{'Error'}->{'Message'}."\n" if $hExists->{'Error'};
-
-    ok( $hExists->{'Path'} eq $Path, 'exists: basket path' );
-    is( $hExists->{'exists'}, $exists, 'exists?' );
+sub main {
+    init();
+    test();
+    done_testing();
 }
 
-# Create a Basket and check if the creation was successful
+sub init() {
+    _cleanup();
+}
+
+sub test {
+    testCreateBasket();
+    testExistsBasket();
+    testDeleteBasket();
+    testAddProductLineItem();
+    testUpdateProductLineItem();
+    testDeleteProductLineItem();
+    testUpdateBasket();
+    testGetInfoReference();
+}
+
 sub testCreateBasket {
-    my ($Basket) = @_;
+    my $hExpBasket = _setupTestBasketHash();
+    my $ahBaskets = $BasketService->create( [$hExpBasket] )->result;
 
-    my $ahResults = $BasketService->create( [$Basket] )->result;
-    is( scalar @$ahResults, 1, 'create: result count' );
+    is( scalar @$ahBaskets, 1, 'testCreateBasket: response format' );
 
-    my $hCreate = $ahResults->[0];
-    ok( !$hCreate->{'Error'}, 'create: no error' );
-    diag $hCreate->{'Error'}->{'Message'}."\n" if $hCreate->{'Error'};
+    my $hCreate = $ahBaskets->[0];
+    ok( !$hCreate->{'Error'}, 'testCreateBasket: check error' );
+    is( $hCreate->{'created'}, 1, 'testCreateBasket: created' );
 
-    is( $hCreate->{'created'}, 1, 'created?' );
-
-    return $hCreate->{'Path'};
+    my $BasketPath = $hCreate->{'Path'};
+    my $ExistsBasketResult = $BasketService->exists( [$BasketPath] )->result;
+    is( $ExistsBasketResult->[0]->{'exists'}, 1, 'testCreateBasket: basket exists' );
 }
 
-sub testGetInfoReference {
-    my ( $basketPath, $basketRef ) = @_;
+sub testExistsBasket {
+    my $BasketPath = _setupTestBasketInDB();
 
-    my $ahResults = $BasketService->getInfo( [$basketPath], [], [] )->result;
-    is( scalar @$ahResults, 1, 'getInfo result set' );
+    my $ahResultExists = $BasketService->exists( [$BasketPath] )->result;
+    is( scalar @$ahResultExists, 1, 'testExistsBasket: response format' );
 
-    my $hInfo = $ahResults->[0];
-    ok( !$hInfo->{'Error'}, 'getInfo: no error' );
-    diag "Error: $hInfo->{'Error'}\n" if $hInfo->{'Error'};
+    my $hResultExists = $ahResultExists->[0];
+    ok( !$hResultExists->{'Error'}, 'testExistsBasket: check error' );
+    diag $hResultExists->{'Error'}->{'Message'} . "\n" if $hResultExists->{'Error'};
 
-    my $hLineItemContainer  = $hInfo->{'LineItemContainer'};
-    my $hLineItemContainer2 = $basketRef->{'LineItemContainer'};
-    ok( $hLineItemContainer->{'TaxArea'}    eq $hLineItemContainer2->{'TaxArea'},       'tax area' );
-    ok( $hLineItemContainer->{'TaxModel'}   eq $hLineItemContainer2->{'TaxModel'},      'tax model' );
-    ok( $hLineItemContainer->{'CurrencyID'} eq $hLineItemContainer2->{'CurrencyID'},    'currencyid' );
-
-    ok( $hLineItemContainer->{'ProductLineItems'}, 'list of all product line items');
-    my @ProductLineItems =
-        map {{$_->{'Product'}, { 'Quantity' => $_->{'Quantity'}, 'OrderUnit' => $_->{'OrderUnit'}}}} sort {$a->{Product} le $b->{Product}}
-        @{$hLineItemContainer->{'ProductLineItems'}};
-    my @ProductLineItemsRef =
-        map {{$_->{'Product'},{ 'Quantity' => $_->{'Quantity'}, 'OrderUnit' => $_->{'OrderUnit'}}}} sort {$a->{Product} le $b->{Product}}
-        @{$hLineItemContainer2->{'ProductLineItems'}};
-
-    is_deeply( \@ProductLineItems, \@ProductLineItemsRef, 'product line items');
-
-    return $hInfo;
+    is( $hResultExists->{'Path'},   $BasketPath, 'testExistsBasket: basket path' );
+    is( $hResultExists->{'exists'}, 1,           'testExistsBasket: exists' );
 }
 
 sub testDeleteBasket {
-    my ( $basketPath ) = @_;
+    my $BasketPath = _setupTestBasketInDB();
 
-    my $ahResults = $BasketService->delete( [$basketPath] )->result;
-    is( scalar @$ahResults, 1, 'delete: result count' );
+    my $ahResultDelete = $BasketService->delete( [$BasketPath] )->result;
+    is( scalar @$ahResultDelete, 1, 'testDeleteBasket: result count' );
 
-    my $hDelete = $ahResults->[0];
-    ok( !$hDelete->{'Error'}, 'delete: no error' );
-    diag $hDelete->{'Error'}->{'Message'}."\n" if $hDelete->{'Error'};
+    my $hResultDelete = $ahResultDelete->[0];
+    ok( !$hResultDelete->{'Error'}, 'testDeleteBasket: check error' );
+    diag $hResultDelete->{'Error'}->{'Message'} . "\n" if $hResultDelete->{'Error'};
 
-    ok( $hDelete->{'Path'} eq $basketPath, 'delete: order path' );
-    is( $hDelete->{'deleted'}, 1, 'deleted?' );
-}
+    is( $hResultDelete->{'Path'},    $BasketPath, 'testDeleteBasket: basket path' );
+    is( $hResultDelete->{'deleted'}, 1,           'testDeleteBasket: deleted' );
 
-sub testUpdateBasket {
-    my ($Path, $Basket) = @_;
-    $Basket->{Path} = $Path;
-
-    my $ahResults = $BasketService->update( [$Basket] )->result;
-    is( scalar @$ahResults, 1, 'update: result count' );
-
-    my $hUpdate = $ahResults->[0];
-    ok( !$hUpdate->{'Error'}, 'update: no error' );
-    diag $hUpdate->{'Error'}->{'Message'}."\n" if $hUpdate->{'Error'};
-
-    ok( $hUpdate->{'Path'} eq $Path, 'path path' );
-    is( $hUpdate->{'updated'}, 1, 'updated?' );
-
+    my $ExistsBasketResult = $BasketService->exists( [$BasketPath] )->result;
+    is( $ExistsBasketResult->[0]->{'exists'}, 0, 'testCreateBasket: basket exists' );
 }
 
 sub testAddProductLineItem {
-    my ($Path, $LineItem, $Basket) = @_;
-    $Basket->{Path} = $Path;
+    my $BasketPath = _setupTestBasketInDB();
+    my $Quantity   = 200;
 
-    my $ahResults = $BasketService->addProductLineItem( $Path, [$LineItem] )->result;
-    is( scalar @$ahResults, 1, 'add product: result count' );
+    _deleteProductsIfExists( [$ProductAlias1] );
+    _createProductsInDB(     [$ProductIn1] );
+    my $ProductGUID = _fetchProductGuid($ProductAlias1);
+
+    my $LineItem = {
+        'GUID'     => $ProductGUID,
+        'Quantity' => $Quantity,
+    };
+
+    my $ahResultAddLineItem = $BasketService->addProductLineItem( $BasketPath, [$LineItem] )->result;
+    is( scalar @$ahResultAddLineItem, 1, 'testAddProductLineItem: result count' );
+
+    my $hResultAddLineItem = $ahResultAddLineItem->[0];
+    ok( !$hResultAddLineItem->{'Error'}, 'testAddProductLineItem: check error' );
+    diag $hResultAddLineItem->{'Error'}->{'Message'} . "\n"
+      if $hResultAddLineItem->{'Error'};
+
+    is( $hResultAddLineItem->{'GUID'}, $LineItem->{GUID}, 'testAddProductLineItem: product GUID' );
+    is( $hResultAddLineItem->{'added'}, 1, 'testAddProductLineItem: added' );
+
+    my $hBasketInfo = _getInfo($BasketPath);
+    is( scalar( @{ $hBasketInfo->{'LineItemContainer'}->{'ProductLineItems'} } ),
+        1, 'testAddProductLineItem: additional ProductLineItem' );
+}
+
+sub testUpdateProductLineItem {
+    my $BasketPath     = _setupTestBasketInDB();
+    my $ChangeQuantity = '17';
+
+    _deleteProductsIfExists( [$ProductAlias1] );
+    _createProductsInDB(     [$ProductIn1] );
+    my $ProductGUID = _fetchProductGuid($ProductAlias1);
+
+    my $ProductLineItem = {
+        'GUID'     => $ProductGUID,
+        'Quantity' => 50,
+    };
+    $BasketService->addProductLineItem( $BasketPath, [$ProductLineItem] )->result;
+    my $hBasketInfo = _getInfo($BasketPath);
+
+    my $hContainer      = $hBasketInfo->{LineItemContainer};
+    my $hLineItem       = $hContainer->{'ProductLineItems'}->[0];
+    my $changedQuantity = $ChangeQuantity;
+    my $LineItem        = {
+        'Alias'     => $hLineItem->{Alias},
+        'Quantity'  => $changedQuantity,
+        'OrderUnit' => '/Units/piece'
+    };
+
+    my $ahResults = $BasketService->updateLineItem( $BasketPath, [$LineItem] )->result;
+    is( scalar @$ahResults, 1, 'testUpdateLineItem: result count' );
 
     my $hUpdate = $ahResults->[0];
-    ok( !$hUpdate->{'Error'}, 'add product: no error' );
-    diag $hUpdate->{'Error'}->{'Message'}."\n" if $hUpdate->{'Error'};
+    ok( !$hUpdate->{'Error'}, 'testUpdateProductLineItem: check error' );
+    diag $hUpdate->{'Error'}->{'Message'} . "\n" if $hUpdate->{'Error'};
 
-    ok( $hUpdate->{'GUID'} eq $LineItem->{GUID}, 'product GUID' );
-    is( $hUpdate->{'added'}, 1, 'added?' );
+    my $LineItemPath = "$BasketPath/LineItemContainer/$LineItem->{Alias}";
+    is( $hUpdate->{'Path'},    $LineItemPath, 'testUpdateProductLineItem: line item path' );
+    is( $hUpdate->{'updated'}, 1,             'testUpdateProductLineItem: updated' );
+
+    my $hBasketInfoUpdated = _getInfo($BasketPath);
+    is( $hBasketInfoUpdated->{'LineItemContainer'}->{'ProductLineItems'}->[0]->{'Quantity'},
+        $ChangeQuantity, 'testUpdateProductLineItem: quantity changed' );
+
+    my $hBasketInfo = _getInfo($BasketPath);
+    is( $hBasketInfo->{'LineItemContainer'}->{'ProductLineItems'}->[0]->{'Quantity'},
+        $ChangeQuantity, 'testUpdateProductLineItem: additional ProductLineItem' );
 }
 
-sub testUpdateLineItem {
-    my ($Path, $LineItem, $Basket) = @_;
-    $Basket->{Path} = $Path;
+sub testDeleteProductLineItem {
+    my $BasketPath = _setupTestBasketInDB();
 
-    my $ahResults = $BasketService->updateLineItem( $Path, [$LineItem] )->result;
-    is( scalar @$ahResults, 1, 'update: result count' );
+    _deleteProductsIfExists( [$ProductAlias1] );
+    _createProductsInDB(     [$ProductIn1] );
+    my $ProductGUID = _fetchProductGuid($ProductAlias1);
+
+    my $ProductLineItem = {
+        'GUID'     => $ProductGUID,
+        'Quantity' => 50,
+    };
+    $BasketService->addProductLineItem( $BasketPath, [$ProductLineItem] )->result;
+
+    my $hBasketInfo   = _getInfo($BasketPath);
+    my $LineItemAlias = $hBasketInfo->{LineItemContainer}->{'ProductLineItems'}->[0]->{'Alias'};
+
+    my $ahResultDelete = $BasketService->deleteLineItem( $BasketPath, [$LineItemAlias] )->result;
+    is( scalar @$ahResultDelete, 1, 'testDeleteProductLineItem: result count' );
+    my $hResultDelete = $ahResultDelete->[0];
+    ok( !$hResultDelete->{'Error'}, 'testDeleteProductLineItem: check error' );
+    diag $hResultDelete->{'Error'}->{'Message'} . "\n" if $hResultDelete->{'Error'};
+
+    my $LineItemPath = "$BasketPath/LineItemContainer/$LineItemAlias";
+    is( $hResultDelete->{'Path'},    $LineItemPath, 'testDeleteProductLineItem: line item path' );
+    is( $hResultDelete->{'deleted'}, 1,             'testDeleteProductLineItem: deleted' );
+
+    $hBasketInfo = _getInfo($BasketPath);
+    is( scalar( @{ $hBasketInfo->{'LineItemContainer'}->{'ProductLineItems'} } ),
+        0, 'testDeleteProductLineItem: no ProductLineItems' );
+}
+
+sub testUpdateBasket {
+    my $BasketPath = _setupTestBasketInDB();
+
+    _deleteProductsIfExists( [ $ProductAlias1, $ProductAlias2 ] );
+    _createProductsInDB( [ $ProductIn1, $ProductIn2 ] );
+    my $ProductGUID_1 = _fetchProductGuid($ProductAlias1);
+    my $ProductGUID_2 = _fetchProductGuid($ProductAlias2);
+
+    my $ProductLineItem = {
+        'GUID'     => $ProductGUID_1,
+        'Quantity' => 50,
+    };
+    $BasketService->addProductLineItem( $BasketPath, [$ProductLineItem] )->result;
+
+    my $UpdateBasket = {
+        'LineItemContainer' => {
+            'ProductLineItems' => [ { 'Product' => $ProductGUID_2, 'Quantity' => '1' }, ],
+        },
+    };
+    $UpdateBasket->{Path} = $BasketPath;
+
+    my $ahResults = $BasketService->update( [$UpdateBasket] )->result;
+    is( scalar @$ahResults, 1, 'testUpdateBasket: result count' );
 
     my $hUpdate = $ahResults->[0];
-    ok( !$hUpdate->{'Error'}, 'update: no error' );
-    diag $hUpdate->{'Error'}->{'Message'}."\n" if $hUpdate->{'Error'};
+    ok( !$hUpdate->{'Error'}, 'testUpdateBasket: check error' );
+    diag $hUpdate->{'Error'}->{'Message'} . "\n" if $hUpdate->{'Error'};
 
-    my $LineItemPath = "$Path/LineItemContainer/$LineItem->{Alias}";
-    ok( $hUpdate->{'Path'} eq $LineItemPath, 'line item path' );
-    is( $hUpdate->{'updated'}, 1, 'updated?' );
+    is( $hUpdate->{'Path'},    $BasketPath, 'testUpdateBasket: check path' );
+    is( $hUpdate->{'updated'}, 1,           'testUpdateBasket: updated' );
+
+    my $hBasketInfoUpdated = _getInfo($BasketPath);
+    is( scalar( @{ $hBasketInfoUpdated->{'LineItemContainer'}->{'ProductLineItems'} } ),
+        2, 'testUpdateBasket: Expected quantity and result quantity' );
 }
 
-sub testDeleteLineItem {
-    my ($Path, $LineItemAlias, $Basket) = @_;
-    $Basket->{Path} = $Path;
+sub testGetInfoReference {
+    my $BasketPath = _setupTestBasketInDB();
+    my $hExpBasket = _setupTestBasketHash();
+    my $Quantity   = '170';
 
-    my $ahResults = $BasketService->deleteLineItem( $Path, [$LineItemAlias] )->result;
-    is( scalar @$ahResults, 1, 'delete: result count' );
+    _deleteProductsIfExists( [$ProductAlias1] );
+    _createProductsInDB(     [$ProductIn1] );
+    my $ProductGUID = _fetchProductGuid($ProductAlias1);
 
-    my $hDelete = $ahResults->[0];
-    ok( !$hDelete->{'Error'}, 'delete: no error' );
-    diag $hDelete->{'Error'}->{'Message'}."\n" if $hDelete->{'Error'};
+    _addProductToBasketHash( $hExpBasket, $ProductGUID, $Quantity );
 
-    my $LineItemPath = "$Path/LineItemContainer/$LineItemAlias";
-    ok( $hDelete->{'Path'} eq $LineItemPath, 'line item path' );
-    is( $hDelete->{'deleted'}, 1, 'deleted?' );
+    my $LineItem = {
+        'GUID'     => $ProductGUID,
+        'Quantity' => $Quantity
+    };
+    $BasketService->addProductLineItem( $BasketPath, [$LineItem] );
+
+    my $ahBasketInfo = $BasketService->getInfo( [$BasketPath], [], [] )->result;
+    is( scalar @$ahBasketInfo, 1, 'testGetInfoReference: result set' );
+
+    my $hBasket = $ahBasketInfo->[0];
+    ok( !$hBasket->{'Error'}, 'testGetInfoReference: check error' );
+    diag "Error: $hBasket->{'Error'}\n" if $hBasket->{'Error'};
+
+    my $hLineItemContainer    = $hBasket->{'LineItemContainer'};
+    my $hExpLineItemContainer = $hExpBasket->{'LineItemContainer'};
+    is( $hLineItemContainer->{'TaxArea'},  $hExpLineItemContainer->{'TaxArea'},  'testGetInfoReference: tax area', );
+    is( $hLineItemContainer->{'TaxModel'}, $hExpLineItemContainer->{'TaxModel'}, 'testGetInfoReference: tax model' );
+    is(
+        $hLineItemContainer->{'CurrencyID'},
+        $hExpLineItemContainer->{'CurrencyID'},
+        'testGetInfoReference: currencyid'
+    );
 }
 
-
-
-
-# run test suite
-
-#create basket1 with 1 product
-my $basket1 = {
-    'LineItemContainer' => {
-        'CurrencyID'        => 'EUR',
-        'TaxArea'           => '/TaxMatrixGermany/EU',
-        'TaxModel'          => 'gross',
-        'ProductLineItems' => [
-            {'Product' => $GUID{ho_1112105010}, 'Quantity' => '10', 'OrderUnit' => '/Units/piece'},
-        ],
-    },
-};
-my $basket1Path = testCreateBasket( $basket1 );
-
-#exists basket1?
-testExistsByPath( $basket1Path, 1 );
-
-#check info of basket1
-testGetInfoReference( $basket1Path, $basket1 );
-
-#delete basket?
-testDeleteBasket( $basket1Path );
-
-#dont exists basket1?
-testExistsByPath( $basket1Path, 0 );
-
-
-#create basket2 with 2 products
-my $basket2 = {
-    'LineItemContainer' => {
-        'CurrencyID'        => 'EUR',
-        'TaxArea'           => '/TaxMatrixGermany/EU',
-        'TaxModel'          => 'gross',
-        'ProductLineItems' => [
-            {'Product' => $GUID{ho_1112105010}, 'Quantity' => '2', 'OrderUnit' => '/Units/piece'},
-            {'Product' => $GUID{eg_1000111010}, 'Quantity' => '3', 'OrderUnit' => '/Units/piece'},
-        ],
-    },
-};
-my $basket2Path = testCreateBasket( $basket2 );
-
-#exists basket2?
-testExistsByPath( $basket2Path, 1 );
-
-#check info of basket2
-testGetInfoReference( $basket2Path, $basket2 );
-
-#update quantity of one product in basket2
-my $QuantityBefore0 = $basket2->{'LineItemContainer'}->{'ProductLineItems'}->[0]->{'Quantity'};
-$basket2->{'LineItemContainer'}->{'ProductLineItems'}->[0]->{'Quantity'} = 7;
-my $QuantityBefore1 = $basket2->{'LineItemContainer'}->{'ProductLineItems'}->[1]->{'Quantity'};
-$basket2->{'LineItemContainer'}->{'ProductLineItems'}->[1]->{'Quantity'} = 1;
-testUpdateBasket( $basket2Path, $basket2 );
-
-#check info of basket2
-$basket2->{'LineItemContainer'}->{'ProductLineItems'}->[0]->{'Quantity'} += $QuantityBefore0;
-$basket2->{'LineItemContainer'}->{'ProductLineItems'}->[1]->{'Quantity'} += $QuantityBefore1;
-testGetInfoReference( $basket2Path, $basket2 );
-
-#add 3rd product to basket2
-testUpdateBasket( $basket2Path,  {
-    'LineItemContainer' => {
-        'CurrencyID'        => 'EUR',
-        'TaxArea'           => '/TaxMatrixGermany/EU',
-        'TaxModel'          => 'gross',
-        'ProductLineItems' => [
-            {'Product' => $GUID{de_3201212002}, 'Quantity' => '1'},
-        ],
-    },
-});
-
-#check info of basket2
-push @{$basket2->{LineItemContainer}->{ProductLineItems}},
-    {'Product' => $GUID{de_3201212002}, 'Quantity' => '1', 'OrderUnit' => '/Units/piece'};
-my $hBasket = testGetInfoReference( $basket2Path, $basket2 );
-
-#change first line item product to basket2
-my $hContainer = $hBasket->{LineItemContainer};
-my $hLineItem = $hContainer->{'ProductLineItems'}->[0];
-my $changedProduct = $hLineItem->{Product};
-my $changedQuantity = 17;
-my $LineItem = { Alias=>$hLineItem->{Alias}, Quantity=>$changedQuantity, 'OrderUnit' => '/Units/piece'};
-testUpdateLineItem( $basket2Path, $LineItem,  $basket2 );
-
-#check info of basket2
-foreach $LineItem (@{$basket2->{'LineItemContainer'}->{'ProductLineItems'}}) {
-    $LineItem->{'Quantity'} = $changedQuantity if $LineItem->{Product} eq $changedProduct;
+sub _setupTestBasketInDB {
+    my $hBasket = _setupTestBasketHash();
+    my $ahResultCreate = $BasketService->create( [$hBasket] )->result;
+    return $ahResultCreate->[0]->{'Path'};
 }
-$hBasket = testGetInfoReference( $basket2Path, $basket2 );
 
+sub _createProductsInDB {
+    my ($aProducts) = @_;
 
-#remove last changed line item
-testDeleteLineItem( $basket2Path, $hLineItem->{Alias} );
+    foreach my $Product ($aProducts) {
+        $ProductService->create($Product)->result;
+    }
 
-#check info of basket2
-my @Items = grep {$_ if $_->{Product} ne $changedProduct} @{$basket2->{'LineItemContainer'}->{'ProductLineItems'}};
-$basket2->{'LineItemContainer'}->{'ProductLineItems'} = \@Items;
-$hBasket = testGetInfoReference( $basket2Path, $basket2 );
+}
 
+sub _deleteProductsIfExists {
+    my ($aProductAliases) = @_;
 
-#put this prodcut back to basket
-$LineItem = { 'GUID'=>$changedProduct, 'Quantity'=>$changedQuantity, 'OrderUnit'=>'/Units/piece'};
-testAddProductLineItem( $basket2Path, $LineItem,  $basket2 );
+    foreach my $Alias (@$aProductAliases) {
+        my $ahResults = $ProductService->exists( [ '/Shops/DemoShop/Products/' . $Alias ] )->result;
 
-#check info of basket2
-push @{$basket2->{LineItemContainer}->{ProductLineItems}},
-    { 'Product'=>$changedProduct, 'Quantity'=>$changedQuantity, 'OrderUnit'=>'/Units/piece'};
-testGetInfoReference( $basket2Path, $basket2 );
+        next unless $ahResults->[0]->{'exists'};
 
+        $ProductService->delete( [ '/Shops/DemoShop/Products/' . $Alias ] );
+    }
 
-#delete basket2
-testDeleteBasket( $basket2Path );
+    return;
+}
 
-#dont exists basket2?
-testExistsByPath( $basket2Path, 0 );
+sub _fetchProductGuid {
+    my ($Product) = @_;
 
+    # array of product paths that involved in basket tests
+    my @ProductPaths = map { "Products/$_" } ($Product);
+    my $prodInfoResult = $ProductService->getInfo( \@ProductPaths, ['GUID'] )->result;
+    ok( !$prodInfoResult->[0]->{'Error'}, "_fetch_product_guid: no error" );
 
-#create basket3 with 2 products and address data
-my $basket3 = {
-    'BillingAddress' => {
-        'EMail'     => 'mmustermann@epages.de',
-        'FirstName' => 'Max',
-        'LastName'  => 'Mustermann',
-        'Street'    => 'Musterstrasse 2',
-        'Street2'   => 'Ortsteil Niederfingeln',
-        'CodePorte' => '13a',
-    },
-    'LineItemContainer' => {
-        'CurrencyID'        => 'EUR',
-        'TaxArea'           => '/TaxMatrixGermany/EU',
-        'TaxModel'          => 'gross',
-        'ProductLineItems' => [
-            {'Product' => $GUID{ho_1112105010}, 'Quantity' => '2', 'OrderUnit' => '/Units/piece'},
-            {'Product' => $GUID{eg_1000111010}, 'Quantity' => '3', 'OrderUnit' => '/Units/piece'},
-        ],
-    },
-};
-my $basket3Path = testCreateBasket( $basket3 );
+    return ( @$prodInfoResult[0]->{Attributes}->[0]->{Value} );
+}
 
-#chek if exist
-testExistsByPath( $basket3Path, 1 );
+sub _setupTestBasketHash {
+    return {
+        'LineItemContainer' => {
+            'CurrencyID' => 'EUR',
+            'TaxArea'    => '/TaxMatrixGermany/EU',
+            'TaxModel'   => 'gross',
+        },
+    };
+}
 
-#check result of creation
-$hBasket = testGetInfoReference( $basket3Path, $basket3 );
+sub _addProductToBasketHash {
+    my ( $hBasket, $GUID, $Quantity ) = @_;
 
-#delete basket3
-testDeleteBasket( $basket3Path );
+    my $aProductLineItems = $hBasket->{'LineItemContainer'}->{'ProductLineItems'};
+    $aProductLineItems = [] unless defined $aProductLineItems;
+    my $hProduct = {
+        'Product'   => $GUID,
+        'Quantity'  => $Quantity,
+        'OrderUnit' => '/Units/piece'
+    };
 
-#dont exists basket3?
-testExistsByPath( $basket3Path, 0 );
+    push( @$aProductLineItems, $hProduct );
+    $hBasket->{'LineItemContainer'}->{'ProductLineItems'} = $aProductLineItems;
+
+    return $hBasket;
+}
+
+sub _getInfo {
+    my ($basketPath) = @_;
+
+    my $ahResults = $BasketService->getInfo( [$basketPath], [], [] )->result;
+
+    return $ahResults->[0];
+}
+
+sub _cleanup {
+    _deleteProductsIfExists( [ $ProductAlias1, $ProductAlias2 ] );
+}
+
+main();
+
+1;
