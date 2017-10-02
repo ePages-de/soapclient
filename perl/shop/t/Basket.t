@@ -49,6 +49,7 @@ sub test {
     testDeleteProductLineItem();
     testUpdateBasket();
     testGetInfoReference();
+    _cleanup();
 }
 
 sub testCreateBasket {
