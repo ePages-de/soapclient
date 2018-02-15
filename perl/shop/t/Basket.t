@@ -166,7 +166,6 @@ sub testUpdateProductLineItem {
     is( $hBasketInfoUpdated->{'LineItemContainer'}->{'ProductLineItems'}->[0]->{'Quantity'},
         $ChangeQuantity, 'testUpdateProductLineItem: quantity changed' );
 
-    my $hBasketInfo = _getInfo($BasketPath);
     is( $hBasketInfo->{'LineItemContainer'}->{'ProductLineItems'}->[0]->{'Quantity'},
         $ChangeQuantity, 'testUpdateProductLineItem: additional ProductLineItem' );
 }

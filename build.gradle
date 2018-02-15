@@ -20,7 +20,8 @@ apply from: './gradle/wsdl.gradle'
 apply from: './gradle/eclipse.gradle'
 apply from: './gradle/java.gradle'
 apply from: './gradle/documentation.gradle'
-apply from: './gradle/perl.gradle'
+// Do not start perl tests via gradle wrapper
+// apply from: './gradle/perl.gradle'
 apply from: './gradle/bintray.gradle'
 
 wrapper {  gradleVersion = "2.6" }
