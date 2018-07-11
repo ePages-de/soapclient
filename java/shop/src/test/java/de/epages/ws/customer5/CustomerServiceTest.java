@@ -7,6 +7,8 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -64,7 +66,14 @@ public class CustomerServiceTest {
         TAttribute addrAttr2 = new TAttribute();
         addrAttr2.setName("Salutation");
         addrAttr2.setValue("Dr.");
-        billingAddress.setAttributes(new TAttribute[] { addrAttr1, addrAttr2 });
+        TAttribute addrAttr3 = new TAttribute();
+        addrAttr3.setName("CountryID");
+        addrAttr3.setValue("276");
+        TAttribute addrAttr4 = new TAttribute();
+        addrAttr4.setName("FiscalCode");
+        addrAttr4.setValue("DE999999999");
+        billingAddress.setAttributes(new TAttribute[] { addrAttr1, addrAttr2, addrAttr3, addrAttr4 });
+
         customer_in.setBillingAddress(billingAddress);
         TAttribute custAttr = new TAttribute();
         custAttr.setName("Comment");
@@ -98,6 +107,7 @@ public class CustomerServiceTest {
      */
     public void testCreate() {
         TCreate_Return[] customers_out = customerService.create(new TCreate_Input[] { customer_in });
+
         // test if creation was successful
         assertEquals("create result set", 1, customers_out.length);
         assertTrue("created?", customers_out[0].getCreated());
