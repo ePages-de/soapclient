@@ -44,6 +44,9 @@ public class TAddressNamed  implements java.io.Serializable {
     /* country identifier as ISO numberic code (see http://en.wikipedia.org/wiki/ISO_3166-1_numeric) */
     private java.math.BigInteger countryID;
 
+    /* country name in english e.g.: Germany */
+    private java.lang.String country;
+
     /* E-mail address */
     private java.lang.String EMail;
 
@@ -52,6 +55,9 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /* primary fax number */
     private java.lang.String fax;
+
+    /* tax identification number, country dependent (see https://en.wikipedia.org/wiki/VAT_identification_number)*/
+    private java.lang.String fiscalCode;
 
     /* last verification of this contant by merchant */
     private java.util.Calendar verifiedOn;
@@ -137,9 +143,11 @@ public class TAddressNamed  implements java.io.Serializable {
            java.lang.String city,
            java.lang.String state,
            java.math.BigInteger countryID,
+           java.lang.String country,
            java.lang.String EMail,
            java.lang.String phone,
            java.lang.String fax,
+           java.lang.String fiscalCode,
            java.util.Calendar verifiedOn,
            java.lang.String salutation,
            java.lang.String title,
@@ -173,9 +181,11 @@ public class TAddressNamed  implements java.io.Serializable {
            this.city = city;
            this.state = state;
            this.countryID = countryID;
+           this.country = country;
            this.EMail = EMail;
            this.phone = phone;
            this.fax = fax;
+           this.fiscalCode = fiscalCode;
            this.verifiedOn = verifiedOn;
            this.salutation = salutation;
            this.title = title;
@@ -204,7 +214,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the alias value for this TAddressNamed.
-     * 
+     *
      * @return alias
      */
     public java.lang.String getAlias() {
@@ -214,7 +224,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the alias value for this TAddressNamed.
-     * 
+     *
      * @param alias
      */
     public void setAlias(java.lang.String alias) {
@@ -224,7 +234,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the displayName value for this TAddressNamed.
-     * 
+     *
      * @return displayName   * name of the address to display (e.g 'Shipping Address', 'Home
      * Address')
      */
@@ -235,7 +245,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the displayName value for this TAddressNamed.
-     * 
+     *
      * @param displayName   * name of the address to display (e.g 'Shipping Address', 'Home
      * Address')
      */
@@ -246,7 +256,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the addressExtension value for this TAddressNamed.
-     * 
+     *
      * @return addressExtension   * address extension (e.g PostBox etc.)
      */
     public java.lang.String getAddressExtension() {
@@ -256,7 +266,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the addressExtension value for this TAddressNamed.
-     * 
+     *
      * @param addressExtension   * address extension (e.g PostBox etc.)
      */
     public void setAddressExtension(java.lang.String addressExtension) {
@@ -266,7 +276,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the street value for this TAddressNamed.
-     * 
+     *
      * @return street   * street with number
      */
     public java.lang.String getStreet() {
@@ -276,7 +286,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the street value for this TAddressNamed.
-     * 
+     *
      * @param street   * street with number
      */
     public void setStreet(java.lang.String street) {
@@ -286,7 +296,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the street2 value for this TAddressNamed.
-     * 
+     *
      * @return street2   * 2nd street line for UK addresses
      */
     public java.lang.String getStreet2() {
@@ -296,7 +306,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the street2 value for this TAddressNamed.
-     * 
+     *
      * @param street2   * 2nd street line for UK addresses
      */
     public void setStreet2(java.lang.String street2) {
@@ -306,7 +316,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the codePorte value for this TAddressNamed.
-     * 
+     *
      * @return codePorte   * door code to get access to postboxes or doorbells
      */
     public java.lang.String getCodePorte() {
@@ -316,7 +326,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the codePorte value for this TAddressNamed.
-     * 
+     *
      * @param codePorte   * door code to get access to postboxes or doorbells
      */
     public void setCodePorte(java.lang.String codePorte) {
@@ -326,7 +336,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the zipcode value for this TAddressNamed.
-     * 
+     *
      * @return zipcode   * zip code of the city
      */
     public java.lang.String getZipcode() {
@@ -336,7 +346,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the zipcode value for this TAddressNamed.
-     * 
+     *
      * @param zipcode   * zip code of the city
      */
     public void setZipcode(java.lang.String zipcode) {
@@ -346,7 +356,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the city value for this TAddressNamed.
-     * 
+     *
      * @return city   * city name of the address
      */
     public java.lang.String getCity() {
@@ -356,7 +366,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the city value for this TAddressNamed.
-     * 
+     *
      * @param city   * city name of the address
      */
     public void setCity(java.lang.String city) {
@@ -366,7 +376,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the state value for this TAddressNamed.
-     * 
+     *
      * @return state   * state, county, region
      */
     public java.lang.String getState() {
@@ -376,7 +386,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the state value for this TAddressNamed.
-     * 
+     *
      * @param state   * state, county, region
      */
     public void setState(java.lang.String state) {
@@ -386,17 +396,26 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the countryID value for this TAddressNamed.
-     * 
+     *
      * @return countryID   * country identifier as ISO numberic code (see http://en.wikipedia.org/wiki/ISO_3166-1_numeric)
      */
     public java.math.BigInteger getCountryID() {
         return countryID;
     }
 
+    /**
+     * Gets the country value for this TAddressNamed
+     *
+     * @return country * country name in english e.g.: Germany.
+     */
+    public String getCountry() {
+        return country;
+    }
+
 
     /**
      * Sets the countryID value for this TAddressNamed.
-     * 
+     *
      * @param countryID   * country identifier as ISO numberic code (see http://en.wikipedia.org/wiki/ISO_3166-1_numeric)
      */
     public void setCountryID(java.math.BigInteger countryID) {
@@ -406,7 +425,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the EMail value for this TAddressNamed.
-     * 
+     *
      * @return EMail   * E-mail address
      */
     public java.lang.String getEMail() {
@@ -416,7 +435,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the EMail value for this TAddressNamed.
-     * 
+     *
      * @param EMail   * E-mail address
      */
     public void setEMail(java.lang.String EMail) {
@@ -426,7 +445,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the phone value for this TAddressNamed.
-     * 
+     *
      * @return phone   * primary phone number
      */
     public java.lang.String getPhone() {
@@ -436,7 +455,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the phone value for this TAddressNamed.
-     * 
+     *
      * @param phone   * primary phone number
      */
     public void setPhone(java.lang.String phone) {
@@ -446,17 +465,25 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the fax value for this TAddressNamed.
-     * 
+     *
      * @return fax   * primary fax number
      */
     public java.lang.String getFax() {
         return fax;
     }
 
+    /**
+     * Gets the tax identification number (see https://en.wikipedia.org/wiki/VAT_identification_number).
+     *
+     * @return fiscalCode * tax identification number
+     */
+    public String getFiscalCode() {
+        return fiscalCode;
+    }
 
     /**
      * Sets the fax value for this TAddressNamed.
-     * 
+     *
      * @param fax   * primary fax number
      */
     public void setFax(java.lang.String fax) {
@@ -466,7 +493,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the verifiedOn value for this TAddressNamed.
-     * 
+     *
      * @return verifiedOn   * last verification of this contant by merchant
      */
     public java.util.Calendar getVerifiedOn() {
@@ -476,7 +503,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the verifiedOn value for this TAddressNamed.
-     * 
+     *
      * @param verifiedOn   * last verification of this contant by merchant
      */
     public void setVerifiedOn(java.util.Calendar verifiedOn) {
@@ -486,7 +513,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the salutation value for this TAddressNamed.
-     * 
+     *
      * @return salutation   * salutation (e.g 'Herr', 'Mrs.')
      */
     public java.lang.String getSalutation() {
@@ -496,7 +523,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the salutation value for this TAddressNamed.
-     * 
+     *
      * @param salutation   * salutation (e.g 'Herr', 'Mrs.')
      */
     public void setSalutation(java.lang.String salutation) {
@@ -506,7 +533,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the title value for this TAddressNamed.
-     * 
+     *
      * @return title   * title (e.g 'D.Prof', 'NPLQ', 'CEO')
      */
     public java.lang.String getTitle() {
@@ -516,7 +543,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the title value for this TAddressNamed.
-     * 
+     *
      * @param title   * title (e.g 'D.Prof', 'NPLQ', 'CEO')
      */
     public void setTitle(java.lang.String title) {
@@ -526,7 +553,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the firstName value for this TAddressNamed.
-     * 
+     *
      * @return firstName   * first name
      */
     public java.lang.String getFirstName() {
@@ -536,7 +563,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the firstName value for this TAddressNamed.
-     * 
+     *
      * @param firstName   * first name
      */
     public void setFirstName(java.lang.String firstName) {
@@ -546,7 +573,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the middleName value for this TAddressNamed.
-     * 
+     *
      * @return middleName   * middle name
      */
     public java.lang.String getMiddleName() {
@@ -556,7 +583,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the middleName value for this TAddressNamed.
-     * 
+     *
      * @param middleName   * middle name
      */
     public void setMiddleName(java.lang.String middleName) {
@@ -566,7 +593,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the lastName value for this TAddressNamed.
-     * 
+     *
      * @return lastName   * last name
      */
     public java.lang.String getLastName() {
@@ -576,7 +603,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the lastName value for this TAddressNamed.
-     * 
+     *
      * @param lastName   * last name
      */
     public void setLastName(java.lang.String lastName) {
@@ -586,7 +613,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the EMailPrivate value for this TAddressNamed.
-     * 
+     *
      * @return EMailPrivate   * private E-mail address
      */
     public java.lang.String getEMailPrivate() {
@@ -596,7 +623,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the EMailPrivate value for this TAddressNamed.
-     * 
+     *
      * @param EMailPrivate   * private E-mail address
      */
     public void setEMailPrivate(java.lang.String EMailPrivate) {
@@ -606,7 +633,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the EMailBusiness value for this TAddressNamed.
-     * 
+     *
      * @return EMailBusiness   * business E-mail address
      */
     public java.lang.String getEMailBusiness() {
@@ -616,7 +643,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the EMailBusiness value for this TAddressNamed.
-     * 
+     *
      * @param EMailBusiness   * business E-mail address
      */
     public void setEMailBusiness(java.lang.String EMailBusiness) {
@@ -626,7 +653,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the phonePrivate value for this TAddressNamed.
-     * 
+     *
      * @return phonePrivate   * home phone
      */
     public java.lang.String getPhonePrivate() {
@@ -636,7 +663,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the phonePrivate value for this TAddressNamed.
-     * 
+     *
      * @param phonePrivate   * home phone
      */
     public void setPhonePrivate(java.lang.String phonePrivate) {
@@ -646,7 +673,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the phoneBusiness value for this TAddressNamed.
-     * 
+     *
      * @return phoneBusiness   * business phone number
      */
     public java.lang.String getPhoneBusiness() {
@@ -656,7 +683,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the phoneBusiness value for this TAddressNamed.
-     * 
+     *
      * @param phoneBusiness   * business phone number
      */
     public void setPhoneBusiness(java.lang.String phoneBusiness) {
@@ -666,7 +693,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the phoneCell value for this TAddressNamed.
-     * 
+     *
      * @return phoneCell   * mobile phone
      */
     public java.lang.String getPhoneCell() {
@@ -676,7 +703,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the phoneCell value for this TAddressNamed.
-     * 
+     *
      * @param phoneCell   * mobile phone
      */
     public void setPhoneCell(java.lang.String phoneCell) {
@@ -686,7 +713,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the gender value for this TAddressNamed.
-     * 
+     *
      * @return gender   * 1 = male;2 = female
      */
     public java.math.BigInteger getGender() {
@@ -696,7 +723,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the gender value for this TAddressNamed.
-     * 
+     *
      * @param gender   * 1 = male;2 = female
      */
     public void setGender(java.math.BigInteger gender) {
@@ -706,7 +733,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the company value for this TAddressNamed.
-     * 
+     *
      * @return company   * name of the company
      */
     public java.lang.String getCompany() {
@@ -716,7 +743,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the company value for this TAddressNamed.
-     * 
+     *
      * @param company   * name of the company
      */
     public void setCompany(java.lang.String company) {
@@ -726,7 +753,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the department value for this TAddressNamed.
-     * 
+     *
      * @return department   * name of the company department
      */
     public java.lang.String getDepartment() {
@@ -736,7 +763,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the department value for this TAddressNamed.
-     * 
+     *
      * @param department   * name of the company department
      */
     public void setDepartment(java.lang.String department) {
@@ -746,7 +773,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the jobTitle value for this TAddressNamed.
-     * 
+     *
      * @return jobTitle   * job titel in the company
      */
     public java.lang.String getJobTitle() {
@@ -756,7 +783,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the jobTitle value for this TAddressNamed.
-     * 
+     *
      * @param jobTitle   * job titel in the company
      */
     public void setJobTitle(java.lang.String jobTitle) {
@@ -766,7 +793,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the birthday value for this TAddressNamed.
-     * 
+     *
      * @return birthday   * date of birth in dateTime format e.g. 2001-10-26T12:00:00 (time
      * needs to specify)
      */
@@ -777,7 +804,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the birthday value for this TAddressNamed.
-     * 
+     *
      * @param birthday   * date of birth in dateTime format e.g. 2001-10-26T12:00:00 (time
      * needs to specify)
      */
@@ -788,7 +815,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the VATID value for this TAddressNamed.
-     * 
+     *
      * @return VATID   * tax identification
      */
     public java.lang.String getVATID() {
@@ -798,7 +825,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the VATID value for this TAddressNamed.
-     * 
+     *
      * @param VATID   * tax identification
      */
     public void setVATID(java.lang.String VATID) {
@@ -808,7 +835,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the bankCode value for this TAddressNamed.
-     * 
+     *
      * @return bankCode   * bank code of the bank account
      */
     public java.lang.String getBankCode() {
@@ -818,7 +845,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the bankCode value for this TAddressNamed.
-     * 
+     *
      * @param bankCode   * bank code of the bank account
      */
     public void setBankCode(java.lang.String bankCode) {
@@ -828,7 +855,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the bankName value for this TAddressNamed.
-     * 
+     *
      * @return bankName   * bank name of the account
      */
     public java.lang.String getBankName() {
@@ -838,7 +865,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the bankName value for this TAddressNamed.
-     * 
+     *
      * @param bankName   * bank name of the account
      */
     public void setBankName(java.lang.String bankName) {
@@ -848,7 +875,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the bankAccountNo value for this TAddressNamed.
-     * 
+     *
      * @return bankAccountNo   * bank account number
      */
     public java.lang.String getBankAccountNo() {
@@ -858,7 +885,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the bankAccountNo value for this TAddressNamed.
-     * 
+     *
      * @param bankAccountNo   * bank account number
      */
     public void setBankAccountNo(java.lang.String bankAccountNo) {
@@ -868,7 +895,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the bankAccountHolder value for this TAddressNamed.
-     * 
+     *
      * @return bankAccountHolder   * full name of the bank account owner
      */
     public java.lang.String getBankAccountHolder() {
@@ -878,7 +905,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the bankAccountHolder value for this TAddressNamed.
-     * 
+     *
      * @param bankAccountHolder   * full name of the bank account owner
      */
     public void setBankAccountHolder(java.lang.String bankAccountHolder) {
@@ -888,7 +915,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the URL value for this TAddressNamed.
-     * 
+     *
      * @return URL   * URL of related Website e.g. http://www.epages.com
      */
     public java.lang.String getURL() {
@@ -898,7 +925,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the URL value for this TAddressNamed.
-     * 
+     *
      * @param URL   * URL of related Website e.g. http://www.epages.com
      */
     public void setURL(java.lang.String URL) {
@@ -908,7 +935,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Gets the attributes value for this TAddressNamed.
-     * 
+     *
      * @return attributes   * list of requested attributes (see epagestypes:ListOfAttributes)
      */
     public de.epages.ws.common.model.TAttribute[] getAttributes() {
@@ -918,7 +945,7 @@ public class TAddressNamed  implements java.io.Serializable {
 
     /**
      * Sets the attributes value for this TAddressNamed.
-     * 
+     *
      * @param attributes   * list of requested attributes (see epagestypes:ListOfAttributes)
      */
     public void setAttributes(de.epages.ws.common.model.TAttribute[] attributes) {
@@ -936,113 +963,119 @@ public class TAddressNamed  implements java.io.Serializable {
         }
         __equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.alias==null && other.getAlias()==null) || 
+        _equals = true &&
+            ((this.alias==null && other.getAlias()==null) ||
              (this.alias!=null &&
               this.alias.equals(other.getAlias()))) &&
-            ((this.displayName==null && other.getDisplayName()==null) || 
+            ((this.displayName==null && other.getDisplayName()==null) ||
              (this.displayName!=null &&
               this.displayName.equals(other.getDisplayName()))) &&
-            ((this.addressExtension==null && other.getAddressExtension()==null) || 
+            ((this.addressExtension==null && other.getAddressExtension()==null) ||
              (this.addressExtension!=null &&
               this.addressExtension.equals(other.getAddressExtension()))) &&
-            ((this.street==null && other.getStreet()==null) || 
+            ((this.street==null && other.getStreet()==null) ||
              (this.street!=null &&
               this.street.equals(other.getStreet()))) &&
-            ((this.street2==null && other.getStreet2()==null) || 
+            ((this.street2==null && other.getStreet2()==null) ||
              (this.street2!=null &&
               this.street2.equals(other.getStreet2()))) &&
-            ((this.codePorte==null && other.getCodePorte()==null) || 
+            ((this.codePorte==null && other.getCodePorte()==null) ||
              (this.codePorte!=null &&
               this.codePorte.equals(other.getCodePorte()))) &&
-            ((this.zipcode==null && other.getZipcode()==null) || 
+            ((this.zipcode==null && other.getZipcode()==null) ||
              (this.zipcode!=null &&
               this.zipcode.equals(other.getZipcode()))) &&
-            ((this.city==null && other.getCity()==null) || 
+            ((this.city==null && other.getCity()==null) ||
              (this.city!=null &&
               this.city.equals(other.getCity()))) &&
-            ((this.state==null && other.getState()==null) || 
+            ((this.state==null && other.getState()==null) ||
              (this.state!=null &&
               this.state.equals(other.getState()))) &&
-            ((this.countryID==null && other.getCountryID()==null) || 
+            ((this.countryID==null && other.getCountryID()==null) ||
              (this.countryID!=null &&
               this.countryID.equals(other.getCountryID()))) &&
-            ((this.EMail==null && other.getEMail()==null) || 
+            ((this.country == null && other.getCountry() == null) ||
+             (this.country != null &&
+              this.country.equals(other.getCountry()))) &&
+            ((this.EMail==null && other.getEMail()==null) ||
              (this.EMail!=null &&
               this.EMail.equals(other.getEMail()))) &&
-            ((this.phone==null && other.getPhone()==null) || 
+            ((this.phone==null && other.getPhone()==null) ||
              (this.phone!=null &&
               this.phone.equals(other.getPhone()))) &&
-            ((this.fax==null && other.getFax()==null) || 
+            ((this.fax==null && other.getFax()==null) ||
              (this.fax!=null &&
               this.fax.equals(other.getFax()))) &&
-            ((this.verifiedOn==null && other.getVerifiedOn()==null) || 
+            ((this.fiscalCode==null && other.getFiscalCode()==null) ||
+             (this.fiscalCode!=null &&
+              this.fiscalCode.equals(other.getFiscalCode()))) &&
+            ((this.verifiedOn==null && other.getVerifiedOn()==null) ||
              (this.verifiedOn!=null &&
               this.verifiedOn.equals(other.getVerifiedOn()))) &&
-            ((this.salutation==null && other.getSalutation()==null) || 
+            ((this.salutation==null && other.getSalutation()==null) ||
              (this.salutation!=null &&
               this.salutation.equals(other.getSalutation()))) &&
-            ((this.title==null && other.getTitle()==null) || 
+            ((this.title==null && other.getTitle()==null) ||
              (this.title!=null &&
               this.title.equals(other.getTitle()))) &&
-            ((this.firstName==null && other.getFirstName()==null) || 
+            ((this.firstName==null && other.getFirstName()==null) ||
              (this.firstName!=null &&
               this.firstName.equals(other.getFirstName()))) &&
-            ((this.middleName==null && other.getMiddleName()==null) || 
+            ((this.middleName==null && other.getMiddleName()==null) ||
              (this.middleName!=null &&
               this.middleName.equals(other.getMiddleName()))) &&
-            ((this.lastName==null && other.getLastName()==null) || 
+            ((this.lastName==null && other.getLastName()==null) ||
              (this.lastName!=null &&
               this.lastName.equals(other.getLastName()))) &&
-            ((this.EMailPrivate==null && other.getEMailPrivate()==null) || 
+            ((this.EMailPrivate==null && other.getEMailPrivate()==null) ||
              (this.EMailPrivate!=null &&
               this.EMailPrivate.equals(other.getEMailPrivate()))) &&
-            ((this.EMailBusiness==null && other.getEMailBusiness()==null) || 
+            ((this.EMailBusiness==null && other.getEMailBusiness()==null) ||
              (this.EMailBusiness!=null &&
               this.EMailBusiness.equals(other.getEMailBusiness()))) &&
-            ((this.phonePrivate==null && other.getPhonePrivate()==null) || 
+            ((this.phonePrivate==null && other.getPhonePrivate()==null) ||
              (this.phonePrivate!=null &&
               this.phonePrivate.equals(other.getPhonePrivate()))) &&
-            ((this.phoneBusiness==null && other.getPhoneBusiness()==null) || 
+            ((this.phoneBusiness==null && other.getPhoneBusiness()==null) ||
              (this.phoneBusiness!=null &&
               this.phoneBusiness.equals(other.getPhoneBusiness()))) &&
-            ((this.phoneCell==null && other.getPhoneCell()==null) || 
+            ((this.phoneCell==null && other.getPhoneCell()==null) ||
              (this.phoneCell!=null &&
               this.phoneCell.equals(other.getPhoneCell()))) &&
-            ((this.gender==null && other.getGender()==null) || 
+            ((this.gender==null && other.getGender()==null) ||
              (this.gender!=null &&
               this.gender.equals(other.getGender()))) &&
-            ((this.company==null && other.getCompany()==null) || 
+            ((this.company==null && other.getCompany()==null) ||
              (this.company!=null &&
               this.company.equals(other.getCompany()))) &&
-            ((this.department==null && other.getDepartment()==null) || 
+            ((this.department==null && other.getDepartment()==null) ||
              (this.department!=null &&
               this.department.equals(other.getDepartment()))) &&
-            ((this.jobTitle==null && other.getJobTitle()==null) || 
+            ((this.jobTitle==null && other.getJobTitle()==null) ||
              (this.jobTitle!=null &&
               this.jobTitle.equals(other.getJobTitle()))) &&
-            ((this.birthday==null && other.getBirthday()==null) || 
+            ((this.birthday==null && other.getBirthday()==null) ||
              (this.birthday!=null &&
               this.birthday.equals(other.getBirthday()))) &&
-            ((this.VATID==null && other.getVATID()==null) || 
+            ((this.VATID==null && other.getVATID()==null) ||
              (this.VATID!=null &&
               this.VATID.equals(other.getVATID()))) &&
-            ((this.bankCode==null && other.getBankCode()==null) || 
+            ((this.bankCode==null && other.getBankCode()==null) ||
              (this.bankCode!=null &&
               this.bankCode.equals(other.getBankCode()))) &&
-            ((this.bankName==null && other.getBankName()==null) || 
+            ((this.bankName==null && other.getBankName()==null) ||
              (this.bankName!=null &&
               this.bankName.equals(other.getBankName()))) &&
-            ((this.bankAccountNo==null && other.getBankAccountNo()==null) || 
+            ((this.bankAccountNo==null && other.getBankAccountNo()==null) ||
              (this.bankAccountNo!=null &&
               this.bankAccountNo.equals(other.getBankAccountNo()))) &&
-            ((this.bankAccountHolder==null && other.getBankAccountHolder()==null) || 
+            ((this.bankAccountHolder==null && other.getBankAccountHolder()==null) ||
              (this.bankAccountHolder!=null &&
               this.bankAccountHolder.equals(other.getBankAccountHolder()))) &&
-            ((this.URL==null && other.getURL()==null) || 
+            ((this.URL==null && other.getURL()==null) ||
              (this.URL!=null &&
               this.URL.equals(other.getURL()))) &&
-            ((this.attributes==null && other.getAttributes()==null) || 
+            ((this.attributes==null && other.getAttributes()==null) ||
              (this.attributes!=null &&
               java.util.Arrays.equals(this.attributes, other.getAttributes())));
         __equalsCalc = null;
@@ -1086,6 +1119,9 @@ public class TAddressNamed  implements java.io.Serializable {
         if (getCountryID() != null) {
             _hashCode += getCountryID().hashCode();
         }
+        if (getCountry() != null) {
+            _hashCode += getCountry().hashCode();
+        }
         if (getEMail() != null) {
             _hashCode += getEMail().hashCode();
         }
@@ -1094,6 +1130,9 @@ public class TAddressNamed  implements java.io.Serializable {
         }
         if (getFax() != null) {
             _hashCode += getFax().hashCode();
+        }
+        if (getFiscalCode() != null) {
+            _hashCode += getFiscalCode().hashCode();
         }
         if (getVerifiedOn() != null) {
             _hashCode += getVerifiedOn().hashCode();
@@ -1249,6 +1288,20 @@ public class TAddressNamed  implements java.io.Serializable {
         elemField.setFieldName("countryID");
         elemField.setXmlName(new javax.xml.namespace.QName("", "CountryID"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "integer"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("country");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "Country"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("fiscalCode");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "FiscalCode"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -1447,10 +1500,10 @@ public class TAddressNamed  implements java.io.Serializable {
      * Get Custom Serializer
      */
     public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
+           java.lang.String mechType,
+           java.lang.Class _javaType,
            javax.xml.namespace.QName _xmlType) {
-        return 
+        return
           new  org.apache.axis.encoding.ser.BeanSerializer(
             _javaType, _xmlType, typeDesc);
     }
@@ -1459,10 +1512,10 @@ public class TAddressNamed  implements java.io.Serializable {
      * Get Custom Deserializer
      */
     public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
+           java.lang.String mechType,
+           java.lang.Class _javaType,
            javax.xml.namespace.QName _xmlType) {
-        return 
+        return
           new  org.apache.axis.encoding.ser.BeanDeserializer(
             _javaType, _xmlType, typeDesc);
     }
