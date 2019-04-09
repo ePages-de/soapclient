@@ -1,5 +1,5 @@
 use strict;
-use Test::More tests => 42;
+use Test::More tests => 52;
 use File::Basename  qw ( basename );
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD WEBSERVICE_USER );
@@ -91,86 +91,149 @@ sub testUpload {
 
     my @parts;
     foreach my $FilePath (@ProductImages_upload) {
-        my $Content = GetFileContent( $FilePath );
-        my ($Dir, $FileName, $Extension) = fsplit( $FilePath );
+        my $Content = GetFileContent($FilePath);
+        my ($Dir, $FileName, $Extension) = fsplit($FilePath);
         $Dir = undef; #not used
         $FileName .= $Extension;
 
         # transfer content as binary, base 64 encoded
         push @parts, {
-          'FileName'=> SOAP::Data->type( 'string' => $FileName ),
-          'Content' => SOAP::Data->type( 'base64' => $Content )
+            'FileName' => SOAP::Data->type('string' => $FileName),
+            'Content'  => SOAP::Data->type('base64' => $Content)
         };
     }
 
+    my $ImagesSlideShowStringUpload = scalar(@ImagesSlideShowStringUpload) ? join(';', @ImagesSlideShowStringUpload) : undef;
+    $ImagesSlideShowStringUpload = SOAP::Data->type('string' => $ImagesSlideShowStringUpload);
 
-  my $ImagesSlideShowStringUpload = scalar(@ImagesSlideShowStringUpload) ? join(';',@ImagesSlideShowStringUpload) : undef ;
-  $ImagesSlideShowStringUpload = SOAP::Data->type( 'string' => $ImagesSlideShowStringUpload );
+    my $ObjectPath = $hOptions->{'Path'} . $hOptions->{'Alias'};
+    my $ahResults = $ProductImageService->upload($ObjectPath, {
+        'ImageData'             => \@parts,
+        'ImagesSlideShowString' => $ImagesSlideShowStringUpload
+    })->result;
 
-  my $ObjectPath = $hOptions->{'Path'} . $hOptions->{'Alias'};
-    my $ahResults = $ProductImageService->upload( $ObjectPath, {'ImageData' => \@parts,
-                                'ImagesSlideShowString' => $ImagesSlideShowStringUpload
-                                  })->result;
-
-    is( scalar @$ahResults, 2, 'upload result count' );
+    is(scalar @$ahResults, 2, 'upload result count');
 
     foreach my $hResult (@$ahResults) {
-      ok( !$hResult->{Error}, 'upload: no error' );
-      ok( $hResult->{'WriteOK'}, "$hResult->{'File'} written?" );
-        diag 'An error occured: ' . $_->{'Error'}->{'Message'} ."\n" if $hResult->{Error};
+        ok(!$hResult->{Error}, 'upload: no error');
+        ok($hResult->{'WriteOK'}, "$hResult->{'File'} written?");
+        diag 'An error occured: ' . $_->{'Error'}->{'Message'} . "\n" if $hResult->{Error};
     }
+}
+
+sub testUpload2 {
+
+    my @parts;
+    my (undef, undef, $Extension) = fsplit($ProductImages_upload[0]);
+    my $AdditionalContent = GetFileContent($ProductImages_upload[0]);
+    my $DangerousFilename = '../%2e%2e%2f..%2fdangerous.filename' . $Extension;
+    push @parts, {
+        'FileName' => SOAP::Data->type('string' => $DangerousFilename),
+        'Content'  => SOAP::Data->type('base64' => $AdditionalContent)
+    };
+    push @ImagesSlideShowStringUpload, $DangerousFilename;
+
+    my $ImagesSlideShowStringUpload = scalar(@ImagesSlideShowStringUpload) ? join(';', @ImagesSlideShowStringUpload) : undef;
+    $ImagesSlideShowStringUpload = SOAP::Data->type('string' => $ImagesSlideShowStringUpload);
+
+    my $ObjectPath = $hOptions->{'Path'} . $hOptions->{'Alias'};
+    my $ahResults = $ProductImageService->upload($ObjectPath, {
+        'ImageData'             => \@parts,
+        'ImagesSlideShowString' => $ImagesSlideShowStringUpload
+    })->result;
+
+    is(scalar @$ahResults, 1, 'upload result count');
+
+    my $hResult = @$ahResults->[0];
+    ok(!$hResult->{Error}, 'upload: no error');
+    ok($hResult->{'WriteOK'}, "$hResult->{'File'} written?");
+    diag 'An error occured: ' . $_->{'Error'}->{'Message'} . "\n" if $hResult->{Error};
+
+    my $ImageName = getProductAttribute($ObjectPath, 'ImageLarge');
+    is ($ImageName, '2e2e2f..2fdangerous.filename'.$Extension, 'Upload: Dangerous image name converted as expected?')
 }
 
 sub testUploadScale {
 
     my @parts;
     foreach my $FilePath (@ProductImage_uploadScale) {
-        my $Content = GetFileContent( $FilePath );
-        my ($Dir, $FileName, $Extension) = fsplit( $FilePath );
+        my $Content = GetFileContent($FilePath);
+        my ($Dir, $FileName, $Extension) = fsplit($FilePath);
         $Dir = undef; #not used
         $FileName .= $Extension;
 
         # transfer content as binary, base 64 encoded
         push @parts, {
-          'FileName'=> SOAP::Data->type( 'string' => $FileName ),
-          'Content' => SOAP::Data->type( 'base64' => $Content )
+            'FileName' => SOAP::Data->type('string' => $FileName),
+            'Content'  => SOAP::Data->type('base64' => $Content)
         };
     }
 
-
-  my $ImagesSlideShowStringScale = scalar(@ImagesSlideShowStringScale) ? join(';',@ImagesSlideShowStringScale) : undef ;
-  $ImagesSlideShowStringScale = SOAP::Data->type( 'string' => $ImagesSlideShowStringScale );
+    my $ImagesSlideShowStringScale = scalar(@ImagesSlideShowStringScale) ? join(';', @ImagesSlideShowStringScale) : undef;
+    $ImagesSlideShowStringScale = SOAP::Data->type('string' => $ImagesSlideShowStringScale);
 
     # 1st image
-  my $ObjectPath = $hOptions->{'Path'} . $hOptions->{'Alias'};
-    my $ahResults = $ProductImageService->uploadscale( $ObjectPath, {'ImageData' => \@parts,
-                                   'ImagesSlideShowString' => $ImagesSlideShowStringScale,
-                                    }, $hScaleParams )->result;
+    my $ObjectPath = $hOptions->{'Path'} . $hOptions->{'Alias'};
+    my $ahResults = $ProductImageService->uploadscale($ObjectPath, {
+        'ImageData'             => \@parts,
+        'ImagesSlideShowString' => $ImagesSlideShowStringScale,
+    }, $hScaleParams)->result;
 
-    is( scalar @$ahResults, 2, 'uploadscale result count' );
+    is(scalar @$ahResults, 2, 'uploadscale result count');
 
     foreach my $hResult (@$ahResults) {
-      ok( !$hResult->{Error}, 'uploadscale: no error' );
-      ok( $hResult->{'WriteOK'}, "$hResult->{'File'} written?" );
-      ok( $hResult->{'ScaleOK'}, "$hResult->{'File'} scaled?" );
-        diag 'An error occured: ' . $_->{'Error'}->{'Message'} ."\n" if $hResult->{Error};
+        ok(!$hResult->{Error}, 'uploadscale: no error');
+        ok($hResult->{'WriteOK'}, "$hResult->{'File'} written?");
+        ok($hResult->{'ScaleOK'}, "$hResult->{'File'} scaled?");
+        diag 'An error occured: ' . $_->{'Error'}->{'Message'} . "\n" if $hResult->{Error};
     }
 
-    my $ImageLarge = getProductAttribute( $ObjectPath, 'ImageLarge' );
-    ok( $ImageLarge eq $hOptions->{'TestExistsFileName'}, "ImageLarge: $ImageLarge");
+    my $ImageLarge = getProductAttribute($ObjectPath, 'ImageLarge');
+    ok($ImageLarge eq $hOptions->{'TestExistsFileName'}, "ImageLarge: $ImageLarge");
 
-    my $ImageSmall = getProductAttribute( $ObjectPath, 'ImageSmall' );
-    ok( $ImageSmall eq $hOptions->{'TestExistsFileName2'}.'_s.jpg', "ImageSmall: $ImageSmall");
+    my $ImageSmall = getProductAttribute($ObjectPath, 'ImageSmall');
+    ok($ImageSmall eq $hOptions->{'TestExistsFileName2'} . '_s.jpg', "ImageSmall: $ImageSmall");
 
-    my $ImageMedium = getProductAttribute( $ObjectPath, 'ImageMedium' );
-    ok( $ImageMedium eq $hOptions->{'TestExistsFileName2'}.'_m.jpg', "ImageMedium: $ImageMedium");
+    my $ImageMedium = getProductAttribute($ObjectPath, 'ImageMedium');
+    ok($ImageMedium eq $hOptions->{'TestExistsFileName2'} . '_m.jpg', "ImageMedium: $ImageMedium");
 
-    my $ImageHotDeal = getProductAttribute( $ObjectPath, 'ImageHotDeal' );
-    ok( $ImageHotDeal eq $hOptions->{'TestExistsFileName2'}.'_h.jpg', "ImageHotDeal: $ImageHotDeal");
+    my $ImageHotDeal = getProductAttribute($ObjectPath, 'ImageHotDeal');
+    ok($ImageHotDeal eq $hOptions->{'TestExistsFileName2'} . '_h.jpg', "ImageHotDeal: $ImageHotDeal");
 
-    my $ImageThumbnail = getProductAttribute( $ObjectPath, 'ImageThumbnail' );
-    ok( $ImageThumbnail eq $hOptions->{'TestExistsFileName2'}.'_xs.jpg', "ImageThumbnail: $ImageThumbnail");
+    my $ImageThumbnail = getProductAttribute($ObjectPath, 'ImageThumbnail');
+    ok($ImageThumbnail eq $hOptions->{'TestExistsFileName2'} . '_xs.jpg', "ImageThumbnail: $ImageThumbnail");
 
+}
+
+sub testUploadScale2 {
+    my (undef, undef, $Extension) = fsplit($ProductImages_upload[0]);
+    my $AdditionalContent = GetFileContent($ProductImages_upload[0]);
+    my $DangerousFilename = '../%2e%2e%2f..%2fdangerous.filename' . $Extension;
+    my @parts = ({
+        'FileName' => SOAP::Data->type('string' => $DangerousFilename),
+        'Content'  => SOAP::Data->type('base64' => $AdditionalContent)
+    });
+    push @ImagesSlideShowStringUpload, $DangerousFilename;
+
+    my $ImagesSlideShowStringScale = SOAP::Data->type('string' => $DangerousFilename);
+
+    my $ObjectPath = $hOptions->{'Path'} . $hOptions->{'Alias'};
+    my $ahResults = $ProductImageService->uploadscale($ObjectPath, {
+        'ImageData'             => \@parts,
+        'ImagesSlideShowString' => $ImagesSlideShowStringScale,
+    }, $hScaleParams)->result;
+
+    is(scalar @$ahResults, 1, 'uploadscale result count');
+    my $hResult = @$ahResults->[0];
+    ok(!$hResult->{Error}, 'uploadscale: no error');
+    ok($hResult->{'WriteOK'}, "$hResult->{'File'} written?");
+    ok($hResult->{'ScaleOK'}, "$hResult->{'File'} scaled?");
+    diag 'An error occured: ' . $_->{'Error'}->{'Message'} . "\n" if $hResult->{Error};
+    
+    my $ImageLarge = getProductAttribute($ObjectPath, 'ImageLarge');
+    is($ImageLarge, '2e2e2f..2fdangerous.filename.jpg', 'Uploadscale: Dangerous image name handled correctly?');
+    my $SlideShowString = getProductAttribute($ObjectPath, 'ImagesSlideShowString');
+    is ($SlideShowString, '2e2e2f..2fdangerous.filename.jpg', 'Uploadscale: Dangerous slide show string handled correctly?')
 }
 
 sub testDelete {
@@ -227,6 +290,8 @@ testUploadScale();
 testExists(1);
 testDelete();
 testExists(0);
+testUpload2();
+testUploadScale2();
 Cleanup();
 
 ##
