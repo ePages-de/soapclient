@@ -17,3 +17,4 @@ target/
 .checkstyle
 .sonar/
 *.userprefs
+*.iml

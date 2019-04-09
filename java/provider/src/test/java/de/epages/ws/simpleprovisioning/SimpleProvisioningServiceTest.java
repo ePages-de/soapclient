@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import de.epages.ws.LocalEpagesConfReader;
 import de.epages.ws.ProviderWebServiceTestConfiguration;
 import de.epages.ws.shopconfig6.ShopConfigServiceClient;
 import de.epages.ws.shopconfig6.ShopConfigServiceClientImpl;
@@ -104,8 +105,19 @@ public class SimpleProvisioningServiceTest {
         assertEquals("IsMarkedForDel", false, Shop_out.isIsMarkedForDel());
         assertEquals("StorefrontURL", "http://" + Shop_create.getDomainName() + "/epages/" + Shop_create.getAlias() + ".sf",
                 Shop_out.getStorefrontURL());
-        assertTrue("BackofficeURL",
-                Shop_out.getBackofficeURL().endsWith("://" + Shop_create.getDomainName() + "/epages/" + Shop_create.getAlias() + ".admin"));
+        String BackofficeURL = Shop_out.getBackofficeURL();
+        //distinguish between provider with and without SSL (AD-7592)
+        if (BackofficeURL.startsWith("https")) {
+            String ep6HostName = System.getProperty("wsHostName");
+            if (ep6HostName == null) {
+                ep6HostName = LocalEpagesConfReader.getHostNameFromEpagesConf();
+            }
+        	assertTrue("BackofficeURL", BackofficeURL.endsWith("://" + ep6HostName
+        			+ "/epages/" + Shop_create.getAlias() + ".admin"));
+        } else {
+	        assertTrue("BackofficeURL", BackofficeURL.endsWith("://" + Shop_create.getDomainName()
+	        		+ "/epages/" + Shop_create.getAlias() + ".admin"));
+        }
 
         // update the shop (all attributes are optional)
         TUpdateShop Shop_update = new TUpdateShop();

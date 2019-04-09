@@ -1,21 +1,27 @@
-wrapper {  gradleVersion = "2.2.1" }
-
-description = 'SOAP clients and webservice tests for epages6'
-
 buildscript {
     repositories {
         mavenCentral()
         jcenter()
     }
     dependencies {
-        classpath "com.ullink.gradle:gradle-msbuild-plugin:1.6"
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.3'
+        classpath 'com.ullink.gradle:gradle-msbuild-plugin:2.10'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.11.1'
     }
 }
+
+plugins {
+    id "com.jfrog.bintray" version '1.2'
+    id 'com.github.ben-manes.versions' version '0.9'
+}
+
+description = 'SOAP clients and webservice tests for epages6'
 
 apply from: './gradle/wsdl.gradle'
 apply from: './gradle/eclipse.gradle'
 apply from: './gradle/java.gradle'
 apply from: './gradle/documentation.gradle'
-apply from: './gradle/perl.gradle'
+// Do not start perl tests via gradle wrapper
+// apply from: './gradle/perl.gradle'
 apply from: './gradle/bintray.gradle'
+
+wrapper {  gradleVersion = "2.6" }

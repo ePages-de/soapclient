@@ -1,23 +1,23 @@
-package de.epages.ws.simpleprovisioning2;
+package de.epages.ws.simpleprovisioning3;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import de.epages.ws.LocalEpagesConfReader;
 import de.epages.ws.ProviderWebServiceTestConfiguration;
+import de.epages.ws.common.model.TAttribute;
 import de.epages.ws.shopconfig6.ShopConfigServiceClient;
 import de.epages.ws.shopconfig6.ShopConfigServiceClientImpl;
-import de.epages.ws.simpleprovisioning2.stub.TCreateShop;
-import de.epages.ws.simpleprovisioning2.stub.TInfoShop;
-import de.epages.ws.simpleprovisioning2.stub.TRename_Input;
-import de.epages.ws.simpleprovisioning2.stub.TShopRef;
-import de.epages.ws.simpleprovisioning2.stub.TUpdateShop;
+import de.epages.ws.simpleprovisioning3.stub.TCreateShop;
+import de.epages.ws.simpleprovisioning3.stub.TInfoShop;
+import de.epages.ws.simpleprovisioning3.stub.TRename_Input;
+import de.epages.ws.simpleprovisioning3.stub.TShopRef;
+import de.epages.ws.simpleprovisioning3.stub.TUpdateShop;
 
 public class SimpleProvisioningServiceTest {
 
@@ -40,7 +40,7 @@ public class SimpleProvisioningServiceTest {
         cleanUp();
     }
 
-    @After
+    //After
     public void cleanUp() {
         // delete the shop if it still/already exists
         deleteIfExists(ALIAS);
@@ -74,6 +74,9 @@ public class SimpleProvisioningServiceTest {
         Shop_create.setMerchantLogin("max");
         Shop_create.setMerchantPassword("123456");
         Shop_create.setMerchantEMail("max@nowhere.de");
+        TAttribute strAttributeChannel = new TAttribute("Channel","mail campaign",null,"String");
+        TAttribute strAttributeAquiration = new TAttribute("CountAquiration","7",null,"Integer");
+		Shop_create.setAdditionalAttributes( new TAttribute[]{strAttributeChannel,strAttributeAquiration} );
 
         simpleProvisioningService.create(Shop_create);
 
@@ -114,6 +117,19 @@ public class SimpleProvisioningServiceTest {
 	        assertTrue("BackofficeURL", BackofficeURL.endsWith("://" + Shop_create.getDomainName()
 	        		+ "/epages/" + Shop_create.getAlias() + ".admin"));
         }
+        //check created channel attribute
+        assertTrue("additionalAttributes", Shop_out.getAdditionalAttributes().length >= 2 );
+        for(TAttribute t: Shop_out.getAdditionalAttributes()) {
+        	if( t.getName() == strAttributeChannel.getName() ) {
+                assertEquals("channel attribute Name", t.getName(), strAttributeChannel.getName() );
+                assertEquals("channel attribute Value", t.getValue(), strAttributeChannel.getValue() );
+                assertEquals("channel attribute Type", t.getType(), strAttributeChannel.getType() );
+        	} else if ( t.getName() == strAttributeAquiration.getName()) {
+                assertEquals("aquiration attribute Name", t.getName(), strAttributeAquiration.getName() );
+                assertEquals("aquiration attribute Value", t.getValue(), strAttributeAquiration.getValue() );
+                assertEquals("aquiration attribute Type", t.getType(), strAttributeAquiration.getType() );
+			}
+        }
 
         // update the shop (all attributes are optional)
         TUpdateShop Shop_update = new TUpdateShop();
@@ -126,6 +142,10 @@ public class SimpleProvisioningServiceTest {
         Shop_update.setMerchantLogin("gabi");
         Shop_update.setMerchantPassword("654321");
         Shop_update.setMerchantEMail("gabi@nowhere.de");
+        TAttribute strAttributeSetupFee = new TAttribute("SetupFee","17.33",null,"Float");
+        strAttributeChannel.setValue("phone campaign");
+        strAttributeChannel.setValue("3");
+		Shop_create.setAdditionalAttributes( new TAttribute[]{strAttributeChannel,strAttributeChannel,strAttributeSetupFee} );
 
         simpleProvisioningService.update(Shop_update);
         // get information about the updated shop
@@ -144,6 +164,23 @@ public class SimpleProvisioningServiceTest {
         assertFalse("updated IsMarkedForDel", Shop_out.isIsMarkedForDel());
         assertEquals("updated StorefrontURL", "http://" + Shop_update.getDomainName() + "/epages/" + ALIAS + ".sf",
                 Shop_out.getStorefrontURL());
+        //check changed/created attributes
+        assertTrue("additionalAttributes", Shop_out.getAdditionalAttributes().length >= 2 );
+        for(TAttribute t: Shop_out.getAdditionalAttributes()) {
+        	if( t.getName() == strAttributeChannel.getName() ) {
+                assertEquals("channel attribute Name", t.getName(), strAttributeChannel.getName() );
+                assertEquals("channel attribute Value", t.getValue(), strAttributeChannel.getValue() );
+                assertEquals("channel attribute Type", t.getType(), strAttributeChannel.getType() );
+        	} else if ( t.getName() == strAttributeAquiration.getName()) {
+                assertEquals("aquiration attribute Name", t.getName(), strAttributeAquiration.getName() );
+                assertEquals("aquiration attribute Value", t.getValue(), strAttributeAquiration.getValue() );
+                assertEquals("aquiration attribute Type", t.getType(), strAttributeAquiration.getType() );
+        	} else if ( t.getName() == strAttributeSetupFee.getName()) {
+                assertEquals("setup fee attribute Name", t.getName(), strAttributeSetupFee.getName() );
+                assertEquals("setup fee attribute Value", t.getValue(), strAttributeSetupFee.getValue() );
+                assertEquals("setup fee attribute Type", t.getType(), strAttributeSetupFee.getType() );
+			}
+        }
 
         // change the shop alias
         TRename_Input Shop_rename = new TRename_Input();

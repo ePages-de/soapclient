@@ -1,6 +1,6 @@
 use strict;
 use utf8;
-use Test::More tests => 184;
+use Test::More tests => 189;
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD WEBSERVICE_SHOP_PATH WEBSERVICE_SHOP_NAME);
 use WebServiceTools qw( cmpDateTime GetFileContent );
@@ -224,6 +224,23 @@ my $Product_update = {
     ],
 };
 
+my $Product_update2 = {
+    'Path' => $hOptions->{'FullPath'},
+    'Attributes' => [
+        {
+            'Name' => 'InstructionManual',
+            'LocalizedValues' => [
+                {
+                    'LanguageCode' => 'en',
+                    'Value'        => '../%2e%2e%2f..%2fevil.im.txt',
+                    'FileContent'  => 'VGhpcyBpcyBhbiBpbnN0cnVjdGlvbiBtYW51YWwu'
+                },
+            ],
+            'Type' => 'LocalizedFile',
+        },
+    ],
+};
+
 my $Product_var1 = {
     'Alias' => $hOptions->{'Alias'}.'-var1',
     'Class' => 'ProductTypes/Shoe',
@@ -359,6 +376,26 @@ sub testUpdate {
 
     ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, "product path" );
     is( $hResult->{'updated'}, 1, "updated?" );
+}
+
+sub testUpdate2 {
+
+    my $aProducts = [$Product_update2];
+
+    my $ahResults = $ProductService->update( $aProducts )->result;
+    is( scalar @$ahResults, 1, 'update2 result count' );
+
+    my $hResult = $ahResults->[0];
+    diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
+    ok( !$hResult->{'Error'}, 'update2: no error' );
+
+    ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, 'product path' );
+    is( $hResult->{'updated'}, 1, 'updated?' );
+
+    my $ahResults2 = $ProductService->getInfo( [$hOptions->{'FullPath'}], ['InstructionManual'], ['en'] )->result;
+    my $hResult2 = $ahResults2->[0];
+    my $ResultFileName = $hResult2->{'Attributes'}->[0]->{'LocalizedValues'}->[0]->{'Value'};
+    is($ResultFileName, '2e2e2f..2fevil.im.txt', 'Test upload file with a dangerous filename');
 }
 
 sub testUpdateError {
@@ -628,11 +665,11 @@ sub testGetInfoDownload {
     my $hResult = $ahResults->[0];
     my $hReference = $Product_down;
 
-    foreach my $Attr qw(IsDownloadProduct) {
+    foreach my $Attr (qw(IsDownloadProduct)) {
         is( $hResult->{$Attr}, $hReference->{$Attr}->value, "soap attribute $Attr is correct" );
     }
 
-    foreach my $Attr qw(MaxDownloadTime MaxDownloadCount) {
+    foreach my $Attr (qw(MaxDownloadTime MaxDownloadCount)) {
         is( $hResult->{$Attr}, $hReference->{$Attr}, "int attribute $Attr is correct" );
     }
 
@@ -816,6 +853,7 @@ testExists(1);
 testFindByAlias();
 testGetInfo(0);
 testUpdate();
+testUpdate2();
 testGetInfo(1);
 testUpdateError();
 testCreateVariations();

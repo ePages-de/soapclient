@@ -1,5 +1,4 @@
 allprojects {
-    apply plugin: 'bintray'
     apply plugin: 'maven-publish'
 
     bintray {

@@ -1,5 +1,5 @@
 use strict;
-use Test::More tests => 75;
+use Test::More tests => 112;
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD getBackofficeDomain );
 
@@ -20,7 +20,7 @@ sub deleteIfExists {
     my ($Alias) = @_;
 
     my $ShopConfigService = WebServiceClient
-        ->uri( 'urn://epages.de/WebService/ShopConfigService/2009/09' )
+        ->uri( 'urn://epages.de/WebService/ShopConfigService/2017/11' )
         ->proxy( WEBSERVICE_URL )
         ->xmlschema( '2001' );
     $ShopConfigService->userinfo( WEBSERVICE_LOGIN.':'.WEBSERVICE_PASSWORD );
@@ -31,10 +31,9 @@ sub deleteIfExists {
 }
 
 sub TestSuite {
-
     # Create a SOAP::Lite client object
     my $SimpleProvisioningService = WebServiceClient
-        ->uri( 'urn://epages.de/WebService/SimpleProvisioningService/2013/05' )
+        ->uri( 'urn://epages.de/WebService/SimpleProvisioningService/2017/11' )
         ->proxy( WEBSERVICE_URL )
         ->xmlschema( '2001' );
     $SimpleProvisioningService->userinfo( WEBSERVICE_LOGIN.':'.WEBSERVICE_PASSWORD );
@@ -51,6 +50,28 @@ sub TestSuite {
         'MerchantLogin' => 'max',
         'MerchantPassword' => '123456',
         'MerchantEMail' => 'max@nowhere.de',
+        'ShopAddress_FirstName' => 'Karl',
+        'ShopAddress_LastName' => 'Kaufmann',
+        'ShopAddress_CountryID' => 276,
+        'ShopAddress_Street' => 'Heinrich-Heine-Str. 1',
+        'ShopAddress_Zipcode' => '07743',
+        'ShopAddress_City' => 'Jena',
+        'ShopAddress_State' => 'TH',
+        'Name' => 'iFrig Shopping',
+        'AdditionalAttributes' => [
+            {   'Name' => 'Channel',
+                'Type' => 'String',
+                'Value' => 'MailingCampaign'
+            },
+            {   'Name' => 'CountAquiration',
+                'Type' => 'Integer',
+                'Value' => '7'
+            },
+            {   'Name' => 'IsClosedTemporarily',
+                'Type' => 'Boolean',
+                'Value' => 1
+            },
+        ]
     };
     my $Result = $SimpleProvisioningService->create( $Shop_in )->result;
     is( $Result, undef, "create" );
@@ -70,11 +91,37 @@ sub TestSuite {
     is( $hResult->{'HasSSLCertificate'}, $Shop_in->{'HasSSLCertificate'}, "HasSSLCertificate created" );
     is( $hResult->{'MerchantLogin'}, $Shop_in->{'MerchantLogin'}, "MerchantLogin created");
     is( $hResult->{'MerchantEMail'}, $Shop_in->{'MerchantEMail'}, "MerchantEMail created");
+    is( $hResult->{'ShopAddress_FirstName'}, $Shop_in->{'ShopAddress_FirstName'}, 'ShopAddress_FirstName created');
+    is( $hResult->{'ShopAddress_LastName'}, $Shop_in->{'ShopAddress_LastName'}, 'ShopAddress_LastName created');
+    is( $hResult->{'ShopAddress_CountryID'}, $Shop_in->{'ShopAddress_CountryID'}, 'ShopAddress_CountryID created');
+    is( $hResult->{'ShopAddress_Street'}, $Shop_in->{'ShopAddress_Street'}, 'ShopAddress_Street created');
+    is( $hResult->{'ShopAddress_Zipcode'}, $Shop_in->{'ShopAddress_Zipcode'}, 'ShopAddress_Zipcode created');
+    is( $hResult->{'ShopAddress_City'}, $Shop_in->{'ShopAddress_City'}, 'ShopAddress_City created');
+    is( $hResult->{'ShopAddress_State'}, $Shop_in->{'ShopAddress_State'}, 'ShopAddress_State created');
+    is( $hResult->{'ShopAddress_EMail'}, $Shop_in->{'MerchantEMail'}, 'ShopAddress_EMail created');
+    is( $hResult->{'Name'}, $Shop_in->{'Name'}, 'Name created');
     ok( !$hResult->{'IsMarkedForDel'}, "IsMarkedForDel created");
     is( $hResult->{'StorefrontURL'}, "http://$Shop_in->{'DomainName'}/epages/$Shop_in->{'Alias'}.sf", "StorefrontURL created");
     my $BackofficeDomain = getBackofficeDomain($hResult->{'BackofficeURL'}, $Shop_in->{'DomainName'});
     like( $hResult->{'BackofficeURL'}, qr!$BackofficeDomain/epages/$Shop_in->{'Alias'}.admin!, "BackofficeURL created");
     is( $hResult->{'LastMerchantLoginDate'}, undef, "LastMerchantLoginDate created");
+    is( $hResult->{'IsClosedTemporarily'}, 1, "IsClosedTemporarily created");
+
+    ok( scalar $hResult->{'AdditionalAttributes'} > 1, "AdditionalAttributes");
+
+    #check additional existing system attribute
+    my $hRefAttr = $Shop_in->{AdditionalAttributes}->[0];
+    my($hAttr) = grep {$_->{Name} eq $hRefAttr->{Name}} @{$hResult->{'AdditionalAttributes'}};
+    ok( $hAttr->{Name} eq $hRefAttr->{Name} , "AdditionalAttributes $hAttr->{Name} used");
+    ok( $hAttr->{Value} eq $hRefAttr->{Value} , "AdditionalAttributes $hAttr->{Value}");
+    ok( $hAttr->{Type} eq $hRefAttr->{Type} , "AdditionalAttributes $hAttr->{Type}");
+
+    #check additional added provider attribute
+    $hRefAttr = $Shop_in->{AdditionalAttributes}->[1];
+    ($hAttr) = grep {$_->{Name} eq $hRefAttr->{Name}} @{$hResult->{'AdditionalAttributes'}};
+    ok( $hAttr->{Name} eq $hRefAttr->{Name} , "AdditionalAttributes $hAttr->{Name} created");
+    ok( $hAttr->{Value} eq $hRefAttr->{Value} , "AdditionalAttributes $hAttr->{Value}");
+    ok( $hAttr->{Type} eq $hRefAttr->{Type} , "AdditionalAttributes $hAttr->{Type}");
 
     # update the shop
     my $Shop_update = {
@@ -88,6 +135,33 @@ sub TestSuite {
         'MerchantLogin' => 'gabi',
         'MerchantPassword' => '654321',
         'MerchantEMail' => 'gabi@nowhere.de',
+        'ShopAddress_FirstName' => 'Gabi',
+        'ShopAddress_LastName' => 'Kauffrau',
+        'ShopAddress_CountryID' => 840,
+        'ShopAddress_Street' => '61 Greenpoint Ave. #642',
+        'ShopAddress_Zipcode' => '11222',
+        'ShopAddress_City' => 'Brooklyn',
+        'ShopAddress_State' => 'NY',
+        'Name' => 'epages.com',
+
+        'AdditionalAttributes' => [
+            {   'Name' => 'Channel',
+                'Type' => 'String',
+                'Value' => 'Phone-Campaign'
+            },
+            {   'Name' => 'CountAquiration',
+                'Type' => 'Integer',
+                'Value' => '3'
+            },
+            {   'Name' => 'SetupFee',
+                'Type' => 'Float',
+                'Value' => 3.67
+            },
+            {   'Name' => 'IsClosedTemporarily',
+                'Type' => 'Boolean',
+                'Value' => 0
+            },
+        ]
     };
     $SimpleProvisioningService->update( $Shop_update );
 
@@ -102,11 +176,42 @@ sub TestSuite {
     is( $hResult->{'DomainName'}, $Shop_update->{'DomainName'}, "DomainName updated" );
     is( $hResult->{'MerchantLogin'}, $Shop_update->{'MerchantLogin'}, "MerchantLogin updated");
     is( $hResult->{'MerchantEMail'}, $Shop_update->{'MerchantEMail'}, "MerchantEMail updated");
+    is( $hResult->{'ShopAddress_FirstName'}, $Shop_update->{'ShopAddress_FirstName'}, 'ShopAddress_FirstName updated');
+    is( $hResult->{'ShopAddress_LastName'}, $Shop_update->{'ShopAddress_LastName'}, 'ShopAddress_LastName updated');
+    is( $hResult->{'ShopAddress_CountryID'}, $Shop_update->{'ShopAddress_CountryID'}, 'ShopAddress_CountryID updated');
+    is( $hResult->{'ShopAddress_Street'}, $Shop_update->{'ShopAddress_Street'}, 'ShopAddress_Street updated');
+    is( $hResult->{'ShopAddress_Zipcode'}, $Shop_update->{'ShopAddress_Zipcode'}, 'ShopAddress_Zipcode updated');
+    is( $hResult->{'ShopAddress_City'}, $Shop_update->{'ShopAddress_City'}, 'ShopAddress_City updated');
+    is( $hResult->{'ShopAddress_State'}, $Shop_update->{'ShopAddress_State'}, 'ShopAddress_State updated');
+    is( $hResult->{'ShopAddress_EMail'}, $Shop_update->{'MerchantEMail'}, 'ShopAddress_EMail updated');
+    is( $hResult->{'Name'}, $Shop_update->{'Name'}, 'Name updated');
     is( $hResult->{'LastMerchantLoginDate'}, undef, "LastMerchantLoginDate updated");
+    is( $hResult->{'IsClosedTemporarily'}, 0, "IsClosedTemporarily updated");
     ok( !$hResult->{'IsMarkedForDel'}, "IsMarkedForDel updated");
     is( $hResult->{'StorefrontURL'}, "http://$Shop_update->{'DomainName'}/epages/$Shop_update->{'Alias'}.sf", "StorefrontURL updated");
     $BackofficeDomain = getBackofficeDomain($hResult->{'BackofficeURL'}, $Shop_update->{'DomainName'});
     like( $hResult->{'BackofficeURL'}, qr!$BackofficeDomain/epages/$Shop_update->{'Alias'}.admin!, "BackofficeURL updated");
+
+    #check added additional attribute
+    ok( scalar $hResult->{'AdditionalAttributes'} > 2, "AdditionalAttributes > 1");
+    $hRefAttr = $Shop_update->{AdditionalAttributes}->[2];
+    ($hAttr) = grep {$_->{Name} eq $hRefAttr->{Name}} @{$hResult->{'AdditionalAttributes'}};
+    ok( $hAttr->{Name} eq $hRefAttr->{Name} , "AdditionalAttributes $hAttr->{Name} added");
+    ok( $hAttr->{Value} eq $hRefAttr->{Value} , "AdditionalAttributes $hAttr->{Value}");
+    ok( $hAttr->{Type} eq $hRefAttr->{Type} , "AdditionalAttributes $hAttr->{Type}");
+
+    #check changed additional attributes
+    $hRefAttr = $Shop_update->{AdditionalAttributes}->[1];
+    ($hAttr) = grep {$_->{Name} eq $hRefAttr->{Name}} @{$hResult->{'AdditionalAttributes'}};
+    ok( $hAttr->{Name} eq $hRefAttr->{Name} , "AdditionalAttributes $hAttr->{Name} changed on provider");
+    ok( $hAttr->{Value} eq $hRefAttr->{Value} , "AdditionalAttributes $hAttr->{Value}");
+    ok( $hAttr->{Type} eq $hRefAttr->{Type} , "AdditionalAttributes $hAttr->{Type}");
+
+    $hRefAttr = $Shop_update->{AdditionalAttributes}->[0];
+    ($hAttr) = grep {$_->{Name} eq $hRefAttr->{Name}} @{$hResult->{'AdditionalAttributes'}};
+    ok( $hAttr->{Name} eq $hRefAttr->{Name} , "AdditionalAttributes $hAttr->{Name} changed on system");
+    ok( $hAttr->{Value} eq $hRefAttr->{Value} , "AdditionalAttributes $hAttr->{Value}");
+    ok( $hAttr->{Type} eq $hRefAttr->{Type} , "AdditionalAttributes $hAttr->{Type}");
 
     # rename
     my $Shop_rename = {

@@ -1,7 +1,7 @@
 package WebServiceConfiguration;
 use base Exporter;
 
-our @EXPORT = qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD WEBSERVICE_USER WEBSERVICE_SHOP_PATH WEBSERVICE_SHOP_NAME );
+our @EXPORT = qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD WEBSERVICE_USER WEBSERVICE_SHOP_PATH WEBSERVICE_SHOP_NAME getBackofficeDomain );
 
 use Config::IniFiles;
 use IO::File;
@@ -42,6 +42,18 @@ use constant WEBSERVICE_USER      => WEBSERVICE_LOGIN.':'.WEBSERVICE_PASSWORD;
 
 my $log = Log::Log4perl->get_logger('COMMUNICATION');
 $log->debug("Running with these settings: " . WEBSERVICE_SERVER . " " . WEBSERVICE_URL . " " . WEBSERVICE_LOGIN . ":" . WEBSERVICE_PASSWORD);
+
+sub getBackofficeDomain {
+    my ($BackofficeURL, $DomainName) = @_;
+
+    if ($BackofficeURL =~ m/^https/) {
+        $BackofficeDomain = 'https://' . WEBSERVICE_SERVER;
+    } else {
+        $BackofficeDomain = 'http://' . $DomainName;
+    }
+
+    return $BackofficeDomain;
+}
 
 
 1;

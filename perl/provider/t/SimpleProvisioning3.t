@@ -1,5 +1,5 @@
 use strict;
-use Test::More tests => 75;
+use Test::More tests => 92;
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD getBackofficeDomain );
 
@@ -34,7 +34,7 @@ sub TestSuite {
 
     # Create a SOAP::Lite client object
     my $SimpleProvisioningService = WebServiceClient
-        ->uri( 'urn://epages.de/WebService/SimpleProvisioningService/2013/05' )
+        ->uri( 'urn://epages.de/WebService/SimpleProvisioningService/2014/11' )
         ->proxy( WEBSERVICE_URL )
         ->xmlschema( '2001' );
     $SimpleProvisioningService->userinfo( WEBSERVICE_LOGIN.':'.WEBSERVICE_PASSWORD );
@@ -51,6 +51,16 @@ sub TestSuite {
         'MerchantLogin' => 'max',
         'MerchantPassword' => '123456',
         'MerchantEMail' => 'max@nowhere.de',
+        'AdditionalAttributes' => [
+            {   'Name' => 'Channel',
+                'Type' => 'String',
+                'Value' => 'MailingCampaign'
+            },
+            {   'Name' => 'CountAquiration',
+                'Type' => 'Integer',
+                'Value' => '7'
+            },
+        ]
     };
     my $Result = $SimpleProvisioningService->create( $Shop_in )->result;
     is( $Result, undef, "create" );
@@ -76,6 +86,22 @@ sub TestSuite {
     like( $hResult->{'BackofficeURL'}, qr!$BackofficeDomain/epages/$Shop_in->{'Alias'}.admin!, "BackofficeURL created");
     is( $hResult->{'LastMerchantLoginDate'}, undef, "LastMerchantLoginDate created");
 
+    ok( scalar $hResult->{'AdditionalAttributes'} > 1, "AdditionalAttributes");
+
+    #check additional existing system attribute
+    my $hRefAttr = $Shop_in->{AdditionalAttributes}->[0];
+    my($hAttr) = grep {$_->{Name} eq $hRefAttr->{Name}} @{$hResult->{'AdditionalAttributes'}};
+    ok( $hAttr->{Name} eq $hRefAttr->{Name} , "AdditionalAttributes $hAttr->{Name} used");
+    ok( $hAttr->{Value} eq $hRefAttr->{Value} , "AdditionalAttributes $hAttr->{Value}");
+    ok( $hAttr->{Type} eq $hRefAttr->{Type} , "AdditionalAttributes $hAttr->{Type}");
+
+    #check additional added provider attribute
+    $hRefAttr = $Shop_in->{AdditionalAttributes}->[1];
+    ($hAttr) = grep {$_->{Name} eq $hRefAttr->{Name}} @{$hResult->{'AdditionalAttributes'}};
+    ok( $hAttr->{Name} eq $hRefAttr->{Name} , "AdditionalAttributes $hAttr->{Name} created");
+    ok( $hAttr->{Value} eq $hRefAttr->{Value} , "AdditionalAttributes $hAttr->{Value}");
+    ok( $hAttr->{Type} eq $hRefAttr->{Type} , "AdditionalAttributes $hAttr->{Type}");
+
     # update the shop
     my $Shop_update = {
         'Alias' => $ALIAS,
@@ -88,6 +114,21 @@ sub TestSuite {
         'MerchantLogin' => 'gabi',
         'MerchantPassword' => '654321',
         'MerchantEMail' => 'gabi@nowhere.de',
+
+        'AdditionalAttributes' => [
+            {   'Name' => 'Channel',
+                'Type' => 'String',
+                'Value' => 'Phone-Campaign'
+            },
+            {   'Name' => 'CountAquiration',
+                'Type' => 'Integer',
+                'Value' => '3'
+            },
+            {   'Name' => 'SetupFee',
+                'Type' => 'Float',
+                'Value' => 3.67
+            }
+        ]
     };
     $SimpleProvisioningService->update( $Shop_update );
 
@@ -107,6 +148,27 @@ sub TestSuite {
     is( $hResult->{'StorefrontURL'}, "http://$Shop_update->{'DomainName'}/epages/$Shop_update->{'Alias'}.sf", "StorefrontURL updated");
     $BackofficeDomain = getBackofficeDomain($hResult->{'BackofficeURL'}, $Shop_update->{'DomainName'});
     like( $hResult->{'BackofficeURL'}, qr!$BackofficeDomain/epages/$Shop_update->{'Alias'}.admin!, "BackofficeURL updated");
+
+    #check added additional attribute
+    ok( scalar $hResult->{'AdditionalAttributes'} > 2, "AdditionalAttributes > 1");
+    $hRefAttr = $Shop_update->{AdditionalAttributes}->[2];
+    ($hAttr) = grep {$_->{Name} eq $hRefAttr->{Name}} @{$hResult->{'AdditionalAttributes'}};
+    ok( $hAttr->{Name} eq $hRefAttr->{Name} , "AdditionalAttributes $hAttr->{Name} added");
+    ok( $hAttr->{Value} eq $hRefAttr->{Value} , "AdditionalAttributes $hAttr->{Value}");
+    ok( $hAttr->{Type} eq $hRefAttr->{Type} , "AdditionalAttributes $hAttr->{Type}");
+
+    #check changed additional attributes
+    $hRefAttr = $Shop_update->{AdditionalAttributes}->[1];
+    ($hAttr) = grep {$_->{Name} eq $hRefAttr->{Name}} @{$hResult->{'AdditionalAttributes'}};
+    ok( $hAttr->{Name} eq $hRefAttr->{Name} , "AdditionalAttributes $hAttr->{Name} changed on provider");
+    ok( $hAttr->{Value} eq $hRefAttr->{Value} , "AdditionalAttributes $hAttr->{Value}");
+    ok( $hAttr->{Type} eq $hRefAttr->{Type} , "AdditionalAttributes $hAttr->{Type}");
+
+    $hRefAttr = $Shop_update->{AdditionalAttributes}->[0];
+    ($hAttr) = grep {$_->{Name} eq $hRefAttr->{Name}} @{$hResult->{'AdditionalAttributes'}};
+    ok( $hAttr->{Name} eq $hRefAttr->{Name} , "AdditionalAttributes $hAttr->{Name} changed on system");
+    ok( $hAttr->{Value} eq $hRefAttr->{Value} , "AdditionalAttributes $hAttr->{Value}");
+    ok( $hAttr->{Type} eq $hRefAttr->{Type} , "AdditionalAttributes $hAttr->{Type}");
 
     # rename
     my $Shop_rename = {

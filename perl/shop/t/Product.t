@@ -1,6 +1,6 @@
 use strict;
 use utf8;
-use Test::More tests => 42;
+use Test::More;
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD WEBSERVICE_SHOP_PATH);
 use WebServiceTools qw( cmpDateTime );
@@ -95,6 +95,32 @@ my $Product_update = {
     ],
 };
 
+my $Product_update1 = {
+    'Path' => $hOptions->{'FullPath'},
+    'ProductPrices' => [
+        { 'CurrencyID' => 'EUR', 'Price' => undef, 'TaxModel' => 'gross', },
+
+    ],
+};
+
+my $Product_update2 = {
+    'Path' => $hOptions->{'FullPath'},
+    'ProductPrices' => [
+        { 'CurrencyID' => 'EUR', 'Price' => undef, 'TaxModel' => 'gross', },
+
+    ],
+};
+
+my $Product_update3 = {
+    'Path' => $hOptions->{'FullPath'},
+    'ProductPrices' => [
+        { 'CurrencyID' => 'EUR', 'Price' => 123.5, 'TaxModel' => 'gross', },
+
+    ],
+};
+
+
+
 
 sub testCreate {
 
@@ -121,6 +147,50 @@ sub testUpdate {
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
     ok( !$hResult->{'Error'}, 'update: no error' );
+
+    ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, 'product path' );
+    is( $hResult->{'updated'}, 1, 'updated?' );
+}
+
+sub testUpdate1 {
+
+    my $aProducts = [$Product_update1];
+
+    my $ahResults = $ProductService->update( $aProducts )->result;
+    is( scalar @$ahResults, 1, 'update1 result count' );
+
+    my $hResult = $ahResults->[0];
+    diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
+    ok( !$hResult->{'Error'}, 'update1: no error' );
+
+    ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, 'product path' );
+    is( $hResult->{'updated'}, 1, 'updated?' );
+}
+sub testUpdate2 {
+
+    my $aProducts = [$Product_update2];
+
+    my $ahResults = $ProductService->update( $aProducts )->result;
+    is( scalar @$ahResults, 1, 'update2 result count' );
+
+    my $hResult = $ahResults->[0];
+    diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
+    ok( !$hResult->{'Error'}, 'update2: no error' );
+
+    ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, 'product path' );
+    is( $hResult->{'updated'}, 1, 'updated?' );
+}
+
+sub testUpdate3 {
+
+    my $aProducts = [$Product_update3];
+
+    my $ahResults = $ProductService->update( $aProducts )->result;
+    is( scalar @$ahResults, 1, 'update3 result count' );
+
+    my $hResult = $ahResults->[0];
+    diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
+    ok( !$hResult->{'Error'}, 'update3: no error' );
 
     ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, 'product path' );
     is( $hResult->{'updated'}, 1, 'updated?' );
@@ -235,6 +305,11 @@ testExists(1);
 testFind();
 testGetInfo(0);
 testUpdate();
+testUpdate1();
+testUpdate2();
+testUpdate3();
 testGetInfo(1);
 testDelete();
 testExists(0);
+
+done_testing();
