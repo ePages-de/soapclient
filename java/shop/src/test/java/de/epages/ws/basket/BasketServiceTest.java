@@ -92,7 +92,7 @@ public class BasketServiceTest {
         lineItemContainer.setCurrencyID("EUR");
         lineItemContainer.setPaymentMethod("PaymentMethods/Invoice");
         lineItemContainer.setShippingMethod("ShippingMethods/Express");
-        lineItemContainer.setTaxArea("/TaxMatrixGermany/EU");
+        lineItemContainer.setTaxArea("/TaxMatrixGermany/\"non EU\"");
         lineItemContainer.setTaxModel("gross");
         String productGuid = productService.getInfo(new String[]{"Products/ho_1112105010"}, new String[]{"GUID"})[0].getAttributes()[0].getValue();
         assertNotNull(productGuid);
