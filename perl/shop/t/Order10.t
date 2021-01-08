@@ -513,8 +513,8 @@ sub testShippingTaxes {
     foreach my $hShippingTax (@{$ahShippingTaxes}) {
         $hResultShippingTaxeValue->{$hShippingTax->{'TaxClass'}} = $hShippingTax->{'Value'};
     }
-    is( $hResultShippingTaxeValue->{'normal'}, 7.96, 'shipping tax normal '.$hResultShippingTaxeValue->{'normal'});
-    is( $hResultShippingTaxeValue->{'reduced'}, 3.74, 'shipping tax reduced '.$hResultShippingTaxeValue->{'reduced'});
+    is( $hResultShippingTaxeValue->{'normal'}, 8.18, 'shipping tax normal '.$hResultShippingTaxeValue->{'normal'});
+    is( $hResultShippingTaxeValue->{'reduced'}, 3.82, 'shipping tax reduced '.$hResultShippingTaxeValue->{'reduced'});
 
 
     $ahResults = $OrderService->delete( [$OrderPath] )->result;
