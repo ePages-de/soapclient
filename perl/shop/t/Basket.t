@@ -317,7 +317,7 @@ sub _setupTestBasketHash {
     return {
         'LineItemContainer' => {
             'CurrencyID' => 'EUR',
-            'TaxArea'    => '/TaxMatrixGermany/EU',
+            'TaxArea'    => '/TaxMatrixGermany/"non EU"',
             'TaxModel'   => 'gross',
         },
     };
