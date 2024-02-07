@@ -146,7 +146,7 @@ sub testUpload2 {
 
     is(scalar @$ahResults, 1, 'upload result count');
 
-    my $hResult = @{$ahResults->[0]};
+    my $hResult = $ahResults->[0];
     ok(!$hResult->{Error}, 'upload: no error');
     ok($hResult->{'WriteOK'}, "$hResult->{'File'} written?");
     diag 'An error occured: ' . $_->{'Error'}->{'Message'} . "\n" if $hResult->{Error};
@@ -226,7 +226,7 @@ sub testUploadScale2 {
     }, $hScaleParams)->result;
 
     is(scalar @$ahResults, 1, 'uploadscale result count');
-    my $hResult = @{$ahResults->[0]};
+    my $hResult = $ahResults->[0];
     ok(!$hResult->{Error}, 'uploadscale: no error');
     ok($hResult->{'WriteOK'}, "$hResult->{'File'} written?");
     ok($hResult->{'ScaleOK'}, "$hResult->{'File'} scaled?");
