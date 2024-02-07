@@ -4,6 +4,8 @@ use File::Basename  qw ( basename );
 use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD WEBSERVICE_USER );
 
+##no critic qw(RequireInterpolationOfMetachars)
+
 # Create a SOAP::Lite client object
 my $ProductImageService = WebServiceClient
     ->uri( 'urn://epages.de/WebService/ProductImageService/2006/03' )
@@ -144,7 +146,7 @@ sub testUpload2 {
 
     is(scalar @$ahResults, 1, 'upload result count');
 
-    my $hResult = @$ahResults->[0];
+    my $hResult = @{$ahResults->[0]};
     ok(!$hResult->{Error}, 'upload: no error');
     ok($hResult->{'WriteOK'}, "$hResult->{'File'} written?");
     diag 'An error occured: ' . $_->{'Error'}->{'Message'} . "\n" if $hResult->{Error};
@@ -224,12 +226,12 @@ sub testUploadScale2 {
     }, $hScaleParams)->result;
 
     is(scalar @$ahResults, 1, 'uploadscale result count');
-    my $hResult = @$ahResults->[0];
+    my $hResult = @{$ahResults->[0]};
     ok(!$hResult->{Error}, 'uploadscale: no error');
     ok($hResult->{'WriteOK'}, "$hResult->{'File'} written?");
     ok($hResult->{'ScaleOK'}, "$hResult->{'File'} scaled?");
     diag 'An error occured: ' . $_->{'Error'}->{'Message'} . "\n" if $hResult->{Error};
-    
+
     my $ImageLarge = getProductAttribute($ObjectPath, 'ImageLarge');
     is($ImageLarge, '2e2e2f..2fdangerous.filename.jpg', 'Uploadscale: Dangerous image name handled correctly?');
     my $SlideShowString = getProductAttribute($ObjectPath, 'ImagesSlideShowString');
@@ -255,13 +257,13 @@ sub testDelete {
     ok( !$ImageSmall, '$ImageSmall ref deleted' );
 
     my $ImageMedium = getProductAttribute( $ObjectPath, 'ImageMedium' );
-    ok( !$ImageSmall, '$ImageMedium ref deleted' );
+    ok( !$ImageMedium, '$ImageMedium ref deleted' );
 
     my $ImageHotDeal = getProductAttribute( $ObjectPath, 'ImageHotDeal' );
-    ok( !$ImageSmall, '$ImageHotDeal ref deleted' );
+    ok( !$ImageHotDeal, '$ImageHotDeal ref deleted' );
 
     my $ImageThumbnail = getProductAttribute( $ObjectPath, 'ImageThumbnail' );
-    ok( !$ImageSmall, '$ImageThumbnail ref deleted' );
+    ok( !$ImageThumbnail, '$ImageThumbnail ref deleted' );
 
 
 }

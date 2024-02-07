@@ -5,6 +5,7 @@ use WebServiceClient;
 use WebServiceConfiguration qw( WEBSERVICE_URL WEBSERVICE_LOGIN WEBSERVICE_PASSWORD WEBSERVICE_SHOP_PATH WEBSERVICE_SHOP_NAME);
 use WebServiceTools qw( cmpDateTime GetFileContent );
 
+##no critic qw(ProhibitMagicNumbers RequireExistsError RequireTrailingCommas)
 
 my $ProductService = WebServiceClient
     ->uri( 'urn://epages.de/WebService/ProductService/2014/04' )
@@ -334,14 +335,14 @@ sub testCreate {
     my $aProducts = [$Product_in];
 
     my $ahResults = $ProductService->create( $aProducts )->result;
-    is( scalar @$ahResults, 1, "create result count" );
+    is( scalar @$ahResults, 1, 'create result count' );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
-    ok( !$hResult->{'Error'}, "create: no error" );
+    ok( !$hResult->{'Error'}, 'create: no error' );
 
-    ok( $hResult->{'Alias'} eq $hOptions->{'Alias'}, "product alias" );
-    is( $hResult->{'created'}, 1, "created?" );
+    ok( $hResult->{'Alias'} eq $hOptions->{'Alias'}, 'product alias' );
+    is( $hResult->{'created'}, 1, 'created?' );
 }
 
 sub testUpdate {
@@ -349,14 +350,14 @@ sub testUpdate {
     my $aProducts = [$Product_update];
 
     my $ahResults = $ProductService->update( $aProducts )->result;
-    is( scalar @$ahResults, 1, "update result count" );
+    is( scalar @$ahResults, 1, 'update result count' );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
-    ok( !$hResult->{'Error'}, "update: no error" );
+    ok( !$hResult->{'Error'}, 'update: no error' );
 
-    ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, "product path" );
-    is( $hResult->{'updated'}, 1, "updated?" );
+    ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, 'product path' );
+    is( $hResult->{'updated'}, 1, 'updated?' );
 }
 
 sub testUpdateError {
@@ -365,23 +366,23 @@ sub testUpdateError {
     $aProducts->[0]->{'StockLevelAlert'} = 0;
 
     my $ahResults = $ProductService->update( $aProducts )->result;
-    is( scalar @$ahResults, 1, "update result count" );
+    is( scalar @$ahResults, 1, 'update result count' );
 
     my $hResult = $ahResults->[0];
-    ok( $hResult->{'Error'}, "update: error" );
-    ok( $hResult->{'Error'}->{'Message'} =~ /FLOAT_TO_SMALL.*StockLevelAlert/, "update: error message FLOAT_TO_SMALL StockLevelAlert" );
-    ok( !$hResult->{'updated'}, "updated?" );
+    ok( $hResult->{'Error'}, 'update: error' );
+    ok( $hResult->{'Error'}->{'Message'} =~ /FLOAT_TO_SMALL.*StockLevelAlert/, 'update: error message FLOAT_TO_SMALL StockLevelAlert' );
+    ok( !$hResult->{'updated'}, 'updated?' );
 }
 
 sub testGetInfo {
     my ($alreadyUpdated) = @_;
 
     my $ahResults = $ProductService->getInfo( [$hOptions->{'FullPath'}], ['AvailabilityDate','Date'], ['de', 'en'] )->result;
-    is( scalar @$ahResults, 1, "getInfo result count" );
+    is( scalar @$ahResults, 1, 'getInfo result count' );
 
     diag "Error: $ahResults->[0]->{'Error'}->{'Message'}\n" if $ahResults->[0]->{'Error'};
-    ok( !$ahResults->[0]->{'Error'}, "getInfo: no error" );
-    ok( $ahResults->[0]->{'Path'} eq WEBSERVICE_SHOP_PATH.$hOptions->{'FullPath'}, "product path" );
+    ok( !$ahResults->[0]->{'Error'}, 'getInfo: no error' );
+    ok( $ahResults->[0]->{'Path'} eq WEBSERVICE_SHOP_PATH.$hOptions->{'FullPath'}, 'product path' );
 
     my $hResult = $ahResults->[0];
     my $hReference = $Product_in;
@@ -406,8 +407,8 @@ sub testGetInfo {
 
     # convert localized value from array to hash (languge code => value) for attributes
     foreach my $Attribute (@{$hResult->{'Attributes'}}) {
-        if ( $Attribute->{'Type'} eq "LocalizedString" ||
-             $Attribute->{'Type'} eq "LocalizedFile")
+        if ( $Attribute->{'Type'} eq 'LocalizedString' ||
+             $Attribute->{'Type'} eq 'LocalizedFile')
         {
             my $AttributeName = $Attribute->{'Name'};
             foreach my $hAttribute (@{$hResult->{$AttributeName}}) {
@@ -419,28 +420,28 @@ sub testGetInfo {
         }
     }
 
-    ok( $LocResult{'Name'}{'en'} eq $LocReference{'Name'}{'en'}, "updated name (en)" );
-    ok( $LocResult{'Name'}{'de'} eq $LocReference{'Name'}{'de'}, "updated name (de)" );
-    ok( $LocResult{'Text'}{'en'} eq $LocReference{'Text'}{'en'}, "Text (en)" );
-    ok( $LocResult{'Text'}{'de'} eq $LocReference{'Text'}{'de'}, "Text (de)" );
-    ok( $LocResult{'Title'}{'en'} eq $LocReference{'Title'}{'en'}, "updated title (en)" );
-    ok( $LocResult{'Title'}{'de'} eq $LocReference{'Title'}{'de'}, "updated title (de)" );
-    ok( $LocResult{'AvailabilityComment'}{'de'} eq $LocReference{'AvailabilityComment'}{'de'}, "attribute AvailabilityComment in language DE is correct" );
-    ok( $LocResult{'AvailabilityComment'}{'en'} eq $LocReference{'AvailabilityComment'}{'en'}, "attribute AvailabilityComment in language EN is correct" );
-    ok( $LocResult{'MainCharacteristics'}{'de'} eq $LocReference{'MainCharacteristics'}{'de'}, "attribute AvailabilityComment in language DE is correct" );
-    ok( $LocResult{'MainCharacteristics'}{'en'} eq $LocReference{'MainCharacteristics'}{'en'}, "attribute AvailabilityComment in language EN is correct" );
+    ok( $LocResult{'Name'}{'en'} eq $LocReference{'Name'}{'en'}, 'updated name (en)' );
+    ok( $LocResult{'Name'}{'de'} eq $LocReference{'Name'}{'de'}, 'updated name (de)' );
+    ok( $LocResult{'Text'}{'en'} eq $LocReference{'Text'}{'en'}, 'Text (en)' );
+    ok( $LocResult{'Text'}{'de'} eq $LocReference{'Text'}{'de'}, 'Text (de)' );
+    ok( $LocResult{'Title'}{'en'} eq $LocReference{'Title'}{'en'}, 'updated title (en)' );
+    ok( $LocResult{'Title'}{'de'} eq $LocReference{'Title'}{'de'}, 'updated title (de)' );
+    ok( $LocResult{'AvailabilityComment'}{'de'} eq $LocReference{'AvailabilityComment'}{'de'}, 'attribute AvailabilityComment in language DE is correct' );
+    ok( $LocResult{'AvailabilityComment'}{'en'} eq $LocReference{'AvailabilityComment'}{'en'}, 'attribute AvailabilityComment in language EN is correct' );
+    ok( $LocResult{'MainCharacteristics'}{'de'} eq $LocReference{'MainCharacteristics'}{'de'}, 'attribute AvailabilityComment in language DE is correct' );
+    ok( $LocResult{'MainCharacteristics'}{'en'} eq $LocReference{'MainCharacteristics'}{'en'}, 'attribute AvailabilityComment in language EN is correct' );
 
-    ok( $LocResult{'URI'}{'de'} eq $LocReference{'URI'}{'de'}, "attribute URI in language DE is correct" );
-    ok( $LocResult{'URI'}{'en'} eq $LocReference{'URI'}{'en'}, "attribute URI in language EN is correct" );
+    ok( $LocResult{'URI'}{'de'} eq $LocReference{'URI'}{'de'}, 'attribute URI in language DE is correct' );
+    ok( $LocResult{'URI'}{'en'} eq $LocReference{'URI'}{'en'}, 'attribute URI in language EN is correct' );
 
     if ( $DomainName ) {
         # these tests only work if the shop has its own domain name
-        like( $LocResult{'CanonicalURL'}{'de'}, qr/.*($LocReference{'URI'}{'de'})$/, "attribute URI ist end part of CanonicalURL in language DE" );
-        like( $LocResult{'CanonicalURL'}{'en'}, qr/.*($LocReference{'URI'}{'en'})$/, "attribute URI ist end part of CanonicalURL in language EN" );
+        like( $LocResult{'CanonicalURL'}{'de'}, qr/.*($LocReference{'URI'}{'de'})$/, 'attribute URI ist end part of CanonicalURL in language DE' );
+        like( $LocResult{'CanonicalURL'}{'en'}, qr/.*($LocReference{'URI'}{'en'})$/, 'attribute URI ist end part of CanonicalURL in language EN' );
     } else {
         #dummi tests if domain name missig
-        like( '',qr//,"skip CanonicalURL de test, because missing individual domain name");
-        like( '',qr//,"skip CanonicalURL en test, because missing individual domain name");
+        like( '',qr//,'skip CanonicalURL de test, because missing individual domain name');
+        like( '',qr//,'skip CanonicalURL en test, because missing individual domain name');
     }
 
     # convert prices to hash (CurrencyID => value)
@@ -467,28 +468,28 @@ sub testGetInfo {
     %RefPrices = $MapSub->( @{$hReference->{'EcoParticipationPrices'}} );
     is_deeply( \%ResultPrices, \%RefPrices, 'updated eco participation' );
 
-    ok( $hResult->{'DeliveryPeriod'} eq $hReference->{'DeliveryPeriod'}, "product delivery period" );
+    ok( $hResult->{'DeliveryPeriod'} eq $hReference->{'DeliveryPeriod'}, 'product delivery period' );
 
-    is( scalar @{$hResult->{'ShippingMethods'}}, 2, "result count shipping methods" );
+    is( scalar @{$hResult->{'ShippingMethods'}}, 2, 'result count shipping methods' );
     my %shippingPaths;
     @shippingPaths{map{$_->{'Path'}}@{$hResult->{'ShippingMethods'}}} = (1,1);
 
     if ( $alreadyUpdated ) {
-        ok( !$hResult->{'AvailabilityDate'}, "deleted date attribute" );
+        ok( !$hResult->{'AvailabilityDate'}, 'deleted date attribute' );
         ok( $shippingPaths{WEBSERVICE_SHOP_PATH.'ShippingMethods/Post'}, 'do not touch shipping path 1' );
         ok( $shippingPaths{WEBSERVICE_SHOP_PATH.'ShippingMethods/PickupByCustomer'}, 'added new shipping path' );
         ok( !$shippingPaths{WEBSERVICE_SHOP_PATH.'ShippingMethods/Express'}, 'deleted shipping path' );
     } else {
-        is( 0, cmpDateTime($hResult->{'AvailabilityDate'}, $hReference->{'AvailabilityDate'}), "created date attribute" );
+        is( 0, cmpDateTime($hResult->{'AvailabilityDate'}, $hReference->{'AvailabilityDate'}), 'created date attribute' );
         ok( $shippingPaths{WEBSERVICE_SHOP_PATH.'ShippingMethods/Post'}, 'created shipping path 1' );
         ok( $shippingPaths{WEBSERVICE_SHOP_PATH.'ShippingMethods/Express'}, 'created shipping path 2' );
     }
 
-    is( $hResult->{'IsAvailable'}, $Product_in->{'IsAvailable'}->value, "attribute IsAvailable is correct" );
+    is( $hResult->{'IsAvailable'}, $Product_in->{'IsAvailable'}->value, 'attribute IsAvailable is correct' );
 
-    ok( $hResult->{'TaxClass'}  eq $Product_in->{'TaxClass'}, "tax class" );
-    is( $hResult->{'IsVisible'}, $Product_in->{'IsVisible'}->value, "is visible" );
-    ok( $hResult->{'OrderUnit'} eq $Product_in->{'OrderUnit'}, "order unit" );
+    ok( $hResult->{'TaxClass'}  eq $Product_in->{'TaxClass'}, 'tax class' );
+    is( $hResult->{'IsVisible'}, $Product_in->{'IsVisible'}->value, 'is visible' );
+    ok( $hResult->{'OrderUnit'} eq $Product_in->{'OrderUnit'}, 'order unit' );
 }
 
 sub deleteIfExists {
@@ -503,47 +504,47 @@ sub deleteIfExists {
 sub testDelete {
 
     my $ahResults = $ProductService->delete( [$hOptions->{'FullPath'}] )->result;
-    is( scalar @$ahResults, 1, "delete result count" );
+    is( scalar @$ahResults, 1, 'delete result count' );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
-    ok( !$hResult->{'Error'}, "delete: no error" );
+    ok( !$hResult->{'Error'}, 'delete: no error' );
 
-    ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, "product path" );
-    is( $hResult->{'deleted'}, 1, "deleted?" );
+    ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, 'product path' );
+    is( $hResult->{'deleted'}, 1, 'deleted?' );
 }
 
 sub testExists {
     my ($exists) = @_;
 
     my $ahResults = $ProductService->exists( [$hOptions->{'FullPath'}] )->result;
-    is( scalar @$ahResults, 1, "exists result count" );
+    is( scalar @$ahResults, 1, 'exists result count' );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
-    ok( !$hResult->{'Error'}, "exists: no error" );
+    ok( !$hResult->{'Error'}, 'exists: no error' );
 
-    ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, "product path" );
-    is( $hResult->{'exists'}, $exists, "exists?" );
+    ok( $hResult->{'Path'} eq $hOptions->{'FullPath'}, 'product path' );
+    is( $hResult->{'exists'}, $exists, 'exists?' );
 }
 
 sub testFindByAlias {
 
     my $aResults = $ProductService->find( {'Alias' => $hOptions->{'Alias'}} )->result;
-    is( scalar @$aResults, 1, "find result count" );
+    is( scalar @$aResults, 1, 'find result count' );
 
-    is( $aResults->[0], WEBSERVICE_SHOP_PATH.$hOptions->{'FullPath'}, "product path" );
+    is( $aResults->[0], WEBSERVICE_SHOP_PATH.$hOptions->{'FullPath'}, 'product path' );
 }
 
 sub testFindAll {
 
     my $aResults = $ProductService->find()->result;
-    is( scalar @$aResults, 80, "find all result count" );
+    is( scalar @$aResults, 80, 'find all result count' );
 
     my @sortResults = sort @$aResults;
     my $ProductPath = WEBSERVICE_SHOP_PATH.'Products';
-    is( $sortResults[0], "$ProductPath/be_40401", "1. search result path" );
-    is( $sortResults[10], "$ProductPath/be_40401/SubProducts/be_4040104007", "1. search result on 2nd page" );
+    is( $sortResults[0], "$ProductPath/be_40401", '1. search result path' );
+    is( $sortResults[10], "$ProductPath/be_40401/SubProducts/be_4040104007", '1. search result on 2nd page' );
 }
 
 
@@ -589,14 +590,14 @@ sub testCreateDownload {
     my $aProducts = [$Product_down];
 
     my $ahResults = $ProductService->create( $aProducts )->result;
-    is( scalar @$ahResults, 1, "create result count" );
+    is( scalar @$ahResults, 1, 'create result count' );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
-    ok( !$hResult->{'Error'}, "create: no error" );
+    ok( !$hResult->{'Error'}, 'create: no error' );
 
-    ok( $hResult->{'Alias'} eq $hOptions->{'Alias'}, "product alias" );
-    is( $hResult->{'created'}, 1, "created?" );
+    ok( $hResult->{'Alias'} eq $hOptions->{'Alias'}, 'product alias' );
+    is( $hResult->{'created'}, 1, 'created?' );
 
 }
 
@@ -604,27 +605,27 @@ sub testCreateDownload {
 sub testGetInfoDownload {
 
     my $ahResults = $ProductService->getInfo( [$hOptions->{'FullPath'}], [], ['de', 'en'] )->result;
-    is( scalar @$ahResults, 1, "getInfo result count" );
+    is( scalar @$ahResults, 1, 'getInfo result count' );
 
     diag "Error: $ahResults->[0]->{'Error'}->{'Message'}\n" if $ahResults->[0]->{'Error'};
-    ok( !$ahResults->[0]->{'Error'}, "getInfo: no error" );
-    ok( $ahResults->[0]->{'Path'} eq WEBSERVICE_SHOP_PATH.$hOptions->{'FullPath'}, "product path" );
+    ok( !$ahResults->[0]->{'Error'}, 'getInfo: no error' );
+    ok( $ahResults->[0]->{'Path'} eq WEBSERVICE_SHOP_PATH.$hOptions->{'FullPath'}, 'product path' );
 
     my $hResult = $ahResults->[0];
     my $hReference = $Product_down;
 
-    foreach my $Attr qw(IsDownloadProduct) {
+    foreach my $Attr (qw(IsDownloadProduct)) {
         is( $hResult->{$Attr}, $hReference->{$Attr}->value, "soap attribute $Attr is correct" );
     }
 
-    foreach my $Attr qw(MaxDownloadTime MaxDownloadCount) {
+    foreach my $Attr (qw(MaxDownloadTime MaxDownloadCount)) {
         is( $hResult->{$Attr}, $hReference->{$Attr}, "int attribute $Attr is correct" );
     }
 
     my $hRefeMap = $hReference->{'DownloadProductMaps'}->[0];
     my $hProductMap = $hResult->{'DownloadProductMaps'}->[0];
-    ok( $hProductMap->{'Position'} eq $hRefeMap->{'Position'}, "Position is correct" );
-    ok( $hProductMap->{'TargetUrl'} eq $hRefeMap->{'FileName'}, "TargetUrl is correct" );
+    ok( $hProductMap->{'Position'} eq $hRefeMap->{'Position'}, 'Position is correct' );
+    ok( $hProductMap->{'TargetUrl'} eq $hRefeMap->{'FileName'}, 'TargetUrl is correct' );
 
     ok( $hResult->{'URI'}, 'generated URI' );
 
@@ -636,28 +637,25 @@ sub testCreateDownload_empty {
     my $aProducts = [$Product_down_empty];
 
     my $ahResults = $ProductService->create( $aProducts )->result;
-    is( scalar @$ahResults, 1, "create result count" );
+    is( scalar @$ahResults, 1, 'create result count' );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
-    ok( !$hResult->{'Error'}, "create: no error" );
+    ok( !$hResult->{'Error'}, 'create: no error' );
 
-    ok( $hResult->{'Alias'} eq $hOptions->{'Alias'}, "product alias" );
-    is( $hResult->{'created'}, 1, "created?" );
+    ok( $hResult->{'Alias'} eq $hOptions->{'Alias'}, 'product alias' );
+    is( $hResult->{'created'}, 1, 'created?' );
 
 }
 
 sub testGetInfoDownload_empty {
 
     my $ahResults = $ProductService->getInfo( [$hOptions->{'FullPath'}], [], ['de', 'en'] )->result;
-    is( scalar @$ahResults, 1, "getInfo result count" );
+    is( scalar @$ahResults, 1, 'getInfo result count' );
 
     diag "Error: $ahResults->[0]->{'Error'}->{'Message'}\n" if $ahResults->[0]->{'Error'};
-    ok( !$ahResults->[0]->{'Error'}, "getInfo: no error" );
-    ok( $ahResults->[0]->{'Path'} eq WEBSERVICE_SHOP_PATH.$hOptions->{'FullPath'}, "product path" );
-
-    my $hResult = $ahResults->[0];
-    my $hReference = $Product_down;
+    ok( !$ahResults->[0]->{'Error'}, 'getInfo: no error' );
+    ok( $ahResults->[0]->{'Path'} eq WEBSERVICE_SHOP_PATH.$hOptions->{'FullPath'}, 'product path' );
 
 }
 
@@ -666,14 +664,14 @@ sub testCreateDownload_upload {
     my $aProducts = [$Product_down_upload];
 
     my $ahResults = $ProductService->create( $aProducts )->result;
-    is( scalar @$ahResults, 1, "create result count" );
+    is( scalar @$ahResults, 1, 'create result count' );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
-    ok( !$hResult->{'Error'}, "create: no error" );
+    ok( !$hResult->{'Error'}, 'create: no error' );
 
-    ok( $hResult->{'Alias'} eq $hOptions->{'Alias'}, "product alias" );
-    is( $hResult->{'created'}, 1, "created?" );
+    ok( $hResult->{'Alias'} eq $hOptions->{'Alias'}, 'product alias' );
+    is( $hResult->{'created'}, 1, 'created?' );
 
 }
 
@@ -681,23 +679,20 @@ sub testCreateDownload_upload {
 sub testGetInfoDownload_upload {
 
     my $ahResults = $ProductService->getInfo( [$hOptions->{'FullPath'}], [], ['de', 'en'] )->result;
-    is( scalar @$ahResults, 1, "getInfo result count" );
+    is( scalar @$ahResults, 1, 'getInfo result count' );
 
     diag "Error: $ahResults->[0]->{'Error'}->{'Message'}\n" if $ahResults->[0]->{'Error'};
-    ok( !$ahResults->[0]->{'Error'}, "getInfo: no error" );
-    ok( $ahResults->[0]->{'Path'} eq WEBSERVICE_SHOP_PATH.$hOptions->{'FullPath'}, "product path" );
-
-    my $hResult = $ahResults->[0];
-    my $hReference = $Product_down_upload;
+    ok( !$ahResults->[0]->{'Error'}, 'getInfo: no error' );
+    ok( $ahResults->[0]->{'Path'} eq WEBSERVICE_SHOP_PATH.$hOptions->{'FullPath'}, 'product path' );
 
 }
 
 sub testGetInfoVariations {
 
     my @Products = (
-    	"$hOptions->{'FullPath'}/SubProducts/$Product_var1->{'Alias'}",
-    	"$hOptions->{'FullPath'}/SubProducts/$Product_var2->{'Alias'}",
-    	$hOptions->{'FullPath'}
+        "$hOptions->{'FullPath'}/SubProducts/$Product_var1->{'Alias'}",
+        "$hOptions->{'FullPath'}/SubProducts/$Product_var2->{'Alias'}",
+        $hOptions->{'FullPath'}
     );
 
     my $ahResults = $ProductService->getInfo( \@Products )->result;
@@ -706,9 +701,9 @@ sub testGetInfoVariations {
     is $hSub1->{'DefaultSubProduct'}, undef, 'Sub.DefaultSubProduct';
     is scalar @{$hSub1->{'SubProducts'}}, 0, 'Sub.SubProducts count';
 
-	is scalar @{ $hSub1->{'VariationAttributes'} }, 1, 'Sub.VariationAttributes count';
-	is $hSub1->{'VariationAttributes'}->[0]->{'Name'}, 'USSize', 'Sub.VariationAttribute name';
-	is $hSub1->{'VariationAttributes'}->[0]->{'Value'}, '10', 'Sub.VariationAttribute value';
+        is scalar @{ $hSub1->{'VariationAttributes'} }, 1, 'Sub.VariationAttributes count';
+        is $hSub1->{'VariationAttributes'}->[0]->{'Name'}, 'USSize', 'Sub.VariationAttribute name';
+        is $hSub1->{'VariationAttributes'}->[0]->{'Value'}, '10', 'Sub.VariationAttribute value';
     is $hSub1->{'IsMaster'}, 0, 'IsMaster=0';
 
     my $hMaster = $ahResults->[2];
@@ -717,10 +712,10 @@ sub testGetInfoVariations {
     is $hMaster->{'SubProducts'}->[0], WEBSERVICE_SHOP_PATH."$hOptions->{'FullPath'}/SubProducts/$Product_var1->{'Alias'}", 'Master.SubProducts[0]';
     is $hMaster->{'SubProducts'}->[1], WEBSERVICE_SHOP_PATH."$hOptions->{'FullPath'}/SubProducts/$Product_var2->{'Alias'}", 'Master.SubProducts[1]';
 
-	is scalar @{ $hMaster->{'VariationAttributes'} }, 1, 'Master.VariationAttributes count';
-	is $hMaster->{'VariationAttributes'}->[0]->{'Name'}, 'USSize', 'Master.VariationAttribute name';
-	is $hMaster->{'VariationAttributes'}->[0]->{'Value'}, '6,10', 'Master.VariationAttribute value';
-	is $hMaster->{'IsMaster'}, 1, 'IsMaster=1';
+        is scalar @{ $hMaster->{'VariationAttributes'} }, 1, 'Master.VariationAttributes count';
+        is $hMaster->{'VariationAttributes'}->[0]->{'Name'}, 'USSize', 'Master.VariationAttribute name';
+        is $hMaster->{'VariationAttributes'}->[0]->{'Value'}, '6,10', 'Master.VariationAttribute value';
+        is $hMaster->{'IsMaster'}, 1, 'IsMaster=1';
 }
 
 sub testCreateVariations {
@@ -728,11 +723,11 @@ sub testCreateVariations {
     my $aProducts = [$Product_var1, $Product_var2];
 
     my $ahResults = $ProductService->create( $aProducts )->result;
-    is( scalar @$ahResults, 2, "create variation result count" );
+    is( scalar @$ahResults, 2, 'create variation result count' );
 
     my $hResult = $ahResults->[0];
     diag "Error: $hResult->{'Error'}->{'Message'}\n" if $hResult->{'Error'};
-    ok( !$hResult->{'Error'}, "create: no error" );
+    ok( !$hResult->{'Error'}, 'create: no error' );
 
 }
 
@@ -740,16 +735,16 @@ sub testCreateWrongVariations {
 
     #try to create a variation with another variation as parent
     my $ahResults = $ProductService->create([$Product_var3])->result;
-    is( scalar @$ahResults, 1, "create wrong variation result count" );
-    ok( $ahResults->[0]->{'Error'}, "create wrong variation: error" );
-    ok( $ahResults->[0]->{'Error'}->{'Message'} =~ /is a variation.*can't be a master product/, "create wrong variation: error message = variation can't be a master product" );
+    is( scalar @$ahResults, 1, 'create wrong variation result count' );
+    ok( $ahResults->[0]->{'Error'}, 'create wrong variation: error' );
+    ok( $ahResults->[0]->{'Error'}->{'Message'} =~ /is a variation.*can't be a master product/, 'create wrong variation: error message = variation can\'t be a master product' );
 
     #try to set a master product (within variation) as an sub product
     $ahResults = $ProductService->update([$Product_var4])->result;
-    is( scalar @$ahResults, 1, "update wrong variation result count" );
+    is( scalar @$ahResults, 1, 'update wrong variation result count' );
     #check super product
     $ahResults = $ProductService->getInfo([$Product_var4->{'Path'}])->result;
-    ok( !$ahResults->[0]->{'SuperProduct'}, "super product not changed" );
+    ok( !$ahResults->[0]->{'SuperProduct'}, 'super product not changed' );
 
 }
 
