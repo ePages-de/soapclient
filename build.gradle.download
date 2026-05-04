@@ -1,9 +1,10 @@
 buildscript {
     repositories {
-        maven {
-            url "file:///tmp/gradle/soapclient"
-        }
         mavenCentral()
+        jcenter()
+        maven {
+            url "https://repository.axelor.com/nexus/repository/maven-public/"
+        }
     }
     dependencies {
         classpath 'com.ullink.gradle:gradle-msbuild-plugin:2.10'
